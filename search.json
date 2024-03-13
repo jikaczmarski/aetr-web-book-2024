@@ -1,62 +1,82 @@
 [
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "AETR Web Book",
+    "objectID": "capacity.html",
+    "href": "capacity.html",
+    "title": "Alaska Generation Capacity",
     "section": "",
-    "text": "Here is the place to put your welcome message",
+    "text": "Generation capacity represents the maximum amount of electricity that can be generated at any given time dependent on certain conditions. The combination of generation sources is often referred to as the generation or capacity mix …",
     "crumbs": [
-      "Home"
+      "Capacity"
     ]
   },
   {
-    "objectID": "index.html#welcome",
-    "href": "index.html#welcome",
-    "title": "AETR Web Book",
+    "objectID": "capacity.html#general-overview",
+    "href": "capacity.html#general-overview",
+    "title": "Alaska Generation Capacity",
     "section": "",
-    "text": "Here is the place to put your welcome message",
+    "text": "Generation capacity represents the maximum amount of electricity that can be generated at any given time dependent on certain conditions. The combination of generation sources is often referred to as the generation or capacity mix …",
     "crumbs": [
-      "Home"
+      "Capacity"
     ]
   },
   {
-    "objectID": "index.html#section-1",
-    "href": "index.html#section-1",
-    "title": "AETR Web Book",
-    "section": "Section 1",
-    "text": "Section 1\nPut the Section 1 text here",
+    "objectID": "capacity.html#coastal",
+    "href": "capacity.html#coastal",
+    "title": "Alaska Generation Capacity",
+    "section": "Coastal",
+    "text": "Coastal\nPut Coastal text here.",
     "crumbs": [
-      "Home"
+      "Capacity"
     ]
   },
   {
-    "objectID": "index.html#section-2",
-    "href": "index.html#section-2",
-    "title": "AETR Web Book",
-    "section": "Section 2",
-    "text": "Section 2\nThis is a stoat\n\n\n\n\n\n\n\nThis is a stoat.",
+    "objectID": "capacity.html#railbelt",
+    "href": "capacity.html#railbelt",
+    "title": "Alaska Generation Capacity",
+    "section": "Railbelt",
+    "text": "Railbelt\nPut Railbelt text here.",
     "crumbs": [
-      "Home"
+      "Capacity"
     ]
   },
   {
-    "objectID": "slides/presentation_demo.html#introductions",
-    "href": "slides/presentation_demo.html#introductions",
-    "title": "Demo Presentation",
-    "section": "Introductions",
-    "text": "Introductions\nPut text here",
+    "objectID": "capacity.html#rural-remote",
+    "href": "capacity.html#rural-remote",
+    "title": "Alaska Generation Capacity",
+    "section": "Rural Remote",
+    "text": "Rural Remote\nPut Rural Remote text here.",
     "crumbs": [
-      "Example Presentation"
+      "Capacity"
     ]
   },
   {
-    "objectID": "slides/presentation_demo.html#second-slide",
-    "href": "slides/presentation_demo.html#second-slide",
-    "title": "Demo Presentation",
-    "section": "Second Slide",
-    "text": "Second Slide\nPut text here\n\nThese are the speaker’s notes\n\n\n\n\nDemo Presentation",
+    "objectID": "data_sources.html",
+    "href": "data_sources.html",
+    "title": "Data Sources",
+    "section": "",
+    "text": "This report’s data sources are EIA forms 923, 860, 861, and 861S;, AEA PCE data, and direct communication with several utilities. It is important to note that our averages for PCE communities will NOT match the averages on the AEA website because the AEA’s published PCE data is reported by fiscal year (July - June). In contrast, this report uses monthly data provided by AEA for PCE-related communities and utilities to compile calendar year reports to align with EIA data.\nThe Alaska Energy Statistics workbooks that were used as detailed references in the development of this report are publicly available for data years 2014 through 2021 through the ACEP website.",
     "crumbs": [
-      "Example Presentation"
+      "Sources of Data"
+    ]
+  },
+  {
+    "objectID": "data_sources.html#source-of-data-in-this-report",
+    "href": "data_sources.html#source-of-data-in-this-report",
+    "title": "Data Sources",
+    "section": "Source of data in this report",
+    "text": "Source of data in this report\n\nEIA861\nEIA861S\nAEA PCE\n\nAEA publishes an annual fiscal year (July - June) report that provides information for PCE eligible utilities and communities. This report uses monthly data provided by AEA for PCE related communities and utilities to compile calendar year reports to align with EIA data.\n\n\nDirect from utility",
+    "crumbs": [
+      "Sources of Data"
+    ]
+  },
+  {
+    "objectID": "data_sources.html#regional-summaries",
+    "href": "data_sources.html#regional-summaries",
+    "title": "Data Sources",
+    "section": "Regional Summaries",
+    "text": "Regional Summaries\nIn this report, we categorize the state into three separate energy regions, each being a collection of various Alaska Energy Authority (AEA) energy regions. These regions are herein known as the Coastal Region (Southeast, Kodiak, Chugach/Copper River), the Railbelt, and rural remote communities (all other AEA energy regions).\nRegarding electricity generation capacity across the state, we examine large increases in fossil fuel consuming turbines and reciprocating internal combustion engines as well as nominal increases in renewable-sourced capacity (e.g., solar, wind, hydro, etc.). Capacity across the state has increased XX MW, with XX% of that capacity increase being in the Railbelt, XX% being in rural and remote communities, and XX% being in the coastal energy region.",
+    "crumbs": [
+      "Sources of Data"
     ]
   },
   {
@@ -67,6 +87,181 @@
     "text": "About this site",
     "crumbs": [
       "About Us"
+    ]
+  },
+  {
+    "objectID": "consumption.html",
+    "href": "consumption.html",
+    "title": "Electricity Consumption",
+    "section": "",
+    "text": "Consumption needs a better intro …"
+  },
+  {
+    "objectID": "consumption.html#general-overview",
+    "href": "consumption.html#general-overview",
+    "title": "Electricity Consumption",
+    "section": "",
+    "text": "Consumption needs a better intro …"
+  },
+  {
+    "objectID": "consumption.html#coastal",
+    "href": "consumption.html#coastal",
+    "title": "Electricity Consumption",
+    "section": "Coastal",
+    "text": "Coastal\nPut Coastal text here."
+  },
+  {
+    "objectID": "consumption.html#railbelt",
+    "href": "consumption.html#railbelt",
+    "title": "Electricity Consumption",
+    "section": "Railbelt",
+    "text": "Railbelt\nPut Railbelt text here."
+  },
+  {
+    "objectID": "consumption.html#rural-remote",
+    "href": "consumption.html#rural-remote",
+    "title": "Electricity Consumption",
+    "section": "Rural Remote",
+    "text": "Rural Remote\nPut Rural Remote text here."
+  },
+  {
+    "objectID": "prices.html",
+    "href": "prices.html",
+    "title": "Price of Electricity",
+    "section": "",
+    "text": "There are several kinds of customers that electric utilities in Alaska serve. These typically include the residential, commercial, industrial, government/municipal, and community customer classes. Each customer class typically faces a different set of costs such as per kWh charge as well as monthly customer charges. In this section, we aim to highlight trends in electricity prices for the residential, commercial, and industrial customer classes across the coastal, Railbelt, and rural remote regions …",
+    "crumbs": [
+      "Price of Electricity"
+    ]
+  },
+  {
+    "objectID": "prices.html#general-overview",
+    "href": "prices.html#general-overview",
+    "title": "Price of Electricity",
+    "section": "",
+    "text": "There are several kinds of customers that electric utilities in Alaska serve. These typically include the residential, commercial, industrial, government/municipal, and community customer classes. Each customer class typically faces a different set of costs such as per kWh charge as well as monthly customer charges. In this section, we aim to highlight trends in electricity prices for the residential, commercial, and industrial customer classes across the coastal, Railbelt, and rural remote regions …",
+    "crumbs": [
+      "Price of Electricity"
+    ]
+  },
+  {
+    "objectID": "prices.html#coastal",
+    "href": "prices.html#coastal",
+    "title": "Price of Electricity",
+    "section": "Coastal",
+    "text": "Coastal\nPut Coastal text here.",
+    "crumbs": [
+      "Price of Electricity"
+    ]
+  },
+  {
+    "objectID": "prices.html#railbelt",
+    "href": "prices.html#railbelt",
+    "title": "Price of Electricity",
+    "section": "Railbelt",
+    "text": "Railbelt\nPut Railbelt text here.",
+    "crumbs": [
+      "Price of Electricity"
+    ]
+  },
+  {
+    "objectID": "prices.html#rural-remote",
+    "href": "prices.html#rural-remote",
+    "title": "Price of Electricity",
+    "section": "Rural Remote",
+    "text": "Rural Remote\nPut Rural Remote text here.",
+    "crumbs": [
+      "Price of Electricity"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Alaska Electricity Trends Web Book",
+    "section": "",
+    "text": "This report summarizes federal, state, and utility data to provide an overview of electricity capacity, generation, consumption, and price trends from 2011 to 2021. A comprehensive report highlighting these trends has not been produced for the state of Alaska since the 2013 Alaska Energy Statistics Report.",
+    "crumbs": [
+      "Home"
+    ]
+  },
+  {
+    "objectID": "index.html#welcome",
+    "href": "index.html#welcome",
+    "title": "Alaska Electricity Trends Web Book",
+    "section": "",
+    "text": "This report summarizes federal, state, and utility data to provide an overview of electricity capacity, generation, consumption, and price trends from 2011 to 2021. A comprehensive report highlighting these trends has not been produced for the state of Alaska since the 2013 Alaska Energy Statistics Report.",
+    "crumbs": [
+      "Home"
+    ]
+  },
+  {
+    "objectID": "index.html#section-1",
+    "href": "index.html#section-1",
+    "title": "Alaska Electricity Trends Web Book",
+    "section": "Section 1",
+    "text": "Section 1\nPut the Section 1 text here",
+    "crumbs": [
+      "Home"
+    ]
+  },
+  {
+    "objectID": "index.html#acronyms",
+    "href": "index.html#acronyms",
+    "title": "Alaska Electricity Trends Web Book",
+    "section": "Acronyms",
+    "text": "Acronyms\nThese abbreviations are used throughout this report\n\nACEP: Alaska Center for Energy and Power\nAEA: Alaska Energy Authority\nBUECI: Barrow Utilities & Electric Cooperative, Inc.\nPCE: Power Cost Equalization\nEIA: Energy Information Administration\nFERC: Federal Energy Regulatory Commission\nCAGR: Compound Annual Growth Rate\nKW: Kilowatts\nKWh: Kilowatt Hours\nMW: Megawatts\nMWh: Megawatt Hours\nGW: Gigawatts\nGWh: Gigawatt Hours",
+    "crumbs": [
+      "Home"
+    ]
+  },
+  {
+    "objectID": "generation.html",
+    "href": "generation.html",
+    "title": "Generation by Fuel Type",
+    "section": "",
+    "text": "This section outlines the trends in generation by fuel type for each region. Generation in our context has two separate definitions. Data collected through the Energy Information Administration (EIA) records “net” generation, which excludes electricity use for power plant operations. However, data collected from the Alaska Energy Authority’s (AEA) Power Cost Equalization (PCE) program is presented as “gross” generation, which does not make this exclusion.",
+    "crumbs": [
+      "Generation by Fuel Type"
+    ]
+  },
+  {
+    "objectID": "generation.html#general-overview",
+    "href": "generation.html#general-overview",
+    "title": "Generation by Fuel Type",
+    "section": "",
+    "text": "This section outlines the trends in generation by fuel type for each region. Generation in our context has two separate definitions. Data collected through the Energy Information Administration (EIA) records “net” generation, which excludes electricity use for power plant operations. However, data collected from the Alaska Energy Authority’s (AEA) Power Cost Equalization (PCE) program is presented as “gross” generation, which does not make this exclusion.",
+    "crumbs": [
+      "Generation by Fuel Type"
+    ]
+  },
+  {
+    "objectID": "generation.html#coastal",
+    "href": "generation.html#coastal",
+    "title": "Generation by Fuel Type",
+    "section": "Coastal",
+    "text": "Coastal\nPut Coastal text here.",
+    "crumbs": [
+      "Generation by Fuel Type"
+    ]
+  },
+  {
+    "objectID": "generation.html#railbelt",
+    "href": "generation.html#railbelt",
+    "title": "Generation by Fuel Type",
+    "section": "Railbelt",
+    "text": "Railbelt\nPut Railbelt text here.",
+    "crumbs": [
+      "Generation by Fuel Type"
+    ]
+  },
+  {
+    "objectID": "generation.html#rural-remote",
+    "href": "generation.html#rural-remote",
+    "title": "Generation by Fuel Type",
+    "section": "Rural Remote",
+    "text": "Rural Remote\nPut Rural Remote text here.",
+    "crumbs": [
+      "Generation by Fuel Type"
     ]
   }
 ]
