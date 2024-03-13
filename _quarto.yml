@@ -1,0 +1,56 @@
+project: 
+  type: website
+  
+website: 
+  page-navigation: true
+  title: AETR Web Book 
+  site-url: "https://eldobbins/aetr-web-book/" 
+  repo-url: https://github.com/eldobbins/aetr-web-book 
+  repo-actions: [issue]
+  
+  page-footer:
+    right: "This page is based on Openscape's [Quarto Site Template](https://github.com/Openscapes/quarto-website-tutorial) and built with [Quarto](https://quarto.org/) ."
+    left: "&copy; CC-By , 2023"
+    
+  sidebar:
+    logo: "images/ACEP_gear.png"
+    pinned: true
+    align: center
+    tools: 
+      - icon: globe
+        href: https://cookiecutter.readthedocs.io/en/stable/
+        text: "Cookiecutter Project Templates"
+      - icon: github
+        href: https://github.com/eldobbins
+        text: "Liz Dobbins's GitHub"      
+
+    style: "docked"
+    search: true
+    collapse-level: 1
+    contents:
+      - href: index.qmd
+        text: Home
+      - href: about.qmd
+        text: About Us
+        icon: dot
+      - href: slides/presentation_demo.qmd
+        text: Example Presentation
+        icon: dot
+
+
+
+format:
+  html:
+    theme:
+      light: [cosmo, theme.scss] # from https://github.com/sta210-s22/website/blob/main/_quarto.yml
+      dark: [cosmo, theme-dark.scss]
+    code-copy: true
+    code-overflow: wrap
+    css: styles.css
+    toc: true
+
+
+filters:
+  - quarto
+
+  
