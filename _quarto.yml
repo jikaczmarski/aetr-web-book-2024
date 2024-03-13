@@ -33,11 +33,21 @@ website:
       - href: about.qmd
         text: About Us
         icon: dot
-      - href: slides/presentation_demo.qmd
-        text: Example Presentation
+      - href: data_sources.qmd
+        text: Sources of Data
         icon: dot
-
-
+      - href: capacity.qmd
+        text: Capacity
+        icon: dot
+      - href: generation.qmd
+        text: Generation by Fuel Type
+        icon: dot
+      - href: Consumption.qmd
+        text: Electricity Consumption
+        icon: dot
+      - href: prices.qmd
+        text: Price of Electricity
+        icon: dot        
 
 format:
   html:

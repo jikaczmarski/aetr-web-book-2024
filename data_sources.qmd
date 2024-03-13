@@ -1,0 +1,23 @@
+---
+title: "Data Sources"
+subtitle: "Section of Alaska Electricity Trends Web Book"
+---
+
+
+This report's data sources are EIA forms 923, 860, 861, and 861S;, AEA PCE data, and direct communication with several utilities.  It is important to note that our averages for PCE communities will NOT match the averages on the AEA website because the AEA’s published PCE data is reported by fiscal year (July - June).  In contrast, this report uses monthly data provided by AEA for PCE-related communities and utilities to compile calendar year reports to align with EIA data.
+
+The Alaska Energy Statistics workbooks that were used as detailed references in the development of this report are publicly available for data years 2014 through 2021 through the ACEP website.
+
+## Source of data in this report
+
+- EIA861
+- EIA861S
+- AEA PCE
+  - AEA publishes an annual fiscal year (July - June) report that provides information for PCE eligible utilities and communities.  This report uses monthly data provided by AEA for PCE related communities and utilities to compile calendar year reports to align with EIA data.  
+- Direct from utility
+
+## Regional Summaries
+
+In this report, we categorize the state into three separate energy regions, each being a collection of various Alaska Energy Authority (AEA) energy regions. These regions are herein known as the Coastal Region (Southeast, Kodiak, Chugach/Copper River), the Railbelt, and rural remote communities (all other AEA energy regions).
+
+Regarding electricity generation capacity across the state, we examine large increases in fossil fuel consuming turbines and reciprocating internal combustion engines as well as nominal increases in renewable-sourced capacity (e.g., solar, wind, hydro, etc.). Capacity across the state has increased XX MW, with XX% of that capacity increase being in the Railbelt, XX% being in rural and remote communities, and XX% being in the coastal energy region.

@@ -1,0 +1,20 @@
+---
+title: "Electricity Consumption"
+subtitle: "Consumption Section of Alaska Electricity Trends Web Book"
+---
+
+## General Overview
+
+Consumption needs a better intro ...
+
+## Coastal
+
+Put Coastal text here.
+
+## Railbelt
+
+Put Railbelt text here.
+
+## Rural Remote
+
+Put Rural Remote text here.

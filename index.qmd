@@ -1,20 +1,31 @@
 ---
-title: "AETR Web Book"
-subtitle: "A Website Made with Quarto"
+title: "Alaska Electricity Trends Web Book"
+subtitle: "Analysis of Alaska Electricity Data, 2011-2021"
 ---
 
 ## Welcome  {#welcome}
 
-Here is the place to put your welcome message
-
+This report summarizes federal, state, and utility data to provide an overview of electricity capacity, generation, consumption, and price trends from 2011 to 2021. A comprehensive report highlighting these trends has not been produced for the state of Alaska since the 2013 Alaska Energy Statistics Report.
 
 ## Section 1
 
 Put the Section 1 text here
 
-## Section 2
+## Acronyms
 
-This is a stoat
+These abbreviations are used throughout this report
 
-[![This is a stoat.](https://britishwildlifecentre.co.uk/wp-content/uploads/2018/12/New-Website-Stoat-Pt-07-18.jpg){fig-alt="Stoat" width=200 fig-align="left"}](https://www.adfg.alaska.gov/static/education/wns/weasels.pdf "See Alaskan Weasels")
+- ACEP: Alaska Center for Energy and Power
+- AEA:  Alaska Energy Authority
+- BUECI: Barrow Utilities & Electric Cooperative, Inc.
+- PCE:  Power Cost Equalization
+- EIA:  Energy Information Administration
+- FERC: Federal Energy Regulatory Commission
+- CAGR: Compound Annual Growth Rate
+- KW:  Kilowatts
+- KWh: Kilowatt Hours
+- MW:  Megawatts
+- MWh: Megawatt Hours
+- GW:  Gigawatts
+- GWh: Gigawatt Hours
 

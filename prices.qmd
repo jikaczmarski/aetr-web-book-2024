@@ -1,0 +1,21 @@
+---
+title: "Price of Electricity"
+subtitle: "Prices Section of Alaska Electricity Trends Web Book"
+---
+
+## General Overview
+
+There are several kinds of customers that electric utilities in Alaska serve. These typically include the residential, commercial, industrial, government/municipal, and community customer classes. Each customer class typically faces a different set of costs such as per kWh charge as well as monthly customer charges. In this section, we aim to highlight trends in electricity prices for the residential, commercial, and industrial customer classes across the coastal, Railbelt, and rural remote regions ...
+
+
+## Coastal
+
+Put Coastal text here.
+
+## Railbelt
+
+Put Railbelt text here.
+
+## Rural Remote
+
+Put Rural Remote text here.
