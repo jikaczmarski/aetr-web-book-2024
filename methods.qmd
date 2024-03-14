@@ -19,11 +19,18 @@ what is this?  Why isn't a source for all data? (i.e. reporting to EIA is not re
 
 ### Power Cost Equalization
 
-what is this program? why utilities report here?  why is it fiscal year?  why might data be missing?
+#### Q: what is this program? why utilities report here?  why is it fiscal year?  why might data be missing?
 - extracted from AEA "accounting system"
 - communities vs utilities
 
 Assume no one knows what a PCE is.  Maybe think of Catalyst while write this. Show what we have to offer and why Alaska is different/special.
+
+Alaska is famous for wide expanses of rugged terrain. Towns are often extremely distant from one another, or are separated by inaccessible mountains and galciers. The utility landscape of Alaska resembles a sea of islands, very different from the interconnected grids of the contiguous United States. 
+
+In total, Alaska contains over 100 separate utilities, many of which serve a single small community. Most rely on diesel generators connected to huge fuel tanks, which recieve a barge shipment of fuel in the summer that must last through the winter. If the town runs out of fuel during winter months, additional fuel has to be flown in at extreme expense. Predictably, electricity in these remote towns is prohibitavely expensive. Some rural towns pay 3 to 5 times the rates of urban Alaska. 
+
+Urban Alaska has greatly benefitted from large state-subsidized energy projects, such as the BradleyIn an effort to equalize differences between rural and urban Alaska, the Alaska Energy Authority administers the Power Cost Equalization (PCE) program. The PCE program, funded by earnings from an endowment fund, reimburses rural utilities for credits that have been provided to its customers. Eligability is limited to residential customers and community facilities, up to 
+
 
 ### Workbooks (maybe call this something else)
 
