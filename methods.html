@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>AETR Web Book - Data Sources</title>
+<title>AETR Web Book - Data Analysis Methods</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -83,7 +83,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data_sources.html">Sources of Data</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./methods.html">Methods</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -101,8 +101,8 @@ ul.task-list li input[type="checkbox"] {
       <img src="./images/ACEP_gear.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
       </a>
       <div class="sidebar-tools-main tools-wide">
-    <a href="https://cookiecutter.readthedocs.io/en/stable/" title="Cookiecutter Project Templates" class="quarto-navigation-tool px-1" aria-label="Cookiecutter Project Templates"><i class="bi bi-globe"></i></a>
-    <a href="https://github.com/eldobbins" title="Liz Dobbins's GitHub" class="quarto-navigation-tool px-1" aria-label="Liz Dobbins's GitHub"><i class="bi bi-github"></i></a>
+    <a href="https://www.uaf.edu/acep/" title="Alaska Center for Energy and Power" class="quarto-navigation-tool px-1" aria-label="Alaska Center for Energy and Power"><i class="bi bi-globe"></i></a>
+    <a href="https://github.com/acep-uaf/aetr-web-book" title="Liz Dobbins's GitHub" class="quarto-navigation-tool px-1" aria-label="Liz Dobbins's GitHub"><i class="bi bi-github"></i></a>
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
       </div>
@@ -128,9 +128,9 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./data_sources.html" class="sidebar-item-text sidebar-link active"><i class="bi bi-dot" role="img">
+  <a href="./methods.html" class="sidebar-item-text sidebar-link active"><i class="bi bi-dot" role="img">
 </i> 
- <span class="menu-text">Sources of Data</span></a>
+ <span class="menu-text">Methods</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -149,7 +149,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Consumption.qmd" class="sidebar-item-text sidebar-link"><i class="bi bi-dot" role="img">
+  <a href="./consumption.html" class="sidebar-item-text sidebar-link"><i class="bi bi-dot" role="img">
 </i> 
  <span class="menu-text">Electricity Consumption</span></a>
   </div>
@@ -171,18 +171,25 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#source-of-data-in-this-report" id="toc-source-of-data-in-this-report" class="nav-link active" data-scroll-target="#source-of-data-in-this-report">Source of data in this report</a></li>
+  <li><a href="#data-sources" id="toc-data-sources" class="nav-link active" data-scroll-target="#data-sources">Data Sources</a>
+  <ul class="collapse">
+  <li><a href="#energy-information-authority-eia" id="toc-energy-information-authority-eia" class="nav-link" data-scroll-target="#energy-information-authority-eia">Energy Information Authority (EIA)</a></li>
+  <li><a href="#power-cost-equalization" id="toc-power-cost-equalization" class="nav-link" data-scroll-target="#power-cost-equalization">Power Cost Equalization</a></li>
+  <li><a href="#workbooks-maybe-call-this-something-else" id="toc-workbooks-maybe-call-this-something-else" class="nav-link" data-scroll-target="#workbooks-maybe-call-this-something-else">Workbooks (maybe call this something else)</a></li>
+  </ul></li>
+  <li><a href="#data-processing-and-aggregations" id="toc-data-processing-and-aggregations" class="nav-link" data-scroll-target="#data-processing-and-aggregations">Data Processing and Aggregations</a></li>
   <li><a href="#regional-summaries" id="toc-regional-summaries" class="nav-link" data-scroll-target="#regional-summaries">Regional Summaries</a></li>
+  <li><a href="#future-plans" id="toc-future-plans" class="nav-link" data-scroll-target="#future-plans">Future plans</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/eldobbins/aetr-web-book/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/acep-uaf/aetr-web-book/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Data Sources</h1>
-<p class="subtitle lead">Section of Alaska Electricity Trends Web Book</p>
+<h1 class="title">Data Analysis Methods</h1>
+<p class="subtitle lead">Methods Section of Alaska Electricity Trends Web Book</p>
 </div>
 
 
@@ -199,25 +206,50 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>This report’s data sources are EIA forms 923, 860, 861, and 861S;, AEA PCE data, and direct communication with several utilities. It is important to note that our averages for PCE communities will NOT match the averages on the AEA website because the AEA’s published PCE data is reported by fiscal year (July - June). In contrast, this report uses monthly data provided by AEA for PCE-related communities and utilities to compile calendar year reports to align with EIA data.</p>
-<p>The Alaska Energy Statistics workbooks that were used as detailed references in the development of this report are publicly available for data years 2014 through 2021 through the ACEP website.</p>
-<section id="source-of-data-in-this-report" class="level2">
-<h2 class="anchored" data-anchor-id="source-of-data-in-this-report">Source of data in this report</h2>
+<p>Report currently has data caveats spread throughout the text as footnotes. I think that information should be gathered together here. - links back to this information here can then be added to the other pages (instead of footnotes?)</p>
+<section id="data-sources" class="level2">
+<h2 class="anchored" data-anchor-id="data-sources">Data Sources</h2>
+<p>Data discussed in this report come from 2 main sources… (Are there any other data sources?)</p>
+<section id="energy-information-authority-eia" class="level3">
+<h3 class="anchored" data-anchor-id="energy-information-authority-eia">Energy Information Authority (EIA)</h3>
+<p>what is this? Why isn’t a source for all data? (i.e.&nbsp;reporting to EIA is not required for Alaskan utilities) - list of forms? which ones actually used? - how did Neil get these</p>
+</section>
+<section id="power-cost-equalization" class="level3">
+<h3 class="anchored" data-anchor-id="power-cost-equalization">Power Cost Equalization</h3>
+<p>what is this program? why utilities report here? why is it fiscal year? why might data be missing? - extracted from AEA “accounting system” - communities vs utilities</p>
+<p>Assume no one knows what a PCE is. Maybe think of Catalyst while write this. Show what we have to offer and why Alaska is different/special.</p>
+</section>
+<section id="workbooks-maybe-call-this-something-else" class="level3">
+<h3 class="anchored" data-anchor-id="workbooks-maybe-call-this-something-else">Workbooks (maybe call this something else)</h3>
+<p>By which I mean Neil’s cross referencing between the 2 sources - will we distribute these? If so, link. If not, then say why (nicely!) - how to cross reference between the AEA and EIA? This is cool! - differences between the 2 data sets</p>
+</section>
+</section>
+<section id="data-processing-and-aggregations" class="level2">
+<h2 class="anchored" data-anchor-id="data-processing-and-aggregations">Data Processing and Aggregations</h2>
 <ul>
-<li>EIA861</li>
-<li>EIA861S</li>
-<li>AEA PCE
-<ul>
-<li>AEA publishes an annual fiscal year (July - June) report that provides information for PCE eligible utilities and communities. This report uses monthly data provided by AEA for PCE related communities and utilities to compile calendar year reports to align with EIA data.<br>
-</li>
-</ul></li>
-<li>Direct from utility</li>
+<li>calendar vs fiscal year</li>
+<li>error corrections (at what stage did this happen?)</li>
+<li>Jesse’s big files - link to these, right?</li>
 </ul>
 </section>
 <section id="regional-summaries" class="level2">
 <h2 class="anchored" data-anchor-id="regional-summaries">Regional Summaries</h2>
+<p>How were regions defined previously? Why didn’t we just copy that?</p>
 <p>In this report, we categorize the state into three separate energy regions, each being a collection of various Alaska Energy Authority (AEA) energy regions. These regions are herein known as the Coastal Region (Southeast, Kodiak, Chugach/Copper River), the Railbelt, and rural remote communities (all other AEA energy regions).</p>
-<p>Regarding electricity generation capacity across the state, we examine large increases in fossil fuel consuming turbines and reciprocating internal combustion engines as well as nominal increases in renewable-sourced capacity (e.g., solar, wind, hydro, etc.). Capacity across the state has increased XX MW, with XX% of that capacity increase being in the Railbelt, XX% being in rural and remote communities, and XX% being in the coastal energy region.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/AEA_ACEP_regions.png" class="img-fluid figure-img"></p>
+<figcaption>Relationship between Energy Regions as defined by AEA and ACEP</figcaption>
+</figure>
+</div>
+</section>
+<section id="future-plans" class="level2">
+<h2 class="anchored" data-anchor-id="future-plans">Future plans</h2>
+<ul>
+<li>database</li>
+<li>API / queries</li>
+<li>expose Neil’s transmission lines thing</li>
+</ul>
 
 
 </section>
@@ -448,7 +480,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/eldobbins\/aetr-web-book\/");
+      var filterRegex = new RegExp("https:\/\/acep-uaf\.github\.io\/aetr-web-book\/");
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
@@ -796,7 +828,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/eldobbins/aetr-web-book/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/acep-uaf/aetr-web-book/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
 <p>This page is based on Openscape’s <a href="https://github.com/Openscapes/quarto-website-tutorial">Quarto Site Template</a> and built with <a href="https://quarto.org/">Quarto</a> .</p>
 </div>

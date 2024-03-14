@@ -50,79 +50,44 @@
     ]
   },
   {
-    "objectID": "data_sources.html",
-    "href": "data_sources.html",
-    "title": "Data Sources",
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Alaska Electricity Trends Web Book",
     "section": "",
-    "text": "This report’s data sources are EIA forms 923, 860, 861, and 861S;, AEA PCE data, and direct communication with several utilities. It is important to note that our averages for PCE communities will NOT match the averages on the AEA website because the AEA’s published PCE data is reported by fiscal year (July - June). In contrast, this report uses monthly data provided by AEA for PCE-related communities and utilities to compile calendar year reports to align with EIA data.\nThe Alaska Energy Statistics workbooks that were used as detailed references in the development of this report are publicly available for data years 2014 through 2021 through the ACEP website.",
+    "text": "This report summarizes federal, state, and utility data to provide an overview of electricity capacity, generation, consumption, and price trends from 2011 to 2021. A comprehensive report highlighting these trends has not been produced for the state of Alaska since the 2013 Alaska Energy Statistics Report.",
     "crumbs": [
-      "Sources of Data"
+      "Home"
     ]
   },
   {
-    "objectID": "data_sources.html#source-of-data-in-this-report",
-    "href": "data_sources.html#source-of-data-in-this-report",
-    "title": "Data Sources",
-    "section": "Source of data in this report",
-    "text": "Source of data in this report\n\nEIA861\nEIA861S\nAEA PCE\n\nAEA publishes an annual fiscal year (July - June) report that provides information for PCE eligible utilities and communities. This report uses monthly data provided by AEA for PCE related communities and utilities to compile calendar year reports to align with EIA data.\n\n\nDirect from utility",
+    "objectID": "index.html#welcome",
+    "href": "index.html#welcome",
+    "title": "Alaska Electricity Trends Web Book",
+    "section": "",
+    "text": "This report summarizes federal, state, and utility data to provide an overview of electricity capacity, generation, consumption, and price trends from 2011 to 2021. A comprehensive report highlighting these trends has not been produced for the state of Alaska since the 2013 Alaska Energy Statistics Report.",
     "crumbs": [
-      "Sources of Data"
+      "Home"
     ]
   },
   {
-    "objectID": "data_sources.html#regional-summaries",
-    "href": "data_sources.html#regional-summaries",
-    "title": "Data Sources",
-    "section": "Regional Summaries",
-    "text": "Regional Summaries\nIn this report, we categorize the state into three separate energy regions, each being a collection of various Alaska Energy Authority (AEA) energy regions. These regions are herein known as the Coastal Region (Southeast, Kodiak, Chugach/Copper River), the Railbelt, and rural remote communities (all other AEA energy regions).\nRegarding electricity generation capacity across the state, we examine large increases in fossil fuel consuming turbines and reciprocating internal combustion engines as well as nominal increases in renewable-sourced capacity (e.g., solar, wind, hydro, etc.). Capacity across the state has increased XX MW, with XX% of that capacity increase being in the Railbelt, XX% being in rural and remote communities, and XX% being in the coastal energy region.",
+    "objectID": "index.html#key-takeaways",
+    "href": "index.html#key-takeaways",
+    "title": "Alaska Electricity Trends Web Book",
+    "section": "Key Takeaways",
+    "text": "Key Takeaways\n\nCapacity\n\nGeneration capacity on average increased across all of Alaska from 2011 to 2021.\nThe state saw large increases in renewable energy capacity, storage, and on-demand peaking units.\n\n\n\nGeneration\n\nNet generation has remained relatively stable\nThe Coastal region generated more power from wind and hydro, but less from oil in 2021 than in 2011.\nThe Railbelt region generated more power from wind, hydro, coal, and solar, but less from oil and gas in 2021 than in 2011.\nThe Rural Remote region generated more power from wind and solar, but less from oil and hydro in 2021 than in 2011.\nWe have seen significant increases in the usage of utility-scale battery storage.\n\n\n\nConsumption\n\nElectricity consumption has fallen for all customer classes, with residential customers seeing the most reductions.\nThe number of customer accounts have continued to increase throughout the state.\nPer capita consumption for the residential sector is highest in the Coastal region and lowest in the Rural Remote region.\n\n\n\nPrices\n\nResidential electricity rates increased on average across Alaska after adjusting for inflation, the PCE subsidy, and population weighting.\nThe region that experienced the least residential rate gain was the Coastal region with a 6% increase.\nThe region experiencing the highest residential rate gain was the Railbelt with a 26% increase.\nCommercial and Other customers in the Coastal and Rural Remote regions saw rate decreases where Commercial customers in the Railbelt region saw price increases of about 15%.\nPCE subsidies continue to dampen residential prices in the Coastal and Rural Remote regions.",
     "crumbs": [
-      "Sources of Data"
+      "Home"
     ]
   },
   {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
-    "section": "",
-    "text": "About this site",
+    "objectID": "index.html#acronyms",
+    "href": "index.html#acronyms",
+    "title": "Alaska Electricity Trends Web Book",
+    "section": "Acronyms",
+    "text": "Acronyms\nThese abbreviations are used throughout this report\n\nACEP: Alaska Center for Energy and Power\nAEA: Alaska Energy Authority\nBUECI: Barrow Utilities & Electric Cooperative, Inc.\nPCE: Power Cost Equalization\nEIA: Energy Information Administration\nFERC: Federal Energy Regulatory Commission\nCAGR: Compound Annual Growth Rate\nKW: Kilowatts\nKWh: Kilowatt Hours\nMW: Megawatts\nMWh: Megawatt Hours\nGW: Gigawatts\nGWh: Gigawatt Hours",
     "crumbs": [
-      "About Us"
+      "Home"
     ]
-  },
-  {
-    "objectID": "consumption.html",
-    "href": "consumption.html",
-    "title": "Electricity Consumption",
-    "section": "",
-    "text": "Consumption needs a better intro …"
-  },
-  {
-    "objectID": "consumption.html#general-overview",
-    "href": "consumption.html#general-overview",
-    "title": "Electricity Consumption",
-    "section": "",
-    "text": "Consumption needs a better intro …"
-  },
-  {
-    "objectID": "consumption.html#coastal",
-    "href": "consumption.html#coastal",
-    "title": "Electricity Consumption",
-    "section": "Coastal",
-    "text": "Coastal\nPut Coastal text here."
-  },
-  {
-    "objectID": "consumption.html#railbelt",
-    "href": "consumption.html#railbelt",
-    "title": "Electricity Consumption",
-    "section": "Railbelt",
-    "text": "Railbelt\nPut Railbelt text here."
-  },
-  {
-    "objectID": "consumption.html#rural-remote",
-    "href": "consumption.html#rural-remote",
-    "title": "Electricity Consumption",
-    "section": "Rural Remote",
-    "text": "Rural Remote\nPut Rural Remote text here."
   },
   {
     "objectID": "prices.html",
@@ -175,43 +140,113 @@
     ]
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Alaska Electricity Trends Web Book",
+    "objectID": "methods.html",
+    "href": "methods.html",
+    "title": "Data Analysis Methods",
     "section": "",
-    "text": "This report summarizes federal, state, and utility data to provide an overview of electricity capacity, generation, consumption, and price trends from 2011 to 2021. A comprehensive report highlighting these trends has not been produced for the state of Alaska since the 2013 Alaska Energy Statistics Report.",
+    "text": "Report currently has data caveats spread throughout the text as footnotes. I think that information should be gathered together here. - links back to this information here can then be added to the other pages (instead of footnotes?)",
     "crumbs": [
-      "Home"
+      "Methods"
     ]
   },
   {
-    "objectID": "index.html#welcome",
-    "href": "index.html#welcome",
-    "title": "Alaska Electricity Trends Web Book",
+    "objectID": "methods.html#data-sources",
+    "href": "methods.html#data-sources",
+    "title": "Data Analysis Methods",
+    "section": "Data Sources",
+    "text": "Data Sources\nData discussed in this report come from 2 main sources… (Are there any other data sources?)\n\nEnergy Information Authority (EIA)\nwhat is this? Why isn’t a source for all data? (i.e. reporting to EIA is not required for Alaskan utilities) - list of forms? which ones actually used? - how did Neil get these\n\n\nPower Cost Equalization\nwhat is this program? why utilities report here? why is it fiscal year? why might data be missing? - extracted from AEA “accounting system” - communities vs utilities\nAssume no one knows what a PCE is. Maybe think of Catalyst while write this. Show what we have to offer and why Alaska is different/special.\n\n\nWorkbooks (maybe call this something else)\nBy which I mean Neil’s cross referencing between the 2 sources - will we distribute these? If so, link. If not, then say why (nicely!) - how to cross reference between the AEA and EIA? This is cool! - differences between the 2 data sets",
+    "crumbs": [
+      "Methods"
+    ]
+  },
+  {
+    "objectID": "methods.html#data-processing-and-aggregations",
+    "href": "methods.html#data-processing-and-aggregations",
+    "title": "Data Analysis Methods",
+    "section": "Data Processing and Aggregations",
+    "text": "Data Processing and Aggregations\n\ncalendar vs fiscal year\nerror corrections (at what stage did this happen?)\nJesse’s big files - link to these, right?",
+    "crumbs": [
+      "Methods"
+    ]
+  },
+  {
+    "objectID": "methods.html#regional-summaries",
+    "href": "methods.html#regional-summaries",
+    "title": "Data Analysis Methods",
+    "section": "Regional Summaries",
+    "text": "Regional Summaries\nHow were regions defined previously? Why didn’t we just copy that?\nIn this report, we categorize the state into three separate energy regions, each being a collection of various Alaska Energy Authority (AEA) energy regions. These regions are herein known as the Coastal Region (Southeast, Kodiak, Chugach/Copper River), the Railbelt, and rural remote communities (all other AEA energy regions).\n\n\n\nRelationship between Energy Regions as defined by AEA and ACEP",
+    "crumbs": [
+      "Methods"
+    ]
+  },
+  {
+    "objectID": "methods.html#future-plans",
+    "href": "methods.html#future-plans",
+    "title": "Data Analysis Methods",
+    "section": "Future plans",
+    "text": "Future plans\n\ndatabase\nAPI / queries\nexpose Neil’s transmission lines thing",
+    "crumbs": [
+      "Methods"
+    ]
+  },
+  {
+    "objectID": "consumption.html",
+    "href": "consumption.html",
+    "title": "Electricity Consumption",
     "section": "",
-    "text": "This report summarizes federal, state, and utility data to provide an overview of electricity capacity, generation, consumption, and price trends from 2011 to 2021. A comprehensive report highlighting these trends has not been produced for the state of Alaska since the 2013 Alaska Energy Statistics Report.",
+    "text": "Consumption needs a better intro …",
     "crumbs": [
-      "Home"
+      "Electricity Consumption"
     ]
   },
   {
-    "objectID": "index.html#section-1",
-    "href": "index.html#section-1",
-    "title": "Alaska Electricity Trends Web Book",
-    "section": "Section 1",
-    "text": "Section 1\nPut the Section 1 text here",
+    "objectID": "consumption.html#general-overview",
+    "href": "consumption.html#general-overview",
+    "title": "Electricity Consumption",
+    "section": "",
+    "text": "Consumption needs a better intro …",
     "crumbs": [
-      "Home"
+      "Electricity Consumption"
     ]
   },
   {
-    "objectID": "index.html#acronyms",
-    "href": "index.html#acronyms",
-    "title": "Alaska Electricity Trends Web Book",
-    "section": "Acronyms",
-    "text": "Acronyms\nThese abbreviations are used throughout this report\n\nACEP: Alaska Center for Energy and Power\nAEA: Alaska Energy Authority\nBUECI: Barrow Utilities & Electric Cooperative, Inc.\nPCE: Power Cost Equalization\nEIA: Energy Information Administration\nFERC: Federal Energy Regulatory Commission\nCAGR: Compound Annual Growth Rate\nKW: Kilowatts\nKWh: Kilowatt Hours\nMW: Megawatts\nMWh: Megawatt Hours\nGW: Gigawatts\nGWh: Gigawatt Hours",
+    "objectID": "consumption.html#coastal",
+    "href": "consumption.html#coastal",
+    "title": "Electricity Consumption",
+    "section": "Coastal",
+    "text": "Coastal\nPut Coastal text here.",
     "crumbs": [
-      "Home"
+      "Electricity Consumption"
+    ]
+  },
+  {
+    "objectID": "consumption.html#railbelt",
+    "href": "consumption.html#railbelt",
+    "title": "Electricity Consumption",
+    "section": "Railbelt",
+    "text": "Railbelt\nPut Railbelt text here.",
+    "crumbs": [
+      "Electricity Consumption"
+    ]
+  },
+  {
+    "objectID": "consumption.html#rural-remote",
+    "href": "consumption.html#rural-remote",
+    "title": "Electricity Consumption",
+    "section": "Rural Remote",
+    "text": "Rural Remote\nPut Rural Remote text here.",
+    "crumbs": [
+      "Electricity Consumption"
+    ]
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this site",
+    "crumbs": [
+      "About Us"
     ]
   },
   {
