@@ -1,0 +1,54 @@
+---
+title: "Data Analysis Methods"
+subtitle: "Methods Section of Alaska Electricity Trends Web Book"
+---
+
+Report currently has data caveats spread throughout the text as footnotes. I think that information should be gathered together here.
+- links back to this information here can then be added to the other pages (instead of footnotes?)
+
+
+## Data Sources
+
+Data discussed in this report come from 2 main sources... (Are there any other data sources?)
+
+### Energy Information Authority (EIA)
+
+what is this?  Why isn't a source for all data? (i.e. reporting to EIA is not required for Alaskan utilities)
+- list of forms?  which ones actually used?
+- how did Neil get these
+
+### Power Cost Equalization
+
+what is this program? why utilities report here?  why is it fiscal year?  why might data be missing?
+- extracted from AEA "accounting system"
+- communities vs utilities
+
+Assume no one knows what a PCE is.  Maybe think of Catalyst while write this. Show what we have to offer and why Alaska is different/special.
+
+### Workbooks (maybe call this something else)
+
+By which I mean Neil's cross referencing between the 2 sources
+- will we distribute these? If so, link.  If not, then say why (nicely!)
+- how to cross reference between the AEA and EIA?  This is cool!
+- differences between the 2 data sets
+
+## Data Processing and Aggregations
+
+- calendar vs fiscal year
+- error corrections (at what stage did this happen?)
+- Jesse's big files - link to these, right?
+
+
+## Regional Summaries
+
+How were regions defined previously? Why didn't we just copy that?
+
+In this report, we categorize the state into three separate energy regions, each being a collection of various Alaska Energy Authority (AEA) energy regions. These regions are herein known as the Coastal Region (Southeast, Kodiak, Chugach/Copper River), the Railbelt, and rural remote communities (all other AEA energy regions).
+
+![Relationship between Energy Regions as defined by AEA and ACEP](images/AEA_ACEP_regions.png)
+
+## Future plans
+
+- database
+- API / queries
+- expose Neil's transmission lines thing

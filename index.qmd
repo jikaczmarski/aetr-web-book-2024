@@ -7,9 +7,31 @@ subtitle: "Analysis of Alaska Electricity Data, 2011-2021"
 
 This report summarizes federal, state, and utility data to provide an overview of electricity capacity, generation, consumption, and price trends from 2011 to 2021. A comprehensive report highlighting these trends has not been produced for the state of Alaska since the 2013 Alaska Energy Statistics Report.
 
-## Section 1
+## Key Takeaways
 
-Put the Section 1 text here
+### Capacity
+- Generation capacity on average increased across all of Alaska from 2011 to 2021.
+- The state saw large increases in renewable energy capacity, storage, and on-demand peaking units.
+
+### Generation
+- Net generation has remained relatively stable
+- The Coastal region generated more power from wind and hydro, but less from oil in 2021 than in 2011.
+- The Railbelt region generated more power from wind, hydro, coal, and solar, but less from oil and gas in 2021 than in 2011.
+- The Rural Remote region generated more power from wind and solar, but less from oil and hydro in 2021 than in 2011.
+- We have seen significant increases in the usage of utility-scale battery storage.
+
+### Consumption
+- Electricity consumption has fallen for all customer classes, with residential customers seeing the most reductions.
+- The number of customer accounts have continued to increase throughout the state.
+- Per capita consumption for the residential sector is highest in the Coastal region and lowest in the Rural Remote region.
+
+### Prices
+- Residential electricity rates increased on average across Alaska after adjusting for inflation, the PCE subsidy, and population weighting.
+- The region that experienced the least residential rate gain was the Coastal region with a 6% increase.
+- The region experiencing the highest residential rate gain was the Railbelt with a 26% increase.
+- Commercial and Other customers in the Coastal and Rural Remote regions saw rate decreases where Commercial customers in the Railbelt region saw price increases of about 15%.
+- PCE subsidies continue to dampen residential prices in the Coastal and Rural Remote regions.
+
 
 ## Acronyms
 

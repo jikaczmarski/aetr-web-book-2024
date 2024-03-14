@@ -4,8 +4,8 @@ project:
 website: 
   page-navigation: true
   title: AETR Web Book 
-  site-url: "https://eldobbins/aetr-web-book/" 
-  repo-url: https://github.com/eldobbins/aetr-web-book 
+  site-url: "https://acep-uaf.github.io/aetr-web-book/" 
+  repo-url: https://github.com/acep-uaf/aetr-web-book 
   repo-actions: [issue]
   
   page-footer:
@@ -18,10 +18,10 @@ website:
     align: center
     tools: 
       - icon: globe
-        href: https://cookiecutter.readthedocs.io/en/stable/
-        text: "Cookiecutter Project Templates"
+        href: https://www.uaf.edu/acep/
+        text: "Alaska Center for Energy and Power"
       - icon: github
-        href: https://github.com/eldobbins
+        href: https://github.com/acep-uaf/aetr-web-book
         text: "Liz Dobbins's GitHub"      
 
     style: "docked"
@@ -33,8 +33,8 @@ website:
       - href: about.qmd
         text: About Us
         icon: dot
-      - href: data_sources.qmd
-        text: Sources of Data
+      - href: methods.qmd
+        text: Methods
         icon: dot
       - href: capacity.qmd
         text: Capacity
@@ -42,7 +42,7 @@ website:
       - href: generation.qmd
         text: Generation by Fuel Type
         icon: dot
-      - href: Consumption.qmd
+      - href: consumption.qmd
         text: Electricity Consumption
         icon: dot
       - href: prices.qmd
