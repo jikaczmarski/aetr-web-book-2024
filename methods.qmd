@@ -36,14 +36,16 @@ By which I mean Neil's cross referencing between the 2 sources
 
 - calendar vs fiscal year
 - error corrections (at what stage did this happen?)
+As with 
 - Jesse's big files - link to these, right?
 
 
 ## Regional Summaries
+#### Q: How were regions defined previously? Why didn't we just copy that?  
 
-How were regions defined previously? Why didn't we just copy that?
+Previous iterations of the Energy Statistics Report used the Alaskan Energy Authority's 11 regions. For yearly summary statistics, the 11 regions were very useful. However, with the multi-year scope of this Trends Report, we elected to condense the 11 AEA Energy Regions based on commonalities in geography and electrical profile.
 
-In this report, we categorize the state into three separate energy regions, each being a collection of various Alaska Energy Authority (AEA) energy regions. These regions are herein known as the Coastal Region (Southeast, Kodiak, Chugach/Copper River), the Railbelt, and rural remote communities (all other AEA energy regions).
+In this report, we categorize the state into three separate energy regions, each being a collection of various Alaska Energy Authority (AEA) energy regions. These regions are herein known as the Coastal Region (Southeast, Kodiak, Chugach/Copper River), the Railbelt, and Rural Remote communities (all other AEA energy regions). For clarity, we refer to these three aggregated regions as the ACEP Energy Regions.
 
 ![Relationship between Energy Regions as defined by AEA and ACEP](images/AEA_ACEP_regions.png)
 
