@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -203,72 +237,56 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<!-- ```{r, echo=FALSE, warning=FALSE, message=FALSE}
-# # Import required packages
-# library(tidyr)
-# library(dplyr)
-# library(readr)
-# 
-# # Load the capacity data
-# capacity_data <- read.csv("data/installed-capacity-certified-utilities-mw.csv")
-# 
-# # Long-form statewide totals chart
-# statewide_totals <- capacity_data %>%
-#   group_by(year) %>%
-#   summarize("Fossil Turbine" = sum(ff.turbines),
-#             "Recip Engines" = sum(ff.ice),
-#             "Hydro" = sum(hydro),
-#             "Wind" = sum(wind),
-#             "Utility Solar" = sum(solar),
-#             "Rooftop Solar" = sum(solar.btm),
-#             "Storage" = sum(storage),
-#             "Landfill Gas" = sum(landfill)) %>%
-#   pivot_longer(
-#     cols = c("Fossil Turbine", "Recip Engines", "Hydro", "Wind", "Utility Solar", "Rooftop Solar", "Storage", "Landfill Gas"),
-#     names_to = "Prime Mover",
-#     values_to = "Capacity"
-#   )
-# 
-# # Write the chart to a csv to import into observable
-# write.csv(statewide_totals, file = "data/statewide-total-capacity-by-year.csv")
-
-### 
-### inline code: `r round(sum(statewide_totals$Capacity[statewide_totals$year == 2011])/1000,2)`
-``` -->
 <section id="general-overview" class="level2">
 <h2 class="anchored" data-anchor-id="general-overview">General Overview</h2>
 <p>Generation capacity represents the maximum amount of electricity that can be generated at any given time dependent on certain conditions. The combination of generation sources is often referred to as the capacity mix. Changes in the capacity mix over time reflect decisions to build and retire generators. These decisions are a result of shifting costs, technological innovations, the normal aging of the generation fleet, and/or stakeholder policies. Due to data limitations, we show capacity levels for calendar years 2011-2013, 2018, and 2021. While we cannot observe year-to-year trends, there are enough years of data to visualize capacity trends from 2011 to 2021.</p>
 <p>We begin this section by showcasing the increases in total capacity across the state. In 2011, it is estimated that the total statewide electricity generation capacity was 2.20 GW. We estimate that this has increased to approximately 3.16 GW in 2021 based on best available data. To illustrate this example, we show a stacked area chart below that showcases growth over time for various technologies.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
-<pre class="{ojs}"><code>//| echo: false
-data = FileAttachment("data/statewide-total-capacity-by-year.csv").csv({ typed: true })
+<div class="cell">
+<div class="sourceCode cell-code hidden" id="cb1" data-startfrom="19" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 18;"><span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>sw_cap <span class="op">=</span> <span class="fu">FileAttachment</span>(<span class="st">"data/statewide-total-capacity-by-year.csv"</span>)<span class="op">.</span><span class="fu">csv</span>({ <span class="dt">typed</span><span class="op">:</span> <span class="kw">true</span> })</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Configure the x-axis</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>  <span class="dt">x</span><span class="op">:</span> {</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    <span class="dt">type</span><span class="op">:</span> <span class="st">"band"</span><span class="op">,</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> <span class="st">"Year"</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Configure the y-axis</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>  <span class="dt">y</span><span class="op">:</span> {</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>    <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> <span class="st">"Capacity (MW)"</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Configure the plot</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>  <span class="dt">title</span><span class="op">:</span> <span class="st">"Total Electric Generation Capacity in Alaska"</span><span class="op">,</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>  <span class="dt">insetLeft</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>  <span class="dt">insetRight</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>  <span class="dt">color</span><span class="op">:</span> {</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>    <span class="dt">legend</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Stacked area plot</span></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">areaY</span>(sw_cap<span class="op">,</span> {<span class="dt">x</span><span class="op">:</span><span class="st">"year"</span><span class="op">,</span><span class="dt">y</span><span class="op">:</span><span class="st">"Capacity"</span><span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> <span class="st">"Prime Mover"</span><span class="op">,</span> <span class="dt">tip</span><span class="op">:</span> <span class="st">"x"</span>})<span class="op">,</span></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">ruleY</span>([<span class="dv">0</span>])</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>  ]</span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-1" data-nodetype="declaration">
 
-Plot.plot({
-  // Configure the x-axis
-  x: {
-    type: "band",
-    label: "Year"
-  },
-  // Configure the y-axis
-  y: {
-    grid: true,
-    label: "Capacity (MW)"
-  },
-  // Configure the plot
-  title: "Total Electric Generation Capacity in Alaska",
-  insetLeft: 0,
-  insetRight: 0,
-  color: {
-    legend: true,
-  },
-  // Stacked area plot
-  marks: [
-    Plot.areaY(data, {x:"year",y:"Capacity", fill: "Prime Mover", tip: "x"}),
-    Plot.ruleY([0])
-  ]
-})</code></pre>
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-2" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+</div>
 </section>
 <section id="coastal" class="level2">
 <h2 class="anchored" data-anchor-id="coastal">Coastal</h2>
+<p>For the coastal region, we observe a 121 MW increase in generation capacity (an increase of approximately 23 percent) between 2011 and 2021. The following figure shows the change in total installed capacity for each prime mover in the coastal region. This region saw additions of 39 MW of fossil turbines, 29 MW of reciprocating engines, and 53 MW of renewable energy and storage capacity.</p>
 </section>
 <section id="railbelt" class="level2">
 <h2 class="anchored" data-anchor-id="railbelt">Railbelt</h2>
@@ -289,7 +307,7 @@ Plot.plot({
 </ol>
 </section></div></main> <!-- /main -->
 <script type="ojs-module-contents">
-eyJjb250ZW50cyI6W119
+eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6InN3X2NhcCA9IEZpbGVBdHRhY2htZW50KFwiZGF0YS9zdGF0ZXdpZGUtdG90YWwtY2FwYWNpdHktYnkteWVhci5jc3ZcIikuY3N2KHsgdHlwZWQ6IHRydWUgfSlcblxuUGxvdC5wbG90KHtcbiAgLy8gQ29uZmlndXJlIHRoZSB4LWF4aXNcbiAgeDoge1xuICAgIHR5cGU6IFwiYmFuZFwiLFxuICAgIGxhYmVsOiBcIlllYXJcIlxuICB9LFxuICAvLyBDb25maWd1cmUgdGhlIHktYXhpc1xuICB5OiB7XG4gICAgZ3JpZDogdHJ1ZSxcbiAgICBsYWJlbDogXCJDYXBhY2l0eSAoTVcpXCJcbiAgfSxcbiAgLy8gQ29uZmlndXJlIHRoZSBwbG90XG4gIHRpdGxlOiBcIlRvdGFsIEVsZWN0cmljIEdlbmVyYXRpb24gQ2FwYWNpdHkgaW4gQWxhc2thXCIsXG4gIGluc2V0TGVmdDogMCxcbiAgaW5zZXRSaWdodDogMCxcbiAgY29sb3I6IHtcbiAgICBsZWdlbmQ6IHRydWUsXG4gIH0sXG4gIC8vIFN0YWNrZWQgYXJlYSBwbG90XG4gIG1hcmtzOiBbXG4gICAgUGxvdC5hcmVhWShzd19jYXAsIHt4OlwieWVhclwiLHk6XCJDYXBhY2l0eVwiLCBmaWxsOiBcIlByaW1lIE1vdmVyXCIsIHRpcDogXCJ4XCJ9KSxcbiAgICBQbG90LnJ1bGVZKFswXSlcbiAgXVxufSlcbiJ9XX0=
 </script>
 <script type="module">
 if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
