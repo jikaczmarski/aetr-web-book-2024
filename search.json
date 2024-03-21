@@ -24,7 +24,7 @@
     "href": "capacity.html#coastal",
     "title": "Alaska Generation Capacity",
     "section": "Coastal",
-    "text": "Coastal\nFor the coastal region, we observe a 121 MW increase in generation capacity (an increase of approximately 23 percent) between 2011 and 2021. The following figure shows the change in total installed capacity for each prime mover in the coastal region. This region saw additions of 39 MW of fossil turbines, 29 MW of reciprocating engines, and 53 MW of renewable energy and storage capacity.",
+    "text": "Coastal\nFor the coastal region, we observe a 121 MW increase in generation capacity (an increase of approximately 23 percent) between 2011 and 2021. The following figure shows the change in total installed capacity for each prime mover in the coastal region. This region saw additions of 39 MW of fossil turbines, 29 MW of reciprocating engines, and 53 MW of renewable energy and storage capacity.\n\nc_cap = FileAttachment(\"data/coastal-capacity.csv\").csv({ typed: true })\n\nPlot.plot({\n  // Configure the x-axis\n  x: {\n    type: \"band\",\n    label: \"Year\"\n  },\n  // Configure the y-axis\n  y: {\n    grid: true,\n    label: \"Capacity (MW)\"\n  },\n  // Configure the plot\n  title: \"Total Electric Generation Capacity in the Coastal Region\",\n  insetLeft: 0,\n  insetRight: 0,\n  color: {\n    legend: true,\n  },\n  // Stacked area plot\n  marks: [\n    Plot.barY(c_cap, {x:\"year\",y:\"Capacity\", fill: \"Prime Mover\", tip: \"x\"}),\n    Plot.ruleY([0])\n  ]\n})",
     "crumbs": [
       "Capacity"
     ]
@@ -34,7 +34,7 @@
     "href": "capacity.html#railbelt",
     "title": "Alaska Generation Capacity",
     "section": "Railbelt",
-    "text": "Railbelt\nPut Railbelt text here.",
+    "text": "Railbelt\nFor the Railbelt region, capacity additions were dominated by more-efficient fossil fuel generating units and new battery storage. These additions are shown in Figure X and Figure X. There were 762 MW of capacity additions between 2011 and 2021. The Railbelt region saw 207 MW of reciprocating engine additions and 390 MW of fossil fuel turbines. The remaining capacity additions were renewables and storage and are shown in Figure X.\n\nr_cap = FileAttachment(\"data/railbelt-capacity.csv\").csv({ typed: true })\n\nPlot.plot({\n  // Configure the x-axis\n  x: {\n    type: \"band\",\n    label: \"Year\"\n  },\n  // Configure the y-axis\n  y: {\n    grid: true,\n    label: \"Capacity (MW)\"\n  },\n  // Configure the plot\n  title: \"Total Electric Generation Capacity in the Coastal Region\",\n  caption: \"Figure note: The category of Landfill Gas refers to the 11.5 MW power plant at the Anchorage Regional Landfill that is fueled by methane from decomposing waste. Although this plant uses reciprocating engines as its prime mover, we decided to show landfill gas as a separate category because it is a significant addition to the mix of renewable energy capacity.\",\n  insetLeft: 0,\n  insetRight: 0,\n  color: {\n    legend: true,\n  },\n  // Stacked area plot\n  marks: [\n    Plot.barY(r_cap, {x:\"year\",y:\"Capacity\", fill: \"Prime Mover\", tip: \"x\"}),\n    Plot.ruleY([0])\n  ]\n})",
     "crumbs": [
       "Capacity"
     ]
@@ -44,7 +44,7 @@
     "href": "capacity.html#rural-remote",
     "title": "Alaska Generation Capacity",
     "section": "Rural Remote",
-    "text": "Rural Remote\nPut Rural Remote text here.",
+    "text": "Rural Remote\nThe rural remote region saw an increase of 83 MW in capacity (a 33% increase) from 255 MW to 338 MW. Most of the increases in capacity were fossil fuel turbines (25 MW added on the North Slope) and reciprocating engines (46 MW). Renewable capacity is explored in further detail in Figure X.\n\nrr_cap = FileAttachment(\"data/rural-remote-capacity.csv\").csv({ typed: true })\n\nPlot.plot({\n  // Configure the x-axis\n  x: {\n    type: \"band\",\n    label: \"Year\"\n  },\n  // Configure the y-axis\n  y: {\n    grid: true,\n    label: \"Capacity (MW)\"\n  },\n  // Configure the plot\n  title: \"Total Electric Generation Capacity in the Coastal Region\",\n  insetLeft: 0,\n  insetRight: 0,\n  color: {\n    legend: true,\n  },\n  // Stacked area plot\n  marks: [\n    Plot.barY(rr_cap, {x:\"year\",y:\"Capacity\", fill: \"Prime Mover\", tip: \"x\"}),\n    Plot.ruleY([0])\n  ]\n})",
     "crumbs": [
       "Capacity"
     ]
