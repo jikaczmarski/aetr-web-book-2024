@@ -29,7 +29,7 @@ Plot.plot({
     y: {domain: [0, 50]},
 
     grid: true,
-    marginRight: 50,
+    marginRight: 70,
   
     marks: [
 
@@ -234,6 +234,7 @@ Plot.plot({
 
 // load libraries
 stdlib = require("@observablehq/stdlib")
+d3 = require("d3@7")
 import {tidy, groupBy, rename, summarize, sum, mutate, select, n, nDistinct, mean, filter, pivotWider, pivotLonger} from "@pbeshai/tidyjs"
 
 
