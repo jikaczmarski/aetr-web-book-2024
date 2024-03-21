@@ -69,6 +69,8 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script type="module" src="site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
+<link href="site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
 
 
 <link rel="stylesheet" href="styles.css">
@@ -184,7 +186,7 @@ ul.task-list li input[type="checkbox"] {
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">Alaska Generation Capacity</h1>
-<p class="subtitle lead">Capacity Section of Alaska Electricity Trends Web Book</p>
+<p class="subtitle lead">Total Installed Capacity by Certified Utilities (MW)</p>
 </div>
 
 
@@ -201,13 +203,72 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<!-- ```{r, echo=FALSE, warning=FALSE, message=FALSE}
+# # Import required packages
+# library(tidyr)
+# library(dplyr)
+# library(readr)
+# 
+# # Load the capacity data
+# capacity_data <- read.csv("data/installed-capacity-certified-utilities-mw.csv")
+# 
+# # Long-form statewide totals chart
+# statewide_totals <- capacity_data %>%
+#   group_by(year) %>%
+#   summarize("Fossil Turbine" = sum(ff.turbines),
+#             "Recip Engines" = sum(ff.ice),
+#             "Hydro" = sum(hydro),
+#             "Wind" = sum(wind),
+#             "Utility Solar" = sum(solar),
+#             "Rooftop Solar" = sum(solar.btm),
+#             "Storage" = sum(storage),
+#             "Landfill Gas" = sum(landfill)) %>%
+#   pivot_longer(
+#     cols = c("Fossil Turbine", "Recip Engines", "Hydro", "Wind", "Utility Solar", "Rooftop Solar", "Storage", "Landfill Gas"),
+#     names_to = "Prime Mover",
+#     values_to = "Capacity"
+#   )
+# 
+# # Write the chart to a csv to import into observable
+# write.csv(statewide_totals, file = "data/statewide-total-capacity-by-year.csv")
+
+### `r round(sum(statewide_totals$Capacity[statewide_totals$year == 2021])/1000,2)`
+### `r round(sum(statewide_totals$Capacity[statewide_totals$year == 2011])/1000,2)`
+``` -->
 <section id="general-overview" class="level2">
 <h2 class="anchored" data-anchor-id="general-overview">General Overview</h2>
-<p>Generation capacity represents the maximum amount of electricity that can be generated at any given time dependent on certain conditions. The combination of generation sources is often referred to as the generation or capacity mix …</p>
+<p>Generation capacity represents the maximum amount of electricity that can be generated at any given time dependent on certain conditions. The combination of generation sources is often referred to as the capacity mix. Changes in the capacity mix over time reflect decisions to build and retire generators. These decisions are a result of shifting costs, technological innovations, the normal aging of the generation fleet, and/or stakeholder policies. Due to data limitations, we show capacity levels for calendar years 2011-2013, 2018, and 2021. While we cannot observe year-to-year trends, there are enough years of data to visualize capacity trends from 2011 to 2021.</p>
+<p>We begin this section by showcasing the increases in total capacity across the state. In 2011, it is estimated that the total statewide electricity generation capacity was 2.20 GW. We estimate that this has increased to approximately 3.16 GW in 2021 based on best available data. To illustrate this example, we show a stacked area chart below that showcases growth over time for various technologies.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<pre class="{ojs}"><code>//| echo: false
+data = FileAttachment("data/statewide-total-capacity-by-year.csv").csv({ typed: true })
+
+Plot.plot({
+  // Configure the x-axis
+  x: {
+    type: "band",
+    label: "Year"
+  },
+  // Configure the y-axis
+  y: {
+    grid: true,
+    label: "Capacity (MW)"
+  },
+  // Configure the plot
+  title: "Total Electric Generation Capacity in Alaska",
+  insetLeft: 0,
+  insetRight: 0,
+  color: {
+    legend: true,
+  },
+  // Stacked area plot
+  marks: [
+    Plot.areaY(data, {x:"year",y:"Capacity", fill: "Prime Mover", tip: "x"}),
+    Plot.ruleY([0])
+  ]
+})</code></pre>
 </section>
 <section id="coastal" class="level2">
 <h2 class="anchored" data-anchor-id="coastal">Coastal</h2>
-<p>Put Coastal text here.</p>
 </section>
 <section id="railbelt" class="level2">
 <h2 class="anchored" data-anchor-id="railbelt">Railbelt</h2>
@@ -220,7 +281,24 @@ ul.task-list li input[type="checkbox"] {
 
 </section>
 
-</main> <!-- /main -->
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>Prime movers are categorized as follows. Fossil turbines include combined cycle turbines, gas turbines, and steam turbines. Reciprocating engines include internal combustion engines. Hydro includes hydraulic turbines and hydrokinetics. Wind includes wind turbines. Utility solar includes utility-owned photovoltaic (PV), and Rooftop solar includes customer-sited, behind-the-meter PV. Storage refers to batteries and flywheels.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
+<script type="ojs-module-contents">
+eyJjb250ZW50cyI6W119
+</script>
+<script type="module">
+if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
+window._ojs.paths.runtimeToDoc = "../..";
+window._ojs.paths.runtimeToRoot = "../..";
+window._ojs.paths.docToRoot = "";
+window._ojs.selfContained = false;
+window._ojs.runtime.interpretFromScriptTags();
+</script>
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
