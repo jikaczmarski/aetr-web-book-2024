@@ -47,10 +47,100 @@ Plot.plot({
 ## Coastal
 For the coastal region, we observe a 121 MW increase in generation capacity (an increase of approximately 23 percent) between 2011 and 2021. The following figure shows the change in total installed capacity for each prime mover in the coastal region. This region saw additions of 39 MW of fossil turbines, 29 MW of reciprocating engines, and 53 MW of renewable energy and storage capacity.
 
-## Railbelt
+```{ojs}
+//| echo: false
+c_cap = FileAttachment("data/coastal-capacity.csv").csv({ typed: true })
 
-Put Railbelt text here.
+Plot.plot({
+  // Configure the x-axis
+  x: {
+    type: "band",
+    label: "Year"
+  },
+  // Configure the y-axis
+  y: {
+    grid: true,
+    label: "Capacity (MW)"
+  },
+  // Configure the plot
+  title: "Total Electric Generation Capacity in the Coastal Region",
+  insetLeft: 0,
+  insetRight: 0,
+  color: {
+    legend: true,
+  },
+  // Stacked area plot
+  marks: [
+    Plot.barY(c_cap, {x:"year",y:"Capacity", fill: "Prime Mover", tip: "x"}),
+    Plot.ruleY([0])
+  ]
+})
+```
+
+
+## Railbelt
+For the Railbelt region, capacity additions were dominated by more-efficient fossil fuel generating units and new battery storage. These additions are shown in Figure X and Figure X. There were 762 MW of capacity additions between 2011 and 2021. The Railbelt region saw 207 MW of reciprocating engine additions and 390 MW of fossil fuel turbines. The remaining capacity additions were renewables and storage and are shown in Figure X.
+
+```{ojs}
+//| echo: false
+r_cap = FileAttachment("data/railbelt-capacity.csv").csv({ typed: true })
+
+Plot.plot({
+  // Configure the x-axis
+  x: {
+    type: "band",
+    label: "Year"
+  },
+  // Configure the y-axis
+  y: {
+    grid: true,
+    label: "Capacity (MW)"
+  },
+  // Configure the plot
+  title: "Total Electric Generation Capacity in the Coastal Region",
+  caption: "Figure note: The category of Landfill Gas refers to the 11.5 MW power plant at the Anchorage Regional Landfill that is fueled by methane from decomposing waste. Although this plant uses reciprocating engines as its prime mover, we decided to show landfill gas as a separate category because it is a significant addition to the mix of renewable energy capacity.",
+  insetLeft: 0,
+  insetRight: 0,
+  color: {
+    legend: true,
+  },
+  // Stacked area plot
+  marks: [
+    Plot.barY(r_cap, {x:"year",y:"Capacity", fill: "Prime Mover", tip: "x"}),
+    Plot.ruleY([0])
+  ]
+})
+```
 
 ## Rural Remote
+The rural remote region saw an increase of 83 MW in capacity (a 33% increase) from 255 MW to 338 MW. Most of the increases in capacity were fossil fuel turbines (25 MW added on the North Slope) and reciprocating engines (46 MW). Renewable capacity is explored in further detail in Figure X.
 
-Put Rural Remote text here.
+```{ojs}
+//| echo: false
+rr_cap = FileAttachment("data/rural-remote-capacity.csv").csv({ typed: true })
+
+Plot.plot({
+  // Configure the x-axis
+  x: {
+    type: "band",
+    label: "Year"
+  },
+  // Configure the y-axis
+  y: {
+    grid: true,
+    label: "Capacity (MW)"
+  },
+  // Configure the plot
+  title: "Total Electric Generation Capacity in the Coastal Region",
+  insetLeft: 0,
+  insetRight: 0,
+  color: {
+    legend: true,
+  },
+  // Stacked area plot
+  marks: [
+    Plot.barY(rr_cap, {x:"year",y:"Capacity", fill: "Prime Mover", tip: "x"}),
+    Plot.ruleY([0])
+  ]
+})
+```
