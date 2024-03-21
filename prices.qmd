@@ -1,12 +1,64 @@
 ---
 title: "Price of Electricity"
 subtitle: "Prices Section of Alaska Electricity Trends Web Book"
+output:
+  quarto::quarto_html:
+    pre_processor: quarto::observable
 ---
 
 ## General Overview
 
 There are several kinds of customers that electric utilities in Alaska serve. These typically include the residential, commercial, industrial, government/municipal, and community customer classes. Each customer class typically faces a different set of costs such as per kWh charge as well as monthly customer charges. In this section, we aim to highlight trends in electricity prices for the residential, commercial, and industrial customer classes across the coastal, Railbelt, and rural remote regions ...
 
+## Regional Overview
+Below is a graph of average price for all sectors separated by region
+```{ojs}
+//| echo: false
+
+// input from database
+weighted_prices = db.sql`SELECT * FROM weighted_prices`;
+
+region_weighted_prices = tidy(weighted_prices, 
+                              groupBy(['acep_energy_region', 'year'], [
+                                summarize({ mean_weighted_price: mean('weighted_price')})
+                              ]))
+
+
+Plot.plot({
+  x: {domain: [2011, 2019]},
+  x: {tickFormat: d => d},
+  
+  y: {domain: [0, 60]},
+  
+  grid: true,
+  marginRight: 65,
+  
+  
+  marks: [
+ 
+    Plot.line(region_weighted_prices,
+              {x: "year", 
+               y: "mean_weighted_price",
+               strokeWidth: 5,
+               stroke: "acep_energy_region"
+               }),
+
+    Plot.text(region_weighted_prices, 
+        Plot.selectLast({x: "year", 
+                         y: "mean_weighted_price", 
+                         z: "acep_energy_region", 
+                         text: "acep_energy_region", 
+                         textAnchor: "start", dx: 5
+                         })),
+                         
+    Plot.tip(region_weighted_prices, Plot.pointer({x: "year", y: "mean_weighted_price"}))
+ 
+
+         ]
+})
+
+
+```
 
 ## Coastal
 
@@ -19,3 +71,35 @@ Put Railbelt text here.
 ## Rural Remote
 
 Put Rural Remote text here.
+
+
+
+
+
+
+
+```{ojs}
+//| echo: false
+
+// load libraries
+stdlib = require("@observablehq/stdlib")
+import {tidy, groupBy, rename, summarize, sum, mutate, select, n, nDistinct, mean, filter, pivotWider, pivotLonger} from "@pbeshai/tidyjs"
+
+
+// connect to database
+db = FileAttachment("data/es.db").sqlite()
+```
+
+<br>
+<br>
+<br>
+
+```{ojs}
+//| echo: false
+viewof dbTable = Inputs.select((await db.describe()).value.map(d => d.name), 
+                    { label: "Table" })
+data = db.query(`SELECT * FROM ${dbTable}`)
+Inputs.table(data)
+
+
+```
