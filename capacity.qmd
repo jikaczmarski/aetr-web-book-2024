@@ -6,6 +6,40 @@ output:
     pre_processor: quarto::observable
 ---
 
+<!-- ```{r, echo=FALSE, warning=FALSE, message=FALSE}
+# # Import required packages
+# library(tidyr)
+# library(dplyr)
+# library(readr)
+# 
+# # Load the capacity data
+# capacity_data <- read.csv("data/installed-capacity-certified-utilities-mw.csv")
+# 
+# # Long-form statewide totals chart
+# statewide_totals <- capacity_data %>%
+#   group_by(year) %>%
+#   summarize("Fossil Turbine" = sum(ff.turbines),
+#             "Recip Engines" = sum(ff.ice),
+#             "Hydro" = sum(hydro),
+#             "Wind" = sum(wind),
+#             "Utility Solar" = sum(solar),
+#             "Rooftop Solar" = sum(solar.btm),
+#             "Storage" = sum(storage),
+#             "Landfill Gas" = sum(landfill)) %>%
+#   pivot_longer(
+#     cols = c("Fossil Turbine", "Recip Engines", "Hydro", "Wind", "Utility Solar", "Rooftop Solar", "Storage", "Landfill Gas"),
+#     names_to = "Prime Mover",
+#     values_to = "Capacity"
+#   )
+# 
+# # Write the chart to a csv to import into observable
+# write.csv(statewide_totals, file = "data/statewide-total-capacity-by-year.csv")
+
+### 
+### inline code: `r round(sum(statewide_totals$Capacity[statewide_totals$year == 2011])/1000,2)`
+``` -->
+
+
 ## General Overview
 
 Generation capacity represents the maximum amount of electricity that can be generated at any given time dependent on certain conditions. The combination of generation sources is often referred to as the capacity mix. Changes in the capacity mix over time reflect decisions to build and retire generators. These decisions are a result of shifting costs, technological innovations, the normal aging of the generation fleet, and/or stakeholder policies. Due to data limitations, we show capacity levels for calendar years 2011-2013, 2018, and 2021. While we cannot observe year-to-year trends, there are enough years of data to visualize capacity trends from 2011 to 2021.
