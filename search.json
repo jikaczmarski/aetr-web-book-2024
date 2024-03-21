@@ -110,6 +110,16 @@
     ]
   },
   {
+    "objectID": "prices.html#regional-overview",
+    "href": "prices.html#regional-overview",
+    "title": "Price of Electricity",
+    "section": "Regional Overview",
+    "text": "Regional Overview\nBelow is a graph of average price for all sectors separated by region\n\nweighted_prices = db.sql`SELECT * FROM weighted_prices`;\n\nregion_weighted_prices = tidy(weighted_prices, \n                              groupBy(['acep_energy_region', 'year'], [\n                                summarize({ mean_weighted_price: mean('weighted_price')})\n                              ]))\n\n\nPlot.plot({\n  x: {domain: [2011, 2019]},\n  x: {tickFormat: d =&gt; d},\n  \n  y: {domain: [0, 60]},\n  \n  grid: true,\n  marginRight: 65,\n  \n  \n  marks: [\n \n    Plot.line(region_weighted_prices,\n              {x: \"year\", \n               y: \"mean_weighted_price\",\n               strokeWidth: 5,\n               stroke: \"acep_energy_region\"\n               }),\n\n    Plot.text(region_weighted_prices, \n        Plot.selectLast({x: \"year\", \n                         y: \"mean_weighted_price\", \n                         z: \"acep_energy_region\", \n                         text: \"acep_energy_region\", \n                         textAnchor: \"start\", dx: 5\n                         })),\n                         \n    Plot.tip(region_weighted_prices, Plot.pointer({x: \"year\", y: \"mean_weighted_price\"}))\n \n\n         ]\n})",
+    "crumbs": [
+      "Price of Electricity"
+    ]
+  },
+  {
     "objectID": "prices.html#coastal",
     "href": "prices.html#coastal",
     "title": "Price of Electricity",
@@ -134,7 +144,7 @@
     "href": "prices.html#rural-remote",
     "title": "Price of Electricity",
     "section": "Rural Remote",
-    "text": "Rural Remote\nPut Rural Remote text here.",
+    "text": "Rural Remote\nPut Rural Remote text here.\n\nstdlib = require(\"@observablehq/stdlib\")\nimport {tidy, groupBy, rename, summarize, sum, mutate, select, n, nDistinct, mean, filter, pivotWider, pivotLonger} from \"@pbeshai/tidyjs\"\n\n\n// connect to database\ndb = FileAttachment(\"data/es.db\").sqlite()\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n  \n\nviewof dbTable = Inputs.select((await db.describe()).value.map(d =&gt; d.name), \n                    { label: \"Table\" })\ndata = db.query(`SELECT * FROM ${dbTable}`)\nInputs.table(data)",
     "crumbs": [
       "Price of Electricity"
     ]
