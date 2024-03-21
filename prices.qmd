@@ -15,62 +15,213 @@ Below is a graph of average price for all sectors separated by region
 ```{ojs}
 //| echo: false
 
-// input from database
-weighted_prices = db.sql`SELECT * FROM weighted_prices`;
-
+// aggregate
 region_weighted_prices = tidy(weighted_prices, 
                               groupBy(['acep_energy_region', 'year'], [
                                 summarize({ mean_weighted_price: mean('weighted_price')})
                               ]))
 
-
+// plot of regional average prices
 Plot.plot({
-  x: {domain: [2011, 2019]},
-  x: {tickFormat: d => d},
-  
-  y: {domain: [0, 60]},
-  
-  grid: true,
-  marginRight: 65,
-  
-  
-  marks: [
- 
-    Plot.line(region_weighted_prices,
-              {x: "year", 
-               y: "mean_weighted_price",
-               strokeWidth: 5,
-               stroke: "acep_energy_region"
-               }),
+    x: {domain: [2011, 2019]},
+    x: {tickFormat: d => d},
 
-    Plot.text(region_weighted_prices, 
-        Plot.selectLast({x: "year", 
-                         y: "mean_weighted_price", 
-                         z: "acep_energy_region", 
-                         text: "acep_energy_region", 
-                         textAnchor: "start", dx: 5
-                         })),
-                         
-    Plot.tip(region_weighted_prices, Plot.pointer({x: "year", y: "mean_weighted_price"}))
- 
+    y: {domain: [0, 50]},
 
-         ]
+    grid: true,
+    marginRight: 50,
+  
+    marks: [
+
+        Plot.line(region_weighted_prices,
+                    {x: "year", 
+                    y: "mean_weighted_price",
+                    strokeWidth: 5,
+                    stroke: "acep_energy_region"
+                    }),
+
+        Plot.text(region_weighted_prices, 
+            Plot.selectLast({x: "year", 
+                                y: "mean_weighted_price", 
+                                z: "acep_energy_region", 
+                                text: "acep_energy_region", 
+                                textAnchor: "start", dx: 5
+                                })),
+                                
+        Plot.tip(region_weighted_prices, Plot.pointer({x: "year", y: "mean_weighted_price"}))
+
+
+    ],
+    color: {
+        domain: ["Coastal", "Railbelt", "Rural Remote"],
+        range: ["#98BAD6", "#A4CD9A", "#E3918F"]
+    }
+});
+
+
+```
+
+
+
+
+## Coastal
+
+Put Coastal text here.
+```{ojs}
+//| echo: false
+
+// aggregate
+coastal_weighted_prices = tidy(weighted_prices, 
+                              filter((d) => d.acep_energy_region === "Coastal")
+                            )
+
+// plot of regional average prices
+Plot.plot({
+    x: {domain: [2011, 2019]},
+    x: {tickFormat: d => d},
+
+    y: {domain: [0, 50]},
+
+    grid: true,
+    marginRight: 70,
+  
+  
+    marks: [
+
+        Plot.line(coastal_weighted_prices,
+                    {x: "year", 
+                    y: "weighted_price",
+                    strokeWidth: 5,
+                    stroke: "sector"
+                    }),
+
+        Plot.text(coastal_weighted_prices, 
+            Plot.selectLast({x: "year", 
+                                y: "weighted_price", 
+                                z: "sector", 
+                                text: "sector", 
+                                textAnchor: "start", dx: 5
+                                })),
+                                
+        Plot.tip(coastal_weighted_prices, Plot.pointer({x: "year", y: "weighted_price"}))
+
+
+    ],
+    color: {
+        domain: ["residential", "commercial", "other"],
+        range: ["#0084c1", "#e29617", "#fad900"]
+    }
 })
 
 
 ```
 
-## Coastal
-
-Put Coastal text here.
-
 ## Railbelt
 
 Put Railbelt text here.
+```{ojs}
+//| echo: false
+
+// aggregate
+railbelt_weighted_prices = tidy(weighted_prices, 
+                              filter((d) => d.acep_energy_region === "Railbelt")
+                            )
+
+// plot of regional average prices
+Plot.plot({
+    x: {domain: [2011, 2019]},
+    x: {tickFormat: d => d},
+
+    y: {domain: [0, 50]},
+
+    grid: true,
+    marginRight: 70,
+
+
+    marks: [
+ 
+        Plot.line(railbelt_weighted_prices,
+                {x: "year", 
+                y: "weighted_price",
+                strokeWidth: 5,
+                stroke: "sector"
+                }),
+
+        Plot.text(railbelt_weighted_prices, 
+            Plot.selectLast({x: "year", 
+                            y: "weighted_price", 
+                            z: "sector", 
+                            text: "sector", 
+                            textAnchor: "start", dx: 5
+                            })),
+                            
+        Plot.tip(railbelt_weighted_prices, Plot.pointer({x: "year", y: "weighted_price"}))
+    
+
+    ],
+    color: {
+        domain: ["residential", "commercial", "other"],
+        range: ["#0084c1", "#e29617", "#fad900"]
+    }
+})
+
+
+```
 
 ## Rural Remote
 
 Put Rural Remote text here.
+
+```{ojs}
+//| echo: false
+
+// aggregate
+rural_remote_weighted_prices = tidy(weighted_prices, 
+                              filter((d) => d.acep_energy_region === "Rural Remote")
+                            )
+
+// plot of regional average prices
+Plot.plot({
+    height: 550,
+
+    x: {domain: [2011, 2019]},
+    x: {tickFormat: d => d},
+
+    y: {domain: [0, 70]},
+
+    grid: true,
+    marginRight: 70,
+
+    marks: [
+ 
+        Plot.line(rural_remote_weighted_prices,
+                {x: "year", 
+                y: "weighted_price",
+                strokeWidth: 5,
+                stroke: "sector"
+                }),
+
+        Plot.text(rural_remote_weighted_prices, 
+            Plot.selectLast({x: "year", 
+                            y: "weighted_price", 
+                            z: "sector", 
+                            text: "sector", 
+                            textAnchor: "start", dx: 5
+                            })),
+                            
+        Plot.tip(rural_remote_weighted_prices, 
+            Plot.pointer({x: "year", 
+                          y: "weighted_price"
+                          }))
+    ],
+    color: {
+        domain: ["residential", "commercial", "other"],
+        range: ["#0084c1", "#e29617", "#fad900"]
+    }
+})
+
+
+```
 
 
 
@@ -88,6 +239,9 @@ import {tidy, groupBy, rename, summarize, sum, mutate, select, n, nDistinct, mea
 
 // connect to database
 db = FileAttachment("data/es.db").sqlite()
+
+// call table
+weighted_prices = db.sql`SELECT * FROM weighted_prices`;
 ```
 
 <br>
@@ -96,6 +250,7 @@ db = FileAttachment("data/es.db").sqlite()
 
 ```{ojs}
 //| echo: false
+//| eval: false
 viewof dbTable = Inputs.select((await db.describe()).value.map(d => d.name), 
                     { label: "Table" })
 data = db.query(`SELECT * FROM ${dbTable}`)
