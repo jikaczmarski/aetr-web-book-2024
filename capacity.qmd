@@ -111,7 +111,7 @@ Plot.plot({
     label: "Capacity (MW)"
   },
   // Configure the plot
-  title: "Total Electric Generation Capacity in the Coastal Region",
+  title: "Total Electric Generation Capacity in the Railbelt",
   caption: "Figure note: The category of Landfill Gas refers to the 11.5 MW power plant at the Anchorage Regional Landfill that is fueled by methane from decomposing waste. Although this plant uses reciprocating engines as its prime mover, we decided to show landfill gas as a separate category because it is a significant addition to the mix of renewable energy capacity.",
   insetLeft: 0,
   insetRight: 0,
@@ -145,7 +145,7 @@ Plot.plot({
     label: "Capacity (MW)"
   },
   // Configure the plot
-  title: "Total Electric Generation Capacity in the Coastal Region",
+  title: "Total Electric Generation Capacity in the Rural Remote Region",
   insetLeft: 0,
   insetRight: 0,
   color: {
