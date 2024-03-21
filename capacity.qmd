@@ -1,8 +1,8 @@
 ---
 title: "Alaska Generation Capacity"
 subtitle: "Total Installed Capacity by Certified Utilities (MW)"
-#quarto::quarto_html:
-#    pre_processor: quarto::observable
+quarto::quarto_html:
+    pre_processor: quarto::observable
 ---
 
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
