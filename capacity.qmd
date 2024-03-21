@@ -4,33 +4,33 @@ subtitle: "Total Installed Capacity by Certified Utilities (MW)"
 ---
 
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
-# Import required packages
-library(tidyr)
-library(dplyr)
-library(readr)
-
-# Load the capacity data
-capacity_data <- read.csv("data/installed-capacity-certified-utilities-mw.csv")
-
-# Long-form statewide totals chart
-statewide_totals <- capacity_data %>%
-  group_by(year) %>%
-  summarize("Fossil Turbine" = sum(ff.turbines),
-            "Recip Engines" = sum(ff.ice),
-            "Hydro" = sum(hydro),
-            "Wind" = sum(wind),
-            "Utility Solar" = sum(solar),
-            "Rooftop Solar" = sum(solar.btm),
-            "Storage" = sum(storage),
-            "Landfill Gas" = sum(landfill)) %>%
-  pivot_longer(
-    cols = c("Fossil Turbine", "Recip Engines", "Hydro", "Wind", "Utility Solar", "Rooftop Solar", "Storage", "Landfill Gas"),
-    names_to = "Prime Mover",
-    values_to = "Capacity"
-  )
-
-# Write the chart to a csv to import into observable
-write.csv(statewide_totals, file = "data/statewide-total-capacity-by-year.csv")
+# # Import required packages
+# library(tidyr)
+# library(dplyr)
+# library(readr)
+# 
+# # Load the capacity data
+# capacity_data <- read.csv("data/installed-capacity-certified-utilities-mw.csv")
+# 
+# # Long-form statewide totals chart
+# statewide_totals <- capacity_data %>%
+#   group_by(year) %>%
+#   summarize("Fossil Turbine" = sum(ff.turbines),
+#             "Recip Engines" = sum(ff.ice),
+#             "Hydro" = sum(hydro),
+#             "Wind" = sum(wind),
+#             "Utility Solar" = sum(solar),
+#             "Rooftop Solar" = sum(solar.btm),
+#             "Storage" = sum(storage),
+#             "Landfill Gas" = sum(landfill)) %>%
+#   pivot_longer(
+#     cols = c("Fossil Turbine", "Recip Engines", "Hydro", "Wind", "Utility Solar", "Rooftop Solar", "Storage", "Landfill Gas"),
+#     names_to = "Prime Mover",
+#     values_to = "Capacity"
+#   )
+# 
+# # Write the chart to a csv to import into observable
+# write.csv(statewide_totals, file = "data/statewide-total-capacity-by-year.csv")
 ```
 
 ## General Overview
