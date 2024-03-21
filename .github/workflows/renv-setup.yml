@@ -1,3 +1,10 @@
+on:
+  push:
+    branch:
+      - 'trigger'
+    
+name: setup renv
+
 steps:
 - uses: actions/checkout@v4
 - uses: r-lib/actions/setup-r@v2
