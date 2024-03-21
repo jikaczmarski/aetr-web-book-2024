@@ -6,7 +6,7 @@ output:
     pre_processor: quarto::observable
 ---
 
-```{r, echo=FALSE, warning=FALSE, message=FALSE}
+<!-- ```{r, echo=FALSE, warning=FALSE, message=FALSE}
 # # Import required packages
 # library(tidyr)
 # library(dplyr)
@@ -37,7 +37,7 @@ output:
 
 ### `r round(sum(statewide_totals$Capacity[statewide_totals$year == 2021])/1000,2)`
 ### `r round(sum(statewide_totals$Capacity[statewide_totals$year == 2011])/1000,2)`
-```
+``` -->
 
 ## General Overview
 
@@ -78,18 +78,6 @@ Plot.plot({
 ```
 
 ## Coastal
-```{r, echo=FALSE, warning=FALSE, message=FALSE}
-regional_totals <- capacity_data %>%
-  group_by(acep.region, year) %>%
-  summarize("Fossil Turbine" = sum(ff.turbines),
-            "Recip Engines" = sum(ff.ice),
-            "Hydro" = sum(hydro),
-            "Wind" = sum(wind),
-            "Utility Solar" = sum(solar),
-            "Rooftop Solar" = sum(solar.btm),
-            "Storage" = sum(storage),
-            "Landfill Gas" = sum(landfill))
-```
 
 
 ## Railbelt
