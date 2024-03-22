@@ -1,25 +1,15 @@
 "acep.region","year","Prime.Mover","Capacity"
-"Rural Remote",2011,"Fossil Turbine",17.3
-"Rural Remote",2011,"Recip Engines",227.4405
 "Rural Remote",2011,"Hydro",1.624
 "Rural Remote",2011,"Wind",8.334
-"Rural Remote",2012,"Fossil Turbine",17.3
-"Rural Remote",2012,"Recip Engines",226.541
 "Rural Remote",2012,"Hydro",1.6
 "Rural Remote",2012,"Wind",13.224
-"Rural Remote",2013,"Fossil Turbine",17.3
-"Rural Remote",2013,"Recip Engines",223.241
 "Rural Remote",2013,"Hydro",1.908
 "Rural Remote",2013,"Wind",14.764
 "Rural Remote",2013,"Storage",0.21
-"Rural Remote",2018,"Fossil Turbine",42.7
-"Rural Remote",2018,"Recip Engines",268.271
 "Rural Remote",2018,"Hydro",2.656
 "Rural Remote",2018,"Wind",18.044
 "Rural Remote",2018,"Utility Solar",0.3206
 "Rural Remote",2018,"Storage",1.2
-"Rural Remote",2021,"Fossil Turbine",42.7
-"Rural Remote",2021,"Recip Engines",273.0888
 "Rural Remote",2021,"Hydro",2.616
 "Rural Remote",2021,"Wind",14.839
 "Rural Remote",2021,"Utility Solar",1.3071
