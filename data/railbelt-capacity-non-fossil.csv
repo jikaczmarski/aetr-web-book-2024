@@ -1,32 +1,22 @@
 "acep.region","year","Prime.Mover","Capacity"
-"Railbelt",2011,"Fossil Turbine",1198.9
-"Railbelt",2011,"Recip Engines",26.2
 "Railbelt",2011,"Hydro",184.375
 "Railbelt",2011,"Wind",1.012
 "Railbelt",2011,"Rooftop Solar",0.381
-"Railbelt",2012,"Fossil Turbine",1198.9
-"Railbelt",2012,"Recip Engines",28.2
 "Railbelt",2012,"Hydro",184.675
 "Railbelt",2012,"Wind",43.6
 "Railbelt",2012,"Rooftop Solar",0.49
 "Railbelt",2012,"Landfill Gas",9.2
-"Railbelt",2013,"Fossil Turbine",1442.8
-"Railbelt",2013,"Recip Engines",28.2
 "Railbelt",2013,"Hydro",185.875
 "Railbelt",2013,"Wind",44.5
 "Railbelt",2013,"Rooftop Solar",0.625
 "Railbelt",2013,"Storage",27
 "Railbelt",2013,"Landfill Gas",11.5
-"Railbelt",2018,"Fossil Turbine",1614.1
-"Railbelt",2018,"Recip Engines",236
 "Railbelt",2018,"Hydro",191.285
 "Railbelt",2018,"Wind",44.5
 "Railbelt",2018,"Utility Solar",1.903
 "Railbelt",2018,"Rooftop Solar",3.233
 "Railbelt",2018,"Storage",43
 "Railbelt",2018,"Landfill Gas",11.5
-"Railbelt",2021,"Fossil Turbine",1589.1
-"Railbelt",2021,"Recip Engines",233.5
 "Railbelt",2021,"Hydro",191.46
 "Railbelt",2021,"Wind",44.5
 "Railbelt",2021,"Utility Solar",1.903

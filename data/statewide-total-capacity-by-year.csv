@@ -1,25 +1,19 @@
-"year","Prime Mover","Capacity"
+"year","Prime.Mover","Capacity"
 2011,"Fossil Turbine",1295.2
 2011,"Recip Engines",449.8385
 2011,"Hydro",438.159
 2011,"Wind",13.846
-2011,"Utility Solar",0
 2011,"Rooftop Solar",0.381
-2011,"Storage",0
-2011,"Landfill Gas",0
 2012,"Fossil Turbine",1295.2
 2012,"Recip Engines",458.294
 2012,"Hydro",438.035
 2012,"Wind",65.824
-2012,"Utility Solar",0
 2012,"Rooftop Solar",0.49
-2012,"Storage",0
 2012,"Landfill Gas",9.2
 2013,"Fossil Turbine",1539.1
 2013,"Recip Engines",448.794
 2013,"Hydro",438.843
 2013,"Wind",68.264
-2013,"Utility Solar",0
 2013,"Rooftop Solar",0.625
 2013,"Storage",30.21
 2013,"Landfill Gas",11.5
