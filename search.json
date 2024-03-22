@@ -41,50 +41,35 @@
     "href": "consumption.html",
     "title": "Electricity Consumption",
     "section": "",
-    "text": "Consumption needs a better intro …",
-    "crumbs": [
-      "Electricity Consumption"
-    ]
+    "text": "Consumption needs a better intro …"
   },
   {
     "objectID": "consumption.html#general-overview",
     "href": "consumption.html#general-overview",
     "title": "Electricity Consumption",
     "section": "",
-    "text": "Consumption needs a better intro …",
-    "crumbs": [
-      "Electricity Consumption"
-    ]
+    "text": "Consumption needs a better intro …"
   },
   {
     "objectID": "consumption.html#coastal",
     "href": "consumption.html#coastal",
     "title": "Electricity Consumption",
     "section": "Coastal",
-    "text": "Coastal\nPut Coastal text here.",
-    "crumbs": [
-      "Electricity Consumption"
-    ]
+    "text": "Coastal\nPut Coastal text here."
   },
   {
     "objectID": "consumption.html#railbelt",
     "href": "consumption.html#railbelt",
     "title": "Electricity Consumption",
     "section": "Railbelt",
-    "text": "Railbelt\nPut Railbelt text here.",
-    "crumbs": [
-      "Electricity Consumption"
-    ]
+    "text": "Railbelt\nPut Railbelt text here."
   },
   {
     "objectID": "consumption.html#rural-remote",
     "href": "consumption.html#rural-remote",
     "title": "Electricity Consumption",
     "section": "Rural Remote",
-    "text": "Rural Remote\nPut Rural Remote text here.",
-    "crumbs": [
-      "Electricity Consumption"
-    ]
+    "text": "Rural Remote\nPut Rural Remote text here."
   },
   {
     "objectID": "methods.html",
@@ -241,49 +226,34 @@
     "href": "generation.html",
     "title": "Generation by Fuel Type",
     "section": "",
-    "text": "This section outlines the trends in generation by fuel type for each region. Generation in our context has two separate definitions. Data collected through the Energy Information Administration (EIA) records “net” generation, which excludes electricity use for power plant operations. However, data collected from the Alaska Energy Authority’s (AEA) Power Cost Equalization (PCE) program is presented as “gross” generation, which does not make this exclusion.",
-    "crumbs": [
-      "Generation by Fuel Type"
-    ]
+    "text": "This section outlines the trends in generation by fuel type for each region. Generation in our context has two separate definitions. Data collected through the Energy Information Administration (EIA) records “net” generation, which excludes electricity use for power plant operations. However, data collected from the Alaska Energy Authority’s (AEA) Power Cost Equalization (PCE) program is presented as “gross” generation, which does not make this exclusion."
   },
   {
     "objectID": "generation.html#general-overview",
     "href": "generation.html#general-overview",
     "title": "Generation by Fuel Type",
     "section": "",
-    "text": "This section outlines the trends in generation by fuel type for each region. Generation in our context has two separate definitions. Data collected through the Energy Information Administration (EIA) records “net” generation, which excludes electricity use for power plant operations. However, data collected from the Alaska Energy Authority’s (AEA) Power Cost Equalization (PCE) program is presented as “gross” generation, which does not make this exclusion.",
-    "crumbs": [
-      "Generation by Fuel Type"
-    ]
+    "text": "This section outlines the trends in generation by fuel type for each region. Generation in our context has two separate definitions. Data collected through the Energy Information Administration (EIA) records “net” generation, which excludes electricity use for power plant operations. However, data collected from the Alaska Energy Authority’s (AEA) Power Cost Equalization (PCE) program is presented as “gross” generation, which does not make this exclusion."
   },
   {
     "objectID": "generation.html#coastal",
     "href": "generation.html#coastal",
     "title": "Generation by Fuel Type",
     "section": "Coastal",
-    "text": "Coastal\nPut Coastal text here.",
-    "crumbs": [
-      "Generation by Fuel Type"
-    ]
+    "text": "Coastal\nPut Coastal text here."
   },
   {
     "objectID": "generation.html#railbelt",
     "href": "generation.html#railbelt",
     "title": "Generation by Fuel Type",
     "section": "Railbelt",
-    "text": "Railbelt\nPut Railbelt text here.",
-    "crumbs": [
-      "Generation by Fuel Type"
-    ]
+    "text": "Railbelt\nPut Railbelt text here."
   },
   {
     "objectID": "generation.html#rural-remote",
     "href": "generation.html#rural-remote",
     "title": "Generation by Fuel Type",
     "section": "Rural Remote",
-    "text": "Rural Remote\nPut Rural Remote text here.",
-    "crumbs": [
-      "Generation by Fuel Type"
-    ]
+    "text": "Rural Remote\nPut Rural Remote text here."
   }
 ]
