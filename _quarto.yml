@@ -22,7 +22,7 @@ website:
         text: "Alaska Center for Energy and Power"
       - icon: github
         href: https://github.com/acep-uaf/aetr-web-book
-        text: "Liz Dobbins's GitHub"      
+        text: "Project GitHub"      
 
     style: "docked"
     search: true
@@ -53,7 +53,7 @@ format:
   html:
     theme:
       light: [cosmo, theme.scss] # from https://github.com/sta210-s22/website/blob/main/_quarto.yml
-      dark: [cosmo, theme-dark.scss]
+      #dark: [cosmo, theme-dark.scss]
     code-copy: true
     code-overflow: wrap
     css: styles.css
