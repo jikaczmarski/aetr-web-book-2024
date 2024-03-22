@@ -3,63 +3,58 @@ title: "Data Analysis Methods"
 subtitle: "Methods Section of Alaska Electricity Trends Web Book"
 ---
 
-Report currently has data caveats spread throughout the text as footnotes. I think that information should be gathered together here.
-- links back to this information here can then be added to the other pages (instead of footnotes?)
+# Data Sources
+The data in this report was collected from a variety of sources and are listed below. Many electric utilities throughout the state are not required to submit annual reports to the federal government due to their size and/or number of customers. Therefore, our data sources encompass federal, state, commercial, and local filings as well as direct communications with utilities and state program managers. Each section of the report pulls data from a variety of these sources. The data was downloaded directly from the original source and concatenated to develop a dataset for this report. In some cases, an observation contained multiple sources due to reporting limitations. 
 
+Below are relevant sources of data for the report.
 
-## Data Sources
+### Federal
+- Energy Information Administration 
+	- [EIA-860](https://www.eia.gov/electricity/data/eia860/)
+	- [EIA-861](https://www.eia.gov/electricity/data/eia861/)
+	- [EIA-923](https://www.eia.gov/electricity/data/eia923/)
+- Federal Energy Regulatory Commission
+	- [Form 1](https://www.ferc.gov/general-information-0/electric-industry-forms/form-1-electric-utility-annual-report)
 
-Data discussed in this report come from 2 main sources... (Are there any other data sources?)
+### State
+- Alaska Energy Authority
+	- [Power Cost Equalization Program](https://www.akenergyauthority.org/What-We-Do/Power-Cost-Equalization) Utility Monthly Reports
+- Regulatory Authority of Alaska
+	- [Annual filings](https://rca.alaska.gov/RCAWeb/RCALibrary/RCAReports.aspx)
 
-### Energy Information Authority (EIA)
+### Direct Communications
+- Alaska Energy Authority
+	- Hydro/Wind Program Managers
+	- Village Assessments
+	- PH (?) Assessments
+- Individual Electric Authorities
 
-what is this?  Why isn't a source for all data? (i.e. reporting to EIA is not required for Alaskan utilities)
-- list of forms?  which ones actually used?
-- how did Neil get these
+### Individual Electric Utilities
 
-### Power Cost Equalization
+### Commercial Sources
+- [Intelligent Energy Systems](https://www.iesconnect.net)
 
-#### Q: what is this program? why utilities report here?  why is it fiscal year?  why might data be missing?
-- extracted from AEA "accounting system"
-- communities vs utilities
+## Compilation
 
-Assume no one knows what a PCE is.  Maybe think of Catalyst while write this. Show what we have to offer and why Alaska is different/special.
+An Alaska engineering firm, [DOWL](https://www.dowl.com/), was hired to do the preliminary compilation of data and develop the workbooks supporting this report.  Since  this data comes from various sources, there is potential for errors in the compilation of the workbooks. Any discrepancies or noted errors should be reported to a member of the DCM Team listed on the [About Page](about.qmd).
+
+# Power Cost Equalization (PCE)
 
 Alaska is famous for wide expanses of rugged terrain. Towns are often extremely distant from one another, or are separated by inaccessible mountains and glaciers. The utility landscape of Alaska resembles a sea of islands, very different from the interconnected grids of the contiguous United States. 
 
-In total, Alaska contains over 100 separate utilities, many of which serve a single small community. Most rely on diesel generators connected to huge fuel tanks, which receive a barge shipment of fuel in the summer that must last through the winter. If the town runs out of fuel during winter months, additional fuel has to be flown in at extreme expense. Predictably, electricity in these remote towns is prohibitively expensive. Some rural towns pay 3 to 5 times the rates of urban Alaska. 
+In total, Alaska contains over 100 separate utilities, many of which serve a single small community. Most rely on diesel generators connected to huge fuel tanks, which receive a barge shipment of fuel in the summer that must last through the winter. If the town runs out of fuel during winter months, additional fuel has to be flown in at extreme expense. Predictably, electricity in these remote towns is prohibitively expensive. Some rural towns pay 3 to 5 times the rates of urban Alaska. In contrast, urban Alaska has greatly benefited from large state-subsidized energy projects, such as the Bradley Lake Hydroelectric Project, the Four Dam Pool Projects, and the Alaska Intertie. 
 
-Urban Alaska has greatly benefited from large state-subsidized energy projects, such as the Bradley Lake Hydroelectric Project, the Four Dam Pool Projects, and the Alaska Intertie. In an effort to confer similar benefits to rural Alaska, the state of Alaska developed the Power Cost Equalization Program (PCE); the Regulatory Commission of Alaska and the Alaska Energy Authority administer the PCE program. 
-The PCE program reimburses rural utilities for credits that have been provided to eligible customers. Eligibility is limited to residential customers and community facilities. The subsidy applies to the first 750 kWh per month of residential consumption. Community facilities are subsidized up to the first 70 kWh per month per resident.
-Please visit the Alaska Energy Authority webpage for more information about the Power Cost Equalization program. 
+In an effort to confer similar benefits to rural Alaska, the state of Alaska developed the Power Cost Equalization Program (PCE). The PCE program serves to equalize the cost of electricity so that those living in PCE communities pay about the same amount for most of their residential power as those living in Anchorage, Fairbanks, and Juneau. The PCE program reimburses rural utilities for credits that have been provided to eligible customers. Eligibility is limited to residential customers and community facilities.[^1] The program is administered by the Regulatory Commission of Alaska (RCA) and the Alaska Energy Authority (AEA).  
 
+# Regional Summaries
 
-### Workbooks (maybe call this something else)
+For the purpose of energy planning, AEA has defined [eleven energy regions](https://dcra-cdo-dcced.opendata.arcgis.com/datasets/edb3e790ea4b40579f29e925afc061c5_0/explore?showTable=true) for the State of Alaska. Previous versions of the _Alaska Electric Energy Statistics_ reports presented data summarized by those regions. In order to provide visualizations that are easier to understand, we have condensed these eleven regions into three major energy regions: Coastal, Railbelt, and Rural Remote. 
 
-By which I mean Neil's cross referencing between the 2 sources
-- will we distribute these? If so, link.  If not, then say why (nicely!)
-- how to cross reference between the AEA and EIA?  This is cool!
-- differences between the 2 data sets
+We note that the Coastal and Rural Remote regions include mixtures of power cost equalization (PCE) and non-PCE eligible communities. The Coastal region includes Copper River/Chugach and incorporates all communities served by Copper Valley Electric Association. PCE communities are largely dependent on diesel generation. 
 
-## Data Processing and Aggregations
+![Schematic Relationship between Energy Regions as defined by AEA and ACEP](images/AEA_ACEP_regions.png){margin=30}
 
-- calendar vs fiscal year
-- error corrections (at what stage did this happen?)
-As with 
-- Jesse's big files - link to these, right?
+![Cartographic Relationship between Energy Regions as defined by AEA and ACEP](images/AEA_ACEP_regions_map.png){margin=30}
 
 
-## Regional Summaries
-#### Q: How were regions defined previously? Why didn't we just copy that?  
-
-Previous iterations of the Energy Statistics Report used the Alaskan Energy Authority's 11 regions. For yearly summary statistics, the 11 regions were very useful. However, with the multi-year scope of this Trends Report, we elected to condense the 11 AEA Energy Regions based on commonalities in geography and electrical profile.
-
-In this report, we categorize the state into three separate energy regions, each being a collection of various Alaska Energy Authority (AEA) energy regions. These regions are herein known as the Coastal Region (Southeast, Kodiak, Chugach/Copper River), the Railbelt, and Rural Remote communities (all other AEA energy regions). For clarity, we refer to these three aggregated regions as the ACEP Energy Regions.
-
-![Relationship between Energy Regions as defined by AEA and ACEP](images/AEA_ACEP_regions.png)
-
-## Future plans
-
-- database
-- API / queries
-- expose Neil's transmission lines thing
+[^1]: PCE assistance is applied to only the first 750 kWh per month of residential consumption, and also to community facilities consumption up to the equivalent of 70 kWh per month for each person.
