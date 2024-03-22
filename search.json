@@ -20,153 +20,20 @@
     ]
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Alaska Electricity Trends Web Book",
+    "objectID": "test.html",
+    "href": "test.html",
+    "title": "Map",
     "section": "",
-    "text": "This report summarizes federal, state, and utility data to provide an overview of electricity capacity, generation, consumption, and price trends from 2011 to 2021. A comprehensive report highlighting these trends has not been produced for the state of Alaska since the 2013 Alaska Energy Statistics Report.",
-    "crumbs": [
-      "Home"
-    ]
+    "text": "L = require('leaflet@1.9.4')\n\n\n\n\n\n\n\n\nmap = {\n  // You'll often see Leaflet examples initializing a map like L.map('map'),\n  // which tells the library to look for a div with the id 'map' on the page.\n  // In Observable, we instead create a div from scratch in this cell, so it's\n  // completely self-contained.\n  let container = DOM.element('div', { style: `width:${width}px;height:${width/1.6}px` });\n  \n  // Note that I'm yielding the container pretty early here: this allows the\n  // div to be placed on the page. This is important, because Leaflet uses\n  // the div's .offsetWidth and .offsetHeight to size the map. If I were\n  // to only return the container at the end of this method, Leaflet might\n  // get the wrong idea about the map's size.\n  yield container;\n  \n  // Now we create a map object and add a layer to it.\n  let map = L.map(container).setView([58.352335903535135, -134.64426524132455], 10);\n  let osmLayer = L.tileLayer('https://maps.wikimedia.org/osm-intl/{z}/{x}/{y}@2x.png', {\n      attribution: 'Wikimedia maps beta | &copy; &lt;a href=\"http://osm.org/copyright\"&gt;OpenStreetMap&lt;/a&gt; contributors'\n  }).addTo(map);\n}"
   },
   {
-    "objectID": "index.html#welcome",
-    "href": "index.html#welcome",
-    "title": "Alaska Electricity Trends Web Book",
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
     "section": "",
-    "text": "This report summarizes federal, state, and utility data to provide an overview of electricity capacity, generation, consumption, and price trends from 2011 to 2021. A comprehensive report highlighting these trends has not been produced for the state of Alaska since the 2013 Alaska Energy Statistics Report.",
+    "text": "About this site",
     "crumbs": [
-      "Home"
-    ]
-  },
-  {
-    "objectID": "index.html#key-takeaways",
-    "href": "index.html#key-takeaways",
-    "title": "Alaska Electricity Trends Web Book",
-    "section": "Key Takeaways",
-    "text": "Key Takeaways\n\nCapacity\n\nGeneration capacity on average increased across all of Alaska from 2011 to 2021.\nThe state saw large increases in renewable energy capacity, storage, and on-demand peaking units.\n\n\n\nGeneration\n\nNet generation has remained relatively stable\nThe Coastal region generated more power from wind and hydro, but less from oil in 2021 than in 2011.\nThe Railbelt region generated more power from wind, hydro, coal, and solar, but less from oil and gas in 2021 than in 2011.\nThe Rural Remote region generated more power from wind and solar, but less from oil and hydro in 2021 than in 2011.\nWe have seen significant increases in the usage of utility-scale battery storage.\n\n\n\nConsumption\n\nElectricity consumption has fallen for all customer classes, with residential customers seeing the most reductions.\nThe number of customer accounts have continued to increase throughout the state.\nPer capita consumption for the residential sector is highest in the Coastal region and lowest in the Rural Remote region.\n\n\n\nPrices\n\nResidential electricity rates increased on average across Alaska after adjusting for inflation, the PCE subsidy, and population weighting.\nThe region that experienced the least residential rate gain was the Coastal region with a 6% increase.\nThe region experiencing the highest residential rate gain was the Railbelt with a 26% increase.\nCommercial and Other customers in the Coastal and Rural Remote regions saw rate decreases where Commercial customers in the Railbelt region saw price increases of about 15%.\nPCE subsidies continue to dampen residential prices in the Coastal and Rural Remote regions.",
-    "crumbs": [
-      "Home"
-    ]
-  },
-  {
-    "objectID": "index.html#acronyms",
-    "href": "index.html#acronyms",
-    "title": "Alaska Electricity Trends Web Book",
-    "section": "Acronyms",
-    "text": "Acronyms\nThese abbreviations are used throughout this report\n\nACEP: Alaska Center for Energy and Power\nAEA: Alaska Energy Authority\nBUECI: Barrow Utilities & Electric Cooperative, Inc.\nPCE: Power Cost Equalization\nEIA: Energy Information Administration\nFERC: Federal Energy Regulatory Commission\nCAGR: Compound Annual Growth Rate\nKW: Kilowatts\nKWh: Kilowatt Hours\nMW: Megawatts\nMWh: Megawatt Hours\nGW: Gigawatts\nGWh: Gigawatt Hours",
-    "crumbs": [
-      "Home"
-    ]
-  },
-  {
-    "objectID": "prices.html",
-    "href": "prices.html",
-    "title": "Price of Electricity",
-    "section": "",
-    "text": "There are several kinds of customers that electric utilities in Alaska serve. These typically include the residential, commercial, industrial, government/municipal, and community customer classes. Each customer class typically faces a different set of costs such as per kWh charge as well as monthly customer charges. In this section, we aim to highlight trends in electricity prices for the residential, commercial, and industrial customer classes across the coastal, Railbelt, and rural remote regions …",
-    "crumbs": [
-      "Price of Electricity"
-    ]
-  },
-  {
-    "objectID": "prices.html#general-overview",
-    "href": "prices.html#general-overview",
-    "title": "Price of Electricity",
-    "section": "",
-    "text": "There are several kinds of customers that electric utilities in Alaska serve. These typically include the residential, commercial, industrial, government/municipal, and community customer classes. Each customer class typically faces a different set of costs such as per kWh charge as well as monthly customer charges. In this section, we aim to highlight trends in electricity prices for the residential, commercial, and industrial customer classes across the coastal, Railbelt, and rural remote regions …",
-    "crumbs": [
-      "Price of Electricity"
-    ]
-  },
-  {
-    "objectID": "prices.html#regional-overview",
-    "href": "prices.html#regional-overview",
-    "title": "Price of Electricity",
-    "section": "Regional Overview",
-    "text": "Regional Overview\nBelow is a graph of average price for all sectors separated by region\n\nregion_weighted_prices = tidy(weighted_prices, \n                              groupBy(['acep_energy_region', 'year'], [\n                                summarize({ mean_weighted_price: mean('weighted_price')})\n                              ]))\n\n// plot of regional average prices\nPlot.plot({\n    x: {domain: [2011, 2019]},\n    x: {tickFormat: d =&gt; d},\n\n    y: {domain: [0, 50]},\n\n    grid: true,\n    marginRight: 70,\n  \n    marks: [\n\n        Plot.line(region_weighted_prices,\n                    {x: \"year\", \n                    y: \"mean_weighted_price\",\n                    strokeWidth: 5,\n                    stroke: \"acep_energy_region\"\n                    }),\n\n        Plot.text(region_weighted_prices, \n            Plot.selectLast({x: \"year\", \n                                y: \"mean_weighted_price\", \n                                z: \"acep_energy_region\", \n                                text: \"acep_energy_region\", \n                                textAnchor: \"start\", dx: 5\n                                })),\n                                \n        Plot.tip(region_weighted_prices, Plot.pointer({x: \"year\", y: \"mean_weighted_price\"}))\n\n\n    ],\n    color: {\n        domain: [\"Coastal\", \"Railbelt\", \"Rural Remote\"],\n        range: [\"#98BAD6\", \"#A4CD9A\", \"#E3918F\"]\n    }\n});",
-    "crumbs": [
-      "Price of Electricity"
-    ]
-  },
-  {
-    "objectID": "prices.html#coastal",
-    "href": "prices.html#coastal",
-    "title": "Price of Electricity",
-    "section": "Coastal",
-    "text": "Coastal\nPut Coastal text here.\n\ncoastal_weighted_prices = tidy(weighted_prices, \n                              filter((d) =&gt; d.acep_energy_region === \"Coastal\")\n                            )\n\n// plot of regional average prices\nPlot.plot({\n    x: {domain: [2011, 2019]},\n    x: {tickFormat: d =&gt; d},\n\n    y: {domain: [0, 50]},\n\n    grid: true,\n    marginRight: 70,\n  \n  \n    marks: [\n\n        Plot.line(coastal_weighted_prices,\n                    {x: \"year\", \n                    y: \"weighted_price\",\n                    strokeWidth: 5,\n                    stroke: \"sector\"\n                    }),\n\n        Plot.text(coastal_weighted_prices, \n            Plot.selectLast({x: \"year\", \n                                y: \"weighted_price\", \n                                z: \"sector\", \n                                text: \"sector\", \n                                textAnchor: \"start\", dx: 5\n                                })),\n                                \n        Plot.tip(coastal_weighted_prices, Plot.pointer({x: \"year\", y: \"weighted_price\"}))\n\n\n    ],\n    color: {\n        domain: [\"residential\", \"commercial\", \"other\"],\n        range: [\"#0084c1\", \"#e29617\", \"#fad900\"]\n    }\n})",
-    "crumbs": [
-      "Price of Electricity"
-    ]
-  },
-  {
-    "objectID": "prices.html#railbelt",
-    "href": "prices.html#railbelt",
-    "title": "Price of Electricity",
-    "section": "Railbelt",
-    "text": "Railbelt\nPut Railbelt text here.\n\nrailbelt_weighted_prices = tidy(weighted_prices, \n                              filter((d) =&gt; d.acep_energy_region === \"Railbelt\")\n                            )\n\n// plot of regional average prices\nPlot.plot({\n    x: {domain: [2011, 2019]},\n    x: {tickFormat: d =&gt; d},\n\n    y: {domain: [0, 50]},\n\n    grid: true,\n    marginRight: 70,\n\n\n    marks: [\n \n        Plot.line(railbelt_weighted_prices,\n                {x: \"year\", \n                y: \"weighted_price\",\n                strokeWidth: 5,\n                stroke: \"sector\"\n                }),\n\n        Plot.text(railbelt_weighted_prices, \n            Plot.selectLast({x: \"year\", \n                            y: \"weighted_price\", \n                            z: \"sector\", \n                            text: \"sector\", \n                            textAnchor: \"start\", dx: 5\n                            })),\n                            \n        Plot.tip(railbelt_weighted_prices, Plot.pointer({x: \"year\", y: \"weighted_price\"}))\n    \n\n    ],\n    color: {\n        domain: [\"residential\", \"commercial\", \"other\"],\n        range: [\"#0084c1\", \"#e29617\", \"#fad900\"]\n    }\n})",
-    "crumbs": [
-      "Price of Electricity"
-    ]
-  },
-  {
-    "objectID": "prices.html#rural-remote",
-    "href": "prices.html#rural-remote",
-    "title": "Price of Electricity",
-    "section": "Rural Remote",
-    "text": "Rural Remote\nPut Rural Remote text here.\n\nrural_remote_weighted_prices = tidy(weighted_prices, \n                              filter((d) =&gt; d.acep_energy_region === \"Rural Remote\")\n                            )\n\n// plot of regional average prices\nPlot.plot({\n    height: 550,\n\n    x: {domain: [2011, 2019]},\n    x: {tickFormat: d =&gt; d},\n\n    y: {domain: [0, 70]},\n\n    grid: true,\n    marginRight: 70,\n\n    marks: [\n \n        Plot.line(rural_remote_weighted_prices,\n                {x: \"year\", \n                y: \"weighted_price\",\n                strokeWidth: 5,\n                stroke: \"sector\"\n                }),\n\n        Plot.text(rural_remote_weighted_prices, \n            Plot.selectLast({x: \"year\", \n                            y: \"weighted_price\", \n                            z: \"sector\", \n                            text: \"sector\", \n                            textAnchor: \"start\", dx: 5\n                            })),\n                            \n        Plot.tip(rural_remote_weighted_prices, \n            Plot.pointer({x: \"year\", \n                          y: \"weighted_price\"\n                          }))\n    ],\n    color: {\n        domain: [\"residential\", \"commercial\", \"other\"],\n        range: [\"#0084c1\", \"#e29617\", \"#fad900\"]\n    }\n})\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nstdlib = require(\"@observablehq/stdlib\")\nd3 = require(\"d3@7\")\nimport {tidy, groupBy, rename, summarize, sum, mutate, select, n, nDistinct, mean, filter, pivotWider, pivotLonger} from \"@pbeshai/tidyjs\"\n\n\n// connect to database\ndb = FileAttachment(\"data/es.db\").sqlite()\n\n// call table\nweighted_prices = db.sql`SELECT * FROM weighted_prices`;\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n  \n\nviewof dbTable = Inputs.select((await db.describe()).value.map(d =&gt; d.name), \n                    { label: \"Table\" })\ndata = db.query(`SELECT * FROM ${dbTable}`)\nInputs.table(data)",
-    "crumbs": [
-      "Price of Electricity"
-    ]
-  },
-  {
-    "objectID": "methods.html",
-    "href": "methods.html",
-    "title": "Data Analysis Methods",
-    "section": "",
-    "text": "Report currently has data caveats spread throughout the text as footnotes. I think that information should be gathered together here. - links back to this information here can then be added to the other pages (instead of footnotes?)",
-    "crumbs": [
-      "Methods"
-    ]
-  },
-  {
-    "objectID": "methods.html#data-sources",
-    "href": "methods.html#data-sources",
-    "title": "Data Analysis Methods",
-    "section": "Data Sources",
-    "text": "Data Sources\nData discussed in this report come from 2 main sources… (Are there any other data sources?)\n\nEnergy Information Authority (EIA)\nwhat is this? Why isn’t a source for all data? (i.e. reporting to EIA is not required for Alaskan utilities) - list of forms? which ones actually used? - how did Neil get these\n\n\nPower Cost Equalization\n\nQ: what is this program? why utilities report here? why is it fiscal year? why might data be missing?\n\nextracted from AEA “accounting system”\ncommunities vs utilities\n\nAssume no one knows what a PCE is. Maybe think of Catalyst while write this. Show what we have to offer and why Alaska is different/special.\nAlaska is famous for wide expanses of rugged terrain. Towns are often extremely distant from one another, or are separated by inaccessible mountains and glaciers. The utility landscape of Alaska resembles a sea of islands, very different from the interconnected grids of the contiguous United States.\nIn total, Alaska contains over 100 separate utilities, many of which serve a single small community. Most rely on diesel generators connected to huge fuel tanks, which receive a barge shipment of fuel in the summer that must last through the winter. If the town runs out of fuel during winter months, additional fuel has to be flown in at extreme expense. Predictably, electricity in these remote towns is prohibitively expensive. Some rural towns pay 3 to 5 times the rates of urban Alaska.\nUrban Alaska has greatly benefited from large state-subsidized energy projects, such as the Bradley Lake, Four Dam Pool, and the Alaska Intertie. Rural Alaska has not benefited from these programs. Therefore, in an effort to equalize differences between rural and urban Alaska, the Alaska Energy Authority administers the Power Cost Equalization (PCE) program. The PCE program, funded by earnings from an endowment fund, reimburses rural utilities for credits that have been provided to its customers. Eligibility is limited to residential customers and community facilities. The subsidy applies to the first 750 kWh per month of residential consumption. Community facilities are subsidized up to the first 70 kWh per month per person.\n\n\n\nWorkbooks (maybe call this something else)\nBy which I mean Neil’s cross referencing between the 2 sources - will we distribute these? If so, link. If not, then say why (nicely!) - how to cross reference between the AEA and EIA? This is cool! - differences between the 2 data sets",
-    "crumbs": [
-      "Methods"
-    ]
-  },
-  {
-    "objectID": "methods.html#data-processing-and-aggregations",
-    "href": "methods.html#data-processing-and-aggregations",
-    "title": "Data Analysis Methods",
-    "section": "Data Processing and Aggregations",
-    "text": "Data Processing and Aggregations\n\ncalendar vs fiscal year\nerror corrections (at what stage did this happen?) As with\nJesse’s big files - link to these, right?",
-    "crumbs": [
-      "Methods"
-    ]
-  },
-  {
-    "objectID": "methods.html#regional-summaries",
-    "href": "methods.html#regional-summaries",
-    "title": "Data Analysis Methods",
-    "section": "Regional Summaries",
-    "text": "Regional Summaries\n\nQ: How were regions defined previously? Why didn’t we just copy that?\nPrevious iterations of the Energy Statistics Report used the Alaskan Energy Authority’s 11 regions. For yearly summary statistics, the 11 regions were very useful. However, with the multi-year scope of this Trends Report, we elected to condense the 11 AEA Energy Regions based on commonalities in geography and electrical profile.\nIn this report, we categorize the state into three separate energy regions, each being a collection of various Alaska Energy Authority (AEA) energy regions. These regions are herein known as the Coastal Region (Southeast, Kodiak, Chugach/Copper River), the Railbelt, and Rural Remote communities (all other AEA energy regions). For clarity, we refer to these three aggregated regions as the ACEP Energy Regions.\n\n\n\nRelationship between Energy Regions as defined by AEA and ACEP",
-    "crumbs": [
-      "Methods"
-    ]
-  },
-  {
-    "objectID": "methods.html#future-plans",
-    "href": "methods.html#future-plans",
-    "title": "Data Analysis Methods",
-    "section": "Future plans",
-    "text": "Future plans\n\ndatabase\nAPI / queries\nexpose Neil’s transmission lines thing",
-    "crumbs": [
-      "Methods"
+      "About Us"
     ]
   },
   {
@@ -220,13 +87,153 @@
     ]
   },
   {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
+    "objectID": "methods.html",
+    "href": "methods.html",
+    "title": "Data Analysis Methods",
     "section": "",
-    "text": "About this site",
+    "text": "Report currently has data caveats spread throughout the text as footnotes. I think that information should be gathered together here. - links back to this information here can then be added to the other pages (instead of footnotes?)",
     "crumbs": [
-      "About Us"
+      "Methods"
+    ]
+  },
+  {
+    "objectID": "methods.html#data-sources",
+    "href": "methods.html#data-sources",
+    "title": "Data Analysis Methods",
+    "section": "Data Sources",
+    "text": "Data Sources\nData discussed in this report come from 2 main sources… (Are there any other data sources?)\n\nEnergy Information Authority (EIA)\nwhat is this? Why isn’t a source for all data? (i.e. reporting to EIA is not required for Alaskan utilities) - list of forms? which ones actually used? - how did Neil get these\n\n\nPower Cost Equalization\n\nQ: what is this program? why utilities report here? why is it fiscal year? why might data be missing?\n\nextracted from AEA “accounting system”\ncommunities vs utilities\n\nAssume no one knows what a PCE is. Maybe think of Catalyst while write this. Show what we have to offer and why Alaska is different/special.\nAlaska is famous for wide expanses of rugged terrain. Towns are often extremely distant from one another, or are separated by inaccessible mountains and glaciers. The utility landscape of Alaska resembles a sea of islands, very different from the interconnected grids of the contiguous United States.\nIn total, Alaska contains over 100 separate utilities, many of which serve a single small community. Most rely on diesel generators connected to huge fuel tanks, which receive a barge shipment of fuel in the summer that must last through the winter. If the town runs out of fuel during winter months, additional fuel has to be flown in at extreme expense. Predictably, electricity in these remote towns is prohibitively expensive. Some rural towns pay 3 to 5 times the rates of urban Alaska.\nUrban Alaska has greatly benefited from large state-subsidized energy projects, such as the Bradley Lake Hydroelectric Project, the Four Dam Pool Projects, and the Alaska Intertie. In an effort to confer similar benefits to rural Alaska, the state of Alaska developed the Power Cost Equalization Program (PCE); the Regulatory Commission of Alaska and the Alaska Energy Authority administer the PCE program. The PCE program reimburses rural utilities for credits that have been provided to eligible customers. Eligibility is limited to residential customers and community facilities. The subsidy applies to the first 750 kWh per month of residential consumption. Community facilities are subsidized up to the first 70 kWh per month per resident. Please visit the Alaska Energy Authority webpage for more information about the Power Cost Equalization program.\n\n\n\nWorkbooks (maybe call this something else)\nBy which I mean Neil’s cross referencing between the 2 sources - will we distribute these? If so, link. If not, then say why (nicely!) - how to cross reference between the AEA and EIA? This is cool! - differences between the 2 data sets",
+    "crumbs": [
+      "Methods"
+    ]
+  },
+  {
+    "objectID": "methods.html#data-processing-and-aggregations",
+    "href": "methods.html#data-processing-and-aggregations",
+    "title": "Data Analysis Methods",
+    "section": "Data Processing and Aggregations",
+    "text": "Data Processing and Aggregations\n\ncalendar vs fiscal year\nerror corrections (at what stage did this happen?) As with\nJesse’s big files - link to these, right?",
+    "crumbs": [
+      "Methods"
+    ]
+  },
+  {
+    "objectID": "methods.html#regional-summaries",
+    "href": "methods.html#regional-summaries",
+    "title": "Data Analysis Methods",
+    "section": "Regional Summaries",
+    "text": "Regional Summaries\n\nQ: How were regions defined previously? Why didn’t we just copy that?\nPrevious iterations of the Energy Statistics Report used the Alaskan Energy Authority’s 11 regions. For yearly summary statistics, the 11 regions were very useful. However, with the multi-year scope of this Trends Report, we elected to condense the 11 AEA Energy Regions based on commonalities in geography and electrical profile.\nIn this report, we categorize the state into three separate energy regions, each being a collection of various Alaska Energy Authority (AEA) energy regions. These regions are herein known as the Coastal Region (Southeast, Kodiak, Chugach/Copper River), the Railbelt, and Rural Remote communities (all other AEA energy regions). For clarity, we refer to these three aggregated regions as the ACEP Energy Regions.\n\n\n\nRelationship between Energy Regions as defined by AEA and ACEP",
+    "crumbs": [
+      "Methods"
+    ]
+  },
+  {
+    "objectID": "methods.html#future-plans",
+    "href": "methods.html#future-plans",
+    "title": "Data Analysis Methods",
+    "section": "Future plans",
+    "text": "Future plans\n\ndatabase\nAPI / queries\nexpose Neil’s transmission lines thing",
+    "crumbs": [
+      "Methods"
+    ]
+  },
+  {
+    "objectID": "prices.html",
+    "href": "prices.html",
+    "title": "Price of Electricity",
+    "section": "",
+    "text": "Utilities in Alaska serve multiple customers, namely residential, commercial, industrial, government/municipal, and community customer classes. Each customer class experiences a different set of costs such as per kWh charge as well as monthly customer charges. In this section, we aim to highlight trends in electricity prices for the residential, commercial, and industrial customer classes across the Coastal, Railbelt, and Rural Remote regions. We again restrict the data years in this section to 2011 to 2019 due to concerns with data validity for 2020-21.\nIn rural areas, many communities are eligible to participate in the PCE program. It is important to note that the prices presented here reflect the post-PCE adjustment and are annualized averages based on the calendar year. Yearly average effective rates listed here reflect the calendar year and not the fiscal year, which will make them different from those reported in the AEA’s annual reports. We report the average revenue per kWh for each customer class.\nThe following figure shows the average price across all customer classes and regions in the state. All prices in this section have been adjusted for inflation over time to 2021 dollars using the Bureau of Labor Statistics (BLS) Consumer Price Index (CPI) for all items in urban Alaska (BLS CUUSA427SA0). To our knowledge, there is no CPI that properly accounts for price changes over time in rural Alaska. However, the general trend shows that customer account-weighted prices have been relatively stagnant across all regions of the state.",
+    "crumbs": [
+      "Price of Electricity"
+    ]
+  },
+  {
+    "objectID": "prices.html#general-overview",
+    "href": "prices.html#general-overview",
+    "title": "Price of Electricity",
+    "section": "",
+    "text": "Utilities in Alaska serve multiple customers, namely residential, commercial, industrial, government/municipal, and community customer classes. Each customer class experiences a different set of costs such as per kWh charge as well as monthly customer charges. In this section, we aim to highlight trends in electricity prices for the residential, commercial, and industrial customer classes across the Coastal, Railbelt, and Rural Remote regions. We again restrict the data years in this section to 2011 to 2019 due to concerns with data validity for 2020-21.\nIn rural areas, many communities are eligible to participate in the PCE program. It is important to note that the prices presented here reflect the post-PCE adjustment and are annualized averages based on the calendar year. Yearly average effective rates listed here reflect the calendar year and not the fiscal year, which will make them different from those reported in the AEA’s annual reports. We report the average revenue per kWh for each customer class.\nThe following figure shows the average price across all customer classes and regions in the state. All prices in this section have been adjusted for inflation over time to 2021 dollars using the Bureau of Labor Statistics (BLS) Consumer Price Index (CPI) for all items in urban Alaska (BLS CUUSA427SA0). To our knowledge, there is no CPI that properly accounts for price changes over time in rural Alaska. However, the general trend shows that customer account-weighted prices have been relatively stagnant across all regions of the state.",
+    "crumbs": [
+      "Price of Electricity"
+    ]
+  },
+  {
+    "objectID": "prices.html#regional-overview",
+    "href": "prices.html#regional-overview",
+    "title": "Price of Electricity",
+    "section": "Regional Overview",
+    "text": "Regional Overview\nWhile the average prices can show overall trends, there is nuance to electricity prices throughout the different regions of the state and various classes of electricity customers. To provide an example of this, we show the variation in electricity prices for the residential customer class across regions and years in the figure below.\nDue to the wide range of electricity prices in Alaska, it is difficult to accurately summarize the data. Because of this, we determined that averages were best calculated using a customer account weighted average. Population is roughly correlated to price, with small communities experiencing higher rates than larger communities. The average number of customer accounts for the year was used to calculate the weighted arithmetic mean price for each year and region.\n\nregion_weighted_prices = tidy(weighted_prices, \n                              groupBy(['acep_energy_region', 'year'], [\n                                summarize({ mean_weighted_price: mean('weighted_price')})\n                              ]),\n                              filter((d) =&gt; d.year &lt; 2020))\n\n// plot of regional average prices\nPlot.plot({\n    x: {domain: [2011, 2019]},\n    x: {tickFormat: \"\"},\n\n    y: {domain: [0, 50]},\n\n    grid: true,\n    marginRight: 70,\n  \n    marks: [\n\n        Plot.line(region_weighted_prices,\n                    {x: \"year\", \n                    y: \"mean_weighted_price\",\n                    strokeWidth: 5,\n                    stroke: \"acep_energy_region\"\n                    }),\n\n        Plot.text(region_weighted_prices, \n            Plot.selectLast({x: \"year\", \n                                y: \"mean_weighted_price\", \n                                z: \"acep_energy_region\", \n                                text: \"acep_energy_region\", \n                                textAnchor: \"start\", dx: 5\n                                })),\n                                \n        Plot.tip(region_weighted_prices, \n            Plot.pointer({x: \"year\", y: \"mean_weighted_price\"}))\n\n\n    ],\n    color: {\n        domain: [\"Coastal\", \"Railbelt\", \"Rural Remote\"],\n        range: [\"#98BAD6\", \"#A4CD9A\", \"#E3918F\"]\n    }\n});",
+    "crumbs": [
+      "Price of Electricity"
+    ]
+  },
+  {
+    "objectID": "prices.html#coastal",
+    "href": "prices.html#coastal",
+    "title": "Price of Electricity",
+    "section": "Coastal",
+    "text": "Coastal\nThe following figure shows the average price of electricity in the Coastal region for each customer class and year. Between 2011 and 2019, the region experienced decreasing prices for Commercial and Other customers, while Residential customers have seen a slight increase in price.\nThe average price of electricity for Residential customers in the Coastal region rose 6% from $0.17/kWh in 2011 to $0.18/kWh in 2019. The average price of electricity for Commercial customers in the Coastal region fell 5% from $0.21/kWh in 2011 to $0.20/kWh in 2019. Finally, the average price of electricity for Other customers in the Coastal region fell 15% from $0.40/kWh in 2011 to $0.34/kWh in 2019. Residential customers in the Coastal region saw increases in electricity while commercial and other customers saw decreases. However, the residential customer class continues to pay the lowest per kWh in the region due to a combination of low prices in high population areas and PCE subsidies in eligible communities.\n\ncoastal_weighted_prices = tidy(weighted_prices, \n                              filter((d) =&gt; d.acep_energy_region === \"Coastal\"),\n                              filter((d) =&gt; d.year &lt; 2020)\n                            )\n\n// plot of regional average prices\nPlot.plot({\n    x: {domain: [2011, 2019]},\n    x: {tickFormat: \"\"},\n\n    y: {domain: [0, 50]},\n\n    grid: true,\n    marginRight: 70,\n  \n  \n    marks: [\n\n        Plot.line(coastal_weighted_prices,\n                    {x: \"year\", \n                    y: \"weighted_price\",\n                    strokeWidth: 5,\n                    stroke: \"sector\"\n                    }),\n\n        Plot.text(coastal_weighted_prices, \n            Plot.selectLast({x: \"year\", \n                            y: \"weighted_price\", \n                            z: \"sector\", \n                            text: \"sector\", \n                            textAnchor: \"start\", dx: 5\n                            })),\n                                \n        Plot.tip(coastal_weighted_prices, \n            Plot.pointer({x: \"year\", y: \"weighted_price\"}))\n\n\n    ],\n    color: {\n        domain: [\"residential\", \"commercial\", \"other\"],\n        range: [\"#0084c1\", \"#e29617\", \"#fad900\"]\n    }\n})",
+    "crumbs": [
+      "Price of Electricity"
+    ]
+  },
+  {
+    "objectID": "prices.html#railbelt",
+    "href": "prices.html#railbelt",
+    "title": "Price of Electricity",
+    "section": "Railbelt",
+    "text": "Railbelt\nThe following figure shows the average price of electricity in the Railbelt region for each customer class and each year of the report. Between 2011 and 2019, Other customers saw a large decrease in price, followed by a gradual increase. Residential and Commercial customers experienced slight decreases in price until 2013 when prices reversed and rose dramatically.\nThe average price of electricity for Residential customers in the Railbelt rose 26% from $0.19/kWh in 2011 to $0.24/kWh in 2019. The average price of electricity for Commercial customers in the Railbelt rose 18% from $0.17/kWh in 2011 to $0.20/kWh in 2019. Finally, the average price of electricity for Other customers in the Railbelt fell 6% from $0.19/kWh in 2011 to $0.18/kWh in 2019. This region differs significantly from the Coastal and Rural Remote regions in that residential customers pay more for electricity than the Commercial or Other customer classes.\n\nrailbelt_weighted_prices = tidy(weighted_prices, \n                              filter((d) =&gt; d.acep_energy_region === \"Railbelt\"),\n                              filter((d) =&gt; d.year &lt; 2020)\n                            )\n\n// plot of regional average prices\nPlot.plot({\n    x: {domain: [2011, 2019]},\n    x: {tickFormat: \"\"},\n\n    y: {domain: [0, 50]},\n\n    grid: true,\n    marginRight: 70,\n\n\n    marks: [\n \n        Plot.line(railbelt_weighted_prices,\n                {x: \"year\", \n                y: \"weighted_price\",\n                strokeWidth: 5,\n                stroke: \"sector\"\n                }),\n\n        Plot.text(railbelt_weighted_prices, \n            Plot.selectLast({x: \"year\", \n                            y: \"weighted_price\", \n                            z: \"sector\", \n                            text: \"sector\", \n                            textAnchor: \"start\", dx: 5\n                            })),\n                            \n        Plot.tip(railbelt_weighted_prices, \n            Plot.pointer({x: \"year\", y: \"weighted_price\"}))\n    \n\n    ],\n    color: {\n        domain: [\"residential\", \"commercial\", \"other\"],\n        range: [\"#0084c1\", \"#e29617\", \"#fad900\"]\n    }\n})",
+    "crumbs": [
+      "Price of Electricity"
+    ]
+  },
+  {
+    "objectID": "prices.html#rural-remote",
+    "href": "prices.html#rural-remote",
+    "title": "Price of Electricity",
+    "section": "Rural Remote",
+    "text": "Rural Remote\nThe following figure shows the average price of electricity in the Rural Remote region for each customer class and year of the report. Between 2011 and 2019, Residential customers experienced a gradual increase in rates, while Commercial and Other customers experienced a gradual decrease in rates.\nThe average price of electricity for the Residential customers in the Rural Remote region rose 8% from $0.24/kWh in 2011 to $0.26/kWh in 2019. The average price of electricity for Commercial customers in the Rural Remote region fell 11% from $0.54/kWh in 2011 to $0.48/kWh in 2019. Finally, the average price of electricity for Other customers in the Rural Remote region fell 9% from $0.65/kWh in 2011 to $0.59/kWh in 2019.\n\nrural_remote_weighted_prices = tidy(weighted_prices, \n                              filter((d) =&gt; d.acep_energy_region === \"Rural Remote\"),\n                              filter((d) =&gt; d.year &lt; 2020)\n                            )\n\n// plot of regional average prices\nPlot.plot({\n    height: 550,\n\n    x: {domain: [2011, 2019]},\n    x: {tickFormat: \"\"},\n\n    y: {domain: [0, 70]},\n\n    grid: true,\n    marginRight: 70,\n\n    marks: [\n \n        Plot.line(rural_remote_weighted_prices,\n                {x: \"year\", \n                y: \"weighted_price\",\n                strokeWidth: 5,\n                stroke: \"sector\"\n                }),\n\n        Plot.text(rural_remote_weighted_prices, \n            Plot.selectLast({x: \"year\", \n                            y: \"weighted_price\", \n                            z: \"sector\", \n                            text: \"sector\", \n                            textAnchor: \"start\", dx: 5\n                            })),\n                            \n        Plot.tip(rural_remote_weighted_prices, \n            Plot.pointer({x: \"year\", y: \"weighted_price\"}))\n    ],\n    color: {\n        domain: [\"residential\", \"commercial\", \"other\"],\n        range: [\"#0084c1\", \"#e29617\", \"#fad900\"]\n    }\n})\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nstdlib = require(\"@observablehq/stdlib\")\nd3 = require(\"d3@7\")\nimport {tidy, groupBy, rename, summarize, sum, mutate, select, n, nDistinct, mean, filter, pivotWider, pivotLonger} from \"@pbeshai/tidyjs\"\n\n\n// connect to database\ndb = FileAttachment(\"data/es.db\").sqlite()\n\n// call table\nweighted_prices = db.sql`SELECT * FROM weighted_prices`;\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n  \n\nviewof dbTable = Inputs.select((await db.describe()).value.map(d =&gt; d.name), \n                    { label: \"Table\" })\ndata = db.query(`SELECT * FROM ${dbTable}`)\nInputs.table(data)",
+    "crumbs": [
+      "Price of Electricity"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Alaska Electricity Trends Web Book",
+    "section": "",
+    "text": "This report summarizes federal, state, and utility data to provide an overview of electricity capacity, generation, consumption, and price trends from 2011 to 2021. A comprehensive report highlighting these trends has not been produced for the state of Alaska since the 2013 Alaska Energy Statistics Report.",
+    "crumbs": [
+      "Home"
+    ]
+  },
+  {
+    "objectID": "index.html#welcome",
+    "href": "index.html#welcome",
+    "title": "Alaska Electricity Trends Web Book",
+    "section": "",
+    "text": "This report summarizes federal, state, and utility data to provide an overview of electricity capacity, generation, consumption, and price trends from 2011 to 2021. A comprehensive report highlighting these trends has not been produced for the state of Alaska since the 2013 Alaska Energy Statistics Report.",
+    "crumbs": [
+      "Home"
+    ]
+  },
+  {
+    "objectID": "index.html#key-takeaways",
+    "href": "index.html#key-takeaways",
+    "title": "Alaska Electricity Trends Web Book",
+    "section": "Key Takeaways",
+    "text": "Key Takeaways\n\nCapacity\n\nGeneration capacity on average increased across all of Alaska from 2011 to 2021.\nThe state saw large increases in renewable energy capacity, storage, and on-demand peaking units.\n\n\n\nGeneration\n\nNet generation has remained relatively stable\nThe Coastal region generated more power from wind and hydro, but less from oil in 2021 than in 2011.\nThe Railbelt region generated more power from wind, hydro, coal, and solar, but less from oil and gas in 2021 than in 2011.\nThe Rural Remote region generated more power from wind and solar, but less from oil and hydro in 2021 than in 2011.\nWe have seen significant increases in the usage of utility-scale battery storage.\n\n\n\nConsumption\n\nElectricity consumption has fallen for all customer classes, with residential customers seeing the most reductions.\nThe number of customer accounts have continued to increase throughout the state.\nPer capita consumption for the residential sector is highest in the Coastal region and lowest in the Rural Remote region.\n\n\n\nPrices\n\nResidential electricity rates increased on average across Alaska after adjusting for inflation, the PCE subsidy, and population weighting.\nThe region that experienced the least residential rate gain was the Coastal region with a 6% increase.\nThe region experiencing the highest residential rate gain was the Railbelt with a 26% increase.\nCommercial and Other customers in the Coastal and Rural Remote regions saw rate decreases where Commercial customers in the Railbelt region saw price increases of about 15%.\nPCE subsidies continue to dampen residential prices in the Coastal and Rural Remote regions.",
+    "crumbs": [
+      "Home"
+    ]
+  },
+  {
+    "objectID": "index.html#acronyms",
+    "href": "index.html#acronyms",
+    "title": "Alaska Electricity Trends Web Book",
+    "section": "Acronyms",
+    "text": "Acronyms\nThese abbreviations are used throughout this report\n\nACEP: Alaska Center for Energy and Power\nAEA: Alaska Energy Authority\nBUECI: Barrow Utilities & Electric Cooperative, Inc.\nPCE: Power Cost Equalization\nEIA: Energy Information Administration\nFERC: Federal Energy Regulatory Commission\nCAGR: Compound Annual Growth Rate\nKW: Kilowatts\nKWh: Kilowatt Hours\nMW: Megawatts\nMWh: Megawatt Hours\nGW: Gigawatts\nGWh: Gigawatt Hours",
+    "crumbs": [
+      "Home"
     ]
   },
   {

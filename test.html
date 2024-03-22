@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>AETR Web Book - Data Analysis Methods</title>
+<title>AETR Web Book - Map</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -29,8 +63,6 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./capacity.html" rel="next">
-<link href="./about.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -69,6 +101,8 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script type="module" src="site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
+<link href="site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
 
 
 <link rel="stylesheet" href="styles.css">
@@ -83,7 +117,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./methods.html">Methods</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Map</li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -128,7 +162,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./methods.html" class="sidebar-item-text sidebar-link active"><i class="bi bi-dot" role="img">
+  <a href="./methods.html" class="sidebar-item-text sidebar-link"><i class="bi bi-dot" role="img">
 </i> 
  <span class="menu-text">Methods</span></a>
   </div>
@@ -167,29 +201,15 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#data-sources" id="toc-data-sources" class="nav-link active" data-scroll-target="#data-sources">Data Sources</a>
-  <ul class="collapse">
-  <li><a href="#energy-information-authority-eia" id="toc-energy-information-authority-eia" class="nav-link" data-scroll-target="#energy-information-authority-eia">Energy Information Authority (EIA)</a></li>
-  <li><a href="#power-cost-equalization" id="toc-power-cost-equalization" class="nav-link" data-scroll-target="#power-cost-equalization">Power Cost Equalization</a></li>
-  <li><a href="#workbooks-maybe-call-this-something-else" id="toc-workbooks-maybe-call-this-something-else" class="nav-link" data-scroll-target="#workbooks-maybe-call-this-something-else">Workbooks (maybe call this something else)</a></li>
-  </ul></li>
-  <li><a href="#data-processing-and-aggregations" id="toc-data-processing-and-aggregations" class="nav-link" data-scroll-target="#data-processing-and-aggregations">Data Processing and Aggregations</a></li>
-  <li><a href="#regional-summaries" id="toc-regional-summaries" class="nav-link" data-scroll-target="#regional-summaries">Regional Summaries</a></li>
-  <li><a href="#future-plans" id="toc-future-plans" class="nav-link" data-scroll-target="#future-plans">Future plans</a></li>
-  </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/acep-uaf/aetr-web-book/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Data Analysis Methods</h1>
-<p class="subtitle lead">Methods Section of Alaska Electricity Trends Web Book</p>
+<h1 class="title">Map</h1>
+<p class="subtitle lead">Map playground</p>
 </div>
 
 
@@ -206,67 +226,59 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Report currently has data caveats spread throughout the text as footnotes. I think that information should be gathered together here. - links back to this information here can then be added to the other pages (instead of footnotes?)</p>
-<section id="data-sources" class="level2">
-<h2 class="anchored" data-anchor-id="data-sources">Data Sources</h2>
-<p>Data discussed in this report come from 2 main sources… (Are there any other data sources?)</p>
-<section id="energy-information-authority-eia" class="level3">
-<h3 class="anchored" data-anchor-id="energy-information-authority-eia">Energy Information Authority (EIA)</h3>
-<p>what is this? Why isn’t a source for all data? (i.e.&nbsp;reporting to EIA is not required for Alaskan utilities) - list of forms? which ones actually used? - how did Neil get these</p>
-</section>
-<section id="power-cost-equalization" class="level3">
-<h3 class="anchored" data-anchor-id="power-cost-equalization">Power Cost Equalization</h3>
-<section id="q-what-is-this-program-why-utilities-report-here-why-is-it-fiscal-year-why-might-data-be-missing" class="level4">
-<h4 class="anchored" data-anchor-id="q-what-is-this-program-why-utilities-report-here-why-is-it-fiscal-year-why-might-data-be-missing">Q: what is this program? why utilities report here? why is it fiscal year? why might data be missing?</h4>
-<ul>
-<li>extracted from AEA “accounting system”</li>
-<li>communities vs utilities</li>
-</ul>
-<p>Assume no one knows what a PCE is. Maybe think of Catalyst while write this. Show what we have to offer and why Alaska is different/special.</p>
-<p>Alaska is famous for wide expanses of rugged terrain. Towns are often extremely distant from one another, or are separated by inaccessible mountains and glaciers. The utility landscape of Alaska resembles a sea of islands, very different from the interconnected grids of the contiguous United States.</p>
-<p>In total, Alaska contains over 100 separate utilities, many of which serve a single small community. Most rely on diesel generators connected to huge fuel tanks, which receive a barge shipment of fuel in the summer that must last through the winter. If the town runs out of fuel during winter months, additional fuel has to be flown in at extreme expense. Predictably, electricity in these remote towns is prohibitively expensive. Some rural towns pay 3 to 5 times the rates of urban Alaska.</p>
-<p>Urban Alaska has greatly benefited from large state-subsidized energy projects, such as the Bradley Lake Hydroelectric Project, the Four Dam Pool Projects, and the Alaska Intertie. In an effort to confer similar benefits to rural Alaska, the state of Alaska developed the Power Cost Equalization Program (PCE); the Regulatory Commission of Alaska and the Alaska Energy Authority administer the PCE program. The PCE program reimburses rural utilities for credits that have been provided to eligible customers. Eligibility is limited to residential customers and community facilities. The subsidy applies to the first 750 kWh per month of residential consumption. Community facilities are subsidized up to the first 70 kWh per month per resident. Please visit the Alaska Energy Authority webpage for more information about the Power Cost Equalization program.</p>
-</section>
-</section>
-<section id="workbooks-maybe-call-this-something-else" class="level3">
-<h3 class="anchored" data-anchor-id="workbooks-maybe-call-this-something-else">Workbooks (maybe call this something else)</h3>
-<p>By which I mean Neil’s cross referencing between the 2 sources - will we distribute these? If so, link. If not, then say why (nicely!) - how to cross reference between the AEA and EIA? This is cool! - differences between the 2 data sets</p>
-</section>
-</section>
-<section id="data-processing-and-aggregations" class="level2">
-<h2 class="anchored" data-anchor-id="data-processing-and-aggregations">Data Processing and Aggregations</h2>
-<ul>
-<li>calendar vs fiscal year</li>
-<li>error corrections (at what stage did this happen?) As with</li>
-<li>Jesse’s big files - link to these, right?</li>
-</ul>
-</section>
-<section id="regional-summaries" class="level2">
-<h2 class="anchored" data-anchor-id="regional-summaries">Regional Summaries</h2>
-<section id="q-how-were-regions-defined-previously-why-didnt-we-just-copy-that" class="level4">
-<h4 class="anchored" data-anchor-id="q-how-were-regions-defined-previously-why-didnt-we-just-copy-that">Q: How were regions defined previously? Why didn’t we just copy that?</h4>
-<p>Previous iterations of the Energy Statistics Report used the Alaskan Energy Authority’s 11 regions. For yearly summary statistics, the 11 regions were very useful. However, with the multi-year scope of this Trends Report, we elected to condense the 11 AEA Energy Regions based on commonalities in geography and electrical profile.</p>
-<p>In this report, we categorize the state into three separate energy regions, each being a collection of various Alaska Energy Authority (AEA) energy regions. These regions are herein known as the Coastal Region (Southeast, Kodiak, Chugach/Copper River), the Railbelt, and Rural Remote communities (all other AEA energy regions). For clarity, we refer to these three aggregated regions as the ACEP Energy Regions.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/AEA_ACEP_regions.png" class="img-fluid figure-img"></p>
-<figcaption>Relationship between Energy Regions as defined by AEA and ACEP</figcaption>
-</figure>
+<div class="cell">
+<div class="sourceCode cell-code hidden" id="cb1" data-startfrom="10" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 9;"><span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>L <span class="op">=</span> <span class="pp">require</span>(<span class="st">'leaflet@1.9.4'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-1" data-nodetype="declaration">
+
 </div>
-</section>
-</section>
-<section id="future-plans" class="level2">
-<h2 class="anchored" data-anchor-id="future-plans">Future plans</h2>
-<ul>
-<li>database</li>
-<li>API / queries</li>
-<li>expose Neil’s transmission lines thing</li>
-</ul>
+</div>
+</div>
+<p><link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""></p>
+<div class="cell">
+<div class="sourceCode cell-code hidden" id="cb2" data-startfrom="23" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 22;"><span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>map <span class="op">=</span> {</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>  <span class="co">// You'll often see Leaflet examples initializing a map like L.map('map'),</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>  <span class="co">// which tells the library to look for a div with the id 'map' on the page.</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>  <span class="co">// In Observable, we instead create a div from scratch in this cell, so it's</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>  <span class="co">// completely self-contained.</span></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> container <span class="op">=</span> DOM<span class="op">.</span><span class="fu">element</span>(<span class="st">'div'</span><span class="op">,</span> { <span class="dt">style</span><span class="op">:</span> <span class="vs">`width:</span><span class="sc">${</span>width<span class="sc">}</span><span class="vs">px;height:</span><span class="sc">${</span>width<span class="op">/</span><span class="fl">1.6</span><span class="sc">}</span><span class="vs">px`</span> })<span class="op">;</span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Note that I'm yielding the container pretty early here: this allows the</span></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>  <span class="co">// div to be placed on the page. This is important, because Leaflet uses</span></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>  <span class="co">// the div's .offsetWidth and .offsetHeight to size the map. If I were</span></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>  <span class="co">// to only return the container at the end of this method, Leaflet might</span></span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>  <span class="co">// get the wrong idea about the map's size.</span></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>  <span class="kw">yield</span> container<span class="op">;</span></span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Now we create a map object and add a layer to it.</span></span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> map <span class="op">=</span> L<span class="op">.</span><span class="fu">map</span>(container)<span class="op">.</span><span class="fu">setView</span>([<span class="fl">58.352335903535135</span><span class="op">,</span> <span class="op">-</span><span class="fl">134.64426524132455</span>]<span class="op">,</span> <span class="dv">10</span>)<span class="op">;</span></span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> osmLayer <span class="op">=</span> L<span class="op">.</span><span class="fu">tileLayer</span>(<span class="st">'https://maps.wikimedia.org/osm-intl/{z}/{x}/{y}@2x.png'</span><span class="op">,</span> {</span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>      <span class="dt">attribution</span><span class="op">:</span> <span class="st">'Wikimedia maps beta | &amp;copy; &lt;a href="http://osm.org/copyright"&gt;OpenStreetMap&lt;/a&gt; contributors'</span></span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>  })<span class="op">.</span><span class="fu">addTo</span>(map)<span class="op">;</span></span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<!-- Make sure you put this AFTER Leaflet's CSS -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 
 
-</section>
 
 </main> <!-- /main -->
+<script type="ojs-module-contents">
+eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6IkwgPSByZXF1aXJlKCdsZWFmbGV0QDEuOS40JylcblxuXG5cbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMiIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6IlxubWFwID0ge1xuICAvLyBZb3UnbGwgb2Z0ZW4gc2VlIExlYWZsZXQgZXhhbXBsZXMgaW5pdGlhbGl6aW5nIGEgbWFwIGxpa2UgTC5tYXAoJ21hcCcpLFxuICAvLyB3aGljaCB0ZWxscyB0aGUgbGlicmFyeSB0byBsb29rIGZvciBhIGRpdiB3aXRoIHRoZSBpZCAnbWFwJyBvbiB0aGUgcGFnZS5cbiAgLy8gSW4gT2JzZXJ2YWJsZSwgd2UgaW5zdGVhZCBjcmVhdGUgYSBkaXYgZnJvbSBzY3JhdGNoIGluIHRoaXMgY2VsbCwgc28gaXQnc1xuICAvLyBjb21wbGV0ZWx5IHNlbGYtY29udGFpbmVkLlxuICBsZXQgY29udGFpbmVyID0gRE9NLmVsZW1lbnQoJ2RpdicsIHsgc3R5bGU6IGB3aWR0aDoke3dpZHRofXB4O2hlaWdodDoke3dpZHRoLzEuNn1weGAgfSk7XG4gIFxuICAvLyBOb3RlIHRoYXQgSSdtIHlpZWxkaW5nIHRoZSBjb250YWluZXIgcHJldHR5IGVhcmx5IGhlcmU6IHRoaXMgYWxsb3dzIHRoZVxuICAvLyBkaXYgdG8gYmUgcGxhY2VkIG9uIHRoZSBwYWdlLiBUaGlzIGlzIGltcG9ydGFudCwgYmVjYXVzZSBMZWFmbGV0IHVzZXNcbiAgLy8gdGhlIGRpdidzIC5vZmZzZXRXaWR0aCBhbmQgLm9mZnNldEhlaWdodCB0byBzaXplIHRoZSBtYXAuIElmIEkgd2VyZVxuICAvLyB0byBvbmx5IHJldHVybiB0aGUgY29udGFpbmVyIGF0IHRoZSBlbmQgb2YgdGhpcyBtZXRob2QsIExlYWZsZXQgbWlnaHRcbiAgLy8gZ2V0IHRoZSB3cm9uZyBpZGVhIGFib3V0IHRoZSBtYXAncyBzaXplLlxuICB5aWVsZCBjb250YWluZXI7XG4gIFxuICAvLyBOb3cgd2UgY3JlYXRlIGEgbWFwIG9iamVjdCBhbmQgYWRkIGEgbGF5ZXIgdG8gaXQuXG4gIGxldCBtYXAgPSBMLm1hcChjb250YWluZXIpLnNldFZpZXcoWzU4LjM1MjMzNTkwMzUzNTEzNSwgLTEzNC42NDQyNjUyNDEzMjQ1NV0sIDEwKTtcbiAgbGV0IG9zbUxheWVyID0gTC50aWxlTGF5ZXIoJ2h0dHBzOi8vbWFwcy53aWtpbWVkaWEub3JnL29zbS1pbnRsL3t6fS97eH0ve3l9QDJ4LnBuZycsIHtcbiAgICAgIGF0dHJpYnV0aW9uOiAnV2lraW1lZGlhIG1hcHMgYmV0YSB8ICZjb3B5OyA8YSBocmVmPVwiaHR0cDovL29zbS5vcmcvY29weXJpZ2h0XCI+T3BlblN0cmVldE1hcDwvYT4gY29udHJpYnV0b3JzJ1xuICB9KS5hZGRUbyhtYXApO1xufVxuXG4ifV19
+</script>
+<script type="module">
+if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
+window._ojs.paths.runtimeToDoc = "../..";
+window._ojs.paths.runtimeToRoot = "../..";
+window._ojs.paths.docToRoot = "";
+window._ojs.selfContained = false;
+window._ojs.runtime.interpretFromScriptTags();
+</script>
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -820,18 +832,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
-      <a href="./about.html" class="pagination-link" aria-label="About Us">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">About Us</span>
-      </a>          
-  </div>
-  <div class="nav-page nav-page-next">
-      <a href="./capacity.html" class="pagination-link" aria-label="Capacity">
-        <span class="nav-page-text">Capacity</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
-  </div>
-</nav>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
@@ -840,7 +840,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/acep-uaf/aetr-web-book/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
+    <div class="toc-actions"><ul><li><a href="https://github.com/acep-uaf/aetr-web-book/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
 <p>This page is based on Openscape’s <a href="https://github.com/Openscapes/quarto-website-tutorial">Quarto Site Template</a> and built with <a href="https://quarto.org/">Quarto</a> .</p>
 </div>
