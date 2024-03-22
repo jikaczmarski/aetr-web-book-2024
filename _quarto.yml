@@ -47,7 +47,10 @@ website:
       #   icon: dot
       - href: prices.qmd
         text: Price of Electricity
-        icon: dot        
+        icon: dot   
+      - href: acronyms.qmd
+        text: Definitions of Acronyms
+        icon: dot       
 
 format:
   html:

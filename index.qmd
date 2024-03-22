@@ -7,6 +7,8 @@ subtitle: "Analysis of Alaska Electricity Data, 2011-2021"
 
 This report summarizes federal, state, and utility data to provide an overview of electricity capacity, generation, consumption, and price trends from 2011 to 2021. A comprehensive report highlighting these trends has not been produced for the state of Alaska since the 2013 Alaska Energy Statistics Report.
 
+The book has been designed to be a living document that will be updated as more data becomes available.
+
 ## Key Takeaways
 
 ### Capacity
@@ -33,21 +35,5 @@ This report summarizes federal, state, and utility data to provide an overview o
 - PCE subsidies continue to dampen residential prices in the Coastal and Rural Remote regions.
 
 
-## Acronyms
 
-These abbreviations are used throughout this report
-
-- ACEP: Alaska Center for Energy and Power
-- AEA:  Alaska Energy Authority
-- BUECI: Barrow Utilities & Electric Cooperative, Inc.
-- PCE:  Power Cost Equalization
-- EIA:  Energy Information Administration
-- FERC: Federal Energy Regulatory Commission
-- CAGR: Compound Annual Growth Rate
-- KW:  Kilowatts
-- KWh: Kilowatt Hours
-- MW:  Megawatts
-- MWh: Megawatt Hours
-- GW:  Gigawatts
-- GWh: Gigawatt Hours
 
