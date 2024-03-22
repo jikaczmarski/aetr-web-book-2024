@@ -213,12 +213,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <div class="cell">
-<div class="sourceCode cell-code hidden" id="cb1" data-startfrom="13" data-source-offset="-19"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 12;"><span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>L <span class="op">=</span> <span class="pp">require</span>(<span class="st">'leaflet@1.9.4'</span>)</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>stdlib <span class="op">=</span> <span class="pp">require</span>(<span class="st">"@observablehq/stdlib"</span>)</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>d3 <span class="op">=</span> <span class="pp">require</span>(<span class="st">"d3@7"</span>)</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span><span class="vs">`&lt;link href='</span><span class="sc">${</span><span class="fu">resolve</span>(<span class="st">'leaflet@1.2.0/dist/leaflet.css'</span>)<span class="sc">}</span><span class="vs">' rel='stylesheet' /&gt;`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code hidden" id="cb1" data-startfrom="13" data-source-offset="-19"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 12;"><span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>stdlib <span class="op">=</span> <span class="pp">require</span>(<span class="st">"@observablehq/stdlib"</span>)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>d3 <span class="op">=</span> <span class="pp">require</span>(<span class="st">"d3@7"</span>)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>L <span class="op">=</span> <span class="pp">require</span>(<span class="st">'leaflet@1.9.4'</span>)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span><span class="vs">`&lt;link href='</span><span class="sc">${</span><span class="fu">resolve</span>(<span class="st">'leaflet@1.2.0/dist/leaflet.css'</span>)<span class="sc">}</span><span class="vs">' rel='stylesheet' /&gt;`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <div id="ojs-cell-1-1" data-nodetype="declaration">
@@ -247,35 +246,49 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
+<div class="sourceCode cell-code hidden" id="cb2" data-startfrom="19" data-source-offset="-196"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 18;"><span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>bootstrap<span class="op">=</span><span class="pp">require</span>(<span class="st">"bootstrap"</span>)</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>css<span class="op">=</span><span class="fu">html</span><span class="vs">`&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous"&gt;`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-5" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-6" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code hidden" id="cb2" data-startfrom="26" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 25;"><span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>map <span class="op">=</span> {</span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>  <span class="co">// You'll often see Leaflet examples initializing a map like L.map('map'),</span></span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>  <span class="co">// which tells the library to look for a div with the id 'map' on the page.</span></span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>  <span class="co">// In Observable, we instead create a div from scratch in this cell, so it's</span></span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>  <span class="co">// completely self-contained.</span></span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> container <span class="op">=</span> DOM<span class="op">.</span><span class="fu">element</span>(<span class="st">'div'</span><span class="op">,</span> { <span class="dt">style</span><span class="op">:</span> <span class="vs">`width:</span><span class="sc">${</span>width<span class="sc">}</span><span class="vs">px;height:</span><span class="sc">${</span>width<span class="op">/</span><span class="fl">1.6</span><span class="sc">}</span><span class="vs">px`</span> })<span class="op">;</span></span>
-<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Note that I'm yielding the container pretty early here: this allows the</span></span>
-<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>  <span class="co">// div to be placed on the page. This is important, because Leaflet uses</span></span>
-<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>  <span class="co">// the div's .offsetWidth and .offsetHeight to size the map. If I were</span></span>
-<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>  <span class="co">// to only return the container at the end of this method, Leaflet might</span></span>
-<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>  <span class="co">// get the wrong idea about the map's size.</span></span>
-<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>  <span class="kw">yield</span> container<span class="op">;</span></span>
-<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Now we create a map object and add a layer to it.</span></span>
-<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> map <span class="op">=</span> L<span class="op">.</span><span class="fu">map</span>(container)<span class="op">.</span><span class="fu">setView</span>([<span class="fl">58.35175294670148</span><span class="op">,</span> <span class="op">-</span><span class="fl">134.6442463060413</span>]<span class="op">,</span> <span class="dv">13</span>)<span class="op">;</span></span>
-<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> Stadia_StamenWatercolor <span class="op">=</span> L<span class="op">.</span><span class="fu">tileLayer</span>(<span class="st">'https://tiles.stadiamaps.com/tiles/stamen_watercolor/{z}/{x}/{y}.{ext}'</span><span class="op">,</span> {</span>
-<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>    <span class="dt">minZoom</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span></span>
-<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>    <span class="dt">maxZoom</span><span class="op">:</span> <span class="dv">13</span><span class="op">,</span></span>
-<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>    <span class="dt">attribution</span><span class="op">:</span> <span class="st">'&amp;copy; &lt;a href="https://www.stadiamaps.com/" target="_blank"&gt;Stadia Maps&lt;/a&gt; &amp;copy; &lt;a href="https://www.stamen.com/" target="_blank"&gt;Stamen Design&lt;/a&gt; &amp;copy; &lt;a href="https://openmaptiles.org/" target="_blank"&gt;OpenMapTiles&lt;/a&gt; &amp;copy; &lt;a href="https://www.openstreetmap.org/copyright"&gt;OpenStreetMap&lt;/a&gt; contributors'</span><span class="op">,</span></span>
-<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>    <span class="dt">ext</span><span class="op">:</span> <span class="st">'jpg'</span></span>
-<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>})<span class="op">;</span></span>
-<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>  Stadia_StamenWatercolor<span class="op">.</span><span class="fu">addTo</span>(map)<span class="op">;</span></span>
-<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code hidden" id="cb3" data-startfrom="27" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 26;"><span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>map <span class="op">=</span> {</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>    <span class="co">// You'll often see Leaflet examples initializing a map like L.map('map'),</span></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>    <span class="co">// which tells the library to look for a div with the id 'map' on the page.</span></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>    <span class="co">// In Observable, we instead create a div from scratch in this cell, so it's</span></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>    <span class="co">// completely self-contained.</span></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> container <span class="op">=</span> DOM<span class="op">.</span><span class="fu">element</span>(<span class="st">'div'</span><span class="op">,</span> { <span class="dt">style</span><span class="op">:</span> <span class="vs">`width:</span><span class="sc">${</span>width<span class="sc">}</span><span class="vs">px;height:</span><span class="sc">${</span>width<span class="op">/</span><span class="fl">1.6</span><span class="sc">}</span><span class="vs">px`</span> })<span class="op">;</span></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Note that I'm yielding the container pretty early here: this allows the</span></span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>    <span class="co">// div to be placed on the page. This is important, because Leaflet uses</span></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>    <span class="co">// the div's .offsetWidth and .offsetHeight to size the map. If I were</span></span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>    <span class="co">// to only return the container at the end of this method, Leaflet might</span></span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>    <span class="co">// get the wrong idea about the map's size.</span></span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>    <span class="kw">yield</span> container<span class="op">;</span></span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Now we create a map object and add a layer to it.</span></span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> map <span class="op">=</span> L<span class="op">.</span><span class="fu">map</span>(container)<span class="op">.</span><span class="fu">setView</span>([<span class="fl">58.35175294670148</span><span class="op">,</span> <span class="op">-</span><span class="fl">134.6442463060413</span>]<span class="op">,</span> <span class="dv">13</span>)<span class="op">;</span></span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> hillshade <span class="op">=</span> L<span class="op">.</span><span class="fu">tileLayer</span>(<span class="st">'https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}'</span><span class="op">,</span> </span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>        {<span class="dt">attribution</span><span class="op">:</span> <span class="st">'Tiles &amp;copy; Esri &amp;mdash; Esri, DeLorme, NAVTEQ, TomTom, Intermap, iPC, USGS, FAO, NPS, NRCAN, GeoBase, Kadaster NL, Ordnance Survey, Esri Japan, METI, Esri China (Hong Kong), and the GIS User Community'</span></span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a>        })<span class="op">;</span></span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a>    hillshade<span class="op">.</span><span class="fu">addTo</span>(map)<span class="op">;</span></span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div id="ojs-cell-2" data-nodetype="declaration">
 
@@ -287,7 +300,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </main> <!-- /main -->
 <script type="ojs-module-contents">
-eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6Ii8vIGJ1aWxkIGEgbGlicmFyeVxuTCA9IHJlcXVpcmUoJ2xlYWZsZXRAMS45LjQnKVxuXG5zdGRsaWIgPSByZXF1aXJlKFwiQG9ic2VydmFibGVocS9zdGRsaWJcIilcbmQzID0gcmVxdWlyZShcImQzQDdcIilcblxuaHRtbGA8bGluayBocmVmPScke3Jlc29sdmUoJ2xlYWZsZXRAMS4yLjAvZGlzdC9sZWFmbGV0LmNzcycpfScgcmVsPSdzdHlsZXNoZWV0JyAvPmBcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMiIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6Im1hcCA9IHtcbiAgLy8gWW91J2xsIG9mdGVuIHNlZSBMZWFmbGV0IGV4YW1wbGVzIGluaXRpYWxpemluZyBhIG1hcCBsaWtlIEwubWFwKCdtYXAnKSxcbiAgLy8gd2hpY2ggdGVsbHMgdGhlIGxpYnJhcnkgdG8gbG9vayBmb3IgYSBkaXYgd2l0aCB0aGUgaWQgJ21hcCcgb24gdGhlIHBhZ2UuXG4gIC8vIEluIE9ic2VydmFibGUsIHdlIGluc3RlYWQgY3JlYXRlIGEgZGl2IGZyb20gc2NyYXRjaCBpbiB0aGlzIGNlbGwsIHNvIGl0J3NcbiAgLy8gY29tcGxldGVseSBzZWxmLWNvbnRhaW5lZC5cbiAgbGV0IGNvbnRhaW5lciA9IERPTS5lbGVtZW50KCdkaXYnLCB7IHN0eWxlOiBgd2lkdGg6JHt3aWR0aH1weDtoZWlnaHQ6JHt3aWR0aC8xLjZ9cHhgIH0pO1xuICBcbiAgLy8gTm90ZSB0aGF0IEknbSB5aWVsZGluZyB0aGUgY29udGFpbmVyIHByZXR0eSBlYXJseSBoZXJlOiB0aGlzIGFsbG93cyB0aGVcbiAgLy8gZGl2IHRvIGJlIHBsYWNlZCBvbiB0aGUgcGFnZS4gVGhpcyBpcyBpbXBvcnRhbnQsIGJlY2F1c2UgTGVhZmxldCB1c2VzXG4gIC8vIHRoZSBkaXYncyAub2Zmc2V0V2lkdGggYW5kIC5vZmZzZXRIZWlnaHQgdG8gc2l6ZSB0aGUgbWFwLiBJZiBJIHdlcmVcbiAgLy8gdG8gb25seSByZXR1cm4gdGhlIGNvbnRhaW5lciBhdCB0aGUgZW5kIG9mIHRoaXMgbWV0aG9kLCBMZWFmbGV0IG1pZ2h0XG4gIC8vIGdldCB0aGUgd3JvbmcgaWRlYSBhYm91dCB0aGUgbWFwJ3Mgc2l6ZS5cbiAgeWllbGQgY29udGFpbmVyO1xuICBcbiAgLy8gTm93IHdlIGNyZWF0ZSBhIG1hcCBvYmplY3QgYW5kIGFkZCBhIGxheWVyIHRvIGl0LlxuICBsZXQgbWFwID0gTC5tYXAoY29udGFpbmVyKS5zZXRWaWV3KFs1OC4zNTE3NTI5NDY3MDE0OCwgLTEzNC42NDQyNDYzMDYwNDEzXSwgMTMpO1xuICBsZXQgU3RhZGlhX1N0YW1lbldhdGVyY29sb3IgPSBMLnRpbGVMYXllcignaHR0cHM6Ly90aWxlcy5zdGFkaWFtYXBzLmNvbS90aWxlcy9zdGFtZW5fd2F0ZXJjb2xvci97en0ve3h9L3t5fS57ZXh0fScsIHtcblx0bWluWm9vbTogMSxcblx0bWF4Wm9vbTogMTMsXG5cdGF0dHJpYnV0aW9uOiAnJmNvcHk7IDxhIGhyZWY9XCJodHRwczovL3d3dy5zdGFkaWFtYXBzLmNvbS9cIiB0YXJnZXQ9XCJfYmxhbmtcIj5TdGFkaWEgTWFwczwvYT4gJmNvcHk7IDxhIGhyZWY9XCJodHRwczovL3d3dy5zdGFtZW4uY29tL1wiIHRhcmdldD1cIl9ibGFua1wiPlN0YW1lbiBEZXNpZ248L2E+ICZjb3B5OyA8YSBocmVmPVwiaHR0cHM6Ly9vcGVubWFwdGlsZXMub3JnL1wiIHRhcmdldD1cIl9ibGFua1wiPk9wZW5NYXBUaWxlczwvYT4gJmNvcHk7IDxhIGhyZWY9XCJodHRwczovL3d3dy5vcGVuc3RyZWV0bWFwLm9yZy9jb3B5cmlnaHRcIj5PcGVuU3RyZWV0TWFwPC9hPiBjb250cmlidXRvcnMnLFxuXHRleHQ6ICdqcGcnXG59KTtcbiAgXG4gIFN0YWRpYV9TdGFtZW5XYXRlcmNvbG9yLmFkZFRvKG1hcCk7XG5cblxufVxuXG5cbiJ9XX0=
+eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6Ii8vIGJ1aWxkIGEgbGlicmFyeVxuc3RkbGliID0gcmVxdWlyZShcIkBvYnNlcnZhYmxlaHEvc3RkbGliXCIpXG5kMyA9IHJlcXVpcmUoXCJkM0A3XCIpXG5cbkwgPSByZXF1aXJlKCdsZWFmbGV0QDEuOS40Jylcbmh0bWxgPGxpbmsgaHJlZj0nJHtyZXNvbHZlKCdsZWFmbGV0QDEuMi4wL2Rpc3QvbGVhZmxldC5jc3MnKX0nIHJlbD0nc3R5bGVzaGVldCcgLz5gXG5cbmJvb3RzdHJhcD1yZXF1aXJlKFwiYm9vdHN0cmFwXCIpXG5jc3M9aHRtbGA8bGluayByZWw9XCJzdHlsZXNoZWV0XCIgaHJlZj1cImh0dHBzOi8vY2RuLmpzZGVsaXZyLm5ldC9ucG0vYm9vdHN0cmFwQDUuMi4wL2Rpc3QvY3NzL2Jvb3RzdHJhcC5taW4uY3NzXCIgaW50ZWdyaXR5PVwic2hhMzg0LWdIMnlJSnFLZE5IUEVxMG40TXFhL0hHS0loU2tJSGVMNUF5aGtZVjhpNTlVNUFSNmNzQnZBcEhITmwvdkkxQnhcIiBjcm9zc29yaWdpbj1cImFub255bW91c1wiPmBcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMiIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6Im1hcCA9IHtcbiAgICAvLyBZb3UnbGwgb2Z0ZW4gc2VlIExlYWZsZXQgZXhhbXBsZXMgaW5pdGlhbGl6aW5nIGEgbWFwIGxpa2UgTC5tYXAoJ21hcCcpLFxuICAgIC8vIHdoaWNoIHRlbGxzIHRoZSBsaWJyYXJ5IHRvIGxvb2sgZm9yIGEgZGl2IHdpdGggdGhlIGlkICdtYXAnIG9uIHRoZSBwYWdlLlxuICAgIC8vIEluIE9ic2VydmFibGUsIHdlIGluc3RlYWQgY3JlYXRlIGEgZGl2IGZyb20gc2NyYXRjaCBpbiB0aGlzIGNlbGwsIHNvIGl0J3NcbiAgICAvLyBjb21wbGV0ZWx5IHNlbGYtY29udGFpbmVkLlxuICAgIGxldCBjb250YWluZXIgPSBET00uZWxlbWVudCgnZGl2JywgeyBzdHlsZTogYHdpZHRoOiR7d2lkdGh9cHg7aGVpZ2h0OiR7d2lkdGgvMS42fXB4YCB9KTtcblxuICAgIC8vIE5vdGUgdGhhdCBJJ20geWllbGRpbmcgdGhlIGNvbnRhaW5lciBwcmV0dHkgZWFybHkgaGVyZTogdGhpcyBhbGxvd3MgdGhlXG4gICAgLy8gZGl2IHRvIGJlIHBsYWNlZCBvbiB0aGUgcGFnZS4gVGhpcyBpcyBpbXBvcnRhbnQsIGJlY2F1c2UgTGVhZmxldCB1c2VzXG4gICAgLy8gdGhlIGRpdidzIC5vZmZzZXRXaWR0aCBhbmQgLm9mZnNldEhlaWdodCB0byBzaXplIHRoZSBtYXAuIElmIEkgd2VyZVxuICAgIC8vIHRvIG9ubHkgcmV0dXJuIHRoZSBjb250YWluZXIgYXQgdGhlIGVuZCBvZiB0aGlzIG1ldGhvZCwgTGVhZmxldCBtaWdodFxuICAgIC8vIGdldCB0aGUgd3JvbmcgaWRlYSBhYm91dCB0aGUgbWFwJ3Mgc2l6ZS5cbiAgICB5aWVsZCBjb250YWluZXI7XG5cbiAgICAvLyBOb3cgd2UgY3JlYXRlIGEgbWFwIG9iamVjdCBhbmQgYWRkIGEgbGF5ZXIgdG8gaXQuXG4gICAgbGV0IG1hcCA9IEwubWFwKGNvbnRhaW5lcikuc2V0VmlldyhbNTguMzUxNzUyOTQ2NzAxNDgsIC0xMzQuNjQ0MjQ2MzA2MDQxM10sIDEzKTtcblxuICAgIGxldCBoaWxsc2hhZGUgPSBMLnRpbGVMYXllcignaHR0cHM6Ly9zZXJ2ZXIuYXJjZ2lzb25saW5lLmNvbS9BcmNHSVMvcmVzdC9zZXJ2aWNlcy9Xb3JsZF9Ub3BvX01hcC9NYXBTZXJ2ZXIvdGlsZS97en0ve3l9L3t4fScsIFxuICAgICAgICB7YXR0cmlidXRpb246ICdUaWxlcyAmY29weTsgRXNyaSAmbWRhc2g7IEVzcmksIERlTG9ybWUsIE5BVlRFUSwgVG9tVG9tLCBJbnRlcm1hcCwgaVBDLCBVU0dTLCBGQU8sIE5QUywgTlJDQU4sIEdlb0Jhc2UsIEthZGFzdGVyIE5MLCBPcmRuYW5jZSBTdXJ2ZXksIEVzcmkgSmFwYW4sIE1FVEksIEVzcmkgQ2hpbmEgKEhvbmcgS29uZyksIGFuZCB0aGUgR0lTIFVzZXIgQ29tbXVuaXR5J1xuICAgICAgICB9KTtcbiAgXG4gICAgaGlsbHNoYWRlLmFkZFRvKG1hcCk7XG5cblxufVxuXG5cbiJ9XX0=
 </script>
 <script type="module">
 if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
