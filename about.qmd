@@ -1,36 +1,25 @@
 ---
 title: "About"
-subtitle: "Credits for the Alaska Electricity Trends Report Web Book"
+subtitle: "Description of the Alaska Electricity Trends Report Web Book"
 
 ---
 
-The Alaska Electrical Trends web book has been produced by the Alaska Center for Energy and Power ([ACEP](https://www.uaf.edu/acep/)) at the University of Alaska Fairbanks ([UAF](https://www.uaf.edu/uaf/index.php)). It is a collaboration between data scientists, researchers, and policy experts.
+The Alaska Electrical Trends Web Book has been produced by the Alaska Center for Energy and Power ([ACEP](https://www.uaf.edu/acep/)) at the University of Alaska Fairbanks ([UAF](https://www.uaf.edu/uaf/index.php)). It is designed to be interactive and dynamically updated when new data becomes available. This makes it a fundamental departure from its ancestor, the _Alaska Energy Statistics Report_.
 
-## Data and Cyberinfrastructure Management (DCM) Team
+## Historical Timeline of Prior Reports
+- Before 1985: federal Alaska Power Administration published Alaska Electric Power Statistics report (AEPS)
+- 1985: Alaska Energy Authority (AEA, formerly Alaska Power Authority) begins gathering statistical data and publishing annual report
+- 1988: AEPS report becomes combined effort of the Alaska Systems Coordinating Council (ASCC) and AEA
+- 1993: AEPS becomes joint effort of the ASCC and the Alaska Department of Community and Regional Affairs, Division of Energy
+- 1995 - 2003: No reports published
+- 2003: the Institute of Social and Economic Research (ISER) at the University of Alaska Anchorage (UAA) prepare a report with funding from AEA, the Regulatory Commission of Alaska (RCA), and the Denali Commission
+- 2008 - 2012: ISER prepares Alaska Energy Statistics updates with funding from AEA
+- 2013: AEA prepares Excel workbook with updated data, but no report
 
-ACEP's DCM Team <!-- (add a link when it becomes available) -->  includes software developers, mathematicians, spatial analysts, economists, open science enthusiasts, and experts in information security and the deployment of computer infrastructure. Together, DCM creates stable and secure pipelines for data from collection to publication. These DCM members generated figures, wrote text, and coded this web book:
+## Technical Details
 
-* [Jesse Kaczmarski](https://www.uaf.edu/acep/about/our-team/jesse-kaczmarski.php)
-* [Ian MacDougall](https://www.uaf.edu/acep/about/our-team/ian-macdougall.php)
-* [Elizabeth (Liz) Dobbins](https://www.uaf.edu/acep/about/our-team/elizabeth-dobbins.php)
-* [Dayne Broderson](https://www.uaf.edu/acep/about/our-team/dayne-broderson.php)
+The book is formatted using the [Quarto](https://quarto.org), an open-source scientific and technical publishing system. 
 
-## Energy Transitions Initiative (ETI) Team 
+The markdown files that make up the book reside in a GitHub repo that is publicly available. Errors can be flagged using GitHub issues where they can be tracked and addressed by the DCM team.
 
-ACEP's ETI is ...
-
-* [Brittany Smart](https://www.uaf.edu/acep/about/our-team/brittany-smart.php)
-* [Gwen Holdmann](https://www.uaf.edu/acep/about/our-team/gwen-holdmann.php)
-* [Erika Boice](https://www.uaf.edu/acep/about/our-team/erika-boice.php)
-
-## Associated Researchers and Commentators
-
-* Neil McMahon, Project Manager, [DOWL](https://www.dowl.com/)
-* [Steve Colt](https://www.uaf.edu/acep/about/our-team/steve-colt.php), ACEP
-* Sara Fisher-Goad, UAF's Office of the Vice Chancellor for Research
-* [Shivani Mathur](https://www.uaf.edu/acep/about/our-team/shivani-mathur.php), ACEP
-
-# Acknowledgements
-
-We would like to acknowledge the federal and Alaska state agencies that make their reports and data publicly accessible. Without this openness, this report would not be possible. We would also like to thank the utilities who responded directly when we had questions. A full list of these organizations has been complied in our [Methods Section](methods.qmd).
-
+The book also integrates R code for data processing and figure generation. When data files are updated, triggering the render will update the figures automatically.

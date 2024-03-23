@@ -3,6 +3,8 @@ title: "Data Analysis Methods"
 subtitle: "Methods Section of Alaska Electricity Trends Web Book"
 ---
 
+
+
 # Data Sources
 The data in this report was collected from a variety of sources and are listed below. Many electric utilities throughout the state are not required to submit annual reports to the federal government due to their size and/or number of customers. Therefore, our data sources encompass federal, state, commercial, and local filings as well as direct communications with utilities and state program managers. Each section of the report pulls data from a variety of these sources. The data was downloaded directly from the original source and concatenated to develop a dataset for this report. In some cases, an observation contained multiple sources due to reporting limitations. 
 
@@ -52,9 +54,10 @@ For the purpose of energy planning, AEA has defined [eleven energy regions](http
 
 We note that the Coastal and Rural Remote regions include mixtures of power cost equalization (PCE) and non-PCE eligible communities. The Coastal region includes Copper River/Chugach and incorporates all communities served by Copper Valley Electric Association. PCE communities are largely dependent on diesel generation. 
 
-![Schematic Relationship between Energy Regions as defined by AEA and ACEP](images/AEA_ACEP_regions.png){margin=30}
+![Schematic Relationship between Energy Regions as defined by AEA and ACEP](images/AEA_ACEP_regions.png)
 
-![Cartographic Relationship between Energy Regions as defined by AEA and ACEP](images/AEA_ACEP_regions_map.png){margin=30}
+![Cartographic Relationship between Energy Regions as defined by AEA and ACEP](images/AEA_ACEP_regions_map.png){width=600}
 
+&nbsp;
 
 [^1]: PCE assistance is applied to only the first 750 kWh per month of residential consumption, and also to community facilities consumption up to the equivalent of 70 kWh per month for each person.

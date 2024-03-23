@@ -1,1 +1,9 @@
 /* css styles */
+
+/* To center captions under figures */
+.figure {
+    margin: auto;
+    margin-top: 80px;
+    margin-bottom: 200px;
+    text-align: center;
+}
