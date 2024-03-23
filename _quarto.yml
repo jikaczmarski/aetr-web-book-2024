@@ -29,9 +29,10 @@ website:
     collapse-level: 1
     contents:
       - href: index.qmd
-        text: Home
+        text: Summary
+        icon: dot
       - href: about.qmd
-        text: About Us
+        text: About the Report
         icon: dot
       - href: methods.qmd
         text: Methods
@@ -47,7 +48,13 @@ website:
       #   icon: dot
       - href: prices.qmd
         text: Price of Electricity
-        icon: dot        
+        icon: dot   
+      - href: credits.qmd
+        text: About the Team
+        icon: dot     
+      - href: acronyms.qmd
+        text: Definitions of Acronyms
+        icon: dot       
 
 format:
   html:
