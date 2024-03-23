@@ -112,15 +112,16 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Home</span></a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link"><i class="bi bi-dot" role="img">
+</i> 
+ <span class="menu-text">Summary</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./about.html" class="sidebar-item-text sidebar-link"><i class="bi bi-dot" role="img">
 </i> 
- <span class="menu-text">About Us</span></a>
+ <span class="menu-text">About the Report</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -144,6 +145,20 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Price of Electricity</span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./credits.html" class="sidebar-item-text sidebar-link"><i class="bi bi-dot" role="img">
+</i> 
+ <span class="menu-text">About the Team</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./acronyms.html" class="sidebar-item-text sidebar-link"><i class="bi bi-dot" role="img">
+</i> 
+ <span class="menu-text">Definitions of Acronyms</span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -156,13 +171,15 @@ ul.task-list li input[type="checkbox"] {
   <ul>
   <li><a href="#data-sources" id="toc-data-sources" class="nav-link active" data-scroll-target="#data-sources">Data Sources</a>
   <ul class="collapse">
-  <li><a href="#energy-information-authority-eia" id="toc-energy-information-authority-eia" class="nav-link" data-scroll-target="#energy-information-authority-eia">Energy Information Authority (EIA)</a></li>
-  <li><a href="#power-cost-equalization" id="toc-power-cost-equalization" class="nav-link" data-scroll-target="#power-cost-equalization">Power Cost Equalization</a></li>
-  <li><a href="#workbooks-maybe-call-this-something-else" id="toc-workbooks-maybe-call-this-something-else" class="nav-link" data-scroll-target="#workbooks-maybe-call-this-something-else">Workbooks (maybe call this something else)</a></li>
+  <li><a href="#federal" id="toc-federal" class="nav-link" data-scroll-target="#federal">Federal</a></li>
+  <li><a href="#state" id="toc-state" class="nav-link" data-scroll-target="#state">State</a></li>
+  <li><a href="#direct-communications" id="toc-direct-communications" class="nav-link" data-scroll-target="#direct-communications">Direct Communications</a></li>
+  <li><a href="#individual-electric-utilities" id="toc-individual-electric-utilities" class="nav-link" data-scroll-target="#individual-electric-utilities">Individual Electric Utilities</a></li>
+  <li><a href="#commercial-sources" id="toc-commercial-sources" class="nav-link" data-scroll-target="#commercial-sources">Commercial Sources</a></li>
+  <li><a href="#compilation" id="toc-compilation" class="nav-link" data-scroll-target="#compilation">Compilation</a></li>
   </ul></li>
-  <li><a href="#data-processing-and-aggregations" id="toc-data-processing-and-aggregations" class="nav-link" data-scroll-target="#data-processing-and-aggregations">Data Processing and Aggregations</a></li>
+  <li><a href="#power-cost-equalization-pce" id="toc-power-cost-equalization-pce" class="nav-link" data-scroll-target="#power-cost-equalization-pce">Power Cost Equalization (PCE)</a></li>
   <li><a href="#regional-summaries" id="toc-regional-summaries" class="nav-link" data-scroll-target="#regional-summaries">Regional Summaries</a></li>
-  <li><a href="#future-plans" id="toc-future-plans" class="nav-link" data-scroll-target="#future-plans">Future plans</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/acep-uaf/aetr-web-book/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -189,67 +206,98 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Report currently has data caveats spread throughout the text as footnotes. I think that information should be gathered together here. - links back to this information here can then be added to the other pages (instead of footnotes?)</p>
-<section id="data-sources" class="level2">
-<h2 class="anchored" data-anchor-id="data-sources">Data Sources</h2>
-<p>Data discussed in this report come from 2 main sources… (Are there any other data sources?)</p>
-<section id="energy-information-authority-eia" class="level3">
-<h3 class="anchored" data-anchor-id="energy-information-authority-eia">Energy Information Authority (EIA)</h3>
-<p>what is this? Why isn’t a source for all data? (i.e.&nbsp;reporting to EIA is not required for Alaskan utilities) - list of forms? which ones actually used? - how did Neil get these</p>
-</section>
-<section id="power-cost-equalization" class="level3">
-<h3 class="anchored" data-anchor-id="power-cost-equalization">Power Cost Equalization</h3>
-<section id="q-what-is-this-program-why-utilities-report-here-why-is-it-fiscal-year-why-might-data-be-missing" class="level4">
-<h4 class="anchored" data-anchor-id="q-what-is-this-program-why-utilities-report-here-why-is-it-fiscal-year-why-might-data-be-missing">Q: what is this program? why utilities report here? why is it fiscal year? why might data be missing?</h4>
+<section id="data-sources" class="level1">
+<h1>Data Sources</h1>
+<p>The data in this report was collected from a variety of sources and are listed below. Many electric utilities throughout the state are not required to submit annual reports to the federal government due to their size and/or number of customers. Therefore, our data sources encompass federal, state, commercial, and local filings as well as direct communications with utilities and state program managers. Each section of the report pulls data from a variety of these sources. The data was downloaded directly from the original source and concatenated to develop a dataset for this report. In some cases, an observation contained multiple sources due to reporting limitations.</p>
+<p>Below are relevant sources of data for the report.</p>
+<section id="federal" class="level3">
+<h3 class="anchored" data-anchor-id="federal">Federal</h3>
 <ul>
-<li>extracted from AEA “accounting system”</li>
-<li>communities vs utilities</li>
+<li>Energy Information Administration
+<ul>
+<li><a href="https://www.eia.gov/electricity/data/eia860/">EIA-860</a></li>
+<li><a href="https://www.eia.gov/electricity/data/eia861/">EIA-861</a></li>
+<li><a href="https://www.eia.gov/electricity/data/eia923/">EIA-923</a></li>
+</ul></li>
+<li>Federal Energy Regulatory Commission
+<ul>
+<li><a href="https://www.ferc.gov/general-information-0/electric-industry-forms/form-1-electric-utility-annual-report">Form 1</a></li>
+</ul></li>
 </ul>
-<p>Assume no one knows what a PCE is. Maybe think of Catalyst while write this. Show what we have to offer and why Alaska is different/special.</p>
+</section>
+<section id="state" class="level3">
+<h3 class="anchored" data-anchor-id="state">State</h3>
+<ul>
+<li>Alaska Energy Authority
+<ul>
+<li><a href="https://www.akenergyauthority.org/What-We-Do/Power-Cost-Equalization">Power Cost Equalization Program</a> Utility Monthly Reports</li>
+</ul></li>
+<li>Regulatory Authority of Alaska
+<ul>
+<li><a href="https://rca.alaska.gov/RCAWeb/RCALibrary/RCAReports.aspx">Annual filings</a></li>
+</ul></li>
+</ul>
+</section>
+<section id="direct-communications" class="level3">
+<h3 class="anchored" data-anchor-id="direct-communications">Direct Communications</h3>
+<ul>
+<li>Alaska Energy Authority
+<ul>
+<li>Hydro/Wind Program Managers</li>
+<li>Village Assessments</li>
+<li>PH (?) Assessments</li>
+</ul></li>
+<li>Individual Electric Authorities</li>
+</ul>
+</section>
+<section id="individual-electric-utilities" class="level3">
+<h3 class="anchored" data-anchor-id="individual-electric-utilities">Individual Electric Utilities</h3>
+</section>
+<section id="commercial-sources" class="level3">
+<h3 class="anchored" data-anchor-id="commercial-sources">Commercial Sources</h3>
+<ul>
+<li><a href="https://www.iesconnect.net">Intelligent Energy Systems</a></li>
+</ul>
+</section>
+<section id="compilation" class="level2">
+<h2 class="anchored" data-anchor-id="compilation">Compilation</h2>
+<p>An Alaska engineering firm, <a href="https://www.dowl.com/">DOWL</a>, was hired to do the preliminary compilation of data and develop the workbooks supporting this report. Since this data comes from various sources, there is potential for errors in the compilation of the workbooks. Any discrepancies or noted errors should be reported to a member of the DCM Team listed on the <a href="./about.html">About Page</a>.</p>
+</section>
+</section>
+<section id="power-cost-equalization-pce" class="level1">
+<h1>Power Cost Equalization (PCE)</h1>
 <p>Alaska is famous for wide expanses of rugged terrain. Towns are often extremely distant from one another, or are separated by inaccessible mountains and glaciers. The utility landscape of Alaska resembles a sea of islands, very different from the interconnected grids of the contiguous United States.</p>
-<p>In total, Alaska contains over 100 separate utilities, many of which serve a single small community. Most rely on diesel generators connected to huge fuel tanks, which receive a barge shipment of fuel in the summer that must last through the winter. If the town runs out of fuel during winter months, additional fuel has to be flown in at extreme expense. Predictably, electricity in these remote towns is prohibitively expensive. Some rural towns pay 3 to 5 times the rates of urban Alaska.</p>
-<p>Urban Alaska has greatly benefited from large state-subsidized energy projects, such as the Bradley Lake Hydroelectric Project, the Four Dam Pool Projects, and the Alaska Intertie. In an effort to confer similar benefits to rural Alaska, the state of Alaska developed the Power Cost Equalization Program (PCE); the Regulatory Commission of Alaska and the Alaska Energy Authority administer the PCE program. The PCE program reimburses rural utilities for credits that have been provided to eligible customers. Eligibility is limited to residential customers and community facilities. The subsidy applies to the first 750 kWh per month of residential consumption. Community facilities are subsidized up to the first 70 kWh per month per resident. Please visit the Alaska Energy Authority webpage for more information about the Power Cost Equalization program.</p>
+<p>In total, Alaska contains over 100 separate utilities, many of which serve a single small community. Most rely on diesel generators connected to huge fuel tanks, which receive a barge shipment of fuel in the summer that must last through the winter. If the town runs out of fuel during winter months, additional fuel has to be flown in at extreme expense. Predictably, electricity in these remote towns is prohibitively expensive. Some rural towns pay 3 to 5 times the rates of urban Alaska. In contrast, urban Alaska has greatly benefited from large state-subsidized energy projects, such as the Bradley Lake Hydroelectric Project, the Four Dam Pool Projects, and the Alaska Intertie.</p>
+<p>In an effort to confer similar benefits to rural Alaska, the state of Alaska developed the Power Cost Equalization Program (PCE). The PCE program serves to equalize the cost of electricity so that those living in PCE communities pay about the same amount for most of their residential power as those living in Anchorage, Fairbanks, and Juneau. The PCE program reimburses rural utilities for credits that have been provided to eligible customers. Eligibility is limited to residential customers and community facilities.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> The program is administered by the Regulatory Commission of Alaska (RCA) and the Alaska Energy Authority (AEA).</p>
 </section>
-</section>
-<section id="workbooks-maybe-call-this-something-else" class="level3">
-<h3 class="anchored" data-anchor-id="workbooks-maybe-call-this-something-else">Workbooks (maybe call this something else)</h3>
-<p>By which I mean Neil’s cross referencing between the 2 sources - will we distribute these? If so, link. If not, then say why (nicely!) - how to cross reference between the AEA and EIA? This is cool! - differences between the 2 data sets</p>
-</section>
-</section>
-<section id="data-processing-and-aggregations" class="level2">
-<h2 class="anchored" data-anchor-id="data-processing-and-aggregations">Data Processing and Aggregations</h2>
-<ul>
-<li>calendar vs fiscal year</li>
-<li>error corrections (at what stage did this happen?) As with</li>
-<li>Jesse’s big files - link to these, right?</li>
-</ul>
-</section>
-<section id="regional-summaries" class="level2">
-<h2 class="anchored" data-anchor-id="regional-summaries">Regional Summaries</h2>
-<section id="q-how-were-regions-defined-previously-why-didnt-we-just-copy-that" class="level4">
-<h4 class="anchored" data-anchor-id="q-how-were-regions-defined-previously-why-didnt-we-just-copy-that">Q: How were regions defined previously? Why didn’t we just copy that?</h4>
-<p>Previous iterations of the Energy Statistics Report used the Alaskan Energy Authority’s 11 regions. For yearly summary statistics, the 11 regions were very useful. However, with the multi-year scope of this Trends Report, we elected to condense the 11 AEA Energy Regions based on commonalities in geography and electrical profile.</p>
-<p>In this report, we categorize the state into three separate energy regions, each being a collection of various Alaska Energy Authority (AEA) energy regions. These regions are herein known as the Coastal Region (Southeast, Kodiak, Chugach/Copper River), the Railbelt, and Rural Remote communities (all other AEA energy regions). For clarity, we refer to these three aggregated regions as the ACEP Energy Regions.</p>
+<section id="regional-summaries" class="level1">
+<h1>Regional Summaries</h1>
+<p>For the purpose of energy planning, AEA has defined <a href="https://dcra-cdo-dcced.opendata.arcgis.com/datasets/edb3e790ea4b40579f29e925afc061c5_0/explore?showTable=true">eleven energy regions</a> for the State of Alaska. Previous versions of the <em>Alaska Electric Energy Statistics</em> reports presented data summarized by those regions. In order to provide visualizations that are easier to understand, we have condensed these eleven regions into three major energy regions: Coastal, Railbelt, and Rural Remote.</p>
+<p>We note that the Coastal and Rural Remote regions include mixtures of power cost equalization (PCE) and non-PCE eligible communities. The Coastal region includes Copper River/Chugach and incorporates all communities served by Copper Valley Electric Association. PCE communities are largely dependent on diesel generation.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/AEA_ACEP_regions.png" class="img-fluid figure-img"></p>
-<figcaption>Relationship between Energy Regions as defined by AEA and ACEP</figcaption>
+<figcaption>Schematic Relationship between Energy Regions as defined by AEA and ACEP</figcaption>
 </figure>
 </div>
-</section>
-</section>
-<section id="future-plans" class="level2">
-<h2 class="anchored" data-anchor-id="future-plans">Future plans</h2>
-<ul>
-<li>database</li>
-<li>API / queries</li>
-<li>expose Neil’s transmission lines thing</li>
-</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/AEA_ACEP_regions_map.png" class="img-fluid figure-img" width="600"></p>
+<figcaption>Cartographic Relationship between Energy Regions as defined by AEA and ACEP</figcaption>
+</figure>
+</div>
+<p>&nbsp;</p>
 
 
 </section>
 
-</main> <!-- /main -->
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>PCE assistance is applied to only the first 750 kWh per month of residential consumption, and also to community facilities consumption up to the equivalent of 70 kWh per month for each person.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -661,8 +709,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./about.html" class="pagination-link" aria-label="About Us">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">About Us</span>
+      <a href="./about.html" class="pagination-link" aria-label="About the Report">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">About the Report</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

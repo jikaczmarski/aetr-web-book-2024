@@ -20,105 +20,68 @@
     ]
   },
   {
-    "objectID": "test.html",
-    "href": "test.html",
-    "title": "Map",
+    "objectID": "generation.html",
+    "href": "generation.html",
+    "title": "Generation by Fuel Type",
     "section": "",
-    "text": "stdlib = require(\"@observablehq/stdlib\")\nd3 = require(\"d3@7\")\n\nL = require('leaflet@1.9.4')\nhtml`&lt;link href='${resolve('leaflet@1.2.0/dist/leaflet.css')}' rel='stylesheet' /&gt;`\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nbootstrap=require(\"bootstrap\")\ncss=html`&lt;link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css\" integrity=\"sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx\" crossorigin=\"anonymous\"&gt;`\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nmap = {\n    // You'll often see Leaflet examples initializing a map like L.map('map'),\n    // which tells the library to look for a div with the id 'map' on the page.\n    // In Observable, we instead create a div from scratch in this cell, so it's\n    // completely self-contained.\n    let container = DOM.element('div', { style: `width:${width}px;height:${width/1.6}px` });\n\n    // Note that I'm yielding the container pretty early here: this allows the\n    // div to be placed on the page. This is important, because Leaflet uses\n    // the div's .offsetWidth and .offsetHeight to size the map. If I were\n    // to only return the container at the end of this method, Leaflet might\n    // get the wrong idea about the map's size.\n    yield container;\n\n    // Now we create a map object and add a layer to it.\n    let map = L.map(container).setView([58.35175294670148, -134.6442463060413], 13);\n\n    let hillshade = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}', \n        {attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ, TomTom, Intermap, iPC, USGS, FAO, NPS, NRCAN, GeoBase, Kadaster NL, Ordnance Survey, Esri Japan, METI, Esri China (Hong Kong), and the GIS User Community'\n        });\n  \n    hillshade.addTo(map);\n\n\n}"
+    "text": "This section outlines the trends in generation by fuel type for each region. Generation in our context has two separate definitions. Data collected through the Energy Information Administration (EIA) records “net” generation, which excludes electricity use for power plant operations. However, data collected from the Alaska Energy Authority’s (AEA) Power Cost Equalization (PCE) program is presented as “gross” generation, which does not make this exclusion."
   },
   {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
+    "objectID": "generation.html#general-overview",
+    "href": "generation.html#general-overview",
+    "title": "Generation by Fuel Type",
     "section": "",
-    "text": "About this site",
-    "crumbs": [
-      "About Us"
-    ]
+    "text": "This section outlines the trends in generation by fuel type for each region. Generation in our context has two separate definitions. Data collected through the Energy Information Administration (EIA) records “net” generation, which excludes electricity use for power plant operations. However, data collected from the Alaska Energy Authority’s (AEA) Power Cost Equalization (PCE) program is presented as “gross” generation, which does not make this exclusion."
   },
   {
-    "objectID": "consumption.html",
-    "href": "consumption.html",
-    "title": "Electricity Consumption",
-    "section": "",
-    "text": "Consumption needs a better intro …"
-  },
-  {
-    "objectID": "consumption.html#general-overview",
-    "href": "consumption.html#general-overview",
-    "title": "Electricity Consumption",
-    "section": "",
-    "text": "Consumption needs a better intro …"
-  },
-  {
-    "objectID": "consumption.html#coastal",
-    "href": "consumption.html#coastal",
-    "title": "Electricity Consumption",
+    "objectID": "generation.html#coastal",
+    "href": "generation.html#coastal",
+    "title": "Generation by Fuel Type",
     "section": "Coastal",
     "text": "Coastal\nPut Coastal text here."
   },
   {
-    "objectID": "consumption.html#railbelt",
-    "href": "consumption.html#railbelt",
-    "title": "Electricity Consumption",
+    "objectID": "generation.html#railbelt",
+    "href": "generation.html#railbelt",
+    "title": "Generation by Fuel Type",
     "section": "Railbelt",
     "text": "Railbelt\nPut Railbelt text here."
   },
   {
-    "objectID": "consumption.html#rural-remote",
-    "href": "consumption.html#rural-remote",
-    "title": "Electricity Consumption",
+    "objectID": "generation.html#rural-remote",
+    "href": "generation.html#rural-remote",
+    "title": "Generation by Fuel Type",
     "section": "Rural Remote",
     "text": "Rural Remote\nPut Rural Remote text here."
   },
   {
-    "objectID": "methods.html",
-    "href": "methods.html",
-    "title": "Data Analysis Methods",
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Alaska Electricity Trends Web Book",
     "section": "",
-    "text": "Report currently has data caveats spread throughout the text as footnotes. I think that information should be gathered together here. - links back to this information here can then be added to the other pages (instead of footnotes?)",
+    "text": "This report summarizes federal, state, and utility data to provide an overview of electricity capacity, generation, consumption, and price trends from 2011 to 2021. A comprehensive report highlighting these trends has not been produced for the state of Alaska since the 2013 Alaska Energy Statistics Report.\nThe book has been designed to be a living document that will be updated as more data becomes available.",
     "crumbs": [
-      "Methods"
+      "Summary"
     ]
   },
   {
-    "objectID": "methods.html#data-sources",
-    "href": "methods.html#data-sources",
-    "title": "Data Analysis Methods",
-    "section": "Data Sources",
-    "text": "Data Sources\nData discussed in this report come from 2 main sources… (Are there any other data sources?)\n\nEnergy Information Authority (EIA)\nwhat is this? Why isn’t a source for all data? (i.e. reporting to EIA is not required for Alaskan utilities) - list of forms? which ones actually used? - how did Neil get these\n\n\nPower Cost Equalization\n\nQ: what is this program? why utilities report here? why is it fiscal year? why might data be missing?\n\nextracted from AEA “accounting system”\ncommunities vs utilities\n\nAssume no one knows what a PCE is. Maybe think of Catalyst while write this. Show what we have to offer and why Alaska is different/special.\nAlaska is famous for wide expanses of rugged terrain. Towns are often extremely distant from one another, or are separated by inaccessible mountains and glaciers. The utility landscape of Alaska resembles a sea of islands, very different from the interconnected grids of the contiguous United States.\nIn total, Alaska contains over 100 separate utilities, many of which serve a single small community. Most rely on diesel generators connected to huge fuel tanks, which receive a barge shipment of fuel in the summer that must last through the winter. If the town runs out of fuel during winter months, additional fuel has to be flown in at extreme expense. Predictably, electricity in these remote towns is prohibitively expensive. Some rural towns pay 3 to 5 times the rates of urban Alaska.\nUrban Alaska has greatly benefited from large state-subsidized energy projects, such as the Bradley Lake Hydroelectric Project, the Four Dam Pool Projects, and the Alaska Intertie. In an effort to confer similar benefits to rural Alaska, the state of Alaska developed the Power Cost Equalization Program (PCE); the Regulatory Commission of Alaska and the Alaska Energy Authority administer the PCE program. The PCE program reimburses rural utilities for credits that have been provided to eligible customers. Eligibility is limited to residential customers and community facilities. The subsidy applies to the first 750 kWh per month of residential consumption. Community facilities are subsidized up to the first 70 kWh per month per resident. Please visit the Alaska Energy Authority webpage for more information about the Power Cost Equalization program.\n\n\n\nWorkbooks (maybe call this something else)\nBy which I mean Neil’s cross referencing between the 2 sources - will we distribute these? If so, link. If not, then say why (nicely!) - how to cross reference between the AEA and EIA? This is cool! - differences between the 2 data sets",
+    "objectID": "index.html#welcome",
+    "href": "index.html#welcome",
+    "title": "Alaska Electricity Trends Web Book",
+    "section": "",
+    "text": "This report summarizes federal, state, and utility data to provide an overview of electricity capacity, generation, consumption, and price trends from 2011 to 2021. A comprehensive report highlighting these trends has not been produced for the state of Alaska since the 2013 Alaska Energy Statistics Report.\nThe book has been designed to be a living document that will be updated as more data becomes available.",
     "crumbs": [
-      "Methods"
+      "Summary"
     ]
   },
   {
-    "objectID": "methods.html#data-processing-and-aggregations",
-    "href": "methods.html#data-processing-and-aggregations",
-    "title": "Data Analysis Methods",
-    "section": "Data Processing and Aggregations",
-    "text": "Data Processing and Aggregations\n\ncalendar vs fiscal year\nerror corrections (at what stage did this happen?) As with\nJesse’s big files - link to these, right?",
+    "objectID": "index.html#key-takeaways",
+    "href": "index.html#key-takeaways",
+    "title": "Alaska Electricity Trends Web Book",
+    "section": "Key Takeaways",
+    "text": "Key Takeaways\n\nCapacity\n\nGeneration capacity on average increased across all of Alaska from 2011 to 2021.\nThe state saw large increases in renewable energy capacity, storage, and on-demand peaking units.\n\n\n\nGeneration\n\nNet generation has remained relatively stable\nThe Coastal region generated more power from wind and hydro, but less from oil in 2021 than in 2011.\nThe Railbelt region generated more power from wind, hydro, coal, and solar, but less from oil and gas in 2021 than in 2011.\nThe Rural Remote region generated more power from wind and solar, but less from oil and hydro in 2021 than in 2011.\nWe have seen significant increases in the usage of utility-scale battery storage.\n\n\n\nConsumption\n\nElectricity consumption has fallen for all customer classes, with residential customers seeing the most reductions.\nThe number of customer accounts have continued to increase throughout the state.\nPer capita consumption for the residential sector is highest in the Coastal region and lowest in the Rural Remote region.\n\n\n\nPrices\n\nResidential electricity rates increased on average across Alaska after adjusting for inflation, the PCE subsidy, and population weighting.\nThe region that experienced the least residential rate gain was the Coastal region with a 6% increase.\nThe region experiencing the highest residential rate gain was the Railbelt with a 26% increase.\nCommercial and Other customers in the Coastal and Rural Remote regions saw rate decreases where Commercial customers in the Railbelt region saw price increases of about 15%.\nPCE subsidies continue to dampen residential prices in the Coastal and Rural Remote regions.",
     "crumbs": [
-      "Methods"
-    ]
-  },
-  {
-    "objectID": "methods.html#regional-summaries",
-    "href": "methods.html#regional-summaries",
-    "title": "Data Analysis Methods",
-    "section": "Regional Summaries",
-    "text": "Regional Summaries\n\nQ: How were regions defined previously? Why didn’t we just copy that?\nPrevious iterations of the Energy Statistics Report used the Alaskan Energy Authority’s 11 regions. For yearly summary statistics, the 11 regions were very useful. However, with the multi-year scope of this Trends Report, we elected to condense the 11 AEA Energy Regions based on commonalities in geography and electrical profile.\nIn this report, we categorize the state into three separate energy regions, each being a collection of various Alaska Energy Authority (AEA) energy regions. These regions are herein known as the Coastal Region (Southeast, Kodiak, Chugach/Copper River), the Railbelt, and Rural Remote communities (all other AEA energy regions). For clarity, we refer to these three aggregated regions as the ACEP Energy Regions.\n\n\n\nRelationship between Energy Regions as defined by AEA and ACEP",
-    "crumbs": [
-      "Methods"
-    ]
-  },
-  {
-    "objectID": "methods.html#future-plans",
-    "href": "methods.html#future-plans",
-    "title": "Data Analysis Methods",
-    "section": "Future plans",
-    "text": "Future plans\n\ndatabase\nAPI / queries\nexpose Neil’s transmission lines thing",
-    "crumbs": [
-      "Methods"
+      "Summary"
     ]
   },
   {
@@ -182,78 +145,165 @@
     ]
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Alaska Electricity Trends Web Book",
+    "objectID": "consumption.html",
+    "href": "consumption.html",
+    "title": "Electricity Consumption",
     "section": "",
-    "text": "This report summarizes federal, state, and utility data to provide an overview of electricity capacity, generation, consumption, and price trends from 2011 to 2021. A comprehensive report highlighting these trends has not been produced for the state of Alaska since the 2013 Alaska Energy Statistics Report.",
-    "crumbs": [
-      "Home"
-    ]
+    "text": "Consumption needs a better intro …"
   },
   {
-    "objectID": "index.html#welcome",
-    "href": "index.html#welcome",
-    "title": "Alaska Electricity Trends Web Book",
+    "objectID": "consumption.html#general-overview",
+    "href": "consumption.html#general-overview",
+    "title": "Electricity Consumption",
     "section": "",
-    "text": "This report summarizes federal, state, and utility data to provide an overview of electricity capacity, generation, consumption, and price trends from 2011 to 2021. A comprehensive report highlighting these trends has not been produced for the state of Alaska since the 2013 Alaska Energy Statistics Report.",
-    "crumbs": [
-      "Home"
-    ]
+    "text": "Consumption needs a better intro …"
   },
   {
-    "objectID": "index.html#key-takeaways",
-    "href": "index.html#key-takeaways",
-    "title": "Alaska Electricity Trends Web Book",
-    "section": "Key Takeaways",
-    "text": "Key Takeaways\n\nCapacity\n\nGeneration capacity on average increased across all of Alaska from 2011 to 2021.\nThe state saw large increases in renewable energy capacity, storage, and on-demand peaking units.\n\n\n\nGeneration\n\nNet generation has remained relatively stable\nThe Coastal region generated more power from wind and hydro, but less from oil in 2021 than in 2011.\nThe Railbelt region generated more power from wind, hydro, coal, and solar, but less from oil and gas in 2021 than in 2011.\nThe Rural Remote region generated more power from wind and solar, but less from oil and hydro in 2021 than in 2011.\nWe have seen significant increases in the usage of utility-scale battery storage.\n\n\n\nConsumption\n\nElectricity consumption has fallen for all customer classes, with residential customers seeing the most reductions.\nThe number of customer accounts have continued to increase throughout the state.\nPer capita consumption for the residential sector is highest in the Coastal region and lowest in the Rural Remote region.\n\n\n\nPrices\n\nResidential electricity rates increased on average across Alaska after adjusting for inflation, the PCE subsidy, and population weighting.\nThe region that experienced the least residential rate gain was the Coastal region with a 6% increase.\nThe region experiencing the highest residential rate gain was the Railbelt with a 26% increase.\nCommercial and Other customers in the Coastal and Rural Remote regions saw rate decreases where Commercial customers in the Railbelt region saw price increases of about 15%.\nPCE subsidies continue to dampen residential prices in the Coastal and Rural Remote regions.",
-    "crumbs": [
-      "Home"
-    ]
-  },
-  {
-    "objectID": "index.html#acronyms",
-    "href": "index.html#acronyms",
-    "title": "Alaska Electricity Trends Web Book",
-    "section": "Acronyms",
-    "text": "Acronyms\nThese abbreviations are used throughout this report\n\nACEP: Alaska Center for Energy and Power\nAEA: Alaska Energy Authority\nBUECI: Barrow Utilities & Electric Cooperative, Inc.\nPCE: Power Cost Equalization\nEIA: Energy Information Administration\nFERC: Federal Energy Regulatory Commission\nCAGR: Compound Annual Growth Rate\nKW: Kilowatts\nKWh: Kilowatt Hours\nMW: Megawatts\nMWh: Megawatt Hours\nGW: Gigawatts\nGWh: Gigawatt Hours",
-    "crumbs": [
-      "Home"
-    ]
-  },
-  {
-    "objectID": "generation.html",
-    "href": "generation.html",
-    "title": "Generation by Fuel Type",
-    "section": "",
-    "text": "This section outlines the trends in generation by fuel type for each region. Generation in our context has two separate definitions. Data collected through the Energy Information Administration (EIA) records “net” generation, which excludes electricity use for power plant operations. However, data collected from the Alaska Energy Authority’s (AEA) Power Cost Equalization (PCE) program is presented as “gross” generation, which does not make this exclusion."
-  },
-  {
-    "objectID": "generation.html#general-overview",
-    "href": "generation.html#general-overview",
-    "title": "Generation by Fuel Type",
-    "section": "",
-    "text": "This section outlines the trends in generation by fuel type for each region. Generation in our context has two separate definitions. Data collected through the Energy Information Administration (EIA) records “net” generation, which excludes electricity use for power plant operations. However, data collected from the Alaska Energy Authority’s (AEA) Power Cost Equalization (PCE) program is presented as “gross” generation, which does not make this exclusion."
-  },
-  {
-    "objectID": "generation.html#coastal",
-    "href": "generation.html#coastal",
-    "title": "Generation by Fuel Type",
+    "objectID": "consumption.html#coastal",
+    "href": "consumption.html#coastal",
+    "title": "Electricity Consumption",
     "section": "Coastal",
     "text": "Coastal\nPut Coastal text here."
   },
   {
-    "objectID": "generation.html#railbelt",
-    "href": "generation.html#railbelt",
-    "title": "Generation by Fuel Type",
+    "objectID": "consumption.html#railbelt",
+    "href": "consumption.html#railbelt",
+    "title": "Electricity Consumption",
     "section": "Railbelt",
     "text": "Railbelt\nPut Railbelt text here."
   },
   {
-    "objectID": "generation.html#rural-remote",
-    "href": "generation.html#rural-remote",
-    "title": "Generation by Fuel Type",
+    "objectID": "consumption.html#rural-remote",
+    "href": "consumption.html#rural-remote",
+    "title": "Electricity Consumption",
     "section": "Rural Remote",
     "text": "Rural Remote\nPut Rural Remote text here."
+  },
+  {
+    "objectID": "methods.html",
+    "href": "methods.html",
+    "title": "Data Analysis Methods",
+    "section": "",
+    "text": "The data in this report was collected from a variety of sources and are listed below. Many electric utilities throughout the state are not required to submit annual reports to the federal government due to their size and/or number of customers. Therefore, our data sources encompass federal, state, commercial, and local filings as well as direct communications with utilities and state program managers. Each section of the report pulls data from a variety of these sources. The data was downloaded directly from the original source and concatenated to develop a dataset for this report. In some cases, an observation contained multiple sources due to reporting limitations.\nBelow are relevant sources of data for the report.\n\n\n\nEnergy Information Administration\n\nEIA-860\nEIA-861\nEIA-923\n\nFederal Energy Regulatory Commission\n\nForm 1\n\n\n\n\n\n\nAlaska Energy Authority\n\nPower Cost Equalization Program Utility Monthly Reports\n\nRegulatory Authority of Alaska\n\nAnnual filings\n\n\n\n\n\n\nAlaska Energy Authority\n\nHydro/Wind Program Managers\nVillage Assessments\nPH (?) Assessments\n\nIndividual Electric Authorities\n\n\n\n\n\n\n\n\nIntelligent Energy Systems\n\n\n\n\nAn Alaska engineering firm, DOWL, was hired to do the preliminary compilation of data and develop the workbooks supporting this report. Since this data comes from various sources, there is potential for errors in the compilation of the workbooks. Any discrepancies or noted errors should be reported to a member of the DCM Team listed on the About Page.",
+    "crumbs": [
+      "Methods"
+    ]
+  },
+  {
+    "objectID": "methods.html#compilation",
+    "href": "methods.html#compilation",
+    "title": "Data Analysis Methods",
+    "section": "",
+    "text": "An Alaska engineering firm, DOWL, was hired to do the preliminary compilation of data and develop the workbooks supporting this report. Since this data comes from various sources, there is potential for errors in the compilation of the workbooks. Any discrepancies or noted errors should be reported to a member of the DCM Team listed on the About Page.",
+    "crumbs": [
+      "Methods"
+    ]
+  },
+  {
+    "objectID": "methods.html#footnotes",
+    "href": "methods.html#footnotes",
+    "title": "Data Analysis Methods",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\nPCE assistance is applied to only the first 750 kWh per month of residential consumption, and also to community facilities consumption up to the equivalent of 70 kWh per month for each person.↩︎",
+    "crumbs": [
+      "Methods"
+    ]
+  },
+  {
+    "objectID": "credits.html",
+    "href": "credits.html",
+    "title": "Credits",
+    "section": "",
+    "text": "The Alaska Electrical Trends web book has been produced by the Alaska Center for Energy and Power (ACEP) at the University of Alaska Fairbanks (UAF). It is a collaboration between data scientists, researchers, and policy experts.",
+    "crumbs": [
+      "About the Team"
+    ]
+  },
+  {
+    "objectID": "credits.html#data-and-cyberinfrastructure-management-dcm-team",
+    "href": "credits.html#data-and-cyberinfrastructure-management-dcm-team",
+    "title": "Credits",
+    "section": "Data and Cyberinfrastructure Management (DCM) Team",
+    "text": "Data and Cyberinfrastructure Management (DCM) Team\nACEP’s DCM Team  includes software developers, mathematicians, spatial analysts, economists, open science enthusiasts, and experts in information security and the deployment of computer infrastructure. Together, DCM creates stable and secure pipelines for data from collection to publication. These DCM members generated figures, wrote text, and coded this web book:\n\nJesse Kaczmarski\nIan MacDougall\nElizabeth (Liz) Dobbins\nDayne Broderson",
+    "crumbs": [
+      "About the Team"
+    ]
+  },
+  {
+    "objectID": "credits.html#energy-transitions-initiative-eti-team",
+    "href": "credits.html#energy-transitions-initiative-eti-team",
+    "title": "Credits",
+    "section": "Energy Transitions Initiative (ETI) Team",
+    "text": "Energy Transitions Initiative (ETI) Team\nACEP’s ETI is …\n\nBrittany Smart\nGwen Holdmann\nErika Boice",
+    "crumbs": [
+      "About the Team"
+    ]
+  },
+  {
+    "objectID": "credits.html#associated-researchers-and-commentators",
+    "href": "credits.html#associated-researchers-and-commentators",
+    "title": "Credits",
+    "section": "Associated Researchers and Commentators",
+    "text": "Associated Researchers and Commentators\n\nNeil McMahon, Project Manager, DOWL\nSteve Colt, ACEP\nSara Fisher-Goad, UAF’s Office of the Vice Chancellor for Research\nShivani Mathur, ACEP",
+    "crumbs": [
+      "About the Team"
+    ]
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "The Alaska Electrical Trends Web Book has been produced by the Alaska Center for Energy and Power (ACEP) at the University of Alaska Fairbanks (UAF). It is designed to be interactive and dynamically updated when new data becomes available. This makes it a fundamental departure from its ancestor, the Alaska Energy Statistics Report.",
+    "crumbs": [
+      "About the Report"
+    ]
+  },
+  {
+    "objectID": "about.html#historical-timeline-of-prior-reports",
+    "href": "about.html#historical-timeline-of-prior-reports",
+    "title": "About",
+    "section": "Historical Timeline of Prior Reports",
+    "text": "Historical Timeline of Prior Reports\n\nBefore 1985: federal Alaska Power Administration published Alaska Electric Power Statistics report (AEPS)\n1985: Alaska Energy Authority (AEA, formerly Alaska Power Authority) begins gathering statistical data and publishing annual report\n1988: AEPS report becomes combined effort of the Alaska Systems Coordinating Council (ASCC) and AEA\n1993: AEPS becomes joint effort of the ASCC and the Alaska Department of Community and Regional Affairs, Division of Energy\n1995 - 2003: No reports published\n2003: the Institute of Social and Economic Research (ISER) at the University of Alaska Anchorage (UAA) prepare a report with funding from AEA, the Regulatory Commission of Alaska (RCA), and the Denali Commission\n2008 - 2012: ISER prepares Alaska Energy Statistics updates with funding from AEA\n2013: AEA prepares Excel workbook with updated data, but no report",
+    "crumbs": [
+      "About the Report"
+    ]
+  },
+  {
+    "objectID": "about.html#technical-details",
+    "href": "about.html#technical-details",
+    "title": "About",
+    "section": "Technical Details",
+    "text": "Technical Details\nThe book is formatted using the Quarto, an open-source scientific and technical publishing system.\nThe markdown files that make up the book reside in a GitHub repo that is publicly available. Errors can be flagged using GitHub issues where they can be tracked and addressed by the DCM team.\nThe book also integrates R code for data processing and figure generation. When data files are updated, triggering the render will update the figures automatically.",
+    "crumbs": [
+      "About the Report"
+    ]
+  },
+  {
+    "objectID": "test.html",
+    "href": "test.html",
+    "title": "Map",
+    "section": "",
+    "text": "stdlib = require(\"@observablehq/stdlib\")\nd3 = require(\"d3@7\")\n\nL = require('leaflet@1.9.4')\nhtml`&lt;link href='${resolve('leaflet@1.2.0/dist/leaflet.css')}' rel='stylesheet' /&gt;`\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nbootstrap=require(\"bootstrap\")\ncss=html`&lt;link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css\" integrity=\"sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx\" crossorigin=\"anonymous\"&gt;`\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nmap = {\n    // You'll often see Leaflet examples initializing a map like L.map('map'),\n    // which tells the library to look for a div with the id 'map' on the page.\n    // In Observable, we instead create a div from scratch in this cell, so it's\n    // completely self-contained.\n    let container = DOM.element('div', { style: `width:${width}px;height:${width/1.6}px` });\n\n    // Note that I'm yielding the container pretty early here: this allows the\n    // div to be placed on the page. This is important, because Leaflet uses\n    // the div's .offsetWidth and .offsetHeight to size the map. If I were\n    // to only return the container at the end of this method, Leaflet might\n    // get the wrong idea about the map's size.\n    yield container;\n\n    // Now we create a map object and add a layer to it.\n    let map = L.map(container).setView([58.35175294670148, -134.6442463060413], 13);\n\n    let hillshade = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}', \n        {attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ, TomTom, Intermap, iPC, USGS, FAO, NPS, NRCAN, GeoBase, Kadaster NL, Ordnance Survey, Esri Japan, METI, Esri China (Hong Kong), and the GIS User Community'\n        });\n  \n    hillshade.addTo(map);\n\n\n}"
+  },
+  {
+    "objectID": "acronyms.html",
+    "href": "acronyms.html",
+    "title": "Acronyms",
+    "section": "",
+    "text": "These abbreviations are used throughout this report\n\nACEP: Alaska Center for Energy and Power, UAF\nAEA: Alaska Energy Authority\nBUECI: Barrow Utilities & Electric Cooperative, Inc.\nDCM: Data and Cyberinfrastructure Management, ACEP\nPCE: Power Cost Equalization\nEIA: Energy Information Administration\nETI: Energy Transitions Initiative, ACEP\nFERC: Federal Energy Regulatory Commission\nCAGR: Compound Annual Growth Rate\nKW: Kilowatts\nKWh: Kilowatt Hours\nMW: Megawatts\nMWh: Megawatt Hours\nGW: Gigawatts\nGWh: Gigawatt Hours\nUAF: University of Alaska Fairbanks",
+    "crumbs": [
+      "Definitions of Acronyms"
+    ]
+  },
+  {
+    "objectID": "acronyms.html#acronyms",
+    "href": "acronyms.html#acronyms",
+    "title": "Acronyms",
+    "section": "",
+    "text": "These abbreviations are used throughout this report\n\nACEP: Alaska Center for Energy and Power, UAF\nAEA: Alaska Energy Authority\nBUECI: Barrow Utilities & Electric Cooperative, Inc.\nDCM: Data and Cyberinfrastructure Management, ACEP\nPCE: Power Cost Equalization\nEIA: Energy Information Administration\nETI: Energy Transitions Initiative, ACEP\nFERC: Federal Energy Regulatory Commission\nCAGR: Compound Annual Growth Rate\nKW: Kilowatts\nKWh: Kilowatt Hours\nMW: Megawatts\nMWh: Megawatt Hours\nGW: Gigawatts\nGWh: Gigawatt Hours\nUAF: University of Alaska Fairbanks",
+    "crumbs": [
+      "Definitions of Acronyms"
+    ]
   }
 ]
