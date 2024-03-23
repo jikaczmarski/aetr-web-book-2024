@@ -38,13 +38,14 @@ We begin this section by showcasing the increases in total capacity across the s
 
 ```{ojs}
 //| echo: false
+
 sw_cap = FileAttachment("data/statewide-total-capacity-by-year.csv").csv({ typed: true })
 
 Plot.plot({
   // Configure the x-axis
   x: {
     tickFormat: "",
-    type: "band",
+    //type: "band",
     label: "Year"
   },
   // Configure the y-axis
