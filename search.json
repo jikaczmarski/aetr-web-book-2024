@@ -59,7 +59,7 @@
     "href": "index.html",
     "title": "Alaska Electricity Trends Web Book",
     "section": "",
-    "text": "This report summarizes federal, state, and utility data to provide an overview of electricity capacity, generation, consumption, and price trends from 2011 to 2021. A comprehensive report highlighting these trends has not been produced for the state of Alaska since the 2013 Alaska Energy Statistics Report.\nThe book has been designed to be a living document that will be updated as more data becomes available.",
+    "text": "This interactive report summarizes federal, state, and utility data in the form of a web book. It provides an overview of electricity capacity, generation, consumption, and price trends from 2011 to 2021. A comprehensive report highlighting these trends has not been produced for the state of Alaska since the 2013 Alaska Energy Statistics Report.\nThe book has been designed to be a living document that will be updated as more data becomes available. Please explore the data using the chapter navigation links in the left sidebar and the section navigation links in the right sidebar. Additional chapters include:\n\nAbout the Report: an historical timeline of previous Alaskan energy reports and technical details on this version.\nAbout the Team: credits and acknowledgments for the people and funding sources that contributed to this report.",
     "crumbs": [
       "Summary"
     ]
@@ -69,7 +69,17 @@
     "href": "index.html#welcome",
     "title": "Alaska Electricity Trends Web Book",
     "section": "",
-    "text": "This report summarizes federal, state, and utility data to provide an overview of electricity capacity, generation, consumption, and price trends from 2011 to 2021. A comprehensive report highlighting these trends has not been produced for the state of Alaska since the 2013 Alaska Energy Statistics Report.\nThe book has been designed to be a living document that will be updated as more data becomes available.",
+    "text": "This interactive report summarizes federal, state, and utility data in the form of a web book. It provides an overview of electricity capacity, generation, consumption, and price trends from 2011 to 2021. A comprehensive report highlighting these trends has not been produced for the state of Alaska since the 2013 Alaska Energy Statistics Report.\nThe book has been designed to be a living document that will be updated as more data becomes available. Please explore the data using the chapter navigation links in the left sidebar and the section navigation links in the right sidebar. Additional chapters include:\n\nAbout the Report: an historical timeline of previous Alaskan energy reports and technical details on this version.\nAbout the Team: credits and acknowledgments for the people and funding sources that contributed to this report.",
+    "crumbs": [
+      "Summary"
+    ]
+  },
+  {
+    "objectID": "index.html#executive-summary",
+    "href": "index.html#executive-summary",
+    "title": "Alaska Electricity Trends Web Book",
+    "section": "Executive Summary",
+    "text": "Executive Summary\nThe objective of this work is to provide regulators, legislators, and other energy stakeholders with a holistic look at recent trends in electrical generation. The first impetus for this report is a lack of combined reporting on electricity generation across the state that extends to federally and non-federally regulated electric utilities. The second impetus for this report is to aid in decision-making processes surrounding Alaska’s energy future.\nWith uncertainty in natural gas sources on the Railbelt, changing technology, and lower-cost alternatives, understanding trends in the state’s capacity, generation, consumption, and prices is vital to more informed decision-making.\nIn this report, we present data collected from federal, state, and local sources supplemented by correspondence with utilities. We show trends for capacity, generation, consumption, and prices. The capacity and generation trends include data from 2011 to 2021, and the consumption and prices trends are data limited to 2019. More information on sources and methods are provided in the subsequent sections throughout the report. This report uses data visualizations as the primary mode for presenting the trends. To accommodate this presentation style, we present trends as simplified regions of the state as opposed to the Alaska Energy Authority energy regions.\nWe emphasize that this report is designed to provide factual information to the best of our ability without providing recommendations or in-depth analysis. However, context is provided for more impactful trends.",
     "crumbs": [
       "Summary"
     ]
@@ -264,7 +274,7 @@
     "href": "about.html#technical-details",
     "title": "About",
     "section": "Technical Details",
-    "text": "Technical Details\nThe book is formatted using the Quarto, an open-source scientific and technical publishing system.\nThe markdown files that make up the book reside in a GitHub repo that is publicly available. Errors can be flagged using GitHub issues where they can be tracked and addressed by the DCM team.\nThe book also integrates R code for data processing and figure generation. When data files are updated, triggering the render will update the figures automatically.",
+    "text": "Technical Details\nThe book is formatted using Quarto, an open-source scientific and technical publishing system. The template was developed by the Openscapes project, as part of their Quarto Website Tutorial.\nThe markdown files that make up the book reside in the aetr-web-book GitHub repository. The generation process is publicly accessible. Errors in the document can be flagged using GitHub issues where they can be tracked and addressed by the DCM team.\nThe book also integrates R code for data processing and figure generation. When data files are updated, manually triggering the Quarto render will update the figures automatically.",
     "crumbs": [
       "About the Report"
     ]
