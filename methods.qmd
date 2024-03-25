@@ -28,7 +28,6 @@ Below are relevant sources of data for the report.
 - Alaska Energy Authority
   - Hydro/Wind Program Managers
   - Village and Powerhouse Assessments
-  - Individual Electric Authorities
 - Electric Utilities
 
 ## Compilation
