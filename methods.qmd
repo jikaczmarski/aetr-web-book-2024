@@ -6,7 +6,7 @@ subtitle: "Methods Section of Alaska Electricity Trends Web Book"
 
 
 # Data Sources
-The data in this report was collected from a variety of sources and are listed below. Many electric utilities throughout the state are not required to submit annual reports to the federal government due to their size and/or number of customers. Therefore, our data sources encompass federal, state, commercial, and local filings as well as direct communications with utilities and state program managers. Each section of the report pulls data from a variety of these sources. The data was downloaded directly from the original source and concatenated to develop a dataset for this report. In some cases, an observation contained multiple sources due to reporting limitations. 
+The data in this report was collected from a variety of sources and are listed below. Many electric utilities throughout the state are not required to submit annual reports to the federal government due to their size and/or number of customers. Therefore, our data sources encompass federal, state, commercial, and local filings as well as direct communications with utilities and state program managers. Each section of the report pulls data from a variety of these sources. The data was downloaded directly from the original source and concatenated to develop a dataset for this report. In some cases, a single observation is derived from multiple sources due to reporting limitations. 
 
 Below are relevant sources of data for the report.
 
@@ -30,8 +30,7 @@ Below are relevant sources of data for the report.
 	- Village Assessments
 	- PH (?) Assessments
 - Individual Electric Authorities
-
-### Individual Electric Utilities
+- Individual Electric Utilities
 
 ### Commercial Sources
 - [Intelligent Energy Systems](https://www.iesconnect.net)
