@@ -44,9 +44,15 @@ An Alaska engineering firm, [DOWL](https://www.dowl.com/), was hired to do the p
 
 Alaska is famous for wide expanses of rugged terrain. Towns are often extremely distant from one another, or are separated by inaccessible mountains and glaciers. The utility landscape of Alaska resembles a sea of islands, very different from the interconnected grids of the contiguous United States. 
 
-In total, Alaska contains over 100 separate utilities, many of which serve a single small community. Most rely on diesel generators connected to huge fuel tanks, which receive a barge shipment of fuel in the summer that must last through the winter. If the town runs out of fuel during winter months, additional fuel has to be flown in at extreme expense. Predictably, electricity in these remote towns is prohibitively expensive. Some rural towns pay 3 to 5 times the rates of urban Alaska. In contrast, urban Alaska has greatly benefited from large state-subsidized energy projects, such as the Bradley Lake Hydroelectric Project, the Four Dam Pool Projects, and the Alaska Intertie. 
+In total, Alaska contains over 100 separate utilities, many of which serve a single small community. Most rely on diesel generators connected to huge fuel tanks, which receive a barge shipment of fuel in the summer that must last through the winter. If the town runs out of fuel during winter months, additional fuel has to be flown in at extreme expense. Predictably, electricity in these remote towns is prohibitively expensive. Some rural towns pay 3 to 5 times the rates of urban Alaska. 
 
-In an effort to confer similar benefits to rural Alaska, the state of Alaska developed the Power Cost Equalization Program (PCE). The PCE program serves to equalize the cost of electricity so that those living in PCE communities pay about the same amount for most of their residential power as those living in Anchorage, Fairbanks, and Juneau. The PCE program reimburses rural utilities for credits that have been provided to eligible customers. Eligibility is limited to residential customers and community facilities.[^1] The program is administered by the Regulatory Commission of Alaska (RCA) and the Alaska Energy Authority (AEA).  
+Urban Alaska has greatly benefited from large state-subsidized energy projects, such as the Bradley Lake Hydroelectric Project, the Four Dam Pool Projects, and the Alaska Intertie. In an effort to confer similar benefits to rural Alaska, the state of Alaska developed the Power Cost Equalization Program (PCE).
+
+The PCE program reimburses rural utilities for credits that have been provided to eligible customers. Eligibility is limited to residential customers and community facilities. The subsidy applies to the first 750 kWh per month of residential consumption. Community facilities are subsidized up to the first 70 kWh per month per resident. The program is administered by the Regulatory Commission of Alaska (RCA) and the Alaska Energy Authority (AEA).  
+
+Please visit the Alaska Energy Authority  [PCE webpage](https://www.akenergyauthority.org/What-We-Do/Power-Cost-Equalization) for more information about the Power Cost Equalization program.
+
+ 
 
 # Regional Summaries
 
