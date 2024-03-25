@@ -26,15 +26,10 @@ Below are relevant sources of data for the report.
 
 ### Direct Communications
 - Alaska Energy Authority
-	- Hydro/Wind Program Managers
-	- Village Assessments
-	- PH (?) Assessments
-- Individual Electric Authorities
-
-### Individual Electric Utilities
-
-### Commercial Sources
-- [Intelligent Energy Systems](https://www.iesconnect.net)
+  - Hydro/Wind Program Managers
+  - Village and Powerhouse Assessments
+  - Individual Electric Authorities
+- Electric Utilities
 
 ## Compilation
 
