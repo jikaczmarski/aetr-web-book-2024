@@ -8,7 +8,11 @@
 *_cache/
 _site/
 
+# MacOS Specific Files
 .DS_Store
+._*
+.Spotlight-V100
+.Trashes
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
