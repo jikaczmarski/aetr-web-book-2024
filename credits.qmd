@@ -34,3 +34,6 @@ ACEP's ETI is ...
 
 We would like to acknowledge the federal and Alaska state agencies that make their reports and data publicly accessible. Without this openness, this report would not be possible. We would also like to thank the utilities who responded directly when we had questions. A full list of these organizations has been complied in our [Methods Section](methods.qmd).
 
+This work was funded by the Alaska Regional Collaboration for Innovation and Commercialization ([ARCTIC](https://thearcticprogram.net/about/)) Program, an Office of Navy Research ([ONR](https://www.onr.navy.mil/)) Initiative. 
+
+> The core mission of ARCTIC is to build capacity and support a thriving economy, centered on expertise in the energy sector, and related areas of emphasis (i.e. food, water).
