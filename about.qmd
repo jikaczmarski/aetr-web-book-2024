@@ -18,8 +18,8 @@ The Alaska Electrical Trends Web Book has been produced by the Alaska Center for
 
 ## Technical Details
 
-The book is formatted using the [Quarto](https://quarto.org), an open-source scientific and technical publishing system. 
+The book is formatted using [Quarto](https://quarto.org), an open-source scientific and technical publishing system. The template was developed by the Openscapes project, as part of their [Quarto Website Tutorial](https://github.com/Openscapes/quarto-website-tutorial).
 
-The markdown files that make up the book reside in a GitHub repo that is publicly available. Errors can be flagged using GitHub issues where they can be tracked and addressed by the DCM team.
+The markdown files that make up the book reside in the [aetr-web-book](https://github.com/acep-uaf/aetr-web-book) GitHub repository. The generation process is publicly accessible. Errors in the document can be flagged using GitHub issues where they can be tracked and addressed by the DCM team.
 
-The book also integrates R code for data processing and figure generation. When data files are updated, triggering the render will update the figures automatically.
+The book also integrates R code for data processing and figure generation. When data files are updated, manually triggering the Quarto render will update the figures automatically.
