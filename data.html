@@ -222,13 +222,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="quarto-title-meta">
 
     
-  
     <div>
-    <div class="quarto-title-meta-heading">Modified</div>
+    <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">Mar 26, 2024 at 22:03</p>
+      <p class="date">Mar 26, 2024 at 22:36 UTC</p>
     </div>
   </div>
+  
     
   </div>
   
@@ -238,11 +238,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <div class="cell">
-<div class="sourceCode cell-code hidden" id="cb1" data-startfrom="16" data-source-offset="-19"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 15;"><span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>stdlib <span class="op">=</span> <span class="pp">require</span>(<span class="st">"@observablehq/stdlib"</span>)</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>d3 <span class="op">=</span> <span class="pp">require</span>(<span class="st">"d3@7"</span>)</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="co">// connect to database</span></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>db <span class="op">=</span> <span class="fu">FileAttachment</span>(<span class="st">"data/working/aetr.db"</span>)<span class="op">.</span><span class="fu">sqlite</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code hidden" id="cb1" data-startfrom="14" data-source-offset="-19"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 13;"><span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>stdlib <span class="op">=</span> <span class="pp">require</span>(<span class="st">"@observablehq/stdlib"</span>)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>d3 <span class="op">=</span> <span class="pp">require</span>(<span class="st">"d3@7"</span>)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co">// connect to database</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>db <span class="op">=</span> <span class="fu">FileAttachment</span>(<span class="st">"data/working/aetr.db"</span>)<span class="op">.</span><span class="fu">sqlite</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <div id="ojs-cell-1-1" data-nodetype="declaration">
@@ -266,10 +266,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code hidden" id="cb2" data-startfrom="32" data-source-offset="-108"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 31;"><span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>viewof dbTable <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">select</span>((<span class="cf">await</span> db<span class="op">.</span><span class="fu">describe</span>())<span class="op">.</span><span class="at">value</span><span class="op">.</span><span class="fu">map</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">name</span>)<span class="op">,</span> </span>
-<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>                    { <span class="dt">label</span><span class="op">:</span> <span class="st">"Table"</span> })</span>
-<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> db<span class="op">.</span><span class="fu">query</span>(<span class="vs">`SELECT * FROM </span><span class="sc">${</span>dbTable<span class="sc">}</span><span class="vs">`</span>)</span>
-<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>Inputs<span class="op">.</span><span class="fu">table</span>(data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code hidden" id="cb2" data-startfrom="30" data-source-offset="-108"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 29;"><span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>viewof dbTable <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">select</span>((<span class="cf">await</span> db<span class="op">.</span><span class="fu">describe</span>())<span class="op">.</span><span class="at">value</span><span class="op">.</span><span class="fu">map</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">name</span>)<span class="op">,</span> </span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>                    { <span class="dt">label</span><span class="op">:</span> <span class="st">"Table"</span> })</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> db<span class="op">.</span><span class="fu">query</span>(<span class="vs">`SELECT * FROM </span><span class="sc">${</span>dbTable<span class="sc">}</span><span class="vs">`</span>)</span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>Inputs<span class="op">.</span><span class="fu">table</span>(data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <div id="ojs-cell-2-1" data-nodetype="declaration">
