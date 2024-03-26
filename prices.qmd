@@ -261,23 +261,11 @@ import {tidy, groupBy, rename, summarize, sum, mutate, select, n, nDistinct, mea
 
 
 // connect to database
-db = FileAttachment("data/es.db").sqlite()
+db = FileAttachment("data/working/aetr.db").sqlite()
 
 // call table
 weighted_prices = db.sql`SELECT * FROM weighted_prices`;
 ```
 
-<br>
-<br>
-<br>
-
-```{ojs}
-//| echo: false
-//| eval: false
-viewof dbTable = Inputs.select((await db.describe()).value.map(d => d.name), 
-                    { label: "Table" })
-data = db.query(`SELECT * FROM ${dbTable}`)
-Inputs.table(data)
 
 
-```

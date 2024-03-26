@@ -1,0 +1,38 @@
+---
+title: "Price of Electricity"
+subtitle: "Prices Section of Alaska Electricity Trends Web Book"
+date-modified: last-modified
+date-format: "MMM D, YYYY [at] HH:mm"
+output:
+  quarto::quarto_html:
+    pre_processor: quarto::observable
+---
+
+
+```{ojs}
+//| echo: false
+
+// load libraries
+stdlib = require("@observablehq/stdlib")
+d3 = require("d3@7")
+
+// connect to database
+db = FileAttachment("data/working/aetr.db").sqlite()
+
+
+```
+
+
+
+```{ojs}
+//| echo: false
+
+// This chunk make the fancy dropdown database veiwing tool
+// Currently disabled, set `eval: true` to run
+viewof dbTable = Inputs.select((await db.describe()).value.map(d => d.name), 
+                    { label: "Table" })
+data = db.query(`SELECT * FROM ${dbTable}`)
+Inputs.table(data)
+
+
+```
