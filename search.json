@@ -190,6 +190,13 @@
     "text": "Rural Remote\nPut Rural Remote text here."
   },
   {
+    "objectID": "data/final/final_data.html",
+    "href": "data/final/final_data.html",
+    "title": "AETR Web Book",
+    "section": "",
+    "text": "data/final should be used as a directory for outgoing CSVs and public-facing data. Web products, such as visuals for the web book, should rely on database calls from data/working."
+  },
+  {
     "objectID": "methods.html",
     "href": "methods.html",
     "title": "Data Analysis Methods",
@@ -208,6 +215,20 @@
     "crumbs": [
       "Methods"
     ]
+  },
+  {
+    "objectID": "data/raw/raw_data.html",
+    "href": "data/raw/raw_data.html",
+    "title": "AETR Web Book",
+    "section": "",
+    "text": "/data/raw should be used as a directory for uncleaned, unorganized data."
+  },
+  {
+    "objectID": "data/working/working_data.html",
+    "href": "data/working/working_data.html",
+    "title": "AETR Web Book",
+    "section": "",
+    "text": "/data/working should be used as a directory for clean and organized data. This is primarily a location for active databases. CSVs should be limited or loaded into a database."
   },
   {
     "objectID": "credits.html",
