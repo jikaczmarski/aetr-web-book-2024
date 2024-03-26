@@ -4,17 +4,21 @@ subtitle: "Description of the Alaska Electricity Trends Report Web Book"
 
 ---
 
-The Alaska Electrical Trends Web Book has been produced by the Alaska Center for Energy and Power ([ACEP](https://www.uaf.edu/acep/)) at the University of Alaska Fairbanks ([UAF](https://www.uaf.edu/uaf/index.php)). It is designed to be interactive and dynamically updated when new data becomes available. This makes it a fundamental departure from its ancestor, the _Alaska Energy Statistics Report_.
+The Alaska Electrical Trends Report (AETR) Web Book has been produced by the Alaska Center for Energy and Power ([ACEP](https://www.uaf.edu/acep/)) at the University of Alaska Fairbanks ([UAF](https://www.uaf.edu/uaf/index.php)). It is designed to be interactive and dynamically updated when new data becomes available. 
 
 ## Historical Timeline of Prior Reports
+
+Throughout the years, several agencies have prepared and published reports and data compilations on energy use in Alaska. AETR is complimentary to those prior reports, but is not a direct successor to them because it focuses on electricity only. Here is a timeline of prior reports for context:
+
 - Before 1985: federal Alaska Power Administration published Alaska Electric Power Statistics report (AEPS)
 - 1985: Alaska Energy Authority (AEA, formerly Alaska Power Authority) begins gathering statistical data and publishing annual report
 - 1988: AEPS report becomes combined effort of the Alaska Systems Coordinating Council (ASCC) and AEA
 - 1993: AEPS becomes joint effort of the ASCC and the Alaska Department of Community and Regional Affairs, Division of Energy
 - 1995 - 2003: No reports published
 - 2003: the Institute of Social and Economic Research (ISER) at the University of Alaska Anchorage (UAA) prepare a report with funding from AEA, the Regulatory Commission of Alaska (RCA), and the Denali Commission
-- 2008 - 2012: ISER prepares Alaska Energy Statistics updates with funding from AEA
-- 2013: AEA prepares Excel workbook with updated data, but no report
+- 2008 - 2011: ISER prepares Alaska Energy Statistics updates with funding from AEA
+- 2012 - 2013: AEA prepares Excel workbook with updated data
+
 
 ## Technical Details
 
