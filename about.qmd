@@ -1,8 +1,6 @@
 ---
 title: "About"
 subtitle: "Description of the Alaska Electricity Trends Report Web Book"
-date-modified: last-modified
-date-format: "MMM D, YYYY [at] HH:mm"
 ---
 
 The Alaska Electrical Trends Report (AETR) Web Book has been produced by the Alaska Center for Energy and Power ([ACEP](https://www.uaf.edu/acep/)) at the University of Alaska Fairbanks ([UAF](https://www.uaf.edu/uaf/index.php)). It is designed to be interactive and dynamically updated when new data becomes available. 

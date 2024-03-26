@@ -1,7 +1,5 @@
 ---
 title: "Historical Electric Power Statistics Reports"
-date-modified: last-modified
-date-format: "MMM D, YYYY [at] HH:mm"
 ---
 
 # Historical Electric Power Reports

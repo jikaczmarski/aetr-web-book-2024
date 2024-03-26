@@ -16,6 +16,7 @@ website:
     logo: "images/ACEP_gear.png"
     pinned: true
     align: center
+    #title: "Alaska Electricity Trends Report <br> Last modified: {{< meta date >}}"
     tools: 
       - icon: globe
         href: https://www.uaf.edu/acep/
@@ -69,6 +70,8 @@ format:
     css: styles.css
     toc: true
 
+date: last-modified
+date-format: "MMM D, YYYY [at] HH:mm z"
 
 filters:
   - quarto

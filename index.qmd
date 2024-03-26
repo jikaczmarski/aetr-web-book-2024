@@ -1,8 +1,6 @@
 ---
 title: "Alaska Electricity Trends Report Web Book"
 subtitle: "Analysis of Alaska Electricity Data, 2011-2021"
-date-modified: last-modified
-date-format: "MMM D, YYYY [at] HH:mm"
 ---
 
 ## Welcome  {#welcome}
