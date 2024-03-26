@@ -1,6 +1,8 @@
 ---
 title: "Acronyms"
 subtitle: "Acronym Definitions for the Alaska Electricity Trends Report Web Book"
+date-modified: last-modified
+date-format: "MMM D, YYYY [at] HH:mm"
 
 ---
 

@@ -1,6 +1,8 @@
 ---
 title: "Generation by Fuel Type"
 subtitle: "Generation Section of Alaska Electricity Trends Report Web Book"
+date-modified: last-modified
+date-format: "MMM D, YYYY [at] HH:mm"
 ---
 
 ## General Overview
