@@ -1,0 +1,10 @@
+---
+title: "Historical Electric Power Statistics Reports"
+date-modified: last-modified
+date-format: "MMM D, YYYY [at] HH:mm"
+---
+
+# Historical Electric Power Reports
+Below is an exhaustive list of reports that were designed to examine electric power trends over time. Notably, we omit reports that include projections such as the State of Alaska Energy Reports/Plans.
+
+{{< include _previous_trends_reports.qmd >}}

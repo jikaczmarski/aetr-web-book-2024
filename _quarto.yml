@@ -54,7 +54,10 @@ website:
         icon: dot     
       - href: acronyms.qmd
         text: Definitions of Acronyms
-        icon: dot       
+        icon: dot
+      - href: historic_reports.qmd
+        text: Historical Data
+        icon: dot
 
 format:
   html:

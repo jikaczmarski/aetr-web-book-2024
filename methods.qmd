@@ -62,4 +62,5 @@ We note that the Coastal and Rural Remote regions include mixtures of power cost
 
 &nbsp;
 
-#[^1]: PCE assistance is applied to only the first 750 kWh per month of residential consumption, and also to community facilities consumption up to theS equivalent of 70 kWh per month for each person.
+<!---[^1]: PCE assistance is applied to only the first 750 kWh per month of residential consumption, and also to community facilities consumption up to theS equivalent of 70 kWh per month for each person.-->
+
