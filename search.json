@@ -67,6 +67,89 @@
     ]
   },
   {
+    "objectID": "data.html",
+    "href": "data.html",
+    "title": "Price of Electricity",
+    "section": "",
+    "text": "stdlib = require(\"@observablehq/stdlib\")\nd3 = require(\"d3@7\")\n\n// connect to database\ndb = FileAttachment(\"data/working/aetr.db\").sqlite()\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nviewof dbTable = Inputs.select((await db.describe()).value.map(d =&gt; d.name), \n                    { label: \"Table\" })\ndata = db.query(`SELECT * FROM ${dbTable}`)\nInputs.table(data)"
+  },
+  {
+    "objectID": "consumption.html",
+    "href": "consumption.html",
+    "title": "Electricity Consumption",
+    "section": "",
+    "text": "Consumption needs a better intro …"
+  },
+  {
+    "objectID": "consumption.html#general-overview",
+    "href": "consumption.html#general-overview",
+    "title": "Electricity Consumption",
+    "section": "",
+    "text": "Consumption needs a better intro …"
+  },
+  {
+    "objectID": "consumption.html#coastal",
+    "href": "consumption.html#coastal",
+    "title": "Electricity Consumption",
+    "section": "Coastal",
+    "text": "Coastal\nPut Coastal text here."
+  },
+  {
+    "objectID": "consumption.html#railbelt",
+    "href": "consumption.html#railbelt",
+    "title": "Electricity Consumption",
+    "section": "Railbelt",
+    "text": "Railbelt\nPut Railbelt text here."
+  },
+  {
+    "objectID": "consumption.html#rural-remote",
+    "href": "consumption.html#rural-remote",
+    "title": "Electricity Consumption",
+    "section": "Rural Remote",
+    "text": "Rural Remote\nPut Rural Remote text here."
+  },
+  {
+    "objectID": "data/final/final_data.html",
+    "href": "data/final/final_data.html",
+    "title": "AETR Web Book",
+    "section": "",
+    "text": "data/final should be used as a directory for outgoing CSVs and public-facing data. Web products, such as visuals for the web book, should rely on database calls from data/working."
+  },
+  {
+    "objectID": "methods.html",
+    "href": "methods.html",
+    "title": "Data Analysis Methods",
+    "section": "",
+    "text": "The data in this report was collected from a variety of sources and are listed below. Many electric utilities throughout the state are not required to submit annual reports to the federal government due to their size and/or number of customers. Therefore, our data sources encompass federal, state, commercial, and local filings as well as direct communications with utilities and state program managers. Each section of the report pulls data from a variety of these sources. The data was downloaded directly from the original source and concatenated to develop a dataset for this report. In some cases, a single observation is derived from multiple sources due to reporting limitations.\nBelow are relevant sources of data for the report.\n\n\n\nEnergy Information Administration\n\nEIA-860\nEIA-861\nEIA-923\n\nFederal Energy Regulatory Commission\n\nForm 1\n\n\n\n\n\n\nAlaska Energy Authority\n\nPower Cost Equalization Program Utility Monthly Reports\n\nRegulatory Authority of Alaska\n\nAnnual filings\n\n\n\n\n\n\nAlaska Energy Authority\n\nHydro/Wind Program Managers\nVillage and Powerhouse Assessments\n\nElectric Utilities\n\n\n\n\nAn Alaska engineering firm, DOWL, was hired to do the preliminary compilation of data and develop the workbooks supporting this report. Since this data comes from various sources, there is potential for errors in the compilation of the workbooks. Any discrepancies or noted errors should be reported to a member of the DCM Team listed on the About Page.",
+    "crumbs": [
+      "Methods"
+    ]
+  },
+  {
+    "objectID": "methods.html#compilation",
+    "href": "methods.html#compilation",
+    "title": "Data Analysis Methods",
+    "section": "",
+    "text": "An Alaska engineering firm, DOWL, was hired to do the preliminary compilation of data and develop the workbooks supporting this report. Since this data comes from various sources, there is potential for errors in the compilation of the workbooks. Any discrepancies or noted errors should be reported to a member of the DCM Team listed on the About Page.",
+    "crumbs": [
+      "Methods"
+    ]
+  },
+  {
+    "objectID": "data/raw/raw_data.html",
+    "href": "data/raw/raw_data.html",
+    "title": "AETR Web Book",
+    "section": "",
+    "text": "/data/raw should be used as a directory for uncleaned, unorganized data."
+  },
+  {
+    "objectID": "data/working/working_data.html",
+    "href": "data/working/working_data.html",
+    "title": "AETR Web Book",
+    "section": "",
+    "text": "/data/working should be used as a directory for clean and organized data. This is primarily a location for active databases. CSVs should be limited or loaded into a database."
+  },
+  {
     "objectID": "credits.html",
     "href": "credits.html",
     "title": "Credits",
@@ -105,82 +188,6 @@
     "crumbs": [
       "About the Team"
     ]
-  },
-  {
-    "objectID": "data/working/working_data.html",
-    "href": "data/working/working_data.html",
-    "title": "AETR Web Book",
-    "section": "",
-    "text": "/data/working should be used as a directory for clean and organized data. This is primarily a location for active databases. CSVs should be limited or loaded into a database."
-  },
-  {
-    "objectID": "data/raw/raw_data.html",
-    "href": "data/raw/raw_data.html",
-    "title": "AETR Web Book",
-    "section": "",
-    "text": "/data/raw should be used as a directory for uncleaned, unorganized data."
-  },
-  {
-    "objectID": "methods.html",
-    "href": "methods.html",
-    "title": "Data Analysis Methods",
-    "section": "",
-    "text": "The data in this report was collected from a variety of sources and are listed below. Many electric utilities throughout the state are not required to submit annual reports to the federal government due to their size and/or number of customers. Therefore, our data sources encompass federal, state, commercial, and local filings as well as direct communications with utilities and state program managers. Each section of the report pulls data from a variety of these sources. The data was downloaded directly from the original source and concatenated to develop a dataset for this report. In some cases, a single observation is derived from multiple sources due to reporting limitations.\nBelow are relevant sources of data for the report.\n\n\n\nEnergy Information Administration\n\nEIA-860\nEIA-861\nEIA-923\n\nFederal Energy Regulatory Commission\n\nForm 1\n\n\n\n\n\n\nAlaska Energy Authority\n\nPower Cost Equalization Program Utility Monthly Reports\n\nRegulatory Authority of Alaska\n\nAnnual filings\n\n\n\n\n\n\nAlaska Energy Authority\n\nHydro/Wind Program Managers\nVillage and Powerhouse Assessments\n\nElectric Utilities\n\n\n\n\nAn Alaska engineering firm, DOWL, was hired to do the preliminary compilation of data and develop the workbooks supporting this report. Since this data comes from various sources, there is potential for errors in the compilation of the workbooks. Any discrepancies or noted errors should be reported to a member of the DCM Team listed on the About Page.",
-    "crumbs": [
-      "Methods"
-    ]
-  },
-  {
-    "objectID": "methods.html#compilation",
-    "href": "methods.html#compilation",
-    "title": "Data Analysis Methods",
-    "section": "",
-    "text": "An Alaska engineering firm, DOWL, was hired to do the preliminary compilation of data and develop the workbooks supporting this report. Since this data comes from various sources, there is potential for errors in the compilation of the workbooks. Any discrepancies or noted errors should be reported to a member of the DCM Team listed on the About Page.",
-    "crumbs": [
-      "Methods"
-    ]
-  },
-  {
-    "objectID": "data/final/final_data.html",
-    "href": "data/final/final_data.html",
-    "title": "AETR Web Book",
-    "section": "",
-    "text": "data/final should be used as a directory for outgoing CSVs and public-facing data. Web products, such as visuals for the web book, should rely on database calls from data/working."
-  },
-  {
-    "objectID": "consumption.html",
-    "href": "consumption.html",
-    "title": "Electricity Consumption",
-    "section": "",
-    "text": "Consumption needs a better intro …"
-  },
-  {
-    "objectID": "consumption.html#general-overview",
-    "href": "consumption.html#general-overview",
-    "title": "Electricity Consumption",
-    "section": "",
-    "text": "Consumption needs a better intro …"
-  },
-  {
-    "objectID": "consumption.html#coastal",
-    "href": "consumption.html#coastal",
-    "title": "Electricity Consumption",
-    "section": "Coastal",
-    "text": "Coastal\nPut Coastal text here."
-  },
-  {
-    "objectID": "consumption.html#railbelt",
-    "href": "consumption.html#railbelt",
-    "title": "Electricity Consumption",
-    "section": "Railbelt",
-    "text": "Railbelt\nPut Railbelt text here."
-  },
-  {
-    "objectID": "consumption.html#rural-remote",
-    "href": "consumption.html#rural-remote",
-    "title": "Electricity Consumption",
-    "section": "Rural Remote",
-    "text": "Rural Remote\nPut Rural Remote text here."
   },
   {
     "objectID": "prices.html",
@@ -237,7 +244,7 @@
     "href": "prices.html#rural-remote",
     "title": "Price of Electricity",
     "section": "Rural Remote",
-    "text": "Rural Remote\nThe following figure shows the average price of electricity in the Rural Remote region for each customer class and year of the report. Between 2011 and 2019, Residential customers experienced a gradual increase in rates, while Commercial and Other customers experienced a gradual decrease in rates.\nThe average price of electricity for the Residential customers in the Rural Remote region rose 8% from $0.24/kWh in 2011 to $0.26/kWh in 2019. The average price of electricity for Commercial customers in the Rural Remote region fell 11% from $0.54/kWh in 2011 to $0.48/kWh in 2019. Finally, the average price of electricity for Other customers in the Rural Remote region fell 9% from $0.65/kWh in 2011 to $0.59/kWh in 2019.\n\nrural_remote_weighted_prices = tidy(weighted_prices, \n                              filter((d) =&gt; d.acep_energy_region === \"Rural Remote\"),\n                              filter((d) =&gt; d.year &lt; 2020)\n                            )\n\n// plot of regional average prices\nPlot.plot({\n    height: 550,\n\n    x: {domain: [2011, 2019]},\n    x: {tickFormat: \"\"},\n\n    y: {domain: [0, 70]},\n\n    grid: true,\n    marginRight: 70,\n\n    marks: [\n \n        Plot.line(rural_remote_weighted_prices,\n                {x: \"year\", \n                y: \"weighted_price\",\n                strokeWidth: 5,\n                stroke: \"sector\"\n                }),\n\n        Plot.text(rural_remote_weighted_prices, \n            Plot.selectLast({x: \"year\", \n                            y: \"weighted_price\", \n                            z: \"sector\", \n                            text: \"sector\", \n                            textAnchor: \"start\", dx: 5\n                            })),\n                            \n        Plot.tip(rural_remote_weighted_prices, \n            Plot.pointer({x: \"year\", y: \"weighted_price\"}))\n    ],\n    color: {\n        domain: [\"residential\", \"commercial\", \"other\"],\n        range: [\"#0084c1\", \"#e29617\", \"#fad900\"]\n    }\n})\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nstdlib = require(\"@observablehq/stdlib\")\nd3 = require(\"d3@7\")\nimport {tidy, groupBy, rename, summarize, sum, mutate, select, n, nDistinct, mean, filter, pivotWider, pivotLonger} from \"@pbeshai/tidyjs\"\n\n\n// connect to database\ndb = FileAttachment(\"data/es.db\").sqlite()\n\n// call table\nweighted_prices = db.sql`SELECT * FROM weighted_prices`;\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n  \n\nviewof dbTable = Inputs.select((await db.describe()).value.map(d =&gt; d.name), \n                    { label: \"Table\" })\ndata = db.query(`SELECT * FROM ${dbTable}`)\nInputs.table(data)",
+    "text": "Rural Remote\nThe following figure shows the average price of electricity in the Rural Remote region for each customer class and year of the report. Between 2011 and 2019, Residential customers experienced a gradual increase in rates, while Commercial and Other customers experienced a gradual decrease in rates.\nThe average price of electricity for the Residential customers in the Rural Remote region rose 8% from $0.24/kWh in 2011 to $0.26/kWh in 2019. The average price of electricity for Commercial customers in the Rural Remote region fell 11% from $0.54/kWh in 2011 to $0.48/kWh in 2019. Finally, the average price of electricity for Other customers in the Rural Remote region fell 9% from $0.65/kWh in 2011 to $0.59/kWh in 2019.\n\nrural_remote_weighted_prices = tidy(weighted_prices, \n                              filter((d) =&gt; d.acep_energy_region === \"Rural Remote\"),\n                              filter((d) =&gt; d.year &lt; 2020)\n                            )\n\n// plot of regional average prices\nPlot.plot({\n    height: 550,\n\n    x: {domain: [2011, 2019]},\n    x: {tickFormat: \"\"},\n\n    y: {domain: [0, 70]},\n\n    grid: true,\n    marginRight: 70,\n\n    marks: [\n \n        Plot.line(rural_remote_weighted_prices,\n                {x: \"year\", \n                y: \"weighted_price\",\n                strokeWidth: 5,\n                stroke: \"sector\"\n                }),\n\n        Plot.text(rural_remote_weighted_prices, \n            Plot.selectLast({x: \"year\", \n                            y: \"weighted_price\", \n                            z: \"sector\", \n                            text: \"sector\", \n                            textAnchor: \"start\", dx: 5\n                            })),\n                            \n        Plot.tip(rural_remote_weighted_prices, \n            Plot.pointer({x: \"year\", y: \"weighted_price\"}))\n    ],\n    color: {\n        domain: [\"residential\", \"commercial\", \"other\"],\n        range: [\"#0084c1\", \"#e29617\", \"#fad900\"]\n    }\n})\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nstdlib = require(\"@observablehq/stdlib\")\nd3 = require(\"d3@7\")\nimport {tidy, groupBy, rename, summarize, sum, mutate, select, n, nDistinct, mean, filter, pivotWider, pivotLonger} from \"@pbeshai/tidyjs\"\n\n\n// connect to database\ndb = FileAttachment(\"data/working/aetr.db\").sqlite()\n\n// call table\nweighted_prices = db.sql`SELECT * FROM weighted_prices`;",
     "crumbs": [
       "Price of Electricity"
     ]
