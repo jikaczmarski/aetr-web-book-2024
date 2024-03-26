@@ -57,9 +57,9 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "Alaska Electricity Trends Web Book",
+    "title": "Alaska Electricity Trends Report Web Book",
     "section": "",
-    "text": "This interactive report summarizes federal, state, and utility data in the form of a web book. It provides an overview of electricity capacity, generation, consumption, and price trends from 2011 to 2021. A comprehensive report highlighting these trends has not been produced for the state of Alaska since the 2013 Alaska Energy Statistics Report.\nThe book has been designed to be a living document that will be updated as more data becomes available. Please explore the data using the chapter navigation links in the left sidebar and the section navigation links in the right sidebar. Additional chapters include:\n\nAbout the Report: an historical timeline of previous Alaskan energy reports and technical details on this version.\nAbout the Team: credits and acknowledgments for the people and funding sources that contributed to this report.",
+    "text": "This interactive report summarizes federal, state, and utility electricity data in the form of a web book. It provides an overview of electricity capacity, generation, consumption, and price trends from 2011 to 2021. A comprehensive report highlighting these trends has not been produced for the state of Alaska since the 2013 Alaska Energy Statistics Report.\nThe book has been designed to be a living document that will be updated as more data becomes available. Please explore the data using the chapter navigation links in the left sidebar and the section navigation links in the right sidebar. Additional chapters include:\n\nAbout the Report: an historical timeline of previous Alaskan energy reports and technical details on this version.\nAbout the Team: credits and acknowledgments for the people and funding sources that contributed to this report.\nMethods: a description of data sources, the Power Cost Equalization (PCE) program, and the geographic regions used for analysis.",
     "crumbs": [
       "Summary"
     ]
@@ -67,9 +67,9 @@
   {
     "objectID": "index.html#welcome",
     "href": "index.html#welcome",
-    "title": "Alaska Electricity Trends Web Book",
+    "title": "Alaska Electricity Trends Report Web Book",
     "section": "",
-    "text": "This interactive report summarizes federal, state, and utility data in the form of a web book. It provides an overview of electricity capacity, generation, consumption, and price trends from 2011 to 2021. A comprehensive report highlighting these trends has not been produced for the state of Alaska since the 2013 Alaska Energy Statistics Report.\nThe book has been designed to be a living document that will be updated as more data becomes available. Please explore the data using the chapter navigation links in the left sidebar and the section navigation links in the right sidebar. Additional chapters include:\n\nAbout the Report: an historical timeline of previous Alaskan energy reports and technical details on this version.\nAbout the Team: credits and acknowledgments for the people and funding sources that contributed to this report.",
+    "text": "This interactive report summarizes federal, state, and utility electricity data in the form of a web book. It provides an overview of electricity capacity, generation, consumption, and price trends from 2011 to 2021. A comprehensive report highlighting these trends has not been produced for the state of Alaska since the 2013 Alaska Energy Statistics Report.\nThe book has been designed to be a living document that will be updated as more data becomes available. Please explore the data using the chapter navigation links in the left sidebar and the section navigation links in the right sidebar. Additional chapters include:\n\nAbout the Report: an historical timeline of previous Alaskan energy reports and technical details on this version.\nAbout the Team: credits and acknowledgments for the people and funding sources that contributed to this report.\nMethods: a description of data sources, the Power Cost Equalization (PCE) program, and the geographic regions used for analysis.",
     "crumbs": [
       "Summary"
     ]
@@ -77,7 +77,7 @@
   {
     "objectID": "index.html#executive-summary",
     "href": "index.html#executive-summary",
-    "title": "Alaska Electricity Trends Web Book",
+    "title": "Alaska Electricity Trends Report Web Book",
     "section": "Executive Summary",
     "text": "Executive Summary\nThe objective of this work is to provide regulators, legislators, and other energy stakeholders with a holistic look at recent trends in electrical generation. The first impetus for this report is a lack of combined reporting on electricity generation across the state that extends to federally and non-federally regulated electric utilities. The second impetus for this report is to aid in decision-making processes surrounding Alaska’s energy future.\nWith uncertainty in natural gas sources on the Railbelt, changing technology, and lower-cost alternatives, understanding trends in the state’s capacity, generation, consumption, and prices is vital to more informed decision-making.\nIn this report, we present data collected from federal, state, and local sources supplemented by correspondence with utilities. We show trends for capacity, generation, consumption, and prices. The capacity and generation trends include data from 2011 to 2021, and the consumption and prices trends are data limited to 2019. More information on sources and methods are provided in the subsequent sections throughout the report. This report uses data visualizations as the primary mode for presenting the trends. To accommodate this presentation style, we present trends as simplified regions of the state as opposed to the Alaska Energy Authority energy regions.\nWe emphasize that this report is designed to provide factual information to the best of our ability without providing recommendations or in-depth analysis. However, context is provided for more impactful trends.",
     "crumbs": [
@@ -87,7 +87,7 @@
   {
     "objectID": "index.html#key-takeaways",
     "href": "index.html#key-takeaways",
-    "title": "Alaska Electricity Trends Web Book",
+    "title": "Alaska Electricity Trends Report Web Book",
     "section": "Key Takeaways",
     "text": "Key Takeaways\n\nCapacity\n\nGeneration capacity on average increased across all of Alaska from 2011 to 2021.\nThe state saw large increases in renewable energy capacity, storage, and on-demand peaking units.\n\n\n\nGeneration\n\nNet generation has remained relatively stable\nThe Coastal region generated more power from wind and hydro, but less from oil in 2021 than in 2011.\nThe Railbelt region generated more power from wind, hydro, coal, and solar, but less from oil and gas in 2021 than in 2011.\nThe Rural Remote region generated more power from wind and solar, but less from oil and hydro in 2021 than in 2011.\nWe have seen significant increases in the usage of utility-scale battery storage.\n\n\n\nConsumption\n\nElectricity consumption has fallen for all customer classes, with residential customers seeing the most reductions.\nThe number of customer accounts have continued to increase throughout the state.\nPer capita consumption for the residential sector is highest in the Coastal region and lowest in the Rural Remote region.\n\n\n\nPrices\n\nResidential electricity rates increased on average across Alaska after adjusting for inflation, the PCE subsidy, and population weighting.\nThe region that experienced the least residential rate gain was the Coastal region with a 6% increase.\nThe region experiencing the highest residential rate gain was the Railbelt with a 26% increase.\nCommercial and Other customers in the Coastal and Rural Remote regions saw rate decreases where Commercial customers in the Railbelt region saw price increases of about 15%.\nPCE subsidies continue to dampen residential prices in the Coastal and Rural Remote regions.",
     "crumbs": [
@@ -254,7 +254,7 @@
     "href": "about.html",
     "title": "About",
     "section": "",
-    "text": "The Alaska Electrical Trends Web Book has been produced by the Alaska Center for Energy and Power (ACEP) at the University of Alaska Fairbanks (UAF). It is designed to be interactive and dynamically updated when new data becomes available. This makes it a fundamental departure from its ancestor, the Alaska Energy Statistics Report.",
+    "text": "The Alaska Electrical Trends Report (AETR) Web Book has been produced by the Alaska Center for Energy and Power (ACEP) at the University of Alaska Fairbanks (UAF). It is designed to be interactive and dynamically updated when new data becomes available.",
     "crumbs": [
       "About the Report"
     ]
@@ -264,7 +264,7 @@
     "href": "about.html#historical-timeline-of-prior-reports",
     "title": "About",
     "section": "Historical Timeline of Prior Reports",
-    "text": "Historical Timeline of Prior Reports\n\nBefore 1985: federal Alaska Power Administration published Alaska Electric Power Statistics report (AEPS)\n1985: Alaska Energy Authority (AEA, formerly Alaska Power Authority) begins gathering statistical data and publishing annual report\n1988: AEPS report becomes combined effort of the Alaska Systems Coordinating Council (ASCC) and AEA\n1993: AEPS becomes joint effort of the ASCC and the Alaska Department of Community and Regional Affairs, Division of Energy\n1995 - 2003: No reports published\n2003: the Institute of Social and Economic Research (ISER) at the University of Alaska Anchorage (UAA) prepare a report with funding from AEA, the Regulatory Commission of Alaska (RCA), and the Denali Commission\n2008 - 2012: ISER prepares Alaska Energy Statistics updates with funding from AEA\n2013: AEA prepares Excel workbook with updated data, but no report",
+    "text": "Historical Timeline of Prior Reports\nThroughout the years, several agencies have prepared and published reports and data compilations on energy use in Alaska. AETR is complimentary to those prior reports, but is not a direct successor to them because it focuses on electricity only. Here is a timeline of prior reports for context:\n\nBefore 1985: federal Alaska Power Administration published Alaska Electric Power Statistics report (AEPS)\n1985: Alaska Energy Authority (AEA, formerly Alaska Power Authority) begins gathering statistical data and publishing annual report\n1988: AEPS report becomes combined effort of the Alaska Systems Coordinating Council (ASCC) and AEA\n1993: AEPS becomes joint effort of the ASCC and the Alaska Department of Community and Regional Affairs, Division of Energy\n1995 - 2003: No reports published\n2003: the Institute of Social and Economic Research (ISER) at the University of Alaska Anchorage (UAA) prepare a report with funding from AEA, the Regulatory Commission of Alaska (RCA), and the Denali Commission\n2008 - 2011: ISER prepares Alaska Energy Statistics updates with funding from AEA\n2012 - 2013: AEA prepares Excel workbook with updated data",
     "crumbs": [
       "About the Report"
     ]
