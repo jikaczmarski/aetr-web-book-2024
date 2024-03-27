@@ -1,13 +1,8 @@
 ---
-<<<<<<< HEAD
-title: "Price of Electricity"
-subtitle: "Prices Section of Alaska Electricity Trends Web Book"
-=======
 title: "Data Portal"
 subtitle: "Download the data used to build this web book"
 date-modified: last-modified
 date-format: "MMM D, YYYY [at] HH:mm"
->>>>>>> 85ec6dc (add download link to data page)
 output:
   quarto::quarto_html:
     pre_processor: quarto::observable
