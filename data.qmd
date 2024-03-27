@@ -1,6 +1,5 @@
 ---
 title: "Data Portal"
-subtitle: "Download the data used to build this web book"
 date-modified: last-modified
 date-format: "MMM D, YYYY [at] HH:mm"
 output:
@@ -8,6 +7,67 @@ output:
     pre_processor: quarto::observable
 echo: false
 ---
+<br>
+
+## Data Overview
+The data used in this web-book is derived from federal, state, commercial, and local sources, as well as direct communications with utilites and state program managers. More information about data sources can be found on the [methods page](./methods.html) of this web-book.
+
+## Download Individual Tables
+Individual tables within the database can be downloaded here as text files (CSV, comma-separated values). Once downloaded to your local machine, these files can be opened graphically using Microsoft Excel, or programatically using R or Python. All files are generated from the database upon download and reflect the most up to date versions of the data.  
+
+Select the desired table from the drop-down menu below
+
+#### Table Name:
+```{ojs}
+// This chunk makes the fancy dropdown database veiwing tool
+
+viewof dbTable = Inputs.select((await db.describe()).value.map(d => d.name), 
+                    { label: "" })
+data = db.query(`SELECT * FROM ${dbTable}`)
+```
+
+```{ojs}
+Inputs.table(data)
+
+```
+
+
+```{ojs}
+button = (data, filename = 'data.csv') => {
+  const downloadData = new Blob([d3.csvFormat(data)], { type: "text/csv" });
+
+  const size = (downloadData.size / 1024).toFixed(1);
+  const button = DOM.download(
+    downloadData,
+    filename,
+    `Download ${filename} (${size} KB)`
+  );
+  return button;
+}
+
+button(data, `${dbTable}`)
+```
+
+<br>
+
+## Download All Tables
+If you would like to obtain all files in the database, there are two options. Either you can download the tables as a ZIP file of CSVs, or you can download the SQLite database itself. 
+
+### Zip
+Pending
+
+
+### SQLite Database
+```{ojs}
+//| eval: false
+DOM.download("data/working/aetr.db")
+
+```
+
+
+<li><a href="data/working/aetr.db">Download the database</a></li>
+
+
 
 
 ```{ojs}
@@ -19,25 +79,3 @@ d3 = require("d3@7")
 db = FileAttachment("data/working/aetr.db").sqlite()
 
 ```
-
-
-The table and downloadable CSV are rendered directly from the SQLite database!
-```{ojs}
-// This chunk makes the fancy dropdown database veiwing tool
-// 
-viewof dbTable = Inputs.select((await db.describe()).value.map(d => d.name), 
-                    { label: "Table" })
-data = db.query(`SELECT * FROM ${dbTable}`)
-Inputs.table(data)
-
-```
-
-```{ojs}
-
-blob = new Blob([d3.csvFormat(data)], {type: "text/csv"})
-
-DOM.download(blob, `${dbTable}`, `Download this table`)
-
-
-```
-
