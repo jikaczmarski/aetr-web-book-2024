@@ -20,10 +20,11 @@ db = FileAttachment("data/working/aetr.db").sqlite()
 
 ```
 
+
+The table and downloadable CSV are rendered directly from the SQLite database!
 ```{ojs}
-//| eval: false
-// This chunk make the fancy dropdown database veiwing tool
-// Currently disabled, set `eval: true` to run
+// This chunk makes the fancy dropdown database veiwing tool
+// 
 viewof dbTable = Inputs.select((await db.describe()).value.map(d => d.name), 
                     { label: "Table" })
 data = db.query(`SELECT * FROM ${dbTable}`)
@@ -31,32 +32,12 @@ Inputs.table(data)
 
 ```
 
-The table and downloadable CSV are rendered directly from the SQLite database!
 ```{ojs}
-weighted_prices = db.query(`SELECT * FROM weighted_prices`)
-Inputs.table(weighted_prices)
+
+blob = new Blob([d3.csvFormat(data)], {type: "text/csv"})
+
+DOM.download(blob, `${dbTable}`, `Download this table`)
+
+
 ```
-
-```{ojs}
-{
-  const div = DOM.element('div');
-  const button = downloadButton([]);
-  return button;
-}
-
-// build the download button function
-downloadButton = (weighted_prices, filename = 'weighted_prices.csv') => {
-  const csv = new Blob([d3.csvFormat(weighted_prices)], { type: "text/csv" });
-  const size = (csv.size / 1024).toFixed(0);
-
-  const button = DOM.download(
-    csv,
-    filename,
-    `Download ${filename} (~${size} KB)`
-  );
-  return button;
-}
-```
-
-
 
