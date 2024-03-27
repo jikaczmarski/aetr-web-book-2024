@@ -69,9 +69,9 @@
   {
     "objectID": "data.html",
     "href": "data.html",
-    "title": "Price of Electricity",
+    "title": "Data Portal",
     "section": "",
-    "text": "stdlib = require(\"@observablehq/stdlib\")\nd3 = require(\"d3@7\")\n\n// connect to database\ndb = FileAttachment(\"data/working/aetr.db\").sqlite()\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nviewof dbTable = Inputs.select((await db.describe()).value.map(d =&gt; d.name), \n                    { label: \"Table\" })\ndata = db.query(`SELECT * FROM ${dbTable}`)\nInputs.table(data)"
+    "text": "stdlib = require(\"@observablehq/stdlib\")\nd3 = require(\"d3@7\")\n\n// connect to database\ndb = FileAttachment(\"data/working/aetr.db\").sqlite()\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nviewof dbTable = Inputs.select((await db.describe()).value.map(d =&gt; d.name), \n                    { label: \"Table\" })\ndata = db.query(`SELECT * FROM ${dbTable}`)\nInputs.table(data)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThe table and downloadable CSV are rendered directly from the SQLite database!\n\nweighted_prices = db.query(`SELECT * FROM weighted_prices`)\nInputs.table(weighted_prices)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n{\n  const div = DOM.element('div');\n  const button = downloadButton([]);\n  return button;\n}\n\n\n\n\n\n\n\ndownloadButton = (weighted_prices, filename = 'weighted_prices.csv') =&gt; {\n  const csv = new Blob([d3.csvFormat(weighted_prices)], { type: \"text/csv\" });\n  const size = (csv.size / 1024).toFixed(0);\n\n  const button = DOM.download(\n    csv,\n    filename,\n    `Download ${filename} (~${size} KB)`\n  );\n  return button;\n}"
   },
   {
     "objectID": "consumption.html",
