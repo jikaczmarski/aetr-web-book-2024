@@ -3,11 +3,16 @@ project:
   
 website: 
   page-navigation: true
+  back-to-top-navigation: true
   title: AETR Web Book 
   site-url: "https://acep-uaf.github.io/aetr-web-book/" 
   repo-url: https://github.com/acep-uaf/aetr-web-book 
+  other-links: 
+    - href: mailto:uaf-acep-dcm-support@alaska.edu
+      text: Report an issue via email
+      icon: envelope-exclamation
   repo-actions: [issue]
-  
+ 
   page-footer:
     right: "This page is based on Openscape's [Quarto Site Template](https://github.com/Openscapes/quarto-website-tutorial) and built with [Quarto](https://quarto.org/) ."
     left: "&copy; CC-By , 2023"
@@ -16,7 +21,7 @@ website:
     logo: "images/ACEP_gear.png"
     pinned: true
     align: center
-    #title: "Alaska Electricity Trends Report <br> Last modified: {{< meta date >}}"
+    title: "<strong>Alaska Electricity Trends Report<strong><br/>"
     tools: 
       - icon: globe
         href: https://www.uaf.edu/acep/
@@ -57,8 +62,9 @@ website:
         text: Definitions of Acronyms
         icon: dot
       - href: historic_reports.qmd
-        text: Historical Data
+        text: Historical Reports
         icon: dot
+
 
 format:
   html:

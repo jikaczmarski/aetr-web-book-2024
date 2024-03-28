@@ -7,13 +7,13 @@ subtitle: "Acronym Definitions for the Alaska Electricity Trends Report Web Book
 
 These abbreviations are used throughout this report
 
-- ACEP: Alaska Center for Energy and Power, UAF
-- AEA:  Alaska Energy Authority
+- ACEP:  Alaska Center for Energy and Power, UAF
+- AEA:   Alaska Energy Authority
 - BUECI: Barrow Utilities & Electric Cooperative, Inc.
-- DCM: Data and Cyberinfrastructure Management, ACEP
+- DCM:  the Data and Cyberinfrastructure Management team at ACEP, UAF
 - PCE:  Power Cost Equalization
 - EIA:  Energy Information Administration
-- ETI: Energy Transitions Initiative, ACEP
+- ETI:  Energy Transitions Initiative, ACEP
 - FERC: Federal Energy Regulatory Commission
 - CAGR: Compound Annual Growth Rate
 - KW:  Kilowatts

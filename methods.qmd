@@ -32,7 +32,8 @@ Below are relevant sources of data for the report.
 
 ## Compilation
 
-An Alaska engineering firm, [DOWL](https://www.dowl.com/), was hired to do the preliminary compilation of data and develop the workbooks supporting this report.  Since  this data comes from various sources, there is potential for errors in the compilation of the workbooks. Any discrepancies or noted errors should be reported to a member of the DCM Team listed on the [About Page](about.qmd).
+An Alaska engineering firm, [DOWL](https://www.dowl.com/), was hired to do the preliminary compilation of data and to develop the Excel workbooks that support this report. This step involved careful cross-referencing of assets between the various data sources and error checking by domain experts. At this point, aggregate calculations were created to match the tables found in previous _Alaska Energy Statistics Reports_. Data in this report were derived from those workbooks exported to CSV and SQLite formats; the original workbooks are available upon request.
+
 
 # Power Cost Equalization (PCE)
 
@@ -58,7 +59,13 @@ We note that the Coastal and Rural Remote regions include mixtures of power cost
 
 ![Cartographic Relationship between Energy Regions as defined by AEA and ACEP](images/AEA_ACEP_regions_map.png){width=600}
 
+
+<!---
 &nbsp;
+[^1]: PCE assistance is applied to only the first 750 kWh per month of residential consumption, and also to community facilities consumption up to theS equivalent of 70 kWh per month for each person.
+-->
 
-<!---[^1]: PCE assistance is applied to only the first 750 kWh per month of residential consumption, and also to community facilities consumption up to theS equivalent of 70 kWh per month for each person.-->
 
+# Feedback Regarding Potential Errors
+
+Since these data come from multiple sources, there is potential for errors in its compilation. An integral part of this effort is the creation of a high quality dataset that can constructively contribute to future work. Therefore, any discrepancies or noted errors should be reported using email or GitHub issues via the links in the right hand navigation menu of every page. Alternatively, direct contact information for members of the DCM team is listed on the [Credits Page](credits.qmd).
