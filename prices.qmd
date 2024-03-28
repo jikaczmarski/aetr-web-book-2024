@@ -93,8 +93,11 @@ Plot.plot({
 
  {{< include _prices_raincloud.qmd >}}
 
+<br>
 
-
+```{ojs}
+Inputs.table(data)
+```
 
 <br>
 

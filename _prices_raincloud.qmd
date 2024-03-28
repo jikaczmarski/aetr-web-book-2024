@@ -16,28 +16,29 @@ Plot.plot(flipCoords ? rainCloudY : rainCloudX)
 ```{ojs}
 // active inputs
 
-// viewof dimension = Inputs.select(['culmen_length_mm', 'culmen_depth_mm', 'flipper_length_mm', 'body_mass_g'], { label: 'Dimension', value: 'flipper_length_mm' })
-
-
 // weighted/unweighted
-viewof dimension = Inputs.select(['avg_price', 'weighted_price'], { label: 'Dimension', value: 'weighted_price' })
+viewof dimension = Inputs.select(['avg_price', 'weighted_price'], { label: 'Weighted?', value: 'weighted_price' })
 
-
-
-viewof thresholds = Inputs.select([10, 20, 60], { label: 'Bins for Half Violin', value: 20 })
-
-viewof rawDataSize = Inputs.range([10, 100], { value: 40, step: 10, label: 'Raw Data Size (%)' })
-
-viewof rawDataOffset = Inputs.range([0, 50], { value: 5, step: 5, label: 'Raw Data Offset (%)' })
-
-viewof flipCoords = Inputs.toggle({ label: 'Flip Coordinate System', value: false })
+viewof flipCoords = Inputs.toggle({ label: 'Flip', value: false })
 ```
+
+
+
 
 ```{ojs}
 // hardcoded inputs here
 
+// viewof thresholds = Inputs.select([10, 20, 60], { label: 'Bins', value: 60 })
+thresholds = 40
+
 // viewof seed = Inputs.range([1, 100], { step: 1, label: 'Raw Data Seed', value: 1 })
 seed = 1
+
+// viewof rawDataSize = Inputs.range([10, 100], { value: 40, step: 10, label: 'Raw Data Size (%)' })
+rawDataSize = 40
+
+// viewof rawDataOffset = Inputs.range([0, 50], { value: 5, step: 5, label: 'Raw Data Offset (%)' })
+rawDataOffset = 5
 
 ```
 
@@ -55,7 +56,7 @@ rainCloudY = ({
     marginBottom: 40
   },
   x: {
-    ticks: 3,
+    ticks: 0,
     tickFormat: d => d < 0 ? '' : d
   },
   marginTop: 40,
@@ -109,7 +110,7 @@ rainCloudX = ({
     marginRight: 80
   },
   y: {
-    ticks: 3,
+    ticks: 0,
     tickFormat: d => d < 0 ? '' : d 
   },
   marginBottom: 40,
@@ -140,11 +141,11 @@ halfViolinX = Plot.areaY(
 rawDataX = Plot.dot(
   data,
   {
-		x: dimension,
-	  y: jitter(data, seed),
-	  fill: 'acep_energy_region',
-		stroke: null,
-		r: 1.5
+	x: dimension,
+    y: jitter(data, seed),
+    fill: 'acep_energy_region',
+    stroke: null,
+    r: 1.5
 	}
 )
 ```
@@ -176,8 +177,6 @@ bins = d3
 
 // data = FileAttachment("data/raw/palmer_penguins.csv").csv({ typed: true })
 data = db.sql`SELECT * FROM weighted_prices`;
-
-Inputs.table(data)
 
 seedrandom = require('seedrandom')
 ```
