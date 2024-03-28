@@ -3,16 +3,26 @@
 Plot.plot(flipCoords ? rainCloudY : rainCloudX)
 ```
 
+```{r}
+# desired inputs:  
+# community size
+# year
+# weighted/unweighted
+```
 
-desired inputs:  
-community size
-year
-weighted/unweighted
+
 
 
 ```{ojs}
 // active inputs
-viewof dimension = Inputs.select(['culmen_length_mm', 'culmen_depth_mm', 'flipper_length_mm', 'body_mass_g'], { label: 'Dimension', value: 'flipper_length_mm' })
+
+// viewof dimension = Inputs.select(['culmen_length_mm', 'culmen_depth_mm', 'flipper_length_mm', 'body_mass_g'], { label: 'Dimension', value: 'flipper_length_mm' })
+
+
+// weighted/unweighted
+viewof dimension = Inputs.select(['avg_price', 'weighted_price'], { label: 'Dimension', value: 'weighted_price' })
+
+
 
 viewof thresholds = Inputs.select([10, 20, 60], { label: 'Bins for Half Violin', value: 20 })
 
@@ -23,22 +33,13 @@ viewof rawDataOffset = Inputs.range([0, 50], { value: 5, step: 5, label: 'Raw Da
 viewof flipCoords = Inputs.toggle({ label: 'Flip Coordinate System', value: false })
 ```
 
-
 ```{ojs}
-// overridden inputs here
+// hardcoded inputs here
 
 // viewof seed = Inputs.range([1, 100], { step: 1, label: 'Raw Data Seed', value: 1 })
 seed = 1
 
-
-
-
-
-
-
 ```
-
-
 
 
 ```{ojs}
@@ -50,7 +51,7 @@ rainCloudY = ({
   ],
   facet: {
     data: data,
-    x: 'species',
+    x: 'acep_energy_region',
     marginBottom: 40
   },
   x: {
@@ -74,7 +75,7 @@ halfViolinY = Plot.areaX(
     },
     {
       y: dimension,
-      fill: 'species',
+      fill: 'acep_energy_region',
       thresholds: thresholds,
       curve: 'basis'
     }
@@ -86,11 +87,11 @@ halfViolinY = Plot.areaX(
 rawDataY = Plot.dot(
   data,
   {
-		y: dimension,
-	  x: jitter(data, seed),
-	  fill: 'species',
-		stroke: null,
-		r: 1.5
+	y: dimension,
+    x: jitter(data, seed),
+	fill: 'acep_energy_region',
+	stroke: null,
+	r: 1.5
 	}
 )
 ```
@@ -104,7 +105,7 @@ rainCloudX = ({
   ],
   facet: {
     data: data,
-    y: 'species',
+    y: 'acep_energy_region',
     marginRight: 80
   },
   y: {
@@ -126,7 +127,7 @@ halfViolinX = Plot.areaY(
     },
     {
       x: dimension,
-      fill: 'species',
+      fill: 'acep_energy_region',
       thresholds: thresholds,
       curve: 'basis'
     }
@@ -141,7 +142,7 @@ rawDataX = Plot.dot(
   {
 		x: dimension,
 	  y: jitter(data, seed),
-	  fill: 'species',
+	  fill: 'acep_energy_region',
 		stroke: null,
 		r: 1.5
 	}
@@ -173,7 +174,10 @@ bins = d3
   .domain(d3.extent(data, d => d[dimension]))
   .thresholds(thresholds)
 
-data = FileAttachment("data/raw/palmer_penguins.csv").csv({ typed: true })
+// data = FileAttachment("data/raw/palmer_penguins.csv").csv({ typed: true })
+data = db.sql`SELECT * FROM weighted_prices`;
+
+Inputs.table(data)
 
 seedrandom = require('seedrandom')
 ```
