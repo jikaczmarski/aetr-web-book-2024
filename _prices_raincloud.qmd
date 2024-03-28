@@ -1,0 +1,179 @@
+
+```{ojs}
+Plot.plot(flipCoords ? rainCloudY : rainCloudX)
+```
+
+
+desired inputs:  
+community size
+year
+weighted/unweighted
+
+
+```{ojs}
+// active inputs
+viewof dimension = Inputs.select(['culmen_length_mm', 'culmen_depth_mm', 'flipper_length_mm', 'body_mass_g'], { label: 'Dimension', value: 'flipper_length_mm' })
+
+viewof thresholds = Inputs.select([10, 20, 60], { label: 'Bins for Half Violin', value: 20 })
+
+viewof rawDataSize = Inputs.range([10, 100], { value: 40, step: 10, label: 'Raw Data Size (%)' })
+
+viewof rawDataOffset = Inputs.range([0, 50], { value: 5, step: 5, label: 'Raw Data Offset (%)' })
+
+viewof flipCoords = Inputs.toggle({ label: 'Flip Coordinate System', value: false })
+```
+
+
+```{ojs}
+// overridden inputs here
+
+// viewof seed = Inputs.range([1, 100], { step: 1, label: 'Raw Data Seed', value: 1 })
+seed = 1
+
+
+
+
+
+
+
+```
+
+
+
+
+```{ojs}
+rainCloudY = ({
+  marks: [
+    Plot.ruleY([Math.floor(d3.min(data.map(d => d[dimension])))]),
+    halfViolinY,
+    rawDataY
+  ],
+  facet: {
+    data: data,
+    x: 'species',
+    marginBottom: 40
+  },
+  x: {
+    ticks: 3,
+    tickFormat: d => d < 0 ? '' : d
+  },
+  marginTop: 40,
+  marginBottom: 60,
+  marginRight: 60,
+  width: 480,
+  height: 640
+})
+```
+
+```{ojs}
+halfViolinY = Plot.areaX(
+  data,
+  Plot.binY(
+    {
+      x: 'count'
+    },
+    {
+      y: dimension,
+      fill: 'species',
+      thresholds: thresholds,
+      curve: 'basis'
+    }
+  )
+)
+```
+
+```{ojs}
+rawDataY = Plot.dot(
+  data,
+  {
+		y: dimension,
+	  x: jitter(data, seed),
+	  fill: 'species',
+		stroke: null,
+		r: 1.5
+	}
+)
+```
+
+```{ojs}
+rainCloudX = ({
+  marks: [
+    Plot.ruleX([Math.floor(d3.min(data.map(d => d[dimension])))]),
+    halfViolinX,
+    rawDataX
+  ],
+  facet: {
+    data: data,
+    y: 'species',
+    marginRight: 80
+  },
+  y: {
+    ticks: 3,
+    tickFormat: d => d < 0 ? '' : d 
+  },
+  marginBottom: 40,
+  width: 640,
+  height: 480
+})
+```
+
+```{ojs}
+halfViolinX = Plot.areaY(
+  data,
+  Plot.binX(
+    {
+      y: 'count'
+    },
+    {
+      x: dimension,
+      fill: 'species',
+      thresholds: thresholds,
+      curve: 'basis'
+    }
+  )
+)
+```
+
+
+```{ojs}
+rawDataX = Plot.dot(
+  data,
+  {
+		x: dimension,
+	  y: jitter(data, seed),
+	  fill: 'species',
+		stroke: null,
+		r: 1.5
+	}
+)
+```
+
+
+```{ojs}
+//| echo: false
+// appendix
+
+jitter = (data, seed) => {
+  const rng = seedrandom(seed);
+  return data.map(() => -(rng() * rawDataSize + rawDataOffset) * maxTotal / 100);
+}
+
+maxTotal = d3.max(
+  Array.from(
+    d3
+    .group(data, d => d.species)
+    .values()
+  )
+  .flatMap(g => bins(g.map(d => d[dimension])))
+  .map(bin => bin.length)
+)
+
+bins = d3
+  .bin()
+  .domain(d3.extent(data, d => d[dimension]))
+  .thresholds(thresholds)
+
+data = FileAttachment("data/raw/palmer_penguins.csv").csv({ typed: true })
+
+seedrandom = require('seedrandom')
+```

@@ -4,6 +4,7 @@ subtitle: "Prices Section of Alaska Electricity Trends Web Book"
 output:
   quarto::quarto_html:
     pre_processor: quarto::observable
+echo: false
 ---
 
 ## General Overview
@@ -18,9 +19,25 @@ The following figure shows the average price across all customer classes and reg
 While the average prices can show overall trends, there is nuance to electricity prices throughout the different regions of the state and various classes of electricity customers. To provide an example of this, we show the variation in electricity prices for the residential customer class across regions and years in the figure below.  
 
 Due to the wide range of electricity prices in Alaska, it is difficult to accurately summarize the data. Because of this, we determined that averages were best calculated using a customer account weighted average. Population is roughly correlated to price, with small communities experiencing higher rates than larger communities. The average number of customer accounts for the year was used to calculate the weighted arithmetic mean price for each year and region.
-```{ojs}
-//| echo: false
 
+
+```{ojs}
+// load libraries
+stdlib = require("@observablehq/stdlib")
+d3 = require("d3@7")
+import {tidy, groupBy, rename, summarize, sum, mutate, select, n, nDistinct, mean, filter, pivotWider, pivotLonger} from "@pbeshai/tidyjs"
+
+
+// connect to database
+db = FileAttachment("data/working/aetr.db").sqlite()
+
+// call tables
+weighted_prices = db.sql`SELECT * FROM weighted_prices`;
+prices = db.sql`SELECT * FROM prices`;
+```
+
+
+```{ojs}
 // aggregate
 region_weighted_prices = tidy(weighted_prices, 
                               groupBy(['acep_energy_region', 'year'], [
@@ -69,7 +86,17 @@ Plot.plot({
 
 ```
 
+<br>
 
+
+<!-- {{< include _penguins_raincloud.qmd >}} -->
+
+ {{< include _prices_raincloud.qmd >}}
+
+
+
+
+<br>
 
 
 ## Coastal
@@ -81,8 +108,6 @@ Residential customers in the Coastal region saw increases in electricity while c
 
 
 ```{ojs}
-//| echo: false
-
 // aggregate
 coastal_weighted_prices = tidy(weighted_prices, 
                               filter((d) => d.acep_energy_region === "Coastal"),
@@ -139,8 +164,6 @@ The average price of electricity for Residential customers in the Railbelt rose 
 This region differs significantly from the Coastal and Rural Remote regions in that residential customers pay more for electricity than the Commercial or Other customer classes.
 
 ```{ojs}
-//| echo: false
-
 // aggregate
 railbelt_weighted_prices = tidy(weighted_prices, 
                               filter((d) => d.acep_energy_region === "Railbelt"),
@@ -195,8 +218,6 @@ The following figure shows the average price of electricity in the Rural Remote 
 The average price of electricity for the Residential customers in the Rural Remote region rose 8% from $0.24/kWh in 2011 to $0.26/kWh in 2019. The average price of electricity for Commercial customers in the Rural Remote region fell 11% from $0.54/kWh in 2011 to $0.48/kWh in 2019. Finally, the average price of electricity for Other customers in the Rural Remote region fell 9% from $0.65/kWh in 2011 to $0.59/kWh in 2019.  
 
 ```{ojs}
-//| echo: false
-
 // aggregate
 rural_remote_weighted_prices = tidy(weighted_prices, 
                               filter((d) => d.acep_energy_region === "Rural Remote"),
@@ -249,21 +270,7 @@ Plot.plot({
 
 
 
-```{ojs}
-//| echo: false
 
-// load libraries
-stdlib = require("@observablehq/stdlib")
-d3 = require("d3@7")
-import {tidy, groupBy, rename, summarize, sum, mutate, select, n, nDistinct, mean, filter, pivotWider, pivotLonger} from "@pbeshai/tidyjs"
-
-
-// connect to database
-db = FileAttachment("data/working/aetr.db").sqlite()
-
-// call table
-weighted_prices = db.sql`SELECT * FROM weighted_prices`;
-```
 
 
 
