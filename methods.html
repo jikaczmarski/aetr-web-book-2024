@@ -94,14 +94,17 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
-    <div class="pt-lg-2 mt-2 text-center sidebar-header">
+    <div class="pt-lg-2 mt-2 text-center sidebar-header sidebar-header-stacked">
       <a href="./index.html" class="sidebar-logo-link">
       <img src="./images/ACEP_gear.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
       </a>
-      <div class="sidebar-tools-main">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./"><strong>Alaska Electricity Trends Report<strong><br></strong></strong></a> 
+        <div class="sidebar-tools-main">
     <a href="https://www.uaf.edu/acep/" title="Alaska Center for Energy and Power" class="quarto-navigation-tool px-1" aria-label="Alaska Center for Energy and Power"><i class="bi bi-globe"></i></a>
     <a href="https://github.com/acep-uaf/aetr-web-book" title="Project GitHub" class="quarto-navigation-tool px-1" aria-label="Project GitHub"><i class="bi bi-github"></i></a>
 </div>
+    </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
@@ -163,7 +166,7 @@ ul.task-list li input[type="checkbox"] {
   <div class="sidebar-item-container"> 
   <a href="./historic_reports.html" class="sidebar-item-text sidebar-link"><i class="bi bi-dot" role="img">
 </i> 
- <span class="menu-text">Historical Data</span></a>
+ <span class="menu-text">Historical Reports</span></a>
   </div>
 </li>
     </ul>
@@ -185,8 +188,9 @@ ul.task-list li input[type="checkbox"] {
   </ul></li>
   <li><a href="#power-cost-equalization-pce" id="toc-power-cost-equalization-pce" class="nav-link" data-scroll-target="#power-cost-equalization-pce">Power Cost Equalization (PCE)</a></li>
   <li><a href="#regional-summaries" id="toc-regional-summaries" class="nav-link" data-scroll-target="#regional-summaries">Regional Summaries</a></li>
+  <li><a href="#feedback-regarding-potential-errors" id="toc-feedback-regarding-potential-errors" class="nav-link" data-scroll-target="#feedback-regarding-potential-errors">Feedback Regarding Potential Errors</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/acep-uaf/aetr-web-book/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/acep-uaf/aetr-web-book/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div><div class="quarto-other-links"><h2>Other Links</h2><ul><li><a href="mailto:uaf-acep-dcm-support@alaska.edu"><i class="bi bi-envelope-exclamation"></i>Report an issue via email</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -205,7 +209,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">Mar 27, 2024 at 23:44 UTC</p>
+      <p class="date">Mar 28, 2024 at 18:31 UTC</p>
     </div>
   </div>
   
@@ -262,7 +266,7 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="compilation" class="level2">
 <h2 class="anchored" data-anchor-id="compilation">Compilation</h2>
-<p>An Alaska engineering firm, <a href="https://www.dowl.com/">DOWL</a>, was hired to do the preliminary compilation of data and develop the workbooks supporting this report. Since this data comes from various sources, there is potential for errors in the compilation of the workbooks. Any discrepancies or noted errors should be reported to a member of the DCM Team listed on the <a href="./about.html">About Page</a>.</p>
+<p>An Alaska engineering firm, <a href="https://www.dowl.com/">DOWL</a>, was hired to do the preliminary compilation of data and to develop the Excel workbooks that support this report. This step involved careful cross-referencing of assets between the various data sources and error checking by domain experts. At this point, aggregate calculations were created to match the tables found in previous <em>Alaska Energy Statistics Reports</em>. Data in this report were derived from those workbooks exported to CSV and SQLite formats; the original workbooks are available upon request.</p>
 </section>
 </section>
 <section id="power-cost-equalization-pce" class="level1">
@@ -289,13 +293,19 @@ ul.task-list li input[type="checkbox"] {
 <figcaption>Cartographic Relationship between Energy Regions as defined by AEA and ACEP</figcaption>
 </figure>
 </div>
-<p>&nbsp;</p>
-<!---[^1]: PCE assistance is applied to only the first 750 kWh per month of residential consumption, and also to community facilities consumption up to theS equivalent of 70 kWh per month for each person.-->
-
-
+<!---
+&nbsp;
+[^1]: PCE assistance is applied to only the first 750 kWh per month of residential consumption, and also to community facilities consumption up to theS equivalent of 70 kWh per month for each person.
+-->
 </section>
+<section id="feedback-regarding-potential-errors" class="level1">
+<h1>Feedback Regarding Potential Errors</h1>
+<p>Since these data come from multiple sources, there is potential for errors in its compilation. An integral part of this effort is the creation of a high quality dataset that can constructively contribute to future work. Therefore, any discrepancies or noted errors should be reported using email or GitHub issues via the links in the right hand navigation menu of every page. Alternatively, direct contact information for members of the DCM team is listed on the <a href="./credits.html">Credits Page</a>.</p>
+<strong><strong>
 
-</main> <!-- /main -->
+</strong></strong></section><strong><strong>
+
+</strong></strong><a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main><strong><strong> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -717,7 +727,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>
   </div>
 </nav>
-</div> <!-- /content -->
+</strong></strong></div><strong><strong> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
@@ -735,4 +745,4 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-</body></html>
+</strong></strong></body></html>
