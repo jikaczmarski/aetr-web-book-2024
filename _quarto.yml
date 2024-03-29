@@ -21,7 +21,7 @@ website:
     logo: "images/ACEP_gear.png"
     pinned: true
     align: center
-    title: "<strong>Alaska Electricity Trends Report<strong><br/>"
+    title: "<strong>2024 Alaska Electricity Trends Report (data through 2011-2021)<strong><br/>"
     tools: 
       - icon: globe
         href: https://www.uaf.edu/acep/
