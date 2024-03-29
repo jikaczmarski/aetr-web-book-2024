@@ -3,13 +3,105 @@
 Plot.plot(flipCoords ? rainCloudY : rainCloudX)
 ```
 
+
+```{ojs}
+// pivot longer
+// tidy(data, rename({ b: 'newB', c: 'newC' }));
+
+
+// tidy(
+//   data,
+//   pivotLonger({
+//     cols: ['canada', 'usa', 'campbell', 'brampton', 'boston'],
+//     namesTo: 'place',
+//     valuesTo: 'val',
+//   })
+// )
+
+
+// tidy(data,
+//   when((items) => items.length === 2, [
+//     mutate({ y: 52 })
+//   ])
+// );
+
+
+// tidy(data, leftJoin(joinData, { by: ['a', 'J'] }));
+
+prices_pivot = tidy(
+  prices, 
+    rename({
+      'residential_price_kwh_2021_dollars': 'residential',
+      'commercial_price_kwh_2021_dollars': 'commercial',
+      'other_price_kwh_2021_dollars': 'other',
+    }),
+    pivotLonger({
+      cols: ['residential', 'commercial', 'other'],
+      namesTo: 'sector',
+      valuesTo: 'price'
+    })
+)
+
+customers_pivot = tidy(
+  prices,
+    rename({
+      'residential_price_kwh_2021_dollars': 'residential_price',
+      'commercial_price_kwh_2021_dollars': 'commercial_price',
+      'other_price_kwh_2021_dollars': 'other_price',
+    }),
+    rename({
+      'residential_customers': 'residential',
+      'commercial_customers': 'commercial',
+      'other_customers': 'other',
+    }),
+    pivotLonger({
+      cols: ['residential', 'commercial', 'other'],
+      namesTo: 'sector',
+      valuesTo: 'customers'
+    }),
+    select([
+      'year',
+      'reporting_name',
+      'acep_energy_region',
+      'residential_price',
+      'commercial_price',
+      'other_price',
+      'sector',
+      'customers',
+      'total_customers'
+    ])
+)
+
+// prices_customers_long = tidy(
+//   prices_pivot,
+//     leftJoin(customers_pivot,
+//       { by: ['year', 'aea_sales_reporting_id', 'reporting_name', 'sector'] }),
+//     select([
+//       'year',
+//       'reporting_name',
+//       'acep_energy_region',
+//       'sector',
+//       'price',
+//       'customers',
+//       'total_customers'
+//     ])
+// )
+
+```
+
+
+
+<br>
+<br>
+
+
 ```{r}
 # desired inputs:  
 # community size
+# sector
 # year
 # weighted/unweighted
 ```
-
 
 
 
@@ -17,9 +109,11 @@ Plot.plot(flipCoords ? rainCloudY : rainCloudX)
 // active inputs
 
 // weighted/unweighted
-viewof dimension = Inputs.select(['avg_price', 'weighted_price'], { label: 'Weighted?', value: 'weighted_price' })
+viewof dimension = Inputs.select(['residential_price', 'commercial_price', 'other_price'], { label: 'Sector', value: 'residential_price' })
 
 viewof flipCoords = Inputs.toggle({ label: 'Flip', value: false })
+
+Inputs.table(customers_pivot)
 ```
 
 
@@ -35,7 +129,7 @@ thresholds = 40
 seed = 1
 
 // viewof rawDataSize = Inputs.range([10, 100], { value: 40, step: 10, label: 'Raw Data Size (%)' })
-rawDataSize = 40
+rawDataSize = 20
 
 // viewof rawDataOffset = Inputs.range([0, 50], { value: 5, step: 5, label: 'Raw Data Offset (%)' })
 rawDataOffset = 5
@@ -163,7 +257,7 @@ jitter = (data, seed) => {
 maxTotal = d3.max(
   Array.from(
     d3
-    .group(data, d => d.species)
+    .group(data, d => d.aea_energy_region)
     .values()
   )
   .flatMap(g => bins(g.map(d => d[dimension])))
@@ -176,7 +270,7 @@ bins = d3
   .thresholds(thresholds)
 
 // data = FileAttachment("data/raw/palmer_penguins.csv").csv({ typed: true })
-data = db.sql`SELECT * FROM weighted_prices`;
+data = customers_pivot
 
 seedrandom = require('seedrandom')
 ```

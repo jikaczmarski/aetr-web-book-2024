@@ -25,7 +25,7 @@ Due to the wide range of electricity prices in Alaska, it is difficult to accura
 // load libraries
 stdlib = require("@observablehq/stdlib")
 d3 = require("d3@7")
-import {tidy, groupBy, rename, summarize, sum, mutate, select, n, nDistinct, mean, filter, pivotWider, pivotLonger} from "@pbeshai/tidyjs"
+import {tidy, groupBy, rename, summarize, sum, mutate, select, n, nDistinct, mean, filter, pivotWider, pivotLonger, leftJoin, slice} from "@pbeshai/tidyjs"
 
 
 // connect to database
@@ -93,11 +93,7 @@ Plot.plot({
 
  {{< include _prices_raincloud.qmd >}}
 
-<br>
 
-```{ojs}
-Inputs.table(data)
-```
 
 <br>
 
