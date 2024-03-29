@@ -1,0 +1,70 @@
+{
+    "title": "2024 Alaska Electricity Trends Report",
+    "id": "NULL", 
+    "licenses": "BSD 3-Clause License",
+    "description" : "Electricity capacity, generation, consumption, and price data from 2011-2019/21",
+    "resources" : [
+        {
+            "path" : "installed-capacity-certified-utilities-mw.csv",
+            "description" : "A dataset compiled from the time series built for Table 1.D of the Aug 08, 2023 Energy Statistics Workbook",
+            "schema" : {
+                "fields" : [
+                    {
+                        "name" : "year",
+                        "description" : "Calendar year",
+                        "type" : "integer"
+                    },
+                    {
+                        "name" : "aea-region",
+                        "description" : "Alaska Energy Authority Energy Region",
+                        "type" : "string"
+                    },
+                    {
+                        "name" : "acep-region",
+                        "description" : "Alaska Center for Energy and Power Energy Region",
+                        "type" : "string"
+                    },
+                    {
+                        "name" : "ff-turbines",
+                        "description" : "Capacity in megawatts (MW) using prime movers of types: combined cycle, gas turbines, and steam turbines",
+                        "type" : "float"
+                    },
+                    {
+                        "name" : "ff-ice",
+                        "description" : "Capacity in megawatts (MW) by internal combustion engine prime movers",
+                        "type" : "float"
+                    },
+                    {
+                        "name" : "hydro",
+                        "description" : "Capacity in megawatts (MW) by hydroelectric prime movers.",
+                        "type" : "float"
+                    },
+                    {
+                        "name" : "solar",
+                        "description" : "Capacity in megawatts (MW) from utility-scale solarvoltaic panels.",
+                        "type" : "float"
+                    },
+                    {
+                        "name" : "storage",
+                        "description" : "Capacity in megawatts (MW) from utility-scale battery storage.",
+                        "type" : "float"
+                    },
+                    {
+                        "name" : "solar-btm",
+                        "description" : "Capacity in megawatts (MW) from rooftop (behind-the-meter) solarvoltaic panels.",
+                        "type" : "float"
+                    },
+                    {
+                        "name" : "landfill",
+                        "description" : "Capacity in megawatts (MW) from landfill gas generating units.",
+                        "type" : "float"
+                    }
+                ]
+            }
+        }
+    ],
+    "keywords" : [
+        "capacity",
+        "time series"
+    ]
+}
