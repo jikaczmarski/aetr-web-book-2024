@@ -64,6 +64,9 @@ website:
       - href: historic_reports.qmd
         text: Historical Reports
         icon: dot
+      - href: data.qmd
+        text: Data Portal
+        icon: dot
 
 
 format:
