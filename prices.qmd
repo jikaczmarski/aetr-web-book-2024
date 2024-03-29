@@ -48,7 +48,7 @@ region_weighted_prices = tidy(weighted_prices,
 // plot of regional average prices
 Plot.plot({
     x: {domain: [2011, 2019]},
-    x: {tickFormat: ""},
+    x: {tickFormat: "d"},
 
     y: {domain: [0, 50]},
 
@@ -56,27 +56,13 @@ Plot.plot({
     marginRight: 70,
   
     marks: [
-
         Plot.line(region_weighted_prices,
                     {x: "year", 
                     y: "mean_weighted_price",
                     strokeWidth: 5,
-                    stroke: "acep_energy_region"
-                    }),
-
-        Plot.text(region_weighted_prices, 
-            Plot.selectLast({x: "year", 
-                                y: "mean_weighted_price", 
-                                z: "acep_energy_region", 
-                                text: "acep_energy_region", 
-                                textAnchor: "start", dx: 5
-                                })),
-                                
-        Plot.tip(region_weighted_prices, 
-            Plot.pointer({x: "year", y: "mean_weighted_price"}))
-
-
-    ],
+                    stroke: "acep_energy_region",
+                    tip: {format: {x: "d"}}
+                    })],
     color: {
         domain: ["Coastal", "Railbelt", "Rural Remote"],
         range: ["#98BAD6", "#A4CD9A", "#E3918F"]
@@ -116,7 +102,7 @@ coastal_weighted_prices = tidy(weighted_prices,
 // plot of regional average prices
 Plot.plot({
     x: {domain: [2011, 2019]},
-    x: {tickFormat: ""},
+    x: {tickFormat: "d"},
 
     y: {domain: [0, 50]},
 
@@ -130,22 +116,9 @@ Plot.plot({
                     {x: "year", 
                     y: "weighted_price",
                     strokeWidth: 5,
-                    stroke: "sector"
-                    }),
-
-        Plot.text(coastal_weighted_prices, 
-            Plot.selectLast({x: "year", 
-                            y: "weighted_price", 
-                            z: "sector", 
-                            text: "sector", 
-                            textAnchor: "start", dx: 5
-                            })),
-                                
-        Plot.tip(coastal_weighted_prices, 
-            Plot.pointer({x: "year", y: "weighted_price"}))
-
-
-    ],
+                    stroke: "sector",
+                    tip: {format: {x: "d"}}
+                    })],
     color: {
         domain: ["residential", "commercial", "other"],
         range: ["#0084c1", "#e29617", "#fad900"]
@@ -172,7 +145,7 @@ railbelt_weighted_prices = tidy(weighted_prices,
 // plot of regional average prices
 Plot.plot({
     x: {domain: [2011, 2019]},
-    x: {tickFormat: ""},
+    x: {tickFormat: "d"},
 
     y: {domain: [0, 50]},
 
@@ -186,21 +159,9 @@ Plot.plot({
                 {x: "year", 
                 y: "weighted_price",
                 strokeWidth: 5,
-                stroke: "sector"
-                }),
-
-        Plot.text(railbelt_weighted_prices, 
-            Plot.selectLast({x: "year", 
-                            y: "weighted_price", 
-                            z: "sector", 
-                            text: "sector", 
-                            textAnchor: "start", dx: 5
-                            })),
-                            
-        Plot.tip(railbelt_weighted_prices, 
-            Plot.pointer({x: "year", y: "weighted_price"}))
-    
-
+                stroke: "sector",
+                tip: {format: {x: "d"}}
+                })
     ],
     color: {
         domain: ["residential", "commercial", "other"],
@@ -228,7 +189,7 @@ Plot.plot({
     height: 550,
 
     x: {domain: [2011, 2019]},
-    x: {tickFormat: ""},
+    x: {tickFormat: "d"},
 
     y: {domain: [0, 70]},
 
@@ -241,19 +202,9 @@ Plot.plot({
                 {x: "year", 
                 y: "weighted_price",
                 strokeWidth: 5,
-                stroke: "sector"
-                }),
-
-        Plot.text(rural_remote_weighted_prices, 
-            Plot.selectLast({x: "year", 
-                            y: "weighted_price", 
-                            z: "sector", 
-                            text: "sector", 
-                            textAnchor: "start", dx: 5
-                            })),
-                            
-        Plot.tip(rural_remote_weighted_prices, 
-            Plot.pointer({x: "year", y: "weighted_price"}))
+                stroke: "sector",
+                tip: {format: {x: "d"}}
+                })
     ],
     color: {
         domain: ["residential", "commercial", "other"],

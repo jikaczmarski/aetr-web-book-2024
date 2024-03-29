@@ -41,11 +41,17 @@ We begin this section by showcasing the increases in total capacity across the s
 
 sw_cap = FileAttachment("data/statewide-total-capacity-by-year.csv").csv({ typed: true })
 
+//dataTyped = data.map(({year}) => ({year: new Date(year,0,1)}))
+
 Plot.plot({
+  // Configure the plot
+  title: "Statewide, Capacity",
+  insetLeft: 0,
+  insetRight: 0,
+  
   // Configure the x-axis
   x: {
-    tickFormat: "",
-    //type: "band",
+    tickFormat: "d",
     label: "Year"
   },
   // Configure the y-axis
@@ -53,15 +59,13 @@ Plot.plot({
     grid: true,
     label: "Capacity (MW)"
   },
-  // Configure the plot
-  title: "Statewide, Capacity",
-  insetLeft: 0,
-  insetRight: 0,
+
   // Stacked area plot
   marks: [
-    Plot.areaY(sw_cap, {x:"year",y:"Capacity", fill: "Prime.Mover", tip: "x"}),
+    Plot.areaY(sw_cap, {x:"year",y:"Capacity", fill: "Prime.Mover", tip: {format: {x: "d"}}}),
     Plot.ruleY([0])
   ],
+  
   // Configure the color scheme
   color: {
         domain: ["Fossil Turbine", "Recip Engines", "Hydro", "Wind","Utility Solar","Rooftop Solar","Storage","Landfill Gas"],
@@ -82,7 +86,7 @@ c_cap = FileAttachment("data/coastal-capacity.csv").csv({ typed: true })
 Plot.plot({
   // Configure the x-axis
   x: {
-    tickFormat: "",
+    tickFormat: "d",
     type: "band",
     label: "Year"
   },
@@ -97,7 +101,7 @@ Plot.plot({
   insetRight: 0,
   // Stacked area plot
   marks: [
-    Plot.barY(c_cap, {x:"year",y:"Capacity", fill: "Prime.Mover", tip: "x"}),
+    Plot.barY(c_cap, {x:"year",y:"Capacity", fill: "Prime.Mover", tip: {format: {x: "d"}}}),
     Plot.ruleY([0])
   ],
   // Configure the color scheme
@@ -118,7 +122,7 @@ c_r_cap = FileAttachment("data/coastal-capacity-non-fossil.csv").csv({ typed: tr
 Plot.plot({
   // Configure the x-axis
   x: {
-    tickFormat: "",
+    tickFormat: "d",
     type: "band",
     label: "Year"
   },
@@ -133,7 +137,7 @@ Plot.plot({
   insetRight: 0,
   // Stacked area plot
   marks: [
-    Plot.barY(c_r_cap, {x:"year",y:"Capacity", fill: "Prime.Mover", tip: "x"}),
+    Plot.barY(c_r_cap, {x:"year",y:"Capacity", fill: "Prime.Mover", tip: {format: {x: "d"}}}),
     Plot.ruleY([0])
   ],
   // Configure the color scheme
@@ -156,7 +160,7 @@ r_cap = FileAttachment("data/railbelt-capacity.csv").csv({ typed: true })
 Plot.plot({
   // Configure the x-axis
   x: {
-    tickFormat: "",
+    tickFormat: "d",
     type: "band",
     label: "Year"
   },
@@ -172,7 +176,7 @@ Plot.plot({
   insetRight: 0,
   // Stacked area plot
   marks: [
-    Plot.barY(r_cap, {x:"year",y:"Capacity", fill: "Prime.Mover", tip: "x"}),
+    Plot.barY(r_cap, {x:"year",y:"Capacity", fill: "Prime.Mover", tip: {format: {x: "d"}}}),
     Plot.ruleY([0])
   ],
   // Configure the color scheme
@@ -193,7 +197,7 @@ r_r_cap = FileAttachment("data/railbelt-capacity-non-fossil.csv").csv({ typed: t
 Plot.plot({
   // Configure the x-axis
   x: {
-    tickFormat: "",
+    tickFormat: "d",
     type: "band",
     label: "Year"
   },
@@ -208,7 +212,7 @@ Plot.plot({
   insetRight: 0,
   // Stacked area plot
   marks: [
-    Plot.barY(r_r_cap, {x:"year",y:"Capacity", fill: "Prime.Mover", tip: "x"}),
+    Plot.barY(r_r_cap, {x:"year",y:"Capacity", fill: "Prime.Mover", tip: {format: {x: "d"}}}),
     Plot.ruleY([0])
   ],
   // Configure the color scheme
@@ -230,7 +234,7 @@ rr_cap = FileAttachment("data/rural-remote-capacity.csv").csv({ typed: true })
 Plot.plot({
   // Configure the x-axis
   x: {
-    tickFormat: "",
+    tickFormat: "d",
     type: "band",
     label: "Year"
   },
@@ -245,7 +249,7 @@ Plot.plot({
   insetRight: 0,
   // Stacked area plot
   marks: [
-    Plot.barY(rr_cap, {x:"year",y:"Capacity", fill: "Prime.Mover", tip: "x"}),
+    Plot.barY(rr_cap, {x:"year",y:"Capacity", fill: "Prime.Mover", tip: {format: {x: "d"}}}),
     Plot.ruleY([0])
   ],
   // Configure the color scheme
@@ -266,7 +270,7 @@ rr_r_cap = FileAttachment("data/rural-remote-capacity-non-fossil.csv").csv({ typ
 Plot.plot({
   // Configure the x-axis
   x: {
-    tickFormat: "",
+    tickFormat: "d",
     type: "band",
     label: "Year"
   },
@@ -281,7 +285,7 @@ Plot.plot({
   insetRight: 0,
   // Stacked area plot
   marks: [
-    Plot.barY(rr_r_cap, {x:"year",y:"Capacity", fill: "Prime.Mover", tip: "x"}),
+    Plot.barY(rr_r_cap, {x:"year",y:"Capacity", fill: "Prime.Mover", tip: {format: {x: "d"}}}),
     Plot.ruleY([0])
   ],
   // Configure the color scheme
