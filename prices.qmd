@@ -47,11 +47,21 @@ region_weighted_prices = tidy(weighted_prices,
 
 // plot of regional average prices
 Plot.plot({
-    x: {domain: [2011, 2019]},
-    x: {tickFormat: "d"},
 
-    y: {domain: [0, 50]},
-
+    // Configure the x-axis
+    x: {
+      domain: [2011, 2019],
+      tickFormat: "d",
+      label: "Year"
+    },
+    
+    // Configure the y-axis
+    y: {
+      domain: [10, 60],
+      label: "Mean Weighted Price"
+    },
+    
+    // Configure the plot
     grid: true,
     marginRight: 70,
   
@@ -101,11 +111,21 @@ coastal_weighted_prices = tidy(weighted_prices,
 
 // plot of regional average prices
 Plot.plot({
-    x: {domain: [2011, 2019]},
-    x: {tickFormat: "d"},
-
-    y: {domain: [0, 50]},
-
+    
+    // Configure the x-axis
+    x: {
+      domain: [2011, 2019],
+      label: "Year",
+      tickFormat: "d"
+    },
+    
+    // Configure the y-axis
+    y: {
+      domain: [10, 45],
+      label: "Weighted Price"
+    },
+    
+    // Configure the plot
     grid: true,
     marginRight: 70,
   
@@ -144,11 +164,21 @@ railbelt_weighted_prices = tidy(weighted_prices,
 
 // plot of regional average prices
 Plot.plot({
-    x: {domain: [2011, 2019]},
-    x: {tickFormat: "d"},
 
-    y: {domain: [0, 50]},
-
+    // Configure the x-axis
+    x: {
+      domain: [2011, 2019],
+      tickFormat: "d",
+      label: "Year"
+    },
+    
+    // Configure the y-axis
+    y: {
+      domain: [10, 28],
+      label: "Weighted Price"
+    },
+    
+    // Configure the plot
     grid: true,
     marginRight: 70,
 
@@ -186,15 +216,24 @@ rural_remote_weighted_prices = tidy(weighted_prices,
 
 // plot of regional average prices
 Plot.plot({
-    height: 550,
-
-    x: {domain: [2011, 2019]},
-    x: {tickFormat: "d"},
-
-    y: {domain: [0, 70]},
-
+    
+    // Configure the x-axis
+    x: {
+      domain: [2011, 2019],
+      tickFormat: "d",
+      label: "Year"
+    },
+  
+    // Configure the y-axis
+    y: {
+      domain: [15, 75],
+      label: "Weighted Price"
+    },
+    
+    // Configure the plot
     grid: true,
     marginRight: 70,
+    height: 550,
 
     marks: [
  
