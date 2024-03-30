@@ -1,7 +1,13 @@
 {
     "title": "2024 Alaska Electricity Trends Report",
     "id": "NULL", 
-    "licenses": "BSD 3-Clause License",
+    "licenses": [
+        {
+          "name": "other",
+          "title": "BSD 3-Clause License",
+          "path": "https://opensource.org/license/bsd-3-clause"
+        }
+    ],
     "description" : "Electricity capacity, generation, consumption, and price data from 2011-2019/21",
     "resources" : [
         {
