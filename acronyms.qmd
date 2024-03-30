@@ -1,6 +1,6 @@
 ---
-title: "Acronyms"
-subtitle: "Acronym Definitions for the Alaska Electricity Trends Report Web Book"
+title: "Acronym Definitions"
+subtitle: "Acronyms Commonly used in the Report"
 ---
 
 ## Acronyms

@@ -1,6 +1,6 @@
 ---
 title: "Data Analysis Methods"
-subtitle: "Methods Section of Alaska Electricity Trends Web Book"
+subtitle: "Data Sources, Region Definitions, and Description of the PCE Program"
 ---
 
 

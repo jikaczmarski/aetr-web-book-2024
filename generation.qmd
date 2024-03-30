@@ -1,6 +1,6 @@
 ---
-title: "Generation by Fuel Type"
-subtitle: "Generation Section of Alaska Electricity Trends Report Web Book"
+title: "Alaska Electricity Generation"
+subtitle: "Generation by Fuel Type, 2011-2021"
 ---
 
 ## General Overview

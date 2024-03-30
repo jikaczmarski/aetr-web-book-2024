@@ -1,6 +1,6 @@
 ---
-title: "Alaska Electricity Trends Report Web Book"
-subtitle: "Analysis of Alaska Electricity Data, 2011-2021"
+title: "2024 Alaska Electricity Trends Report"
+subtitle: "An Analysis of Electricity in Alaska, Data Years 2011-2021"
 ---
 
 ## Welcome  {#welcome}

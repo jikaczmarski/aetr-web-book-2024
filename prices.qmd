@@ -1,6 +1,6 @@
 ---
 title: "Price of Electricity"
-subtitle: "Prices Section of Alaska Electricity Trends Web Book"
+subtitle: "Electricity Prices for the Residential, Commercial, and Industrial Customer Classes, 2011-2019"
 output:
   quarto::quarto_html:
     pre_processor: quarto::observable

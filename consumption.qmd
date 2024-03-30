@@ -1,6 +1,6 @@
 ---
 title: "Electricity Consumption"
-subtitle: "Consumption Section of Alaska Electricity Trends Report Web Book"
+subtitle: "Electricity Sales, 2011-2019"
 ---
 
 ## General Overview

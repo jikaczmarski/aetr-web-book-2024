@@ -1,6 +1,6 @@
 ---
 title: "Alaska Generation Capacity"
-subtitle: "Total Installed Capacity by Certified Utilities"
+subtitle: "Total Installed Capacity by Certified Utilities, 2011-2021"
 output:
   quarto::quarto_html:
     pre_processor: quarto::observable
