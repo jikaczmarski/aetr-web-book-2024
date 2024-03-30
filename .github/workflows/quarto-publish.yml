@@ -34,6 +34,10 @@ jobs:
             any::dplyr
             any::readr
 
+            
+      - name: Fix timestamps
+        run:  bash .github/scripts/fix-timestamps
+
       - name: Publish to GitHub Pages (and render)
         uses: quarto-dev/quarto-actions/publish@v2
         with:
