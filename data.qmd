@@ -1,6 +1,10 @@
 ---
 title: "Data Portal"
 subtitle: "Download the Data Used in the Report's Figures"
+date-format: "MMM D, YYYY [at] HH:mm z"
+params:
+  qmd_file: "data.qmd"
+  db_file: "data/working/aetr.db"
 output:
   quarto::quarto_html:
     pre_processor: quarto::observable
@@ -8,17 +12,27 @@ echo: false
 ---
 <br>
 
+```{r, echo=FALSE,warning=FALSE,message=FALSE}
+```
+This page last modified: `r file.info(params$qmd_file)$mtime`
+
+Database file last modified: `r file.info(params$db_file)$mtime`
+
+&nbsp;
+
+
+
 ## Data Overview
-The data used in this web-book is derived from federal, state, commercial, and local sources, as well as direct communications with utilites and state program managers. More information about data sources can be found on the [methods page](./methods.html) of this web-book.
+The data used in this web-book is derived from federal, state, commercial, and local sources, as well as direct communications with utilities and state program managers. More information about data sources can be found on the [methods page](./methods.html) of this web-book.
 
 ## Download Individual Tables
-Individual tables within the database can be downloaded here as text files (CSV, comma-separated values). Once downloaded to your local machine, these files can be opened graphically using Microsoft Excel, or programatically using R or Python. All files are generated from the database upon download and reflect the most up to date versions of the data.  
+Individual tables within the database can be downloaded here as text files (CSV, comma-separated values). Once downloaded to your local machine, these files can be opened graphically using Microsoft Excel, or programmatically using R or Python. All files are generated from the database upon download and reflect the most up to date versions of the data.  
 
 Select the desired table from the drop-down menu below
 
 #### Table Name:
 ```{ojs}
-// This chunk makes the fancy dropdown database veiwing tool
+// This chunk makes the fancy dropdown database viewing tool
 
 viewof dbTable = Inputs.select((await db.describe()).value.map(d => d.name), 
                     { label: "" })
