@@ -33,10 +33,10 @@ jobs:
             any::tidyr
             any::dplyr
             any::readr
-
             
-      - name: Fix timestamps
-        run:  bash .github/scripts/fix-timestamps.sh
+      # set the file modification times to the time of the last commit
+      # - name: Fix timestamps
+      #   run:  bash .github/scripts/fix-timestamps.sh
 
       - name: Publish to GitHub Pages (and render)
         uses: quarto-dev/quarto-actions/publish@v2
