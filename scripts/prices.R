@@ -5,18 +5,6 @@
 
 
 
-### First, build a library
-options(scipen=999)
-
-library(dplyr)
-library(tidyr)
-library(lubridate)
-library(stringr)
-
-library(readxl)
-library(readr)
-
-
 
 # Import
 raw_prices <- read_csv(file = "./data/raw/raw_prices.csv")

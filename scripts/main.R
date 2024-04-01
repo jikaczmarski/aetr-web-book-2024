@@ -8,6 +8,9 @@
 # call from renv.lock file to load versioned packages
 # renv::restore()
 
+# get rid of scientific notation
+options(scipen=999)
+
 # package management
 library(renv)
 
@@ -17,12 +20,23 @@ library(RSQLite)
 
 # wrangling packages
 library(readr)
-library(readxl)
+library(tidyr)
 library(dplyr)
 library(tidyr)
+library(readr)
+library(lubridate)
+library(stringr)
 
-# reading excel file from github
+# read excel from disk
+library(readxl)
+
+# reading excel from github
 library(httr)
+
+
+
+
+
 
 
 #############
