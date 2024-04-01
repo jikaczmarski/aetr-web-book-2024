@@ -71,7 +71,7 @@
     "href": "data.html",
     "title": "Data Portal",
     "section": "",
-    "text": "This page last modified: 2024-03-31 23:11:52\nDatabase file last modified: 2024-03-31 23:11:52",
+    "text": "The data used in this web-book is derived from federal, state, commercial, and local sources, as well as direct communications with utilities and state program managers. More information about data sources can be found on the methods page of this web-book.",
     "crumbs": [
       "Data Portal"
     ]
@@ -80,8 +80,8 @@
     "objectID": "data.html#data-overview",
     "href": "data.html#data-overview",
     "title": "Data Portal",
-    "section": "Data Overview",
-    "text": "Data Overview\nThe data used in this web-book is derived from federal, state, commercial, and local sources, as well as direct communications with utilities and state program managers. More information about data sources can be found on the methods page of this web-book.",
+    "section": "",
+    "text": "The data used in this web-book is derived from federal, state, commercial, and local sources, as well as direct communications with utilities and state program managers. More information about data sources can be found on the methods page of this web-book.",
     "crumbs": [
       "Data Portal"
     ]
