@@ -1,6 +1,8 @@
 ---
 title: "2024 Alaska Electricity Trends Report"
 subtitle: "An Analysis of Electricity in Alaska, Data Years 2011-2021"
+date-modified: "2024-03-25T17:22:00-08:00"
+date-format: "MMM D, YYYY [at] HH:mm z"
 ---
 
 ## Welcome  {#welcome}

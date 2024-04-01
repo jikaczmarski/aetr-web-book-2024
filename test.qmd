@@ -1,6 +1,8 @@
 ---
 title: "Map"
 subtitle: "Map playground"
+date-modified: "2024-03-22T12:08:00-08:00"
+date-format: "MMM D, YYYY [at] HH:mm z"
 output:
   quarto::quarto_html:
     pre_processor: quarto::observable

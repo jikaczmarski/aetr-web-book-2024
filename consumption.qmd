@@ -1,6 +1,8 @@
 ---
 title: "Electricity Consumption"
 subtitle: "Electricity Sales, 2011-2019"
+date-modified: "2024-03-13T15:39:00-08:00"
+date-format: "MMM D, YYYY [at] HH:mm z"
 ---
 
 ## General Overview

@@ -1,6 +1,8 @@
 ---
 title: "Credits"
 subtitle: "About the Team that Created the 2024 Alaska Electricity Trends Report"
+date-modified: "2024-03-25T09:52:00-08:00"
+date-format: "MMM D, YYYY [at] HH:mm z"
 ---
 
 The Alaska Electrical Trends web book has been produced by the Alaska Center for Energy and Power ([ACEP](https://www.uaf.edu/acep/)) at the University of Alaska Fairbanks ([UAF](https://www.uaf.edu/uaf/index.php)). It is a collaboration between data scientists, researchers, and policy experts.

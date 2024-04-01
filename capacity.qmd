@@ -1,6 +1,8 @@
 ---
 title: "Alaska Generation Capacity"
 subtitle: "Total Installed Capacity by Certified Utilities, 2011-2021"
+date-modified: "2024-03-26T14:36:00-08:00"
+date-format: "MMM D, YYYY [at] HH:mm z"
 output:
   quarto::quarto_html:
     pre_processor: quarto::observable

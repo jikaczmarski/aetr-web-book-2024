@@ -1,6 +1,8 @@
 ---
 title: "Price of Electricity"
 subtitle: "Electricity Prices for the Residential, Commercial, and Industrial Customer Classes, 2011-2019"
+date-modified: "2024-03-29T16:18:00-08:00"
+date-format: "MMM D, YYYY [at] HH:mm z"
 output:
   quarto::quarto_html:
     pre_processor: quarto::observable
