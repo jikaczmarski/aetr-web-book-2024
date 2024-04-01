@@ -203,6 +203,10 @@ sub <- subset(final, `ACEP Energy Region` == "error")
 # reorder column names
 
 final_final <- final %>%
+  mutate("Residential Price kWh (2021 dollars)" = round(`Residential Price kWh (2021 dollars)`, 3),
+         "Commercial Price kWh (2021 dollars)" = round(`Commercial Price kWh (2021 dollars)`, 3),
+         "Other Price kWh (2021 dollars)" = round(`Other Price kWh (2021 dollars)`, 3),
+         ) %>%
   select(c("Year",
            "AEA Sales Reporting ID",
            "PCE ID", 

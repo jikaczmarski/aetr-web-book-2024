@@ -30,12 +30,9 @@ d3 = require("d3@7")
 import {tidy, groupBy, rename, summarize, sum, mutate, select, n, nDistinct, mean, filter, pivotWider, pivotLonger, leftJoin, slice} from "@pbeshai/tidyjs"
 
 
-// connect to database
-db = FileAttachment("data/working/aetr.db").sqlite()
+prices = FileAttachment("data/working/prices/prices.csv").csv({typed: true});
+weighted_prices = FileAttachment("data/working/prices/weighted_prices.csv").csv({typed: true});
 
-// call tables
-weighted_prices = db.sql`SELECT * FROM weighted_prices`;
-prices = db.sql`SELECT * FROM prices`;
 ```
 
 

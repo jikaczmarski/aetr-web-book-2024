@@ -57,13 +57,13 @@ source(file = "./scripts/prices.R")
 source(file = "./scripts/weighted_prices.R")
 
 # Capacity Utilities
-source(file = "./scripts/capacity_utilities.R")
+# source(file = "./scripts/capacity_utilities.R")
 
 # Capacity Regions
-source(file = "./scripts/capacity_regions.R")
+# source(file = "./scripts/capacity_regions.R")
 
 # Capacity State
-source(file = "./scripts/capacity_state.R")
+# source(file = "./scripts/capacity_state.R")
 
 
 
@@ -106,18 +106,13 @@ write_csv(weighted_prices, file = "./prices/weighted_prices.csv")
 ######################
 # # DEPRECATED BELOW #
 ######################
-#
 # # Create Empty Database #
-# 
 # # delete database (careful here!)
 # system("rm aetr.db")
-# 
 # # create empty database
 # system("sqlite3 aetr.db .quit;")
-# 
 # # run DDL script
 # system("sqlite3 aetr.db < ./code/ddl.sql;")
-# 
 # 
 # # Connect to Database #
 # 

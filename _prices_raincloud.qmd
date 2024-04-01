@@ -112,7 +112,7 @@ viewof dimension = Inputs.select(['residential_price', 'commercial_price', 'othe
 
 viewof flipCoords = Inputs.toggle({ label: 'Flip', value: false })
 
-Inputs.table(customers_pivot)
+// Inputs.table(customers_pivot)
 ```
 
 
