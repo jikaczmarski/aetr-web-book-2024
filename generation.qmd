@@ -142,7 +142,7 @@ Plot.plot({
         x:"year",
         y:"generation_share", 
         fill: "fuel_type", 
-        tip: {format: {x: "d", y: (d) => `${(d).toLocaleString(undefined, {maximumFractionDigits: 0})}%`}}
+        tip: {format: {x: "d", y: (d) => `${(d).toLocaleString(undefined, {maximumFractionDigits: 2})}%`}}
       }
     ),
     Plot.ruleY([0])
@@ -245,7 +245,7 @@ Plot.plot({
         x:"year",
         y:"generation_share", 
         fill: "fuel_type", 
-        tip: {format: {x: "d", y: (d) => `${(d).toLocaleString(undefined, {maximumFractionDigits: 0})}%`}}
+        tip: {format: {x: "d", y: (d) => `${(d).toLocaleString(undefined, {maximumFractionDigits: 2})}%`}}
       }
     ),
     Plot.ruleY([0])
@@ -348,7 +348,7 @@ Plot.plot({
         x:"year",
         y:"generation_share", 
         fill: "fuel_type", 
-        tip: {format: {x: "d", y: (d) => `${(d).toLocaleString(undefined, {maximumFractionDigits: 0})}%`}}
+        tip: {format: {x: "d", y: (d) => `${(d).toLocaleString(undefined, {maximumFractionDigits: 2})}%`}}
       }
     ),
     Plot.ruleY([0])
