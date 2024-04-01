@@ -50,6 +50,9 @@ source(file = "./scripts/aea_regions.R")
 # Interties
 # source(file = "./interties.R")
 
+# Net Generation
+source(file = "./scripts/generation.R")
+
 # Prices
 source(file = "./scripts/prices.R")
 
@@ -81,7 +84,8 @@ write_csv(aea_regions, file = "./regions/aea_regions.csv")
 write_csv(prices, file = "./prices/prices.csv")
 write_csv(weighted_prices, file = "./prices/weighted_prices.csv")
 
-
+# generation
+write.csv(generation_data_long, file = "./generation/net_generation_long.csv", row.names = FALSE)
 
 
 
