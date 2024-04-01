@@ -2,7 +2,7 @@
 
 
 ### read from (extracted) workbook
-raw <- read_csv("./raw/2021_table_2.5a.csv")
+raw <- read_csv("./data/raw/2021_table_2.5a.csv")
 
 ### isolate regions
 raw_regions <- raw %>%
@@ -20,29 +20,29 @@ stage_regions <- raw_regions %>%
                            "Copper River/Chugach") ~ "Coastal",
     .default = "Rural Remote"))
 
-## read acep_regions_table
-## need to build foreign key
-acep_regions <- dbReadTable(con, "acep_regions")
-
+# join
 aea_regions <- left_join(stage_regions, acep_regions) %>%
   select(aea_region_name, acep_region_id)
-
-# check if exists
-dbExistsTable(con, "aea_regions")
-
-# delete contents
-dbExecute(con, "DELETE FROM aea_regions")
-
-# write to DB
-dbWriteTable(con, "aea_regions", aea_regions, overwrite = F, append = T)
 
 # clean up
 rm(raw,
    raw_regions, 
-   stage_regions,
-   aea_regions
+   stage_regions
    )
 
-## check write
-aea_regions <- dbReadTable(con, "aea_regions")
+
+
+
+
+
+
+# DEPRECATED DATABASE CALLS BELOW
+# # check if exists
+# dbExistsTable(con, "aea_regions")
+# # delete contents
+# dbExecute(con, "DELETE FROM aea_regions")
+# # write to DB
+# dbWriteTable(con, "aea_regions", aea_regions, overwrite = F, append = T)
+# ## check write
+# aea_regions <- dbReadTable(con, "aea_regions")
 

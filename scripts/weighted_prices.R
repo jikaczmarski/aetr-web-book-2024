@@ -1,5 +1,3 @@
-## load price table from database
-prices <- dbReadTable(con, "prices")
 
 p_price <- prices %>%
   rename(c("residential" = "residential_price_kwh_2021_dollars",
@@ -30,7 +28,7 @@ long_price <- p_price %>%
 
 
 # calculate weighted averages
-weighted <- long_price %>%
+weighted_prices <- long_price %>%
   drop_na() %>%
   group_by(`acep_energy_region`, sector, year) %>%
   summarize(avg_price = mean(price, na.rm=T),
@@ -38,26 +36,22 @@ weighted <- long_price %>%
 
 
 
-
-######
-# DB #
-######
+# # clean up
+rm(p_price, long_price)
 
 
-# check if table exists
-dbExistsTable(con, "weighted_prices")
 
-# delete contents
-# dbExecute(con, "DELETE FROM prices")
-
-# write tables
-dbWriteTable(con, "weighted_prices", weighted, overwrite=T)
-
-# clean up
-rm(p_price, long_price, weighted)
-
-## test load from database
-weighted_prices <- dbReadTable(con, "weighted_prices")
+##############
+# DEPRECATED #
+##############
+# # check if table exists
+# dbExistsTable(con, "weighted_prices")
+# # delete contents
+# # dbExecute(con, "DELETE FROM prices")
+# # write tables
+# dbWriteTable(con, "weighted_prices", weighted, overwrite=T)
+# ## test load from database
+# weighted_prices <- dbReadTable(con, "weighted_prices")
 
 
 

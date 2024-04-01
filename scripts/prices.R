@@ -5,8 +5,6 @@
 
 
 
-
-
 ### First, build a library
 options(scipen=999)
 
@@ -20,12 +18,8 @@ library(readr)
 
 
 
-
 # Import
-
-raw_prices <- read_csv(file = "./raw/raw_prices.csv")
-
-
+raw_prices <- read_csv(file = "./data/raw/raw_prices.csv")
 
 
 # AK Consumer Price Index
@@ -33,7 +27,7 @@ raw_prices <- read_csv(file = "./raw/raw_prices.csv")
 # this data came with 2 CPIs per year (January, July)
 # wanted 1 CPI per year, so I averaged the two
 
-ak_cpi <- read.csv("./raw/CUUSA427SA0.csv") %>%
+ak_cpi <- read.csv("./data/raw/CUUSA427SA0.csv") %>%
   mutate(date = ymd(DATE)) %>%
   mutate(`AK CPI` = CUUSA427SA0) %>%
   filter(month(date) == 1) %>%
@@ -44,7 +38,7 @@ ak_cpi <- read.csv("./raw/CUUSA427SA0.csv") %>%
 
 ## Build dataframe of nominal prices
 
-prices <- raw_prices %>%
+nominal_prices <- raw_prices %>%
   
   # add AK Consumer Price Index data
   left_join(., ak_cpi, by = join_by(Year == Year)) %>%
@@ -78,12 +72,12 @@ prices <- raw_prices %>%
 
 # load PCE-adjusted Residential Prices
 # load pce data
-pce_sales <- read_csv("./raw/prices_pce.csv") %>%
+pce_sales <- read_csv("./data/raw/prices_pce.csv") %>%
   mutate("Residential Price kWh (nominal dollars)" = (`Residential Rate after PCE ($/kWh)`)*100) %>% 
   select(-c("PCE Community\n(Y/N)")) 
   
 
-sales_minus_residential <- prices %>%
+sales_minus_residential <- nominal_prices %>%
   mutate("Residential Price kWh (nominal dollars)" = NULL) %>%
   select(c("Year",
            "AEA Sales Reporting ID",
@@ -120,7 +114,7 @@ pce_sales_plus_commercial_other <- left_join(pce_sales,
 
 
 # burn PCE communities from raw_sales in order to set up for r_bind() next
-non_pce_prices <- anti_join(prices, pce_sales, by = join_by(`AEA Sales Reporting ID`))
+non_pce_prices <- anti_join(nominal_prices, pce_sales, by = join_by(`AEA Sales Reporting ID`))
 
 
 prices_pce <- rbind(non_pce_prices, pce_sales_plus_commercial_other)
@@ -165,7 +159,7 @@ prices_pce_inflation <- prices_pce %>%
 
 
 # Now that cleaning is done, add community crosswalk data
-crosswalk2020 <- read_csv("./raw/crosswalk2020.csv")
+crosswalk2020 <- read_csv("./data/raw/crosswalk2020.csv")
 
 # need to figure out SR-195 (Metlakatla, Southeast), SR-199 (Seward, Railbelt), SR-9 (Paxson, Chugach)
 crosswalk2020 <- rbind(crosswalk2020, c("SR-195", NA, NA, NA, "Metlakatla", NA, "Southeast"))
@@ -242,17 +236,9 @@ colnames(final_final) <- gsub(")", "", colnames(final_final), fixed=T)
 
 
 
+# last call
+prices <- final_final
 
-
-
-# check if table exists
-dbExistsTable(con, "prices")
-
-# delete contents
-# dbExecute(con, "DELETE FROM prices")
-
-# write tables
-dbWriteTable(con, "prices", final_final, overwrite=T)
 
 # clean up
 rm(ak_cpi, 
@@ -260,9 +246,9 @@ rm(ak_cpi,
    final,
    final_final,
    non_pce_prices, 
+   nominal_prices,
    pce_sales, 
    pce_sales_plus_commercial_other, 
-   prices,
    prices_pce,
    prices_pce_inflation,
    raw_prices,
@@ -270,8 +256,23 @@ rm(ak_cpi,
    sub
 )
 
-## test load from database
-prices <- dbReadTable(con, "prices")
+
+
+
+
+
+############################
+# DEPRECATED DATABASE CALL #
+############################
+
+# # check if table exists
+# dbExistsTable(con, "prices")
+# # delete contents
+# # dbExecute(con, "DELETE FROM prices")
+# # write tables
+# dbWriteTable(con, "prices", final_final, overwrite=T)
+# ## test load from database
+# prices <- dbReadTable(con, "prices")
 
 
 
