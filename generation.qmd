@@ -7,16 +7,411 @@ date-format: "MMM D, YYYY [at] HH:mm z"
 
 ## General Overview
 
-This section outlines the trends in generation by fuel type for each region. Generation in our context has two separate definitions. Data collected through the Energy Information Administration (EIA) records “net” generation, which excludes electricity use for power plant operations. However, data collected from the Alaska Energy Authority’s (AEA) Power Cost Equalization (PCE) program is presented as “gross” generation, which does not make this exclusion.
+This section outlines the trends in generation by fuel type for each region. Generation in our context has two separate definitions. Data collected through the Energy Information Administration (EIA) records “net” generation, which excludes electricity use for power plant operations. However, data collected from the Alaska Energy Authority’s (AEA) Power Cost Equalization (PCE) program is presented as “gross” generation, which does not make this exclusion.[^1]
+
+[^1]: The PCE data do show powerhouse consumption as a separate data item, which would allow for the computation of “net generation” in PCE communities. However, we have continued to report generation in PCE communities as the gross amount in order to be consistent with previous Alaska Energy Statistics Reports.
+
+The following figure provides a visual representation of yearly electricity generation for the Coastal, Railbelt, and Rural Remote regions. All regions produced a relatively consistent amount of electricity between 2011 and 2021. Across this time period, the Railbelt generated an average of 4,772 GWh, the Coastal region generated an average of 1,131 GWh, and the Rural Remote region generated an average of 509 GWh. Between 2011 and 2021, the average yearly growth rate for generation was 1.62% in the Coastal region, -0.31% in the Railbelt region, and 2.43% in Rural Remote communities. The Coastal and Rural Remote trends are in line with improvements in rural electrification, as well as modest population growth. Of the regions, the Railbelt is the only one that consistently saw decreases in generation across the years. Total statewide generation increased at an average annual growth rate of 0.22%.
+
+```{ojs}
+//| echo: false
+import {tidy, groupBy, rename, summarize, sum, mutate, select, n, nDistinct, mean, filter, pivotWider, pivotLonger, leftJoin, slice, fullJoin} from "@pbeshai/tidyjs"
+
+// Import the long-form generation data
+gen_data = FileAttachment("data/working/generation/net_generation_long.csv").csv({ typed: true })
+
+// Convert MWh to GWh
+gen_data_gwh = tidy(gen_data, mutate({
+  generation: (d) => d.generation / 1000
+}));
+
+// Plotting total generation by region and year
+Plot.plot({
+  
+  // Configure the plot
+  title: " Electricity generation by region",
+  insetLeft: 0,
+  insetRight: 0,
+  
+  // Configure the x-axis
+  x: {
+    tickFormat: "d",
+    label: "Year"
+  },
+  
+  // Configure the y-axis
+  y: {
+    grid: true,
+    label: "Generation (GWh)"
+  },
+  
+  // Plotting the series
+  marks: [
+    Plot.barY(
+      gen_data_gwh,
+      Plot.groupX(
+        {
+          y: "sum"
+        },
+        {
+          x: "year",
+          y: "generation",
+          fill: "acep_region",
+          tip: {format: {x: "d"}}
+        }
+      )
+    ),
+    Plot.ruleY([0])
+  ],
+  
+  // Legend
+  color: {
+    domain: ["Coastal","Railbelt","Rural Remote"],
+    range: ["#8cbbda","#97cd93","#f28d8c"],
+    legend: true
+  }
+})
+```
+
+While generation did not change significantly during the observed time period, the resources from which generation occurred, did. Figure X shows how the mix of generation fuels changed between 2011 and 2021.[^2]
+
+[^2]: Oil consists of generators whose primary fuel source is diesel/distillate, naphtha, or jet fuel. Gas consists of natural or landfill gas. Hydro refers to conventional hydroelectric turbines. Wind and solar are both utility-scale (excluding behind-the-meter solar).
+
+[Share Graph]
+
+We show that for these resources, the Coastal region displaced oil generation with hydro and wind generation. The Railbelt displaced gas and oil generation with coal, hydro, and solar generation. Finally, the Rural Remote region of the state displaced coal and a small amount of hydro with gas, solar, and wind generation.
+
+This figure does not include trends in storage or the other category. Storage net generation is always negative due to the efficiency of current battery systems where more energy is sent to storage than can be recovered. The “other” category was not included in this figure as net generation was zero in 2011 and 2021 (but not throughout the series, which we show in the subsequent sections).
 
 ## Coastal
 
-Put Coastal text here.
+In 2011, the Coastal region generated 89% of its electricity from hydro, 10% from oil, and the remainder from wind. In 2021, the region generated 92% of electricity from hydro, 6% from oil, and 2% from wind. In addition, storage played a role in generation, albeit the net result is negative due to efficiencies. The following figure shows how this generation mix has changed over the years.
+
+```{ojs}
+//| echo: false
+// Creating a modified version of the data
+share_data = tidy(
+  gen_data,
+  groupBy(
+    ['year','acep_region','fuel_type'], 
+    [
+      summarize({
+        generation: sum('generation')
+      })
+    ]
+  )
+)
+
+// Creating total generation data from each region and year
+total_gen = tidy(share_data, groupBy(['year','acep_region'], summarize({total_generation: sum('generation')})))
+
+
+// Creating a joined table from the above two
+join = tidy(share_data, fullJoin(total_gen, {by: ['year','acep_region']}))
+
+// Creating a column with shares
+join_shares = tidy(join,
+  mutate({generation_share: (d) => (d.generation / d.total_generation)*100})
+)
+
+// Plotting the shares for the coastal region
+Plot.plot({
+
+  // Configure the plot
+  title: "Share of net generation by fuel type, Coastal region",
+  caption: "Figure note: Storage is not included as its net generation is negative.",
+  insetLeft: 0,
+  insetRight: 0,
+  
+  // Configure the x-axis
+  x: {
+    tickFormat: "d",
+    label: "Year"
+  },
+  
+  // Configure the y-axis
+  y: {
+    grid: true,
+    label: "Share of electricity generation"
+  },
+  
+  marks: [
+    Plot.areaY(
+      join_shares.filter((d) => d.acep_region === "Coastal"),
+      {
+        x:"year",
+        y:"generation_share", 
+        fill: "fuel_type", 
+        tip: {format: {x: "d", y: (d) => `${(d).toLocaleString(undefined, {maximumFractionDigits: 0})}%`}}
+      }
+    ),
+    Plot.ruleY([0])
+  ],
+  
+  // Legend
+  color: {
+    domain: ["Oil","Hydro","Wind"],
+    range: ["#BFBFBF","#96B3DF","#F79646"],
+    legend: true
+}
+})
+```
+
+Generation grew at an average annual growth rate of 1.62% from 2011 to 2021. The following figure highlights the yearly trends in generation by fuel source.
+
+```{ojs}
+//| echo: false
+
+
+// Plotting total generation by region and year
+Plot.plot({
+  
+  // Configure the plot
+  title: "Coastal region electricity generation",
+  insetLeft: 0,
+  insetRight: 0,
+  
+  // Configure the x-axis
+  x: {
+    tickFormat: "d",
+    label: "Year"
+  },
+  
+  // Configure the y-axis
+  y: {
+    grid: true,
+    label: "Generation (GWh)"
+  },
+  
+  // Plotting the series
+  marks: [
+    Plot.barY(
+      gen_data_gwh.filter(d => d.acep_region === "Coastal" && d.generation !== null),
+      Plot.groupX(
+        {
+          y: "sum"
+        },
+        {
+          x: "year",
+          y: "generation",
+          fill: "fuel_type",
+          tip: {format: {x: "d"}}
+        }
+      )
+    ),
+    Plot.ruleY([0])
+  ],
+  
+  // Legend
+  color: {
+    domain: ["Oil","Hydro","Wind"],
+    range: ["#BFBFBF","#96B3DF","#F79646"],
+    legend: true
+  }
+})
+```
 
 ## Railbelt
 
-Put Railbelt text here.
+Railbelt generation has seen notable changes in how it generates electricity between 2011 and 2021. In 2011, the Railbelt region generated 73% of electricity from gas, 8% from coal, 8% from hydro, and 11% from oil. Additionally, a small amount of wind generation was present. In 2021, the region generated 61% of electricity from gas, 15% from coal, 12% from hydro, 10% from oil, and 2% from wind. Additionally, a small amount of solar generation was present. In addition, storage played a role in generation, albeit the net result is negative due to non-perfect efficiencies. The following figure shows how this generation mix has changed over the years. 
+
+```{ojs}
+//| echo: false
+// Plotting the shares for the coastal region
+Plot.plot({
+
+  // Configure the plot
+  title: "Share of net generation by fuel type, Railbelt region",
+  caption: "Figure note: Storage is not included as its net generation is negative.",
+  insetLeft: 0,
+  insetRight: 0,
+  
+  // Configure the x-axis
+  x: {
+    tickFormat: "d",
+    label: "Year"
+  },
+  
+  // Configure the y-axis
+  y: {
+    grid: true,
+    label: "Share of electricity generation"
+  },
+  
+  marks: [
+    Plot.areaY(
+      join_shares.filter((d) => d.acep_region === "Railbelt"),
+      {
+        x:"year",
+        y:"generation_share", 
+        fill: "fuel_type", 
+        tip: {format: {x: "d", y: (d) => `${(d).toLocaleString(undefined, {maximumFractionDigits: 0})}%`}}
+      }
+    ),
+    Plot.ruleY([0])
+  ],
+  
+  // Legend
+  color: {
+    domain: ["Coal","Oil","Gas","Hydro","Wind","Solar"],
+    range: ["#7f7f7f","#BFBFBF","#DCD9C5","#96B3DF","#F79646","#F5C243"],
+    legend: true
+}
+})
+```
+
+
+Generation from 2011 to 2021 saw an average annual growth rate of -0.31%. The following figure highlights the yearly trends in generation by fuel source.
+
+```{ojs}
+//| echo: false
+
+// Plotting total generation by region and year
+Plot.plot({
+  
+  // Configure the plot
+  title: "Railbelt region electricity generation",
+  insetLeft: 0,
+  insetRight: 0,
+  
+  // Configure the x-axis
+  x: {
+    tickFormat: "d",
+    label: "Year"
+  },
+  
+  // Configure the y-axis
+  y: {
+    grid: true,
+    label: "Generation (GWh)"
+  },
+  
+  // Plotting the series
+  marks: [
+    Plot.barY(
+      gen_data_gwh.filter(d => d.acep_region === "Railbelt"),
+      Plot.groupX(
+        {
+          y: "sum"
+        },
+        {
+          x: "year",
+          y: "generation",
+          fill: "fuel_type",
+          tip: {format: {x: "d"}}
+        }
+      )
+    ),
+    Plot.ruleY([0])
+  ],
+  
+  // Legend
+  color: {
+    domain: ["Coal","Oil","Gas","Hydro","Wind","Solar"],
+    range: ["#7f7f7f","#BFBFBF","#DCD9C5","#96B3DF","#F79646","#F5C243"],
+    legend: true
+  }
+})
+```
 
 ## Rural Remote
 
-Put Rural Remote text here.
+The Rural Remote region has seen notable changes between 2011 and 2021 in how it generates electricity. In 2011, the region generated 84% of electricity from oil, 12% from gas, 2% from hydro, and 2% from wind. In 2021, the region generated 77% of electricity from oil (mostly diesel), 19% from gas, 1% from hydro, and 3% from wind. Additionally, a small amount of solar generation was present. The following figure shows how this generation mix has changed over the years.
+
+```{ojs}
+//| echo: false
+// Plotting the shares for the coastal region
+Plot.plot({
+
+  // Configure the plot
+  title: "Share of net generation by fuel type, Rural Remote region",
+  caption: "Figure note: Storage is not included as its net generation is negative.",
+  insetLeft: 0,
+  insetRight: 0,
+  
+  // Configure the x-axis
+  x: {
+    tickFormat: "d",
+    label: "Year"
+  },
+  
+  // Configure the y-axis
+  y: {
+    grid: true,
+    label: "Share of electricity generation"
+  },
+  
+  marks: [
+    Plot.areaY(
+      join_shares.filter((d) => d.acep_region === "Rural Remote"),
+      {
+        x:"year",
+        y:"generation_share", 
+        fill: "fuel_type", 
+        tip: {format: {x: "d", y: (d) => `${(d).toLocaleString(undefined, {maximumFractionDigits: 0})}%`}}
+      }
+    ),
+    Plot.ruleY([0])
+  ],
+  
+  // Legend
+  color: {
+    domain: ["Oil","Gas","Hydro","Wind","Solar","Other"],
+    range: ["#BFBFBF","#DCD9C5","#96B3DF","#F79646","#F5C243","#C0504D"],
+    legend: true
+}
+})
+```
+
+Generation from 2011 to 2021 saw an average annual growth rate of 2.43%. The following figure highlights the yearly trends in generation by fuel source. From 2013 to 2014, a large increase in gas generation is observed due to operations on the North Slope - specifically in the Barrow Utilities & Electric Cooperative, Inc. (BUECI), Deadhorse, and Nuiqsut service regions.
+
+```{ojs}
+//| echo: false
+
+// Plotting total generation by region and year
+Plot.plot({
+  
+  // Configure the plot
+  title: "Rural remote region electricity generation",
+  insetLeft: 0,
+  insetRight: 0,
+  
+  // Configure the x-axis
+  x: {
+    tickFormat: "d",
+    label: "Year"
+  },
+  
+  // Configure the y-axis
+  y: {
+    grid: true,
+    label: "Generation (GWh)"
+  },
+  
+  // Plotting the series
+  marks: [
+    Plot.barY(
+      gen_data_gwh.filter(d => d.acep_region === "Rural Remote"),
+      Plot.groupX(
+        {
+          y: "sum"
+        },
+        {
+          x: "year",
+          y: "generation",
+          fill: "fuel_type",
+          tip: {format: {x: "d"}}
+        }
+      )
+    ),
+    Plot.ruleY([0])
+  ],
+  
+  // Legend
+  color: {
+    domain: ["Oil","Gas","Hydro","Wind","Solar","Other"],
+    range: ["#BFBFBF","#DCD9C5","#96B3DF","#F79646","#F5C243","#C0504D"],
+    legend: true
+  }
+})
+```

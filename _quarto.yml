@@ -46,9 +46,9 @@ website:
       - href: capacity.qmd
         text: Capacity
         icon: dot
-      # - href: generation.qmd
-      #   text: Generation by Fuel Type
-      #   icon: dot
+      - href: generation.qmd
+        text: Net Generation
+        icon: dot
       # - href: consumption.qmd
       #   text: Electricity Consumption
       #   icon: dot
