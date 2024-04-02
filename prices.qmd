@@ -36,6 +36,15 @@ weighted_prices = FileAttachment("data/working/prices/weighted_prices.csv").csv(
 ```
 
 
+<br>
+
+ {{< include _prices_raincloud.qmd >}}
+
+<br>
+
+
+## Regional Averages Through Time
+
 ```{ojs}
 // aggregate
 region_weighted_prices = tidy(weighted_prices, 
@@ -81,15 +90,6 @@ Plot.plot({
 
 ```
 
-<br>
-
-
-<!-- {{< include _penguins_raincloud.qmd >}} -->
-
- {{< include _prices_raincloud.qmd >}}
-
-
-<br>
 
 ## Coastal
 
