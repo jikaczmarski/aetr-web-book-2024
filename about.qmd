@@ -14,7 +14,7 @@ Throughout the years, several agencies have prepared and published reports and d
 
 ## Historical Timeline of Prior Reports
 
-![Timeline of Energy Reports](images/prelim_report_timeline.png)
+![Timeline of Energy Reports](images/energy_stats_timeline.png)
 
 Starting in 1969, the first electric power trends report was published by the Alaska Power Administration. During this time, the Alaska Power Administration was a federal agency housed within the U.S. Department of the Interior. Their first publication was known as the “First Annual Report” and covered data from the 1968 fiscal year. However, this became the “Alaska Electric Power Statistics Report” in 1971 and examined data from the 1960-1969 data years. The Alaska Power Administration continued to produce intermittent reports until 1983 when the State of Alaska established the Alaska Power Authority, which later became the Alaska Energy Authority. 
 

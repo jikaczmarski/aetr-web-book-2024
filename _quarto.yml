@@ -38,7 +38,7 @@ website:
         text: Summary
         icon: dot
       - href: about.qmd
-        text: About the Report
+        text: About this Report
         icon: dot
       - href: methods.qmd
         text: Methods
