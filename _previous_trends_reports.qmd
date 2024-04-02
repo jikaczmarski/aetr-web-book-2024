@@ -27,3 +27,6 @@
 |        2012        |  1960-2010 |    Calendar    | University of Alaska Anchorage, Institute of Social and Economic Research                                                | Alaska Energy Statistics 1960 - 2010 Final Report                         | Report, Excel Workbook | [Alaska Energy Statistics 1960 - 2010   Final Report](http://hdl.handle.net/11122/3924)                                                               |
 |        2013        |  1960-2011 |    Calendar    | University of Alaska Anchorage, Institute of Social and Economic Research                                                | Alaska Energy Statistics 1960 - 2011 Final Report                         | Report, Excel Workbook | [Alaska Energy Statistics 1960 - 2011   Final Report](http://hdl.handle.net/11122/3852)                                                               |
 |        2015        |    2012    |    Calendar    | State of Alaska, Alaska Energy Authority                                                                                 | 2012 Alaska Energy Statistics Final Report                                | Report                 | [2012 Alaska Energy Statistics Final   Report](https://aealibrary.org/WebLink/DocView.aspx?id=461&dbid=0&repo=AEA)                                    |
+:  Links to Historical Reports {.striped}
+
+foo

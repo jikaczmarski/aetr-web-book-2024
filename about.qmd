@@ -1,25 +1,36 @@
 ---
-title: "About the Report"
+title: "About this Report"
 subtitle: "Description of the 2024 Alaska Electricity Trends Report Web Book"
-date-modified: "2024-03-26T14:36:00-08:00"
+date-modified: "2024-04-02T12:00:00-08:00"
 date-format: "MMM D, YYYY [at] HH:mm z"
 ---
 
-The Alaska Electrical Trends Report (AETR) Web Book has been produced by the Alaska Center for Energy and Power ([ACEP](https://www.uaf.edu/acep/)) at the University of Alaska Fairbanks ([UAF](https://www.uaf.edu/uaf/index.php)). It is designed to be interactive and dynamically updated when new data becomes available. 
+## General Overview
+
+This Alaska Electrical Trends Report (AETR) Web Book has been produced by the Alaska Center for Energy and Power ([ACEP](https://www.uaf.edu/acep/)) at the University of Alaska Fairbanks ([UAF](https://www.uaf.edu/uaf/index.php)). It is designed to be interactive and dynamically updated when new data becomes available. 
+
+Throughout the years, several agencies have prepared and published reports and data compilations on energy use in Alaska. AETR is complimentary to those prior reports, but is not a direct successor to them because it focuses on electricity only. 
+
 
 ## Historical Timeline of Prior Reports
 
-Throughout the years, several agencies have prepared and published reports and data compilations on energy use in Alaska. AETR is complimentary to those prior reports, but is not a direct successor to them because it focuses on electricity only. Here is a timeline of prior reports for context:
+Starting in 1969, the first electric power trends report was published by the Alaska Power Administration. During this time, the Alaska Power Administration was a federal agency housed within the U.S. Department of the Interior. Their first publication was known as the “First Annual Report” and covered data from the 1968 fiscal year. However, this became the “Alaska Electric Power Statistics Report” in 1971 and examined data from the 1960-1969 data years. The Alaska Power Administration continued to produce intermittent reports until 1983 when the State of Alaska established the Alaska Power Authority, which later became the Alaska Energy Authority. Under state direction, the APA/AEA continued to publish intermittent reports on electric power statistics until their final publication in 1992 which covered data years 1960 to 1991. To address the reporting gap, the Alaska Systems Coordinating Council in collaboration with the State of Alaska, Department of Community and Regional Affairs, Division of Energy continued generating reports until 1996 with their final report covering data years 1960 to 1995. Finally, the University of Alaska Anchorage, Institute of Social and Economic Research produced several reports with their last covering 1960 to 2012. Since then, there have been no electric power statistical reports. 
 
-- Before 1985: federal Alaska Power Administration published Alaska Electric Power Statistics report (AEPS)
-- 1985: Alaska Energy Authority (AEA, formerly Alaska Power Authority) begins gathering statistical data and publishing annual report
-- 1988: AEPS report becomes combined effort of the Alaska Systems Coordinating Council (ASCC) and AEA
-- 1993: AEPS becomes joint effort of the ASCC and the Alaska Department of Community and Regional Affairs, Division of Energy
-- 1995 - 2003: No reports published
-- 2003: the Institute of Social and Economic Research (ISER) at the University of Alaska Anchorage (UAA) prepare a report with funding from AEA, the Regulatory Commission of Alaska (RCA), and the Denali Commission
-- 2008 - 2011: ISER prepares Alaska Energy Statistics updates with funding from AEA
-- 2012 - 2013: AEA prepares Excel workbook with updated data
+The following table provides a summary of this timeline. This report serves to supplement the reporting gap in electric power statistics for the State of Alaska. 
 
+
+| Year Published  | Institution  | Data Coverage |
+|:---------|:-------------------------|:---------|
+| 1971 to 1983  | Alaska Power Administration  | 1960 to 1982 |
+| 1984 to 1988  | Alaska Power Authority       | 1960 to 1987 |
+| 1989 to 1992  | Alaska Energy Authority      | 1960 to 1991 |
+| 1992 to 1996  | Alaska Systems Coordinating Council; State of Alaska | 1960 to 1995 |
+| 2003, 2011 to 2015 | University of Alaska Anchorage, Institute of Social and Economic Research | 1960 to 2012 | 
+:  Historical Timeline of Reports {.striped}
+
+&nbsp;
+
+For a full list of links to these described reports, please visit [Historical Electric Power Reports](historic_reports.qmd).
 
 ## Technical Details
 
