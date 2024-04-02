@@ -73,6 +73,9 @@ source(file = "./scripts/prices.R")
 # Weighted Prices
 source(file = "./scripts/weighted_prices.R")
 
+# Capacity
+source(file = "./scripts/capacity.R")
+
 # Capacity Utilities
 # source(file = "./scripts/capacity_utilities.R")
 
@@ -100,6 +103,9 @@ write_csv(weighted_prices, file = "./prices/weighted_prices.csv")
 
 # generation
 write.csv(generation_data_long, file = "./generation/net_generation_long.csv", row.names = FALSE)
+
+# capacity
+write.csv(capacity_data_long, file = "./capacity/capacity_long.csv", row.names = FALSE)
 
 
 

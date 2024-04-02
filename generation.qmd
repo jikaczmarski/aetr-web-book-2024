@@ -34,7 +34,6 @@ cagr <- function(x) {
   round(r,2)
 }
 
-
 ```
 
 ## General Overview
@@ -387,7 +386,7 @@ Plot.plot({
     domain: ["Coal","Oil","Gas","Hydro","Wind","Solar"],
     range: ["#7f7f7f","#BFBFBF","#DCD9C5","#96B3DF","#F79646","#F5C243"],
     legend: true
-}
+  },
 })
 ```
 

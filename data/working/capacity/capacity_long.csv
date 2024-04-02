@@ -1,0 +1,441 @@
+"aea_region","year","acep_region","prime_mover","capacity"
+"Aleutians",2011,"Rural Remote","Fossil Turbines",0
+"Aleutians",2011,"Rural Remote","Recip Engines",34.945
+"Aleutians",2011,"Rural Remote","Hydro",0.8
+"Aleutians",2011,"Rural Remote","Wind",1.74
+"Aleutians",2011,"Rural Remote","Utility Solar",0
+"Aleutians",2011,"Rural Remote","Rooftop Solar",0
+"Aleutians",2011,"Rural Remote","Storage",0
+"Aleutians",2011,"Rural Remote","Landfill Gas",0
+"Aleutians",2012,"Rural Remote","Fossil Turbines",0
+"Aleutians",2012,"Rural Remote","Recip Engines",34.945
+"Aleutians",2012,"Rural Remote","Hydro",0.8
+"Aleutians",2012,"Rural Remote","Wind",1.74
+"Aleutians",2012,"Rural Remote","Utility Solar",0
+"Aleutians",2012,"Rural Remote","Rooftop Solar",0
+"Aleutians",2012,"Rural Remote","Storage",0
+"Aleutians",2012,"Rural Remote","Landfill Gas",0
+"Aleutians",2013,"Rural Remote","Fossil Turbines",0
+"Aleutians",2013,"Rural Remote","Recip Engines",34.945
+"Aleutians",2013,"Rural Remote","Hydro",1.084
+"Aleutians",2013,"Rural Remote","Wind",1.74
+"Aleutians",2013,"Rural Remote","Utility Solar",0
+"Aleutians",2013,"Rural Remote","Rooftop Solar",0
+"Aleutians",2013,"Rural Remote","Storage",0.2
+"Aleutians",2013,"Rural Remote","Landfill Gas",0
+"Aleutians",2018,"Rural Remote","Fossil Turbines",0
+"Aleutians",2018,"Rural Remote","Recip Engines",66.588
+"Aleutians",2018,"Rural Remote","Hydro",1.589
+"Aleutians",2018,"Rural Remote","Wind",1.61
+"Aleutians",2018,"Rural Remote","Utility Solar",0
+"Aleutians",2018,"Rural Remote","Rooftop Solar",0
+"Aleutians",2018,"Rural Remote","Storage",0
+"Aleutians",2018,"Rural Remote","Landfill Gas",0
+"Aleutians",2021,"Rural Remote","Fossil Turbines",0
+"Aleutians",2021,"Rural Remote","Recip Engines",56.067
+"Aleutians",2021,"Rural Remote","Hydro",1.589
+"Aleutians",2021,"Rural Remote","Wind",1.385
+"Aleutians",2021,"Rural Remote","Utility Solar",0
+"Aleutians",2021,"Rural Remote","Rooftop Solar",0
+"Aleutians",2021,"Rural Remote","Storage",0
+"Aleutians",2021,"Rural Remote","Landfill Gas",0
+"Bering Straits",2011,"Rural Remote","Fossil Turbines",0
+"Bering Straits",2011,"Rural Remote","Recip Engines",36.833
+"Bering Straits",2011,"Rural Remote","Hydro",0
+"Bering Straits",2011,"Rural Remote","Wind",2.4
+"Bering Straits",2011,"Rural Remote","Utility Solar",0
+"Bering Straits",2011,"Rural Remote","Rooftop Solar",0
+"Bering Straits",2011,"Rural Remote","Storage",0
+"Bering Straits",2011,"Rural Remote","Landfill Gas",0
+"Bering Straits",2012,"Rural Remote","Fossil Turbines",0
+"Bering Straits",2012,"Rural Remote","Recip Engines",36.833
+"Bering Straits",2012,"Rural Remote","Hydro",0
+"Bering Straits",2012,"Rural Remote","Wind",2.6
+"Bering Straits",2012,"Rural Remote","Utility Solar",0
+"Bering Straits",2012,"Rural Remote","Rooftop Solar",0
+"Bering Straits",2012,"Rural Remote","Storage",0
+"Bering Straits",2012,"Rural Remote","Landfill Gas",0
+"Bering Straits",2013,"Rural Remote","Fossil Turbines",0
+"Bering Straits",2013,"Rural Remote","Recip Engines",32.533
+"Bering Straits",2013,"Rural Remote","Hydro",0
+"Bering Straits",2013,"Rural Remote","Wind",4.4
+"Bering Straits",2013,"Rural Remote","Utility Solar",0
+"Bering Straits",2013,"Rural Remote","Rooftop Solar",0
+"Bering Straits",2013,"Rural Remote","Storage",0
+"Bering Straits",2013,"Rural Remote","Landfill Gas",0
+"Bering Straits",2018,"Rural Remote","Fossil Turbines",0
+"Bering Straits",2018,"Rural Remote","Recip Engines",32.129
+"Bering Straits",2018,"Rural Remote","Hydro",0
+"Bering Straits",2018,"Rural Remote","Wind",5.13
+"Bering Straits",2018,"Rural Remote","Utility Solar",0
+"Bering Straits",2018,"Rural Remote","Rooftop Solar",0
+"Bering Straits",2018,"Rural Remote","Storage",0
+"Bering Straits",2018,"Rural Remote","Landfill Gas",0
+"Bering Straits",2021,"Rural Remote","Fossil Turbines",0
+"Bering Straits",2021,"Rural Remote","Recip Engines",33.467
+"Bering Straits",2021,"Rural Remote","Hydro",0
+"Bering Straits",2021,"Rural Remote","Wind",3.1
+"Bering Straits",2021,"Rural Remote","Utility Solar",0
+"Bering Straits",2021,"Rural Remote","Rooftop Solar",0
+"Bering Straits",2021,"Rural Remote","Storage",0
+"Bering Straits",2021,"Rural Remote","Landfill Gas",0
+"Bristol Bay",2011,"Rural Remote","Fossil Turbines",0
+"Bristol Bay",2011,"Rural Remote","Recip Engines",27.479
+"Bristol Bay",2011,"Rural Remote","Hydro",0.824
+"Bristol Bay",2011,"Rural Remote","Wind",0.044
+"Bristol Bay",2011,"Rural Remote","Utility Solar",0
+"Bristol Bay",2011,"Rural Remote","Rooftop Solar",0
+"Bristol Bay",2011,"Rural Remote","Storage",0
+"Bristol Bay",2011,"Rural Remote","Landfill Gas",0
+"Bristol Bay",2012,"Rural Remote","Fossil Turbines",0
+"Bristol Bay",2012,"Rural Remote","Recip Engines",26.879
+"Bristol Bay",2012,"Rural Remote","Hydro",0.8
+"Bristol Bay",2012,"Rural Remote","Wind",0.224
+"Bristol Bay",2012,"Rural Remote","Utility Solar",0
+"Bristol Bay",2012,"Rural Remote","Rooftop Solar",0
+"Bristol Bay",2012,"Rural Remote","Storage",0
+"Bristol Bay",2012,"Rural Remote","Landfill Gas",0
+"Bristol Bay",2013,"Rural Remote","Fossil Turbines",0
+"Bristol Bay",2013,"Rural Remote","Recip Engines",26.879
+"Bristol Bay",2013,"Rural Remote","Hydro",0.824
+"Bristol Bay",2013,"Rural Remote","Wind",0.224
+"Bristol Bay",2013,"Rural Remote","Utility Solar",0
+"Bristol Bay",2013,"Rural Remote","Rooftop Solar",0
+"Bristol Bay",2013,"Rural Remote","Storage",0
+"Bristol Bay",2013,"Rural Remote","Landfill Gas",0
+"Bristol Bay",2018,"Rural Remote","Fossil Turbines",0
+"Bristol Bay",2018,"Rural Remote","Recip Engines",29.868
+"Bristol Bay",2018,"Rural Remote","Hydro",1.067
+"Bristol Bay",2018,"Rural Remote","Wind",0.404
+"Bristol Bay",2018,"Rural Remote","Utility Solar",0
+"Bristol Bay",2018,"Rural Remote","Rooftop Solar",0
+"Bristol Bay",2018,"Rural Remote","Storage",0
+"Bristol Bay",2018,"Rural Remote","Landfill Gas",0
+"Bristol Bay",2021,"Rural Remote","Fossil Turbines",0
+"Bristol Bay",2021,"Rural Remote","Recip Engines",40.2848
+"Bristol Bay",2021,"Rural Remote","Hydro",1.027
+"Bristol Bay",2021,"Rural Remote","Wind",0.414
+"Bristol Bay",2021,"Rural Remote","Utility Solar",0
+"Bristol Bay",2021,"Rural Remote","Rooftop Solar",0
+"Bristol Bay",2021,"Rural Remote","Storage",0.125
+"Bristol Bay",2021,"Rural Remote","Landfill Gas",0
+"Copper River/Chugach",2011,"Coastal","Fossil Turbines",8.1
+"Copper River/Chugach",2011,"Coastal","Recip Engines",30.044
+"Copper River/Chugach",2011,"Coastal","Hydro",19.2
+"Copper River/Chugach",2011,"Coastal","Wind",0
+"Copper River/Chugach",2011,"Coastal","Utility Solar",0
+"Copper River/Chugach",2011,"Coastal","Rooftop Solar",0
+"Copper River/Chugach",2011,"Coastal","Storage",0
+"Copper River/Chugach",2011,"Coastal","Landfill Gas",0
+"Copper River/Chugach",2012,"Coastal","Fossil Turbines",8.1
+"Copper River/Chugach",2012,"Coastal","Recip Engines",30.044
+"Copper River/Chugach",2012,"Coastal","Hydro",19.2
+"Copper River/Chugach",2012,"Coastal","Wind",0
+"Copper River/Chugach",2012,"Coastal","Utility Solar",0
+"Copper River/Chugach",2012,"Coastal","Rooftop Solar",0
+"Copper River/Chugach",2012,"Coastal","Storage",0
+"Copper River/Chugach",2012,"Coastal","Landfill Gas",0
+"Copper River/Chugach",2013,"Coastal","Fossil Turbines",8.1
+"Copper River/Chugach",2013,"Coastal","Recip Engines",30.044
+"Copper River/Chugach",2013,"Coastal","Hydro",19.2
+"Copper River/Chugach",2013,"Coastal","Wind",0
+"Copper River/Chugach",2013,"Coastal","Utility Solar",0
+"Copper River/Chugach",2013,"Coastal","Rooftop Solar",0
+"Copper River/Chugach",2013,"Coastal","Storage",0
+"Copper River/Chugach",2013,"Coastal","Landfill Gas",0
+"Copper River/Chugach",2018,"Coastal","Fossil Turbines",8.1
+"Copper River/Chugach",2018,"Coastal","Recip Engines",28.812
+"Copper River/Chugach",2018,"Coastal","Hydro",25.7
+"Copper River/Chugach",2018,"Coastal","Wind",0
+"Copper River/Chugach",2018,"Coastal","Utility Solar",0
+"Copper River/Chugach",2018,"Coastal","Rooftop Solar",0
+"Copper River/Chugach",2018,"Coastal","Storage",0
+"Copper River/Chugach",2018,"Coastal","Landfill Gas",0
+"Copper River/Chugach",2021,"Coastal","Fossil Turbines",5.3
+"Copper River/Chugach",2021,"Coastal","Recip Engines",30.41
+"Copper River/Chugach",2021,"Coastal","Hydro",25.7
+"Copper River/Chugach",2021,"Coastal","Wind",0
+"Copper River/Chugach",2021,"Coastal","Utility Solar",0
+"Copper River/Chugach",2021,"Coastal","Rooftop Solar",0
+"Copper River/Chugach",2021,"Coastal","Storage",1
+"Copper River/Chugach",2021,"Coastal","Landfill Gas",0
+"Kodiak",2011,"Coastal","Fossil Turbines",0
+"Kodiak",2011,"Coastal","Recip Engines",35.232
+"Kodiak",2011,"Coastal","Hydro",22.875
+"Kodiak",2011,"Coastal","Wind",4.5
+"Kodiak",2011,"Coastal","Utility Solar",0
+"Kodiak",2011,"Coastal","Rooftop Solar",0
+"Kodiak",2011,"Coastal","Storage",0
+"Kodiak",2011,"Coastal","Landfill Gas",0
+"Kodiak",2012,"Coastal","Fossil Turbines",0
+"Kodiak",2012,"Coastal","Recip Engines",35.232
+"Kodiak",2012,"Coastal","Hydro",22.875
+"Kodiak",2012,"Coastal","Wind",9
+"Kodiak",2012,"Coastal","Utility Solar",0
+"Kodiak",2012,"Coastal","Rooftop Solar",0
+"Kodiak",2012,"Coastal","Storage",0
+"Kodiak",2012,"Coastal","Landfill Gas",0
+"Kodiak",2013,"Coastal","Fossil Turbines",0
+"Kodiak",2013,"Coastal","Recip Engines",35.232
+"Kodiak",2013,"Coastal","Hydro",22.875
+"Kodiak",2013,"Coastal","Wind",9
+"Kodiak",2013,"Coastal","Utility Solar",0
+"Kodiak",2013,"Coastal","Rooftop Solar",0
+"Kodiak",2013,"Coastal","Storage",3
+"Kodiak",2013,"Coastal","Landfill Gas",0
+"Kodiak",2018,"Coastal","Fossil Turbines",0
+"Kodiak",2018,"Coastal","Recip Engines",39.077
+"Kodiak",2018,"Coastal","Hydro",34.2
+"Kodiak",2018,"Coastal","Wind",9
+"Kodiak",2018,"Coastal","Utility Solar",0
+"Kodiak",2018,"Coastal","Rooftop Solar",0
+"Kodiak",2018,"Coastal","Storage",5
+"Kodiak",2018,"Coastal","Landfill Gas",0
+"Kodiak",2021,"Coastal","Fossil Turbines",0
+"Kodiak",2021,"Coastal","Recip Engines",39.076
+"Kodiak",2021,"Coastal","Hydro",34.2
+"Kodiak",2021,"Coastal","Wind",9
+"Kodiak",2021,"Coastal","Utility Solar",0
+"Kodiak",2021,"Coastal","Rooftop Solar",0
+"Kodiak",2021,"Coastal","Storage",5
+"Kodiak",2021,"Coastal","Landfill Gas",0
+"Lower Yukon-Kuskokwim",2011,"Rural Remote","Fossil Turbines",0
+"Lower Yukon-Kuskokwim",2011,"Rural Remote","Recip Engines",53.209
+"Lower Yukon-Kuskokwim",2011,"Rural Remote","Hydro",0
+"Lower Yukon-Kuskokwim",2011,"Rural Remote","Wind",2.75
+"Lower Yukon-Kuskokwim",2011,"Rural Remote","Utility Solar",0
+"Lower Yukon-Kuskokwim",2011,"Rural Remote","Rooftop Solar",0
+"Lower Yukon-Kuskokwim",2011,"Rural Remote","Storage",0
+"Lower Yukon-Kuskokwim",2011,"Rural Remote","Landfill Gas",0
+"Lower Yukon-Kuskokwim",2012,"Rural Remote","Fossil Turbines",0
+"Lower Yukon-Kuskokwim",2012,"Rural Remote","Recip Engines",53.709
+"Lower Yukon-Kuskokwim",2012,"Rural Remote","Hydro",0
+"Lower Yukon-Kuskokwim",2012,"Rural Remote","Wind",3.7
+"Lower Yukon-Kuskokwim",2012,"Rural Remote","Utility Solar",0
+"Lower Yukon-Kuskokwim",2012,"Rural Remote","Rooftop Solar",0
+"Lower Yukon-Kuskokwim",2012,"Rural Remote","Storage",0
+"Lower Yukon-Kuskokwim",2012,"Rural Remote","Landfill Gas",0
+"Lower Yukon-Kuskokwim",2013,"Rural Remote","Fossil Turbines",0
+"Lower Yukon-Kuskokwim",2013,"Rural Remote","Recip Engines",54.509
+"Lower Yukon-Kuskokwim",2013,"Rural Remote","Hydro",0
+"Lower Yukon-Kuskokwim",2013,"Rural Remote","Wind",3.7
+"Lower Yukon-Kuskokwim",2013,"Rural Remote","Utility Solar",0
+"Lower Yukon-Kuskokwim",2013,"Rural Remote","Rooftop Solar",0
+"Lower Yukon-Kuskokwim",2013,"Rural Remote","Storage",0
+"Lower Yukon-Kuskokwim",2013,"Rural Remote","Landfill Gas",0
+"Lower Yukon-Kuskokwim",2018,"Rural Remote","Fossil Turbines",0
+"Lower Yukon-Kuskokwim",2018,"Rural Remote","Recip Engines",55.165
+"Lower Yukon-Kuskokwim",2018,"Rural Remote","Hydro",0
+"Lower Yukon-Kuskokwim",2018,"Rural Remote","Wind",5.81
+"Lower Yukon-Kuskokwim",2018,"Rural Remote","Utility Solar",0.012
+"Lower Yukon-Kuskokwim",2018,"Rural Remote","Rooftop Solar",0
+"Lower Yukon-Kuskokwim",2018,"Rural Remote","Storage",0
+"Lower Yukon-Kuskokwim",2018,"Rural Remote","Landfill Gas",0
+"Lower Yukon-Kuskokwim",2021,"Rural Remote","Fossil Turbines",0
+"Lower Yukon-Kuskokwim",2021,"Rural Remote","Recip Engines",60.3
+"Lower Yukon-Kuskokwim",2021,"Rural Remote","Hydro",0
+"Lower Yukon-Kuskokwim",2021,"Rural Remote","Wind",6.08
+"Lower Yukon-Kuskokwim",2021,"Rural Remote","Utility Solar",0.012
+"Lower Yukon-Kuskokwim",2021,"Rural Remote","Rooftop Solar",0
+"Lower Yukon-Kuskokwim",2021,"Rural Remote","Storage",0.885
+"Lower Yukon-Kuskokwim",2021,"Rural Remote","Landfill Gas",0
+"North Slope",2011,"Rural Remote","Fossil Turbines",17.3
+"North Slope",2011,"Rural Remote","Recip Engines",23.3
+"North Slope",2011,"Rural Remote","Hydro",0
+"North Slope",2011,"Rural Remote","Wind",0
+"North Slope",2011,"Rural Remote","Utility Solar",0
+"North Slope",2011,"Rural Remote","Rooftop Solar",0
+"North Slope",2011,"Rural Remote","Storage",0
+"North Slope",2011,"Rural Remote","Landfill Gas",0
+"North Slope",2012,"Rural Remote","Fossil Turbines",17.3
+"North Slope",2012,"Rural Remote","Recip Engines",22.9
+"North Slope",2012,"Rural Remote","Hydro",0
+"North Slope",2012,"Rural Remote","Wind",0
+"North Slope",2012,"Rural Remote","Utility Solar",0
+"North Slope",2012,"Rural Remote","Rooftop Solar",0
+"North Slope",2012,"Rural Remote","Storage",0
+"North Slope",2012,"Rural Remote","Landfill Gas",0
+"North Slope",2013,"Rural Remote","Fossil Turbines",17.3
+"North Slope",2013,"Rural Remote","Recip Engines",23.6
+"North Slope",2013,"Rural Remote","Hydro",0
+"North Slope",2013,"Rural Remote","Wind",0
+"North Slope",2013,"Rural Remote","Utility Solar",0
+"North Slope",2013,"Rural Remote","Rooftop Solar",0
+"North Slope",2013,"Rural Remote","Storage",0
+"North Slope",2013,"Rural Remote","Landfill Gas",0
+"North Slope",2018,"Rural Remote","Fossil Turbines",42.7
+"North Slope",2018,"Rural Remote","Recip Engines",32.925
+"North Slope",2018,"Rural Remote","Hydro",0
+"North Slope",2018,"Rural Remote","Wind",0
+"North Slope",2018,"Rural Remote","Utility Solar",0
+"North Slope",2018,"Rural Remote","Rooftop Solar",0
+"North Slope",2018,"Rural Remote","Storage",0
+"North Slope",2018,"Rural Remote","Landfill Gas",0
+"North Slope",2021,"Rural Remote","Fossil Turbines",42.7
+"North Slope",2021,"Rural Remote","Recip Engines",32.5
+"North Slope",2021,"Rural Remote","Hydro",0
+"North Slope",2021,"Rural Remote","Wind",0
+"North Slope",2021,"Rural Remote","Utility Solar",0
+"North Slope",2021,"Rural Remote","Rooftop Solar",0
+"North Slope",2021,"Rural Remote","Storage",0
+"North Slope",2021,"Rural Remote","Landfill Gas",0
+"Northwest Arctic",2011,"Rural Remote","Fossil Turbines",0
+"Northwest Arctic",2011,"Rural Remote","Recip Engines",21.959
+"Northwest Arctic",2011,"Rural Remote","Hydro",0
+"Northwest Arctic",2011,"Rural Remote","Wind",1.4
+"Northwest Arctic",2011,"Rural Remote","Utility Solar",0
+"Northwest Arctic",2011,"Rural Remote","Rooftop Solar",0
+"Northwest Arctic",2011,"Rural Remote","Storage",0
+"Northwest Arctic",2011,"Rural Remote","Landfill Gas",0
+"Northwest Arctic",2012,"Rural Remote","Fossil Turbines",0
+"Northwest Arctic",2012,"Rural Remote","Recip Engines",20.959
+"Northwest Arctic",2012,"Rural Remote","Hydro",0
+"Northwest Arctic",2012,"Rural Remote","Wind",4.96
+"Northwest Arctic",2012,"Rural Remote","Utility Solar",0
+"Northwest Arctic",2012,"Rural Remote","Rooftop Solar",0
+"Northwest Arctic",2012,"Rural Remote","Storage",0
+"Northwest Arctic",2012,"Rural Remote","Landfill Gas",0
+"Northwest Arctic",2013,"Rural Remote","Fossil Turbines",0
+"Northwest Arctic",2013,"Rural Remote","Recip Engines",21.359
+"Northwest Arctic",2013,"Rural Remote","Hydro",0
+"Northwest Arctic",2013,"Rural Remote","Wind",4.7
+"Northwest Arctic",2013,"Rural Remote","Utility Solar",0
+"Northwest Arctic",2013,"Rural Remote","Rooftop Solar",0
+"Northwest Arctic",2013,"Rural Remote","Storage",0
+"Northwest Arctic",2013,"Rural Remote","Landfill Gas",0
+"Northwest Arctic",2018,"Rural Remote","Fossil Turbines",0
+"Northwest Arctic",2018,"Rural Remote","Recip Engines",21.499
+"Northwest Arctic",2018,"Rural Remote","Hydro",0
+"Northwest Arctic",2018,"Rural Remote","Wind",5.09
+"Northwest Arctic",2018,"Rural Remote","Utility Solar",0.155
+"Northwest Arctic",2018,"Rural Remote","Rooftop Solar",0
+"Northwest Arctic",2018,"Rural Remote","Storage",1.2
+"Northwest Arctic",2018,"Rural Remote","Landfill Gas",0
+"Northwest Arctic",2021,"Rural Remote","Fossil Turbines",0
+"Northwest Arctic",2021,"Rural Remote","Recip Engines",23.53
+"Northwest Arctic",2021,"Rural Remote","Hydro",0
+"Northwest Arctic",2021,"Rural Remote","Wind",3.86
+"Northwest Arctic",2021,"Rural Remote","Utility Solar",1.1415
+"Northwest Arctic",2021,"Rural Remote","Rooftop Solar",0
+"Northwest Arctic",2021,"Rural Remote","Storage",1.989
+"Northwest Arctic",2021,"Rural Remote","Landfill Gas",0
+"Railbelt",2011,"Railbelt","Fossil Turbines",1198.9
+"Railbelt",2011,"Railbelt","Recip Engines",26.2
+"Railbelt",2011,"Railbelt","Hydro",184.375
+"Railbelt",2011,"Railbelt","Wind",1.012
+"Railbelt",2011,"Railbelt","Utility Solar",0
+"Railbelt",2011,"Railbelt","Rooftop Solar",0.381
+"Railbelt",2011,"Railbelt","Storage",0
+"Railbelt",2011,"Railbelt","Landfill Gas",0
+"Railbelt",2012,"Railbelt","Fossil Turbines",1198.9
+"Railbelt",2012,"Railbelt","Recip Engines",28.2
+"Railbelt",2012,"Railbelt","Hydro",184.675
+"Railbelt",2012,"Railbelt","Wind",43.6
+"Railbelt",2012,"Railbelt","Utility Solar",0
+"Railbelt",2012,"Railbelt","Rooftop Solar",0.49
+"Railbelt",2012,"Railbelt","Storage",0
+"Railbelt",2012,"Railbelt","Landfill Gas",9.2
+"Railbelt",2013,"Railbelt","Fossil Turbines",1442.8
+"Railbelt",2013,"Railbelt","Recip Engines",28.2
+"Railbelt",2013,"Railbelt","Hydro",185.875
+"Railbelt",2013,"Railbelt","Wind",44.5
+"Railbelt",2013,"Railbelt","Utility Solar",0
+"Railbelt",2013,"Railbelt","Rooftop Solar",0.625
+"Railbelt",2013,"Railbelt","Storage",27
+"Railbelt",2013,"Railbelt","Landfill Gas",11.5
+"Railbelt",2018,"Railbelt","Fossil Turbines",1614.1
+"Railbelt",2018,"Railbelt","Recip Engines",236
+"Railbelt",2018,"Railbelt","Hydro",191.285
+"Railbelt",2018,"Railbelt","Wind",44.5
+"Railbelt",2018,"Railbelt","Utility Solar",1.903
+"Railbelt",2018,"Railbelt","Rooftop Solar",3.233
+"Railbelt",2018,"Railbelt","Storage",43
+"Railbelt",2018,"Railbelt","Landfill Gas",11.5
+"Railbelt",2021,"Railbelt","Fossil Turbines",1589.1
+"Railbelt",2021,"Railbelt","Recip Engines",233.5
+"Railbelt",2021,"Railbelt","Hydro",191.46
+"Railbelt",2021,"Railbelt","Wind",44.5
+"Railbelt",2021,"Railbelt","Utility Solar",1.903
+"Railbelt",2021,"Railbelt","Rooftop Solar",11.313
+"Railbelt",2021,"Railbelt","Storage",89.5
+"Railbelt",2021,"Railbelt","Landfill Gas",11.5
+"Southeast",2011,"Coastal","Fossil Turbines",70.9
+"Southeast",2011,"Coastal","Recip Engines",130.922
+"Southeast",2011,"Coastal","Hydro",210.085
+"Southeast",2011,"Coastal","Wind",0
+"Southeast",2011,"Coastal","Utility Solar",0
+"Southeast",2011,"Coastal","Rooftop Solar",0
+"Southeast",2011,"Coastal","Storage",0
+"Southeast",2011,"Coastal","Landfill Gas",0
+"Southeast",2012,"Coastal","Fossil Turbines",70.9
+"Southeast",2012,"Coastal","Recip Engines",138.277
+"Southeast",2012,"Coastal","Hydro",209.685
+"Southeast",2012,"Coastal","Wind",0
+"Southeast",2012,"Coastal","Utility Solar",0
+"Southeast",2012,"Coastal","Rooftop Solar",0
+"Southeast",2012,"Coastal","Storage",0
+"Southeast",2012,"Coastal","Landfill Gas",0
+"Southeast",2013,"Coastal","Fossil Turbines",70.9
+"Southeast",2013,"Coastal","Recip Engines",132.077
+"Southeast",2013,"Coastal","Hydro",208.985
+"Southeast",2013,"Coastal","Wind",0
+"Southeast",2013,"Coastal","Utility Solar",0
+"Southeast",2013,"Coastal","Rooftop Solar",0
+"Southeast",2013,"Coastal","Storage",0
+"Southeast",2013,"Coastal","Landfill Gas",0
+"Southeast",2018,"Coastal","Fossil Turbines",112.6
+"Southeast",2018,"Coastal","Recip Engines",151.095
+"Southeast",2018,"Coastal","Hydro",228.408
+"Southeast",2018,"Coastal","Wind",0
+"Southeast",2018,"Coastal","Utility Solar",0
+"Southeast",2018,"Coastal","Rooftop Solar",0
+"Southeast",2018,"Coastal","Storage",1
+"Southeast",2018,"Coastal","Landfill Gas",0
+"Southeast",2021,"Coastal","Fossil Turbines",112.6
+"Southeast",2021,"Coastal","Recip Engines",155.612
+"Southeast",2021,"Coastal","Hydro",234.208
+"Southeast",2021,"Coastal","Wind",0
+"Southeast",2021,"Coastal","Utility Solar",0
+"Southeast",2021,"Coastal","Rooftop Solar",0
+"Southeast",2021,"Coastal","Storage",1
+"Southeast",2021,"Coastal","Landfill Gas",0
+"Yukon-Koyukuk/Upper Tanana",2011,"Rural Remote","Fossil Turbines",0
+"Yukon-Koyukuk/Upper Tanana",2011,"Rural Remote","Recip Engines",29.7155
+"Yukon-Koyukuk/Upper Tanana",2011,"Rural Remote","Hydro",0
+"Yukon-Koyukuk/Upper Tanana",2011,"Rural Remote","Wind",0
+"Yukon-Koyukuk/Upper Tanana",2011,"Rural Remote","Utility Solar",0
+"Yukon-Koyukuk/Upper Tanana",2011,"Rural Remote","Rooftop Solar",0
+"Yukon-Koyukuk/Upper Tanana",2011,"Rural Remote","Storage",0
+"Yukon-Koyukuk/Upper Tanana",2011,"Rural Remote","Landfill Gas",0
+"Yukon-Koyukuk/Upper Tanana",2012,"Rural Remote","Fossil Turbines",0
+"Yukon-Koyukuk/Upper Tanana",2012,"Rural Remote","Recip Engines",30.316
+"Yukon-Koyukuk/Upper Tanana",2012,"Rural Remote","Hydro",0
+"Yukon-Koyukuk/Upper Tanana",2012,"Rural Remote","Wind",0
+"Yukon-Koyukuk/Upper Tanana",2012,"Rural Remote","Utility Solar",0
+"Yukon-Koyukuk/Upper Tanana",2012,"Rural Remote","Rooftop Solar",0
+"Yukon-Koyukuk/Upper Tanana",2012,"Rural Remote","Storage",0
+"Yukon-Koyukuk/Upper Tanana",2012,"Rural Remote","Landfill Gas",0
+"Yukon-Koyukuk/Upper Tanana",2013,"Rural Remote","Fossil Turbines",0
+"Yukon-Koyukuk/Upper Tanana",2013,"Rural Remote","Recip Engines",29.416
+"Yukon-Koyukuk/Upper Tanana",2013,"Rural Remote","Hydro",0
+"Yukon-Koyukuk/Upper Tanana",2013,"Rural Remote","Wind",0
+"Yukon-Koyukuk/Upper Tanana",2013,"Rural Remote","Utility Solar",0
+"Yukon-Koyukuk/Upper Tanana",2013,"Rural Remote","Rooftop Solar",0
+"Yukon-Koyukuk/Upper Tanana",2013,"Rural Remote","Storage",0.01
+"Yukon-Koyukuk/Upper Tanana",2013,"Rural Remote","Landfill Gas",0
+"Yukon-Koyukuk/Upper Tanana",2018,"Rural Remote","Fossil Turbines",0
+"Yukon-Koyukuk/Upper Tanana",2018,"Rural Remote","Recip Engines",30.097
+"Yukon-Koyukuk/Upper Tanana",2018,"Rural Remote","Hydro",0
+"Yukon-Koyukuk/Upper Tanana",2018,"Rural Remote","Wind",0
+"Yukon-Koyukuk/Upper Tanana",2018,"Rural Remote","Utility Solar",0.1536
+"Yukon-Koyukuk/Upper Tanana",2018,"Rural Remote","Rooftop Solar",0
+"Yukon-Koyukuk/Upper Tanana",2018,"Rural Remote","Storage",0
+"Yukon-Koyukuk/Upper Tanana",2018,"Rural Remote","Landfill Gas",0
+"Yukon-Koyukuk/Upper Tanana",2021,"Rural Remote","Fossil Turbines",0
+"Yukon-Koyukuk/Upper Tanana",2021,"Rural Remote","Recip Engines",26.94
+"Yukon-Koyukuk/Upper Tanana",2021,"Rural Remote","Hydro",0
+"Yukon-Koyukuk/Upper Tanana",2021,"Rural Remote","Wind",0
+"Yukon-Koyukuk/Upper Tanana",2021,"Rural Remote","Utility Solar",0.1536
+"Yukon-Koyukuk/Upper Tanana",2021,"Rural Remote","Rooftop Solar",0
+"Yukon-Koyukuk/Upper Tanana",2021,"Rural Remote","Storage",0.25
+"Yukon-Koyukuk/Upper Tanana",2021,"Rural Remote","Landfill Gas",0
