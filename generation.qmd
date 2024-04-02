@@ -15,7 +15,7 @@ The following figure provides a visual representation of yearly electricity gene
 
 ```{ojs}
 //| echo: false
-import {tidy, groupBy, rename, summarize, sum, mutate, select, n, nDistinct, mean, filter, pivotWider, pivotLonger, leftJoin, slice, fullJoin} from "@pbeshai/tidyjs"
+import {tidy, groupBy, rename, summarize, sum, mutate, select, n, nDistinct, mean, filter, pivotWider, pivotLonger, leftJoin, slice, fullJoin, lag, TMath, rowNumber,mutateWithSummary} from "@pbeshai/tidyjs"
 
 // Import the long-form generation data
 gen_data = FileAttachment("data/working/generation/net_generation_long.csv").csv({ typed: true })
@@ -73,22 +73,16 @@ Plot.plot({
 })
 ```
 
-While generation did not change significantly during the observed time period, the resources from which generation occurred, did. Figure X shows how the mix of generation fuels changed between 2011 and 2021.[^2]
+While generation did not change significantly during the observed time period, the resources from which generation occurred, did. The following figure shows how the mix of generation fuels changed between 2011 and 2021.[^2]
 
 [^2]: Oil consists of generators whose primary fuel source is diesel/distillate, naphtha, or jet fuel. Gas consists of natural or landfill gas. Hydro refers to conventional hydroelectric turbines. Wind and solar are both utility-scale (excluding behind-the-meter solar).
 
-[Share Graph]
-
-We show that for these resources, the Coastal region displaced oil generation with hydro and wind generation. The Railbelt displaced gas and oil generation with coal, hydro, and solar generation. Finally, the Rural Remote region of the state displaced coal and a small amount of hydro with gas, solar, and wind generation.
-
-This figure does not include trends in storage or the other category. Storage net generation is always negative due to the efficiency of current battery systems where more energy is sent to storage than can be recovered. The “other” category was not included in this figure as net generation was zero in 2011 and 2021 (but not throughout the series, which we show in the subsequent sections).
-
-## Coastal
-
-In 2011, the Coastal region generated 89% of its electricity from hydro, 10% from oil, and the remainder from wind. In 2021, the region generated 92% of electricity from hydro, 6% from oil, and 2% from wind. In addition, storage played a role in generation, albeit the net result is negative due to efficiencies. The following figure shows how this generation mix has changed over the years.
-
 ```{ojs}
 //| echo: false
+
+// Establish the figure caption for generation mix charts
+caption_gen_mix = "Note: Storage is not included here due since net generation is negative."
+
 // Creating a modified version of the data
 share_data = tidy(
   gen_data,
@@ -110,16 +104,94 @@ total_gen = tidy(share_data, groupBy(['year','acep_region'], summarize({total_ge
 join = tidy(share_data, fullJoin(total_gen, {by: ['year','acep_region']}))
 
 // Creating a column with shares
-join_shares = tidy(join,
+join_shares = tidy(join.filter((d) => d.fuel_type !== "Storage"),
   mutate({generation_share: (d) => (d.generation / d.total_generation)*100})
+) // join_shares should be used for the 100% area charts
+
+// Table for just the 2011 and 2021 generation mix comparison
+gen_mix_diff = tidy(
+  join_shares.filter((d) => d.year === 2011 || d.year === 2021),
+  groupBy(
+    ['acep_region','fuel_type'],
+    mutateWithSummary({
+        generation_share_2011: lag('generation_share', {default: 0})
+    })
+  ),
+  mutate({
+    delta: (d) => d.generation_share - d.generation_share_2011
+  }),
+  filter(
+    (d)  => d.year === 2021
+  )
 )
+
+// Plotting the deltas
+Plot.plot({
+  title: "Regional changes in net generation",
+  subtitle: "Percentage point differences in generation mix between 2021 and 2011",
+  insetLeft: 15,
+  insetRight: 15,
+  height: 450,
+  width: 800,
+
+  x: {
+    label: "Percentage Point Change",
+    labelAnchor: "center"
+  },
+
+  y: {
+    grid: true,
+    label: ""
+  },
+
+  facet: {
+    data: gen_mix_diff,
+    y: (d) => d.acep_region
+  },
+
+  marks: [
+    Plot.frame(),
+    Plot.barX(gen_mix_diff, {
+        x: "delta",
+        y: "fuel_type",
+        fill: "fuel_type",
+        tip: {
+          format: {
+            x: (d) => `${(d).toLocaleString(undefined, {maximumFractionDigits: 2})}%`,
+            y: false,
+            fy: false
+          }
+        }
+      }
+    ),
+    Plot.ruleX([0])
+  ],
+
+  color: {
+    domain: ["Coal","Oil","Gas","Hydro","Wind","Solar"],
+    range: ["#7f7f7f","#BFBFBF","#DCD9C5","#96B3DF","#F79646","#F5C243"],
+    legend: true
+  }
+})
+```
+
+We show that for these resources, the Coastal region displaced oil generation with hydro and wind generation. The Railbelt displaced gas and oil generation with coal, hydro, and solar generation. Finally, the Rural Remote region of the state displaced coal and a small amount of hydro with gas, solar, and wind generation.
+
+This figure does not include trends in storage or the other category. Storage net generation is always negative due to the efficiency of current battery systems where more energy is sent to storage than can be recovered. The “other” category was not included in this figure as net generation was zero in 2011 and 2021 (but not throughout the series, which we show in the subsequent sections).
+
+## Coastal
+
+In 2011, the Coastal region generated 89% of its electricity from hydro, 10% from oil, and the remainder from wind. In 2021, the region generated 92% of electricity from hydro, 6% from oil, and 2% from wind. In addition, storage played a role in generation, albeit the net result is negative due to efficiencies. The following figure shows how this generation mix has changed over the years.
+
+```{ojs}
+//| echo: false
 
 // Plotting the shares for the coastal region
 Plot.plot({
 
   // Configure the plot
   title: "Share of net generation by fuel type, Coastal region",
-  caption: "Figure note: Storage is not included as its net generation is negative.",
+  caption: caption_gen_mix,
   insetLeft: 0,
   insetRight: 0,
   
@@ -222,7 +294,7 @@ Plot.plot({
 
   // Configure the plot
   title: "Share of net generation by fuel type, Railbelt region",
-  caption: "Figure note: Storage is not included as its net generation is negative.",
+  caption: caption_gen_mix,
   insetLeft: 0,
   insetRight: 0,
   
@@ -325,7 +397,7 @@ Plot.plot({
 
   // Configure the plot
   title: "Share of net generation by fuel type, Rural Remote region",
-  caption: "Figure note: Storage is not included as its net generation is negative.",
+  caption: caption_gen_mix,
   insetLeft: 0,
   insetRight: 0,
   
