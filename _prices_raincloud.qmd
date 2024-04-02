@@ -1,6 +1,9 @@
 
 ```{ojs}
-Plot.plot(flipCoords ? rainCloudY : rainCloudX)
+Plot.plot(rainCloudX)
+
+Inputs.table(customers_pivot)
+
 ```
 
 
@@ -103,19 +106,16 @@ customers_pivot = tidy(
 ```
 
 
-
 ```{ojs}
 // active inputs
 
 // weighted/unweighted
 viewof dimension = Inputs.select(['residential_price', 'commercial_price', 'other_price'], { label: 'Sector', value: 'residential_price' })
 
-viewof flipCoords = Inputs.toggle({ label: 'Flip', value: false })
+// viewof flipCoords = Inputs.toggle({ label: 'Flip', value: false })
 
 // Inputs.table(customers_pivot)
 ```
-
-
 
 
 ```{ojs}
@@ -135,60 +135,6 @@ rawDataOffset = 5
 
 ```
 
-
-```{ojs}
-rainCloudY = ({
-  marks: [
-    Plot.ruleY([Math.floor(d3.min(data.map(d => d[dimension])))]),
-    halfViolinY,
-    rawDataY
-  ],
-  facet: {
-    data: data,
-    x: 'acep_energy_region',
-    marginBottom: 40
-  },
-  x: {
-    ticks: 0,
-    tickFormat: d => d < 0 ? '' : d
-  },
-  marginTop: 40,
-  marginBottom: 60,
-  marginRight: 60,
-  width: 480,
-  height: 640
-})
-```
-
-```{ojs}
-halfViolinY = Plot.areaX(
-  data,
-  Plot.binY(
-    {
-      x: 'count'
-    },
-    {
-      y: dimension,
-      fill: 'acep_energy_region',
-      thresholds: thresholds,
-      curve: 'basis'
-    }
-  )
-)
-```
-
-```{ojs}
-rawDataY = Plot.dot(
-  data,
-  {
-	y: dimension,
-    x: jitter(data, seed),
-	fill: 'acep_energy_region',
-	stroke: null,
-	r: 1.5
-	}
-)
-```
 
 ```{ojs}
 rainCloudX = ({
@@ -211,6 +157,7 @@ rainCloudX = ({
   height: 480
 })
 ```
+
 
 ```{ojs}
 halfViolinX = Plot.areaY(

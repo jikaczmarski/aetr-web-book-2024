@@ -14,26 +14,122 @@ echo: false
 The data used in this web-book is derived from federal, state, commercial, and local sources, as well as direct communications with utilities and state program managers. More information about data sources can be found on the [methods page](./methods.html) of this web-book.
 
 ## Download Individual Tables
-Individual tables within the database can be downloaded here as text files (CSV, comma-separated values). Once downloaded to your local machine, these files can be opened graphically using Microsoft Excel, or programmatically using R or Python. All files are generated from the database upon download and reflect the most up to date versions of the data.  
+Individual tables can be downloaded here as text files (CSV, comma-separated values). Once downloaded to your local machine, these files can be opened graphically using Microsoft Excel, or programmatically using R or Python. 
 
-Select the desired table from the drop-down menu below
 
-#### Table Name:
+### Net Generation (wide-format)
 ```{ojs}
+net_generation_wide = FileAttachment("data/working/generation/net_generation_wide.csv").csv({typed: true});
+Inputs.table(net_generation_wide);
+
+button(net_generation_long, `net_generation_wide.csv`)
+
+```
+
+<br>
+<br>
+
+### Net Generation (long-format)
+```{ojs}
+net_generation_long = FileAttachment("data/working/generation/net_generation_long.csv").csv({typed: true});
+Inputs.table(net_generation_long);
+
+button(net_generation_long, `net_generation_long.csv`)
+
+```
+
+
+<br>
+<br>
+
+### Prices
+```{ojs}
+prices = FileAttachment("data/working/prices/prices.csv").csv({typed: true});
+Inputs.table(prices);
+
+button(prices, `prices.csv`)
+
+```
+
+<br>
+<br>
+
+### Weighted Prices
+```{ojs}
+weighted_prices = FileAttachment("data/working/prices/weighted_prices.csv").csv({typed: true});
+
+Inputs.table(weighted_prices);
+
+button(weighted_prices, `weighted_prices.csv`)
+
+```
+
+<br>
+<br>
+
+
+
+
+
+
+
+# SQLite Database
+
+<li><a href="data/working/aetr.db">Download the database</a></li>
+
+
+
+
+
+
+```{ojs}
+// load libraries
+stdlib = require("@observablehq/stdlib")
+d3 = require("d3@7")
+
+```
+
+```{ojs}
+// download button function
+button = (database, filename = 'data.csv') => {
+  const downloadData = new Blob([d3.csvFormat(database)], { type: "text/csv" });
+
+  const size = (downloadData.size / 1024).toFixed(1);
+  const button = DOM.download(
+    downloadData,
+    filename,
+    `Download ${filename} (${size} KB)`
+  );
+  return button;
+}
+
+```
+
+
+
+
+
+
+
+
+
+```{ojs}
+//| eval: false
+
+// DEPRECATED
 // This chunk makes the fancy dropdown database viewing tool
+
+// connect to database
+db = FileAttachment("data/working/aetr.db").sqlite()
+
+database = db.query(`SELECT * FROM ${dbTable}`)
 
 viewof dbTable = Inputs.select((await db.describe()).value.map(d => d.name), 
                     { label: "" })
-database = db.query(`SELECT * FROM ${dbTable}`)
-```
 
-```{ojs}
+
 Inputs.table(database)
 
-```
-
-
-```{ojs}
 button = (database, filename = 'data.csv') => {
   const downloadData = new Blob([d3.csvFormat(database)], { type: "text/csv" });
 
@@ -47,36 +143,4 @@ button = (database, filename = 'data.csv') => {
 }
 
 button(database, `${dbTable}`)
-```
-
-<br>
-
-## Download All Tables
-If you would like to obtain all files in the database, there are two options. Either you can download the tables as a ZIP file of CSVs, or you can download the SQLite database itself. 
-
-### Zip
-Pending
-
-
-### SQLite Database
-```{ojs}
-//| eval: false
-DOM.download("data/working/aetr.db")
-
-```
-
-
-<li><a href="data/working/aetr.db">Download the database</a></li>
-
-
-
-
-```{ojs}
-// load libraries
-stdlib = require("@observablehq/stdlib")
-d3 = require("d3@7")
-
-// connect to database
-db = FileAttachment("data/working/aetr.db").sqlite()
-
 ```
