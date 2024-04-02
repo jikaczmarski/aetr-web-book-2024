@@ -2,7 +2,7 @@
 ```{ojs}
 Plot.plot(rainCloudX)
 
-Inputs.table(customers_pivot)
+Inputs.table(data)
 
 ```
 
@@ -31,18 +31,26 @@ Inputs.table(customers_pivot)
 
 // tidy(data, leftJoin(joinData, { by: ['a', 'J'] }));
 
-prices_pivot = tidy(
+prices_tidy = tidy(
   prices, 
     rename({
-      'residential_price_kwh_2021_dollars': 'residential',
-      'commercial_price_kwh_2021_dollars': 'commercial',
-      'other_price_kwh_2021_dollars': 'other',
+      'residential_price_kwh_2021_dollars': 'residential_price',
+      'commercial_price_kwh_2021_dollars': 'commercial_price',
+      'other_price_kwh_2021_dollars': 'other_price',
     }),
-    pivotLonger({
-      cols: ['residential', 'commercial', 'other'],
-      namesTo: 'sector',
-      valuesTo: 'price'
-    })
+    // pivotLonger({
+    //   cols: ['residential', 'commercial', 'other'],
+    //   namesTo: 'sector',
+    //   valuesTo: 'price'
+    // }),
+    select([
+      'year',
+      'reporting_name',
+      'acep_energy_region',
+      'residential_price',
+      'commercial_price',
+      'other_price'
+    ])
 )
 
 customers_pivot = tidy(
@@ -88,6 +96,8 @@ customers_pivot = tidy(
 //       'total_customers'
 //     ])
 // )
+
+data = prices_tidy
 
 ```
 
@@ -138,6 +148,7 @@ rawDataOffset = 5
 
 ```{ojs}
 rainCloudX = ({
+  grid: true,
   marks: [
     Plot.ruleX([Math.floor(d3.min(data.map(d => d[dimension])))]),
     halfViolinX,
@@ -181,14 +192,16 @@ halfViolinX = Plot.areaY(
 rawDataX = Plot.dot(
   data,
   {
-	x: dimension,
+	  x: dimension,
     y: jitter(data, seed),
     fill: 'acep_energy_region',
     stroke: null,
-    r: 1.5
+    r: 1.5,
+    tip: true
 	}
 )
 ```
+
 
 
 ```{ojs}
@@ -215,7 +228,6 @@ bins = d3
   .domain(d3.extent(data, d => d[dimension]))
   .thresholds(thresholds)
 
-data = customers_pivot
 
 seedrandom = require('seedrandom')
 ```
