@@ -89,9 +89,7 @@ Plot.plot({
  {{< include _prices_raincloud.qmd >}}
 
 
-
 <br>
-
 
 ## Coastal
 
