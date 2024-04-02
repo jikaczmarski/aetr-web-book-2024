@@ -24,18 +24,18 @@ Select the desired table from the drop-down menu below
 
 viewof dbTable = Inputs.select((await db.describe()).value.map(d => d.name), 
                     { label: "" })
-data = db.query(`SELECT * FROM ${dbTable}`)
+database = db.query(`SELECT * FROM ${dbTable}`)
 ```
 
 ```{ojs}
-Inputs.table(data)
+Inputs.table(database)
 
 ```
 
 
 ```{ojs}
-button = (data, filename = 'data.csv') => {
-  const downloadData = new Blob([d3.csvFormat(data)], { type: "text/csv" });
+button = (database, filename = 'data.csv') => {
+  const downloadData = new Blob([d3.csvFormat(database)], { type: "text/csv" });
 
   const size = (downloadData.size / 1024).toFixed(1);
   const button = DOM.download(
@@ -46,7 +46,7 @@ button = (data, filename = 'data.csv') => {
   return button;
 }
 
-button(data, `${dbTable}`)
+button(database, `${dbTable}`)
 ```
 
 <br>
