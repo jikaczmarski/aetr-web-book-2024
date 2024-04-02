@@ -229,12 +229,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#data-overview" id="toc-data-overview" class="nav-link active" data-scroll-target="#data-overview">Data Overview</a></li>
-  <li><a href="#download-individual-tables" id="toc-download-individual-tables" class="nav-link" data-scroll-target="#download-individual-tables">Download Individual Tables</a></li>
-  <li><a href="#download-all-tables" id="toc-download-all-tables" class="nav-link" data-scroll-target="#download-all-tables">Download All Tables</a>
+  <li><a href="#download-individual-tables" id="toc-download-individual-tables" class="nav-link" data-scroll-target="#download-individual-tables">Download Individual Tables</a>
   <ul class="collapse">
-  <li><a href="#zip" id="toc-zip" class="nav-link" data-scroll-target="#zip">Zip</a></li>
-  <li><a href="#sqlite-database" id="toc-sqlite-database" class="nav-link" data-scroll-target="#sqlite-database">SQLite Database</a></li>
+  <li><a href="#net-generation-wide-format" id="toc-net-generation-wide-format" class="nav-link" data-scroll-target="#net-generation-wide-format">Net Generation (wide-format)</a></li>
+  <li><a href="#net-generation-long-format" id="toc-net-generation-long-format" class="nav-link" data-scroll-target="#net-generation-long-format">Net Generation (long-format)</a></li>
+  <li><a href="#prices" id="toc-prices" class="nav-link" data-scroll-target="#prices">Prices</a></li>
+  <li><a href="#weighted-prices" id="toc-weighted-prices" class="nav-link" data-scroll-target="#weighted-prices">Weighted Prices</a></li>
   </ul></li>
+  <li><a href="#sqlite-database" id="toc-sqlite-database" class="nav-link" data-scroll-target="#sqlite-database">SQLite Database</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/acep-uaf/aetr-web-book/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div><div class="quarto-other-links"><h2>Other Links</h2><ul><li><a href="mailto:uaf-acep-dcm-support@alaska.edu"><i class="bi bi-envelope-exclamation"></i>Report an issue via email</a></li></ul></div></nav>
     </div>
@@ -255,7 +257,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">Apr 2, 2024 at 19:32 UTC</p>
+      <p class="date">Apr 2, 2024 at 19:34 UTC</p>
     </div>
   </div>
   
@@ -279,14 +281,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="download-individual-tables" class="level2">
 <h2 class="anchored" data-anchor-id="download-individual-tables">Download Individual Tables</h2>
-<p>Individual tables within the database can be downloaded here as text files (CSV, comma-separated values). Once downloaded to your local machine, these files can be opened graphically using Microsoft Excel, or programmatically using R or Python. All files are generated from the database upon download and reflect the most up to date versions of the data.</p>
-<p>Select the desired table from the drop-down menu below</p>
-<section id="table-name" class="level4">
-<h4 class="anchored" data-anchor-id="table-name">Table Name:</h4>
+<p>Individual tables can be downloaded here as text files (CSV, comma-separated values). Once downloaded to your local machine, these files can be opened graphically using Microsoft Excel, or programmatically using R or Python.</p>
+<section id="net-generation-wide-format" class="level3">
+<h3 class="anchored" data-anchor-id="net-generation-wide-format">Net Generation (wide-format)</h3>
 <div class="cell">
-<div class="sourceCode cell-code hidden" id="cb1" data-startfrom="25" data-source-offset="-62"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 24;"><span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>viewof dbTable <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">select</span>((<span class="cf">await</span> db<span class="op">.</span><span class="fu">describe</span>())<span class="op">.</span><span class="at">value</span><span class="op">.</span><span class="fu">map</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">name</span>)<span class="op">,</span> </span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>                    { <span class="dt">label</span><span class="op">:</span> <span class="st">""</span> })</span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>database <span class="op">=</span> db<span class="op">.</span><span class="fu">query</span>(<span class="vs">`SELECT * FROM </span><span class="sc">${</span>dbTable<span class="sc">}</span><span class="vs">`</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code hidden" id="cb1" data-startfrom="22" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 21;"><span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>net_generation_wide <span class="op">=</span> <span class="fu">FileAttachment</span>(<span class="st">"data/working/generation/net_generation_wide.csv"</span>)<span class="op">.</span><span class="fu">csv</span>({<span class="dt">typed</span><span class="op">:</span> <span class="kw">true</span>})<span class="op">;</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>Inputs<span class="op">.</span><span class="fu">table</span>(net_generation_wide)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <div id="ojs-cell-1-1" data-nodetype="declaration">
@@ -296,34 +296,57 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="cell-output cell-output-display">
 <div>
-<div id="ojs-cell-1-2" data-nodetype="declaration">
+<div id="ojs-cell-1-2" data-nodetype="expression">
 
 </div>
 </div>
 </div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code hidden" id="cb2" data-startfrom="30" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 29;"><span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>Inputs<span class="op">.</span><span class="fu">table</span>(database)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code hidden" id="cb2" data-startfrom="25" data-source-offset="-144"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 24;"><span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="fu">button</span>(net_generation_long<span class="op">,</span> <span class="vs">`net_generation_wide.csv`</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<div id="ojs-cell-2" data-nodetype="expression">
+<div>
+<div id="ojs-cell-1-3" data-nodetype="expression">
 
 </div>
 </div>
 </div>
+</div>
+<p><br> <br></p>
+</section>
+<section id="net-generation-long-format" class="level3">
+<h3 class="anchored" data-anchor-id="net-generation-long-format">Net Generation (long-format)</h3>
 <div class="cell">
-<div class="sourceCode cell-code hidden" id="cb3" data-startfrom="37" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 36;"><span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>button <span class="op">=</span> (database<span class="op">,</span> filename <span class="op">=</span> <span class="st">'data.csv'</span>) <span class="kw">=&gt;</span> {</span>
-<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> downloadData <span class="op">=</span> <span class="kw">new</span> <span class="bu">Blob</span>([d3<span class="op">.</span><span class="fu">csvFormat</span>(database)]<span class="op">,</span> { <span class="dt">type</span><span class="op">:</span> <span class="st">"text/csv"</span> })<span class="op">;</span></span>
-<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> size <span class="op">=</span> (downloadData<span class="op">.</span><span class="at">size</span> <span class="op">/</span> <span class="dv">1024</span>)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="op">;</span></span>
-<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> button <span class="op">=</span> DOM<span class="op">.</span><span class="fu">download</span>(</span>
-<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>    downloadData<span class="op">,</span></span>
-<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>    filename<span class="op">,</span></span>
-<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>    <span class="vs">`Download </span><span class="sc">${</span>filename<span class="sc">}</span><span class="vs"> (</span><span class="sc">${</span>size<span class="sc">}</span><span class="vs"> KB)`</span></span>
-<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>  )<span class="op">;</span></span>
-<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> button<span class="op">;</span></span>
-<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a><span class="fu">button</span>(database<span class="op">,</span> <span class="vs">`</span><span class="sc">${</span>dbTable<span class="sc">}</span><span class="vs">`</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code hidden" id="cb3" data-startfrom="34" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 33;"><span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>net_generation_long <span class="op">=</span> <span class="fu">FileAttachment</span>(<span class="st">"data/working/generation/net_generation_long.csv"</span>)<span class="op">.</span><span class="fu">csv</span>({<span class="dt">typed</span><span class="op">:</span> <span class="kw">true</span>})<span class="op">;</span></span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>Inputs<span class="op">.</span><span class="fu">table</span>(net_generation_long)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-2" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+<div class="sourceCode cell-code hidden" id="cb4" data-startfrom="37" data-source-offset="-144"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 36;"><span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a><span class="fu">button</span>(net_generation_long<span class="op">,</span> <span class="vs">`net_generation_long.csv`</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-2-3" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+</div>
+<p><br> <br></p>
+</section>
+<section id="prices" class="level3">
+<h3 class="anchored" data-anchor-id="prices">Prices</h3>
+<div class="cell">
+<div class="sourceCode cell-code hidden" id="cb5" data-startfrom="47" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 46;"><span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a>prices <span class="op">=</span> <span class="fu">FileAttachment</span>(<span class="st">"data/working/prices/prices.csv"</span>)<span class="op">.</span><span class="fu">csv</span>({<span class="dt">typed</span><span class="op">:</span> <span class="kw">true</span>})<span class="op">;</span></span>
+<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a>Inputs<span class="op">.</span><span class="fu">table</span>(prices)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <div id="ojs-cell-3-1" data-nodetype="declaration">
@@ -338,36 +361,57 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-</div>
-<p><br></p>
-</section>
-</section>
-<section id="download-all-tables" class="level2">
-<h2 class="anchored" data-anchor-id="download-all-tables">Download All Tables</h2>
-<p>If you would like to obtain all files in the database, there are two options. Either you can download the tables as a ZIP file of CSVs, or you can download the SQLite database itself.</p>
-<section id="zip" class="level3">
-<h3 class="anchored" data-anchor-id="zip">Zip</h3>
-<p>Pending</p>
-</section>
-<section id="sqlite-database" class="level3">
-<h3 class="anchored" data-anchor-id="sqlite-database">SQLite Database</h3>
-<div class="cell" data-eval="false">
-<div class="sourceCode cell-code hidden" id="cb4" data-startfrom="63" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 62;"><span id="cb4-63"><a href="#cb4-63" aria-hidden="true" tabindex="-1"></a>DOM<span class="op">.</span><span class="fu">download</span>(<span class="st">"data/working/aetr.db"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code hidden" id="cb6" data-startfrom="50" data-source-offset="-101"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 49;"><span id="cb6-50"><a href="#cb6-50" aria-hidden="true" tabindex="-1"></a><span class="fu">button</span>(prices<span class="op">,</span> <span class="vs">`prices.csv`</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<div id="ojs-cell-4" data-nodetype="expression">
+<div>
+<div id="ojs-cell-3-3" data-nodetype="expression">
 
 </div>
 </div>
 </div>
+</div>
+<p><br> <br></p>
+</section>
+<section id="weighted-prices" class="level3">
+<h3 class="anchored" data-anchor-id="weighted-prices">Weighted Prices</h3>
+<div class="cell">
+<div class="sourceCode cell-code hidden" id="cb7" data-startfrom="59" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 58;"><span id="cb7-59"><a href="#cb7-59" aria-hidden="true" tabindex="-1"></a>weighted_prices <span class="op">=</span> <span class="fu">FileAttachment</span>(<span class="st">"data/working/prices/weighted_prices.csv"</span>)<span class="op">.</span><span class="fu">csv</span>({<span class="dt">typed</span><span class="op">:</span> <span class="kw">true</span>})<span class="op">;</span></span>
+<span id="cb7-60"><a href="#cb7-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-61"><a href="#cb7-61" aria-hidden="true" tabindex="-1"></a>Inputs<span class="op">.</span><span class="fu">table</span>(weighted_prices)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-4-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-4-2" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+<div class="sourceCode cell-code hidden" id="cb8" data-startfrom="63" data-source-offset="-129"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 62;"><span id="cb8-63"><a href="#cb8-63" aria-hidden="true" tabindex="-1"></a><span class="fu">button</span>(weighted_prices<span class="op">,</span> <span class="vs">`weighted_prices.csv`</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-4-3" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+</div>
+<p><br> <br></p>
+</section>
+</section>
+<section id="sqlite-database" class="level1">
+<h1>SQLite Database</h1>
 <li>
 <a href="data/working/aetr.db">Download the database</a>
 </li>
 <div class="cell">
-<div class="sourceCode cell-code hidden" id="cb5" data-startfrom="76" data-source-offset="-18"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 75;"><span id="cb5-76"><a href="#cb5-76" aria-hidden="true" tabindex="-1"></a>stdlib <span class="op">=</span> <span class="pp">require</span>(<span class="st">"@observablehq/stdlib"</span>)</span>
-<span id="cb5-77"><a href="#cb5-77" aria-hidden="true" tabindex="-1"></a>d3 <span class="op">=</span> <span class="pp">require</span>(<span class="st">"d3@7"</span>)</span>
-<span id="cb5-78"><a href="#cb5-78" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-79"><a href="#cb5-79" aria-hidden="true" tabindex="-1"></a><span class="co">// connect to database</span></span>
-<span id="cb5-80"><a href="#cb5-80" aria-hidden="true" tabindex="-1"></a>db <span class="op">=</span> <span class="fu">FileAttachment</span>(<span class="st">"data/working/aetr.db"</span>)<span class="op">.</span><span class="fu">sqlite</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code hidden" id="cb9" data-startfrom="87" data-source-offset="-18"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 86;"><span id="cb9-87"><a href="#cb9-87" aria-hidden="true" tabindex="-1"></a>stdlib <span class="op">=</span> <span class="pp">require</span>(<span class="st">"@observablehq/stdlib"</span>)</span>
+<span id="cb9-88"><a href="#cb9-88" aria-hidden="true" tabindex="-1"></a>d3 <span class="op">=</span> <span class="pp">require</span>(<span class="st">"d3@7"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <div id="ojs-cell-5-1" data-nodetype="declaration">
@@ -382,9 +426,87 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code hidden" id="cb10" data-startfrom="92" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 91;"><span id="cb10-92"><a href="#cb10-92" aria-hidden="true" tabindex="-1"></a><span class="co">// download button function</span></span>
+<span id="cb10-93"><a href="#cb10-93" aria-hidden="true" tabindex="-1"></a>button <span class="op">=</span> (database<span class="op">,</span> filename <span class="op">=</span> <span class="st">'data.csv'</span>) <span class="kw">=&gt;</span> {</span>
+<span id="cb10-94"><a href="#cb10-94" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> downloadData <span class="op">=</span> <span class="kw">new</span> <span class="bu">Blob</span>([d3<span class="op">.</span><span class="fu">csvFormat</span>(database)]<span class="op">,</span> { <span class="dt">type</span><span class="op">:</span> <span class="st">"text/csv"</span> })<span class="op">;</span></span>
+<span id="cb10-95"><a href="#cb10-95" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-96"><a href="#cb10-96" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> size <span class="op">=</span> (downloadData<span class="op">.</span><span class="at">size</span> <span class="op">/</span> <span class="dv">1024</span>)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="op">;</span></span>
+<span id="cb10-97"><a href="#cb10-97" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> button <span class="op">=</span> DOM<span class="op">.</span><span class="fu">download</span>(</span>
+<span id="cb10-98"><a href="#cb10-98" aria-hidden="true" tabindex="-1"></a>    downloadData<span class="op">,</span></span>
+<span id="cb10-99"><a href="#cb10-99" aria-hidden="true" tabindex="-1"></a>    filename<span class="op">,</span></span>
+<span id="cb10-100"><a href="#cb10-100" aria-hidden="true" tabindex="-1"></a>    <span class="vs">`Download </span><span class="sc">${</span>filename<span class="sc">}</span><span class="vs"> (</span><span class="sc">${</span>size<span class="sc">}</span><span class="vs"> KB)`</span></span>
+<span id="cb10-101"><a href="#cb10-101" aria-hidden="true" tabindex="-1"></a>  )<span class="op">;</span></span>
+<span id="cb10-102"><a href="#cb10-102" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> button<span class="op">;</span></span>
+<span id="cb10-103"><a href="#cb10-103" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-6" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell" data-eval="false">
+<div class="sourceCode cell-code hidden" id="cb11" data-startfrom="123" data-source-offset="-100"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 122;"><span id="cb11-123"><a href="#cb11-123" aria-hidden="true" tabindex="-1"></a>db <span class="op">=</span> <span class="fu">FileAttachment</span>(<span class="st">"data/working/aetr.db"</span>)<span class="op">.</span><span class="fu">sqlite</span>()</span>
+<span id="cb11-124"><a href="#cb11-124" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-125"><a href="#cb11-125" aria-hidden="true" tabindex="-1"></a>database <span class="op">=</span> db<span class="op">.</span><span class="fu">query</span>(<span class="vs">`SELECT * FROM </span><span class="sc">${</span>dbTable<span class="sc">}</span><span class="vs">`</span>)</span>
+<span id="cb11-126"><a href="#cb11-126" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-127"><a href="#cb11-127" aria-hidden="true" tabindex="-1"></a>viewof dbTable <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">select</span>((<span class="cf">await</span> db<span class="op">.</span><span class="fu">describe</span>())<span class="op">.</span><span class="at">value</span><span class="op">.</span><span class="fu">map</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">name</span>)<span class="op">,</span> </span>
+<span id="cb11-128"><a href="#cb11-128" aria-hidden="true" tabindex="-1"></a>                    { <span class="dt">label</span><span class="op">:</span> <span class="st">""</span> })</span>
+<span id="cb11-129"><a href="#cb11-129" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-130"><a href="#cb11-130" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-131"><a href="#cb11-131" aria-hidden="true" tabindex="-1"></a>Inputs<span class="op">.</span><span class="fu">table</span>(database)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
-<div id="ojs-cell-5-3" data-nodetype="declaration">
+<div id="ojs-cell-7-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-7-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-7-3" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-7-4" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+<div class="sourceCode cell-code hidden" id="cb12" data-startfrom="133" data-source-offset="-342"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 132;"><span id="cb12-133"><a href="#cb12-133" aria-hidden="true" tabindex="-1"></a>button <span class="op">=</span> (database<span class="op">,</span> filename <span class="op">=</span> <span class="st">'data.csv'</span>) <span class="kw">=&gt;</span> {</span>
+<span id="cb12-134"><a href="#cb12-134" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> downloadData <span class="op">=</span> <span class="kw">new</span> <span class="bu">Blob</span>([d3<span class="op">.</span><span class="fu">csvFormat</span>(database)]<span class="op">,</span> { <span class="dt">type</span><span class="op">:</span> <span class="st">"text/csv"</span> })<span class="op">;</span></span>
+<span id="cb12-135"><a href="#cb12-135" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-136"><a href="#cb12-136" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> size <span class="op">=</span> (downloadData<span class="op">.</span><span class="at">size</span> <span class="op">/</span> <span class="dv">1024</span>)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="op">;</span></span>
+<span id="cb12-137"><a href="#cb12-137" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> button <span class="op">=</span> DOM<span class="op">.</span><span class="fu">download</span>(</span>
+<span id="cb12-138"><a href="#cb12-138" aria-hidden="true" tabindex="-1"></a>    downloadData<span class="op">,</span></span>
+<span id="cb12-139"><a href="#cb12-139" aria-hidden="true" tabindex="-1"></a>    filename<span class="op">,</span></span>
+<span id="cb12-140"><a href="#cb12-140" aria-hidden="true" tabindex="-1"></a>    <span class="vs">`Download </span><span class="sc">${</span>filename<span class="sc">}</span><span class="vs"> (</span><span class="sc">${</span>size<span class="sc">}</span><span class="vs"> KB)`</span></span>
+<span id="cb12-141"><a href="#cb12-141" aria-hidden="true" tabindex="-1"></a>  )<span class="op">;</span></span>
+<span id="cb12-142"><a href="#cb12-142" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> button<span class="op">;</span></span>
+<span id="cb12-143"><a href="#cb12-143" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb12-144"><a href="#cb12-144" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-145"><a href="#cb12-145" aria-hidden="true" tabindex="-1"></a><span class="fu">button</span>(database<span class="op">,</span> <span class="vs">`</span><span class="sc">${</span>dbTable<span class="sc">}</span><span class="vs">`</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-7-5" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-7-6" data-nodetype="expression">
 
 </div>
 </div>
@@ -392,12 +514,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 
 
-</section>
 </section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
 <script type="ojs-module-contents">
-eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6Ii8vIFRoaXMgY2h1bmsgbWFrZXMgdGhlIGZhbmN5IGRyb3Bkb3duIGRhdGFiYXNlIHZpZXdpbmcgdG9vbFxuXG52aWV3b2YgZGJUYWJsZSA9IElucHV0cy5zZWxlY3QoKGF3YWl0IGRiLmRlc2NyaWJlKCkpLnZhbHVlLm1hcChkID0+IGQubmFtZSksIFxuICAgICAgICAgICAgICAgICAgICB7IGxhYmVsOiBcIlwiIH0pXG5kYXRhYmFzZSA9IGRiLnF1ZXJ5KGBTRUxFQ1QgKiBGUk9NICR7ZGJUYWJsZX1gKVxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC0yIiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoiSW5wdXRzLnRhYmxlKGRhdGFiYXNlKVxuXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTMiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJidXR0b24gPSAoZGF0YWJhc2UsIGZpbGVuYW1lID0gJ2RhdGEuY3N2JykgPT4ge1xuICBjb25zdCBkb3dubG9hZERhdGEgPSBuZXcgQmxvYihbZDMuY3N2Rm9ybWF0KGRhdGFiYXNlKV0sIHsgdHlwZTogXCJ0ZXh0L2NzdlwiIH0pO1xuXG4gIGNvbnN0IHNpemUgPSAoZG93bmxvYWREYXRhLnNpemUgLyAxMDI0KS50b0ZpeGVkKDEpO1xuICBjb25zdCBidXR0b24gPSBET00uZG93bmxvYWQoXG4gICAgZG93bmxvYWREYXRhLFxuICAgIGZpbGVuYW1lLFxuICAgIGBEb3dubG9hZCAke2ZpbGVuYW1lfSAoJHtzaXplfSBLQilgXG4gICk7XG4gIHJldHVybiBidXR0b247XG59XG5cbmJ1dHRvbihkYXRhYmFzZSwgYCR7ZGJUYWJsZX1gKVxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC01IiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoiLy8gbG9hZCBsaWJyYXJpZXNcbnN0ZGxpYiA9IHJlcXVpcmUoXCJAb2JzZXJ2YWJsZWhxL3N0ZGxpYlwiKVxuZDMgPSByZXF1aXJlKFwiZDNAN1wiKVxuXG4vLyBjb25uZWN0IHRvIGRhdGFiYXNlXG5kYiA9IEZpbGVBdHRhY2htZW50KFwiZGF0YS93b3JraW5nL2FldHIuZGJcIikuc3FsaXRlKClcblxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQiLCJzb3VyY2UiOiJzaGlueUlucHV0KCdkYlRhYmxlJykifV19
+eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6Im5ldF9nZW5lcmF0aW9uX3dpZGUgPSBGaWxlQXR0YWNobWVudChcImRhdGEvd29ya2luZy9nZW5lcmF0aW9uL25ldF9nZW5lcmF0aW9uX3dpZGUuY3N2XCIpLmNzdih7dHlwZWQ6IHRydWV9KTtcbklucHV0cy50YWJsZShuZXRfZ2VuZXJhdGlvbl93aWRlKTtcblxuYnV0dG9uKG5ldF9nZW5lcmF0aW9uX2xvbmcsIGBuZXRfZ2VuZXJhdGlvbl93aWRlLmNzdmApXG5cbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMiIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6Im5ldF9nZW5lcmF0aW9uX2xvbmcgPSBGaWxlQXR0YWNobWVudChcImRhdGEvd29ya2luZy9nZW5lcmF0aW9uL25ldF9nZW5lcmF0aW9uX2xvbmcuY3N2XCIpLmNzdih7dHlwZWQ6IHRydWV9KTtcbklucHV0cy50YWJsZShuZXRfZ2VuZXJhdGlvbl9sb25nKTtcblxuYnV0dG9uKG5ldF9nZW5lcmF0aW9uX2xvbmcsIGBuZXRfZ2VuZXJhdGlvbl9sb25nLmNzdmApXG5cbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMyIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6InByaWNlcyA9IEZpbGVBdHRhY2htZW50KFwiZGF0YS93b3JraW5nL3ByaWNlcy9wcmljZXMuY3N2XCIpLmNzdih7dHlwZWQ6IHRydWV9KTtcbklucHV0cy50YWJsZShwcmljZXMpO1xuXG5idXR0b24ocHJpY2VzLCBgcHJpY2VzLmNzdmApXG5cbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtNCIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6IndlaWdodGVkX3ByaWNlcyA9IEZpbGVBdHRhY2htZW50KFwiZGF0YS93b3JraW5nL3ByaWNlcy93ZWlnaHRlZF9wcmljZXMuY3N2XCIpLmNzdih7dHlwZWQ6IHRydWV9KTtcblxuSW5wdXRzLnRhYmxlKHdlaWdodGVkX3ByaWNlcyk7XG5cbmJ1dHRvbih3ZWlnaHRlZF9wcmljZXMsIGB3ZWlnaHRlZF9wcmljZXMuY3N2YClcblxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC01IiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoiLy8gbG9hZCBsaWJyYXJpZXNcbnN0ZGxpYiA9IHJlcXVpcmUoXCJAb2JzZXJ2YWJsZWhxL3N0ZGxpYlwiKVxuZDMgPSByZXF1aXJlKFwiZDNAN1wiKVxuXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTYiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiIvLyBkb3dubG9hZCBidXR0b24gZnVuY3Rpb25cbmJ1dHRvbiA9IChkYXRhYmFzZSwgZmlsZW5hbWUgPSAnZGF0YS5jc3YnKSA9PiB7XG4gIGNvbnN0IGRvd25sb2FkRGF0YSA9IG5ldyBCbG9iKFtkMy5jc3ZGb3JtYXQoZGF0YWJhc2UpXSwgeyB0eXBlOiBcInRleHQvY3N2XCIgfSk7XG5cbiAgY29uc3Qgc2l6ZSA9IChkb3dubG9hZERhdGEuc2l6ZSAvIDEwMjQpLnRvRml4ZWQoMSk7XG4gIGNvbnN0IGJ1dHRvbiA9IERPTS5kb3dubG9hZChcbiAgICBkb3dubG9hZERhdGEsXG4gICAgZmlsZW5hbWUsXG4gICAgYERvd25sb2FkICR7ZmlsZW5hbWV9ICgke3NpemV9IEtCKWBcbiAgKTtcbiAgcmV0dXJuIGJ1dHRvbjtcbn1cblxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQiLCJzb3VyY2UiOiJzaGlueUlucHV0KCdkYlRhYmxlJykifV19
 </script>
 <script type="module">
 if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
