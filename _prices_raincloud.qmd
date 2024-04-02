@@ -195,13 +195,32 @@ rawDataX = Plot.dot(
 	  x: dimension,
     y: jitter(data, seed),
     fill: 'acep_energy_region',
-    stroke: null,
     r: 1.5,
+    channels: {reporting_name: "reporting_name", year: "year"},
     tip: true
-	}
-)
-```
 
+    // stroke: null
+  }
+)
+
+// tip = Plot.tip(
+//   data, Plot.pointer(
+//   {
+//   x: dimension,
+//   y: 'acep_energy_region',
+//   format: {
+//     year: true,
+//     reporting_name: true,
+//     dimension: true,
+//     filter: (d) => d.reporting_name,
+//     title: (d) => [d.reporting_name, d.year].join("\n\n")
+//     stroke: false
+//   }
+//   }
+// )
+// )
+
+```
 
 
 ```{ojs}
