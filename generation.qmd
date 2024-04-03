@@ -108,7 +108,7 @@ Plot.plot({
 
 While generation did not change significantly during the observed time period, the resources from which generation occurred, did. The following figure shows how the mix of generation fuels changed between 2011 and 2021.[^3]
 
-[^3]: Oil consists of generators whose primary fuel source is diesel/distillate, naphtha, or jet fuel. Gas consists of natural or landfill gas. Hydro refers to conventional hydroelectric turbines. Wind and solar are both utility-scale (excluding behind-the-meter solar).
+[^3]: Oil consists of generators whose primary fuel source is diesel/distillate, naphtha, or jet fuel. Gas consists of natural or landfill gas. Hydro refers to conventional hydroelectric turbines. Wind and solar are both utility-scale (excluding behind-the-meter solar). Storage is not included in these calculations.
 
 ```{ojs}
 //| echo: false
@@ -164,7 +164,8 @@ Plot.plot({
   subtitle: "Percentage point differences in generation mix between 2021 and 2011",
   insetLeft: 15,
   insetRight: 15,
-  height: 450,
+  marginRight: 70,
+  height: 600,
   width: 800,
 
   x: {
@@ -189,11 +190,11 @@ Plot.plot({
         x: "delta",
         y: "fuel_type",
         fill: "fuel_type",
+        order: ["Coal","Oil","Gas","Hydro","Wind","Solar"],
         tip: {
           format: {
             x: (d) => `${(d).toLocaleString(undefined, {maximumFractionDigits: 2})}%`,
-            y: false,
-            fy: false
+            y: false
           }
         }
       }
@@ -272,6 +273,7 @@ Plot.plot({
         x:"year",
         y:"generation_share", 
         fill: "fuel_type",
+        order: ["Oil","Hydro","Wind"],
         tip: {format: {x: "d", y: (d) => `${(d).toLocaleString(undefined, {maximumFractionDigits: 2})}%`}}
       }
     ),
@@ -325,6 +327,7 @@ Plot.plot({
           x: "year",
           y: "generation",
           fill: "fuel_type",
+          order: ["Oil","Hydro","Wind"],
           tip: {format: {x: "d"}}
         }
       )
@@ -374,7 +377,8 @@ Plot.plot({
       {
         x:"year",
         y:"generation_share", 
-        fill: "fuel_type", 
+        fill: "fuel_type",
+        order: ["Coal","Oil","Gas","Hydro","Wind","Solar"],
         tip: {format: {x: "d", y: (d) => `${(d).toLocaleString(undefined, {maximumFractionDigits: 2})}%`}}
       }
     ),
@@ -428,6 +432,7 @@ Plot.plot({
           x: "year",
           y: "generation",
           fill: "fuel_type",
+          order: ["Coal","Oil","Gas","Hydro","Wind","Solar"],
           tip: {format: {x: "d"}}
         }
       )
@@ -477,7 +482,8 @@ Plot.plot({
       {
         x:"year",
         y:"generation_share", 
-        fill: "fuel_type", 
+        fill: "fuel_type",
+        order: ["Oil","Gas","Hydro","Wind","Solar","Other"],
         tip: {format: {x: "d", y: (d) => `${(d).toLocaleString(undefined, {maximumFractionDigits: 2})}%`}}
       }
     ),
@@ -530,6 +536,7 @@ Plot.plot({
           x: "year",
           y: "generation",
           fill: "fuel_type",
+          order: ["Oil","Gas","Hydro","Wind","Solar","Other"],
           tip: {format: {x: "d"}}
         }
       )
