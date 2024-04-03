@@ -253,7 +253,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">Apr 2, 2024 at 23:57 UTC</p>
+      <p class="date">Apr 3, 2024 at 00:22 UTC</p>
     </div>
   </div>
   
@@ -276,40 +276,51 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Generation capacity represents the maximum amount of electricity that can be generated at any given time dependent on certain conditions. The combination of generation sources is often referred to as the capacity mix. Changes in the capacity mix over time reflect decisions to build and retire generators. These decisions are a result of shifting costs, technological innovations, the normal aging of the generation fleet, and/or stakeholder policies. Due to data limitations, we show capacity levels for calendar years 2011-2013, 2018, and 2021. While we cannot observe year-to-year trends, there are enough years of data to visualize capacity trends from 2011 to 2021.</p>
 <p>We begin this section by showcasing the increases in total capacity across the state. In 2011, it is estimated that the total statewide electricity generation capacity was 2.2 GW. We estimate that this has increased to approximately 3.16 GW in 2021 based on best available data. This represents an increase of 966.26 MW, or a 44 percent. To illustrate this example, we show a stacked area chart below that showcases growth over time for various technologies.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
 <div class="cell">
-<div class="sourceCode cell-code hidden" id="cb1" data-startfrom="44" data-source-offset="-1"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 43;"><span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>sw_cap <span class="op">=</span> <span class="fu">FileAttachment</span>(<span class="st">"data/statewide-total-capacity-by-year.csv"</span>)<span class="op">.</span><span class="fu">csv</span>({ <span class="dt">typed</span><span class="op">:</span> <span class="kw">true</span> })</span>
+<div class="sourceCode cell-code hidden" id="cb1" data-startfrom="44" data-source-offset="-1"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 43;"><span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>cap_data <span class="op">=</span> <span class="fu">FileAttachment</span>(<span class="st">"data/working/capacity/capacity_long.csv"</span>)<span class="op">.</span><span class="fu">csv</span>({ <span class="dt">typed</span><span class="op">:</span> <span class="kw">true</span> })</span>
 <span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a><span class="co">//dataTyped = data.map(({year}) =&gt; ({year: new Date(year,0,1)}))</span></span>
-<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
-<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Configure the plot</span></span>
-<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>  <span class="dt">title</span><span class="op">:</span> <span class="st">"Statewide, Capacity"</span><span class="op">,</span></span>
-<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>  <span class="dt">insetLeft</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span></span>
-<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>  <span class="dt">insetRight</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span></span>
-<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Configure the x-axis</span></span>
-<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>  <span class="dt">x</span><span class="op">:</span> {</span>
-<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>    <span class="dt">tickFormat</span><span class="op">:</span> <span class="st">"d"</span><span class="op">,</span></span>
-<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> <span class="st">"Year"</span></span>
-<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
-<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Configure the y-axis</span></span>
-<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a>  <span class="dt">y</span><span class="op">:</span> {</span>
-<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a>    <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span></span>
-<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> <span class="st">"Capacity (MW)"</span></span>
-<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
-<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Stacked area plot</span></span>
-<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [</span>
-<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">areaY</span>(sw_cap<span class="op">,</span> {<span class="dt">x</span><span class="op">:</span><span class="st">"year"</span><span class="op">,</span><span class="dt">y</span><span class="op">:</span><span class="st">"Capacity"</span><span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> <span class="st">"Prime.Mover"</span><span class="op">,</span> <span class="dt">tip</span><span class="op">:</span> {<span class="dt">format</span><span class="op">:</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"d"</span>}}})<span class="op">,</span></span>
-<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">ruleY</span>([<span class="dv">0</span>])</span>
-<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a>  ]<span class="op">,</span></span>
-<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Configure the color scheme</span></span>
-<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a>  <span class="dt">color</span><span class="op">:</span> {</span>
-<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a>        <span class="dt">domain</span><span class="op">:</span> [<span class="st">"Fossil Turbine"</span><span class="op">,</span> <span class="st">"Recip Engines"</span><span class="op">,</span> <span class="st">"Hydro"</span><span class="op">,</span> <span class="st">"Wind"</span><span class="op">,</span><span class="st">"Utility Solar"</span><span class="op">,</span><span class="st">"Rooftop Solar"</span><span class="op">,</span><span class="st">"Storage"</span><span class="op">,</span><span class="st">"Landfill Gas"</span>]<span class="op">,</span></span>
-<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a>        <span class="dt">range</span><span class="op">:</span> [<span class="st">"#606571"</span><span class="op">,</span> <span class="st">"#9da7bf"</span><span class="op">,</span> <span class="st">"#00a1b7"</span><span class="op">,</span> <span class="st">"#F79646"</span><span class="op">,</span> <span class="st">"#fad900"</span><span class="op">,</span><span class="st">"#9BBB59"</span><span class="op">,</span><span class="st">"#71346a"</span><span class="op">,</span><span class="st">"#896D09"</span>]<span class="op">,</span></span>
-<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a>        <span class="dt">legend</span><span class="op">:</span> <span class="kw">true</span></span>
-<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Configure the plot</span></span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>  <span class="dt">title</span><span class="op">:</span> <span class="st">"Statewide, Capacity"</span><span class="op">,</span></span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>  <span class="dt">insetLeft</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span></span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>  <span class="dt">insetRight</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span></span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Configure the x-axis</span></span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>  <span class="dt">x</span><span class="op">:</span> {</span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>    <span class="dt">tickFormat</span><span class="op">:</span> <span class="st">"d"</span><span class="op">,</span></span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> <span class="st">"Year"</span><span class="op">,</span></span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>    <span class="co">//domain: [2011,2012,2013,2018,2021]</span></span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Configure the y-axis</span></span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>  <span class="dt">y</span><span class="op">:</span> {</span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a>    <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span></span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> <span class="st">"Capacity (MW)"</span></span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Stacked area plot</span></span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [</span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">areaY</span>(cap_data<span class="op">,</span></span>
+<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a>      Plot<span class="op">.</span><span class="fu">groupX</span>(</span>
+<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a>        {</span>
+<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a>          <span class="dt">y</span><span class="op">:</span> <span class="st">"sum"</span></span>
+<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a>        }<span class="op">,</span></span>
+<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a>        {</span>
+<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a>          <span class="dt">x</span><span class="op">:</span> <span class="st">"year"</span><span class="op">,</span></span>
+<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a>          <span class="dt">y</span><span class="op">:</span> <span class="st">"capacity"</span><span class="op">,</span></span>
+<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a>          <span class="dt">fill</span><span class="op">:</span> <span class="st">"prime_mover"</span><span class="op">,</span></span>
+<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a>          <span class="dt">tip</span><span class="op">:</span> {<span class="dt">format</span><span class="op">:</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"d"</span>}}</span>
+<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a>    )<span class="op">,</span></span>
+<span id="cb1-79"><a href="#cb1-79" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">ruleY</span>([<span class="dv">0</span>])</span>
+<span id="cb1-80"><a href="#cb1-80" aria-hidden="true" tabindex="-1"></a>  ]<span class="op">,</span></span>
+<span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-82"><a href="#cb1-82" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Configure the color scheme</span></span>
+<span id="cb1-83"><a href="#cb1-83" aria-hidden="true" tabindex="-1"></a>  <span class="dt">color</span><span class="op">:</span> {</span>
+<span id="cb1-84"><a href="#cb1-84" aria-hidden="true" tabindex="-1"></a>        <span class="dt">domain</span><span class="op">:</span> [<span class="st">"Fossil Turbines"</span><span class="op">,</span> <span class="st">"Recip Engines"</span><span class="op">,</span> <span class="st">"Hydro"</span><span class="op">,</span> <span class="st">"Wind"</span><span class="op">,</span><span class="st">"Utility Solar"</span><span class="op">,</span><span class="st">"Rooftop Solar"</span><span class="op">,</span><span class="st">"Storage"</span><span class="op">,</span><span class="st">"Landfill Gas"</span>]<span class="op">,</span></span>
+<span id="cb1-85"><a href="#cb1-85" aria-hidden="true" tabindex="-1"></a>        <span class="dt">range</span><span class="op">:</span> [<span class="st">"#606571"</span><span class="op">,</span> <span class="st">"#9da7bf"</span><span class="op">,</span> <span class="st">"#00a1b7"</span><span class="op">,</span> <span class="st">"#F79646"</span><span class="op">,</span> <span class="st">"#fad900"</span><span class="op">,</span><span class="st">"#9BBB59"</span><span class="op">,</span><span class="st">"#71346a"</span><span class="op">,</span><span class="st">"#896D09"</span>]<span class="op">,</span></span>
+<span id="cb1-86"><a href="#cb1-86" aria-hidden="true" tabindex="-1"></a>        <span class="dt">legend</span><span class="op">:</span> <span class="kw">true</span></span>
+<span id="cb1-87"><a href="#cb1-87" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb1-88"><a href="#cb1-88" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <div id="ojs-cell-1-1" data-nodetype="declaration">
@@ -330,95 +341,99 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h1>Coastal</h1>
 <p>For the coastal region, we observe a 121.25 MW increase in generation capacity (an increase of approximately 22.8 percent) between 2011 and 2021. The following figure shows the change in total installed capacity for each prime mover in the coastal region. This region saw additions of 38.9 MW of fossil turbines, and 28.9 MW of reciprocating engines. The remaining increases were renewable and storage capacity which we look at in more depth in the next figure.</p>
 <div class="cell">
-<div class="sourceCode cell-code hidden" id="cb2" data-startfrom="86" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 85;"><span id="cb2-86"><a href="#cb2-86" aria-hidden="true" tabindex="-1"></a>c_cap <span class="op">=</span> <span class="fu">FileAttachment</span>(<span class="st">"data/coastal-capacity.csv"</span>)<span class="op">.</span><span class="fu">csv</span>({ <span class="dt">typed</span><span class="op">:</span> <span class="kw">true</span> })</span>
-<span id="cb2-87"><a href="#cb2-87" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-88"><a href="#cb2-88" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
-<span id="cb2-89"><a href="#cb2-89" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Configure the x-axis</span></span>
-<span id="cb2-90"><a href="#cb2-90" aria-hidden="true" tabindex="-1"></a>  <span class="dt">x</span><span class="op">:</span> {</span>
-<span id="cb2-91"><a href="#cb2-91" aria-hidden="true" tabindex="-1"></a>    <span class="dt">tickFormat</span><span class="op">:</span> <span class="st">"d"</span><span class="op">,</span></span>
-<span id="cb2-92"><a href="#cb2-92" aria-hidden="true" tabindex="-1"></a>    <span class="dt">type</span><span class="op">:</span> <span class="st">"band"</span><span class="op">,</span></span>
-<span id="cb2-93"><a href="#cb2-93" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> <span class="st">"Year"</span></span>
-<span id="cb2-94"><a href="#cb2-94" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
-<span id="cb2-95"><a href="#cb2-95" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Configure the y-axis</span></span>
-<span id="cb2-96"><a href="#cb2-96" aria-hidden="true" tabindex="-1"></a>  <span class="dt">y</span><span class="op">:</span> {</span>
-<span id="cb2-97"><a href="#cb2-97" aria-hidden="true" tabindex="-1"></a>    <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span></span>
-<span id="cb2-98"><a href="#cb2-98" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> <span class="st">"Capacity (MW)"</span></span>
-<span id="cb2-99"><a href="#cb2-99" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
-<span id="cb2-100"><a href="#cb2-100" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Configure the plot</span></span>
-<span id="cb2-101"><a href="#cb2-101" aria-hidden="true" tabindex="-1"></a>  <span class="dt">title</span><span class="op">:</span> <span class="st">"Coastal Region, Capacity"</span><span class="op">,</span></span>
-<span id="cb2-102"><a href="#cb2-102" aria-hidden="true" tabindex="-1"></a>  <span class="dt">insetLeft</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span></span>
-<span id="cb2-103"><a href="#cb2-103" aria-hidden="true" tabindex="-1"></a>  <span class="dt">insetRight</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span></span>
-<span id="cb2-104"><a href="#cb2-104" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Stacked area plot</span></span>
-<span id="cb2-105"><a href="#cb2-105" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [</span>
-<span id="cb2-106"><a href="#cb2-106" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">barY</span>(c_cap<span class="op">,</span> {<span class="dt">x</span><span class="op">:</span><span class="st">"year"</span><span class="op">,</span><span class="dt">y</span><span class="op">:</span><span class="st">"Capacity"</span><span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> <span class="st">"Prime.Mover"</span><span class="op">,</span> <span class="dt">tip</span><span class="op">:</span> {<span class="dt">format</span><span class="op">:</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"d"</span>}}})<span class="op">,</span></span>
-<span id="cb2-107"><a href="#cb2-107" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">ruleY</span>([<span class="dv">0</span>])</span>
-<span id="cb2-108"><a href="#cb2-108" aria-hidden="true" tabindex="-1"></a>  ]<span class="op">,</span></span>
-<span id="cb2-109"><a href="#cb2-109" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Configure the color scheme</span></span>
-<span id="cb2-110"><a href="#cb2-110" aria-hidden="true" tabindex="-1"></a>  <span class="dt">color</span><span class="op">:</span> {</span>
-<span id="cb2-111"><a href="#cb2-111" aria-hidden="true" tabindex="-1"></a>        <span class="dt">domain</span><span class="op">:</span> [<span class="st">"Fossil Turbine"</span><span class="op">,</span> <span class="st">"Recip Engines"</span><span class="op">,</span> <span class="st">"Hydro"</span><span class="op">,</span> <span class="st">"Wind"</span><span class="op">,</span><span class="st">"Storage"</span>]<span class="op">,</span></span>
-<span id="cb2-112"><a href="#cb2-112" aria-hidden="true" tabindex="-1"></a>        <span class="dt">range</span><span class="op">:</span> [<span class="st">"#606571"</span><span class="op">,</span> <span class="st">"#9da7bf"</span><span class="op">,</span> <span class="st">"#00a1b7"</span><span class="op">,</span> <span class="st">"#F79646"</span><span class="op">,</span> <span class="st">"#71346a"</span>]<span class="op">,</span></span>
-<span id="cb2-113"><a href="#cb2-113" aria-hidden="true" tabindex="-1"></a>        <span class="dt">legend</span><span class="op">:</span> <span class="kw">true</span></span>
-<span id="cb2-114"><a href="#cb2-114" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb2-115"><a href="#cb2-115" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code hidden" id="cb2" data-startfrom="96" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 95;"><span id="cb2-96"><a href="#cb2-96" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb2-97"><a href="#cb2-97" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Configure the x-axis</span></span>
+<span id="cb2-98"><a href="#cb2-98" aria-hidden="true" tabindex="-1"></a>  <span class="dt">x</span><span class="op">:</span> {</span>
+<span id="cb2-99"><a href="#cb2-99" aria-hidden="true" tabindex="-1"></a>    <span class="dt">tickFormat</span><span class="op">:</span> <span class="st">"d"</span><span class="op">,</span></span>
+<span id="cb2-100"><a href="#cb2-100" aria-hidden="true" tabindex="-1"></a>    <span class="dt">type</span><span class="op">:</span> <span class="st">"band"</span><span class="op">,</span></span>
+<span id="cb2-101"><a href="#cb2-101" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> <span class="st">"Year"</span></span>
+<span id="cb2-102"><a href="#cb2-102" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb2-103"><a href="#cb2-103" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Configure the y-axis</span></span>
+<span id="cb2-104"><a href="#cb2-104" aria-hidden="true" tabindex="-1"></a>  <span class="dt">y</span><span class="op">:</span> {</span>
+<span id="cb2-105"><a href="#cb2-105" aria-hidden="true" tabindex="-1"></a>    <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span></span>
+<span id="cb2-106"><a href="#cb2-106" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> <span class="st">"Capacity (MW)"</span></span>
+<span id="cb2-107"><a href="#cb2-107" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb2-108"><a href="#cb2-108" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Configure the plot</span></span>
+<span id="cb2-109"><a href="#cb2-109" aria-hidden="true" tabindex="-1"></a>  <span class="dt">title</span><span class="op">:</span> <span class="st">"Coastal region capacity"</span><span class="op">,</span></span>
+<span id="cb2-110"><a href="#cb2-110" aria-hidden="true" tabindex="-1"></a>  <span class="dt">insetLeft</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span></span>
+<span id="cb2-111"><a href="#cb2-111" aria-hidden="true" tabindex="-1"></a>  <span class="dt">insetRight</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span></span>
+<span id="cb2-112"><a href="#cb2-112" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-113"><a href="#cb2-113" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Stacked area plot</span></span>
+<span id="cb2-114"><a href="#cb2-114" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [</span>
+<span id="cb2-115"><a href="#cb2-115" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">barY</span>(cap_data<span class="op">.</span><span class="fu">filter</span>((d) <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">acep_region</span> <span class="op">===</span> <span class="st">"Coastal"</span> <span class="op">&amp;&amp;</span> d<span class="op">.</span><span class="at">capacity</span> <span class="op">!==</span> <span class="fl">0.0</span>)<span class="op">,</span></span>
+<span id="cb2-116"><a href="#cb2-116" aria-hidden="true" tabindex="-1"></a>      Plot<span class="op">.</span><span class="fu">groupX</span>(</span>
+<span id="cb2-117"><a href="#cb2-117" aria-hidden="true" tabindex="-1"></a>        {</span>
+<span id="cb2-118"><a href="#cb2-118" aria-hidden="true" tabindex="-1"></a>          <span class="dt">y</span><span class="op">:</span> <span class="st">"sum"</span></span>
+<span id="cb2-119"><a href="#cb2-119" aria-hidden="true" tabindex="-1"></a>        }<span class="op">,</span></span>
+<span id="cb2-120"><a href="#cb2-120" aria-hidden="true" tabindex="-1"></a>        {</span>
+<span id="cb2-121"><a href="#cb2-121" aria-hidden="true" tabindex="-1"></a>          <span class="dt">x</span><span class="op">:</span> <span class="st">"year"</span><span class="op">,</span></span>
+<span id="cb2-122"><a href="#cb2-122" aria-hidden="true" tabindex="-1"></a>          <span class="dt">y</span><span class="op">:</span> <span class="st">"capacity"</span><span class="op">,</span></span>
+<span id="cb2-123"><a href="#cb2-123" aria-hidden="true" tabindex="-1"></a>          <span class="dt">fill</span><span class="op">:</span> <span class="st">"prime_mover"</span><span class="op">,</span></span>
+<span id="cb2-124"><a href="#cb2-124" aria-hidden="true" tabindex="-1"></a>          <span class="dt">tip</span><span class="op">:</span> {<span class="dt">format</span><span class="op">:</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"d"</span>}}</span>
+<span id="cb2-125"><a href="#cb2-125" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb2-126"><a href="#cb2-126" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb2-127"><a href="#cb2-127" aria-hidden="true" tabindex="-1"></a>    )<span class="op">,</span></span>
+<span id="cb2-128"><a href="#cb2-128" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">ruleY</span>([<span class="dv">0</span>])</span>
+<span id="cb2-129"><a href="#cb2-129" aria-hidden="true" tabindex="-1"></a>  ]<span class="op">,</span></span>
+<span id="cb2-130"><a href="#cb2-130" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Configure the color scheme</span></span>
+<span id="cb2-131"><a href="#cb2-131" aria-hidden="true" tabindex="-1"></a>  <span class="dt">color</span><span class="op">:</span> {</span>
+<span id="cb2-132"><a href="#cb2-132" aria-hidden="true" tabindex="-1"></a>        <span class="dt">domain</span><span class="op">:</span> [<span class="st">"Fossil Turbines"</span><span class="op">,</span> <span class="st">"Recip Engines"</span><span class="op">,</span> <span class="st">"Hydro"</span><span class="op">,</span> <span class="st">"Wind"</span><span class="op">,</span><span class="st">"Storage"</span>]<span class="op">,</span></span>
+<span id="cb2-133"><a href="#cb2-133" aria-hidden="true" tabindex="-1"></a>        <span class="dt">range</span><span class="op">:</span> [<span class="st">"#606571"</span><span class="op">,</span> <span class="st">"#9da7bf"</span><span class="op">,</span> <span class="st">"#00a1b7"</span><span class="op">,</span> <span class="st">"#F79646"</span><span class="op">,</span> <span class="st">"#71346a"</span>]<span class="op">,</span></span>
+<span id="cb2-134"><a href="#cb2-134" aria-hidden="true" tabindex="-1"></a>        <span class="dt">legend</span><span class="op">:</span> <span class="kw">true</span></span>
+<span id="cb2-135"><a href="#cb2-135" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb2-136"><a href="#cb2-136" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<div>
-<div id="ojs-cell-2-1" data-nodetype="declaration">
+<div id="ojs-cell-2" data-nodetype="expression">
 
-</div>
-</div>
-</div>
-<div class="cell-output cell-output-display">
-<div>
-<div id="ojs-cell-2-2" data-nodetype="expression">
-
-</div>
 </div>
 </div>
 </div>
 <p>Across the remaining capacity expansions, hydropower accounted for the bulk of the capacity additions with 41.95 MW. Storage capacity increased by 7 MW and wind generation capacity increased by 4.5 MW. Between 2013 and 2018, significant hydropower additions were made in the Southeast (19.4 MW), Kodiak (11.3 MW), and the Copper-River/Chugach (6.5 MW) AEA energy regions.</p>
 <div class="cell">
-<div class="sourceCode cell-code hidden" id="cb3" data-startfrom="122" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 121;"><span id="cb3-122"><a href="#cb3-122" aria-hidden="true" tabindex="-1"></a>c_r_cap <span class="op">=</span> <span class="fu">FileAttachment</span>(<span class="st">"data/coastal-capacity-non-fossil.csv"</span>)<span class="op">.</span><span class="fu">csv</span>({ <span class="dt">typed</span><span class="op">:</span> <span class="kw">true</span> })</span>
-<span id="cb3-123"><a href="#cb3-123" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-124"><a href="#cb3-124" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
-<span id="cb3-125"><a href="#cb3-125" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Configure the x-axis</span></span>
-<span id="cb3-126"><a href="#cb3-126" aria-hidden="true" tabindex="-1"></a>  <span class="dt">x</span><span class="op">:</span> {</span>
-<span id="cb3-127"><a href="#cb3-127" aria-hidden="true" tabindex="-1"></a>    <span class="dt">tickFormat</span><span class="op">:</span> <span class="st">"d"</span><span class="op">,</span></span>
-<span id="cb3-128"><a href="#cb3-128" aria-hidden="true" tabindex="-1"></a>    <span class="dt">type</span><span class="op">:</span> <span class="st">"band"</span><span class="op">,</span></span>
-<span id="cb3-129"><a href="#cb3-129" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> <span class="st">"Year"</span></span>
-<span id="cb3-130"><a href="#cb3-130" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
-<span id="cb3-131"><a href="#cb3-131" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Configure the y-axis</span></span>
-<span id="cb3-132"><a href="#cb3-132" aria-hidden="true" tabindex="-1"></a>  <span class="dt">y</span><span class="op">:</span> {</span>
-<span id="cb3-133"><a href="#cb3-133" aria-hidden="true" tabindex="-1"></a>    <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span></span>
-<span id="cb3-134"><a href="#cb3-134" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> <span class="st">"Capacity (MW)"</span></span>
-<span id="cb3-135"><a href="#cb3-135" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
-<span id="cb3-136"><a href="#cb3-136" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Configure the plot</span></span>
-<span id="cb3-137"><a href="#cb3-137" aria-hidden="true" tabindex="-1"></a>  <span class="dt">title</span><span class="op">:</span> <span class="st">"Coastal Region, Non-fossil Capacity"</span><span class="op">,</span></span>
-<span id="cb3-138"><a href="#cb3-138" aria-hidden="true" tabindex="-1"></a>  <span class="dt">insetLeft</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span></span>
-<span id="cb3-139"><a href="#cb3-139" aria-hidden="true" tabindex="-1"></a>  <span class="dt">insetRight</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span></span>
-<span id="cb3-140"><a href="#cb3-140" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Stacked area plot</span></span>
-<span id="cb3-141"><a href="#cb3-141" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [</span>
-<span id="cb3-142"><a href="#cb3-142" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">barY</span>(c_r_cap<span class="op">,</span> {<span class="dt">x</span><span class="op">:</span><span class="st">"year"</span><span class="op">,</span><span class="dt">y</span><span class="op">:</span><span class="st">"Capacity"</span><span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> <span class="st">"Prime.Mover"</span><span class="op">,</span> <span class="dt">tip</span><span class="op">:</span> {<span class="dt">format</span><span class="op">:</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"d"</span>}}})<span class="op">,</span></span>
-<span id="cb3-143"><a href="#cb3-143" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">ruleY</span>([<span class="dv">0</span>])</span>
-<span id="cb3-144"><a href="#cb3-144" aria-hidden="true" tabindex="-1"></a>  ]<span class="op">,</span></span>
-<span id="cb3-145"><a href="#cb3-145" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Configure the color scheme</span></span>
-<span id="cb3-146"><a href="#cb3-146" aria-hidden="true" tabindex="-1"></a>  <span class="dt">color</span><span class="op">:</span> {</span>
-<span id="cb3-147"><a href="#cb3-147" aria-hidden="true" tabindex="-1"></a>        <span class="dt">domain</span><span class="op">:</span> [<span class="st">"Hydro"</span><span class="op">,</span> <span class="st">"Wind"</span><span class="op">,</span><span class="st">"Storage"</span>]<span class="op">,</span></span>
-<span id="cb3-148"><a href="#cb3-148" aria-hidden="true" tabindex="-1"></a>        <span class="dt">range</span><span class="op">:</span> [<span class="st">"#00a1b7"</span><span class="op">,</span> <span class="st">"#F79646"</span><span class="op">,</span> <span class="st">"#71346a"</span>]<span class="op">,</span></span>
-<span id="cb3-149"><a href="#cb3-149" aria-hidden="true" tabindex="-1"></a>        <span class="dt">legend</span><span class="op">:</span> <span class="kw">true</span></span>
-<span id="cb3-150"><a href="#cb3-150" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb3-151"><a href="#cb3-151" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code hidden" id="cb3" data-startfrom="143" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 142;"><span id="cb3-143"><a href="#cb3-143" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb3-144"><a href="#cb3-144" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Configure the x-axis</span></span>
+<span id="cb3-145"><a href="#cb3-145" aria-hidden="true" tabindex="-1"></a>  <span class="dt">x</span><span class="op">:</span> {</span>
+<span id="cb3-146"><a href="#cb3-146" aria-hidden="true" tabindex="-1"></a>    <span class="dt">tickFormat</span><span class="op">:</span> <span class="st">"d"</span><span class="op">,</span></span>
+<span id="cb3-147"><a href="#cb3-147" aria-hidden="true" tabindex="-1"></a>    <span class="dt">type</span><span class="op">:</span> <span class="st">"band"</span><span class="op">,</span></span>
+<span id="cb3-148"><a href="#cb3-148" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> <span class="st">"Year"</span></span>
+<span id="cb3-149"><a href="#cb3-149" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb3-150"><a href="#cb3-150" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Configure the y-axis</span></span>
+<span id="cb3-151"><a href="#cb3-151" aria-hidden="true" tabindex="-1"></a>  <span class="dt">y</span><span class="op">:</span> {</span>
+<span id="cb3-152"><a href="#cb3-152" aria-hidden="true" tabindex="-1"></a>    <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span></span>
+<span id="cb3-153"><a href="#cb3-153" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> <span class="st">"Capacity (MW)"</span></span>
+<span id="cb3-154"><a href="#cb3-154" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb3-155"><a href="#cb3-155" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Configure the plot</span></span>
+<span id="cb3-156"><a href="#cb3-156" aria-hidden="true" tabindex="-1"></a>  <span class="dt">title</span><span class="op">:</span> <span class="st">"Coastal region renewable capacity"</span><span class="op">,</span></span>
+<span id="cb3-157"><a href="#cb3-157" aria-hidden="true" tabindex="-1"></a>  <span class="dt">insetLeft</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span></span>
+<span id="cb3-158"><a href="#cb3-158" aria-hidden="true" tabindex="-1"></a>  <span class="dt">insetRight</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span></span>
+<span id="cb3-159"><a href="#cb3-159" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-160"><a href="#cb3-160" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Stacked area plot</span></span>
+<span id="cb3-161"><a href="#cb3-161" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [</span>
+<span id="cb3-162"><a href="#cb3-162" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">barY</span>(cap_data<span class="op">.</span><span class="fu">filter</span>((d) <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">acep_region</span> <span class="op">===</span> <span class="st">"Coastal"</span> <span class="op">&amp;&amp;</span> d<span class="op">.</span><span class="at">capacity</span> <span class="op">!==</span> <span class="fl">0.0</span> <span class="op">&amp;&amp;</span> d<span class="op">.</span><span class="at">prime_mover</span> <span class="op">!==</span> <span class="st">"Fossil Turbines"</span> <span class="op">&amp;&amp;</span> d<span class="op">.</span><span class="at">prime_mover</span> <span class="op">!==</span> <span class="st">"Recip Engines"</span>)<span class="op">,</span></span>
+<span id="cb3-163"><a href="#cb3-163" aria-hidden="true" tabindex="-1"></a>      Plot<span class="op">.</span><span class="fu">groupX</span>(</span>
+<span id="cb3-164"><a href="#cb3-164" aria-hidden="true" tabindex="-1"></a>        {</span>
+<span id="cb3-165"><a href="#cb3-165" aria-hidden="true" tabindex="-1"></a>          <span class="dt">y</span><span class="op">:</span> <span class="st">"sum"</span></span>
+<span id="cb3-166"><a href="#cb3-166" aria-hidden="true" tabindex="-1"></a>        }<span class="op">,</span></span>
+<span id="cb3-167"><a href="#cb3-167" aria-hidden="true" tabindex="-1"></a>        {</span>
+<span id="cb3-168"><a href="#cb3-168" aria-hidden="true" tabindex="-1"></a>          <span class="dt">x</span><span class="op">:</span> <span class="st">"year"</span><span class="op">,</span></span>
+<span id="cb3-169"><a href="#cb3-169" aria-hidden="true" tabindex="-1"></a>          <span class="dt">y</span><span class="op">:</span> <span class="st">"capacity"</span><span class="op">,</span></span>
+<span id="cb3-170"><a href="#cb3-170" aria-hidden="true" tabindex="-1"></a>          <span class="dt">fill</span><span class="op">:</span> <span class="st">"prime_mover"</span><span class="op">,</span></span>
+<span id="cb3-171"><a href="#cb3-171" aria-hidden="true" tabindex="-1"></a>          <span class="dt">tip</span><span class="op">:</span> {<span class="dt">format</span><span class="op">:</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"d"</span>}}</span>
+<span id="cb3-172"><a href="#cb3-172" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb3-173"><a href="#cb3-173" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb3-174"><a href="#cb3-174" aria-hidden="true" tabindex="-1"></a>    )<span class="op">,</span></span>
+<span id="cb3-175"><a href="#cb3-175" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">ruleY</span>([<span class="dv">0</span>])</span>
+<span id="cb3-176"><a href="#cb3-176" aria-hidden="true" tabindex="-1"></a>  ]<span class="op">,</span></span>
+<span id="cb3-177"><a href="#cb3-177" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Configure the color scheme</span></span>
+<span id="cb3-178"><a href="#cb3-178" aria-hidden="true" tabindex="-1"></a>  <span class="dt">color</span><span class="op">:</span> {</span>
+<span id="cb3-179"><a href="#cb3-179" aria-hidden="true" tabindex="-1"></a>        <span class="dt">domain</span><span class="op">:</span> [<span class="st">"Hydro"</span><span class="op">,</span> <span class="st">"Wind"</span><span class="op">,</span><span class="st">"Storage"</span>]<span class="op">,</span></span>
+<span id="cb3-180"><a href="#cb3-180" aria-hidden="true" tabindex="-1"></a>        <span class="dt">range</span><span class="op">:</span> [<span class="st">"#00a1b7"</span><span class="op">,</span> <span class="st">"#F79646"</span><span class="op">,</span> <span class="st">"#71346a"</span>]<span class="op">,</span></span>
+<span id="cb3-181"><a href="#cb3-181" aria-hidden="true" tabindex="-1"></a>        <span class="dt">legend</span><span class="op">:</span> <span class="kw">true</span></span>
+<span id="cb3-182"><a href="#cb3-182" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb3-183"><a href="#cb3-183" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<div>
-<div id="ojs-cell-3-1" data-nodetype="declaration">
+<div id="ojs-cell-3" data-nodetype="expression">
 
-</div>
-</div>
-</div>
-<div class="cell-output cell-output-display">
-<div>
-<div id="ojs-cell-3-2" data-nodetype="expression">
-
-</div>
 </div>
 </div>
 </div>
@@ -427,96 +442,100 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h1>Railbelt</h1>
 <p>For the Railbelt region, capacity additions were dominated by more-efficient fossil fuel generating units and new battery storage. These additions are visualized below. There were 761.91 MW of capacity additions between 2011 and 2021. The Railbelt region saw 207.3 MW of reciprocating engine additions and 390.2 MW of fossil fuel turbines. The remaining capacity additions were renewables and storage and are shown in next figure.</p>
 <div class="cell">
-<div class="sourceCode cell-code hidden" id="cb4" data-startfrom="160" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 159;"><span id="cb4-160"><a href="#cb4-160" aria-hidden="true" tabindex="-1"></a>r_cap <span class="op">=</span> <span class="fu">FileAttachment</span>(<span class="st">"data/railbelt-capacity.csv"</span>)<span class="op">.</span><span class="fu">csv</span>({ <span class="dt">typed</span><span class="op">:</span> <span class="kw">true</span> })</span>
-<span id="cb4-161"><a href="#cb4-161" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-162"><a href="#cb4-162" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
-<span id="cb4-163"><a href="#cb4-163" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Configure the x-axis</span></span>
-<span id="cb4-164"><a href="#cb4-164" aria-hidden="true" tabindex="-1"></a>  <span class="dt">x</span><span class="op">:</span> {</span>
-<span id="cb4-165"><a href="#cb4-165" aria-hidden="true" tabindex="-1"></a>    <span class="dt">tickFormat</span><span class="op">:</span> <span class="st">"d"</span><span class="op">,</span></span>
-<span id="cb4-166"><a href="#cb4-166" aria-hidden="true" tabindex="-1"></a>    <span class="dt">type</span><span class="op">:</span> <span class="st">"band"</span><span class="op">,</span></span>
-<span id="cb4-167"><a href="#cb4-167" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> <span class="st">"Year"</span></span>
-<span id="cb4-168"><a href="#cb4-168" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
-<span id="cb4-169"><a href="#cb4-169" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Configure the y-axis</span></span>
-<span id="cb4-170"><a href="#cb4-170" aria-hidden="true" tabindex="-1"></a>  <span class="dt">y</span><span class="op">:</span> {</span>
-<span id="cb4-171"><a href="#cb4-171" aria-hidden="true" tabindex="-1"></a>    <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span></span>
-<span id="cb4-172"><a href="#cb4-172" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> <span class="st">"Capacity (MW)"</span></span>
-<span id="cb4-173"><a href="#cb4-173" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
-<span id="cb4-174"><a href="#cb4-174" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Configure the plot</span></span>
-<span id="cb4-175"><a href="#cb4-175" aria-hidden="true" tabindex="-1"></a>  <span class="dt">title</span><span class="op">:</span> <span class="st">"Railbelt Region, Capacity"</span><span class="op">,</span></span>
-<span id="cb4-176"><a href="#cb4-176" aria-hidden="true" tabindex="-1"></a>  <span class="dt">caption</span><span class="op">:</span> <span class="st">"Figure note: The category of Landfill Gas refers to the 11.5 MW power plant at the Anchorage Regional Landfill that is fueled by methane from decomposing waste. Although this plant uses reciprocating engines as its prime mover, we decided to show landfill gas as a separate category because it is a significant addition to the mix of renewable energy capacity."</span><span class="op">,</span></span>
-<span id="cb4-177"><a href="#cb4-177" aria-hidden="true" tabindex="-1"></a>  <span class="dt">insetLeft</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span></span>
-<span id="cb4-178"><a href="#cb4-178" aria-hidden="true" tabindex="-1"></a>  <span class="dt">insetRight</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span></span>
-<span id="cb4-179"><a href="#cb4-179" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Stacked area plot</span></span>
-<span id="cb4-180"><a href="#cb4-180" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [</span>
-<span id="cb4-181"><a href="#cb4-181" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">barY</span>(r_cap<span class="op">,</span> {<span class="dt">x</span><span class="op">:</span><span class="st">"year"</span><span class="op">,</span><span class="dt">y</span><span class="op">:</span><span class="st">"Capacity"</span><span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> <span class="st">"Prime.Mover"</span><span class="op">,</span> <span class="dt">tip</span><span class="op">:</span> {<span class="dt">format</span><span class="op">:</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"d"</span>}}})<span class="op">,</span></span>
-<span id="cb4-182"><a href="#cb4-182" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">ruleY</span>([<span class="dv">0</span>])</span>
-<span id="cb4-183"><a href="#cb4-183" aria-hidden="true" tabindex="-1"></a>  ]<span class="op">,</span></span>
-<span id="cb4-184"><a href="#cb4-184" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Configure the color scheme</span></span>
-<span id="cb4-185"><a href="#cb4-185" aria-hidden="true" tabindex="-1"></a>  <span class="dt">color</span><span class="op">:</span> {</span>
-<span id="cb4-186"><a href="#cb4-186" aria-hidden="true" tabindex="-1"></a>        <span class="dt">domain</span><span class="op">:</span> [<span class="st">"Fossil Turbine"</span><span class="op">,</span> <span class="st">"Recip Engines"</span><span class="op">,</span> <span class="st">"Hydro"</span><span class="op">,</span> <span class="st">"Wind"</span><span class="op">,</span><span class="st">"Utility Solar"</span><span class="op">,</span><span class="st">"Rooftop Solar"</span><span class="op">,</span><span class="st">"Storage"</span><span class="op">,</span><span class="st">"Landfill Gas"</span>]<span class="op">,</span></span>
-<span id="cb4-187"><a href="#cb4-187" aria-hidden="true" tabindex="-1"></a>        <span class="dt">range</span><span class="op">:</span> [<span class="st">"#606571"</span><span class="op">,</span> <span class="st">"#9da7bf"</span><span class="op">,</span> <span class="st">"#00a1b7"</span><span class="op">,</span> <span class="st">"#F79646"</span><span class="op">,</span> <span class="st">"#fad900"</span><span class="op">,</span><span class="st">"#9BBB59"</span><span class="op">,</span><span class="st">"#71346a"</span><span class="op">,</span><span class="st">"#896D09"</span>]<span class="op">,</span></span>
-<span id="cb4-188"><a href="#cb4-188" aria-hidden="true" tabindex="-1"></a>        <span class="dt">legend</span><span class="op">:</span> <span class="kw">true</span></span>
-<span id="cb4-189"><a href="#cb4-189" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb4-190"><a href="#cb4-190" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code hidden" id="cb4" data-startfrom="192" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 191;"><span id="cb4-192"><a href="#cb4-192" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb4-193"><a href="#cb4-193" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Configure the x-axis</span></span>
+<span id="cb4-194"><a href="#cb4-194" aria-hidden="true" tabindex="-1"></a>  <span class="dt">x</span><span class="op">:</span> {</span>
+<span id="cb4-195"><a href="#cb4-195" aria-hidden="true" tabindex="-1"></a>    <span class="dt">tickFormat</span><span class="op">:</span> <span class="st">"d"</span><span class="op">,</span></span>
+<span id="cb4-196"><a href="#cb4-196" aria-hidden="true" tabindex="-1"></a>    <span class="dt">type</span><span class="op">:</span> <span class="st">"band"</span><span class="op">,</span></span>
+<span id="cb4-197"><a href="#cb4-197" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> <span class="st">"Year"</span></span>
+<span id="cb4-198"><a href="#cb4-198" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb4-199"><a href="#cb4-199" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Configure the y-axis</span></span>
+<span id="cb4-200"><a href="#cb4-200" aria-hidden="true" tabindex="-1"></a>  <span class="dt">y</span><span class="op">:</span> {</span>
+<span id="cb4-201"><a href="#cb4-201" aria-hidden="true" tabindex="-1"></a>    <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span></span>
+<span id="cb4-202"><a href="#cb4-202" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> <span class="st">"Capacity (MW)"</span></span>
+<span id="cb4-203"><a href="#cb4-203" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb4-204"><a href="#cb4-204" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Configure the plot</span></span>
+<span id="cb4-205"><a href="#cb4-205" aria-hidden="true" tabindex="-1"></a>  <span class="dt">title</span><span class="op">:</span> <span class="st">"Railbelt region capacity"</span><span class="op">,</span></span>
+<span id="cb4-206"><a href="#cb4-206" aria-hidden="true" tabindex="-1"></a>  <span class="dt">caption</span><span class="op">:</span> <span class="st">"Figure note: The category of Landfill Gas refers to the 11.5 MW power plant at the Anchorage Regional Landfill that is fueled by methane from decomposing waste. Although this plant uses reciprocating engines as its prime mover, we decided to show landfill gas as a separate category because it is a significant addition to the mix of renewable energy capacity."</span><span class="op">,</span></span>
+<span id="cb4-207"><a href="#cb4-207" aria-hidden="true" tabindex="-1"></a>  <span class="dt">insetLeft</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span></span>
+<span id="cb4-208"><a href="#cb4-208" aria-hidden="true" tabindex="-1"></a>  <span class="dt">insetRight</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span></span>
+<span id="cb4-209"><a href="#cb4-209" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-210"><a href="#cb4-210" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Stacked area plot</span></span>
+<span id="cb4-211"><a href="#cb4-211" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [</span>
+<span id="cb4-212"><a href="#cb4-212" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">barY</span>(cap_data<span class="op">.</span><span class="fu">filter</span>((d) <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">acep_region</span> <span class="op">===</span> <span class="st">"Railbelt"</span> <span class="op">&amp;&amp;</span> d<span class="op">.</span><span class="at">capacity</span> <span class="op">!==</span> <span class="fl">0.0</span>)<span class="op">,</span></span>
+<span id="cb4-213"><a href="#cb4-213" aria-hidden="true" tabindex="-1"></a>      Plot<span class="op">.</span><span class="fu">groupX</span>(</span>
+<span id="cb4-214"><a href="#cb4-214" aria-hidden="true" tabindex="-1"></a>        {</span>
+<span id="cb4-215"><a href="#cb4-215" aria-hidden="true" tabindex="-1"></a>          <span class="dt">y</span><span class="op">:</span> <span class="st">"sum"</span></span>
+<span id="cb4-216"><a href="#cb4-216" aria-hidden="true" tabindex="-1"></a>        }<span class="op">,</span></span>
+<span id="cb4-217"><a href="#cb4-217" aria-hidden="true" tabindex="-1"></a>        {</span>
+<span id="cb4-218"><a href="#cb4-218" aria-hidden="true" tabindex="-1"></a>          <span class="dt">x</span><span class="op">:</span> <span class="st">"year"</span><span class="op">,</span></span>
+<span id="cb4-219"><a href="#cb4-219" aria-hidden="true" tabindex="-1"></a>          <span class="dt">y</span><span class="op">:</span> <span class="st">"capacity"</span><span class="op">,</span></span>
+<span id="cb4-220"><a href="#cb4-220" aria-hidden="true" tabindex="-1"></a>          <span class="dt">fill</span><span class="op">:</span> <span class="st">"prime_mover"</span><span class="op">,</span></span>
+<span id="cb4-221"><a href="#cb4-221" aria-hidden="true" tabindex="-1"></a>          <span class="dt">tip</span><span class="op">:</span> {<span class="dt">format</span><span class="op">:</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"d"</span>}}</span>
+<span id="cb4-222"><a href="#cb4-222" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb4-223"><a href="#cb4-223" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb4-224"><a href="#cb4-224" aria-hidden="true" tabindex="-1"></a>    )<span class="op">,</span></span>
+<span id="cb4-225"><a href="#cb4-225" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">ruleY</span>([<span class="dv">0</span>])</span>
+<span id="cb4-226"><a href="#cb4-226" aria-hidden="true" tabindex="-1"></a>  ]<span class="op">,</span></span>
+<span id="cb4-227"><a href="#cb4-227" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Configure the color scheme</span></span>
+<span id="cb4-228"><a href="#cb4-228" aria-hidden="true" tabindex="-1"></a>  <span class="dt">color</span><span class="op">:</span> {</span>
+<span id="cb4-229"><a href="#cb4-229" aria-hidden="true" tabindex="-1"></a>        <span class="dt">domain</span><span class="op">:</span> [<span class="st">"Fossil Turbines"</span><span class="op">,</span> <span class="st">"Recip Engines"</span><span class="op">,</span> <span class="st">"Hydro"</span><span class="op">,</span> <span class="st">"Wind"</span><span class="op">,</span><span class="st">"Utility Solar"</span><span class="op">,</span><span class="st">"Rooftop Solar"</span><span class="op">,</span><span class="st">"Storage"</span><span class="op">,</span><span class="st">"Landfill Gas"</span>]<span class="op">,</span></span>
+<span id="cb4-230"><a href="#cb4-230" aria-hidden="true" tabindex="-1"></a>        <span class="dt">range</span><span class="op">:</span> [<span class="st">"#606571"</span><span class="op">,</span> <span class="st">"#9da7bf"</span><span class="op">,</span> <span class="st">"#00a1b7"</span><span class="op">,</span> <span class="st">"#F79646"</span><span class="op">,</span> <span class="st">"#fad900"</span><span class="op">,</span><span class="st">"#9BBB59"</span><span class="op">,</span><span class="st">"#71346a"</span><span class="op">,</span><span class="st">"#896D09"</span>]<span class="op">,</span></span>
+<span id="cb4-231"><a href="#cb4-231" aria-hidden="true" tabindex="-1"></a>        <span class="dt">legend</span><span class="op">:</span> <span class="kw">true</span></span>
+<span id="cb4-232"><a href="#cb4-232" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb4-233"><a href="#cb4-233" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<div>
-<div id="ojs-cell-4-1" data-nodetype="declaration">
+<div id="ojs-cell-4" data-nodetype="expression">
 
-</div>
-</div>
-</div>
-<div class="cell-output cell-output-display">
-<div>
-<div id="ojs-cell-4-2" data-nodetype="expression">
-
-</div>
 </div>
 </div>
 </div>
 <p>Total renewable and storage capacity in the Railbelt region increased by 165 MW. Notable additions included the commercial commissioning of the 18 MW Fire Island Wind site in September 2012 and the 25 MW Eva Creek Wind site in October 2012. Significant investments in storage capacity have also been made. Since 2011, 89.5 MW of storage, 43.49 MW of wind, 7.09 MW of hydro, 1.9 MW of utility solar, 10.93 MW of rooftop – also known as “behind-the-meter” – solar, and 11.5 MW of landfill gas have been added.</p>
 <div class="cell">
-<div class="sourceCode cell-code hidden" id="cb5" data-startfrom="197" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 196;"><span id="cb5-197"><a href="#cb5-197" aria-hidden="true" tabindex="-1"></a>r_r_cap <span class="op">=</span> <span class="fu">FileAttachment</span>(<span class="st">"data/railbelt-capacity-non-fossil.csv"</span>)<span class="op">.</span><span class="fu">csv</span>({ <span class="dt">typed</span><span class="op">:</span> <span class="kw">true</span> })</span>
-<span id="cb5-198"><a href="#cb5-198" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-199"><a href="#cb5-199" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
-<span id="cb5-200"><a href="#cb5-200" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Configure the x-axis</span></span>
-<span id="cb5-201"><a href="#cb5-201" aria-hidden="true" tabindex="-1"></a>  <span class="dt">x</span><span class="op">:</span> {</span>
-<span id="cb5-202"><a href="#cb5-202" aria-hidden="true" tabindex="-1"></a>    <span class="dt">tickFormat</span><span class="op">:</span> <span class="st">"d"</span><span class="op">,</span></span>
-<span id="cb5-203"><a href="#cb5-203" aria-hidden="true" tabindex="-1"></a>    <span class="dt">type</span><span class="op">:</span> <span class="st">"band"</span><span class="op">,</span></span>
-<span id="cb5-204"><a href="#cb5-204" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> <span class="st">"Year"</span></span>
-<span id="cb5-205"><a href="#cb5-205" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
-<span id="cb5-206"><a href="#cb5-206" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Configure the y-axis</span></span>
-<span id="cb5-207"><a href="#cb5-207" aria-hidden="true" tabindex="-1"></a>  <span class="dt">y</span><span class="op">:</span> {</span>
-<span id="cb5-208"><a href="#cb5-208" aria-hidden="true" tabindex="-1"></a>    <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span></span>
-<span id="cb5-209"><a href="#cb5-209" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> <span class="st">"Capacity (MW)"</span></span>
-<span id="cb5-210"><a href="#cb5-210" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
-<span id="cb5-211"><a href="#cb5-211" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Configure the plot</span></span>
-<span id="cb5-212"><a href="#cb5-212" aria-hidden="true" tabindex="-1"></a>  <span class="dt">title</span><span class="op">:</span> <span class="st">"Railbelt Region, Non-fossil Capacity"</span><span class="op">,</span></span>
-<span id="cb5-213"><a href="#cb5-213" aria-hidden="true" tabindex="-1"></a>  <span class="dt">insetLeft</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span></span>
-<span id="cb5-214"><a href="#cb5-214" aria-hidden="true" tabindex="-1"></a>  <span class="dt">insetRight</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span></span>
-<span id="cb5-215"><a href="#cb5-215" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Stacked area plot</span></span>
-<span id="cb5-216"><a href="#cb5-216" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [</span>
-<span id="cb5-217"><a href="#cb5-217" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">barY</span>(r_r_cap<span class="op">,</span> {<span class="dt">x</span><span class="op">:</span><span class="st">"year"</span><span class="op">,</span><span class="dt">y</span><span class="op">:</span><span class="st">"Capacity"</span><span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> <span class="st">"Prime.Mover"</span><span class="op">,</span> <span class="dt">tip</span><span class="op">:</span> {<span class="dt">format</span><span class="op">:</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"d"</span>}}})<span class="op">,</span></span>
-<span id="cb5-218"><a href="#cb5-218" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">ruleY</span>([<span class="dv">0</span>])</span>
-<span id="cb5-219"><a href="#cb5-219" aria-hidden="true" tabindex="-1"></a>  ]<span class="op">,</span></span>
-<span id="cb5-220"><a href="#cb5-220" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Configure the color scheme</span></span>
-<span id="cb5-221"><a href="#cb5-221" aria-hidden="true" tabindex="-1"></a>  <span class="dt">color</span><span class="op">:</span> {</span>
-<span id="cb5-222"><a href="#cb5-222" aria-hidden="true" tabindex="-1"></a>        <span class="dt">domain</span><span class="op">:</span> [<span class="st">"Hydro"</span><span class="op">,</span> <span class="st">"Wind"</span><span class="op">,</span><span class="st">"Utility Solar"</span><span class="op">,</span><span class="st">"Rooftop Solar"</span><span class="op">,</span><span class="st">"Storage"</span><span class="op">,</span><span class="st">"Landfill Gas"</span>]<span class="op">,</span></span>
-<span id="cb5-223"><a href="#cb5-223" aria-hidden="true" tabindex="-1"></a>        <span class="dt">range</span><span class="op">:</span> [<span class="st">"#00a1b7"</span><span class="op">,</span> <span class="st">"#F79646"</span><span class="op">,</span> <span class="st">"#fad900"</span><span class="op">,</span><span class="st">"#9BBB59"</span><span class="op">,</span><span class="st">"#71346a"</span><span class="op">,</span><span class="st">"#896D09"</span>]<span class="op">,</span></span>
-<span id="cb5-224"><a href="#cb5-224" aria-hidden="true" tabindex="-1"></a>        <span class="dt">legend</span><span class="op">:</span> <span class="kw">true</span></span>
-<span id="cb5-225"><a href="#cb5-225" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb5-226"><a href="#cb5-226" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code hidden" id="cb5" data-startfrom="240" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 239;"><span id="cb5-240"><a href="#cb5-240" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb5-241"><a href="#cb5-241" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Configure the x-axis</span></span>
+<span id="cb5-242"><a href="#cb5-242" aria-hidden="true" tabindex="-1"></a>  <span class="dt">x</span><span class="op">:</span> {</span>
+<span id="cb5-243"><a href="#cb5-243" aria-hidden="true" tabindex="-1"></a>    <span class="dt">tickFormat</span><span class="op">:</span> <span class="st">"d"</span><span class="op">,</span></span>
+<span id="cb5-244"><a href="#cb5-244" aria-hidden="true" tabindex="-1"></a>    <span class="dt">type</span><span class="op">:</span> <span class="st">"band"</span><span class="op">,</span></span>
+<span id="cb5-245"><a href="#cb5-245" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> <span class="st">"Year"</span></span>
+<span id="cb5-246"><a href="#cb5-246" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb5-247"><a href="#cb5-247" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Configure the y-axis</span></span>
+<span id="cb5-248"><a href="#cb5-248" aria-hidden="true" tabindex="-1"></a>  <span class="dt">y</span><span class="op">:</span> {</span>
+<span id="cb5-249"><a href="#cb5-249" aria-hidden="true" tabindex="-1"></a>    <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span></span>
+<span id="cb5-250"><a href="#cb5-250" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> <span class="st">"Capacity (MW)"</span></span>
+<span id="cb5-251"><a href="#cb5-251" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb5-252"><a href="#cb5-252" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Configure the plot</span></span>
+<span id="cb5-253"><a href="#cb5-253" aria-hidden="true" tabindex="-1"></a>  <span class="dt">title</span><span class="op">:</span> <span class="st">"Railbelt region renewable capacity"</span><span class="op">,</span></span>
+<span id="cb5-254"><a href="#cb5-254" aria-hidden="true" tabindex="-1"></a>  <span class="dt">insetLeft</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span></span>
+<span id="cb5-255"><a href="#cb5-255" aria-hidden="true" tabindex="-1"></a>  <span class="dt">insetRight</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span></span>
+<span id="cb5-256"><a href="#cb5-256" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-257"><a href="#cb5-257" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Stacked area plot</span></span>
+<span id="cb5-258"><a href="#cb5-258" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [</span>
+<span id="cb5-259"><a href="#cb5-259" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">barY</span>(cap_data<span class="op">.</span><span class="fu">filter</span>((d) <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">acep_region</span> <span class="op">===</span> <span class="st">"Railbelt"</span> <span class="op">&amp;&amp;</span> d<span class="op">.</span><span class="at">capacity</span> <span class="op">!==</span> <span class="fl">0.0</span> <span class="op">&amp;&amp;</span> d<span class="op">.</span><span class="at">prime_mover</span> <span class="op">!==</span> <span class="st">"Fossil Turbines"</span> <span class="op">&amp;&amp;</span> d<span class="op">.</span><span class="at">prime_mover</span> <span class="op">!==</span> <span class="st">"Recip Engines"</span>)<span class="op">,</span></span>
+<span id="cb5-260"><a href="#cb5-260" aria-hidden="true" tabindex="-1"></a>      Plot<span class="op">.</span><span class="fu">groupX</span>(</span>
+<span id="cb5-261"><a href="#cb5-261" aria-hidden="true" tabindex="-1"></a>        {</span>
+<span id="cb5-262"><a href="#cb5-262" aria-hidden="true" tabindex="-1"></a>          <span class="dt">y</span><span class="op">:</span> <span class="st">"sum"</span></span>
+<span id="cb5-263"><a href="#cb5-263" aria-hidden="true" tabindex="-1"></a>        }<span class="op">,</span></span>
+<span id="cb5-264"><a href="#cb5-264" aria-hidden="true" tabindex="-1"></a>        {</span>
+<span id="cb5-265"><a href="#cb5-265" aria-hidden="true" tabindex="-1"></a>          <span class="dt">x</span><span class="op">:</span> <span class="st">"year"</span><span class="op">,</span></span>
+<span id="cb5-266"><a href="#cb5-266" aria-hidden="true" tabindex="-1"></a>          <span class="dt">y</span><span class="op">:</span> <span class="st">"capacity"</span><span class="op">,</span></span>
+<span id="cb5-267"><a href="#cb5-267" aria-hidden="true" tabindex="-1"></a>          <span class="dt">fill</span><span class="op">:</span> <span class="st">"prime_mover"</span><span class="op">,</span></span>
+<span id="cb5-268"><a href="#cb5-268" aria-hidden="true" tabindex="-1"></a>          <span class="dt">tip</span><span class="op">:</span> {<span class="dt">format</span><span class="op">:</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"d"</span>}}</span>
+<span id="cb5-269"><a href="#cb5-269" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb5-270"><a href="#cb5-270" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb5-271"><a href="#cb5-271" aria-hidden="true" tabindex="-1"></a>    )<span class="op">,</span></span>
+<span id="cb5-272"><a href="#cb5-272" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">ruleY</span>([<span class="dv">0</span>])</span>
+<span id="cb5-273"><a href="#cb5-273" aria-hidden="true" tabindex="-1"></a>  ]<span class="op">,</span></span>
+<span id="cb5-274"><a href="#cb5-274" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Configure the color scheme</span></span>
+<span id="cb5-275"><a href="#cb5-275" aria-hidden="true" tabindex="-1"></a>  <span class="dt">color</span><span class="op">:</span> {</span>
+<span id="cb5-276"><a href="#cb5-276" aria-hidden="true" tabindex="-1"></a>        <span class="dt">domain</span><span class="op">:</span> [<span class="st">"Hydro"</span><span class="op">,</span> <span class="st">"Wind"</span><span class="op">,</span><span class="st">"Utility Solar"</span><span class="op">,</span><span class="st">"Rooftop Solar"</span><span class="op">,</span><span class="st">"Storage"</span><span class="op">,</span><span class="st">"Landfill Gas"</span>]<span class="op">,</span></span>
+<span id="cb5-277"><a href="#cb5-277" aria-hidden="true" tabindex="-1"></a>        <span class="dt">range</span><span class="op">:</span> [<span class="st">"#00a1b7"</span><span class="op">,</span> <span class="st">"#F79646"</span><span class="op">,</span> <span class="st">"#fad900"</span><span class="op">,</span><span class="st">"#9BBB59"</span><span class="op">,</span><span class="st">"#71346a"</span><span class="op">,</span><span class="st">"#896D09"</span>]<span class="op">,</span></span>
+<span id="cb5-278"><a href="#cb5-278" aria-hidden="true" tabindex="-1"></a>        <span class="dt">legend</span><span class="op">:</span> <span class="kw">true</span></span>
+<span id="cb5-279"><a href="#cb5-279" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb5-280"><a href="#cb5-280" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<div>
-<div id="ojs-cell-5-1" data-nodetype="declaration">
+<div id="ojs-cell-5" data-nodetype="expression">
 
-</div>
-</div>
-</div>
-<div class="cell-output cell-output-display">
-<div>
-<div id="ojs-cell-5-2" data-nodetype="expression">
-
-</div>
 </div>
 </div>
 </div>
@@ -525,95 +544,99 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h1>Rural Remote</h1>
 <p>The rural remote region saw an increase of 83.1 MW in capacity (a 32.63% increase). Most of the increases in capacity were fossil fuel turbines (25.4 MW added on the North Slope) and reciprocating engines (45.65 MW). Renewable capacity is explored in further detail in the next figure.</p>
 <div class="cell">
-<div class="sourceCode cell-code hidden" id="cb6" data-startfrom="234" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 233;"><span id="cb6-234"><a href="#cb6-234" aria-hidden="true" tabindex="-1"></a>rr_cap <span class="op">=</span> <span class="fu">FileAttachment</span>(<span class="st">"data/rural-remote-capacity.csv"</span>)<span class="op">.</span><span class="fu">csv</span>({ <span class="dt">typed</span><span class="op">:</span> <span class="kw">true</span> })</span>
-<span id="cb6-235"><a href="#cb6-235" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-236"><a href="#cb6-236" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
-<span id="cb6-237"><a href="#cb6-237" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Configure the x-axis</span></span>
-<span id="cb6-238"><a href="#cb6-238" aria-hidden="true" tabindex="-1"></a>  <span class="dt">x</span><span class="op">:</span> {</span>
-<span id="cb6-239"><a href="#cb6-239" aria-hidden="true" tabindex="-1"></a>    <span class="dt">tickFormat</span><span class="op">:</span> <span class="st">"d"</span><span class="op">,</span></span>
-<span id="cb6-240"><a href="#cb6-240" aria-hidden="true" tabindex="-1"></a>    <span class="dt">type</span><span class="op">:</span> <span class="st">"band"</span><span class="op">,</span></span>
-<span id="cb6-241"><a href="#cb6-241" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> <span class="st">"Year"</span></span>
-<span id="cb6-242"><a href="#cb6-242" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
-<span id="cb6-243"><a href="#cb6-243" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Configure the y-axis</span></span>
-<span id="cb6-244"><a href="#cb6-244" aria-hidden="true" tabindex="-1"></a>  <span class="dt">y</span><span class="op">:</span> {</span>
-<span id="cb6-245"><a href="#cb6-245" aria-hidden="true" tabindex="-1"></a>    <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span></span>
-<span id="cb6-246"><a href="#cb6-246" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> <span class="st">"Capacity (MW)"</span></span>
-<span id="cb6-247"><a href="#cb6-247" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
-<span id="cb6-248"><a href="#cb6-248" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Configure the plot</span></span>
-<span id="cb6-249"><a href="#cb6-249" aria-hidden="true" tabindex="-1"></a>  <span class="dt">title</span><span class="op">:</span> <span class="st">"Rural Remote Region, Capacity"</span><span class="op">,</span></span>
-<span id="cb6-250"><a href="#cb6-250" aria-hidden="true" tabindex="-1"></a>  <span class="dt">insetLeft</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span></span>
-<span id="cb6-251"><a href="#cb6-251" aria-hidden="true" tabindex="-1"></a>  <span class="dt">insetRight</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span></span>
-<span id="cb6-252"><a href="#cb6-252" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Stacked area plot</span></span>
-<span id="cb6-253"><a href="#cb6-253" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [</span>
-<span id="cb6-254"><a href="#cb6-254" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">barY</span>(rr_cap<span class="op">,</span> {<span class="dt">x</span><span class="op">:</span><span class="st">"year"</span><span class="op">,</span><span class="dt">y</span><span class="op">:</span><span class="st">"Capacity"</span><span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> <span class="st">"Prime.Mover"</span><span class="op">,</span> <span class="dt">tip</span><span class="op">:</span> {<span class="dt">format</span><span class="op">:</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"d"</span>}}})<span class="op">,</span></span>
-<span id="cb6-255"><a href="#cb6-255" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">ruleY</span>([<span class="dv">0</span>])</span>
-<span id="cb6-256"><a href="#cb6-256" aria-hidden="true" tabindex="-1"></a>  ]<span class="op">,</span></span>
-<span id="cb6-257"><a href="#cb6-257" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Configure the color scheme</span></span>
-<span id="cb6-258"><a href="#cb6-258" aria-hidden="true" tabindex="-1"></a>  <span class="dt">color</span><span class="op">:</span> {</span>
-<span id="cb6-259"><a href="#cb6-259" aria-hidden="true" tabindex="-1"></a>        <span class="dt">domain</span><span class="op">:</span> [<span class="st">"Fossil Turbine"</span><span class="op">,</span> <span class="st">"Recip Engines"</span><span class="op">,</span> <span class="st">"Hydro"</span><span class="op">,</span> <span class="st">"Wind"</span><span class="op">,</span><span class="st">"Utility Solar"</span><span class="op">,</span><span class="st">"Storage"</span>]<span class="op">,</span></span>
-<span id="cb6-260"><a href="#cb6-260" aria-hidden="true" tabindex="-1"></a>        <span class="dt">range</span><span class="op">:</span> [<span class="st">"#606571"</span><span class="op">,</span> <span class="st">"#9da7bf"</span><span class="op">,</span> <span class="st">"#00a1b7"</span><span class="op">,</span> <span class="st">"#F79646"</span><span class="op">,</span> <span class="st">"#fad900"</span><span class="op">,</span><span class="st">"#71346a"</span>]<span class="op">,</span></span>
-<span id="cb6-261"><a href="#cb6-261" aria-hidden="true" tabindex="-1"></a>        <span class="dt">legend</span><span class="op">:</span> <span class="kw">true</span></span>
-<span id="cb6-262"><a href="#cb6-262" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb6-263"><a href="#cb6-263" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code hidden" id="cb6" data-startfrom="288" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 287;"><span id="cb6-288"><a href="#cb6-288" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb6-289"><a href="#cb6-289" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Configure the x-axis</span></span>
+<span id="cb6-290"><a href="#cb6-290" aria-hidden="true" tabindex="-1"></a>  <span class="dt">x</span><span class="op">:</span> {</span>
+<span id="cb6-291"><a href="#cb6-291" aria-hidden="true" tabindex="-1"></a>    <span class="dt">tickFormat</span><span class="op">:</span> <span class="st">"d"</span><span class="op">,</span></span>
+<span id="cb6-292"><a href="#cb6-292" aria-hidden="true" tabindex="-1"></a>    <span class="dt">type</span><span class="op">:</span> <span class="st">"band"</span><span class="op">,</span></span>
+<span id="cb6-293"><a href="#cb6-293" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> <span class="st">"Year"</span></span>
+<span id="cb6-294"><a href="#cb6-294" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb6-295"><a href="#cb6-295" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Configure the y-axis</span></span>
+<span id="cb6-296"><a href="#cb6-296" aria-hidden="true" tabindex="-1"></a>  <span class="dt">y</span><span class="op">:</span> {</span>
+<span id="cb6-297"><a href="#cb6-297" aria-hidden="true" tabindex="-1"></a>    <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span></span>
+<span id="cb6-298"><a href="#cb6-298" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> <span class="st">"Capacity (MW)"</span></span>
+<span id="cb6-299"><a href="#cb6-299" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb6-300"><a href="#cb6-300" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Configure the plot</span></span>
+<span id="cb6-301"><a href="#cb6-301" aria-hidden="true" tabindex="-1"></a>  <span class="dt">title</span><span class="op">:</span> <span class="st">"Rural Remote region capacity"</span><span class="op">,</span></span>
+<span id="cb6-302"><a href="#cb6-302" aria-hidden="true" tabindex="-1"></a>  <span class="dt">insetLeft</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span></span>
+<span id="cb6-303"><a href="#cb6-303" aria-hidden="true" tabindex="-1"></a>  <span class="dt">insetRight</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span></span>
+<span id="cb6-304"><a href="#cb6-304" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-305"><a href="#cb6-305" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Stacked area plot</span></span>
+<span id="cb6-306"><a href="#cb6-306" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [</span>
+<span id="cb6-307"><a href="#cb6-307" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">barY</span>(cap_data<span class="op">.</span><span class="fu">filter</span>((d) <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">acep_region</span> <span class="op">===</span> <span class="st">"Rural Remote"</span> <span class="op">&amp;&amp;</span> d<span class="op">.</span><span class="at">capacity</span> <span class="op">!==</span> <span class="fl">0.0</span>)<span class="op">,</span></span>
+<span id="cb6-308"><a href="#cb6-308" aria-hidden="true" tabindex="-1"></a>      Plot<span class="op">.</span><span class="fu">groupX</span>(</span>
+<span id="cb6-309"><a href="#cb6-309" aria-hidden="true" tabindex="-1"></a>        {</span>
+<span id="cb6-310"><a href="#cb6-310" aria-hidden="true" tabindex="-1"></a>          <span class="dt">y</span><span class="op">:</span> <span class="st">"sum"</span></span>
+<span id="cb6-311"><a href="#cb6-311" aria-hidden="true" tabindex="-1"></a>        }<span class="op">,</span></span>
+<span id="cb6-312"><a href="#cb6-312" aria-hidden="true" tabindex="-1"></a>        {</span>
+<span id="cb6-313"><a href="#cb6-313" aria-hidden="true" tabindex="-1"></a>          <span class="dt">x</span><span class="op">:</span> <span class="st">"year"</span><span class="op">,</span></span>
+<span id="cb6-314"><a href="#cb6-314" aria-hidden="true" tabindex="-1"></a>          <span class="dt">y</span><span class="op">:</span> <span class="st">"capacity"</span><span class="op">,</span></span>
+<span id="cb6-315"><a href="#cb6-315" aria-hidden="true" tabindex="-1"></a>          <span class="dt">fill</span><span class="op">:</span> <span class="st">"prime_mover"</span><span class="op">,</span></span>
+<span id="cb6-316"><a href="#cb6-316" aria-hidden="true" tabindex="-1"></a>          <span class="dt">tip</span><span class="op">:</span> {<span class="dt">format</span><span class="op">:</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"d"</span>}}</span>
+<span id="cb6-317"><a href="#cb6-317" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb6-318"><a href="#cb6-318" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb6-319"><a href="#cb6-319" aria-hidden="true" tabindex="-1"></a>    )<span class="op">,</span></span>
+<span id="cb6-320"><a href="#cb6-320" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">ruleY</span>([<span class="dv">0</span>])</span>
+<span id="cb6-321"><a href="#cb6-321" aria-hidden="true" tabindex="-1"></a>  ]<span class="op">,</span></span>
+<span id="cb6-322"><a href="#cb6-322" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Configure the color scheme</span></span>
+<span id="cb6-323"><a href="#cb6-323" aria-hidden="true" tabindex="-1"></a>  <span class="dt">color</span><span class="op">:</span> {</span>
+<span id="cb6-324"><a href="#cb6-324" aria-hidden="true" tabindex="-1"></a>        <span class="dt">domain</span><span class="op">:</span> [<span class="st">"Fossil Turbines"</span><span class="op">,</span> <span class="st">"Recip Engines"</span><span class="op">,</span> <span class="st">"Hydro"</span><span class="op">,</span> <span class="st">"Wind"</span><span class="op">,</span><span class="st">"Utility Solar"</span><span class="op">,</span><span class="st">"Storage"</span>]<span class="op">,</span></span>
+<span id="cb6-325"><a href="#cb6-325" aria-hidden="true" tabindex="-1"></a>        <span class="dt">range</span><span class="op">:</span> [<span class="st">"#606571"</span><span class="op">,</span> <span class="st">"#9da7bf"</span><span class="op">,</span> <span class="st">"#00a1b7"</span><span class="op">,</span> <span class="st">"#F79646"</span><span class="op">,</span> <span class="st">"#fad900"</span><span class="op">,</span><span class="st">"#71346a"</span>]<span class="op">,</span></span>
+<span id="cb6-326"><a href="#cb6-326" aria-hidden="true" tabindex="-1"></a>        <span class="dt">legend</span><span class="op">:</span> <span class="kw">true</span></span>
+<span id="cb6-327"><a href="#cb6-327" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb6-328"><a href="#cb6-328" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<div>
-<div id="ojs-cell-6-1" data-nodetype="declaration">
+<div id="ojs-cell-6" data-nodetype="expression">
 
-</div>
-</div>
-</div>
-<div class="cell-output cell-output-display">
-<div>
-<div id="ojs-cell-6-2" data-nodetype="expression">
-
-</div>
 </div>
 </div>
 </div>
 <p>This region saw an absolute increase of 12.05 MW of renewable capacity from 2011 to 2021. Over this time period, hydropower generation resources increased by 0.99 MW, wind increased by 6.51 MW, utility-scale solar increased by 1.31 MW and storage increased by 3.25 MW. Between 2018 and 2021, 2 MW of wind was retired in the Bering Straits energy region, 1.2 MW in Kotzebue, and 0.2 MW in the Aleutians, explaining the reduction in wind capacity between the calendar years.</p>
 <div class="cell">
-<div class="sourceCode cell-code hidden" id="cb7" data-startfrom="270" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 269;"><span id="cb7-270"><a href="#cb7-270" aria-hidden="true" tabindex="-1"></a>rr_r_cap <span class="op">=</span> <span class="fu">FileAttachment</span>(<span class="st">"data/rural-remote-capacity-non-fossil.csv"</span>)<span class="op">.</span><span class="fu">csv</span>({ <span class="dt">typed</span><span class="op">:</span> <span class="kw">true</span> })</span>
-<span id="cb7-271"><a href="#cb7-271" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-272"><a href="#cb7-272" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
-<span id="cb7-273"><a href="#cb7-273" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Configure the x-axis</span></span>
-<span id="cb7-274"><a href="#cb7-274" aria-hidden="true" tabindex="-1"></a>  <span class="dt">x</span><span class="op">:</span> {</span>
-<span id="cb7-275"><a href="#cb7-275" aria-hidden="true" tabindex="-1"></a>    <span class="dt">tickFormat</span><span class="op">:</span> <span class="st">"d"</span><span class="op">,</span></span>
-<span id="cb7-276"><a href="#cb7-276" aria-hidden="true" tabindex="-1"></a>    <span class="dt">type</span><span class="op">:</span> <span class="st">"band"</span><span class="op">,</span></span>
-<span id="cb7-277"><a href="#cb7-277" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> <span class="st">"Year"</span></span>
-<span id="cb7-278"><a href="#cb7-278" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
-<span id="cb7-279"><a href="#cb7-279" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Configure the y-axis</span></span>
-<span id="cb7-280"><a href="#cb7-280" aria-hidden="true" tabindex="-1"></a>  <span class="dt">y</span><span class="op">:</span> {</span>
-<span id="cb7-281"><a href="#cb7-281" aria-hidden="true" tabindex="-1"></a>    <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span></span>
-<span id="cb7-282"><a href="#cb7-282" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> <span class="st">"Capacity (MW)"</span></span>
-<span id="cb7-283"><a href="#cb7-283" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
-<span id="cb7-284"><a href="#cb7-284" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Configure the plot</span></span>
-<span id="cb7-285"><a href="#cb7-285" aria-hidden="true" tabindex="-1"></a>  <span class="dt">title</span><span class="op">:</span> <span class="st">"Rural Remote Region, Non-fossil Capacity"</span><span class="op">,</span></span>
-<span id="cb7-286"><a href="#cb7-286" aria-hidden="true" tabindex="-1"></a>  <span class="dt">insetLeft</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span></span>
-<span id="cb7-287"><a href="#cb7-287" aria-hidden="true" tabindex="-1"></a>  <span class="dt">insetRight</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span></span>
-<span id="cb7-288"><a href="#cb7-288" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Stacked area plot</span></span>
-<span id="cb7-289"><a href="#cb7-289" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [</span>
-<span id="cb7-290"><a href="#cb7-290" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">barY</span>(rr_r_cap<span class="op">,</span> {<span class="dt">x</span><span class="op">:</span><span class="st">"year"</span><span class="op">,</span><span class="dt">y</span><span class="op">:</span><span class="st">"Capacity"</span><span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> <span class="st">"Prime.Mover"</span><span class="op">,</span> <span class="dt">tip</span><span class="op">:</span> {<span class="dt">format</span><span class="op">:</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"d"</span>}}})<span class="op">,</span></span>
-<span id="cb7-291"><a href="#cb7-291" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">ruleY</span>([<span class="dv">0</span>])</span>
-<span id="cb7-292"><a href="#cb7-292" aria-hidden="true" tabindex="-1"></a>  ]<span class="op">,</span></span>
-<span id="cb7-293"><a href="#cb7-293" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Configure the color scheme</span></span>
-<span id="cb7-294"><a href="#cb7-294" aria-hidden="true" tabindex="-1"></a>  <span class="dt">color</span><span class="op">:</span> {</span>
-<span id="cb7-295"><a href="#cb7-295" aria-hidden="true" tabindex="-1"></a>        <span class="dt">domain</span><span class="op">:</span> [<span class="st">"Hydro"</span><span class="op">,</span> <span class="st">"Wind"</span><span class="op">,</span><span class="st">"Utility Solar"</span><span class="op">,</span><span class="st">"Storage"</span>]<span class="op">,</span></span>
-<span id="cb7-296"><a href="#cb7-296" aria-hidden="true" tabindex="-1"></a>        <span class="dt">range</span><span class="op">:</span> [<span class="st">"#00a1b7"</span><span class="op">,</span> <span class="st">"#F79646"</span><span class="op">,</span> <span class="st">"#fad900"</span><span class="op">,</span><span class="st">"#71346a"</span>]<span class="op">,</span></span>
-<span id="cb7-297"><a href="#cb7-297" aria-hidden="true" tabindex="-1"></a>        <span class="dt">legend</span><span class="op">:</span> <span class="kw">true</span></span>
-<span id="cb7-298"><a href="#cb7-298" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb7-299"><a href="#cb7-299" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code hidden" id="cb7" data-startfrom="335" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 334;"><span id="cb7-335"><a href="#cb7-335" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb7-336"><a href="#cb7-336" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Configure the x-axis</span></span>
+<span id="cb7-337"><a href="#cb7-337" aria-hidden="true" tabindex="-1"></a>  <span class="dt">x</span><span class="op">:</span> {</span>
+<span id="cb7-338"><a href="#cb7-338" aria-hidden="true" tabindex="-1"></a>    <span class="dt">tickFormat</span><span class="op">:</span> <span class="st">"d"</span><span class="op">,</span></span>
+<span id="cb7-339"><a href="#cb7-339" aria-hidden="true" tabindex="-1"></a>    <span class="dt">type</span><span class="op">:</span> <span class="st">"band"</span><span class="op">,</span></span>
+<span id="cb7-340"><a href="#cb7-340" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> <span class="st">"Year"</span></span>
+<span id="cb7-341"><a href="#cb7-341" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb7-342"><a href="#cb7-342" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Configure the y-axis</span></span>
+<span id="cb7-343"><a href="#cb7-343" aria-hidden="true" tabindex="-1"></a>  <span class="dt">y</span><span class="op">:</span> {</span>
+<span id="cb7-344"><a href="#cb7-344" aria-hidden="true" tabindex="-1"></a>    <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span></span>
+<span id="cb7-345"><a href="#cb7-345" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> <span class="st">"Capacity (MW)"</span></span>
+<span id="cb7-346"><a href="#cb7-346" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb7-347"><a href="#cb7-347" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Configure the plot</span></span>
+<span id="cb7-348"><a href="#cb7-348" aria-hidden="true" tabindex="-1"></a>  <span class="dt">title</span><span class="op">:</span> <span class="st">"Rural Remote region renewable capacity"</span><span class="op">,</span></span>
+<span id="cb7-349"><a href="#cb7-349" aria-hidden="true" tabindex="-1"></a>  <span class="dt">insetLeft</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span></span>
+<span id="cb7-350"><a href="#cb7-350" aria-hidden="true" tabindex="-1"></a>  <span class="dt">insetRight</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span></span>
+<span id="cb7-351"><a href="#cb7-351" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-352"><a href="#cb7-352" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Stacked area plot</span></span>
+<span id="cb7-353"><a href="#cb7-353" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [</span>
+<span id="cb7-354"><a href="#cb7-354" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">barY</span>(cap_data<span class="op">.</span><span class="fu">filter</span>((d) <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">acep_region</span> <span class="op">===</span> <span class="st">"Rural Remote"</span> <span class="op">&amp;&amp;</span> d<span class="op">.</span><span class="at">capacity</span> <span class="op">!==</span> <span class="fl">0.0</span> <span class="op">&amp;&amp;</span> d<span class="op">.</span><span class="at">prime_mover</span> <span class="op">!==</span> <span class="st">"Fossil Turbines"</span> <span class="op">&amp;&amp;</span> d<span class="op">.</span><span class="at">prime_mover</span> <span class="op">!==</span> <span class="st">"Recip Engines"</span>)<span class="op">,</span></span>
+<span id="cb7-355"><a href="#cb7-355" aria-hidden="true" tabindex="-1"></a>      Plot<span class="op">.</span><span class="fu">groupX</span>(</span>
+<span id="cb7-356"><a href="#cb7-356" aria-hidden="true" tabindex="-1"></a>        {</span>
+<span id="cb7-357"><a href="#cb7-357" aria-hidden="true" tabindex="-1"></a>          <span class="dt">y</span><span class="op">:</span> <span class="st">"sum"</span></span>
+<span id="cb7-358"><a href="#cb7-358" aria-hidden="true" tabindex="-1"></a>        }<span class="op">,</span></span>
+<span id="cb7-359"><a href="#cb7-359" aria-hidden="true" tabindex="-1"></a>        {</span>
+<span id="cb7-360"><a href="#cb7-360" aria-hidden="true" tabindex="-1"></a>          <span class="dt">x</span><span class="op">:</span> <span class="st">"year"</span><span class="op">,</span></span>
+<span id="cb7-361"><a href="#cb7-361" aria-hidden="true" tabindex="-1"></a>          <span class="dt">y</span><span class="op">:</span> <span class="st">"capacity"</span><span class="op">,</span></span>
+<span id="cb7-362"><a href="#cb7-362" aria-hidden="true" tabindex="-1"></a>          <span class="dt">fill</span><span class="op">:</span> <span class="st">"prime_mover"</span><span class="op">,</span></span>
+<span id="cb7-363"><a href="#cb7-363" aria-hidden="true" tabindex="-1"></a>          <span class="dt">tip</span><span class="op">:</span> {<span class="dt">format</span><span class="op">:</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"d"</span>}}</span>
+<span id="cb7-364"><a href="#cb7-364" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb7-365"><a href="#cb7-365" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb7-366"><a href="#cb7-366" aria-hidden="true" tabindex="-1"></a>    )<span class="op">,</span></span>
+<span id="cb7-367"><a href="#cb7-367" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">ruleY</span>([<span class="dv">0</span>])</span>
+<span id="cb7-368"><a href="#cb7-368" aria-hidden="true" tabindex="-1"></a>  ]<span class="op">,</span></span>
+<span id="cb7-369"><a href="#cb7-369" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Configure the color scheme</span></span>
+<span id="cb7-370"><a href="#cb7-370" aria-hidden="true" tabindex="-1"></a>  <span class="dt">color</span><span class="op">:</span> {</span>
+<span id="cb7-371"><a href="#cb7-371" aria-hidden="true" tabindex="-1"></a>        <span class="dt">domain</span><span class="op">:</span> [<span class="st">"Hydro"</span><span class="op">,</span> <span class="st">"Wind"</span><span class="op">,</span><span class="st">"Utility Solar"</span><span class="op">,</span><span class="st">"Storage"</span>]<span class="op">,</span></span>
+<span id="cb7-372"><a href="#cb7-372" aria-hidden="true" tabindex="-1"></a>        <span class="dt">range</span><span class="op">:</span> [<span class="st">"#00a1b7"</span><span class="op">,</span> <span class="st">"#F79646"</span><span class="op">,</span> <span class="st">"#fad900"</span><span class="op">,</span><span class="st">"#71346a"</span>]<span class="op">,</span></span>
+<span id="cb7-373"><a href="#cb7-373" aria-hidden="true" tabindex="-1"></a>        <span class="dt">legend</span><span class="op">:</span> <span class="kw">true</span></span>
+<span id="cb7-374"><a href="#cb7-374" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb7-375"><a href="#cb7-375" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<div>
-<div id="ojs-cell-7-1" data-nodetype="declaration">
+<div id="ojs-cell-7" data-nodetype="expression">
 
-</div>
-</div>
-</div>
-<div class="cell-output cell-output-display">
-<div>
-<div id="ojs-cell-7-2" data-nodetype="expression">
-
-</div>
 </div>
 </div>
 </div>
@@ -629,7 +652,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 </section></div></main> <!-- /main -->
 <script type="ojs-module-contents">
-eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6Ilxuc3dfY2FwID0gRmlsZUF0dGFjaG1lbnQoXCJkYXRhL3N0YXRld2lkZS10b3RhbC1jYXBhY2l0eS1ieS15ZWFyLmNzdlwiKS5jc3YoeyB0eXBlZDogdHJ1ZSB9KVxuXG4vL2RhdGFUeXBlZCA9IGRhdGEubWFwKCh7eWVhcn0pID0+ICh7eWVhcjogbmV3IERhdGUoeWVhciwwLDEpfSkpXG5cblBsb3QucGxvdCh7XG4gIC8vIENvbmZpZ3VyZSB0aGUgcGxvdFxuICB0aXRsZTogXCJTdGF0ZXdpZGUsIENhcGFjaXR5XCIsXG4gIGluc2V0TGVmdDogMCxcbiAgaW5zZXRSaWdodDogMCxcbiAgXG4gIC8vIENvbmZpZ3VyZSB0aGUgeC1heGlzXG4gIHg6IHtcbiAgICB0aWNrRm9ybWF0OiBcImRcIixcbiAgICBsYWJlbDogXCJZZWFyXCJcbiAgfSxcbiAgLy8gQ29uZmlndXJlIHRoZSB5LWF4aXNcbiAgeToge1xuICAgIGdyaWQ6IHRydWUsXG4gICAgbGFiZWw6IFwiQ2FwYWNpdHkgKE1XKVwiXG4gIH0sXG5cbiAgLy8gU3RhY2tlZCBhcmVhIHBsb3RcbiAgbWFya3M6IFtcbiAgICBQbG90LmFyZWFZKHN3X2NhcCwge3g6XCJ5ZWFyXCIseTpcIkNhcGFjaXR5XCIsIGZpbGw6IFwiUHJpbWUuTW92ZXJcIiwgdGlwOiB7Zm9ybWF0OiB7eDogXCJkXCJ9fX0pLFxuICAgIFBsb3QucnVsZVkoWzBdKVxuICBdLFxuICBcbiAgLy8gQ29uZmlndXJlIHRoZSBjb2xvciBzY2hlbWVcbiAgY29sb3I6IHtcbiAgICAgICAgZG9tYWluOiBbXCJGb3NzaWwgVHVyYmluZVwiLCBcIlJlY2lwIEVuZ2luZXNcIiwgXCJIeWRyb1wiLCBcIldpbmRcIixcIlV0aWxpdHkgU29sYXJcIixcIlJvb2Z0b3AgU29sYXJcIixcIlN0b3JhZ2VcIixcIkxhbmRmaWxsIEdhc1wiXSxcbiAgICAgICAgcmFuZ2U6IFtcIiM2MDY1NzFcIiwgXCIjOWRhN2JmXCIsIFwiIzAwYTFiN1wiLCBcIiNGNzk2NDZcIiwgXCIjZmFkOTAwXCIsXCIjOUJCQjU5XCIsXCIjNzEzNDZhXCIsXCIjODk2RDA5XCJdLFxuICAgICAgICBsZWdlbmQ6IHRydWVcbiAgICB9XG59KVxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC0yIiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoiY19jYXAgPSBGaWxlQXR0YWNobWVudChcImRhdGEvY29hc3RhbC1jYXBhY2l0eS5jc3ZcIikuY3N2KHsgdHlwZWQ6IHRydWUgfSlcblxuUGxvdC5wbG90KHtcbiAgLy8gQ29uZmlndXJlIHRoZSB4LWF4aXNcbiAgeDoge1xuICAgIHRpY2tGb3JtYXQ6IFwiZFwiLFxuICAgIHR5cGU6IFwiYmFuZFwiLFxuICAgIGxhYmVsOiBcIlllYXJcIlxuICB9LFxuICAvLyBDb25maWd1cmUgdGhlIHktYXhpc1xuICB5OiB7XG4gICAgZ3JpZDogdHJ1ZSxcbiAgICBsYWJlbDogXCJDYXBhY2l0eSAoTVcpXCJcbiAgfSxcbiAgLy8gQ29uZmlndXJlIHRoZSBwbG90XG4gIHRpdGxlOiBcIkNvYXN0YWwgUmVnaW9uLCBDYXBhY2l0eVwiLFxuICBpbnNldExlZnQ6IDAsXG4gIGluc2V0UmlnaHQ6IDAsXG4gIC8vIFN0YWNrZWQgYXJlYSBwbG90XG4gIG1hcmtzOiBbXG4gICAgUGxvdC5iYXJZKGNfY2FwLCB7eDpcInllYXJcIix5OlwiQ2FwYWNpdHlcIiwgZmlsbDogXCJQcmltZS5Nb3ZlclwiLCB0aXA6IHtmb3JtYXQ6IHt4OiBcImRcIn19fSksXG4gICAgUGxvdC5ydWxlWShbMF0pXG4gIF0sXG4gIC8vIENvbmZpZ3VyZSB0aGUgY29sb3Igc2NoZW1lXG4gIGNvbG9yOiB7XG4gICAgICAgIGRvbWFpbjogW1wiRm9zc2lsIFR1cmJpbmVcIiwgXCJSZWNpcCBFbmdpbmVzXCIsIFwiSHlkcm9cIiwgXCJXaW5kXCIsXCJTdG9yYWdlXCJdLFxuICAgICAgICByYW5nZTogW1wiIzYwNjU3MVwiLCBcIiM5ZGE3YmZcIiwgXCIjMDBhMWI3XCIsIFwiI0Y3OTY0NlwiLCBcIiM3MTM0NmFcIl0sXG4gICAgICAgIGxlZ2VuZDogdHJ1ZVxuICAgIH1cbn0pXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTMiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJjX3JfY2FwID0gRmlsZUF0dGFjaG1lbnQoXCJkYXRhL2NvYXN0YWwtY2FwYWNpdHktbm9uLWZvc3NpbC5jc3ZcIikuY3N2KHsgdHlwZWQ6IHRydWUgfSlcblxuUGxvdC5wbG90KHtcbiAgLy8gQ29uZmlndXJlIHRoZSB4LWF4aXNcbiAgeDoge1xuICAgIHRpY2tGb3JtYXQ6IFwiZFwiLFxuICAgIHR5cGU6IFwiYmFuZFwiLFxuICAgIGxhYmVsOiBcIlllYXJcIlxuICB9LFxuICAvLyBDb25maWd1cmUgdGhlIHktYXhpc1xuICB5OiB7XG4gICAgZ3JpZDogdHJ1ZSxcbiAgICBsYWJlbDogXCJDYXBhY2l0eSAoTVcpXCJcbiAgfSxcbiAgLy8gQ29uZmlndXJlIHRoZSBwbG90XG4gIHRpdGxlOiBcIkNvYXN0YWwgUmVnaW9uLCBOb24tZm9zc2lsIENhcGFjaXR5XCIsXG4gIGluc2V0TGVmdDogMCxcbiAgaW5zZXRSaWdodDogMCxcbiAgLy8gU3RhY2tlZCBhcmVhIHBsb3RcbiAgbWFya3M6IFtcbiAgICBQbG90LmJhclkoY19yX2NhcCwge3g6XCJ5ZWFyXCIseTpcIkNhcGFjaXR5XCIsIGZpbGw6IFwiUHJpbWUuTW92ZXJcIiwgdGlwOiB7Zm9ybWF0OiB7eDogXCJkXCJ9fX0pLFxuICAgIFBsb3QucnVsZVkoWzBdKVxuICBdLFxuICAvLyBDb25maWd1cmUgdGhlIGNvbG9yIHNjaGVtZVxuICBjb2xvcjoge1xuICAgICAgICBkb21haW46IFtcIkh5ZHJvXCIsIFwiV2luZFwiLFwiU3RvcmFnZVwiXSxcbiAgICAgICAgcmFuZ2U6IFtcIiMwMGExYjdcIiwgXCIjRjc5NjQ2XCIsIFwiIzcxMzQ2YVwiXSxcbiAgICAgICAgbGVnZW5kOiB0cnVlXG4gICAgfVxufSlcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtNCIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6InJfY2FwID0gRmlsZUF0dGFjaG1lbnQoXCJkYXRhL3JhaWxiZWx0LWNhcGFjaXR5LmNzdlwiKS5jc3YoeyB0eXBlZDogdHJ1ZSB9KVxuXG5QbG90LnBsb3Qoe1xuICAvLyBDb25maWd1cmUgdGhlIHgtYXhpc1xuICB4OiB7XG4gICAgdGlja0Zvcm1hdDogXCJkXCIsXG4gICAgdHlwZTogXCJiYW5kXCIsXG4gICAgbGFiZWw6IFwiWWVhclwiXG4gIH0sXG4gIC8vIENvbmZpZ3VyZSB0aGUgeS1heGlzXG4gIHk6IHtcbiAgICBncmlkOiB0cnVlLFxuICAgIGxhYmVsOiBcIkNhcGFjaXR5IChNVylcIlxuICB9LFxuICAvLyBDb25maWd1cmUgdGhlIHBsb3RcbiAgdGl0bGU6IFwiUmFpbGJlbHQgUmVnaW9uLCBDYXBhY2l0eVwiLFxuICBjYXB0aW9uOiBcIkZpZ3VyZSBub3RlOiBUaGUgY2F0ZWdvcnkgb2YgTGFuZGZpbGwgR2FzIHJlZmVycyB0byB0aGUgMTEuNSBNVyBwb3dlciBwbGFudCBhdCB0aGUgQW5jaG9yYWdlIFJlZ2lvbmFsIExhbmRmaWxsIHRoYXQgaXMgZnVlbGVkIGJ5IG1ldGhhbmUgZnJvbSBkZWNvbXBvc2luZyB3YXN0ZS4gQWx0aG91Z2ggdGhpcyBwbGFudCB1c2VzIHJlY2lwcm9jYXRpbmcgZW5naW5lcyBhcyBpdHMgcHJpbWUgbW92ZXIsIHdlIGRlY2lkZWQgdG8gc2hvdyBsYW5kZmlsbCBnYXMgYXMgYSBzZXBhcmF0ZSBjYXRlZ29yeSBiZWNhdXNlIGl0IGlzIGEgc2lnbmlmaWNhbnQgYWRkaXRpb24gdG8gdGhlIG1peCBvZiByZW5ld2FibGUgZW5lcmd5IGNhcGFjaXR5LlwiLFxuICBpbnNldExlZnQ6IDAsXG4gIGluc2V0UmlnaHQ6IDAsXG4gIC8vIFN0YWNrZWQgYXJlYSBwbG90XG4gIG1hcmtzOiBbXG4gICAgUGxvdC5iYXJZKHJfY2FwLCB7eDpcInllYXJcIix5OlwiQ2FwYWNpdHlcIiwgZmlsbDogXCJQcmltZS5Nb3ZlclwiLCB0aXA6IHtmb3JtYXQ6IHt4OiBcImRcIn19fSksXG4gICAgUGxvdC5ydWxlWShbMF0pXG4gIF0sXG4gIC8vIENvbmZpZ3VyZSB0aGUgY29sb3Igc2NoZW1lXG4gIGNvbG9yOiB7XG4gICAgICAgIGRvbWFpbjogW1wiRm9zc2lsIFR1cmJpbmVcIiwgXCJSZWNpcCBFbmdpbmVzXCIsIFwiSHlkcm9cIiwgXCJXaW5kXCIsXCJVdGlsaXR5IFNvbGFyXCIsXCJSb29mdG9wIFNvbGFyXCIsXCJTdG9yYWdlXCIsXCJMYW5kZmlsbCBHYXNcIl0sXG4gICAgICAgIHJhbmdlOiBbXCIjNjA2NTcxXCIsIFwiIzlkYTdiZlwiLCBcIiMwMGExYjdcIiwgXCIjRjc5NjQ2XCIsIFwiI2ZhZDkwMFwiLFwiIzlCQkI1OVwiLFwiIzcxMzQ2YVwiLFwiIzg5NkQwOVwiXSxcbiAgICAgICAgbGVnZW5kOiB0cnVlXG4gICAgfVxufSlcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtNSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6InJfcl9jYXAgPSBGaWxlQXR0YWNobWVudChcImRhdGEvcmFpbGJlbHQtY2FwYWNpdHktbm9uLWZvc3NpbC5jc3ZcIikuY3N2KHsgdHlwZWQ6IHRydWUgfSlcblxuUGxvdC5wbG90KHtcbiAgLy8gQ29uZmlndXJlIHRoZSB4LWF4aXNcbiAgeDoge1xuICAgIHRpY2tGb3JtYXQ6IFwiZFwiLFxuICAgIHR5cGU6IFwiYmFuZFwiLFxuICAgIGxhYmVsOiBcIlllYXJcIlxuICB9LFxuICAvLyBDb25maWd1cmUgdGhlIHktYXhpc1xuICB5OiB7XG4gICAgZ3JpZDogdHJ1ZSxcbiAgICBsYWJlbDogXCJDYXBhY2l0eSAoTVcpXCJcbiAgfSxcbiAgLy8gQ29uZmlndXJlIHRoZSBwbG90XG4gIHRpdGxlOiBcIlJhaWxiZWx0IFJlZ2lvbiwgTm9uLWZvc3NpbCBDYXBhY2l0eVwiLFxuICBpbnNldExlZnQ6IDAsXG4gIGluc2V0UmlnaHQ6IDAsXG4gIC8vIFN0YWNrZWQgYXJlYSBwbG90XG4gIG1hcmtzOiBbXG4gICAgUGxvdC5iYXJZKHJfcl9jYXAsIHt4OlwieWVhclwiLHk6XCJDYXBhY2l0eVwiLCBmaWxsOiBcIlByaW1lLk1vdmVyXCIsIHRpcDoge2Zvcm1hdDoge3g6IFwiZFwifX19KSxcbiAgICBQbG90LnJ1bGVZKFswXSlcbiAgXSxcbiAgLy8gQ29uZmlndXJlIHRoZSBjb2xvciBzY2hlbWVcbiAgY29sb3I6IHtcbiAgICAgICAgZG9tYWluOiBbXCJIeWRyb1wiLCBcIldpbmRcIixcIlV0aWxpdHkgU29sYXJcIixcIlJvb2Z0b3AgU29sYXJcIixcIlN0b3JhZ2VcIixcIkxhbmRmaWxsIEdhc1wiXSxcbiAgICAgICAgcmFuZ2U6IFtcIiMwMGExYjdcIiwgXCIjRjc5NjQ2XCIsIFwiI2ZhZDkwMFwiLFwiIzlCQkI1OVwiLFwiIzcxMzQ2YVwiLFwiIzg5NkQwOVwiXSxcbiAgICAgICAgbGVnZW5kOiB0cnVlXG4gICAgfVxufSlcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtNiIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6InJyX2NhcCA9IEZpbGVBdHRhY2htZW50KFwiZGF0YS9ydXJhbC1yZW1vdGUtY2FwYWNpdHkuY3N2XCIpLmNzdih7IHR5cGVkOiB0cnVlIH0pXG5cblBsb3QucGxvdCh7XG4gIC8vIENvbmZpZ3VyZSB0aGUgeC1heGlzXG4gIHg6IHtcbiAgICB0aWNrRm9ybWF0OiBcImRcIixcbiAgICB0eXBlOiBcImJhbmRcIixcbiAgICBsYWJlbDogXCJZZWFyXCJcbiAgfSxcbiAgLy8gQ29uZmlndXJlIHRoZSB5LWF4aXNcbiAgeToge1xuICAgIGdyaWQ6IHRydWUsXG4gICAgbGFiZWw6IFwiQ2FwYWNpdHkgKE1XKVwiXG4gIH0sXG4gIC8vIENvbmZpZ3VyZSB0aGUgcGxvdFxuICB0aXRsZTogXCJSdXJhbCBSZW1vdGUgUmVnaW9uLCBDYXBhY2l0eVwiLFxuICBpbnNldExlZnQ6IDAsXG4gIGluc2V0UmlnaHQ6IDAsXG4gIC8vIFN0YWNrZWQgYXJlYSBwbG90XG4gIG1hcmtzOiBbXG4gICAgUGxvdC5iYXJZKHJyX2NhcCwge3g6XCJ5ZWFyXCIseTpcIkNhcGFjaXR5XCIsIGZpbGw6IFwiUHJpbWUuTW92ZXJcIiwgdGlwOiB7Zm9ybWF0OiB7eDogXCJkXCJ9fX0pLFxuICAgIFBsb3QucnVsZVkoWzBdKVxuICBdLFxuICAvLyBDb25maWd1cmUgdGhlIGNvbG9yIHNjaGVtZVxuICBjb2xvcjoge1xuICAgICAgICBkb21haW46IFtcIkZvc3NpbCBUdXJiaW5lXCIsIFwiUmVjaXAgRW5naW5lc1wiLCBcIkh5ZHJvXCIsIFwiV2luZFwiLFwiVXRpbGl0eSBTb2xhclwiLFwiU3RvcmFnZVwiXSxcbiAgICAgICAgcmFuZ2U6IFtcIiM2MDY1NzFcIiwgXCIjOWRhN2JmXCIsIFwiIzAwYTFiN1wiLCBcIiNGNzk2NDZcIiwgXCIjZmFkOTAwXCIsXCIjNzEzNDZhXCJdLFxuICAgICAgICBsZWdlbmQ6IHRydWVcbiAgICB9XG59KVxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC03IiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoicnJfcl9jYXAgPSBGaWxlQXR0YWNobWVudChcImRhdGEvcnVyYWwtcmVtb3RlLWNhcGFjaXR5LW5vbi1mb3NzaWwuY3N2XCIpLmNzdih7IHR5cGVkOiB0cnVlIH0pXG5cblBsb3QucGxvdCh7XG4gIC8vIENvbmZpZ3VyZSB0aGUgeC1heGlzXG4gIHg6IHtcbiAgICB0aWNrRm9ybWF0OiBcImRcIixcbiAgICB0eXBlOiBcImJhbmRcIixcbiAgICBsYWJlbDogXCJZZWFyXCJcbiAgfSxcbiAgLy8gQ29uZmlndXJlIHRoZSB5LWF4aXNcbiAgeToge1xuICAgIGdyaWQ6IHRydWUsXG4gICAgbGFiZWw6IFwiQ2FwYWNpdHkgKE1XKVwiXG4gIH0sXG4gIC8vIENvbmZpZ3VyZSB0aGUgcGxvdFxuICB0aXRsZTogXCJSdXJhbCBSZW1vdGUgUmVnaW9uLCBOb24tZm9zc2lsIENhcGFjaXR5XCIsXG4gIGluc2V0TGVmdDogMCxcbiAgaW5zZXRSaWdodDogMCxcbiAgLy8gU3RhY2tlZCBhcmVhIHBsb3RcbiAgbWFya3M6IFtcbiAgICBQbG90LmJhclkocnJfcl9jYXAsIHt4OlwieWVhclwiLHk6XCJDYXBhY2l0eVwiLCBmaWxsOiBcIlByaW1lLk1vdmVyXCIsIHRpcDoge2Zvcm1hdDoge3g6IFwiZFwifX19KSxcbiAgICBQbG90LnJ1bGVZKFswXSlcbiAgXSxcbiAgLy8gQ29uZmlndXJlIHRoZSBjb2xvciBzY2hlbWVcbiAgY29sb3I6IHtcbiAgICAgICAgZG9tYWluOiBbXCJIeWRyb1wiLCBcIldpbmRcIixcIlV0aWxpdHkgU29sYXJcIixcIlN0b3JhZ2VcIl0sXG4gICAgICAgIHJhbmdlOiBbXCIjMDBhMWI3XCIsIFwiI0Y3OTY0NlwiLCBcIiNmYWQ5MDBcIixcIiM3MTM0NmFcIl0sXG4gICAgICAgIGxlZ2VuZDogdHJ1ZVxuICAgIH1cbn0pXG4ifV19
+eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6IlxuY2FwX2RhdGEgPSBGaWxlQXR0YWNobWVudChcImRhdGEvd29ya2luZy9jYXBhY2l0eS9jYXBhY2l0eV9sb25nLmNzdlwiKS5jc3YoeyB0eXBlZDogdHJ1ZSB9KVxuXG5QbG90LnBsb3Qoe1xuICAvLyBDb25maWd1cmUgdGhlIHBsb3RcbiAgdGl0bGU6IFwiU3RhdGV3aWRlLCBDYXBhY2l0eVwiLFxuICBpbnNldExlZnQ6IDAsXG4gIGluc2V0UmlnaHQ6IDAsXG4gIFxuICAvLyBDb25maWd1cmUgdGhlIHgtYXhpc1xuICB4OiB7XG4gICAgdGlja0Zvcm1hdDogXCJkXCIsXG4gICAgbGFiZWw6IFwiWWVhclwiLFxuICAgIC8vZG9tYWluOiBbMjAxMSwyMDEyLDIwMTMsMjAxOCwyMDIxXVxuICB9LFxuICAvLyBDb25maWd1cmUgdGhlIHktYXhpc1xuICB5OiB7XG4gICAgZ3JpZDogdHJ1ZSxcbiAgICBsYWJlbDogXCJDYXBhY2l0eSAoTVcpXCJcbiAgfSxcblxuICAvLyBTdGFja2VkIGFyZWEgcGxvdFxuICBtYXJrczogW1xuICAgIFBsb3QuYXJlYVkoY2FwX2RhdGEsXG4gICAgICBQbG90Lmdyb3VwWChcbiAgICAgICAge1xuICAgICAgICAgIHk6IFwic3VtXCJcbiAgICAgICAgfSxcbiAgICAgICAge1xuICAgICAgICAgIHg6IFwieWVhclwiLFxuICAgICAgICAgIHk6IFwiY2FwYWNpdHlcIixcbiAgICAgICAgICBmaWxsOiBcInByaW1lX21vdmVyXCIsXG4gICAgICAgICAgdGlwOiB7Zm9ybWF0OiB7eDogXCJkXCJ9fVxuICAgICAgICB9XG4gICAgICApXG4gICAgKSxcbiAgICBQbG90LnJ1bGVZKFswXSlcbiAgXSxcbiAgXG4gIC8vIENvbmZpZ3VyZSB0aGUgY29sb3Igc2NoZW1lXG4gIGNvbG9yOiB7XG4gICAgICAgIGRvbWFpbjogW1wiRm9zc2lsIFR1cmJpbmVzXCIsIFwiUmVjaXAgRW5naW5lc1wiLCBcIkh5ZHJvXCIsIFwiV2luZFwiLFwiVXRpbGl0eSBTb2xhclwiLFwiUm9vZnRvcCBTb2xhclwiLFwiU3RvcmFnZVwiLFwiTGFuZGZpbGwgR2FzXCJdLFxuICAgICAgICByYW5nZTogW1wiIzYwNjU3MVwiLCBcIiM5ZGE3YmZcIiwgXCIjMDBhMWI3XCIsIFwiI0Y3OTY0NlwiLCBcIiNmYWQ5MDBcIixcIiM5QkJCNTlcIixcIiM3MTM0NmFcIixcIiM4OTZEMDlcIl0sXG4gICAgICAgIGxlZ2VuZDogdHJ1ZVxuICAgIH1cbn0pXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTIiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJQbG90LnBsb3Qoe1xuICAvLyBDb25maWd1cmUgdGhlIHgtYXhpc1xuICB4OiB7XG4gICAgdGlja0Zvcm1hdDogXCJkXCIsXG4gICAgdHlwZTogXCJiYW5kXCIsXG4gICAgbGFiZWw6IFwiWWVhclwiXG4gIH0sXG4gIC8vIENvbmZpZ3VyZSB0aGUgeS1heGlzXG4gIHk6IHtcbiAgICBncmlkOiB0cnVlLFxuICAgIGxhYmVsOiBcIkNhcGFjaXR5IChNVylcIlxuICB9LFxuICAvLyBDb25maWd1cmUgdGhlIHBsb3RcbiAgdGl0bGU6IFwiQ29hc3RhbCByZWdpb24gY2FwYWNpdHlcIixcbiAgaW5zZXRMZWZ0OiAwLFxuICBpbnNldFJpZ2h0OiAwLFxuXG4gIC8vIFN0YWNrZWQgYXJlYSBwbG90XG4gIG1hcmtzOiBbXG4gICAgUGxvdC5iYXJZKGNhcF9kYXRhLmZpbHRlcigoZCkgPT4gZC5hY2VwX3JlZ2lvbiA9PT0gXCJDb2FzdGFsXCIgJiYgZC5jYXBhY2l0eSAhPT0gMC4wKSxcbiAgICAgIFBsb3QuZ3JvdXBYKFxuICAgICAgICB7XG4gICAgICAgICAgeTogXCJzdW1cIlxuICAgICAgICB9LFxuICAgICAgICB7XG4gICAgICAgICAgeDogXCJ5ZWFyXCIsXG4gICAgICAgICAgeTogXCJjYXBhY2l0eVwiLFxuICAgICAgICAgIGZpbGw6IFwicHJpbWVfbW92ZXJcIixcbiAgICAgICAgICB0aXA6IHtmb3JtYXQ6IHt4OiBcImRcIn19XG4gICAgICAgIH1cbiAgICAgIClcbiAgICApLFxuICAgIFBsb3QucnVsZVkoWzBdKVxuICBdLFxuICAvLyBDb25maWd1cmUgdGhlIGNvbG9yIHNjaGVtZVxuICBjb2xvcjoge1xuICAgICAgICBkb21haW46IFtcIkZvc3NpbCBUdXJiaW5lc1wiLCBcIlJlY2lwIEVuZ2luZXNcIiwgXCJIeWRyb1wiLCBcIldpbmRcIixcIlN0b3JhZ2VcIl0sXG4gICAgICAgIHJhbmdlOiBbXCIjNjA2NTcxXCIsIFwiIzlkYTdiZlwiLCBcIiMwMGExYjdcIiwgXCIjRjc5NjQ2XCIsIFwiIzcxMzQ2YVwiXSxcbiAgICAgICAgbGVnZW5kOiB0cnVlXG4gICAgfVxufSlcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMyIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6IlBsb3QucGxvdCh7XG4gIC8vIENvbmZpZ3VyZSB0aGUgeC1heGlzXG4gIHg6IHtcbiAgICB0aWNrRm9ybWF0OiBcImRcIixcbiAgICB0eXBlOiBcImJhbmRcIixcbiAgICBsYWJlbDogXCJZZWFyXCJcbiAgfSxcbiAgLy8gQ29uZmlndXJlIHRoZSB5LWF4aXNcbiAgeToge1xuICAgIGdyaWQ6IHRydWUsXG4gICAgbGFiZWw6IFwiQ2FwYWNpdHkgKE1XKVwiXG4gIH0sXG4gIC8vIENvbmZpZ3VyZSB0aGUgcGxvdFxuICB0aXRsZTogXCJDb2FzdGFsIHJlZ2lvbiByZW5ld2FibGUgY2FwYWNpdHlcIixcbiAgaW5zZXRMZWZ0OiAwLFxuICBpbnNldFJpZ2h0OiAwLFxuXG4gIC8vIFN0YWNrZWQgYXJlYSBwbG90XG4gIG1hcmtzOiBbXG4gICAgUGxvdC5iYXJZKGNhcF9kYXRhLmZpbHRlcigoZCkgPT4gZC5hY2VwX3JlZ2lvbiA9PT0gXCJDb2FzdGFsXCIgJiYgZC5jYXBhY2l0eSAhPT0gMC4wICYmIGQucHJpbWVfbW92ZXIgIT09IFwiRm9zc2lsIFR1cmJpbmVzXCIgJiYgZC5wcmltZV9tb3ZlciAhPT0gXCJSZWNpcCBFbmdpbmVzXCIpLFxuICAgICAgUGxvdC5ncm91cFgoXG4gICAgICAgIHtcbiAgICAgICAgICB5OiBcInN1bVwiXG4gICAgICAgIH0sXG4gICAgICAgIHtcbiAgICAgICAgICB4OiBcInllYXJcIixcbiAgICAgICAgICB5OiBcImNhcGFjaXR5XCIsXG4gICAgICAgICAgZmlsbDogXCJwcmltZV9tb3ZlclwiLFxuICAgICAgICAgIHRpcDoge2Zvcm1hdDoge3g6IFwiZFwifX1cbiAgICAgICAgfVxuICAgICAgKVxuICAgICksXG4gICAgUGxvdC5ydWxlWShbMF0pXG4gIF0sXG4gIC8vIENvbmZpZ3VyZSB0aGUgY29sb3Igc2NoZW1lXG4gIGNvbG9yOiB7XG4gICAgICAgIGRvbWFpbjogW1wiSHlkcm9cIiwgXCJXaW5kXCIsXCJTdG9yYWdlXCJdLFxuICAgICAgICByYW5nZTogW1wiIzAwYTFiN1wiLCBcIiNGNzk2NDZcIiwgXCIjNzEzNDZhXCJdLFxuICAgICAgICBsZWdlbmQ6IHRydWVcbiAgICB9XG59KVxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC00IiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoiUGxvdC5wbG90KHtcbiAgLy8gQ29uZmlndXJlIHRoZSB4LWF4aXNcbiAgeDoge1xuICAgIHRpY2tGb3JtYXQ6IFwiZFwiLFxuICAgIHR5cGU6IFwiYmFuZFwiLFxuICAgIGxhYmVsOiBcIlllYXJcIlxuICB9LFxuICAvLyBDb25maWd1cmUgdGhlIHktYXhpc1xuICB5OiB7XG4gICAgZ3JpZDogdHJ1ZSxcbiAgICBsYWJlbDogXCJDYXBhY2l0eSAoTVcpXCJcbiAgfSxcbiAgLy8gQ29uZmlndXJlIHRoZSBwbG90XG4gIHRpdGxlOiBcIlJhaWxiZWx0IHJlZ2lvbiBjYXBhY2l0eVwiLFxuICBjYXB0aW9uOiBcIkZpZ3VyZSBub3RlOiBUaGUgY2F0ZWdvcnkgb2YgTGFuZGZpbGwgR2FzIHJlZmVycyB0byB0aGUgMTEuNSBNVyBwb3dlciBwbGFudCBhdCB0aGUgQW5jaG9yYWdlIFJlZ2lvbmFsIExhbmRmaWxsIHRoYXQgaXMgZnVlbGVkIGJ5IG1ldGhhbmUgZnJvbSBkZWNvbXBvc2luZyB3YXN0ZS4gQWx0aG91Z2ggdGhpcyBwbGFudCB1c2VzIHJlY2lwcm9jYXRpbmcgZW5naW5lcyBhcyBpdHMgcHJpbWUgbW92ZXIsIHdlIGRlY2lkZWQgdG8gc2hvdyBsYW5kZmlsbCBnYXMgYXMgYSBzZXBhcmF0ZSBjYXRlZ29yeSBiZWNhdXNlIGl0IGlzIGEgc2lnbmlmaWNhbnQgYWRkaXRpb24gdG8gdGhlIG1peCBvZiByZW5ld2FibGUgZW5lcmd5IGNhcGFjaXR5LlwiLFxuICBpbnNldExlZnQ6IDAsXG4gIGluc2V0UmlnaHQ6IDAsXG5cbiAgLy8gU3RhY2tlZCBhcmVhIHBsb3RcbiAgbWFya3M6IFtcbiAgICBQbG90LmJhclkoY2FwX2RhdGEuZmlsdGVyKChkKSA9PiBkLmFjZXBfcmVnaW9uID09PSBcIlJhaWxiZWx0XCIgJiYgZC5jYXBhY2l0eSAhPT0gMC4wKSxcbiAgICAgIFBsb3QuZ3JvdXBYKFxuICAgICAgICB7XG4gICAgICAgICAgeTogXCJzdW1cIlxuICAgICAgICB9LFxuICAgICAgICB7XG4gICAgICAgICAgeDogXCJ5ZWFyXCIsXG4gICAgICAgICAgeTogXCJjYXBhY2l0eVwiLFxuICAgICAgICAgIGZpbGw6IFwicHJpbWVfbW92ZXJcIixcbiAgICAgICAgICB0aXA6IHtmb3JtYXQ6IHt4OiBcImRcIn19XG4gICAgICAgIH1cbiAgICAgIClcbiAgICApLFxuICAgIFBsb3QucnVsZVkoWzBdKVxuICBdLFxuICAvLyBDb25maWd1cmUgdGhlIGNvbG9yIHNjaGVtZVxuICBjb2xvcjoge1xuICAgICAgICBkb21haW46IFtcIkZvc3NpbCBUdXJiaW5lc1wiLCBcIlJlY2lwIEVuZ2luZXNcIiwgXCJIeWRyb1wiLCBcIldpbmRcIixcIlV0aWxpdHkgU29sYXJcIixcIlJvb2Z0b3AgU29sYXJcIixcIlN0b3JhZ2VcIixcIkxhbmRmaWxsIEdhc1wiXSxcbiAgICAgICAgcmFuZ2U6IFtcIiM2MDY1NzFcIiwgXCIjOWRhN2JmXCIsIFwiIzAwYTFiN1wiLCBcIiNGNzk2NDZcIiwgXCIjZmFkOTAwXCIsXCIjOUJCQjU5XCIsXCIjNzEzNDZhXCIsXCIjODk2RDA5XCJdLFxuICAgICAgICBsZWdlbmQ6IHRydWVcbiAgICB9XG59KVxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC01IiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoiUGxvdC5wbG90KHtcbiAgLy8gQ29uZmlndXJlIHRoZSB4LWF4aXNcbiAgeDoge1xuICAgIHRpY2tGb3JtYXQ6IFwiZFwiLFxuICAgIHR5cGU6IFwiYmFuZFwiLFxuICAgIGxhYmVsOiBcIlllYXJcIlxuICB9LFxuICAvLyBDb25maWd1cmUgdGhlIHktYXhpc1xuICB5OiB7XG4gICAgZ3JpZDogdHJ1ZSxcbiAgICBsYWJlbDogXCJDYXBhY2l0eSAoTVcpXCJcbiAgfSxcbiAgLy8gQ29uZmlndXJlIHRoZSBwbG90XG4gIHRpdGxlOiBcIlJhaWxiZWx0IHJlZ2lvbiByZW5ld2FibGUgY2FwYWNpdHlcIixcbiAgaW5zZXRMZWZ0OiAwLFxuICBpbnNldFJpZ2h0OiAwLFxuXG4gIC8vIFN0YWNrZWQgYXJlYSBwbG90XG4gIG1hcmtzOiBbXG4gICAgUGxvdC5iYXJZKGNhcF9kYXRhLmZpbHRlcigoZCkgPT4gZC5hY2VwX3JlZ2lvbiA9PT0gXCJSYWlsYmVsdFwiICYmIGQuY2FwYWNpdHkgIT09IDAuMCAmJiBkLnByaW1lX21vdmVyICE9PSBcIkZvc3NpbCBUdXJiaW5lc1wiICYmIGQucHJpbWVfbW92ZXIgIT09IFwiUmVjaXAgRW5naW5lc1wiKSxcbiAgICAgIFBsb3QuZ3JvdXBYKFxuICAgICAgICB7XG4gICAgICAgICAgeTogXCJzdW1cIlxuICAgICAgICB9LFxuICAgICAgICB7XG4gICAgICAgICAgeDogXCJ5ZWFyXCIsXG4gICAgICAgICAgeTogXCJjYXBhY2l0eVwiLFxuICAgICAgICAgIGZpbGw6IFwicHJpbWVfbW92ZXJcIixcbiAgICAgICAgICB0aXA6IHtmb3JtYXQ6IHt4OiBcImRcIn19XG4gICAgICAgIH1cbiAgICAgIClcbiAgICApLFxuICAgIFBsb3QucnVsZVkoWzBdKVxuICBdLFxuICAvLyBDb25maWd1cmUgdGhlIGNvbG9yIHNjaGVtZVxuICBjb2xvcjoge1xuICAgICAgICBkb21haW46IFtcIkh5ZHJvXCIsIFwiV2luZFwiLFwiVXRpbGl0eSBTb2xhclwiLFwiUm9vZnRvcCBTb2xhclwiLFwiU3RvcmFnZVwiLFwiTGFuZGZpbGwgR2FzXCJdLFxuICAgICAgICByYW5nZTogW1wiIzAwYTFiN1wiLCBcIiNGNzk2NDZcIiwgXCIjZmFkOTAwXCIsXCIjOUJCQjU5XCIsXCIjNzEzNDZhXCIsXCIjODk2RDA5XCJdLFxuICAgICAgICBsZWdlbmQ6IHRydWVcbiAgICB9XG59KVxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC02IiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoiUGxvdC5wbG90KHtcbiAgLy8gQ29uZmlndXJlIHRoZSB4LWF4aXNcbiAgeDoge1xuICAgIHRpY2tGb3JtYXQ6IFwiZFwiLFxuICAgIHR5cGU6IFwiYmFuZFwiLFxuICAgIGxhYmVsOiBcIlllYXJcIlxuICB9LFxuICAvLyBDb25maWd1cmUgdGhlIHktYXhpc1xuICB5OiB7XG4gICAgZ3JpZDogdHJ1ZSxcbiAgICBsYWJlbDogXCJDYXBhY2l0eSAoTVcpXCJcbiAgfSxcbiAgLy8gQ29uZmlndXJlIHRoZSBwbG90XG4gIHRpdGxlOiBcIlJ1cmFsIFJlbW90ZSByZWdpb24gY2FwYWNpdHlcIixcbiAgaW5zZXRMZWZ0OiAwLFxuICBpbnNldFJpZ2h0OiAwLFxuXG4gIC8vIFN0YWNrZWQgYXJlYSBwbG90XG4gIG1hcmtzOiBbXG4gICAgUGxvdC5iYXJZKGNhcF9kYXRhLmZpbHRlcigoZCkgPT4gZC5hY2VwX3JlZ2lvbiA9PT0gXCJSdXJhbCBSZW1vdGVcIiAmJiBkLmNhcGFjaXR5ICE9PSAwLjApLFxuICAgICAgUGxvdC5ncm91cFgoXG4gICAgICAgIHtcbiAgICAgICAgICB5OiBcInN1bVwiXG4gICAgICAgIH0sXG4gICAgICAgIHtcbiAgICAgICAgICB4OiBcInllYXJcIixcbiAgICAgICAgICB5OiBcImNhcGFjaXR5XCIsXG4gICAgICAgICAgZmlsbDogXCJwcmltZV9tb3ZlclwiLFxuICAgICAgICAgIHRpcDoge2Zvcm1hdDoge3g6IFwiZFwifX1cbiAgICAgICAgfVxuICAgICAgKVxuICAgICksXG4gICAgUGxvdC5ydWxlWShbMF0pXG4gIF0sXG4gIC8vIENvbmZpZ3VyZSB0aGUgY29sb3Igc2NoZW1lXG4gIGNvbG9yOiB7XG4gICAgICAgIGRvbWFpbjogW1wiRm9zc2lsIFR1cmJpbmVzXCIsIFwiUmVjaXAgRW5naW5lc1wiLCBcIkh5ZHJvXCIsIFwiV2luZFwiLFwiVXRpbGl0eSBTb2xhclwiLFwiU3RvcmFnZVwiXSxcbiAgICAgICAgcmFuZ2U6IFtcIiM2MDY1NzFcIiwgXCIjOWRhN2JmXCIsIFwiIzAwYTFiN1wiLCBcIiNGNzk2NDZcIiwgXCIjZmFkOTAwXCIsXCIjNzEzNDZhXCJdLFxuICAgICAgICBsZWdlbmQ6IHRydWVcbiAgICB9XG59KVxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC03IiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoiUGxvdC5wbG90KHtcbiAgLy8gQ29uZmlndXJlIHRoZSB4LWF4aXNcbiAgeDoge1xuICAgIHRpY2tGb3JtYXQ6IFwiZFwiLFxuICAgIHR5cGU6IFwiYmFuZFwiLFxuICAgIGxhYmVsOiBcIlllYXJcIlxuICB9LFxuICAvLyBDb25maWd1cmUgdGhlIHktYXhpc1xuICB5OiB7XG4gICAgZ3JpZDogdHJ1ZSxcbiAgICBsYWJlbDogXCJDYXBhY2l0eSAoTVcpXCJcbiAgfSxcbiAgLy8gQ29uZmlndXJlIHRoZSBwbG90XG4gIHRpdGxlOiBcIlJ1cmFsIFJlbW90ZSByZWdpb24gcmVuZXdhYmxlIGNhcGFjaXR5XCIsXG4gIGluc2V0TGVmdDogMCxcbiAgaW5zZXRSaWdodDogMCxcblxuICAvLyBTdGFja2VkIGFyZWEgcGxvdFxuICBtYXJrczogW1xuICAgIFBsb3QuYmFyWShjYXBfZGF0YS5maWx0ZXIoKGQpID0+IGQuYWNlcF9yZWdpb24gPT09IFwiUnVyYWwgUmVtb3RlXCIgJiYgZC5jYXBhY2l0eSAhPT0gMC4wICYmIGQucHJpbWVfbW92ZXIgIT09IFwiRm9zc2lsIFR1cmJpbmVzXCIgJiYgZC5wcmltZV9tb3ZlciAhPT0gXCJSZWNpcCBFbmdpbmVzXCIpLFxuICAgICAgUGxvdC5ncm91cFgoXG4gICAgICAgIHtcbiAgICAgICAgICB5OiBcInN1bVwiXG4gICAgICAgIH0sXG4gICAgICAgIHtcbiAgICAgICAgICB4OiBcInllYXJcIixcbiAgICAgICAgICB5OiBcImNhcGFjaXR5XCIsXG4gICAgICAgICAgZmlsbDogXCJwcmltZV9tb3ZlclwiLFxuICAgICAgICAgIHRpcDoge2Zvcm1hdDoge3g6IFwiZFwifX1cbiAgICAgICAgfVxuICAgICAgKVxuICAgICksXG4gICAgUGxvdC5ydWxlWShbMF0pXG4gIF0sXG4gIC8vIENvbmZpZ3VyZSB0aGUgY29sb3Igc2NoZW1lXG4gIGNvbG9yOiB7XG4gICAgICAgIGRvbWFpbjogW1wiSHlkcm9cIiwgXCJXaW5kXCIsXCJVdGlsaXR5IFNvbGFyXCIsXCJTdG9yYWdlXCJdLFxuICAgICAgICByYW5nZTogW1wiIzAwYTFiN1wiLCBcIiNGNzk2NDZcIiwgXCIjZmFkOTAwXCIsXCIjNzEzNDZhXCJdLFxuICAgICAgICBsZWdlbmQ6IHRydWVcbiAgICB9XG59KVxuIn1dfQ==
 </script>
 <script type="module">
 if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
