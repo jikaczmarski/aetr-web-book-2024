@@ -16,6 +16,29 @@ The data used in this web-book is derived from federal, state, commercial, and l
 ## Download Individual Tables
 Individual tables can be downloaded here as text files (CSV, comma-separated values). Once downloaded to your local machine, these files can be opened graphically using Microsoft Excel, or programmatically using R or Python. 
 
+### Capacity (wide-format)
+```{ojs}
+capacity_wide = FileAttachment("data/working/capacity/capacity_wide.csv").csv({typed: true});
+Inputs.table(capacity_wide);
+
+button(capacity_wide, `capacity_wide.csv`)
+
+```
+
+<br>
+<br>
+
+### Capacity (long-format)
+```{ojs}
+capacity_long = FileAttachment("data/working/capacity/capacity_long.csv").csv({typed: true});
+Inputs.table(capacity_long);
+
+button(capacity_long, `capacity_long.csv`)
+
+```
+
+<br>
+<br>
 
 ### Net Generation (wide-format)
 ```{ojs}
@@ -38,7 +61,6 @@ button(net_generation_long, `net_generation_long.csv`)
 
 ```
 
-
 <br>
 <br>
 
@@ -54,7 +76,7 @@ button(prices, `prices.csv`)
 <br>
 <br>
 
-### Weighted Prices
+### Population Weighted Prices
 ```{ojs}
 weighted_prices = FileAttachment("data/working/prices/weighted_prices.csv").csv({typed: true});
 
@@ -63,20 +85,6 @@ Inputs.table(weighted_prices);
 button(weighted_prices, `weighted_prices.csv`)
 
 ```
-
-<br>
-<br>
-
-
-
-
-
-
-
-# SQLite Database
-
-<li><a href="data/working/aetr.db">Download the database</a></li>
-
 
 
 
@@ -117,7 +125,9 @@ button = (database, filename = 'data.csv') => {
 //| eval: false
 
 // DEPRECATED
-// This chunk makes the fancy dropdown database viewing tool
+// THIS CHUNK DOES NOT RUN (eval: false)
+
+// fancy dropdown database viewing tool
 
 // connect to database
 db = FileAttachment("data/working/aetr.db").sqlite()
