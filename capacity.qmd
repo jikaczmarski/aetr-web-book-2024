@@ -41,9 +41,7 @@ We begin this section by showcasing the increases in total capacity across the s
 ```{ojs}
 //| echo: false
 
-sw_cap = FileAttachment("data/statewide-total-capacity-by-year.csv").csv({ typed: true })
-
-//dataTyped = data.map(({year}) => ({year: new Date(year,0,1)}))
+cap_data = FileAttachment("data/working/capacity/capacity_long.csv").csv({ typed: true })
 
 Plot.plot({
   // Configure the plot
@@ -54,7 +52,8 @@ Plot.plot({
   // Configure the x-axis
   x: {
     tickFormat: "d",
-    label: "Year"
+    label: "Year",
+    //domain: [2011,2012,2013,2018,2021]
   },
   // Configure the y-axis
   y: {
@@ -64,13 +63,25 @@ Plot.plot({
 
   // Stacked area plot
   marks: [
-    Plot.areaY(sw_cap, {x:"year",y:"Capacity", fill: "Prime.Mover", tip: {format: {x: "d"}}}),
+    Plot.areaY(cap_data,
+      Plot.groupX(
+        {
+          y: "sum"
+        },
+        {
+          x: "year",
+          y: "capacity",
+          fill: "prime_mover",
+          tip: {format: {x: "d"}}
+        }
+      )
+    ),
     Plot.ruleY([0])
   ],
   
   // Configure the color scheme
   color: {
-        domain: ["Fossil Turbine", "Recip Engines", "Hydro", "Wind","Utility Solar","Rooftop Solar","Storage","Landfill Gas"],
+        domain: ["Fossil Turbines", "Recip Engines", "Hydro", "Wind","Utility Solar","Rooftop Solar","Storage","Landfill Gas"],
         range: ["#606571", "#9da7bf", "#00a1b7", "#F79646", "#fad900","#9BBB59","#71346a","#896D09"],
         legend: true
     }
@@ -83,8 +94,6 @@ For the coastal region, we observe a `r cap_diff(coastal_capacity,gw=FALSE)` MW 
 
 ```{ojs}
 //| echo: false
-c_cap = FileAttachment("data/coastal-capacity.csv").csv({ typed: true })
-
 Plot.plot({
   // Configure the x-axis
   x: {
@@ -98,17 +107,30 @@ Plot.plot({
     label: "Capacity (MW)"
   },
   // Configure the plot
-  title: "Coastal Region, Capacity",
+  title: "Coastal region capacity",
   insetLeft: 0,
   insetRight: 0,
+
   // Stacked area plot
   marks: [
-    Plot.barY(c_cap, {x:"year",y:"Capacity", fill: "Prime.Mover", tip: {format: {x: "d"}}}),
+    Plot.barY(cap_data.filter((d) => d.acep_region === "Coastal" && d.capacity !== 0.0),
+      Plot.groupX(
+        {
+          y: "sum"
+        },
+        {
+          x: "year",
+          y: "capacity",
+          fill: "prime_mover",
+          tip: {format: {x: "d"}}
+        }
+      )
+    ),
     Plot.ruleY([0])
   ],
   // Configure the color scheme
   color: {
-        domain: ["Fossil Turbine", "Recip Engines", "Hydro", "Wind","Storage"],
+        domain: ["Fossil Turbines", "Recip Engines", "Hydro", "Wind","Storage"],
         range: ["#606571", "#9da7bf", "#00a1b7", "#F79646", "#71346a"],
         legend: true
     }
@@ -119,8 +141,6 @@ Across the remaining capacity expansions, hydropower accounted for the bulk of t
 
 ```{ojs}
 //| echo: false
-c_r_cap = FileAttachment("data/coastal-capacity-non-fossil.csv").csv({ typed: true })
-
 Plot.plot({
   // Configure the x-axis
   x: {
@@ -134,12 +154,25 @@ Plot.plot({
     label: "Capacity (MW)"
   },
   // Configure the plot
-  title: "Coastal Region, Non-fossil Capacity",
+  title: "Coastal region renewable capacity",
   insetLeft: 0,
   insetRight: 0,
+
   // Stacked area plot
   marks: [
-    Plot.barY(c_r_cap, {x:"year",y:"Capacity", fill: "Prime.Mover", tip: {format: {x: "d"}}}),
+    Plot.barY(cap_data.filter((d) => d.acep_region === "Coastal" && d.capacity !== 0.0 && d.prime_mover !== "Fossil Turbines" && d.prime_mover !== "Recip Engines"),
+      Plot.groupX(
+        {
+          y: "sum"
+        },
+        {
+          x: "year",
+          y: "capacity",
+          fill: "prime_mover",
+          tip: {format: {x: "d"}}
+        }
+      )
+    ),
     Plot.ruleY([0])
   ],
   // Configure the color scheme
@@ -157,8 +190,6 @@ For the Railbelt region, capacity additions were dominated by more-efficient fos
 
 ```{ojs}
 //| echo: false
-r_cap = FileAttachment("data/railbelt-capacity.csv").csv({ typed: true })
-
 Plot.plot({
   // Configure the x-axis
   x: {
@@ -172,18 +203,31 @@ Plot.plot({
     label: "Capacity (MW)"
   },
   // Configure the plot
-  title: "Railbelt Region, Capacity",
+  title: "Railbelt region capacity",
   caption: "Figure note: The category of Landfill Gas refers to the 11.5 MW power plant at the Anchorage Regional Landfill that is fueled by methane from decomposing waste. Although this plant uses reciprocating engines as its prime mover, we decided to show landfill gas as a separate category because it is a significant addition to the mix of renewable energy capacity.",
   insetLeft: 0,
   insetRight: 0,
+
   // Stacked area plot
   marks: [
-    Plot.barY(r_cap, {x:"year",y:"Capacity", fill: "Prime.Mover", tip: {format: {x: "d"}}}),
+    Plot.barY(cap_data.filter((d) => d.acep_region === "Railbelt" && d.capacity !== 0.0),
+      Plot.groupX(
+        {
+          y: "sum"
+        },
+        {
+          x: "year",
+          y: "capacity",
+          fill: "prime_mover",
+          tip: {format: {x: "d"}}
+        }
+      )
+    ),
     Plot.ruleY([0])
   ],
   // Configure the color scheme
   color: {
-        domain: ["Fossil Turbine", "Recip Engines", "Hydro", "Wind","Utility Solar","Rooftop Solar","Storage","Landfill Gas"],
+        domain: ["Fossil Turbines", "Recip Engines", "Hydro", "Wind","Utility Solar","Rooftop Solar","Storage","Landfill Gas"],
         range: ["#606571", "#9da7bf", "#00a1b7", "#F79646", "#fad900","#9BBB59","#71346a","#896D09"],
         legend: true
     }
@@ -194,8 +238,6 @@ Total renewable and storage capacity in the Railbelt region increased by 165 MW.
 
 ```{ojs}
 //| echo: false
-r_r_cap = FileAttachment("data/railbelt-capacity-non-fossil.csv").csv({ typed: true })
-
 Plot.plot({
   // Configure the x-axis
   x: {
@@ -209,12 +251,25 @@ Plot.plot({
     label: "Capacity (MW)"
   },
   // Configure the plot
-  title: "Railbelt Region, Non-fossil Capacity",
+  title: "Railbelt region renewable capacity",
   insetLeft: 0,
   insetRight: 0,
+
   // Stacked area plot
   marks: [
-    Plot.barY(r_r_cap, {x:"year",y:"Capacity", fill: "Prime.Mover", tip: {format: {x: "d"}}}),
+    Plot.barY(cap_data.filter((d) => d.acep_region === "Railbelt" && d.capacity !== 0.0 && d.prime_mover !== "Fossil Turbines" && d.prime_mover !== "Recip Engines"),
+      Plot.groupX(
+        {
+          y: "sum"
+        },
+        {
+          x: "year",
+          y: "capacity",
+          fill: "prime_mover",
+          tip: {format: {x: "d"}}
+        }
+      )
+    ),
     Plot.ruleY([0])
   ],
   // Configure the color scheme
@@ -231,8 +286,6 @@ The rural remote region saw an increase of `r cap_diff(rural_remote_capacity, gw
 
 ```{ojs}
 //| echo: false
-rr_cap = FileAttachment("data/rural-remote-capacity.csv").csv({ typed: true })
-
 Plot.plot({
   // Configure the x-axis
   x: {
@@ -246,17 +299,30 @@ Plot.plot({
     label: "Capacity (MW)"
   },
   // Configure the plot
-  title: "Rural Remote Region, Capacity",
+  title: "Rural Remote region capacity",
   insetLeft: 0,
   insetRight: 0,
+
   // Stacked area plot
   marks: [
-    Plot.barY(rr_cap, {x:"year",y:"Capacity", fill: "Prime.Mover", tip: {format: {x: "d"}}}),
+    Plot.barY(cap_data.filter((d) => d.acep_region === "Rural Remote" && d.capacity !== 0.0),
+      Plot.groupX(
+        {
+          y: "sum"
+        },
+        {
+          x: "year",
+          y: "capacity",
+          fill: "prime_mover",
+          tip: {format: {x: "d"}}
+        }
+      )
+    ),
     Plot.ruleY([0])
   ],
   // Configure the color scheme
   color: {
-        domain: ["Fossil Turbine", "Recip Engines", "Hydro", "Wind","Utility Solar","Storage"],
+        domain: ["Fossil Turbines", "Recip Engines", "Hydro", "Wind","Utility Solar","Storage"],
         range: ["#606571", "#9da7bf", "#00a1b7", "#F79646", "#fad900","#71346a"],
         legend: true
     }
@@ -267,8 +333,6 @@ This region saw an absolute increase of `r cap_diff(rural_remote_capacity_non_fo
 
 ```{ojs}
 //| echo: false
-rr_r_cap = FileAttachment("data/rural-remote-capacity-non-fossil.csv").csv({ typed: true })
-
 Plot.plot({
   // Configure the x-axis
   x: {
@@ -282,12 +346,25 @@ Plot.plot({
     label: "Capacity (MW)"
   },
   // Configure the plot
-  title: "Rural Remote Region, Non-fossil Capacity",
+  title: "Rural Remote region renewable capacity",
   insetLeft: 0,
   insetRight: 0,
+
   // Stacked area plot
   marks: [
-    Plot.barY(rr_r_cap, {x:"year",y:"Capacity", fill: "Prime.Mover", tip: {format: {x: "d"}}}),
+    Plot.barY(cap_data.filter((d) => d.acep_region === "Rural Remote" && d.capacity !== 0.0 && d.prime_mover !== "Fossil Turbines" && d.prime_mover !== "Recip Engines"),
+      Plot.groupX(
+        {
+          y: "sum"
+        },
+        {
+          x: "year",
+          y: "capacity",
+          fill: "prime_mover",
+          tip: {format: {x: "d"}}
+        }
+      )
+    ),
     Plot.ruleY([0])
   ],
   // Configure the color scheme
