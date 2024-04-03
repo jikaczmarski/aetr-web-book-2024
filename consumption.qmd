@@ -8,6 +8,13 @@ output:
         pre_processor: quarto::observable
 ---
 
+```{r, echo=FALSE,warning=FALSE,message=FALSE}
+# Import the consumption data
+consumption_data <- read.csv(file = "data/working/consumption/consumption_long.csv")
+
+
+```
+
 ## General Overview
 
 The data presented in this section is from calendar years 2011 to 2019. More recent data has been omitted due to issues with data completeness and validity.
