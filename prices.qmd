@@ -40,6 +40,7 @@ Inputs.table(data);
 ## Regional Averages
 Due to the wide range of electricity prices in Alaska, it is difficult to accurately summarize the data. Because of this, we determined that averages were best calculated using a customer account weighted average. Population is roughly correlated to price, with small communities experiencing higher rates than larger communities. The average number of customer accounts for the year was used to calculate the weighted arithmetic mean price for each year and region. Below is a graph of residential customer prices over time using population-weighted averages.  
 
+##### Residential Price Over Time
 ```{ojs}
 // aggregate
 region_weighted_prices = tidy(weighted_prices, 
@@ -61,7 +62,7 @@ Plot.plot({
     // Configure the y-axis
     y: {
       domain: [10, 60],
-      label: "Mean Weighted Price"
+      label: "Cents per Kilowatt Hour"
     },
     
     // Configure the plot
@@ -75,7 +76,18 @@ Plot.plot({
                     strokeWidth: 5,
                     stroke: "acep_energy_region",
                     tip: {format: {x: "d"}}
-                    })],
+        }),
+    Plot.text(region_weighted_prices, 
+      Plot.selectLast(
+        {x: "year", 
+        y: "mean_weighted_price", 
+        z: "acep_energy_region",
+        text: "acep_energy_region", 
+        frameAnchor: "bottom", 
+        dy: -5,
+        dx: 25
+        }))
+    ],
     color: {
         domain: ["Coastal", "Railbelt", "Rural Remote"],
         range: ["#4285F4", "#34A853", "#EA4335"]
@@ -93,7 +105,7 @@ The following figure shows the average price of electricity in the Coastal regio
 The average price of electricity for Residential customers in the Coastal region rose 6% from $0.17/kWh in 2011 to $0.18/kWh in 2019. The average price of electricity for Commercial customers in the Coastal region fell 5% from $0.21/kWh in 2011 to $0.20/kWh in 2019. Finally, the average price of electricity for Other customers in the Coastal region fell 15% from $0.40/kWh in 2011 to $0.34/kWh in 2019.
 Residential customers in the Coastal region saw increases in electricity while commercial and other customers saw decreases. However, the residential customer class continues to pay the lowest per kWh in the region due to a combination of low prices in high population areas and PCE subsidies in eligible communities.
 
-
+##### Sector Price Over Time
 ```{ojs}
 // aggregate
 coastal_weighted_prices = tidy(weighted_prices, 
@@ -113,8 +125,9 @@ Plot.plot({
     
     // Configure the y-axis
     y: {
-      domain: [10, 45],
-      label: "Weighted Price"
+      domain: [10, 40],
+      ticks: 4,
+      label: "Cents per Kilowatt Hour"
     },
     
     // Configure the plot
@@ -124,13 +137,24 @@ Plot.plot({
   
     marks: [
 
-        Plot.line(coastal_weighted_prices,
-                    {x: "year", 
-                    y: "weighted_price",
-                    strokeWidth: 5,
-                    stroke: "sector",
-                    tip: {format: {x: "d"}}
-                    })],
+    Plot.line(coastal_weighted_prices,
+        {x: "year", 
+        y: "weighted_price",
+        strokeWidth: 5,
+        stroke: "sector",
+        tip: {format: {x: "d"}}
+        }),
+    Plot.text(coastal_weighted_prices, 
+      Plot.selectLast(
+        {x: "year", 
+        y: "weighted_price", 
+        z: "sector",
+        text: "sector", 
+        frameAnchor: "bottom", 
+        dy: -5,
+        dx: 35
+        }))
+    ],
     color: {
         domain: ["residential", "commercial", "other"],
         range: ["#0084c1", "#e29617", "#fad900"]
@@ -147,6 +171,7 @@ The following figure shows the average price of electricity in the Railbelt regi
 The average price of electricity for Residential customers in the Railbelt rose 26% from $0.19/kWh in 2011 to $0.24/kWh in 2019. The average price of electricity for Commercial customers in the Railbelt rose 18% from $0.17/kWh in 2011 to $0.20/kWh in 2019. Finally, the average price of electricity for Other customers in the Railbelt fell 6% from $0.19/kWh in 2011 to $0.18/kWh in 2019.
 This region differs significantly from the Coastal and Rural Remote regions in that residential customers pay more for electricity than the Commercial or Other customer classes.
 
+##### Sector Price Over Time
 ```{ojs}
 // aggregate
 railbelt_weighted_prices = tidy(weighted_prices, 
@@ -166,8 +191,9 @@ Plot.plot({
     
     // Configure the y-axis
     y: {
-      domain: [10, 28],
-      label: "Weighted Price"
+      domain: [10, 40],
+      ticks: 4,
+      label: "Cents per Kilowatt Hour"
     },
     
     // Configure the plot
@@ -176,14 +202,24 @@ Plot.plot({
 
 
     marks: [
- 
-        Plot.line(railbelt_weighted_prices,
-                {x: "year", 
-                y: "weighted_price",
-                strokeWidth: 5,
-                stroke: "sector",
-                tip: {format: {x: "d"}}
-                })
+
+    Plot.line(railbelt_weighted_prices,
+        {x: "year", 
+        y: "weighted_price",
+        strokeWidth: 5,
+        stroke: "sector",
+        tip: {format: {x: "d"}}
+        }),
+    Plot.text(railbelt_weighted_prices, 
+      Plot.selectLast(
+        {x: "year", 
+        y: "weighted_price", 
+        z: "sector",
+        text: "sector", 
+        frameAnchor: "bottom", 
+        dy: -5,
+        dx: 35
+        }))
     ],
     color: {
         domain: ["residential", "commercial", "other"],
@@ -199,6 +235,7 @@ The following figure shows the average price of electricity in the Rural Remote 
 
 The average price of electricity for the Residential customers in the Rural Remote region rose 8% from $0.24/kWh in 2011 to $0.26/kWh in 2019. The average price of electricity for Commercial customers in the Rural Remote region fell 11% from $0.54/kWh in 2011 to $0.48/kWh in 2019. Finally, the average price of electricity for Other customers in the Rural Remote region fell 9% from $0.65/kWh in 2011 to $0.59/kWh in 2019.  
 
+##### Sector Price Over Time
 ```{ojs}
 // aggregate
 rural_remote_weighted_prices = tidy(weighted_prices, 
@@ -218,24 +255,35 @@ Plot.plot({
   
     // Configure the y-axis
     y: {
-      domain: [15, 75],
-      label: "Weighted Price"
+      domain: [10, 70],
+      ticks: 7,
+      label: "Cents per Kilowatt Hour"
     },
     
     // Configure the plot
     grid: true,
     marginRight: 70,
-    height: 550,
+    height: 750,
 
     marks: [
  
-        Plot.line(rural_remote_weighted_prices,
-                {x: "year", 
-                y: "weighted_price",
-                strokeWidth: 5,
-                stroke: "sector",
-                tip: {format: {x: "d"}}
-                })
+      Plot.line(rural_remote_weighted_prices,
+          {x: "year", 
+          y: "weighted_price",
+          strokeWidth: 5,
+          stroke: "sector",
+          tip: {format: {x: "d"}}
+          }),
+      Plot.text(rural_remote_weighted_prices, 
+        Plot.selectLast(
+          {x: "year", 
+          y: "weighted_price", 
+          z: "sector",
+          text: "sector", 
+          frameAnchor: "bottom", 
+          dy: -5,
+          dx: 35
+          }))
     ],
     color: {
         domain: ["residential", "commercial", "other"],
