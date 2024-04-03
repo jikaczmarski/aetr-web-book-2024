@@ -1,5 +1,92 @@
 [
   {
+    "objectID": "capacity.html",
+    "href": "capacity.html",
+    "title": "Alaska Generation Capacity",
+    "section": "",
+    "text": "Generation capacity represents the maximum amount of electricity that can be generated at any given time dependent on certain conditions. The combination of generation sources is often referred to as the capacity mix. Changes in the capacity mix over time reflect decisions to build and retire generators. These decisions are a result of shifting costs, technological innovations, the normal aging of the generation fleet, and/or stakeholder policies. Due to data limitations, we show capacity levels for calendar years 2011-2013, 2018, and 2021. While we cannot observe year-to-year trends, there are enough years of data to visualize capacity trends from 2011 to 2021.\nWe begin this section by showcasing the increases in total capacity across the state. In 2011, it is estimated that the total statewide electricity generation capacity was 2.2 GW. We estimate that this has increased to approximately 3.16 GW in 2021 based on best available data. This represents an increase of 966.26 MW, or 44 percent. To illustrate this example, we show a stacked area chart below that showcases growth over time for various technologies.1\n\ncap_data = FileAttachment(\"data/working/capacity/capacity_long.csv\").csv({ typed: true })\n\nPlot.plot({\n  // Configure the plot\n  title: \"Capacity changes, Statewide\",\n  insetLeft: 0,\n  insetRight: 0,\n  \n  // Configure the x-axis\n  x: {\n    tickFormat: \"d\",\n    label: \"Year\",\n    //domain: [2011,2012,2013,2018,2021]\n  },\n  // Configure the y-axis\n  y: {\n    grid: true,\n    label: \"Capacity (MW)\"\n  },\n\n  // Stacked area plot\n  marks: [\n    Plot.areaY(cap_data,\n      Plot.groupX(\n        {\n          y: \"sum\"\n        },\n        {\n          x: \"year\",\n          y: \"capacity\",\n          fill: \"prime_mover\",\n          order: [\"Fossil Turbines\", \"Recip Engines\", \"Hydro\", \"Wind\",\"Utility Solar\",\"Rooftop Solar\",\"Storage\",\"Landfill Gas\"],\n          tip: {format: {x: \"d\"}}\n        }\n      )\n    ),\n    Plot.ruleY([0])\n  ],\n  \n  // Configure the color scheme\n  color: {\n        domain: [\"Fossil Turbines\", \"Recip Engines\", \"Hydro\", \"Wind\",\"Utility Solar\",\"Rooftop Solar\",\"Storage\",\"Landfill Gas\"],\n        range: [\"#606571\", \"#9da7bf\", \"#00a1b7\", \"#F79646\", \"#fad900\",\"#9BBB59\",\"#71346a\",\"#896D09\"],\n        legend: true\n    }\n})",
+    "crumbs": [
+      "Capacity"
+    ]
+  },
+  {
+    "objectID": "capacity.html#footnotes",
+    "href": "capacity.html#footnotes",
+    "title": "Alaska Generation Capacity",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\nPrime movers are categorized as follows. Fossil turbines include combined cycle turbines, gas turbines, and steam turbines. Reciprocating engines include internal combustion engines. Hydro includes hydraulic turbines and hydrokinetics. Wind includes wind turbines. Utility solar includes utility-owned photovoltaic (PV), and Rooftop solar includes customer-sited, behind-the-meter PV. Storage refers to batteries and flywheels.↩︎",
+    "crumbs": [
+      "Capacity"
+    ]
+  },
+  {
+    "objectID": "historic_reports.html",
+    "href": "historic_reports.html",
+    "title": "Historical Electric Power Statistics Reports",
+    "section": "",
+    "text": "For a description of previous reports that have examined electric power trends in Alaska, please see About this Report. Below is an exhaustive list of links to these reports over time. Notably, we omit reports that include projections such as the State of Alaska Energy Reports/Plans.\n\nLinks to Historical Reports\n\n\nPublication Year\nData Years\nData Year Type\nAuthoring Insitution\nPublication Title\nType\nPersistent Links\n\n\n\n\n1969\n1968\nFiscal\nUnited States Department of the Interior, Alaska Power Administration\nFirst Annual Report\nReport\nFirst Annual Report\n\n\n1971\n1960-1969\nCalendar\nUnited States Department of the Interior, Alaska Power Administration\nAlaska Electric Power Statistics 1960 - 1969\nReport\nAlaska Electric Power Statistics 1960 - 1969\n\n\n1972\n1960-1970\nCalendar\nUnited States Department of the Interior, Alaska Power Administration\nAlaska Electric Power Statistics 1960 - 1970\nReport\nAlaska Electric Power Statistics 1960 - 1970\n\n\n1974\n1960-1973\nCalendar\nUnited States Department of the Interior, Alaska Power Administration\nAlaska Electric Power Statistics 1960 - 1973\nReport\nAlaska Electric Power Statistics 1960 - 1973\n\n\n1976\n1960-1975\nCalendar\nUnited States Department of the Interior, Alaska Power Administration\nAlaska Electric Power Statistics 1960 - 1975\nReport\nAlaska Electric Power Statistics 1960 - 1975\n\n\n1977\n1960-1976\nCalendar\nUnited States Department of the Interior, Alaska Power Administration\nAlaska Electric Power Statistics 1960 - 1976\nReport\nAlaska Electric Power Statistics 1960 - 1976\n\n\n1981\n1960-1980\nCalendar\nUnited States Department of Energy, Alaska Power Administration\nAlaska Electric Power Statistics 1960 - 1980\nReport\nAlaska Electric Power Statistics 1960 - 1980\n\n\n1983\n1960-1982\nCalendar\nUnited States Department of Energy, Alaska Power Administration\nAlaska Electric Power Statistics 1960 - 1982\nReport\nAlaska Electric Power Statistics 1960 - 1982\n\n\n1984\n1960-1983\nCalendar\nState of Alaska, Alaska Power Authority\nAlaska Electric Power Statistics 1960 - 1983\nReport\nAlaska Electric Power Statistics 1960 - 1983\n\n\n1985\n1960-1984\nCalendar\nState of Alaska, Alaska Power Authority\nAlaska Electric Power Statistics 1960 - 1984\nReport\nAlaska Electric Power Statistics 1960 - 1984\n\n\n1986\n1960-1985\nCalendar\nState of Alaska, Alaska Power Authority\nAlaska Electric Power Statistics 1960 - 1985\nReport\nAlaska Electric Power Statistics 1960 - 1985\n\n\n1987\n1960-1986\nCalendar\nState of Alaska, Alaska Power Authority\nAlaska Electric Power Statistics 1960 - 1986\nReport\nAlaska Electric Power Statistics 1960 - 1986\n\n\n1988\n1960-1987\nCalendar\nState of Alaska, Alaska Power Authority\nAlaska Electric Power Statistics 1960 - 1987\nReport\nAlaska Electric Power Statistics 1960 - 1987\n\n\n1989\n1960-1988\nCalendar\nState of Alaska, Alaska Energy Authority\nAlaska Electric Power Statistics 1960 - 1988\nReport\nAlaska Electric Power Statistics 1960 - 1988\n\n\n1990\n1960-1989\nCalendar\nState of Alaska, Alaska Energy Authority\nAlaska Electric Power Statistics 1960 - 1989\nReport\nAlaska Electric Power Statistics 1960 - 1989\n\n\n1991\n1960-1990\nCalendar\nState of Alaska, Alaska Energy Authority\nAlaska Electric Power Statistics 1960 - 1990\nReport\nAlaska Electric Power Statistics 1960 - 1990\n\n\n1992\n1960-1991\nCalendar\nState of Alaska, Alaska Energy Authority\nAlaska Electric Power Statistics 1960 - 1991\nReport\nAlaska Electric Power Statistics 1960 - 1991\n\n\n1993\n1960-1992\nCalendar\nAlaska Systems Coordinating Council; State of Alaska, Department of Community and Regional Affairs, Division of Energy\nAlaska Electric Power Statistics 1960 - 1992\nReport\nAlaska Electric Power Statistics 1960 - 1992\n\n\n1994\n1960-1993\nCalendar\nAlaska Systems Coordinating Council; State of Alaska, Department of Community and Regional Affairs, Division of Energy\nAlaska Electric Power Statistics 1960 - 1993\nReport\nAlaska Electric Power Statistics 1960 - 1993\n\n\n1995\n1960-1994\nCalendar\nAlaska Systems Coordinating Council; State of Alaska, Department of Community and Regional Affairs, Division of Energy\nAlaska Electric Power Statistics 1960 - 1994\nReport\nAlaska Electric Power Statistics 1960 - 1994\n\n\n1996\n1960-1995\nCalendar\nAlaska Systems Coordinating Council; State of Alaska, Department of Community and Regional Affairs, Division of Energy\nAlaska Electric Power Statistics 1960 - 1995\nReport\nAlaska Electric Power Statistics 1960 - 1995\n\n\n2003\n1960-2001\nCalendar\nUniversity of Alaska Anchorage, Institute of Social and Economic Research\nAlaska Electric Power Statistics (with Alaska Energy Balance) 1960 - 2001\nReport\nAlaska Electric Power Statistics (with Alaska Energy Balance) 1960 - 2001\n\n\n2011\n1960-2008\nCalendar\nUniversity of Alaska Anchorage, Institute of Social and Economic Research\nAlaska Energy Statistics 1960 - 2008\nReport, Excel Workbook\nAlaska Energy Statistics 1960 - 2008\n\n\n2011\n1960-2009\nCalendar\nUniversity of Alaska Anchorage, Institute of Social and Economic Research\nAlaska Energy Statistics 1960 - 2009\nReport, Excel Workbook\nAlaska Energy Statistics 1960 - 2009\n\n\n2012\n1960-2010\nCalendar\nUniversity of Alaska Anchorage, Institute of Social and Economic Research\nAlaska Energy Statistics 1960 - 2010 Final Report\nReport, Excel Workbook\nAlaska Energy Statistics 1960 - 2010 Final Report\n\n\n2013\n1960-2011\nCalendar\nUniversity of Alaska Anchorage, Institute of Social and Economic Research\nAlaska Energy Statistics 1960 - 2011 Final Report\nReport, Excel Workbook\nAlaska Energy Statistics 1960 - 2011 Final Report\n\n\n2015\n2012\nCalendar\nState of Alaska, Alaska Energy Authority\n2012 Alaska Energy Statistics Final Report\nReport\n2012 Alaska Energy Statistics Final Report",
+    "crumbs": [
+      "Historical Reports"
+    ]
+  },
+  {
+    "objectID": "historic_reports.html#historical-electric-power-reports",
+    "href": "historic_reports.html#historical-electric-power-reports",
+    "title": "Historical Electric Power Statistics Reports",
+    "section": "",
+    "text": "For a description of previous reports that have examined electric power trends in Alaska, please see About this Report. Below is an exhaustive list of links to these reports over time. Notably, we omit reports that include projections such as the State of Alaska Energy Reports/Plans.\n\nLinks to Historical Reports\n\n\nPublication Year\nData Years\nData Year Type\nAuthoring Insitution\nPublication Title\nType\nPersistent Links\n\n\n\n\n1969\n1968\nFiscal\nUnited States Department of the Interior, Alaska Power Administration\nFirst Annual Report\nReport\nFirst Annual Report\n\n\n1971\n1960-1969\nCalendar\nUnited States Department of the Interior, Alaska Power Administration\nAlaska Electric Power Statistics 1960 - 1969\nReport\nAlaska Electric Power Statistics 1960 - 1969\n\n\n1972\n1960-1970\nCalendar\nUnited States Department of the Interior, Alaska Power Administration\nAlaska Electric Power Statistics 1960 - 1970\nReport\nAlaska Electric Power Statistics 1960 - 1970\n\n\n1974\n1960-1973\nCalendar\nUnited States Department of the Interior, Alaska Power Administration\nAlaska Electric Power Statistics 1960 - 1973\nReport\nAlaska Electric Power Statistics 1960 - 1973\n\n\n1976\n1960-1975\nCalendar\nUnited States Department of the Interior, Alaska Power Administration\nAlaska Electric Power Statistics 1960 - 1975\nReport\nAlaska Electric Power Statistics 1960 - 1975\n\n\n1977\n1960-1976\nCalendar\nUnited States Department of the Interior, Alaska Power Administration\nAlaska Electric Power Statistics 1960 - 1976\nReport\nAlaska Electric Power Statistics 1960 - 1976\n\n\n1981\n1960-1980\nCalendar\nUnited States Department of Energy, Alaska Power Administration\nAlaska Electric Power Statistics 1960 - 1980\nReport\nAlaska Electric Power Statistics 1960 - 1980\n\n\n1983\n1960-1982\nCalendar\nUnited States Department of Energy, Alaska Power Administration\nAlaska Electric Power Statistics 1960 - 1982\nReport\nAlaska Electric Power Statistics 1960 - 1982\n\n\n1984\n1960-1983\nCalendar\nState of Alaska, Alaska Power Authority\nAlaska Electric Power Statistics 1960 - 1983\nReport\nAlaska Electric Power Statistics 1960 - 1983\n\n\n1985\n1960-1984\nCalendar\nState of Alaska, Alaska Power Authority\nAlaska Electric Power Statistics 1960 - 1984\nReport\nAlaska Electric Power Statistics 1960 - 1984\n\n\n1986\n1960-1985\nCalendar\nState of Alaska, Alaska Power Authority\nAlaska Electric Power Statistics 1960 - 1985\nReport\nAlaska Electric Power Statistics 1960 - 1985\n\n\n1987\n1960-1986\nCalendar\nState of Alaska, Alaska Power Authority\nAlaska Electric Power Statistics 1960 - 1986\nReport\nAlaska Electric Power Statistics 1960 - 1986\n\n\n1988\n1960-1987\nCalendar\nState of Alaska, Alaska Power Authority\nAlaska Electric Power Statistics 1960 - 1987\nReport\nAlaska Electric Power Statistics 1960 - 1987\n\n\n1989\n1960-1988\nCalendar\nState of Alaska, Alaska Energy Authority\nAlaska Electric Power Statistics 1960 - 1988\nReport\nAlaska Electric Power Statistics 1960 - 1988\n\n\n1990\n1960-1989\nCalendar\nState of Alaska, Alaska Energy Authority\nAlaska Electric Power Statistics 1960 - 1989\nReport\nAlaska Electric Power Statistics 1960 - 1989\n\n\n1991\n1960-1990\nCalendar\nState of Alaska, Alaska Energy Authority\nAlaska Electric Power Statistics 1960 - 1990\nReport\nAlaska Electric Power Statistics 1960 - 1990\n\n\n1992\n1960-1991\nCalendar\nState of Alaska, Alaska Energy Authority\nAlaska Electric Power Statistics 1960 - 1991\nReport\nAlaska Electric Power Statistics 1960 - 1991\n\n\n1993\n1960-1992\nCalendar\nAlaska Systems Coordinating Council; State of Alaska, Department of Community and Regional Affairs, Division of Energy\nAlaska Electric Power Statistics 1960 - 1992\nReport\nAlaska Electric Power Statistics 1960 - 1992\n\n\n1994\n1960-1993\nCalendar\nAlaska Systems Coordinating Council; State of Alaska, Department of Community and Regional Affairs, Division of Energy\nAlaska Electric Power Statistics 1960 - 1993\nReport\nAlaska Electric Power Statistics 1960 - 1993\n\n\n1995\n1960-1994\nCalendar\nAlaska Systems Coordinating Council; State of Alaska, Department of Community and Regional Affairs, Division of Energy\nAlaska Electric Power Statistics 1960 - 1994\nReport\nAlaska Electric Power Statistics 1960 - 1994\n\n\n1996\n1960-1995\nCalendar\nAlaska Systems Coordinating Council; State of Alaska, Department of Community and Regional Affairs, Division of Energy\nAlaska Electric Power Statistics 1960 - 1995\nReport\nAlaska Electric Power Statistics 1960 - 1995\n\n\n2003\n1960-2001\nCalendar\nUniversity of Alaska Anchorage, Institute of Social and Economic Research\nAlaska Electric Power Statistics (with Alaska Energy Balance) 1960 - 2001\nReport\nAlaska Electric Power Statistics (with Alaska Energy Balance) 1960 - 2001\n\n\n2011\n1960-2008\nCalendar\nUniversity of Alaska Anchorage, Institute of Social and Economic Research\nAlaska Energy Statistics 1960 - 2008\nReport, Excel Workbook\nAlaska Energy Statistics 1960 - 2008\n\n\n2011\n1960-2009\nCalendar\nUniversity of Alaska Anchorage, Institute of Social and Economic Research\nAlaska Energy Statistics 1960 - 2009\nReport, Excel Workbook\nAlaska Energy Statistics 1960 - 2009\n\n\n2012\n1960-2010\nCalendar\nUniversity of Alaska Anchorage, Institute of Social and Economic Research\nAlaska Energy Statistics 1960 - 2010 Final Report\nReport, Excel Workbook\nAlaska Energy Statistics 1960 - 2010 Final Report\n\n\n2013\n1960-2011\nCalendar\nUniversity of Alaska Anchorage, Institute of Social and Economic Research\nAlaska Energy Statistics 1960 - 2011 Final Report\nReport, Excel Workbook\nAlaska Energy Statistics 1960 - 2011 Final Report\n\n\n2015\n2012\nCalendar\nState of Alaska, Alaska Energy Authority\n2012 Alaska Energy Statistics Final Report\nReport\n2012 Alaska Energy Statistics Final Report",
+    "crumbs": [
+      "Historical Reports"
+    ]
+  },
+  {
+    "objectID": "test.html",
+    "href": "test.html",
+    "title": "Map",
+    "section": "",
+    "text": "stdlib = require(\"@observablehq/stdlib\")\nd3 = require(\"d3@7\")\n\nL = require('leaflet@1.9.4')\nhtml`&lt;link href='${resolve('leaflet@1.2.0/dist/leaflet.css')}' rel='stylesheet' /&gt;`\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nbootstrap=require(\"bootstrap\")\ncss=html`&lt;link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css\" integrity=\"sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx\" crossorigin=\"anonymous\"&gt;`\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nmap = {\n    // You'll often see Leaflet examples initializing a map like L.map('map'),\n    // which tells the library to look for a div with the id 'map' on the page.\n    // In Observable, we instead create a div from scratch in this cell, so it's\n    // completely self-contained.\n    let container = DOM.element('div', { style: `width:${width}px;height:${width/1.6}px` });\n\n    // Note that I'm yielding the container pretty early here: this allows the\n    // div to be placed on the page. This is important, because Leaflet uses\n    // the div's .offsetWidth and .offsetHeight to size the map. If I were\n    // to only return the container at the end of this method, Leaflet might\n    // get the wrong idea about the map's size.\n    yield container;\n\n    // Now we create a map object and add a layer to it.\n    let map = L.map(container).setView([58.35175294670148, -134.6442463060413], 13);\n\n    let hillshade = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}', \n        {attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ, TomTom, Intermap, iPC, USGS, FAO, NPS, NRCAN, GeoBase, Kadaster NL, Ordnance Survey, Esri Japan, METI, Esri China (Hong Kong), and the GIS User Community'\n        });\n  \n    hillshade.addTo(map);\n\n\n}\n\n\n\n\n\n\n\n\n\n Back to top"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About this Report",
+    "section": "",
+    "text": "This Alaska Electrical Trends Report (AETR) Web Book has been produced by the Alaska Center for Energy and Power (ACEP) at the University of Alaska Fairbanks (UAF). It is designed to be interactive and dynamically updated when new data becomes available.\nThroughout the years, several agencies have prepared and published reports and data compilations on energy use in Alaska. AETR is complimentary to those prior reports, but is not a direct successor to them because it focuses on electricity only.",
+    "crumbs": [
+      "About this Report"
+    ]
+  },
+  {
+    "objectID": "about.html#general-overview",
+    "href": "about.html#general-overview",
+    "title": "About this Report",
+    "section": "",
+    "text": "This Alaska Electrical Trends Report (AETR) Web Book has been produced by the Alaska Center for Energy and Power (ACEP) at the University of Alaska Fairbanks (UAF). It is designed to be interactive and dynamically updated when new data becomes available.\nThroughout the years, several agencies have prepared and published reports and data compilations on energy use in Alaska. AETR is complimentary to those prior reports, but is not a direct successor to them because it focuses on electricity only.",
+    "crumbs": [
+      "About this Report"
+    ]
+  },
+  {
+    "objectID": "about.html#historical-timeline-of-prior-reports",
+    "href": "about.html#historical-timeline-of-prior-reports",
+    "title": "About this Report",
+    "section": "Historical Timeline of Prior Reports",
+    "text": "Historical Timeline of Prior Reports\n\n\n\nTimeline of Energy Reports\n\n\nStarting in 1969, the first electric power trends report was published by the Alaska Power Administration. During this time, the Alaska Power Administration was a federal agency housed within the U.S. Department of the Interior. Their first publication was known as the “First Annual Report” and covered data from the 1968 fiscal year. However, this became the “Alaska Electric Power Statistics Report” in 1971 and examined data from the 1960-1969 data years. The APA continued to produce intermittent reports until 1983 when the State of Alaska established the Alaska Power Authority (APA), which later became the Alaska Energy Authority (AEA).\nUnder state direction, the APA/AEA continued to publish intermittent reports on electric power statistics until their final publication in 1992 which covered data years 1960 to 1991. To address the reporting gap, the Alaska Systems Coordinating Council in collaboration with the State of Alaska, Department of Community and Regional Affairs, Division of Energy continued generating reports until 1996 with their final report covering data years 1960 to 1995. Finally, the University of Alaska Anchorage, Institute of Social and Economic Research produced several reports with their last covering 1960 to 2012. Since then, there have been no electric power statistical reports.\nThe following table provides a summary of this timeline. This report serves to supplement the reporting gap in electric power statistics for the State of Alaska.\n\nHistorical Timeline of Reports\n\n\n\n\n\n\n\nYear Published\nInstitution\nData Coverage\n\n\n\n\n1971 to 1983\nAlaska Power Administration\n1960 to 1982\n\n\n1984 to 1988\nAlaska Power Authority\n1960 to 1987\n\n\n1989 to 1992\nAlaska Energy Authority\n1960 to 1991\n\n\n1992 to 1996\nAlaska Systems Coordinating Council; State of Alaska\n1960 to 1995\n\n\n2003, 2011 to 2015\nUniversity of Alaska Anchorage, Institute of Social and Economic Research\n1960 to 2012\n\n\n\n \nFor a full list of links to these described reports, please visit Historical Electric Power Reports.",
+    "crumbs": [
+      "About this Report"
+    ]
+  },
+  {
+    "objectID": "about.html#technical-details",
+    "href": "about.html#technical-details",
+    "title": "About this Report",
+    "section": "Technical Details",
+    "text": "Technical Details\nThe book is formatted using Quarto, an open-source scientific and technical publishing system. The template was developed by the Openscapes project, as part of their Quarto Website Tutorial.\nThe markdown files that make up the book reside in the aetr-web-book GitHub repository. The generation process is publicly accessible. Errors in the document can be flagged using GitHub issues where they can be tracked and addressed by the DCM team.\nThe book also integrates R code for data processing and figure generation. When data files are updated, manually triggering the Quarto render will update the figures automatically.",
+    "crumbs": [
+      "About this Report"
+    ]
+  },
+  {
     "objectID": "data.html",
     "href": "data.html",
     "title": "Data Portal",
@@ -24,9 +111,129 @@
     "href": "data.html#download-individual-tables",
     "title": "Data Portal",
     "section": "Download Individual Tables",
-    "text": "Download Individual Tables\nIndividual tables can be downloaded here as text files (CSV, comma-separated values). Once downloaded to your local machine, these files can be opened graphically using Microsoft Excel, or programmatically using R or Python.\n\nNet Generation (wide-format)\n\nnet_generation_wide = FileAttachment(\"data/working/generation/net_generation_wide.csv\").csv({typed: true});\nInputs.table(net_generation_wide);\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nbutton(net_generation_long, `net_generation_wide.csv`)\n\n\n\n\n\n\n\n\n \n\n\nNet Generation (long-format)\n\nnet_generation_long = FileAttachment(\"data/working/generation/net_generation_long.csv\").csv({typed: true});\nInputs.table(net_generation_long);\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nbutton(net_generation_long, `net_generation_long.csv`)\n\n\n\n\n\n\n\n\n \n\n\nPrices\n\nprices = FileAttachment(\"data/working/prices/prices.csv\").csv({typed: true});\nInputs.table(prices);\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nbutton(prices, `prices.csv`)\n\n\n\n\n\n\n\n\n \n\n\nWeighted Prices\n\nweighted_prices = FileAttachment(\"data/working/prices/weighted_prices.csv\").csv({typed: true});\n\nInputs.table(weighted_prices);\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nbutton(weighted_prices, `weighted_prices.csv`)",
+    "text": "Download Individual Tables\nIndividual tables can be downloaded here as text files (CSV, comma-separated values). Once downloaded to your local machine, these files can be opened graphically using Microsoft Excel, or programmatically using R or Python.\n\nCapacity (wide-format)\n\ncapacity_wide = FileAttachment(\"data/working/capacity/capacity_wide.csv\").csv({typed: true});\nInputs.table(capacity_wide);\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nbutton(capacity_wide, `capacity_wide.csv`)\n\n\n\n\n\n\n\n\n \n\n\nCapacity (long-format)\n\ncapacity_long = FileAttachment(\"data/working/capacity/capacity_long.csv\").csv({typed: true});\nInputs.table(capacity_long);\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nbutton(capacity_long, `capacity_long.csv`)\n\n\n\n\n\n\n\n\n \n\n\nNet Generation (wide-format)\n\nnet_generation_wide = FileAttachment(\"data/working/generation/net_generation_wide.csv\").csv({typed: true});\nInputs.table(net_generation_wide);\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nbutton(net_generation_long, `net_generation_wide.csv`)\n\n\n\n\n\n\n\n\n \n\n\nNet Generation (long-format)\n\nnet_generation_long = FileAttachment(\"data/working/generation/net_generation_long.csv\").csv({typed: true});\nInputs.table(net_generation_long);\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nbutton(net_generation_long, `net_generation_long.csv`)\n\n\n\n\n\n\n\n\n \n\n\nPrices\n\nprices = FileAttachment(\"data/working/prices/prices.csv\").csv({typed: true});\nInputs.table(prices);\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nbutton(prices, `prices.csv`)\n\n\n\n\n\n\n\n\n \n\n\nPopulation Weighted Prices\n\nweighted_prices = FileAttachment(\"data/working/prices/weighted_prices.csv\").csv({typed: true});\n\nInputs.table(weighted_prices);\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nbutton(weighted_prices, `weighted_prices.csv`)\n\n\n\n\n\n\n\n\n\nstdlib = require(\"@observablehq/stdlib\")\nd3 = require(\"d3@7\")\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n// download button function\nbutton = (database, filename = 'data.csv') =&gt; {\n  const downloadData = new Blob([d3.csvFormat(database)], { type: \"text/csv\" });\n\n  const size = (downloadData.size / 1024).toFixed(1);\n  const button = DOM.download(\n    downloadData,\n    filename,\n    `Download ${filename} (${size} KB)`\n  );\n  return button;\n}\n\n\n\n\n\n\n\ndb = FileAttachment(\"data/working/aetr.db\").sqlite()\n\ndatabase = db.query(`SELECT * FROM ${dbTable}`)\n\nviewof dbTable = Inputs.select((await db.describe()).value.map(d =&gt; d.name), \n                    { label: \"\" })\n\n\nInputs.table(database)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nbutton = (database, filename = 'data.csv') =&gt; {\n  const downloadData = new Blob([d3.csvFormat(database)], { type: \"text/csv\" });\n\n  const size = (downloadData.size / 1024).toFixed(1);\n  const button = DOM.download(\n    downloadData,\n    filename,\n    `Download ${filename} (${size} KB)`\n  );\n  return button;\n}\n\nbutton(database, `${dbTable}`)",
     "crumbs": [
       "Data Portal"
+    ]
+  },
+  {
+    "objectID": "consumption.html",
+    "href": "consumption.html",
+    "title": "Electricity Consumption",
+    "section": "",
+    "text": "The data presented in this section is from calendar years 2011 to 2019. More recent data has been omitted due to issues with data completeness and validity.\nAcross the state, electricity sales (herein referred to as consumption), has fallen when comparing the 2011 and 2019 calendar years. To visualize this trend, we look at the percentage changes from 2011 to 2019 in electricity consumption by customer class and plot them in the following figure. Statewide electricity consumption by the residential sector decreased 10.86% from 2,141 GWh in 2011 to 1,909 GWh in 2019. The commercial sector also saw a decrease of 6.34% from 2,758 GWh in 2011 to 2,583 GWh in 2019. Statewide electricity consumption for the ‘Other’ customer class decreased 7.46% from 1,378 GWh in 2011 to 1,275 GWh in 2019.1\n[Figure. Change in sales by customer class, statewide, 2011 to 2019]\nWe also examine the change in the number of customer accounts across the state. The total number of customer accounts in the state increased 6.15% from approximately 326,402 to 346,476. We plot the percentage increases in customer accounts by category in the following figure. Residential accounts across the state increased 5.22% from approximately 275,473 to 289,843. The number of commercial accounts across the state increased 11.77% from 46,410 to 51,875. Finally, the number of other accounts across the state has increased 14.87% from approximately 4,518 to 5,190.\n[Figure. Change in customer accounts by class, statewide, 2011 to 2019]\nThe following table shows the average annual electricity consumption for each of the regions. The Coastal region led the state in consumption per capita, with an average of 8,980 kWh per customer per year. This was followed by the Railbelt region with 7,118 kWh per capita and the Rural Remote region with 4,869 kWh per capita. Overall, each region has seen reductions in consumption per capita, which may reflect improvements in energy efficient technologies and energy efficiency behaviors.\n[Figure. Average Residential Sales per Customer]",
+    "crumbs": [
+      "Consumption"
+    ]
+  },
+  {
+    "objectID": "consumption.html#general-overview",
+    "href": "consumption.html#general-overview",
+    "title": "Electricity Consumption",
+    "section": "",
+    "text": "The data presented in this section is from calendar years 2011 to 2019. More recent data has been omitted due to issues with data completeness and validity.\nAcross the state, electricity sales (herein referred to as consumption), has fallen when comparing the 2011 and 2019 calendar years. To visualize this trend, we look at the percentage changes from 2011 to 2019 in electricity consumption by customer class and plot them in the following figure. Statewide electricity consumption by the residential sector decreased 10.86% from 2,141 GWh in 2011 to 1,909 GWh in 2019. The commercial sector also saw a decrease of 6.34% from 2,758 GWh in 2011 to 2,583 GWh in 2019. Statewide electricity consumption for the ‘Other’ customer class decreased 7.46% from 1,378 GWh in 2011 to 1,275 GWh in 2019.1\n[Figure. Change in sales by customer class, statewide, 2011 to 2019]\nWe also examine the change in the number of customer accounts across the state. The total number of customer accounts in the state increased 6.15% from approximately 326,402 to 346,476. We plot the percentage increases in customer accounts by category in the following figure. Residential accounts across the state increased 5.22% from approximately 275,473 to 289,843. The number of commercial accounts across the state increased 11.77% from 46,410 to 51,875. Finally, the number of other accounts across the state has increased 14.87% from approximately 4,518 to 5,190.\n[Figure. Change in customer accounts by class, statewide, 2011 to 2019]\nThe following table shows the average annual electricity consumption for each of the regions. The Coastal region led the state in consumption per capita, with an average of 8,980 kWh per customer per year. This was followed by the Railbelt region with 7,118 kWh per capita and the Rural Remote region with 4,869 kWh per capita. Overall, each region has seen reductions in consumption per capita, which may reflect improvements in energy efficient technologies and energy efficiency behaviors.\n[Figure. Average Residential Sales per Customer]",
+    "crumbs": [
+      "Consumption"
+    ]
+  },
+  {
+    "objectID": "consumption.html#coastal",
+    "href": "consumption.html#coastal",
+    "title": "Electricity Consumption",
+    "section": "Coastal",
+    "text": "Coastal\nTo estimate the average yearly growth rate in each customer class, we calculate the cumulative compound average growth rate (CAGR). From 2011 to 2019, the coastal region saw an average yearly growth rate of -0.56% for residential sales, -0.63% for commercial sales, and -0.76% for all other sales. The following figure shows these sales in GWh for each year.\n[Figure. Delivered electricity by customer class, Coastal Region]\nWhile customer sales fell overall, customer accounts in the Coastal region increased for all customer classes. The following figure shows the trend in customer accounts by class for the Coastal region. The average yearly growth rate in customer accounts was 0.55% for the residential class, 1.43% for the commercial class, and 0.73% for the other class.",
+    "crumbs": [
+      "Consumption"
+    ]
+  },
+  {
+    "objectID": "consumption.html#railbelt",
+    "href": "consumption.html#railbelt",
+    "title": "Electricity Consumption",
+    "section": "Railbelt",
+    "text": "Railbelt\nFrom 2011 to 2019, the Railbelt region saw an average yearly growth rate of -1.71% for residential sales, -1.27% for commercial sales, and -1.31% for all other sales. The following figure shows these sales in GWh for each year.\n[Figure. Delivered electricity by customer class, Railbelt Region]\nThe trends in the number of customer accounts by class are visualized in the following figure. The average yearly growth rate in customer accounts on the Railbelt was 0.60% for the residential class, 1.37% for the commercial class, and -1.64% for the other class.\n[Figure X. Number of Customer Accounts, Railbelt Region]",
+    "crumbs": [
+      "Consumption"
+    ]
+  },
+  {
+    "objectID": "consumption.html#rural-remote",
+    "href": "consumption.html#rural-remote",
+    "title": "Electricity Consumption",
+    "section": "Rural Remote",
+    "text": "Rural Remote\nFrom 2011 to 2019, the Rural Remote region saw an average yearly growth rate of -0.46% for residential sales, 2.86% for commercial sales, and 2.68% for all other sales. Positive growth rates for the commercial and other customer classes are unique to the rural remote energy region as all other regions saw average yearly declines in sales. The following figure shows these sales in GWh for each year.\n[Figure. Delivered electricity by customer class, Rural Remote Region]\nThe trends in the number of customer accounts by class are visualized in the following figure. The average yearly growth rate in customer accounts in the Rural Remote region was 1.11% for the residential class, 1.46% for the commercial class, and 2.74% for the other class.\n[Figure. Number of Customer Accounts, Rural Remote Region]",
+    "crumbs": [
+      "Consumption"
+    ]
+  },
+  {
+    "objectID": "consumption.html#footnotes",
+    "href": "consumption.html#footnotes",
+    "title": "Electricity Consumption",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\nFor EIA reported data, the Other group includes industrial and transportation customers. For PCE reported data, it includes community and government accounts. No industrial accounts were reported in the PCE data.↩︎",
+    "crumbs": [
+      "Consumption"
+    ]
+  },
+  {
+    "objectID": "methods.html",
+    "href": "methods.html",
+    "title": "Data Analysis Methods",
+    "section": "",
+    "text": "The data in this report was collected from a variety of sources and are listed below. Many electric utilities throughout the state are not required to submit annual reports to the federal government due to their size and/or number of customers. Therefore, our data sources encompass federal, state, commercial, and local filings as well as direct communications with utilities and state program managers. Each section of the report pulls data from a variety of these sources. The data was downloaded directly from the original source and concatenated to develop a dataset for this report. In some cases, a single observation is derived from multiple sources due to reporting limitations.\nBelow are relevant sources of data for the report.\n\n\n\nEnergy Information Administration\n\nEIA-860\nEIA-861\nEIA-923\n\nFederal Energy Regulatory Commission\n\nForm 1\n\n\n\n\n\n\nAlaska Energy Authority\n\nPower Cost Equalization Program Utility Monthly Reports\n\nRegulatory Authority of Alaska\n\nAnnual filings\n\n\n\n\n\n\nAlaska Energy Authority\n\nHydro/Wind Program Managers\nVillage and Powerhouse Assessments\n\nElectric Utilities\n\n\n\n\nAn Alaska engineering firm, DOWL, was hired to do the preliminary compilation of data and to develop the Excel workbooks that support this report. This step involved careful cross-referencing of assets between the various data sources and error checking by domain experts. At this point, aggregate calculations were created to match the tables found in previous Alaska Energy Statistics Reports. Data in this report were derived from those workbooks exported to CSV and SQLite formats; the original workbooks are available upon request.",
+    "crumbs": [
+      "Methods"
+    ]
+  },
+  {
+    "objectID": "methods.html#compilation",
+    "href": "methods.html#compilation",
+    "title": "Data Analysis Methods",
+    "section": "",
+    "text": "An Alaska engineering firm, DOWL, was hired to do the preliminary compilation of data and to develop the Excel workbooks that support this report. This step involved careful cross-referencing of assets between the various data sources and error checking by domain experts. At this point, aggregate calculations were created to match the tables found in previous Alaska Energy Statistics Reports. Data in this report were derived from those workbooks exported to CSV and SQLite formats; the original workbooks are available upon request.",
+    "crumbs": [
+      "Methods"
+    ]
+  },
+  {
+    "objectID": "credits.html",
+    "href": "credits.html",
+    "title": "Credits",
+    "section": "",
+    "text": "The Alaska Electrical Trends web book has been produced by the Alaska Center for Energy and Power (ACEP) at the University of Alaska Fairbanks (UAF). It is a collaboration between data scientists, researchers, and policy experts.",
+    "crumbs": [
+      "About the Team"
+    ]
+  },
+  {
+    "objectID": "credits.html#data-and-cyberinfrastructure-management-dcm-team",
+    "href": "credits.html#data-and-cyberinfrastructure-management-dcm-team",
+    "title": "Credits",
+    "section": "Data and Cyberinfrastructure Management (DCM) Team",
+    "text": "Data and Cyberinfrastructure Management (DCM) Team\nACEP’s DCM Team  includes software developers, mathematicians, spatial analysts, economists, open science enthusiasts, and experts in information security and the deployment of computer infrastructure. Together, DCM creates stable and secure pipelines for data from collection to publication. These DCM members generated figures, wrote text, and coded this web book:\n\nJesse Kaczmarski\nIan MacDougall\nElizabeth (Liz) Dobbins\nDayne Broderson",
+    "crumbs": [
+      "About the Team"
+    ]
+  },
+  {
+    "objectID": "credits.html#energy-transitions-initiative-eti-team",
+    "href": "credits.html#energy-transitions-initiative-eti-team",
+    "title": "Credits",
+    "section": "Energy Transitions Initiative (ETI) Team",
+    "text": "Energy Transitions Initiative (ETI) Team\nACEP’s ETI is …\n\nBrittany Smart\nGwen Holdmann\nErika Boice",
+    "crumbs": [
+      "About the Team"
+    ]
+  },
+  {
+    "objectID": "credits.html#associated-researchers-and-commentators",
+    "href": "credits.html#associated-researchers-and-commentators",
+    "title": "Credits",
+    "section": "Associated Researchers and Commentators",
+    "text": "Associated Researchers and Commentators\n\nNeil McMahon, Project Manager, DOWL\nSteve Colt, ACEP\nSara Fisher-Goad, UAF’s Office of the Vice Chancellor for Research\nShivani Mathur, ACEP",
+    "crumbs": [
+      "About the Team"
     ]
   },
   {
@@ -100,93 +307,6 @@
     ]
   },
   {
-    "objectID": "methods.html",
-    "href": "methods.html",
-    "title": "Data Analysis Methods",
-    "section": "",
-    "text": "The data in this report was collected from a variety of sources and are listed below. Many electric utilities throughout the state are not required to submit annual reports to the federal government due to their size and/or number of customers. Therefore, our data sources encompass federal, state, commercial, and local filings as well as direct communications with utilities and state program managers. Each section of the report pulls data from a variety of these sources. The data was downloaded directly from the original source and concatenated to develop a dataset for this report. In some cases, a single observation is derived from multiple sources due to reporting limitations.\nBelow are relevant sources of data for the report.\n\n\n\nEnergy Information Administration\n\nEIA-860\nEIA-861\nEIA-923\n\nFederal Energy Regulatory Commission\n\nForm 1\n\n\n\n\n\n\nAlaska Energy Authority\n\nPower Cost Equalization Program Utility Monthly Reports\n\nRegulatory Authority of Alaska\n\nAnnual filings\n\n\n\n\n\n\nAlaska Energy Authority\n\nHydro/Wind Program Managers\nVillage and Powerhouse Assessments\n\nElectric Utilities\n\n\n\n\nAn Alaska engineering firm, DOWL, was hired to do the preliminary compilation of data and to develop the Excel workbooks that support this report. This step involved careful cross-referencing of assets between the various data sources and error checking by domain experts. At this point, aggregate calculations were created to match the tables found in previous Alaska Energy Statistics Reports. Data in this report were derived from those workbooks exported to CSV and SQLite formats; the original workbooks are available upon request.",
-    "crumbs": [
-      "Methods"
-    ]
-  },
-  {
-    "objectID": "methods.html#compilation",
-    "href": "methods.html#compilation",
-    "title": "Data Analysis Methods",
-    "section": "",
-    "text": "An Alaska engineering firm, DOWL, was hired to do the preliminary compilation of data and to develop the Excel workbooks that support this report. This step involved careful cross-referencing of assets between the various data sources and error checking by domain experts. At this point, aggregate calculations were created to match the tables found in previous Alaska Energy Statistics Reports. Data in this report were derived from those workbooks exported to CSV and SQLite formats; the original workbooks are available upon request.",
-    "crumbs": [
-      "Methods"
-    ]
-  },
-  {
-    "objectID": "test.html",
-    "href": "test.html",
-    "title": "Map",
-    "section": "",
-    "text": "stdlib = require(\"@observablehq/stdlib\")\nd3 = require(\"d3@7\")\n\nL = require('leaflet@1.9.4')\nhtml`&lt;link href='${resolve('leaflet@1.2.0/dist/leaflet.css')}' rel='stylesheet' /&gt;`\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nbootstrap=require(\"bootstrap\")\ncss=html`&lt;link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css\" integrity=\"sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx\" crossorigin=\"anonymous\"&gt;`\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nmap = {\n    // You'll often see Leaflet examples initializing a map like L.map('map'),\n    // which tells the library to look for a div with the id 'map' on the page.\n    // In Observable, we instead create a div from scratch in this cell, so it's\n    // completely self-contained.\n    let container = DOM.element('div', { style: `width:${width}px;height:${width/1.6}px` });\n\n    // Note that I'm yielding the container pretty early here: this allows the\n    // div to be placed on the page. This is important, because Leaflet uses\n    // the div's .offsetWidth and .offsetHeight to size the map. If I were\n    // to only return the container at the end of this method, Leaflet might\n    // get the wrong idea about the map's size.\n    yield container;\n\n    // Now we create a map object and add a layer to it.\n    let map = L.map(container).setView([58.35175294670148, -134.6442463060413], 13);\n\n    let hillshade = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}', \n        {attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ, TomTom, Intermap, iPC, USGS, FAO, NPS, NRCAN, GeoBase, Kadaster NL, Ordnance Survey, Esri Japan, METI, Esri China (Hong Kong), and the GIS User Community'\n        });\n  \n    hillshade.addTo(map);\n\n\n}\n\n\n\n\n\n\n\n\n\n Back to top"
-  },
-  {
-    "objectID": "credits.html",
-    "href": "credits.html",
-    "title": "Credits",
-    "section": "",
-    "text": "The Alaska Electrical Trends web book has been produced by the Alaska Center for Energy and Power (ACEP) at the University of Alaska Fairbanks (UAF). It is a collaboration between data scientists, researchers, and policy experts.",
-    "crumbs": [
-      "About the Team"
-    ]
-  },
-  {
-    "objectID": "credits.html#data-and-cyberinfrastructure-management-dcm-team",
-    "href": "credits.html#data-and-cyberinfrastructure-management-dcm-team",
-    "title": "Credits",
-    "section": "Data and Cyberinfrastructure Management (DCM) Team",
-    "text": "Data and Cyberinfrastructure Management (DCM) Team\nACEP’s DCM Team  includes software developers, mathematicians, spatial analysts, economists, open science enthusiasts, and experts in information security and the deployment of computer infrastructure. Together, DCM creates stable and secure pipelines for data from collection to publication. These DCM members generated figures, wrote text, and coded this web book:\n\nJesse Kaczmarski\nIan MacDougall\nElizabeth (Liz) Dobbins\nDayne Broderson",
-    "crumbs": [
-      "About the Team"
-    ]
-  },
-  {
-    "objectID": "credits.html#energy-transitions-initiative-eti-team",
-    "href": "credits.html#energy-transitions-initiative-eti-team",
-    "title": "Credits",
-    "section": "Energy Transitions Initiative (ETI) Team",
-    "text": "Energy Transitions Initiative (ETI) Team\nACEP’s ETI is …\n\nBrittany Smart\nGwen Holdmann\nErika Boice",
-    "crumbs": [
-      "About the Team"
-    ]
-  },
-  {
-    "objectID": "credits.html#associated-researchers-and-commentators",
-    "href": "credits.html#associated-researchers-and-commentators",
-    "title": "Credits",
-    "section": "Associated Researchers and Commentators",
-    "text": "Associated Researchers and Commentators\n\nNeil McMahon, Project Manager, DOWL\nSteve Colt, ACEP\nSara Fisher-Goad, UAF’s Office of the Vice Chancellor for Research\nShivani Mathur, ACEP",
-    "crumbs": [
-      "About the Team"
-    ]
-  },
-  {
-    "objectID": "capacity.html",
-    "href": "capacity.html",
-    "title": "Alaska Generation Capacity",
-    "section": "",
-    "text": "Generation capacity represents the maximum amount of electricity that can be generated at any given time dependent on certain conditions. The combination of generation sources is often referred to as the capacity mix. Changes in the capacity mix over time reflect decisions to build and retire generators. These decisions are a result of shifting costs, technological innovations, the normal aging of the generation fleet, and/or stakeholder policies. Due to data limitations, we show capacity levels for calendar years 2011-2013, 2018, and 2021. While we cannot observe year-to-year trends, there are enough years of data to visualize capacity trends from 2011 to 2021.\nWe begin this section by showcasing the increases in total capacity across the state. In 2011, it is estimated that the total statewide electricity generation capacity was 2.2 GW. We estimate that this has increased to approximately 3.16 GW in 2021 based on best available data. This represents an increase of 966.26 MW, or 44 percent. To illustrate this example, we show a stacked area chart below that showcases growth over time for various technologies.1\n\ncap_data = FileAttachment(\"data/working/capacity/capacity_long.csv\").csv({ typed: true })\n\nPlot.plot({\n  // Configure the plot\n  title: \"Capacity changes, Statewide\",\n  insetLeft: 0,\n  insetRight: 0,\n  \n  // Configure the x-axis\n  x: {\n    tickFormat: \"d\",\n    label: \"Year\",\n    //domain: [2011,2012,2013,2018,2021]\n  },\n  // Configure the y-axis\n  y: {\n    grid: true,\n    label: \"Capacity (MW)\"\n  },\n\n  // Stacked area plot\n  marks: [\n    Plot.areaY(cap_data,\n      Plot.groupX(\n        {\n          y: \"sum\"\n        },\n        {\n          x: \"year\",\n          y: \"capacity\",\n          fill: \"prime_mover\",\n          order: [\"Fossil Turbines\", \"Recip Engines\", \"Hydro\", \"Wind\",\"Utility Solar\",\"Rooftop Solar\",\"Storage\",\"Landfill Gas\"],\n          tip: {format: {x: \"d\"}}\n        }\n      )\n    ),\n    Plot.ruleY([0])\n  ],\n  \n  // Configure the color scheme\n  color: {\n        domain: [\"Fossil Turbines\", \"Recip Engines\", \"Hydro\", \"Wind\",\"Utility Solar\",\"Rooftop Solar\",\"Storage\",\"Landfill Gas\"],\n        range: [\"#606571\", \"#9da7bf\", \"#00a1b7\", \"#F79646\", \"#fad900\",\"#9BBB59\",\"#71346a\",\"#896D09\"],\n        legend: true\n    }\n})",
-    "crumbs": [
-      "Capacity"
-    ]
-  },
-  {
-    "objectID": "capacity.html#footnotes",
-    "href": "capacity.html#footnotes",
-    "title": "Alaska Generation Capacity",
-    "section": "Footnotes",
-    "text": "Footnotes\n\n\nPrime movers are categorized as follows. Fossil turbines include combined cycle turbines, gas turbines, and steam turbines. Reciprocating engines include internal combustion engines. Hydro includes hydraulic turbines and hydrokinetics. Wind includes wind turbines. Utility solar includes utility-owned photovoltaic (PV), and Rooftop solar includes customer-sited, behind-the-meter PV. Storage refers to batteries and flywheels.↩︎",
-    "crumbs": [
-      "Capacity"
-    ]
-  },
-  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "2024 Alaska Electricity Trends Report",
@@ -224,106 +344,6 @@
     "text": "Key Takeaways\n\nCapacity\n\nGeneration capacity on average increased across all of Alaska from 2011 to 2021.\nThe state saw large increases in renewable energy capacity, storage, and on-demand peaking units.\n\n\n\nGeneration\n\nNet generation has remained relatively stable\nThe Coastal region generated more power from wind and hydro, but less from oil in 2021 than in 2011.\nThe Railbelt region generated more power from wind, hydro, coal, and solar, but less from oil and gas in 2021 than in 2011.\nThe Rural Remote region generated more power from wind and solar, but less from oil and hydro in 2021 than in 2011.\nWe have seen significant increases in the usage of utility-scale battery storage.\n\n\n\nConsumption\n\nElectricity consumption has fallen for all customer classes, with residential customers seeing the most reductions.\nThe number of customer accounts have continued to increase throughout the state.\nPer capita consumption for the residential sector is highest in the Coastal region and lowest in the Rural Remote region.\n\n\n\nPrices\n\nResidential electricity rates increased on average across Alaska after adjusting for inflation, the PCE subsidy, and population weighting.\nThe region that experienced the least residential rate gain was the Coastal region with a 6% increase.\nThe region experiencing the highest residential rate gain was the Railbelt with a 26% increase.\nCommercial and Other customers in the Coastal and Rural Remote regions saw rate decreases where Commercial customers in the Railbelt region saw price increases of about 15%.\nPCE subsidies continue to dampen residential prices in the Coastal and Rural Remote regions.",
     "crumbs": [
       "Summary"
-    ]
-  },
-  {
-    "objectID": "acronyms.html",
-    "href": "acronyms.html",
-    "title": "Acronym Definitions",
-    "section": "",
-    "text": "These abbreviations are used throughout this report\n\nACEP: Alaska Center for Energy and Power, UAF\nAEA: Alaska Energy Authority\nBUECI: Barrow Utilities & Electric Cooperative, Inc.\nDCM: the Data and Cyberinfrastructure Management team at ACEP, UAF\nPCE: Power Cost Equalization\nEIA: Energy Information Administration\nETI: Energy Transitions Initiative, ACEP\nFERC: Federal Energy Regulatory Commission\nCAGR: Compound Annual Growth Rate\nKW: Kilowatts\nKWh: Kilowatt Hours\nMW: Megawatts\nMWh: Megawatt Hours\nGW: Gigawatts\nGWh: Gigawatt Hours\nUAF: University of Alaska Fairbanks",
-    "crumbs": [
-      "Definitions of Acronyms"
-    ]
-  },
-  {
-    "objectID": "acronyms.html#acronyms",
-    "href": "acronyms.html#acronyms",
-    "title": "Acronym Definitions",
-    "section": "",
-    "text": "These abbreviations are used throughout this report\n\nACEP: Alaska Center for Energy and Power, UAF\nAEA: Alaska Energy Authority\nBUECI: Barrow Utilities & Electric Cooperative, Inc.\nDCM: the Data and Cyberinfrastructure Management team at ACEP, UAF\nPCE: Power Cost Equalization\nEIA: Energy Information Administration\nETI: Energy Transitions Initiative, ACEP\nFERC: Federal Energy Regulatory Commission\nCAGR: Compound Annual Growth Rate\nKW: Kilowatts\nKWh: Kilowatt Hours\nMW: Megawatts\nMWh: Megawatt Hours\nGW: Gigawatts\nGWh: Gigawatt Hours\nUAF: University of Alaska Fairbanks",
-    "crumbs": [
-      "Definitions of Acronyms"
-    ]
-  },
-  {
-    "objectID": "consumption.html",
-    "href": "consumption.html",
-    "title": "Electricity Consumption",
-    "section": "",
-    "text": "The data presented in this section is from calendar years 2011 to 2019. More recent data has been omitted due to issues with data completeness and validity.\nAcross the state, electricity sales (herein referred to as consumption), has fallen when comparing the 2011 and 2019 calendar years. To visualize this trend, we look at the percentage changes from 2011 to 2019 in electricity consumption by customer class and plot them in the following figure. Statewide electricity consumption by the residential sector decreased 10.86% from 2,141 GWh in 2011 to 1,909 GWh in 2019. The commercial sector also saw a decrease of 6.34% from 2,758 GWh in 2011 to 2,583 GWh in 2019. Statewide electricity consumption for the ‘Other’ customer class decreased 7.46% from 1,378 GWh in 2011 to 1,275 GWh in 2019.1\n[Figure. Change in sales by customer class, statewide, 2011 to 2019]\nWe also examine the change in the number of customer accounts across the state. The total number of customer accounts in the state increased 6.15% from approximately 326,402 to 346,476. We plot the percentage increases in customer accounts by category in the following figure. Residential accounts across the state increased 5.22% from approximately 275,473 to 289,843. The number of commercial accounts across the state increased 11.77% from 46,410 to 51,875. Finally, the number of other accounts across the state has increased 14.87% from approximately 4,518 to 5,190.\n[Figure. Change in customer accounts by class, statewide, 2011 to 2019]\nThe following table shows the average annual electricity consumption for each of the regions. The Coastal region led the state in consumption per capita, with an average of 8,980 kWh per customer per year. This was followed by the Railbelt region with 7,118 kWh per capita and the Rural Remote region with 4,869 kWh per capita. Overall, each region has seen reductions in consumption per capita, which may reflect improvements in energy efficient technologies and energy efficiency behaviors.\n[Figure. Average Residential Sales per Customer]",
-    "crumbs": [
-      "Consumption"
-    ]
-  },
-  {
-    "objectID": "consumption.html#general-overview",
-    "href": "consumption.html#general-overview",
-    "title": "Electricity Consumption",
-    "section": "",
-    "text": "The data presented in this section is from calendar years 2011 to 2019. More recent data has been omitted due to issues with data completeness and validity.\nAcross the state, electricity sales (herein referred to as consumption), has fallen when comparing the 2011 and 2019 calendar years. To visualize this trend, we look at the percentage changes from 2011 to 2019 in electricity consumption by customer class and plot them in the following figure. Statewide electricity consumption by the residential sector decreased 10.86% from 2,141 GWh in 2011 to 1,909 GWh in 2019. The commercial sector also saw a decrease of 6.34% from 2,758 GWh in 2011 to 2,583 GWh in 2019. Statewide electricity consumption for the ‘Other’ customer class decreased 7.46% from 1,378 GWh in 2011 to 1,275 GWh in 2019.1\n[Figure. Change in sales by customer class, statewide, 2011 to 2019]\nWe also examine the change in the number of customer accounts across the state. The total number of customer accounts in the state increased 6.15% from approximately 326,402 to 346,476. We plot the percentage increases in customer accounts by category in the following figure. Residential accounts across the state increased 5.22% from approximately 275,473 to 289,843. The number of commercial accounts across the state increased 11.77% from 46,410 to 51,875. Finally, the number of other accounts across the state has increased 14.87% from approximately 4,518 to 5,190.\n[Figure. Change in customer accounts by class, statewide, 2011 to 2019]\nThe following table shows the average annual electricity consumption for each of the regions. The Coastal region led the state in consumption per capita, with an average of 8,980 kWh per customer per year. This was followed by the Railbelt region with 7,118 kWh per capita and the Rural Remote region with 4,869 kWh per capita. Overall, each region has seen reductions in consumption per capita, which may reflect improvements in energy efficient technologies and energy efficiency behaviors.\n[Figure. Average Residential Sales per Customer]",
-    "crumbs": [
-      "Consumption"
-    ]
-  },
-  {
-    "objectID": "consumption.html#coastal",
-    "href": "consumption.html#coastal",
-    "title": "Electricity Consumption",
-    "section": "Coastal",
-    "text": "Coastal\nTo estimate the average yearly growth rate in each customer class, we calculate the cumulative compound average growth rate (CAGR). From 2011 to 2019, the coastal region saw an average yearly growth rate of -0.56% for residential sales, -0.63% for commercial sales, and -0.76% for all other sales. The following figure shows these sales in GWh for each year.\n[Figure. Delivered electricity by customer class, Coastal Region]\nWhile customer sales fell overall, customer accounts in the Coastal region increased for all customer classes. The following figure shows the trend in customer accounts by class for the Coastal region. The average yearly growth rate in customer accounts was 0.55% for the residential class, 1.43% for the commercial class, and 0.73% for the other class.",
-    "crumbs": [
-      "Consumption"
-    ]
-  },
-  {
-    "objectID": "consumption.html#railbelt",
-    "href": "consumption.html#railbelt",
-    "title": "Electricity Consumption",
-    "section": "Railbelt",
-    "text": "Railbelt\nFrom 2011 to 2019, the Railbelt region saw an average yearly growth rate of -1.71% for residential sales, -1.27% for commercial sales, and -1.31% for all other sales. The following figure shows these sales in GWh for each year.\n[Figure. Delivered electricity by customer class, Railbelt Region]\nThe trends in the number of customer accounts by class are visualized in the following figure. The average yearly growth rate in customer accounts on the Railbelt was 0.60% for the residential class, 1.37% for the commercial class, and -1.64% for the other class.\n[Figure X. Number of Customer Accounts, Railbelt Region]",
-    "crumbs": [
-      "Consumption"
-    ]
-  },
-  {
-    "objectID": "consumption.html#rural-remote",
-    "href": "consumption.html#rural-remote",
-    "title": "Electricity Consumption",
-    "section": "Rural Remote",
-    "text": "Rural Remote\nFrom 2011 to 2019, the Rural Remote region saw an average yearly growth rate of -0.46% for residential sales, 2.86% for commercial sales, and 2.68% for all other sales. Positive growth rates for the commercial and other customer classes are unique to the rural remote energy region as all other regions saw average yearly declines in sales. The following figure shows these sales in GWh for each year.\n[Figure. Delivered electricity by customer class, Rural Remote Region]\nThe trends in the number of customer accounts by class are visualized in the following figure. The average yearly growth rate in customer accounts in the Rural Remote region was 1.11% for the residential class, 1.46% for the commercial class, and 2.74% for the other class.\n[Figure. Number of Customer Accounts, Rural Remote Region]",
-    "crumbs": [
-      "Consumption"
-    ]
-  },
-  {
-    "objectID": "consumption.html#footnotes",
-    "href": "consumption.html#footnotes",
-    "title": "Electricity Consumption",
-    "section": "Footnotes",
-    "text": "Footnotes\n\n\nFor EIA reported data, the Other group includes industrial and transportation customers. For PCE reported data, it includes community and government accounts. No industrial accounts were reported in the PCE data.↩︎",
-    "crumbs": [
-      "Consumption"
-    ]
-  },
-  {
-    "objectID": "historic_reports.html",
-    "href": "historic_reports.html",
-    "title": "Historical Electric Power Statistics Reports",
-    "section": "",
-    "text": "For a description of previous reports that have examined electric power trends in Alaska, please see About this Report. Below is an exhaustive list of links to these reports over time. Notably, we omit reports that include projections such as the State of Alaska Energy Reports/Plans.\n\nLinks to Historical Reports\n\n\nPublication Year\nData Years\nData Year Type\nAuthoring Insitution\nPublication Title\nType\nPersistent Links\n\n\n\n\n1969\n1968\nFiscal\nUnited States Department of the Interior, Alaska Power Administration\nFirst Annual Report\nReport\nFirst Annual Report\n\n\n1971\n1960-1969\nCalendar\nUnited States Department of the Interior, Alaska Power Administration\nAlaska Electric Power Statistics 1960 - 1969\nReport\nAlaska Electric Power Statistics 1960 - 1969\n\n\n1972\n1960-1970\nCalendar\nUnited States Department of the Interior, Alaska Power Administration\nAlaska Electric Power Statistics 1960 - 1970\nReport\nAlaska Electric Power Statistics 1960 - 1970\n\n\n1974\n1960-1973\nCalendar\nUnited States Department of the Interior, Alaska Power Administration\nAlaska Electric Power Statistics 1960 - 1973\nReport\nAlaska Electric Power Statistics 1960 - 1973\n\n\n1976\n1960-1975\nCalendar\nUnited States Department of the Interior, Alaska Power Administration\nAlaska Electric Power Statistics 1960 - 1975\nReport\nAlaska Electric Power Statistics 1960 - 1975\n\n\n1977\n1960-1976\nCalendar\nUnited States Department of the Interior, Alaska Power Administration\nAlaska Electric Power Statistics 1960 - 1976\nReport\nAlaska Electric Power Statistics 1960 - 1976\n\n\n1981\n1960-1980\nCalendar\nUnited States Department of Energy, Alaska Power Administration\nAlaska Electric Power Statistics 1960 - 1980\nReport\nAlaska Electric Power Statistics 1960 - 1980\n\n\n1983\n1960-1982\nCalendar\nUnited States Department of Energy, Alaska Power Administration\nAlaska Electric Power Statistics 1960 - 1982\nReport\nAlaska Electric Power Statistics 1960 - 1982\n\n\n1984\n1960-1983\nCalendar\nState of Alaska, Alaska Power Authority\nAlaska Electric Power Statistics 1960 - 1983\nReport\nAlaska Electric Power Statistics 1960 - 1983\n\n\n1985\n1960-1984\nCalendar\nState of Alaska, Alaska Power Authority\nAlaska Electric Power Statistics 1960 - 1984\nReport\nAlaska Electric Power Statistics 1960 - 1984\n\n\n1986\n1960-1985\nCalendar\nState of Alaska, Alaska Power Authority\nAlaska Electric Power Statistics 1960 - 1985\nReport\nAlaska Electric Power Statistics 1960 - 1985\n\n\n1987\n1960-1986\nCalendar\nState of Alaska, Alaska Power Authority\nAlaska Electric Power Statistics 1960 - 1986\nReport\nAlaska Electric Power Statistics 1960 - 1986\n\n\n1988\n1960-1987\nCalendar\nState of Alaska, Alaska Power Authority\nAlaska Electric Power Statistics 1960 - 1987\nReport\nAlaska Electric Power Statistics 1960 - 1987\n\n\n1989\n1960-1988\nCalendar\nState of Alaska, Alaska Energy Authority\nAlaska Electric Power Statistics 1960 - 1988\nReport\nAlaska Electric Power Statistics 1960 - 1988\n\n\n1990\n1960-1989\nCalendar\nState of Alaska, Alaska Energy Authority\nAlaska Electric Power Statistics 1960 - 1989\nReport\nAlaska Electric Power Statistics 1960 - 1989\n\n\n1991\n1960-1990\nCalendar\nState of Alaska, Alaska Energy Authority\nAlaska Electric Power Statistics 1960 - 1990\nReport\nAlaska Electric Power Statistics 1960 - 1990\n\n\n1992\n1960-1991\nCalendar\nState of Alaska, Alaska Energy Authority\nAlaska Electric Power Statistics 1960 - 1991\nReport\nAlaska Electric Power Statistics 1960 - 1991\n\n\n1993\n1960-1992\nCalendar\nAlaska Systems Coordinating Council; State of Alaska, Department of Community and Regional Affairs, Division of Energy\nAlaska Electric Power Statistics 1960 - 1992\nReport\nAlaska Electric Power Statistics 1960 - 1992\n\n\n1994\n1960-1993\nCalendar\nAlaska Systems Coordinating Council; State of Alaska, Department of Community and Regional Affairs, Division of Energy\nAlaska Electric Power Statistics 1960 - 1993\nReport\nAlaska Electric Power Statistics 1960 - 1993\n\n\n1995\n1960-1994\nCalendar\nAlaska Systems Coordinating Council; State of Alaska, Department of Community and Regional Affairs, Division of Energy\nAlaska Electric Power Statistics 1960 - 1994\nReport\nAlaska Electric Power Statistics 1960 - 1994\n\n\n1996\n1960-1995\nCalendar\nAlaska Systems Coordinating Council; State of Alaska, Department of Community and Regional Affairs, Division of Energy\nAlaska Electric Power Statistics 1960 - 1995\nReport\nAlaska Electric Power Statistics 1960 - 1995\n\n\n2003\n1960-2001\nCalendar\nUniversity of Alaska Anchorage, Institute of Social and Economic Research\nAlaska Electric Power Statistics (with Alaska Energy Balance) 1960 - 2001\nReport\nAlaska Electric Power Statistics (with Alaska Energy Balance) 1960 - 2001\n\n\n2011\n1960-2008\nCalendar\nUniversity of Alaska Anchorage, Institute of Social and Economic Research\nAlaska Energy Statistics 1960 - 2008\nReport, Excel Workbook\nAlaska Energy Statistics 1960 - 2008\n\n\n2011\n1960-2009\nCalendar\nUniversity of Alaska Anchorage, Institute of Social and Economic Research\nAlaska Energy Statistics 1960 - 2009\nReport, Excel Workbook\nAlaska Energy Statistics 1960 - 2009\n\n\n2012\n1960-2010\nCalendar\nUniversity of Alaska Anchorage, Institute of Social and Economic Research\nAlaska Energy Statistics 1960 - 2010 Final Report\nReport, Excel Workbook\nAlaska Energy Statistics 1960 - 2010 Final Report\n\n\n2013\n1960-2011\nCalendar\nUniversity of Alaska Anchorage, Institute of Social and Economic Research\nAlaska Energy Statistics 1960 - 2011 Final Report\nReport, Excel Workbook\nAlaska Energy Statistics 1960 - 2011 Final Report\n\n\n2015\n2012\nCalendar\nState of Alaska, Alaska Energy Authority\n2012 Alaska Energy Statistics Final Report\nReport\n2012 Alaska Energy Statistics Final Report",
-    "crumbs": [
-      "Historical Reports"
-    ]
-  },
-  {
-    "objectID": "historic_reports.html#historical-electric-power-reports",
-    "href": "historic_reports.html#historical-electric-power-reports",
-    "title": "Historical Electric Power Statistics Reports",
-    "section": "",
-    "text": "For a description of previous reports that have examined electric power trends in Alaska, please see About this Report. Below is an exhaustive list of links to these reports over time. Notably, we omit reports that include projections such as the State of Alaska Energy Reports/Plans.\n\nLinks to Historical Reports\n\n\nPublication Year\nData Years\nData Year Type\nAuthoring Insitution\nPublication Title\nType\nPersistent Links\n\n\n\n\n1969\n1968\nFiscal\nUnited States Department of the Interior, Alaska Power Administration\nFirst Annual Report\nReport\nFirst Annual Report\n\n\n1971\n1960-1969\nCalendar\nUnited States Department of the Interior, Alaska Power Administration\nAlaska Electric Power Statistics 1960 - 1969\nReport\nAlaska Electric Power Statistics 1960 - 1969\n\n\n1972\n1960-1970\nCalendar\nUnited States Department of the Interior, Alaska Power Administration\nAlaska Electric Power Statistics 1960 - 1970\nReport\nAlaska Electric Power Statistics 1960 - 1970\n\n\n1974\n1960-1973\nCalendar\nUnited States Department of the Interior, Alaska Power Administration\nAlaska Electric Power Statistics 1960 - 1973\nReport\nAlaska Electric Power Statistics 1960 - 1973\n\n\n1976\n1960-1975\nCalendar\nUnited States Department of the Interior, Alaska Power Administration\nAlaska Electric Power Statistics 1960 - 1975\nReport\nAlaska Electric Power Statistics 1960 - 1975\n\n\n1977\n1960-1976\nCalendar\nUnited States Department of the Interior, Alaska Power Administration\nAlaska Electric Power Statistics 1960 - 1976\nReport\nAlaska Electric Power Statistics 1960 - 1976\n\n\n1981\n1960-1980\nCalendar\nUnited States Department of Energy, Alaska Power Administration\nAlaska Electric Power Statistics 1960 - 1980\nReport\nAlaska Electric Power Statistics 1960 - 1980\n\n\n1983\n1960-1982\nCalendar\nUnited States Department of Energy, Alaska Power Administration\nAlaska Electric Power Statistics 1960 - 1982\nReport\nAlaska Electric Power Statistics 1960 - 1982\n\n\n1984\n1960-1983\nCalendar\nState of Alaska, Alaska Power Authority\nAlaska Electric Power Statistics 1960 - 1983\nReport\nAlaska Electric Power Statistics 1960 - 1983\n\n\n1985\n1960-1984\nCalendar\nState of Alaska, Alaska Power Authority\nAlaska Electric Power Statistics 1960 - 1984\nReport\nAlaska Electric Power Statistics 1960 - 1984\n\n\n1986\n1960-1985\nCalendar\nState of Alaska, Alaska Power Authority\nAlaska Electric Power Statistics 1960 - 1985\nReport\nAlaska Electric Power Statistics 1960 - 1985\n\n\n1987\n1960-1986\nCalendar\nState of Alaska, Alaska Power Authority\nAlaska Electric Power Statistics 1960 - 1986\nReport\nAlaska Electric Power Statistics 1960 - 1986\n\n\n1988\n1960-1987\nCalendar\nState of Alaska, Alaska Power Authority\nAlaska Electric Power Statistics 1960 - 1987\nReport\nAlaska Electric Power Statistics 1960 - 1987\n\n\n1989\n1960-1988\nCalendar\nState of Alaska, Alaska Energy Authority\nAlaska Electric Power Statistics 1960 - 1988\nReport\nAlaska Electric Power Statistics 1960 - 1988\n\n\n1990\n1960-1989\nCalendar\nState of Alaska, Alaska Energy Authority\nAlaska Electric Power Statistics 1960 - 1989\nReport\nAlaska Electric Power Statistics 1960 - 1989\n\n\n1991\n1960-1990\nCalendar\nState of Alaska, Alaska Energy Authority\nAlaska Electric Power Statistics 1960 - 1990\nReport\nAlaska Electric Power Statistics 1960 - 1990\n\n\n1992\n1960-1991\nCalendar\nState of Alaska, Alaska Energy Authority\nAlaska Electric Power Statistics 1960 - 1991\nReport\nAlaska Electric Power Statistics 1960 - 1991\n\n\n1993\n1960-1992\nCalendar\nAlaska Systems Coordinating Council; State of Alaska, Department of Community and Regional Affairs, Division of Energy\nAlaska Electric Power Statistics 1960 - 1992\nReport\nAlaska Electric Power Statistics 1960 - 1992\n\n\n1994\n1960-1993\nCalendar\nAlaska Systems Coordinating Council; State of Alaska, Department of Community and Regional Affairs, Division of Energy\nAlaska Electric Power Statistics 1960 - 1993\nReport\nAlaska Electric Power Statistics 1960 - 1993\n\n\n1995\n1960-1994\nCalendar\nAlaska Systems Coordinating Council; State of Alaska, Department of Community and Regional Affairs, Division of Energy\nAlaska Electric Power Statistics 1960 - 1994\nReport\nAlaska Electric Power Statistics 1960 - 1994\n\n\n1996\n1960-1995\nCalendar\nAlaska Systems Coordinating Council; State of Alaska, Department of Community and Regional Affairs, Division of Energy\nAlaska Electric Power Statistics 1960 - 1995\nReport\nAlaska Electric Power Statistics 1960 - 1995\n\n\n2003\n1960-2001\nCalendar\nUniversity of Alaska Anchorage, Institute of Social and Economic Research\nAlaska Electric Power Statistics (with Alaska Energy Balance) 1960 - 2001\nReport\nAlaska Electric Power Statistics (with Alaska Energy Balance) 1960 - 2001\n\n\n2011\n1960-2008\nCalendar\nUniversity of Alaska Anchorage, Institute of Social and Economic Research\nAlaska Energy Statistics 1960 - 2008\nReport, Excel Workbook\nAlaska Energy Statistics 1960 - 2008\n\n\n2011\n1960-2009\nCalendar\nUniversity of Alaska Anchorage, Institute of Social and Economic Research\nAlaska Energy Statistics 1960 - 2009\nReport, Excel Workbook\nAlaska Energy Statistics 1960 - 2009\n\n\n2012\n1960-2010\nCalendar\nUniversity of Alaska Anchorage, Institute of Social and Economic Research\nAlaska Energy Statistics 1960 - 2010 Final Report\nReport, Excel Workbook\nAlaska Energy Statistics 1960 - 2010 Final Report\n\n\n2013\n1960-2011\nCalendar\nUniversity of Alaska Anchorage, Institute of Social and Economic Research\nAlaska Energy Statistics 1960 - 2011 Final Report\nReport, Excel Workbook\nAlaska Energy Statistics 1960 - 2011 Final Report\n\n\n2015\n2012\nCalendar\nState of Alaska, Alaska Energy Authority\n2012 Alaska Energy Statistics Final Report\nReport\n2012 Alaska Energy Statistics Final Report",
-    "crumbs": [
-      "Historical Reports"
     ]
   },
   {
@@ -387,43 +407,23 @@
     ]
   },
   {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About this Report",
+    "objectID": "acronyms.html",
+    "href": "acronyms.html",
+    "title": "Acronym Definitions",
     "section": "",
-    "text": "This Alaska Electrical Trends Report (AETR) Web Book has been produced by the Alaska Center for Energy and Power (ACEP) at the University of Alaska Fairbanks (UAF). It is designed to be interactive and dynamically updated when new data becomes available.\nThroughout the years, several agencies have prepared and published reports and data compilations on energy use in Alaska. AETR is complimentary to those prior reports, but is not a direct successor to them because it focuses on electricity only.",
+    "text": "These abbreviations are used throughout this report\n\nACEP: Alaska Center for Energy and Power, UAF\nAEA: Alaska Energy Authority\nBUECI: Barrow Utilities & Electric Cooperative, Inc.\nDCM: the Data and Cyberinfrastructure Management team at ACEP, UAF\nPCE: Power Cost Equalization\nEIA: Energy Information Administration\nETI: Energy Transitions Initiative, ACEP\nFERC: Federal Energy Regulatory Commission\nCAGR: Compound Annual Growth Rate\nKW: Kilowatts\nKWh: Kilowatt Hours\nMW: Megawatts\nMWh: Megawatt Hours\nGW: Gigawatts\nGWh: Gigawatt Hours\nUAF: University of Alaska Fairbanks",
     "crumbs": [
-      "About this Report"
+      "Definitions of Acronyms"
     ]
   },
   {
-    "objectID": "about.html#general-overview",
-    "href": "about.html#general-overview",
-    "title": "About this Report",
+    "objectID": "acronyms.html#acronyms",
+    "href": "acronyms.html#acronyms",
+    "title": "Acronym Definitions",
     "section": "",
-    "text": "This Alaska Electrical Trends Report (AETR) Web Book has been produced by the Alaska Center for Energy and Power (ACEP) at the University of Alaska Fairbanks (UAF). It is designed to be interactive and dynamically updated when new data becomes available.\nThroughout the years, several agencies have prepared and published reports and data compilations on energy use in Alaska. AETR is complimentary to those prior reports, but is not a direct successor to them because it focuses on electricity only.",
+    "text": "These abbreviations are used throughout this report\n\nACEP: Alaska Center for Energy and Power, UAF\nAEA: Alaska Energy Authority\nBUECI: Barrow Utilities & Electric Cooperative, Inc.\nDCM: the Data and Cyberinfrastructure Management team at ACEP, UAF\nPCE: Power Cost Equalization\nEIA: Energy Information Administration\nETI: Energy Transitions Initiative, ACEP\nFERC: Federal Energy Regulatory Commission\nCAGR: Compound Annual Growth Rate\nKW: Kilowatts\nKWh: Kilowatt Hours\nMW: Megawatts\nMWh: Megawatt Hours\nGW: Gigawatts\nGWh: Gigawatt Hours\nUAF: University of Alaska Fairbanks",
     "crumbs": [
-      "About this Report"
-    ]
-  },
-  {
-    "objectID": "about.html#historical-timeline-of-prior-reports",
-    "href": "about.html#historical-timeline-of-prior-reports",
-    "title": "About this Report",
-    "section": "Historical Timeline of Prior Reports",
-    "text": "Historical Timeline of Prior Reports\n\n\n\nTimeline of Energy Reports\n\n\nStarting in 1969, the first electric power trends report was published by the Alaska Power Administration. During this time, the Alaska Power Administration was a federal agency housed within the U.S. Department of the Interior. Their first publication was known as the “First Annual Report” and covered data from the 1968 fiscal year. However, this became the “Alaska Electric Power Statistics Report” in 1971 and examined data from the 1960-1969 data years. The APA continued to produce intermittent reports until 1983 when the State of Alaska established the Alaska Power Authority (APA), which later became the Alaska Energy Authority (AEA).\nUnder state direction, the APA/AEA continued to publish intermittent reports on electric power statistics until their final publication in 1992 which covered data years 1960 to 1991. To address the reporting gap, the Alaska Systems Coordinating Council in collaboration with the State of Alaska, Department of Community and Regional Affairs, Division of Energy continued generating reports until 1996 with their final report covering data years 1960 to 1995. Finally, the University of Alaska Anchorage, Institute of Social and Economic Research produced several reports with their last covering 1960 to 2012. Since then, there have been no electric power statistical reports.\nThe following table provides a summary of this timeline. This report serves to supplement the reporting gap in electric power statistics for the State of Alaska.\n\nHistorical Timeline of Reports\n\n\n\n\n\n\n\nYear Published\nInstitution\nData Coverage\n\n\n\n\n1971 to 1983\nAlaska Power Administration\n1960 to 1982\n\n\n1984 to 1988\nAlaska Power Authority\n1960 to 1987\n\n\n1989 to 1992\nAlaska Energy Authority\n1960 to 1991\n\n\n1992 to 1996\nAlaska Systems Coordinating Council; State of Alaska\n1960 to 1995\n\n\n2003, 2011 to 2015\nUniversity of Alaska Anchorage, Institute of Social and Economic Research\n1960 to 2012\n\n\n\n \nFor a full list of links to these described reports, please visit Historical Electric Power Reports.",
-    "crumbs": [
-      "About this Report"
-    ]
-  },
-  {
-    "objectID": "about.html#technical-details",
-    "href": "about.html#technical-details",
-    "title": "About this Report",
-    "section": "Technical Details",
-    "text": "Technical Details\nThe book is formatted using Quarto, an open-source scientific and technical publishing system. The template was developed by the Openscapes project, as part of their Quarto Website Tutorial.\nThe markdown files that make up the book reside in the aetr-web-book GitHub repository. The generation process is publicly accessible. Errors in the document can be flagged using GitHub issues where they can be tracked and addressed by the DCM team.\nThe book also integrates R code for data processing and figure generation. When data files are updated, manually triggering the Quarto render will update the figures automatically.",
-    "crumbs": [
-      "About this Report"
+      "Definitions of Acronyms"
     ]
   }
 ]
