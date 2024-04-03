@@ -76,6 +76,9 @@ source(file = "./scripts/weighted_prices.R")
 # Capacity
 source(file = "./scripts/capacity.R")
 
+# Consumption
+source(file = "./scripts/consumption.R")
+
 # Capacity Utilities
 # source(file = "./scripts/capacity_utilities.R")
 
@@ -106,6 +109,9 @@ write.csv(generation_data_long, file = "./generation/net_generation_long.csv", r
 
 # capacity
 write.csv(capacity_data_long, file = "./capacity/capacity_long.csv", row.names = FALSE)
+
+# consumption
+write.csv(consumption_data_long, file = "./consumption/consumption_long.csv", row.names = FALSE)
 
 
 

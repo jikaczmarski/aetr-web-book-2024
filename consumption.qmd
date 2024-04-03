@@ -3,20 +3,53 @@ title: "Electricity Consumption"
 subtitle: "Electricity Sales, 2011-2019"
 date-modified: "2024-03-13T15:39:00-08:00"
 date-format: "MMM D, YYYY [at] HH:mm z"
+output:
+    quarto::quarto_html:
+        pre_processor: quarto::observable
 ---
 
 ## General Overview
 
-Consumption needs a better intro ...
+The data presented in this section is from calendar years 2011 to 2019. More recent data has been omitted due to issues with data completeness and validity.
+
+Across the state, electricity sales (herein referred to as consumption), has fallen when comparing the 2011 and 2019 calendar years. To visualize this trend, we look at the percentage changes from 2011 to 2019 in electricity consumption by customer class and plot them in the following figure. Statewide electricity consumption by the residential sector decreased 10.86% from 2,141 GWh in 2011 to 1,909 GWh in 2019. The commercial sector also saw a decrease of 6.34% from 2,758 GWh in 2011 to 2,583 GWh in 2019. Statewide electricity consumption for the ‘Other’ customer class decreased 7.46% from 1,378 GWh in 2011 to 1,275 GWh in 2019.[^1]
+
+[^1]: For EIA reported data, the Other group includes industrial and transportation customers. For PCE reported data, it includes community and government accounts. No industrial accounts were reported in the PCE data.
+
+[Figure. Change in sales by customer class, statewide, 2011 to 2019]
+
+We also examine the change in the number of customer accounts across the state. The total number of customer accounts in the state increased 6.15% from approximately 326,402 to 346,476. We plot the percentage increases in customer accounts by category in the following figure. Residential accounts across the state increased 5.22% from approximately 275,473 to 289,843. The number of commercial accounts across the state increased 11.77% from 46,410 to 51,875. Finally, the number of other accounts across the state has increased 14.87% from approximately 4,518 to 5,190.
+
+[Figure. Change in customer accounts by class, statewide, 2011 to 2019]
+
+The following table shows the average annual electricity consumption for each of the regions. The Coastal region led the state in consumption per capita, with an average of 8,980 kWh per customer per year. This was followed by the Railbelt region with 7,118 kWh per capita and the Rural Remote region with 4,869 kWh per capita. Overall, each region has seen reductions in consumption per capita, which may reflect improvements in energy efficient technologies and energy efficiency behaviors.
+
+[Figure. Average Residential Sales per Customer]
 
 ## Coastal
 
-Put Coastal text here.
+To estimate the average yearly growth rate in each customer class, we calculate the cumulative compound average growth rate (CAGR). From 2011 to 2019, the coastal region saw an average yearly growth rate of -0.56% for residential sales, -0.63% for commercial sales, and -0.76% for all other sales. The following figure shows these sales in GWh for each year.
+
+[Figure. Delivered electricity by customer class, Coastal Region]
+
+While customer sales fell overall, customer accounts in the Coastal region increased for all customer classes. The following figure shows the trend in customer accounts by class for the Coastal region. The average yearly growth rate in customer accounts was 0.55% for the residential class, 1.43% for the commercial class, and 0.73% for the other class.
 
 ## Railbelt
 
-Put Railbelt text here.
+From 2011 to 2019, the Railbelt region saw an average yearly growth rate of -1.71% for residential sales, -1.27% for commercial sales, and -1.31% for all other sales. The following figure shows these sales in GWh for each year.
+
+[Figure. Delivered electricity by customer class, Railbelt Region]
+
+The trends in the number of customer accounts by class are visualized in the following figure. The average yearly growth rate in customer accounts on the Railbelt was 0.60% for the residential class, 1.37% for the commercial class, and -1.64% for the other class.
+
+[Figure X. Number of Customer Accounts, Railbelt Region]
 
 ## Rural Remote
 
-Put Rural Remote text here.
+From 2011 to 2019, the Rural Remote region saw an average yearly growth rate of -0.46% for residential sales, 2.86% for commercial sales, and 2.68% for all other sales. Positive growth rates for the commercial and other customer classes are unique to the rural remote energy region as all other regions saw average yearly declines in sales. The following figure shows these sales in GWh for each year.
+
+[Figure. Delivered electricity by customer class, Rural Remote Region]
+
+The trends in the number of customer accounts by class are visualized in the following figure. The average yearly growth rate in customer accounts in the Rural Remote region was 1.11% for the residential class, 1.46% for the commercial class, and 2.74% for the other class.
+
+[Figure. Number of Customer Accounts, Rural Remote Region]

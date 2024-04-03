@@ -49,9 +49,9 @@ website:
       - href: generation.qmd
         text: Net Generation
         icon: dot
-      # - href: consumption.qmd
-      #   text: Electricity Consumption
-      #   icon: dot
+      - href: consumption.qmd
+        text: Consumption
+        icon: dot
       - href: prices.qmd
         text: Price of Electricity
         icon: dot   
