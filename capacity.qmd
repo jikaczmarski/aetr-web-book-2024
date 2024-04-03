@@ -28,6 +28,10 @@ rural_remote_capacity_non_fossil <- read.csv("data/rural-remote-capacity-non-fos
 
 # Import the functions
 source("data/inline_functions.R")
+
+## Refactor
+# Import the data
+capacity_data <- read.csv("data/working/capacity/capacity_long.csv")
 ```
 
 # General Overview
@@ -45,7 +49,7 @@ cap_data = FileAttachment("data/working/capacity/capacity_long.csv").csv({ typed
 
 Plot.plot({
   // Configure the plot
-  title: "Statewide, Capacity",
+  title: "Capacity changes, Statewide",
   insetLeft: 0,
   insetRight: 0,
   
@@ -72,6 +76,7 @@ Plot.plot({
           x: "year",
           y: "capacity",
           fill: "prime_mover",
+          order: ["Fossil Turbines", "Recip Engines", "Hydro", "Wind","Utility Solar","Rooftop Solar","Storage","Landfill Gas"],
           tip: {format: {x: "d"}}
         }
       )
@@ -122,6 +127,7 @@ Plot.plot({
           x: "year",
           y: "capacity",
           fill: "prime_mover",
+          order: ["Fossil Turbines", "Recip Engines", "Hydro", "Wind","Storage"],
           tip: {format: {x: "d"}}
         }
       )
@@ -169,6 +175,7 @@ Plot.plot({
           x: "year",
           y: "capacity",
           fill: "prime_mover",
+          order: ["Hydro", "Wind","Storage"],
           tip: {format: {x: "d"}}
         }
       )
@@ -219,6 +226,7 @@ Plot.plot({
           x: "year",
           y: "capacity",
           fill: "prime_mover",
+          order: ["Fossil Turbines", "Recip Engines", "Hydro", "Wind","Utility Solar","Rooftop Solar","Storage","Landfill Gas"],
           tip: {format: {x: "d"}}
         }
       )
@@ -266,6 +274,7 @@ Plot.plot({
           x: "year",
           y: "capacity",
           fill: "prime_mover",
+          order: ["Hydro", "Wind","Utility Solar","Rooftop Solar","Storage","Landfill Gas"],
           tip: {format: {x: "d"}}
         }
       )
@@ -314,6 +323,7 @@ Plot.plot({
           x: "year",
           y: "capacity",
           fill: "prime_mover",
+          order: ["Fossil Turbines", "Recip Engines", "Hydro", "Wind","Utility Solar","Storage"],
           tip: {format: {x: "d"}}
         }
       )
@@ -361,6 +371,7 @@ Plot.plot({
           x: "year",
           y: "capacity",
           fill: "prime_mover",
+          order: ["Hydro", "Wind","Utility Solar","Storage"],
           tip: {format: {x: "d"}}
         }
       )
