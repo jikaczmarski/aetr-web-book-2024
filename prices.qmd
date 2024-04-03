@@ -62,12 +62,14 @@ Plot.plot({
     // Configure the y-axis
     y: {
       domain: [10, 60],
+      ticks: 6,
       label: "Cents per Kilowatt Hour"
     },
     
     // Configure the plot
     grid: true,
     marginRight: 70,
+    height: 600,
   
     marks: [
         Plot.line(region_weighted_prices,
@@ -263,7 +265,7 @@ Plot.plot({
     // Configure the plot
     grid: true,
     marginRight: 70,
-    height: 750,
+    height: 700,
 
     marks: [
  
