@@ -1,3 +1,161 @@
+```{r}
+# desired future inputs:  
+# community size
+# sector
+# year
+# weighted/unweighted
+```
+
+
+```{ojs}
+// active inputs
+
+// weighted/unweighted
+viewof dimension = Inputs.select(['residential_price', 'commercial_price', 'other_price'], { label: 'Sector', value: 'residential_price' })
+
+// viewof flipCoords = Inputs.toggle({ label: 'Flip', value: false })
+
+// Inputs.table(customers_pivot)
+```
+
+```{ojs}
+// hardcoded inputs here
+
+// viewof thresholds = Inputs.select([10, 20, 60], { label: 'Bins', value: 60 })
+thresholds = 40
+
+// viewof seed = Inputs.range([1, 100], { step: 1, label: 'Raw Data Seed', value: 1 })
+seed = 1
+
+// viewof rawDataSize = Inputs.range([10, 100], { value: 40, step: 10, label: 'Raw Data Size (%)' })
+rawDataSize = 20
+
+// viewof rawDataOffset = Inputs.range([0, 50], { value: 5, step: 5, label: 'Raw Data Offset (%)' })
+rawDataOffset = 5
+
+```
+
+
+
+
+```{ojs}
+Plot.plot(rainCloudX)
+
+```
+
+
+
+
+```{ojs}
+rainCloudX = ({
+  grid: true,
+  label: null,
+  marks: [
+    Plot.ruleX([0]),
+    halfViolinX,
+    rawDataX
+  ],
+  facet: {
+    data: data,
+    y: 'acep_energy_region',
+    marginRight: 80
+  },
+  x: {
+    label: "Cents per Kilowatt Hour",
+    domain: [0, 160]
+  },
+  y: {
+    ticks: 0,
+    tickFormat: d => d < 0 ? '' : d 
+  },
+  color: {
+      domain: ["Coastal", "Railbelt", "Rural Remote"],
+      range: ["#4285F4", "#34A853", "#EA4335"]
+  }
+})
+```
+
+
+```{ojs}
+halfViolinX = Plot.areaY(
+  data,
+  Plot.binX(
+    {
+      y: 'count'
+    },
+    {
+      x: dimension,
+      fill: 'acep_energy_region',
+      thresholds: thresholds,
+      curve: 'basis'
+    }
+  )
+)
+```
+
+
+```{ojs}
+rawDataX = Plot.dot(
+  data,
+  {
+	  x: dimension,
+    y: jitter(data, seed),
+    fill: 'acep_energy_region',
+    r: 1.5,
+    channels: {reporting_name: "reporting_name", year: "year"},
+    tip: true
+
+    // stroke: null
+  }
+)
+
+// tip = Plot.tip(
+//   data, Plot.pointer(
+//   {
+//   x: dimension,
+//   y: 'acep_energy_region',
+//   format: {
+//     year: true,
+//     reporting_name: true,
+//     dimension: true,
+//     filter: (d) => d.reporting_name,
+//     title: (d) => [d.reporting_name, d.year].join("\n\n")
+//     stroke: false
+//   }
+//   }
+// )
+// )
+
+```
+
+
+```{ojs}
+//| echo: false
+// appendix
+
+jitter = (data, seed) => {
+  const rng = seedrandom(seed);
+  return data.map(() => -(rng() * rawDataSize + rawDataOffset) * maxTotal / 100);
+}
+
+maxTotal = d3.max(
+  Array.from(
+    d3
+    .group(data, d => d.aea_energy_region)
+    .values()
+  )
+  .flatMap(g => bins(g.map(d => d[dimension])))
+  .map(bin => bin.length)
+)
+
+bins = d3
+  .bin()
+  .domain(d3.extent(data, d => d[dimension]))
+  .thresholds(thresholds)
+
+
+seedrandom = require('seedrandom')
+```
 
 
 
@@ -91,163 +249,12 @@ customers_pivot = tidy(
 //     ])
 // )
 
-data = prices_tidy
+data = tidy(
+  prices_tidy,
+    filter((d) => d.year < 2020),
+    filter((d) => d.reporting_name != "Lime Village"),
+    filter((d) => d.reporting_name != "Healy Lake"))
+    ;
 
-```
-
-
-
-```{r}
-# desired inputs:  
-# community size
-# sector
-# year
-# weighted/unweighted
-```
-
-
-```{ojs}
-// active inputs
-
-// weighted/unweighted
-viewof dimension = Inputs.select(['residential_price', 'commercial_price', 'other_price'], { label: 'Sector', value: 'residential_price' })
-
-// viewof flipCoords = Inputs.toggle({ label: 'Flip', value: false })
-
-// Inputs.table(customers_pivot)
-```
-
-
-```{ojs}
-// hardcoded inputs here
-
-// viewof thresholds = Inputs.select([10, 20, 60], { label: 'Bins', value: 60 })
-thresholds = 40
-
-// viewof seed = Inputs.range([1, 100], { step: 1, label: 'Raw Data Seed', value: 1 })
-seed = 1
-
-// viewof rawDataSize = Inputs.range([10, 100], { value: 40, step: 10, label: 'Raw Data Size (%)' })
-rawDataSize = 20
-
-// viewof rawDataOffset = Inputs.range([0, 50], { value: 5, step: 5, label: 'Raw Data Offset (%)' })
-rawDataOffset = 5
-
-```
-
-
-```{ojs}
-rainCloudX = ({
-  grid: true,
-  marks: [
-    Plot.ruleX([Math.floor(d3.min(data.map(d => d[dimension])))]),
-    halfViolinX,
-    rawDataX
-  ],
-  facet: {
-    data: data,
-    y: 'acep_energy_region',
-    marginRight: 80
-  },
-  y: {
-    ticks: 0,
-    tickFormat: d => d < 0 ? '' : d 
-  },
-  marginBottom: 40,
-  width: 640,
-  height: 480
-})
-```
-
-
-```{ojs}
-halfViolinX = Plot.areaY(
-  data,
-  Plot.binX(
-    {
-      y: 'count'
-    },
-    {
-      x: dimension,
-      fill: 'acep_energy_region',
-      thresholds: thresholds,
-      curve: 'basis'
-    }
-  )
-)
-```
-
-
-```{ojs}
-rawDataX = Plot.dot(
-  data,
-  {
-	  x: dimension,
-    y: jitter(data, seed),
-    fill: 'acep_energy_region',
-    r: 1.5,
-    channels: {reporting_name: "reporting_name", year: "year"},
-    tip: true
-
-    // stroke: null
-  }
-)
-
-// tip = Plot.tip(
-//   data, Plot.pointer(
-//   {
-//   x: dimension,
-//   y: 'acep_energy_region',
-//   format: {
-//     year: true,
-//     reporting_name: true,
-//     dimension: true,
-//     filter: (d) => d.reporting_name,
-//     title: (d) => [d.reporting_name, d.year].join("\n\n")
-//     stroke: false
-//   }
-//   }
-// )
-// )
-
-```
-
-
-```{ojs}
-//| echo: false
-// appendix
-
-jitter = (data, seed) => {
-  const rng = seedrandom(seed);
-  return data.map(() => -(rng() * rawDataSize + rawDataOffset) * maxTotal / 100);
-}
-
-maxTotal = d3.max(
-  Array.from(
-    d3
-    .group(data, d => d.aea_energy_region)
-    .values()
-  )
-  .flatMap(g => bins(g.map(d => d[dimension])))
-  .map(bin => bin.length)
-)
-
-bins = d3
-  .bin()
-  .domain(d3.extent(data, d => d[dimension]))
-  .thresholds(thresholds)
-
-
-seedrandom = require('seedrandom')
-```
-
-
-
-```{ojs}
-
-
-Plot.plot(rainCloudX)
-
-Inputs.table(data)
 
 ```
