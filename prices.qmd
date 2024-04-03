@@ -102,10 +102,11 @@ Plot.plot({
 
 ## Coastal
 
-The following figure shows the average price of electricity in the Coastal region for each customer class and year. Between 2011 and 2019, the region experienced decreasing prices for Commercial and Other customers, while Residential customers have seen a slight increase in price.  
+The following figure shows the average price of electricity in the Coastal region for each customer class and year. Between 2011 and 2019, the region experienced decreasing prices for Commercial and Other customers, while Residential customers have seen a slight increase in price.
 
-The average price of electricity for Residential customers in the Coastal region rose 6% from $0.17/kWh in 2011 to $0.18/kWh in 2019. The average price of electricity for Commercial customers in the Coastal region fell 5% from $0.21/kWh in 2011 to $0.20/kWh in 2019. Finally, the average price of electricity for Other customers in the Coastal region fell 15% from $0.40/kWh in 2011 to $0.34/kWh in 2019.
+The average real price (in 2021 dollars) of electricity for Residential customers in the Coastal region rose 6% from $0.17/kWh in 2011 to $0.18/kWh in 2019. The average price of electricity for Commercial customers in the Coastal region fell 5% from $0.21/kWh in 2011 to $0.20/kWh in 2019. Finally, the average price of electricity for Other customers in the Coastal region fell 15% from $0.40/kWh in 2011 to $0.34/kWh in 2019.
 Residential customers in the Coastal region saw increases in electricity while commercial and other customers saw decreases. However, the residential customer class continues to pay the lowest per kWh in the region due to a combination of low prices in high population areas and PCE subsidies in eligible communities.
+
 
 ##### Sector Price Over Time
 ```{ojs}
@@ -168,9 +169,9 @@ Plot.plot({
 
 ## Railbelt
 
-The following figure shows the average price of electricity in the Railbelt region for each customer class and each year of the report. Between 2011 and 2019, Other customers saw a large decrease in price, followed by a gradual increase. Residential and Commercial customers experienced slight decreases in price until 2013 when prices reversed and rose dramatically.  
+The following figure shows the average price of electricity in the Railbelt region for each customer class and each year of the report. Between 2011 and 2019, Other customers saw a large decrease in price, followed by a gradual increase. Residential and Commercial customers experienced slight decreases in price until 2013 when prices reversed and rose dramatically. 
 
-The average price of electricity for Residential customers in the Railbelt rose 26% from $0.19/kWh in 2011 to $0.24/kWh in 2019. The average price of electricity for Commercial customers in the Railbelt rose 18% from $0.17/kWh in 2011 to $0.20/kWh in 2019. Finally, the average price of electricity for Other customers in the Railbelt fell 6% from $0.19/kWh in 2011 to $0.18/kWh in 2019.
+The average real price of electricity for Residential customers in the Railbelt rose 26% from $0.19/kWh in 2011 to $0.24/kWh in 2019. The average price of electricity for Commercial customers in the Railbelt rose 18% from $0.17/kWh in 2011 to $0.20/kWh in 2019. Finally, the average price of electricity for Other customers in the Railbelt fell 6% from $0.19/kWh in 2011 to $0.18/kWh in 2019.
 This region differs significantly from the Coastal and Rural Remote regions in that residential customers pay more for electricity than the Commercial or Other customer classes.
 
 ##### Sector Price Over Time
@@ -233,9 +234,9 @@ Plot.plot({
 ```
 
 ## Rural Remote
-The following figure shows the average price of electricity in the Rural Remote region for each customer class and year of the report. Between 2011 and 2019, Residential customers experienced a gradual increase in rates, while Commercial and Other customers experienced a gradual decrease in rates.  
+The following figure shows the average price of electricity in the Rural Remote region for each customer class and year of the report. Between 2011 and 2019, Residential customers experienced a gradual increase in rates, while Commercial and Other customers experienced a gradual decrease in rates. 
 
-The average price of electricity for the Residential customers in the Rural Remote region rose 8% from $0.24/kWh in 2011 to $0.26/kWh in 2019. The average price of electricity for Commercial customers in the Rural Remote region fell 11% from $0.54/kWh in 2011 to $0.48/kWh in 2019. Finally, the average price of electricity for Other customers in the Rural Remote region fell 9% from $0.65/kWh in 2011 to $0.59/kWh in 2019.  
+The average price of electricity for the Residential customers in the Rural Remote region rose 8% from $0.24/kWh in 2011 to $0.26/kWh in 2019. The average price of electricity for Commercial customers in the Rural Remote region fell 11% from $0.54/kWh in 2011 to $0.48/kWh in 2019. Finally, the average price of electricity for Other customers in the Rural Remote region fell 9% from $0.65/kWh in 2011 to $0.59/kWh in 2019.
 
 ##### Sector Price Over Time
 ```{ojs}
