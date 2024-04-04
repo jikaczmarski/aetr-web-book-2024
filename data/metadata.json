@@ -1,0 +1,230 @@
+{
+    "title": "2024 Alaska Electricity Trends Report",
+    "id": "NULL", 
+    "licenses": [
+        {
+          "name": "other",
+          "title": "BSD 3-Clause License",
+          "path": "https://opensource.org/license/bsd-3-clause"
+        }
+    ],
+    "description" : "Electricity capacity, generation, consumption, and price data from 2011-2019/21",
+    "resources" : [
+        {
+            "path" : "working/capacity/capacity_wide.csv",
+            "description" : "A dataset compiled from the time series built for Table 1.D of the Aug 08, 2023 Energy Statistics Workbook",
+            "schema" : {
+                "fields" : [
+                    {
+                        "name" : "year",
+                        "description" : "Calendar year",
+                        "type" : "integer"
+                    },
+                    {
+                        "name" : "aea_region",
+                        "description" : "Alaska Energy Authority Energy Region",
+                        "type" : "string"
+                    },
+                    {
+                        "name" : "acep_region",
+                        "description" : "Alaska Center for Energy and Power Energy Region",
+                        "type" : "string"
+                    },
+                    {
+                        "name" : "ff_turbines",
+                        "description" : "Capacity in megawatts (MW) using prime movers of types: combined cycle, gas turbines, and steam turbines",
+                        "type" : "float"
+                    },
+                    {
+                        "name" : "ff_ice",
+                        "description" : "Capacity in megawatts (MW) by internal combustion engine prime movers",
+                        "type" : "float"
+                    },
+                    {
+                        "name" : "hydro",
+                        "description" : "Capacity in megawatts (MW) by hydroelectric prime movers.",
+                        "type" : "float"
+                    },
+                    {
+                        "name" : "solar",
+                        "description" : "Capacity in megawatts (MW) from utility-scale solarvoltaic panels.",
+                        "type" : "float"
+                    },
+                    {
+                        "name" : "storage",
+                        "description" : "Capacity in megawatts (MW) from utility-scale battery storage.",
+                        "type" : "float"
+                    },
+                    {
+                        "name" : "rooftop_solar",
+                        "description" : "Capacity in megawatts (MW) from rooftop (behind-the-meter) solarvoltaic panels.",
+                        "type" : "float"
+                    },
+                    {
+                        "name" : "landfill_gas",
+                        "description" : "Capacity in megawatts (MW) from landfill gas generating units.",
+                        "type" : "float"
+                    }
+                ]
+            }
+        },
+        {
+            "path" : "working/capacity/capacity_long.csv",
+            "description" : "A dataset compiled from the time series built for Table 1.D of the Aug 08, 2023 Energy Statistics Workbook. Long version data of working/capacity/capacity_wide.csv. Used for building the webpages and interactive plots.",
+            "schema" : {
+                "fields" : [
+                    {
+                        "name" : "year",
+                        "description" : "Calendar year",
+                        "type" : "integer"
+                    },
+                    {
+                        "name" : "aea_region",
+                        "description" : "Alaska Energy Authority Energy Region",
+                        "type" : "string"
+                    },
+                    {
+                        "name" : "acep_region",
+                        "description" : "Alaska Center for Energy and Power Energy Region",
+                        "type" : "string"
+                    },
+                    {
+                        "name" : "prime_mover",
+                        "description" : "Powerhouse technology",
+                        "type" : "string"
+                    },
+                    {
+                        "name" : "total_capacity",
+                        "description" : "Capacity in megawatts (MW) for the powerhouse technology",
+                        "type" : "float"
+                    }
+                ]
+            }
+        },
+        {
+            "path" : "working/generation/net_generation_long.csv",
+            "description" : "A dataset compiled from Table 2.3b from the 2011-2021 Alaska Energy Statistics Workbooks deliverables. Long version of the data in data/generation/net_generation_wide.csv. Used for building the webpages and interactive plots.",
+            "schema" : {
+                "fields" : [
+                    {
+                        "name" : "year",
+                        "description" : "Calendar year",
+                        "type" : "integer"
+                    },
+                    {
+                        "name" : "plant_name",
+                        "description" : "Reporting name for the power plant",
+                        "type" : "string"
+                    },
+                    {
+                        "name" : "aea_region",
+                        "description" : "Alaska Energy Authority Energy Region",
+                        "type" : "string"
+                    },
+                    {
+                        "name" : "source",
+                        "description" : "Data source",
+                        "type" : "string"
+                    },
+                    {
+                        "name" : "data_version",
+                        "description" : "Verification status of the data",
+                        "type" : "string"
+                    },
+                    {
+                        "name" : "fuel_type",
+                        "description" : "Primary fuel used at the power plant",
+                        "type" : "string"
+                    },
+                    {
+                        "name" : "generation",
+                        "description" : "Total generation in MWh",
+                        "type" : "float"
+                    },
+                    {
+                        "name" : "acep_region",
+                        "description" : "Alaska Center for Energy and Power Energy Region",
+                        "type" : "string"
+                    }
+                ]
+            }
+        },
+        {
+            "path" : "working/generation/net_generation_wide.csv",
+            "description" : "A dataset compiled from Table 2.3b from the 2011-2021 Alaska Energy Statistics Workbooks deliverables.",
+            "schema" : {
+                "fields" : [
+                    {
+                        "name" : "year",
+                        "description" : "Calendar year",
+                        "type" : "integer"
+                    },
+                    {
+                        "name" : "plant_name",
+                        "description" : "Reporting name for the power plant",
+                        "type" : "string"
+                    },
+                    {
+                        "name" : "oil",
+                        "description" : "Net/Gross generation in MWh. Includes Distillate Fuel Oil, Jet Fuel, Residual Fuel Oil, and Waste/Other Oil",
+                        "type" : "float"
+                    },
+                    {
+                        "name" : "gas",
+                        "description" : "Net/Gross generation in MWh. Includes natural gas",
+                        "type" : "float"
+                    },
+                    {
+                        "name" : "coal",
+                        "description" : "Net/Gross generation in MWh. Includes Sub-bituminous Coal, Waste Coal, and Lignite",
+                        "type" : "float"
+                    },
+                    {
+                        "name" : "hydro",
+                        "description" : "Net/Gross generation in MWh from Conventional Hydroelectric Turbines",
+                        "type" : "float"
+                    },
+                    {
+                        "name" : "wind",
+                        "description" : "Net/Gross generation in MWh from wind",
+                        "type" : "float"
+                    },
+                    {
+                        "name" : "solar",
+                        "description" : "Net/Gross generation in MWh from solar",
+                        "type" : "float"
+                    },
+                    {
+                        "name" : "storage",
+                        "description" : "Net/Gross generation in MWh from battery cells.",
+                        "type" : "float"
+                    },
+                    {
+                        "name" : "other",
+                        "description" : "Net/Gross generation in MWh from Agricultural By-Products, Wood Solids, and Other sources",
+                        "type" : "float"
+                    },
+                    {
+                        "name" : "aea_region",
+                        "description" : "Alaska Energy Authority Energy Region",
+                        "type" : "string"
+                    },
+                    {
+                        "name" : "source",
+                        "description" : "Data source",
+                        "type" : "string"
+                    },
+                    {
+                        "name" : "data_version",
+                        "description" : "Verification status of the data",
+                        "type" : "string"
+                    }
+                ]
+            }
+        }
+    ],
+    "keywords" : [
+        "capacity",
+        "generation"
+    ]
+}

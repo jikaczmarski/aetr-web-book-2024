@@ -133,7 +133,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">Apr 4, 2024 at 20:25 UTC</p>
+      <p class="date">Apr 4, 2024 at 23:30 UTC</p>
     </div>
   </div>
   
@@ -218,7 +218,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>    <span class="kw">yield</span> container<span class="op">;</span></span>
 <span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Now we create a map object and add a layer to it.</span></span>
-<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> map <span class="op">=</span> L<span class="op">.</span><span class="fu">map</span>(container)<span class="op">.</span><span class="fu">setView</span>([<span class="fl">58.35175294670148</span><span class="op">,</span> <span class="op">-</span><span class="fl">134.6442463060413</span>]<span class="op">,</span> <span class="dv">13</span>)<span class="op">;</span></span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> map <span class="op">=</span> L<span class="op">.</span><span class="fu">map</span>(container)<span class="op">.</span><span class="fu">setView</span>([<span class="fl">58.35175294670148</span><span class="op">,</span> <span class="op">-</span><span class="fl">134.6442463060413</span>]<span class="op">,</span> <span class="dv">11</span>)<span class="op">;</span></span>
 <span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> hillshade <span class="op">=</span> L<span class="op">.</span><span class="fu">tileLayer</span>(<span class="st">'https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}'</span><span class="op">,</span> </span>
 <span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a>        {<span class="dt">attribution</span><span class="op">:</span> <span class="st">'Tiles &amp;copy; Esri &amp;mdash; Esri, DeLorme, NAVTEQ, TomTom, Intermap, iPC, USGS, FAO, NPS, NRCAN, GeoBase, Kadaster NL, Ordnance Survey, Esri Japan, METI, Esri China (Hong Kong), and the GIS User Community'</span></span>
@@ -234,12 +234,68 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
+<p><br> <br></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4" data-startfrom="67" data-source-offset="-1"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 66;"><span id="cb4-67"><a href="#cb4-67" aria-hidden="true" tabindex="-1"></a>metadata <span class="op">=</span> <span class="fu">FileAttachment</span>(<span class="st">"data/metadata.json"</span>)<span class="op">.</span><span class="fu">json</span>()<span class="op">;</span></span>
+<span id="cb4-68"><a href="#cb4-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-69"><a href="#cb4-69" aria-hidden="true" tabindex="-1"></a>test <span class="op">=</span> metadata<span class="op">.</span><span class="at">resources</span>[<span class="dv">0</span>]<span class="op">.</span><span class="at">schema</span><span class="op">.</span><span class="at">fields</span></span>
+<span id="cb4-70"><a href="#cb4-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-71"><a href="#cb4-71" aria-hidden="true" tabindex="-1"></a>Inputs<span class="op">.</span><span class="fu">table</span>(test)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-3-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-3-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-3-3" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb5" data-startfrom="73" data-source-offset="-122"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 72;"><span id="cb5-73"><a href="#cb5-73" aria-hidden="true" tabindex="-1"></a><span class="fu">button</span>(test<span class="op">,</span> <span class="st">'test.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-3-4" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code hidden" id="cb6" data-startfrom="78" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 77;"><span id="cb6-78"><a href="#cb6-78" aria-hidden="true" tabindex="-1"></a><span class="co">// download button function</span></span>
+<span id="cb6-79"><a href="#cb6-79" aria-hidden="true" tabindex="-1"></a>button <span class="op">=</span> (data<span class="op">,</span> filename <span class="op">=</span> <span class="st">'data.csv'</span>) <span class="kw">=&gt;</span> {</span>
+<span id="cb6-80"><a href="#cb6-80" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> downloadData <span class="op">=</span> <span class="kw">new</span> <span class="bu">Blob</span>([d3<span class="op">.</span><span class="fu">csvFormat</span>(data)]<span class="op">,</span> { <span class="dt">type</span><span class="op">:</span> <span class="st">"text/csv"</span> })<span class="op">;</span></span>
+<span id="cb6-81"><a href="#cb6-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-82"><a href="#cb6-82" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> size <span class="op">=</span> (downloadData<span class="op">.</span><span class="at">size</span> <span class="op">/</span> <span class="dv">1024</span>)<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="op">;</span></span>
+<span id="cb6-83"><a href="#cb6-83" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> button <span class="op">=</span> DOM<span class="op">.</span><span class="fu">download</span>(</span>
+<span id="cb6-84"><a href="#cb6-84" aria-hidden="true" tabindex="-1"></a>    downloadData<span class="op">,</span></span>
+<span id="cb6-85"><a href="#cb6-85" aria-hidden="true" tabindex="-1"></a>    filename<span class="op">,</span></span>
+<span id="cb6-86"><a href="#cb6-86" aria-hidden="true" tabindex="-1"></a>    <span class="vs">`Download </span><span class="sc">${</span>filename<span class="sc">}</span><span class="vs"> (</span><span class="sc">${</span>size<span class="sc">}</span><span class="vs"> KB)`</span></span>
+<span id="cb6-87"><a href="#cb6-87" aria-hidden="true" tabindex="-1"></a>  )<span class="op">;</span></span>
+<span id="cb6-88"><a href="#cb6-88" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> button<span class="op">;</span></span>
+<span id="cb6-89"><a href="#cb6-89" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-4" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
 
 
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
 <script type="ojs-module-contents">
-eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6Ii8vIGJ1aWxkIGEgbGlicmFyeVxuc3RkbGliID0gcmVxdWlyZShcIkBvYnNlcnZhYmxlaHEvc3RkbGliXCIpXG5kMyA9IHJlcXVpcmUoXCJkM0A3XCIpXG5cbkwgPSByZXF1aXJlKCdsZWFmbGV0QDEuOS40Jylcbmh0bWxgPGxpbmsgaHJlZj0nJHtyZXNvbHZlKCdsZWFmbGV0QDEuMi4wL2Rpc3QvbGVhZmxldC5jc3MnKX0nIHJlbD0nc3R5bGVzaGVldCcgLz5gXG5cbmJvb3RzdHJhcD1yZXF1aXJlKFwiYm9vdHN0cmFwXCIpXG5jc3M9aHRtbGA8bGluayByZWw9XCJzdHlsZXNoZWV0XCIgaHJlZj1cImh0dHBzOi8vY2RuLmpzZGVsaXZyLm5ldC9ucG0vYm9vdHN0cmFwQDUuMi4wL2Rpc3QvY3NzL2Jvb3RzdHJhcC5taW4uY3NzXCIgaW50ZWdyaXR5PVwic2hhMzg0LWdIMnlJSnFLZE5IUEVxMG40TXFhL0hHS0loU2tJSGVMNUF5aGtZVjhpNTlVNUFSNmNzQnZBcEhITmwvdkkxQnhcIiBjcm9zc29yaWdpbj1cImFub255bW91c1wiPmBcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMiIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6Im1hcCA9IHtcbiAgICAvLyBZb3UnbGwgb2Z0ZW4gc2VlIExlYWZsZXQgZXhhbXBsZXMgaW5pdGlhbGl6aW5nIGEgbWFwIGxpa2UgTC5tYXAoJ21hcCcpLFxuICAgIC8vIHdoaWNoIHRlbGxzIHRoZSBsaWJyYXJ5IHRvIGxvb2sgZm9yIGEgZGl2IHdpdGggdGhlIGlkICdtYXAnIG9uIHRoZSBwYWdlLlxuICAgIC8vIEluIE9ic2VydmFibGUsIHdlIGluc3RlYWQgY3JlYXRlIGEgZGl2IGZyb20gc2NyYXRjaCBpbiB0aGlzIGNlbGwsIHNvIGl0J3NcbiAgICAvLyBjb21wbGV0ZWx5IHNlbGYtY29udGFpbmVkLlxuICAgIGxldCBjb250YWluZXIgPSBET00uZWxlbWVudCgnZGl2JywgeyBzdHlsZTogYHdpZHRoOiR7d2lkdGh9cHg7aGVpZ2h0OiR7d2lkdGgvMS42fXB4YCB9KTtcblxuICAgIC8vIE5vdGUgdGhhdCBJJ20geWllbGRpbmcgdGhlIGNvbnRhaW5lciBwcmV0dHkgZWFybHkgaGVyZTogdGhpcyBhbGxvd3MgdGhlXG4gICAgLy8gZGl2IHRvIGJlIHBsYWNlZCBvbiB0aGUgcGFnZS4gVGhpcyBpcyBpbXBvcnRhbnQsIGJlY2F1c2UgTGVhZmxldCB1c2VzXG4gICAgLy8gdGhlIGRpdidzIC5vZmZzZXRXaWR0aCBhbmQgLm9mZnNldEhlaWdodCB0byBzaXplIHRoZSBtYXAuIElmIEkgd2VyZVxuICAgIC8vIHRvIG9ubHkgcmV0dXJuIHRoZSBjb250YWluZXIgYXQgdGhlIGVuZCBvZiB0aGlzIG1ldGhvZCwgTGVhZmxldCBtaWdodFxuICAgIC8vIGdldCB0aGUgd3JvbmcgaWRlYSBhYm91dCB0aGUgbWFwJ3Mgc2l6ZS5cbiAgICB5aWVsZCBjb250YWluZXI7XG5cbiAgICAvLyBOb3cgd2UgY3JlYXRlIGEgbWFwIG9iamVjdCBhbmQgYWRkIGEgbGF5ZXIgdG8gaXQuXG4gICAgbGV0IG1hcCA9IEwubWFwKGNvbnRhaW5lcikuc2V0VmlldyhbNTguMzUxNzUyOTQ2NzAxNDgsIC0xMzQuNjQ0MjQ2MzA2MDQxM10sIDEzKTtcblxuICAgIGxldCBoaWxsc2hhZGUgPSBMLnRpbGVMYXllcignaHR0cHM6Ly9zZXJ2ZXIuYXJjZ2lzb25saW5lLmNvbS9BcmNHSVMvcmVzdC9zZXJ2aWNlcy9Xb3JsZF9Ub3BvX01hcC9NYXBTZXJ2ZXIvdGlsZS97en0ve3l9L3t4fScsIFxuICAgICAgICB7YXR0cmlidXRpb246ICdUaWxlcyAmY29weTsgRXNyaSAmbWRhc2g7IEVzcmksIERlTG9ybWUsIE5BVlRFUSwgVG9tVG9tLCBJbnRlcm1hcCwgaVBDLCBVU0dTLCBGQU8sIE5QUywgTlJDQU4sIEdlb0Jhc2UsIEthZGFzdGVyIE5MLCBPcmRuYW5jZSBTdXJ2ZXksIEVzcmkgSmFwYW4sIE1FVEksIEVzcmkgQ2hpbmEgKEhvbmcgS29uZyksIGFuZCB0aGUgR0lTIFVzZXIgQ29tbXVuaXR5J1xuICAgICAgICB9KTtcbiAgXG4gICAgaGlsbHNoYWRlLmFkZFRvKG1hcCk7XG5cblxufVxuXG5cbiJ9XX0=
+eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6Ii8vIGJ1aWxkIGEgbGlicmFyeVxuc3RkbGliID0gcmVxdWlyZShcIkBvYnNlcnZhYmxlaHEvc3RkbGliXCIpXG5kMyA9IHJlcXVpcmUoXCJkM0A3XCIpXG5cbkwgPSByZXF1aXJlKCdsZWFmbGV0QDEuOS40Jylcbmh0bWxgPGxpbmsgaHJlZj0nJHtyZXNvbHZlKCdsZWFmbGV0QDEuMi4wL2Rpc3QvbGVhZmxldC5jc3MnKX0nIHJlbD0nc3R5bGVzaGVldCcgLz5gXG5cbmJvb3RzdHJhcD1yZXF1aXJlKFwiYm9vdHN0cmFwXCIpXG5jc3M9aHRtbGA8bGluayByZWw9XCJzdHlsZXNoZWV0XCIgaHJlZj1cImh0dHBzOi8vY2RuLmpzZGVsaXZyLm5ldC9ucG0vYm9vdHN0cmFwQDUuMi4wL2Rpc3QvY3NzL2Jvb3RzdHJhcC5taW4uY3NzXCIgaW50ZWdyaXR5PVwic2hhMzg0LWdIMnlJSnFLZE5IUEVxMG40TXFhL0hHS0loU2tJSGVMNUF5aGtZVjhpNTlVNUFSNmNzQnZBcEhITmwvdkkxQnhcIiBjcm9zc29yaWdpbj1cImFub255bW91c1wiPmBcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMiIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6Im1hcCA9IHtcbiAgICAvLyBZb3UnbGwgb2Z0ZW4gc2VlIExlYWZsZXQgZXhhbXBsZXMgaW5pdGlhbGl6aW5nIGEgbWFwIGxpa2UgTC5tYXAoJ21hcCcpLFxuICAgIC8vIHdoaWNoIHRlbGxzIHRoZSBsaWJyYXJ5IHRvIGxvb2sgZm9yIGEgZGl2IHdpdGggdGhlIGlkICdtYXAnIG9uIHRoZSBwYWdlLlxuICAgIC8vIEluIE9ic2VydmFibGUsIHdlIGluc3RlYWQgY3JlYXRlIGEgZGl2IGZyb20gc2NyYXRjaCBpbiB0aGlzIGNlbGwsIHNvIGl0J3NcbiAgICAvLyBjb21wbGV0ZWx5IHNlbGYtY29udGFpbmVkLlxuICAgIGxldCBjb250YWluZXIgPSBET00uZWxlbWVudCgnZGl2JywgeyBzdHlsZTogYHdpZHRoOiR7d2lkdGh9cHg7aGVpZ2h0OiR7d2lkdGgvMS42fXB4YCB9KTtcblxuICAgIC8vIE5vdGUgdGhhdCBJJ20geWllbGRpbmcgdGhlIGNvbnRhaW5lciBwcmV0dHkgZWFybHkgaGVyZTogdGhpcyBhbGxvd3MgdGhlXG4gICAgLy8gZGl2IHRvIGJlIHBsYWNlZCBvbiB0aGUgcGFnZS4gVGhpcyBpcyBpbXBvcnRhbnQsIGJlY2F1c2UgTGVhZmxldCB1c2VzXG4gICAgLy8gdGhlIGRpdidzIC5vZmZzZXRXaWR0aCBhbmQgLm9mZnNldEhlaWdodCB0byBzaXplIHRoZSBtYXAuIElmIEkgd2VyZVxuICAgIC8vIHRvIG9ubHkgcmV0dXJuIHRoZSBjb250YWluZXIgYXQgdGhlIGVuZCBvZiB0aGlzIG1ldGhvZCwgTGVhZmxldCBtaWdodFxuICAgIC8vIGdldCB0aGUgd3JvbmcgaWRlYSBhYm91dCB0aGUgbWFwJ3Mgc2l6ZS5cbiAgICB5aWVsZCBjb250YWluZXI7XG5cbiAgICAvLyBOb3cgd2UgY3JlYXRlIGEgbWFwIG9iamVjdCBhbmQgYWRkIGEgbGF5ZXIgdG8gaXQuXG4gICAgbGV0IG1hcCA9IEwubWFwKGNvbnRhaW5lcikuc2V0VmlldyhbNTguMzUxNzUyOTQ2NzAxNDgsIC0xMzQuNjQ0MjQ2MzA2MDQxM10sIDExKTtcblxuICAgIGxldCBoaWxsc2hhZGUgPSBMLnRpbGVMYXllcignaHR0cHM6Ly9zZXJ2ZXIuYXJjZ2lzb25saW5lLmNvbS9BcmNHSVMvcmVzdC9zZXJ2aWNlcy9Xb3JsZF9Ub3BvX01hcC9NYXBTZXJ2ZXIvdGlsZS97en0ve3l9L3t4fScsIFxuICAgICAgICB7YXR0cmlidXRpb246ICdUaWxlcyAmY29weTsgRXNyaSAmbWRhc2g7IEVzcmksIERlTG9ybWUsIE5BVlRFUSwgVG9tVG9tLCBJbnRlcm1hcCwgaVBDLCBVU0dTLCBGQU8sIE5QUywgTlJDQU4sIEdlb0Jhc2UsIEthZGFzdGVyIE5MLCBPcmRuYW5jZSBTdXJ2ZXksIEVzcmkgSmFwYW4sIE1FVEksIEVzcmkgQ2hpbmEgKEhvbmcgS29uZyksIGFuZCB0aGUgR0lTIFVzZXIgQ29tbXVuaXR5J1xuICAgICAgICB9KTtcbiAgXG4gICAgaGlsbHNoYWRlLmFkZFRvKG1hcCk7XG5cblxufVxuXG5cbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMyIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6IlxubWV0YWRhdGEgPSBGaWxlQXR0YWNobWVudChcImRhdGEvbWV0YWRhdGEuanNvblwiKS5qc29uKCk7XG5cbnRlc3QgPSBtZXRhZGF0YS5yZXNvdXJjZXNbMF0uc2NoZW1hLmZpZWxkc1xuXG5JbnB1dHMudGFibGUodGVzdClcblxuYnV0dG9uKHRlc3QsICd0ZXN0LmNzdicpXG5cbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtNCIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6Ii8vIGRvd25sb2FkIGJ1dHRvbiBmdW5jdGlvblxuYnV0dG9uID0gKGRhdGEsIGZpbGVuYW1lID0gJ2RhdGEuY3N2JykgPT4ge1xuICBjb25zdCBkb3dubG9hZERhdGEgPSBuZXcgQmxvYihbZDMuY3N2Rm9ybWF0KGRhdGEpXSwgeyB0eXBlOiBcInRleHQvY3N2XCIgfSk7XG5cbiAgY29uc3Qgc2l6ZSA9IChkb3dubG9hZERhdGEuc2l6ZSAvIDEwMjQpLnRvRml4ZWQoMSk7XG4gIGNvbnN0IGJ1dHRvbiA9IERPTS5kb3dubG9hZChcbiAgICBkb3dubG9hZERhdGEsXG4gICAgZmlsZW5hbWUsXG4gICAgYERvd25sb2FkICR7ZmlsZW5hbWV9ICgke3NpemV9IEtCKWBcbiAgKTtcbiAgcmV0dXJuIGJ1dHRvbjtcbn1cblxuIn1dfQ==
 </script>
 <script type="module">
 if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
