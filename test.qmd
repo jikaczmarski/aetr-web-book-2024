@@ -42,7 +42,7 @@ map = {
     yield container;
 
     // Now we create a map object and add a layer to it.
-    let map = L.map(container).setView([58.35175294670148, -134.6442463060413], 13);
+    let map = L.map(container).setView([58.35175294670148, -134.6442463060413], 11);
 
     let hillshade = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}', 
         {attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ, TomTom, Intermap, iPC, USGS, FAO, NPS, NRCAN, GeoBase, Kadaster NL, Ordnance Survey, Esri Japan, METI, Esri China (Hong Kong), and the GIS User Community'
@@ -53,5 +53,40 @@ map = {
 
 }
 
+
+```
+
+
+<br>
+<br>
+
+
+```{ojs}
+//| echo: true
+
+metadata = FileAttachment("data/metadata.json").json();
+
+test = metadata.resources[0].schema.fields
+
+Inputs.table(test)
+
+button(test, 'test.csv')
+
+```
+
+
+```{ojs}
+// download button function
+button = (data, filename = 'data.csv') => {
+  const downloadData = new Blob([d3.csvFormat(data)], { type: "text/csv" });
+
+  const size = (downloadData.size / 1024).toFixed(1);
+  const button = DOM.download(
+    downloadData,
+    filename,
+    `Download ${filename} (${size} KB)`
+  );
+  return button;
+}
 
 ```

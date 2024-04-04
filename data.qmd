@@ -23,6 +23,11 @@ Inputs.table(capacity_wide);
 
 button(capacity_wide, `capacity_wide.csv`)
 
+
+capacity_wide_metadata = metadata.resources[0].schema.fields
+
+button(capacity_wide_metadata, 'capacity_wide_metadata.csv')
+
 ```
 
 <br>
@@ -34,6 +39,11 @@ capacity_long = FileAttachment("data/working/capacity/capacity_long.csv").csv({t
 Inputs.table(capacity_long);
 
 button(capacity_long, `capacity_long.csv`)
+
+
+capacity_long_metadata = metadata.resources[1].schema.fields
+
+button(capacity_long_metadata, 'capacity_long_metadata.csv')
 
 ```
 
@@ -47,6 +57,11 @@ Inputs.table(net_generation_wide);
 
 button(net_generation_long, `net_generation_wide.csv`)
 
+
+net_generation_wide_metadata = metadata.resources[3].schema.fields
+
+button(net_generation_wide_metadata, 'net_generation_wide_metadata.csv')
+
 ```
 
 <br>
@@ -58,6 +73,11 @@ net_generation_long = FileAttachment("data/working/generation/net_generation_lon
 Inputs.table(net_generation_long);
 
 button(net_generation_long, `net_generation_long.csv`)
+
+
+net_generation_long_metadata = metadata.resources[2].schema.fields
+
+button(net_generation_long_metadata, 'net_generation_long_metadata.csv')
 
 ```
 
@@ -87,20 +107,22 @@ button(weighted_prices, `weighted_prices.csv`)
 ```
 
 
-
-
-
 ```{ojs}
 // load libraries
 stdlib = require("@observablehq/stdlib")
 d3 = require("d3@7")
 
+// load metadata
+metadata = FileAttachment("data/metadata.json").json();
+
 ```
+
+
 
 ```{ojs}
 // download button function
-button = (database, filename = 'data.csv') => {
-  const downloadData = new Blob([d3.csvFormat(database)], { type: "text/csv" });
+button = (data, filename = 'data.csv') => {
+  const downloadData = new Blob([d3.csvFormat(data)], { type: "text/csv" });
 
   const size = (downloadData.size / 1024).toFixed(1);
   const button = DOM.download(
