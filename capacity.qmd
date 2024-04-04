@@ -17,13 +17,6 @@ library(readr)
 # Import the data
 capacity_data <- read.csv("data/working/capacity/capacity_long.csv")
 
-# Total statewide capacity
-statewide_capacity <- capacity_data %>%
-  group_by(year,prime_mover) %>%
-  summarize(
-    "total_capacity" = sum(capacity, na.rm = TRUE)
-  )
-
 # Regional capacity
 regional_capacity <- capacity_data %>%
   group_by(year,acep_region,prime_mover) %>%
@@ -31,61 +24,15 @@ regional_capacity <- capacity_data %>%
     "total_capacity" = sum(capacity, na.rm = TRUE)
   )
 
-# Function declarations
-#
-# sw_yearly_cap : calculates the total capacity in a given year for the state
-## Reports GW by default. Pass the argument gw=FALSE to get MW.
-
-sw_yearly_cap <- function(year, gw=TRUE) {
-  a <- sum(statewide_capacity$total_capacity[statewide_capacity$year == year]) # find the total statewide capacity in specified year
-  if (gw == TRUE) {
-    b <- a / 1000 # convert to GW (default)
-  }
-  else if (gw == FALSE) {
-    b <- a # keep as MW
-  }
-  round(b, 2)
-}
-
-#
-#
-# capacity_delta : calculates the difference in capacity between two given years
-# 
-
-capacity_delta <- function(acep_region, prime_mover, year1=2011, year2=2021, percentage = FALSE, gw = FALSE) {
-  if (missing(prime_mover)) {
-    value_2 <- sum(regional_capacity$total_capacity[regional_capacity$year == year2 & regional_capacity$acep_region == acep_region])
-    value_1 <- sum(regional_capacity$total_capacity[regional_capacity$year == year1& regional_capacity$acep_region == acep_region])
-  }
-  else if (!missing(prime_mover)) {
-    value_2 <- ifelse(length(regional_capacity$total_capacity[regional_capacity$year == year2 & regional_capacity$prime_mover == prime_mover & regional_capacity$acep_region == acep_region]) == 0,
-                              0,
-                              regional_capacity$total_capacity[regional_capacity$year == year2 & regional_capacity$prime_mover == prime_mover & regional_capacity$acep_region == acep_region])
-    value_1 <- ifelse(length(regional_capacity$total_capacity[regional_capacity$year == year1 & regional_capacity$prime_mover == prime_mover & regional_capacity$acep_region == acep_region]) == 0,
-                              0,
-                              regional_capacity$total_capacity[regional_capacity$year == year1 & regional_capacity$prime_mover == prime_mover & regional_capacity$acep_region == acep_region])
-  }
-  difference <- (value_2 - value_1)
-  if (percentage == TRUE) {
-    result <- ((value_2 - value_1) / abs(value_1))*100
-  }
-  else {
-    if (gw==TRUE) {
-      result <- (value_2 - value_1) / 1000
-    }
-    else if (gw == FALSE) {
-      result <- (value_2 - value_1)
-    }
-  }
-  round(result, 2)
-}
+# Function declaration
+source("scripts/inline_functions/capacity_inline_functions.R")
 ```
 
 # General Overview
 
 Generation capacity represents the maximum amount of electricity that can be generated at any given time dependent on certain conditions. The combination of generation sources is often referred to as the capacity mix. Changes in the capacity mix over time reflect decisions to build and retire generators. These decisions are a result of shifting costs, technological innovations, the normal aging of the generation fleet, and/or stakeholder policies. Due to data limitations, we show capacity levels for calendar years 2011-2013, 2018, and 2021. While we cannot observe year-to-year trends, there are enough years of data to visualize capacity trends from 2011 to 2021.
 
-We begin this section by showcasing the increases in total capacity across the state. In 2011, it is estimated that the total statewide electricity generation capacity was `r sw_yearly_cap(2011)` GW. We estimate that this has increased to approximately `r sw_yearly_cap(2021)` GW in 2021 based on best available data. This represents an increase of `r sw_yearly_cap(2021, gw=FALSE)- sw_yearly_cap(2011, gw=FALSE)` MW, or `r round((sw_yearly_cap(2021) - sw_yearly_cap(2011))/abs(sw_yearly_cap(2011)),2)*100` percent. To illustrate this example, we show a stacked area chart below that showcases growth over time for various technologies.[^1]
+We begin this section by showcasing the increases in total capacity across the state. In 2011, it is estimated that the total statewide electricity generation capacity was `r capacity(year=2011)` MW. We estimate that this has increased to approximately `r capacity(year=2021)` MW in 2021 based on best available data. This represents an increase of `r formatC(capacity(year=2021, numeric_out = TRUE) - capacity(year=2011, numeric_out = TRUE), format="d", big.mark=",")` MW, or `r round((capacity(year=2021, numeric_out = TRUE) - capacity(year=2011, numeric_out = TRUE))/abs(capacity(year=2011, numeric_out = TRUE)),2)*100` percent. To illustrate this example, we show a stacked area chart below that showcases growth over time for various technologies.[^1]
 
 [^1]: Prime movers are categorized as follows. Fossil turbines include combined cycle turbines, gas turbines, and steam turbines. Reciprocating engines include internal combustion engines. Hydro includes hydraulic turbines and hydrokinetics. Wind includes wind turbines. Utility solar includes utility-owned photovoltaic (PV), and Rooftop solar includes customer-sited, behind-the-meter PV. Storage refers to batteries and flywheels.
 
@@ -142,7 +89,7 @@ Plot.plot({
 
 # Coastal
 
-For the coastal region, we observe a `r capacity_delta("Coastal")` MW increase in generation capacity (an increase of approximately `r capacity_delta("Coastal", percentage = TRUE)` percent) between 2011 and 2021. The following figure shows the change in total installed capacity for each prime mover in the coastal region. This region saw additions of `r capacity_delta("Coastal", prime_mover = "Fossil Turbines")` MW of fossil turbines, and `r capacity_delta("Coastal", prime_mover = "Recip Engines")` MW of reciprocating engines. The remaining increases were renewable and storage capacity which we look at in more depth in the next figure.
+For the coastal region, we observe a `r capacity_delta("Coastal")` MW increase in generation capacity (an increase of approximately `r capacity_delta("Coastal", pct=TRUE)` percent) between 2011 and 2021. The following figure shows the change in total installed capacity for each prime mover in the coastal region. This region saw additions of `r capacity_delta("Coastal", prime_mover = "Fossil Turbines")` MW of fossil turbines, and `r capacity_delta("Coastal", prime_mover = "Recip Engines")` MW of reciprocating engines. The remaining increases were renewable and storage capacity which we look at in more depth in the next figure.
 
 ```{ojs}
 //| echo: false
@@ -338,7 +285,7 @@ Plot.plot({
 ```
 
 # Rural Remote
-The rural remote region saw an increase of `r capacity_delta("Rural Remote")` MW in capacity (a `r capacity_delta("Rural Remote", percentage = TRUE)`% increase). Most of the increases in capacity were fossil fuel turbines (`r capacity_delta("Rural Remote", prime_mover = "Fossil Turbines")` MW added on the North Slope) and reciprocating engines (`r capacity_delta("Rural Remote", prime_mover = "Recip Engines")` MW). Renewable capacity is explored in further detail in the next figure.
+The rural remote region saw an increase of `r capacity_delta("Rural Remote")` MW in capacity (a `r capacity_delta("Rural Remote", pct = TRUE)`% increase). Most of the increases in capacity were fossil fuel turbines (`r capacity_delta("Rural Remote", prime_mover = "Fossil Turbines")` MW added on the North Slope) and reciprocating engines (`r capacity_delta("Rural Remote", prime_mover = "Recip Engines")` MW). Renewable capacity is explored in further detail in the next figure.
 
 ```{ojs}
 //| echo: false
