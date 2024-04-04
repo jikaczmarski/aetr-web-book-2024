@@ -218,7 +218,7 @@
                         "name" : "data_version",
                         "description" : "Verification status of the data",
                         "type" : "string"
-                    },
+                    }
                 ]
             }
         }
