@@ -129,7 +129,8 @@ Plot.plot({
         fill: "class",
         tip: {
           format: {
-            x: (d) => `${(d).toLocaleString(undefined, {maximumFractionDigits: 2})}%`
+            x: (d) => `${(d).toLocaleString(undefined, {maximumFractionDigits: 2})}%`,
+            y: false
           }
         }
       }
@@ -175,7 +176,8 @@ Plot.plot({
         fill: "class",
         tip: {
           format: {
-            x: (d) => `${(d).toLocaleString(undefined, {maximumFractionDigits: 2})}%`
+            x: (d) => `${(d).toLocaleString(undefined, {maximumFractionDigits: 2})}%`,
+            y: false
           }
         }
       }
