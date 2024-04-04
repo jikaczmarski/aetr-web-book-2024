@@ -6,6 +6,7 @@ date-format: "MMM D, YYYY [at] HH:mm z"
 output:
     quarto::quarto_html:
         pre_processor: quarto::observable
+echo: false
 ---
 
 ```{r, echo=FALSE,warning=FALSE,message=FALSE}
@@ -49,40 +50,471 @@ Across the state, electricity sales (herein referred to as consumption), has fal
 
 [^1]: For EIA reported data, the Other group includes industrial and transportation customers. For PCE reported data, it includes community and government accounts. No industrial accounts were reported in the PCE data.
 
-[Figure. Change in sales by customer class, statewide, 2011 to 2019]
+```{ojs}
+// Import required libraries (condense later)
+import {tidy, groupBy, rename, summarize, sum, mutate, select, n, nDistinct, mean, filter, pivotWider, pivotLonger, leftJoin, slice, fullJoin, lag, TMath, rowNumber,mutateWithSummary, arrange, asc} from "@pbeshai/tidyjs"
+
+// Import the consumption data
+consumption_data = FileAttachment("data/working/consumption/consumption_long.csv").csv({ typed: true })
+
+// Condense the data for regional plotting
+regional_consumption_data = tidy(
+  consumption_data,
+  groupBy([
+    "acep_region", "year", "class"
+  ],
+  [
+    summarize({
+      revenue: sum('revenue'),
+      sales: sum('sales'),
+      customers: sum('customers')
+    })
+  ])
+)
+
+// Change in statewide totals
+statewide_delta = tidy(
+  consumption_data,
+  groupBy(
+    ["year","class"],
+    summarize({
+      revenue: sum("revenue"),
+      sales: sum("sales"),
+      customers: sum("customers")
+    })
+  ),
+  filter((d) => (d.year === 2011 || d.year === 2019) && d.class !== "Total"),
+  arrange(["year", asc("year")]),
+  groupBy(
+    ["class"],
+    mutateWithSummary({
+      sales_2011: lag("sales", {default: 0}),
+      customers_2011: lag("customers", {default: 0}),
+    })
+  ),
+  mutate({
+    sales_delta: (d) => (d.sales - d.sales_2011)  / d.sales_2011,
+    customers_delta: (d) => (d.customers - d.customers_2011) / d.customers_2011,
+  }),
+  filter((d) => d.year === 2019)
+)
+```
+
+```{ojs}
+Plot.plot({
+
+  title: "Change in sales by customer class, statewide, from 2011 to 2019",
+  height: 500,
+  marginLeft: 70,
+
+  y: {
+    label:"",
+    grid: true,
+    domain: ["Residential","Commercial","Other"]
+  },
+
+  x: {
+    transform: (d) => d * 100,
+    domain: [-12,0],
+    label:"Percent Change"
+  },
+
+  marks: [
+    Plot.frame(),
+    Plot.ruleX([0]),
+    Plot.barX(statewide_delta,
+      {
+        x: "sales_delta",
+        y: "class",
+        fill: "class",
+        tip: {
+          format: {
+            x: (d) => `${(d).toLocaleString(undefined, {maximumFractionDigits: 2})}%`
+          }
+        }
+      }
+    )
+  ],
+
+  color: {
+        domain: ["Residential","Commercial","Other"],
+        range: ["#0084c1","#e29617","#fad900"],
+        legend: true
+    }
+})
+```
 
 We also examine the change in the number of customer accounts across the state. The total number of customer accounts in the state increased `r statewide_consumption_delta("Total","customers",pct=TRUE)`% from approximately `r statewide_consumption("Total","customers",2011,decimals=0)` to `r statewide_consumption("Total","customers",2019,decimals=0)`. We plot the percentage increases in customer accounts by category in the following figure. Residential accounts across the state increased `r statewide_consumption_delta("Residential","customers",pct=TRUE)`% from approximately `r statewide_consumption("Residential","customers",2011,decimals=0)` to `r statewide_consumption("Residential","customers",2019,decimals=0)`. The number of commercial accounts across the state increased `r statewide_consumption_delta("Commercial","customers",pct=TRUE)`% from `r statewide_consumption("Commercial","customers",2011,decimals=0)` to `r statewide_consumption("Commercial","customers",2019,decimals=0)`. Finally, the number of other accounts across the state has increased `r statewide_consumption_delta("Other","customers",pct=TRUE)`% from approximately `r statewide_consumption("Other","customers",2011,decimals=0)` to `r statewide_consumption("Other","customers",2019,decimals=0)`.
 
-[Figure. Change in customer accounts by class, statewide, 2011 to 2019]
+```{ojs}
+Plot.plot({
+
+  title: "Change in customer accounts by class, statewide, 2011 to 2019",
+  height: 500,
+  marginLeft: 70,
+
+  y: {
+    label:"",
+    grid: true,
+    domain: ["Residential","Commercial","Other"]
+  },
+
+  x: {
+    transform: (d) => d * 100,
+    domain: [0, 16],
+    label:"Percent Change"
+  },
+
+  marks: [
+    Plot.frame(),
+    Plot.ruleX([0]),
+    Plot.barX(statewide_delta,
+      {
+        x: "customers_delta",
+        y: "class",
+        fill: "class",
+        tip: {
+          format: {
+            x: (d) => `${(d).toLocaleString(undefined, {maximumFractionDigits: 2})}%`
+          }
+        }
+      }
+    )
+  ],
+
+  color: {
+        domain: ["Residential","Commercial","Other"],
+        range: ["#0084c1","#e29617","#fad900"],
+        legend: true
+    }
+})
+```
 
 The following table shows the average annual electricity consumption for each of the regions. The Coastal region led the state in consumption per capita, with an average of `r regional_consumption_per_capita("Coastal","Residential")` kWh per customer per year. This was followed by the Railbelt region with `r regional_consumption_per_capita("Railbelt","Residential")` kWh per capita and the Rural Remote region with `r regional_consumption_per_capita("Rural Remote","Residential")` kWh per capita. Overall, each region has seen reductions in consumption per capita, which may reflect improvements in energy efficient technologies and energy efficiency behaviors.
 
-[Figure. Average Residential Sales per Customer]
+```{ojs}
+sales_per_capita_data = tidy(regional_consumption_data.filter((d) => d.class === "Residential"),
+  groupBy(
+    ['acep_region','year'],
+    [
+      mutate({
+        sales_per_capita: (d) => (d.sales / d.customers) * 1000
+      })
+    ]
+  )
+)
+```
+
+```{ojs}
+caption_include = "Note: For EIA reported data, the Other customer class includes industrial and transportation customers. For PCE reported data, it includes community and government customers. No industrial customers were reported in the PCE data."
+
+Plot.plot({
+
+  // Plot setup
+  title: "Average Residential Sales per Customer",
+
+  // Configure the x-axis
+    x: {
+      domain: [2011, 2019],
+      tickFormat: "d",
+      label: "Year",
+      grid: true
+    },
+    
+    // Configure the y-axis
+    y: {
+      domain: [3000, 10000],
+      ticks: 6,
+      label: "kWh",
+      grid: true
+    },
+
+  marks: [
+    Plot.line(sales_per_capita_data, {
+        x: "year",
+        y: "sales_per_capita",
+        stroke: "acep_region",
+        strokeWidth: 5,
+        tip: {format: {x: "d"}}
+      }
+    ),
+    Plot.ruleY([3000])
+  ],
+
+  color: {
+        domain: ["Coastal", "Railbelt", "Rural Remote"],
+        range: ["#8CBBDA", "#97CD93", "#F28D8C"],
+        legend: true
+    }
+})
+```
 
 ## Coastal
 
 To estimate the average yearly growth rate in each customer class, we calculate the cumulative compound average growth rate (CAGR). From 2011 to 2019, the coastal region saw an average yearly growth rate of `r cagr("Coastal", "Residential", "sales")`% for residential sales, `r cagr("Coastal", "Commercial", "sales")`% for commercial sales, and `r cagr("Coastal", "Other", "sales")`% for all other sales. The following figure shows these sales in GWh for each year.
 
-[Figure. Delivered electricity by customer class, Coastal Region]
+```{ojs}
+Plot.plot({
+
+  // Plot setup
+  title: "Delivered electricity by customer class, Coastal region",
+  caption: caption_include,
+
+  // Configure the x-axis
+    x: {
+      tickFormat: "d",
+      label: "Year"
+    },
+    
+    // Configure the y-axis
+    y: {
+      transform: (y) => y / 1000,
+      domain: [0, 1200],
+      label: "GWh",
+      grid: true
+    },
+
+  marks: [
+    Plot.barY(regional_consumption_data.filter((d) => d.class !== "Total" && d.acep_region == "Coastal"), 
+      {
+        x: "year",
+        y: "sales",
+        fill: "class",
+        tip: {format: {x: "d"}}
+      }
+    ),
+    Plot.ruleY([0])
+  ],
+
+  color: {
+        domain: ["Residential","Commercial","Other"],
+        range: ["#0084c1","#e29617","#fad900"],
+        legend: true
+    }
+})
+```
+
 
 While customer sales fell overall, customer accounts in the Coastal region increased for all customer classes. The following figure shows the trend in customer accounts by class for the Coastal region. The average yearly growth rate in customer accounts was `r cagr("Coastal", "Residential", "customers")`% for the residential class, `r cagr("Coastal", "Commercial", "customers")`% for the commercial class, and `r cagr("Coastal", "Other", "customers")`% for the other class.
+
+```{ojs}
+Plot.plot({
+
+  // Plot setup
+  title: "Number of customer accounts, Coastal region",
+  caption: caption_include,
+
+  // Configure the x-axis
+    x: {
+      tickFormat: "d",
+      label: "Year"
+    },
+    
+    // Configure the y-axis
+    y: {
+      label: "Accounts",
+      domain: [0, 60000],
+      grid: true
+    },
+
+  marks: [
+    Plot.barY(regional_consumption_data.filter((d) => d.class !== "Total" && d.acep_region == "Coastal"), 
+      {
+        x: "year",
+        y: "customers",
+        fill: "class",
+        tip: {format: {x: "d"}}
+      }
+    ),
+    Plot.ruleY([0])
+  ],
+
+  color: {
+        domain: ["Residential","Commercial","Other"],
+        range: ["#0084c1","#e29617","#fad900"],
+        legend: true
+    }
+})
+```
 
 ## Railbelt
 
 From 2011 to 2019, the Railbelt region saw an average yearly growth rate of `r cagr("Railbelt", "Residential", "sales")`% for residential sales, `r cagr("Railbelt", "Commercial", "sales")`% for commercial sales, and `r cagr("Railbelt", "Other", "sales")`% for all other sales. The following figure shows these sales in GWh for each year.
 
-[Figure. Delivered electricity by customer class, Railbelt Region]
+```{ojs}
+Plot.plot({
+
+  // Plot setup
+  title: "Delivered electricity by customer class, Railbelt region",
+  caption: caption_include,
+
+  // Configure the x-axis
+    x: {
+      tickFormat: "d",
+      label: "Year"
+    },
+    
+    // Configure the y-axis
+    y: {
+      transform: (y) => y / 1000,
+      domain: [0, 5000],
+      label: "GWh",
+      grid: true
+    },
+
+  marks: [
+    Plot.barY(regional_consumption_data.filter((d) => d.class !== "Total" && d.acep_region == "Railbelt"), 
+      {
+        x: "year",
+        y: "sales",
+        fill: "class",
+        tip: {format: {x: "d"}}
+      }
+    ),
+    Plot.ruleY([0])
+  ],
+
+  color: {
+        domain: ["Residential","Commercial","Other"],
+        range: ["#0084c1","#e29617","#fad900"],
+        legend: true
+    }
+})
+```
 
 The trends in the number of customer accounts by class are visualized in the following figure. The average yearly growth rate in customer accounts on the Railbelt was `r cagr("Railbelt", "Residential", "customers")`% for the residential class, `r cagr("Railbelt", "Commercial", "customers")`% for the commercial class, and `r cagr("Railbelt", "Other", "customers")`% for the other class.
 
-[Figure X. Number of Customer Accounts, Railbelt Region]
+```{ojs}
+Plot.plot({
+
+  // Plot setup
+  title: "Number of customer accounts, Railbelt region",
+  caption: caption_include,
+
+  // Configure the x-axis
+    x: {
+      tickFormat: "d",
+      label: "Year"
+    },
+    
+    // Configure the y-axis
+    y: {
+      transform: (y) => y / 1000,
+      label: "Accounts (000s)",
+      domain: [0, 260],
+      grid: true
+    },
+
+  marks: [
+    Plot.barY(regional_consumption_data.filter((d) => d.class !== "Total" && d.acep_region == "Railbelt"), 
+      {
+        x: "year",
+        y: "customers",
+        fill: "class",
+        tip: {format: {
+            x: "d",
+            y: (y) => `${(y).toLocaleString(undefined, {maximumFractionDigits: 2})}`
+          }}
+      }
+    ),
+    Plot.ruleY([0])
+  ],
+
+  color: {
+        domain: ["Residential","Commercial","Other"],
+        range: ["#0084c1","#e29617","#fad900"],
+        legend: true
+    }
+})
+```
 
 ## Rural Remote
 
 From 2011 to 2019, the Rural Remote region saw an average yearly growth rate of `r cagr("Rural Remote", "Residential", "sales")`% for residential sales, `r cagr("Rural Remote", "Commercial", "sales")`% for commercial sales, and `r cagr("Rural Remote", "Other", "sales")`% for all other sales. Positive growth rates for the commercial and other customer classes are unique to the rural remote energy region as all other regions saw average yearly declines in sales. The following figure shows these sales in GWh for each year.
 
-[Figure. Delivered electricity by customer class, Rural Remote Region]
+```{ojs}
+Plot.plot({
+
+  // Plot setup
+  title: "Delivered electricity by customer class, Rural Remote region",
+  caption: caption_include,
+
+  // Configure the x-axis
+    x: {
+      tickFormat: "d",
+      label: "Year"
+    },
+    
+    // Configure the y-axis
+    y: {
+      transform: (y) => y / 1000,
+      domain: [0, 500],
+      label: "GWh",
+      grid: true
+    },
+
+  marks: [
+    Plot.barY(regional_consumption_data.filter((d) => d.class !== "Total" && d.acep_region == "Rural Remote"), 
+      {
+        x: "year",
+        y: "sales",
+        fill: "class",
+        tip: {format: {x: "d"}}
+      }
+    ),
+    Plot.ruleY([0])
+  ],
+
+  color: {
+        domain: ["Residential","Commercial","Other"],
+        range: ["#0084c1","#e29617","#fad900"],
+        legend: true
+    }
+})
+```
 
 The trends in the number of customer accounts by class are visualized in the following figure. The average yearly growth rate in customer accounts in the Rural Remote region was `r cagr("Rural Remote", "Residential", "customers")`% for the residential class, `r cagr("Rural Remote", "Commercial", "customers")`% for the commercial class, and `r cagr("Rural Remote", "Other", "customers")`% for the other class.
 
-[Figure. Number of Customer Accounts, Rural Remote Region]
+```{ojs}
+Plot.plot({
+
+  // Plot setup
+  title: "Number of customer accounts, Rural Remote region",
+  caption: caption_include,
+
+  // Configure the x-axis
+    x: {
+      tickFormat: "d",
+      label: "Year"
+    },
+    
+    // Configure the y-axis
+    y: {
+      //transform: (y) => y / 1000,
+      label: "Accounts",
+      domain: [0, 37500],
+      grid: true
+    },
+
+  marks: [
+    Plot.barY(regional_consumption_data.filter((d) => d.class !== "Total" && d.acep_region == "Rural Remote"), 
+      {
+        x: "year",
+        y: "customers",
+        fill: "class",
+        tip: {format: {
+            x: "d",
+            y: (y) => `${(y).toLocaleString(undefined, {maximumFractionDigits: 2})}`
+          }}
+      }
+    ),
+    Plot.ruleY([0])
+  ],
+
+  color: {
+        domain: ["Residential","Commercial","Other"],
+        range: ["#0084c1","#e29617","#fad900"],
+        legend: true
+    }
+})
+```
