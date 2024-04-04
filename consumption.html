@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -67,6 +101,8 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script type="module" src="site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
+<link href="site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
 
 
 <link rel="stylesheet" href="styles.css">
@@ -224,7 +260,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">Apr 4, 2024 at 23:30 UTC</p>
+      <p class="date">Apr 4, 2024 at 23:46 UTC</p>
     </div>
   </div>
   
@@ -246,31 +282,544 @@ ul.task-list li input[type="checkbox"] {
 <h2 class="anchored" data-anchor-id="general-overview">General Overview</h2>
 <p>The data presented in this section is from calendar years 2011 to 2019. More recent data has been omitted due to issues with data completeness and validity.</p>
 <p>Across the state, electricity sales (herein referred to as consumption), has fallen when comparing the 2011 and 2019 calendar years. To visualize this trend, we look at the percentage changes from 2011 to 2019 in electricity consumption by customer class and plot them in the following figure. Statewide electricity consumption growth for the residential sector was -10.86% from 2,141 GWh in 2011 to 1,909 GWh in 2019. The commercial sector growth was -6.34% from 2,758 GWh in 2011 to 2,583 GWh in 2019. Finally, Statewide electricity consumption growth for the ‘Other’ customer class was -7.46% from 1,378 GWh in 2011 to 1,275 GWh in 2019.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
-<p>[Figure. Change in sales by customer class, statewide, 2011 to 2019]</p>
+<div class="cell">
+<div class="sourceCode cell-code hidden" id="cb1" data-startfrom="55" data-source-offset="-46"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 54;"><span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> {tidy<span class="op">,</span> groupBy<span class="op">,</span> rename<span class="op">,</span> summarize<span class="op">,</span> sum<span class="op">,</span> mutate<span class="op">,</span> select<span class="op">,</span> n<span class="op">,</span> nDistinct<span class="op">,</span> mean<span class="op">,</span> filter<span class="op">,</span> pivotWider<span class="op">,</span> pivotLonger<span class="op">,</span> leftJoin<span class="op">,</span> slice<span class="op">,</span> fullJoin<span class="op">,</span> lag<span class="op">,</span> TMath<span class="op">,</span> rowNumber<span class="op">,</span>mutateWithSummary<span class="op">,</span> arrange<span class="op">,</span> asc} <span class="im">from</span> <span class="st">"@pbeshai/tidyjs"</span></span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a><span class="co">// Import the consumption data</span></span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>consumption_data <span class="op">=</span> <span class="fu">FileAttachment</span>(<span class="st">"data/working/consumption/consumption_long.csv"</span>)<span class="op">.</span><span class="fu">csv</span>({ <span class="dt">typed</span><span class="op">:</span> <span class="kw">true</span> })</span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a><span class="co">// Condense the data for regional plotting</span></span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a>regional_consumption_data <span class="op">=</span> <span class="fu">tidy</span>(</span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a>  consumption_data<span class="op">,</span></span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a>  <span class="fu">groupBy</span>([</span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a>    <span class="st">"acep_region"</span><span class="op">,</span> <span class="st">"year"</span><span class="op">,</span> <span class="st">"class"</span></span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a>  ]<span class="op">,</span></span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a>  [</span>
+<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarize</span>({</span>
+<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a>      <span class="dt">revenue</span><span class="op">:</span> <span class="fu">sum</span>(<span class="st">'revenue'</span>)<span class="op">,</span></span>
+<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a>      <span class="dt">sales</span><span class="op">:</span> <span class="fu">sum</span>(<span class="st">'sales'</span>)<span class="op">,</span></span>
+<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a>      <span class="dt">customers</span><span class="op">:</span> <span class="fu">sum</span>(<span class="st">'customers'</span>)</span>
+<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a>    })</span>
+<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a>  ])</span>
+<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a><span class="co">// Change in statewide totals</span></span>
+<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a>statewide_delta <span class="op">=</span> <span class="fu">tidy</span>(</span>
+<span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a>  consumption_data<span class="op">,</span></span>
+<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a>  <span class="fu">groupBy</span>(</span>
+<span id="cb1-79"><a href="#cb1-79" aria-hidden="true" tabindex="-1"></a>    [<span class="st">"year"</span><span class="op">,</span><span class="st">"class"</span>]<span class="op">,</span></span>
+<span id="cb1-80"><a href="#cb1-80" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarize</span>({</span>
+<span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a>      <span class="dt">revenue</span><span class="op">:</span> <span class="fu">sum</span>(<span class="st">"revenue"</span>)<span class="op">,</span></span>
+<span id="cb1-82"><a href="#cb1-82" aria-hidden="true" tabindex="-1"></a>      <span class="dt">sales</span><span class="op">:</span> <span class="fu">sum</span>(<span class="st">"sales"</span>)<span class="op">,</span></span>
+<span id="cb1-83"><a href="#cb1-83" aria-hidden="true" tabindex="-1"></a>      <span class="dt">customers</span><span class="op">:</span> <span class="fu">sum</span>(<span class="st">"customers"</span>)</span>
+<span id="cb1-84"><a href="#cb1-84" aria-hidden="true" tabindex="-1"></a>    })</span>
+<span id="cb1-85"><a href="#cb1-85" aria-hidden="true" tabindex="-1"></a>  )<span class="op">,</span></span>
+<span id="cb1-86"><a href="#cb1-86" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>((d) <span class="kw">=&gt;</span> (d<span class="op">.</span><span class="at">year</span> <span class="op">===</span> <span class="dv">2011</span> <span class="op">||</span> d<span class="op">.</span><span class="at">year</span> <span class="op">===</span> <span class="dv">2019</span>) <span class="op">&amp;&amp;</span> d<span class="op">.</span><span class="at">class</span> <span class="op">!==</span> <span class="st">"Total"</span>)<span class="op">,</span></span>
+<span id="cb1-87"><a href="#cb1-87" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>([<span class="st">"year"</span><span class="op">,</span> <span class="fu">asc</span>(<span class="st">"year"</span>)])<span class="op">,</span></span>
+<span id="cb1-88"><a href="#cb1-88" aria-hidden="true" tabindex="-1"></a>  <span class="fu">groupBy</span>(</span>
+<span id="cb1-89"><a href="#cb1-89" aria-hidden="true" tabindex="-1"></a>    [<span class="st">"class"</span>]<span class="op">,</span></span>
+<span id="cb1-90"><a href="#cb1-90" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutateWithSummary</span>({</span>
+<span id="cb1-91"><a href="#cb1-91" aria-hidden="true" tabindex="-1"></a>      <span class="dt">sales_2011</span><span class="op">:</span> <span class="fu">lag</span>(<span class="st">"sales"</span><span class="op">,</span> {<span class="cf">default</span><span class="op">:</span> <span class="dv">0</span>})<span class="op">,</span></span>
+<span id="cb1-92"><a href="#cb1-92" aria-hidden="true" tabindex="-1"></a>      <span class="dt">customers_2011</span><span class="op">:</span> <span class="fu">lag</span>(<span class="st">"customers"</span><span class="op">,</span> {<span class="cf">default</span><span class="op">:</span> <span class="dv">0</span>})<span class="op">,</span></span>
+<span id="cb1-93"><a href="#cb1-93" aria-hidden="true" tabindex="-1"></a>    })</span>
+<span id="cb1-94"><a href="#cb1-94" aria-hidden="true" tabindex="-1"></a>  )<span class="op">,</span></span>
+<span id="cb1-95"><a href="#cb1-95" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>({</span>
+<span id="cb1-96"><a href="#cb1-96" aria-hidden="true" tabindex="-1"></a>    <span class="dt">sales_delta</span><span class="op">:</span> (d) <span class="kw">=&gt;</span> (d<span class="op">.</span><span class="at">sales</span> <span class="op">-</span> d<span class="op">.</span><span class="at">sales_2011</span>)  <span class="op">/</span> d<span class="op">.</span><span class="at">sales_2011</span><span class="op">,</span></span>
+<span id="cb1-97"><a href="#cb1-97" aria-hidden="true" tabindex="-1"></a>    <span class="dt">customers_delta</span><span class="op">:</span> (d) <span class="kw">=&gt;</span> (d<span class="op">.</span><span class="at">customers</span> <span class="op">-</span> d<span class="op">.</span><span class="at">customers_2011</span>) <span class="op">/</span> d<span class="op">.</span><span class="at">customers_2011</span><span class="op">,</span></span>
+<span id="cb1-98"><a href="#cb1-98" aria-hidden="true" tabindex="-1"></a>  })<span class="op">,</span></span>
+<span id="cb1-99"><a href="#cb1-99" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>((d) <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">year</span> <span class="op">===</span> <span class="dv">2019</span>)</span>
+<span id="cb1-100"><a href="#cb1-100" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-3" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-4" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code hidden" id="cb2" data-startfrom="103" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 102;"><span id="cb2-103"><a href="#cb2-103" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb2-104"><a href="#cb2-104" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-105"><a href="#cb2-105" aria-hidden="true" tabindex="-1"></a>  <span class="dt">title</span><span class="op">:</span> <span class="st">"Change in sales by customer class, statewide, from 2011 to 2019"</span><span class="op">,</span></span>
+<span id="cb2-106"><a href="#cb2-106" aria-hidden="true" tabindex="-1"></a>  <span class="dt">height</span><span class="op">:</span> <span class="dv">500</span><span class="op">,</span></span>
+<span id="cb2-107"><a href="#cb2-107" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marginLeft</span><span class="op">:</span> <span class="dv">70</span><span class="op">,</span></span>
+<span id="cb2-108"><a href="#cb2-108" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-109"><a href="#cb2-109" aria-hidden="true" tabindex="-1"></a>  <span class="dt">y</span><span class="op">:</span> {</span>
+<span id="cb2-110"><a href="#cb2-110" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span><span class="st">""</span><span class="op">,</span></span>
+<span id="cb2-111"><a href="#cb2-111" aria-hidden="true" tabindex="-1"></a>    <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span></span>
+<span id="cb2-112"><a href="#cb2-112" aria-hidden="true" tabindex="-1"></a>    <span class="dt">domain</span><span class="op">:</span> [<span class="st">"Residential"</span><span class="op">,</span><span class="st">"Commercial"</span><span class="op">,</span><span class="st">"Other"</span>]</span>
+<span id="cb2-113"><a href="#cb2-113" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb2-114"><a href="#cb2-114" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-115"><a href="#cb2-115" aria-hidden="true" tabindex="-1"></a>  <span class="dt">x</span><span class="op">:</span> {</span>
+<span id="cb2-116"><a href="#cb2-116" aria-hidden="true" tabindex="-1"></a>    <span class="dt">transform</span><span class="op">:</span> (d) <span class="kw">=&gt;</span> d <span class="op">*</span> <span class="dv">100</span><span class="op">,</span></span>
+<span id="cb2-117"><a href="#cb2-117" aria-hidden="true" tabindex="-1"></a>    <span class="dt">domain</span><span class="op">:</span> [<span class="op">-</span><span class="dv">12</span><span class="op">,</span><span class="dv">0</span>]<span class="op">,</span></span>
+<span id="cb2-118"><a href="#cb2-118" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span><span class="st">"Percent Change"</span></span>
+<span id="cb2-119"><a href="#cb2-119" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb2-120"><a href="#cb2-120" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-121"><a href="#cb2-121" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [</span>
+<span id="cb2-122"><a href="#cb2-122" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">frame</span>()<span class="op">,</span></span>
+<span id="cb2-123"><a href="#cb2-123" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">ruleX</span>([<span class="dv">0</span>])<span class="op">,</span></span>
+<span id="cb2-124"><a href="#cb2-124" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">barX</span>(statewide_delta<span class="op">,</span></span>
+<span id="cb2-125"><a href="#cb2-125" aria-hidden="true" tabindex="-1"></a>      {</span>
+<span id="cb2-126"><a href="#cb2-126" aria-hidden="true" tabindex="-1"></a>        <span class="dt">x</span><span class="op">:</span> <span class="st">"sales_delta"</span><span class="op">,</span></span>
+<span id="cb2-127"><a href="#cb2-127" aria-hidden="true" tabindex="-1"></a>        <span class="dt">y</span><span class="op">:</span> <span class="st">"class"</span><span class="op">,</span></span>
+<span id="cb2-128"><a href="#cb2-128" aria-hidden="true" tabindex="-1"></a>        <span class="dt">fill</span><span class="op">:</span> <span class="st">"class"</span><span class="op">,</span></span>
+<span id="cb2-129"><a href="#cb2-129" aria-hidden="true" tabindex="-1"></a>        <span class="dt">tip</span><span class="op">:</span> {</span>
+<span id="cb2-130"><a href="#cb2-130" aria-hidden="true" tabindex="-1"></a>          <span class="dt">format</span><span class="op">:</span> {</span>
+<span id="cb2-131"><a href="#cb2-131" aria-hidden="true" tabindex="-1"></a>            <span class="dt">x</span><span class="op">:</span> (d) <span class="kw">=&gt;</span> <span class="vs">`</span><span class="sc">${</span>(d)<span class="op">.</span><span class="fu">toLocaleString</span>(<span class="kw">undefined</span><span class="op">,</span> {<span class="dt">maximumFractionDigits</span><span class="op">:</span> <span class="dv">2</span>})<span class="sc">}</span><span class="vs">%`</span></span>
+<span id="cb2-132"><a href="#cb2-132" aria-hidden="true" tabindex="-1"></a>          }</span>
+<span id="cb2-133"><a href="#cb2-133" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb2-134"><a href="#cb2-134" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb2-135"><a href="#cb2-135" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb2-136"><a href="#cb2-136" aria-hidden="true" tabindex="-1"></a>  ]<span class="op">,</span></span>
+<span id="cb2-137"><a href="#cb2-137" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-138"><a href="#cb2-138" aria-hidden="true" tabindex="-1"></a>  <span class="dt">color</span><span class="op">:</span> {</span>
+<span id="cb2-139"><a href="#cb2-139" aria-hidden="true" tabindex="-1"></a>        <span class="dt">domain</span><span class="op">:</span> [<span class="st">"Residential"</span><span class="op">,</span><span class="st">"Commercial"</span><span class="op">,</span><span class="st">"Other"</span>]<span class="op">,</span></span>
+<span id="cb2-140"><a href="#cb2-140" aria-hidden="true" tabindex="-1"></a>        <span class="dt">range</span><span class="op">:</span> [<span class="st">"#0084c1"</span><span class="op">,</span><span class="st">"#e29617"</span><span class="op">,</span><span class="st">"#fad900"</span>]<span class="op">,</span></span>
+<span id="cb2-141"><a href="#cb2-141" aria-hidden="true" tabindex="-1"></a>        <span class="dt">legend</span><span class="op">:</span> <span class="kw">true</span></span>
+<span id="cb2-142"><a href="#cb2-142" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb2-143"><a href="#cb2-143" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-2" data-nodetype="expression">
+
+</div>
+</div>
+</div>
 <p>We also examine the change in the number of customer accounts across the state. The total number of customer accounts in the state increased 6.15% from approximately 326,402 to 346,476. We plot the percentage increases in customer accounts by category in the following figure. Residential accounts across the state increased 5.22% from approximately 275,473 to 289,843. The number of commercial accounts across the state increased 11.77% from 46,411 to 51,875. Finally, the number of other accounts across the state has increased 14.87% from approximately 4,518 to 5,190.</p>
-<p>[Figure. Change in customer accounts by class, statewide, 2011 to 2019]</p>
+<div class="cell">
+<div class="sourceCode cell-code hidden" id="cb3" data-startfrom="149" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 148;"><span id="cb3-149"><a href="#cb3-149" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb3-150"><a href="#cb3-150" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-151"><a href="#cb3-151" aria-hidden="true" tabindex="-1"></a>  <span class="dt">title</span><span class="op">:</span> <span class="st">"Change in customer accounts by class, statewide, 2011 to 2019"</span><span class="op">,</span></span>
+<span id="cb3-152"><a href="#cb3-152" aria-hidden="true" tabindex="-1"></a>  <span class="dt">height</span><span class="op">:</span> <span class="dv">500</span><span class="op">,</span></span>
+<span id="cb3-153"><a href="#cb3-153" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marginLeft</span><span class="op">:</span> <span class="dv">70</span><span class="op">,</span></span>
+<span id="cb3-154"><a href="#cb3-154" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-155"><a href="#cb3-155" aria-hidden="true" tabindex="-1"></a>  <span class="dt">y</span><span class="op">:</span> {</span>
+<span id="cb3-156"><a href="#cb3-156" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span><span class="st">""</span><span class="op">,</span></span>
+<span id="cb3-157"><a href="#cb3-157" aria-hidden="true" tabindex="-1"></a>    <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span></span>
+<span id="cb3-158"><a href="#cb3-158" aria-hidden="true" tabindex="-1"></a>    <span class="dt">domain</span><span class="op">:</span> [<span class="st">"Residential"</span><span class="op">,</span><span class="st">"Commercial"</span><span class="op">,</span><span class="st">"Other"</span>]</span>
+<span id="cb3-159"><a href="#cb3-159" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb3-160"><a href="#cb3-160" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-161"><a href="#cb3-161" aria-hidden="true" tabindex="-1"></a>  <span class="dt">x</span><span class="op">:</span> {</span>
+<span id="cb3-162"><a href="#cb3-162" aria-hidden="true" tabindex="-1"></a>    <span class="dt">transform</span><span class="op">:</span> (d) <span class="kw">=&gt;</span> d <span class="op">*</span> <span class="dv">100</span><span class="op">,</span></span>
+<span id="cb3-163"><a href="#cb3-163" aria-hidden="true" tabindex="-1"></a>    <span class="dt">domain</span><span class="op">:</span> [<span class="dv">0</span><span class="op">,</span> <span class="dv">16</span>]<span class="op">,</span></span>
+<span id="cb3-164"><a href="#cb3-164" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span><span class="st">"Percent Change"</span></span>
+<span id="cb3-165"><a href="#cb3-165" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb3-166"><a href="#cb3-166" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-167"><a href="#cb3-167" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [</span>
+<span id="cb3-168"><a href="#cb3-168" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">frame</span>()<span class="op">,</span></span>
+<span id="cb3-169"><a href="#cb3-169" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">ruleX</span>([<span class="dv">0</span>])<span class="op">,</span></span>
+<span id="cb3-170"><a href="#cb3-170" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">barX</span>(statewide_delta<span class="op">,</span></span>
+<span id="cb3-171"><a href="#cb3-171" aria-hidden="true" tabindex="-1"></a>      {</span>
+<span id="cb3-172"><a href="#cb3-172" aria-hidden="true" tabindex="-1"></a>        <span class="dt">x</span><span class="op">:</span> <span class="st">"customers_delta"</span><span class="op">,</span></span>
+<span id="cb3-173"><a href="#cb3-173" aria-hidden="true" tabindex="-1"></a>        <span class="dt">y</span><span class="op">:</span> <span class="st">"class"</span><span class="op">,</span></span>
+<span id="cb3-174"><a href="#cb3-174" aria-hidden="true" tabindex="-1"></a>        <span class="dt">fill</span><span class="op">:</span> <span class="st">"class"</span><span class="op">,</span></span>
+<span id="cb3-175"><a href="#cb3-175" aria-hidden="true" tabindex="-1"></a>        <span class="dt">tip</span><span class="op">:</span> {</span>
+<span id="cb3-176"><a href="#cb3-176" aria-hidden="true" tabindex="-1"></a>          <span class="dt">format</span><span class="op">:</span> {</span>
+<span id="cb3-177"><a href="#cb3-177" aria-hidden="true" tabindex="-1"></a>            <span class="dt">x</span><span class="op">:</span> (d) <span class="kw">=&gt;</span> <span class="vs">`</span><span class="sc">${</span>(d)<span class="op">.</span><span class="fu">toLocaleString</span>(<span class="kw">undefined</span><span class="op">,</span> {<span class="dt">maximumFractionDigits</span><span class="op">:</span> <span class="dv">2</span>})<span class="sc">}</span><span class="vs">%`</span></span>
+<span id="cb3-178"><a href="#cb3-178" aria-hidden="true" tabindex="-1"></a>          }</span>
+<span id="cb3-179"><a href="#cb3-179" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb3-180"><a href="#cb3-180" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb3-181"><a href="#cb3-181" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb3-182"><a href="#cb3-182" aria-hidden="true" tabindex="-1"></a>  ]<span class="op">,</span></span>
+<span id="cb3-183"><a href="#cb3-183" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-184"><a href="#cb3-184" aria-hidden="true" tabindex="-1"></a>  <span class="dt">color</span><span class="op">:</span> {</span>
+<span id="cb3-185"><a href="#cb3-185" aria-hidden="true" tabindex="-1"></a>        <span class="dt">domain</span><span class="op">:</span> [<span class="st">"Residential"</span><span class="op">,</span><span class="st">"Commercial"</span><span class="op">,</span><span class="st">"Other"</span>]<span class="op">,</span></span>
+<span id="cb3-186"><a href="#cb3-186" aria-hidden="true" tabindex="-1"></a>        <span class="dt">range</span><span class="op">:</span> [<span class="st">"#0084c1"</span><span class="op">,</span><span class="st">"#e29617"</span><span class="op">,</span><span class="st">"#fad900"</span>]<span class="op">,</span></span>
+<span id="cb3-187"><a href="#cb3-187" aria-hidden="true" tabindex="-1"></a>        <span class="dt">legend</span><span class="op">:</span> <span class="kw">true</span></span>
+<span id="cb3-188"><a href="#cb3-188" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb3-189"><a href="#cb3-189" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-3" data-nodetype="expression">
+
+</div>
+</div>
+</div>
 <p>The following table shows the average annual electricity consumption for each of the regions. The Coastal region led the state in consumption per capita, with an average of 8,980 kWh per customer per year. This was followed by the Railbelt region with 7,118 kWh per capita and the Rural Remote region with 4,868 kWh per capita. Overall, each region has seen reductions in consumption per capita, which may reflect improvements in energy efficient technologies and energy efficiency behaviors.</p>
-<p>[Figure. Average Residential Sales per Customer]</p>
+<div class="cell">
+<div class="sourceCode cell-code hidden" id="cb4" data-startfrom="195" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 194;"><span id="cb4-195"><a href="#cb4-195" aria-hidden="true" tabindex="-1"></a>sales_per_capita_data <span class="op">=</span> <span class="fu">tidy</span>(regional_consumption_data<span class="op">.</span><span class="fu">filter</span>((d) <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">class</span> <span class="op">===</span> <span class="st">"Residential"</span>)<span class="op">,</span></span>
+<span id="cb4-196"><a href="#cb4-196" aria-hidden="true" tabindex="-1"></a>  <span class="fu">groupBy</span>(</span>
+<span id="cb4-197"><a href="#cb4-197" aria-hidden="true" tabindex="-1"></a>    [<span class="st">'acep_region'</span><span class="op">,</span><span class="st">'year'</span>]<span class="op">,</span></span>
+<span id="cb4-198"><a href="#cb4-198" aria-hidden="true" tabindex="-1"></a>    [</span>
+<span id="cb4-199"><a href="#cb4-199" aria-hidden="true" tabindex="-1"></a>      <span class="fu">mutate</span>({</span>
+<span id="cb4-200"><a href="#cb4-200" aria-hidden="true" tabindex="-1"></a>        <span class="dt">sales_per_capita</span><span class="op">:</span> (d) <span class="kw">=&gt;</span> (d<span class="op">.</span><span class="at">sales</span> <span class="op">/</span> d<span class="op">.</span><span class="at">customers</span>) <span class="op">*</span> <span class="dv">1000</span></span>
+<span id="cb4-201"><a href="#cb4-201" aria-hidden="true" tabindex="-1"></a>      })</span>
+<span id="cb4-202"><a href="#cb4-202" aria-hidden="true" tabindex="-1"></a>    ]</span>
+<span id="cb4-203"><a href="#cb4-203" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb4-204"><a href="#cb4-204" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-4" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code hidden" id="cb5" data-startfrom="209" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 208;"><span id="cb5-209"><a href="#cb5-209" aria-hidden="true" tabindex="-1"></a>caption_include <span class="op">=</span> <span class="st">"Note: For EIA reported data, the Other customer class includes industrial and transportation customers. For PCE reported data, it includes community and government customers. No industrial customers were reported in the PCE data."</span></span>
+<span id="cb5-210"><a href="#cb5-210" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-211"><a href="#cb5-211" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb5-212"><a href="#cb5-212" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-213"><a href="#cb5-213" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Plot setup</span></span>
+<span id="cb5-214"><a href="#cb5-214" aria-hidden="true" tabindex="-1"></a>  <span class="dt">title</span><span class="op">:</span> <span class="st">"Average Residential Sales per Customer"</span><span class="op">,</span></span>
+<span id="cb5-215"><a href="#cb5-215" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-216"><a href="#cb5-216" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Configure the x-axis</span></span>
+<span id="cb5-217"><a href="#cb5-217" aria-hidden="true" tabindex="-1"></a>    <span class="dt">x</span><span class="op">:</span> {</span>
+<span id="cb5-218"><a href="#cb5-218" aria-hidden="true" tabindex="-1"></a>      <span class="dt">domain</span><span class="op">:</span> [<span class="dv">2011</span><span class="op">,</span> <span class="dv">2019</span>]<span class="op">,</span></span>
+<span id="cb5-219"><a href="#cb5-219" aria-hidden="true" tabindex="-1"></a>      <span class="dt">tickFormat</span><span class="op">:</span> <span class="st">"d"</span><span class="op">,</span></span>
+<span id="cb5-220"><a href="#cb5-220" aria-hidden="true" tabindex="-1"></a>      <span class="dt">label</span><span class="op">:</span> <span class="st">"Year"</span><span class="op">,</span></span>
+<span id="cb5-221"><a href="#cb5-221" aria-hidden="true" tabindex="-1"></a>      <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span></span>
+<span id="cb5-222"><a href="#cb5-222" aria-hidden="true" tabindex="-1"></a>    }<span class="op">,</span></span>
+<span id="cb5-223"><a href="#cb5-223" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb5-224"><a href="#cb5-224" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Configure the y-axis</span></span>
+<span id="cb5-225"><a href="#cb5-225" aria-hidden="true" tabindex="-1"></a>    <span class="dt">y</span><span class="op">:</span> {</span>
+<span id="cb5-226"><a href="#cb5-226" aria-hidden="true" tabindex="-1"></a>      <span class="dt">domain</span><span class="op">:</span> [<span class="dv">3000</span><span class="op">,</span> <span class="dv">10000</span>]<span class="op">,</span></span>
+<span id="cb5-227"><a href="#cb5-227" aria-hidden="true" tabindex="-1"></a>      <span class="dt">ticks</span><span class="op">:</span> <span class="dv">6</span><span class="op">,</span></span>
+<span id="cb5-228"><a href="#cb5-228" aria-hidden="true" tabindex="-1"></a>      <span class="dt">label</span><span class="op">:</span> <span class="st">"kWh"</span><span class="op">,</span></span>
+<span id="cb5-229"><a href="#cb5-229" aria-hidden="true" tabindex="-1"></a>      <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span></span>
+<span id="cb5-230"><a href="#cb5-230" aria-hidden="true" tabindex="-1"></a>    }<span class="op">,</span></span>
+<span id="cb5-231"><a href="#cb5-231" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-232"><a href="#cb5-232" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [</span>
+<span id="cb5-233"><a href="#cb5-233" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">line</span>(sales_per_capita_data<span class="op">,</span> {</span>
+<span id="cb5-234"><a href="#cb5-234" aria-hidden="true" tabindex="-1"></a>        <span class="dt">x</span><span class="op">:</span> <span class="st">"year"</span><span class="op">,</span></span>
+<span id="cb5-235"><a href="#cb5-235" aria-hidden="true" tabindex="-1"></a>        <span class="dt">y</span><span class="op">:</span> <span class="st">"sales_per_capita"</span><span class="op">,</span></span>
+<span id="cb5-236"><a href="#cb5-236" aria-hidden="true" tabindex="-1"></a>        <span class="dt">stroke</span><span class="op">:</span> <span class="st">"acep_region"</span><span class="op">,</span></span>
+<span id="cb5-237"><a href="#cb5-237" aria-hidden="true" tabindex="-1"></a>        <span class="dt">strokeWidth</span><span class="op">:</span> <span class="dv">5</span><span class="op">,</span></span>
+<span id="cb5-238"><a href="#cb5-238" aria-hidden="true" tabindex="-1"></a>        <span class="dt">tip</span><span class="op">:</span> {<span class="dt">format</span><span class="op">:</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"d"</span>}}</span>
+<span id="cb5-239"><a href="#cb5-239" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb5-240"><a href="#cb5-240" aria-hidden="true" tabindex="-1"></a>    )<span class="op">,</span></span>
+<span id="cb5-241"><a href="#cb5-241" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">ruleY</span>([<span class="dv">3000</span>])</span>
+<span id="cb5-242"><a href="#cb5-242" aria-hidden="true" tabindex="-1"></a>  ]<span class="op">,</span></span>
+<span id="cb5-243"><a href="#cb5-243" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-244"><a href="#cb5-244" aria-hidden="true" tabindex="-1"></a>  <span class="dt">color</span><span class="op">:</span> {</span>
+<span id="cb5-245"><a href="#cb5-245" aria-hidden="true" tabindex="-1"></a>        <span class="dt">domain</span><span class="op">:</span> [<span class="st">"Coastal"</span><span class="op">,</span> <span class="st">"Railbelt"</span><span class="op">,</span> <span class="st">"Rural Remote"</span>]<span class="op">,</span></span>
+<span id="cb5-246"><a href="#cb5-246" aria-hidden="true" tabindex="-1"></a>        <span class="dt">range</span><span class="op">:</span> [<span class="st">"#8CBBDA"</span><span class="op">,</span> <span class="st">"#97CD93"</span><span class="op">,</span> <span class="st">"#F28D8C"</span>]<span class="op">,</span></span>
+<span id="cb5-247"><a href="#cb5-247" aria-hidden="true" tabindex="-1"></a>        <span class="dt">legend</span><span class="op">:</span> <span class="kw">true</span></span>
+<span id="cb5-248"><a href="#cb5-248" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb5-249"><a href="#cb5-249" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-5-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-5-2" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+</div>
 </section>
 <section id="coastal" class="level2">
 <h2 class="anchored" data-anchor-id="coastal">Coastal</h2>
 <p>To estimate the average yearly growth rate in each customer class, we calculate the cumulative compound average growth rate (CAGR). From 2011 to 2019, the coastal region saw an average yearly growth rate of -0.56% for residential sales, -0.63% for commercial sales, and -0.76% for all other sales. The following figure shows these sales in GWh for each year.</p>
-<p>[Figure. Delivered electricity by customer class, Coastal Region]</p>
+<div class="cell">
+<div class="sourceCode cell-code hidden" id="cb6" data-startfrom="256" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 255;"><span id="cb6-256"><a href="#cb6-256" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb6-257"><a href="#cb6-257" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-258"><a href="#cb6-258" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Plot setup</span></span>
+<span id="cb6-259"><a href="#cb6-259" aria-hidden="true" tabindex="-1"></a>  <span class="dt">title</span><span class="op">:</span> <span class="st">"Delivered electricity by customer class, Coastal region"</span><span class="op">,</span></span>
+<span id="cb6-260"><a href="#cb6-260" aria-hidden="true" tabindex="-1"></a>  <span class="dt">caption</span><span class="op">:</span> caption_include<span class="op">,</span></span>
+<span id="cb6-261"><a href="#cb6-261" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-262"><a href="#cb6-262" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Configure the x-axis</span></span>
+<span id="cb6-263"><a href="#cb6-263" aria-hidden="true" tabindex="-1"></a>    <span class="dt">x</span><span class="op">:</span> {</span>
+<span id="cb6-264"><a href="#cb6-264" aria-hidden="true" tabindex="-1"></a>      <span class="dt">tickFormat</span><span class="op">:</span> <span class="st">"d"</span><span class="op">,</span></span>
+<span id="cb6-265"><a href="#cb6-265" aria-hidden="true" tabindex="-1"></a>      <span class="dt">label</span><span class="op">:</span> <span class="st">"Year"</span></span>
+<span id="cb6-266"><a href="#cb6-266" aria-hidden="true" tabindex="-1"></a>    }<span class="op">,</span></span>
+<span id="cb6-267"><a href="#cb6-267" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb6-268"><a href="#cb6-268" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Configure the y-axis</span></span>
+<span id="cb6-269"><a href="#cb6-269" aria-hidden="true" tabindex="-1"></a>    <span class="dt">y</span><span class="op">:</span> {</span>
+<span id="cb6-270"><a href="#cb6-270" aria-hidden="true" tabindex="-1"></a>      <span class="dt">transform</span><span class="op">:</span> (y) <span class="kw">=&gt;</span> y <span class="op">/</span> <span class="dv">1000</span><span class="op">,</span></span>
+<span id="cb6-271"><a href="#cb6-271" aria-hidden="true" tabindex="-1"></a>      <span class="dt">domain</span><span class="op">:</span> [<span class="dv">0</span><span class="op">,</span> <span class="dv">1200</span>]<span class="op">,</span></span>
+<span id="cb6-272"><a href="#cb6-272" aria-hidden="true" tabindex="-1"></a>      <span class="dt">label</span><span class="op">:</span> <span class="st">"GWh"</span><span class="op">,</span></span>
+<span id="cb6-273"><a href="#cb6-273" aria-hidden="true" tabindex="-1"></a>      <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span></span>
+<span id="cb6-274"><a href="#cb6-274" aria-hidden="true" tabindex="-1"></a>    }<span class="op">,</span></span>
+<span id="cb6-275"><a href="#cb6-275" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-276"><a href="#cb6-276" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [</span>
+<span id="cb6-277"><a href="#cb6-277" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">barY</span>(regional_consumption_data<span class="op">.</span><span class="fu">filter</span>((d) <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">class</span> <span class="op">!==</span> <span class="st">"Total"</span> <span class="op">&amp;&amp;</span> d<span class="op">.</span><span class="at">acep_region</span> <span class="op">==</span> <span class="st">"Coastal"</span>)<span class="op">,</span> </span>
+<span id="cb6-278"><a href="#cb6-278" aria-hidden="true" tabindex="-1"></a>      {</span>
+<span id="cb6-279"><a href="#cb6-279" aria-hidden="true" tabindex="-1"></a>        <span class="dt">x</span><span class="op">:</span> <span class="st">"year"</span><span class="op">,</span></span>
+<span id="cb6-280"><a href="#cb6-280" aria-hidden="true" tabindex="-1"></a>        <span class="dt">y</span><span class="op">:</span> <span class="st">"sales"</span><span class="op">,</span></span>
+<span id="cb6-281"><a href="#cb6-281" aria-hidden="true" tabindex="-1"></a>        <span class="dt">fill</span><span class="op">:</span> <span class="st">"class"</span><span class="op">,</span></span>
+<span id="cb6-282"><a href="#cb6-282" aria-hidden="true" tabindex="-1"></a>        <span class="dt">tip</span><span class="op">:</span> {<span class="dt">format</span><span class="op">:</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"d"</span>}}</span>
+<span id="cb6-283"><a href="#cb6-283" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb6-284"><a href="#cb6-284" aria-hidden="true" tabindex="-1"></a>    )<span class="op">,</span></span>
+<span id="cb6-285"><a href="#cb6-285" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">ruleY</span>([<span class="dv">0</span>])</span>
+<span id="cb6-286"><a href="#cb6-286" aria-hidden="true" tabindex="-1"></a>  ]<span class="op">,</span></span>
+<span id="cb6-287"><a href="#cb6-287" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-288"><a href="#cb6-288" aria-hidden="true" tabindex="-1"></a>  <span class="dt">color</span><span class="op">:</span> {</span>
+<span id="cb6-289"><a href="#cb6-289" aria-hidden="true" tabindex="-1"></a>        <span class="dt">domain</span><span class="op">:</span> [<span class="st">"Residential"</span><span class="op">,</span><span class="st">"Commercial"</span><span class="op">,</span><span class="st">"Other"</span>]<span class="op">,</span></span>
+<span id="cb6-290"><a href="#cb6-290" aria-hidden="true" tabindex="-1"></a>        <span class="dt">range</span><span class="op">:</span> [<span class="st">"#0084c1"</span><span class="op">,</span><span class="st">"#e29617"</span><span class="op">,</span><span class="st">"#fad900"</span>]<span class="op">,</span></span>
+<span id="cb6-291"><a href="#cb6-291" aria-hidden="true" tabindex="-1"></a>        <span class="dt">legend</span><span class="op">:</span> <span class="kw">true</span></span>
+<span id="cb6-292"><a href="#cb6-292" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb6-293"><a href="#cb6-293" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-6" data-nodetype="expression">
+
+</div>
+</div>
+</div>
 <p>While customer sales fell overall, customer accounts in the Coastal region increased for all customer classes. The following figure shows the trend in customer accounts by class for the Coastal region. The average yearly growth rate in customer accounts was 0.55% for the residential class, 1.43% for the commercial class, and 0.73% for the other class.</p>
+<div class="cell">
+<div class="sourceCode cell-code hidden" id="cb7" data-startfrom="300" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 299;"><span id="cb7-300"><a href="#cb7-300" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb7-301"><a href="#cb7-301" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-302"><a href="#cb7-302" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Plot setup</span></span>
+<span id="cb7-303"><a href="#cb7-303" aria-hidden="true" tabindex="-1"></a>  <span class="dt">title</span><span class="op">:</span> <span class="st">"Number of customer accounts, Coastal region"</span><span class="op">,</span></span>
+<span id="cb7-304"><a href="#cb7-304" aria-hidden="true" tabindex="-1"></a>  <span class="dt">caption</span><span class="op">:</span> caption_include<span class="op">,</span></span>
+<span id="cb7-305"><a href="#cb7-305" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-306"><a href="#cb7-306" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Configure the x-axis</span></span>
+<span id="cb7-307"><a href="#cb7-307" aria-hidden="true" tabindex="-1"></a>    <span class="dt">x</span><span class="op">:</span> {</span>
+<span id="cb7-308"><a href="#cb7-308" aria-hidden="true" tabindex="-1"></a>      <span class="dt">tickFormat</span><span class="op">:</span> <span class="st">"d"</span><span class="op">,</span></span>
+<span id="cb7-309"><a href="#cb7-309" aria-hidden="true" tabindex="-1"></a>      <span class="dt">label</span><span class="op">:</span> <span class="st">"Year"</span></span>
+<span id="cb7-310"><a href="#cb7-310" aria-hidden="true" tabindex="-1"></a>    }<span class="op">,</span></span>
+<span id="cb7-311"><a href="#cb7-311" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb7-312"><a href="#cb7-312" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Configure the y-axis</span></span>
+<span id="cb7-313"><a href="#cb7-313" aria-hidden="true" tabindex="-1"></a>    <span class="dt">y</span><span class="op">:</span> {</span>
+<span id="cb7-314"><a href="#cb7-314" aria-hidden="true" tabindex="-1"></a>      <span class="dt">label</span><span class="op">:</span> <span class="st">"Accounts"</span><span class="op">,</span></span>
+<span id="cb7-315"><a href="#cb7-315" aria-hidden="true" tabindex="-1"></a>      <span class="dt">domain</span><span class="op">:</span> [<span class="dv">0</span><span class="op">,</span> <span class="dv">60000</span>]<span class="op">,</span></span>
+<span id="cb7-316"><a href="#cb7-316" aria-hidden="true" tabindex="-1"></a>      <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span></span>
+<span id="cb7-317"><a href="#cb7-317" aria-hidden="true" tabindex="-1"></a>    }<span class="op">,</span></span>
+<span id="cb7-318"><a href="#cb7-318" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-319"><a href="#cb7-319" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [</span>
+<span id="cb7-320"><a href="#cb7-320" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">barY</span>(regional_consumption_data<span class="op">.</span><span class="fu">filter</span>((d) <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">class</span> <span class="op">!==</span> <span class="st">"Total"</span> <span class="op">&amp;&amp;</span> d<span class="op">.</span><span class="at">acep_region</span> <span class="op">==</span> <span class="st">"Coastal"</span>)<span class="op">,</span> </span>
+<span id="cb7-321"><a href="#cb7-321" aria-hidden="true" tabindex="-1"></a>      {</span>
+<span id="cb7-322"><a href="#cb7-322" aria-hidden="true" tabindex="-1"></a>        <span class="dt">x</span><span class="op">:</span> <span class="st">"year"</span><span class="op">,</span></span>
+<span id="cb7-323"><a href="#cb7-323" aria-hidden="true" tabindex="-1"></a>        <span class="dt">y</span><span class="op">:</span> <span class="st">"customers"</span><span class="op">,</span></span>
+<span id="cb7-324"><a href="#cb7-324" aria-hidden="true" tabindex="-1"></a>        <span class="dt">fill</span><span class="op">:</span> <span class="st">"class"</span><span class="op">,</span></span>
+<span id="cb7-325"><a href="#cb7-325" aria-hidden="true" tabindex="-1"></a>        <span class="dt">tip</span><span class="op">:</span> {<span class="dt">format</span><span class="op">:</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"d"</span>}}</span>
+<span id="cb7-326"><a href="#cb7-326" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb7-327"><a href="#cb7-327" aria-hidden="true" tabindex="-1"></a>    )<span class="op">,</span></span>
+<span id="cb7-328"><a href="#cb7-328" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">ruleY</span>([<span class="dv">0</span>])</span>
+<span id="cb7-329"><a href="#cb7-329" aria-hidden="true" tabindex="-1"></a>  ]<span class="op">,</span></span>
+<span id="cb7-330"><a href="#cb7-330" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-331"><a href="#cb7-331" aria-hidden="true" tabindex="-1"></a>  <span class="dt">color</span><span class="op">:</span> {</span>
+<span id="cb7-332"><a href="#cb7-332" aria-hidden="true" tabindex="-1"></a>        <span class="dt">domain</span><span class="op">:</span> [<span class="st">"Residential"</span><span class="op">,</span><span class="st">"Commercial"</span><span class="op">,</span><span class="st">"Other"</span>]<span class="op">,</span></span>
+<span id="cb7-333"><a href="#cb7-333" aria-hidden="true" tabindex="-1"></a>        <span class="dt">range</span><span class="op">:</span> [<span class="st">"#0084c1"</span><span class="op">,</span><span class="st">"#e29617"</span><span class="op">,</span><span class="st">"#fad900"</span>]<span class="op">,</span></span>
+<span id="cb7-334"><a href="#cb7-334" aria-hidden="true" tabindex="-1"></a>        <span class="dt">legend</span><span class="op">:</span> <span class="kw">true</span></span>
+<span id="cb7-335"><a href="#cb7-335" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb7-336"><a href="#cb7-336" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-7" data-nodetype="expression">
+
+</div>
+</div>
+</div>
 </section>
 <section id="railbelt" class="level2">
 <h2 class="anchored" data-anchor-id="railbelt">Railbelt</h2>
 <p>From 2011 to 2019, the Railbelt region saw an average yearly growth rate of -1.71% for residential sales, -1.27% for commercial sales, and -1.31% for all other sales. The following figure shows these sales in GWh for each year.</p>
-<p>[Figure. Delivered electricity by customer class, Railbelt Region]</p>
+<div class="cell">
+<div class="sourceCode cell-code hidden" id="cb8" data-startfrom="344" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 343;"><span id="cb8-344"><a href="#cb8-344" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb8-345"><a href="#cb8-345" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-346"><a href="#cb8-346" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Plot setup</span></span>
+<span id="cb8-347"><a href="#cb8-347" aria-hidden="true" tabindex="-1"></a>  <span class="dt">title</span><span class="op">:</span> <span class="st">"Delivered electricity by customer class, Railbelt region"</span><span class="op">,</span></span>
+<span id="cb8-348"><a href="#cb8-348" aria-hidden="true" tabindex="-1"></a>  <span class="dt">caption</span><span class="op">:</span> caption_include<span class="op">,</span></span>
+<span id="cb8-349"><a href="#cb8-349" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-350"><a href="#cb8-350" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Configure the x-axis</span></span>
+<span id="cb8-351"><a href="#cb8-351" aria-hidden="true" tabindex="-1"></a>    <span class="dt">x</span><span class="op">:</span> {</span>
+<span id="cb8-352"><a href="#cb8-352" aria-hidden="true" tabindex="-1"></a>      <span class="dt">tickFormat</span><span class="op">:</span> <span class="st">"d"</span><span class="op">,</span></span>
+<span id="cb8-353"><a href="#cb8-353" aria-hidden="true" tabindex="-1"></a>      <span class="dt">label</span><span class="op">:</span> <span class="st">"Year"</span></span>
+<span id="cb8-354"><a href="#cb8-354" aria-hidden="true" tabindex="-1"></a>    }<span class="op">,</span></span>
+<span id="cb8-355"><a href="#cb8-355" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb8-356"><a href="#cb8-356" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Configure the y-axis</span></span>
+<span id="cb8-357"><a href="#cb8-357" aria-hidden="true" tabindex="-1"></a>    <span class="dt">y</span><span class="op">:</span> {</span>
+<span id="cb8-358"><a href="#cb8-358" aria-hidden="true" tabindex="-1"></a>      <span class="dt">transform</span><span class="op">:</span> (y) <span class="kw">=&gt;</span> y <span class="op">/</span> <span class="dv">1000</span><span class="op">,</span></span>
+<span id="cb8-359"><a href="#cb8-359" aria-hidden="true" tabindex="-1"></a>      <span class="dt">domain</span><span class="op">:</span> [<span class="dv">0</span><span class="op">,</span> <span class="dv">5000</span>]<span class="op">,</span></span>
+<span id="cb8-360"><a href="#cb8-360" aria-hidden="true" tabindex="-1"></a>      <span class="dt">label</span><span class="op">:</span> <span class="st">"GWh"</span><span class="op">,</span></span>
+<span id="cb8-361"><a href="#cb8-361" aria-hidden="true" tabindex="-1"></a>      <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span></span>
+<span id="cb8-362"><a href="#cb8-362" aria-hidden="true" tabindex="-1"></a>    }<span class="op">,</span></span>
+<span id="cb8-363"><a href="#cb8-363" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-364"><a href="#cb8-364" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [</span>
+<span id="cb8-365"><a href="#cb8-365" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">barY</span>(regional_consumption_data<span class="op">.</span><span class="fu">filter</span>((d) <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">class</span> <span class="op">!==</span> <span class="st">"Total"</span> <span class="op">&amp;&amp;</span> d<span class="op">.</span><span class="at">acep_region</span> <span class="op">==</span> <span class="st">"Railbelt"</span>)<span class="op">,</span> </span>
+<span id="cb8-366"><a href="#cb8-366" aria-hidden="true" tabindex="-1"></a>      {</span>
+<span id="cb8-367"><a href="#cb8-367" aria-hidden="true" tabindex="-1"></a>        <span class="dt">x</span><span class="op">:</span> <span class="st">"year"</span><span class="op">,</span></span>
+<span id="cb8-368"><a href="#cb8-368" aria-hidden="true" tabindex="-1"></a>        <span class="dt">y</span><span class="op">:</span> <span class="st">"sales"</span><span class="op">,</span></span>
+<span id="cb8-369"><a href="#cb8-369" aria-hidden="true" tabindex="-1"></a>        <span class="dt">fill</span><span class="op">:</span> <span class="st">"class"</span><span class="op">,</span></span>
+<span id="cb8-370"><a href="#cb8-370" aria-hidden="true" tabindex="-1"></a>        <span class="dt">tip</span><span class="op">:</span> {<span class="dt">format</span><span class="op">:</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"d"</span>}}</span>
+<span id="cb8-371"><a href="#cb8-371" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb8-372"><a href="#cb8-372" aria-hidden="true" tabindex="-1"></a>    )<span class="op">,</span></span>
+<span id="cb8-373"><a href="#cb8-373" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">ruleY</span>([<span class="dv">0</span>])</span>
+<span id="cb8-374"><a href="#cb8-374" aria-hidden="true" tabindex="-1"></a>  ]<span class="op">,</span></span>
+<span id="cb8-375"><a href="#cb8-375" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-376"><a href="#cb8-376" aria-hidden="true" tabindex="-1"></a>  <span class="dt">color</span><span class="op">:</span> {</span>
+<span id="cb8-377"><a href="#cb8-377" aria-hidden="true" tabindex="-1"></a>        <span class="dt">domain</span><span class="op">:</span> [<span class="st">"Residential"</span><span class="op">,</span><span class="st">"Commercial"</span><span class="op">,</span><span class="st">"Other"</span>]<span class="op">,</span></span>
+<span id="cb8-378"><a href="#cb8-378" aria-hidden="true" tabindex="-1"></a>        <span class="dt">range</span><span class="op">:</span> [<span class="st">"#0084c1"</span><span class="op">,</span><span class="st">"#e29617"</span><span class="op">,</span><span class="st">"#fad900"</span>]<span class="op">,</span></span>
+<span id="cb8-379"><a href="#cb8-379" aria-hidden="true" tabindex="-1"></a>        <span class="dt">legend</span><span class="op">:</span> <span class="kw">true</span></span>
+<span id="cb8-380"><a href="#cb8-380" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb8-381"><a href="#cb8-381" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-8" data-nodetype="expression">
+
+</div>
+</div>
+</div>
 <p>The trends in the number of customer accounts by class are visualized in the following figure. The average yearly growth rate in customer accounts on the Railbelt was 0.6% for the residential class, 1.37% for the commercial class, and -1.64% for the other class.</p>
-<p>[Figure X. Number of Customer Accounts, Railbelt Region]</p>
+<div class="cell">
+<div class="sourceCode cell-code hidden" id="cb9" data-startfrom="387" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 386;"><span id="cb9-387"><a href="#cb9-387" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb9-388"><a href="#cb9-388" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-389"><a href="#cb9-389" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Plot setup</span></span>
+<span id="cb9-390"><a href="#cb9-390" aria-hidden="true" tabindex="-1"></a>  <span class="dt">title</span><span class="op">:</span> <span class="st">"Number of customer accounts, Railbelt region"</span><span class="op">,</span></span>
+<span id="cb9-391"><a href="#cb9-391" aria-hidden="true" tabindex="-1"></a>  <span class="dt">caption</span><span class="op">:</span> caption_include<span class="op">,</span></span>
+<span id="cb9-392"><a href="#cb9-392" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-393"><a href="#cb9-393" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Configure the x-axis</span></span>
+<span id="cb9-394"><a href="#cb9-394" aria-hidden="true" tabindex="-1"></a>    <span class="dt">x</span><span class="op">:</span> {</span>
+<span id="cb9-395"><a href="#cb9-395" aria-hidden="true" tabindex="-1"></a>      <span class="dt">tickFormat</span><span class="op">:</span> <span class="st">"d"</span><span class="op">,</span></span>
+<span id="cb9-396"><a href="#cb9-396" aria-hidden="true" tabindex="-1"></a>      <span class="dt">label</span><span class="op">:</span> <span class="st">"Year"</span></span>
+<span id="cb9-397"><a href="#cb9-397" aria-hidden="true" tabindex="-1"></a>    }<span class="op">,</span></span>
+<span id="cb9-398"><a href="#cb9-398" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb9-399"><a href="#cb9-399" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Configure the y-axis</span></span>
+<span id="cb9-400"><a href="#cb9-400" aria-hidden="true" tabindex="-1"></a>    <span class="dt">y</span><span class="op">:</span> {</span>
+<span id="cb9-401"><a href="#cb9-401" aria-hidden="true" tabindex="-1"></a>      <span class="dt">transform</span><span class="op">:</span> (y) <span class="kw">=&gt;</span> y <span class="op">/</span> <span class="dv">1000</span><span class="op">,</span></span>
+<span id="cb9-402"><a href="#cb9-402" aria-hidden="true" tabindex="-1"></a>      <span class="dt">label</span><span class="op">:</span> <span class="st">"Accounts (000s)"</span><span class="op">,</span></span>
+<span id="cb9-403"><a href="#cb9-403" aria-hidden="true" tabindex="-1"></a>      <span class="dt">domain</span><span class="op">:</span> [<span class="dv">0</span><span class="op">,</span> <span class="dv">260</span>]<span class="op">,</span></span>
+<span id="cb9-404"><a href="#cb9-404" aria-hidden="true" tabindex="-1"></a>      <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span></span>
+<span id="cb9-405"><a href="#cb9-405" aria-hidden="true" tabindex="-1"></a>    }<span class="op">,</span></span>
+<span id="cb9-406"><a href="#cb9-406" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-407"><a href="#cb9-407" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [</span>
+<span id="cb9-408"><a href="#cb9-408" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">barY</span>(regional_consumption_data<span class="op">.</span><span class="fu">filter</span>((d) <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">class</span> <span class="op">!==</span> <span class="st">"Total"</span> <span class="op">&amp;&amp;</span> d<span class="op">.</span><span class="at">acep_region</span> <span class="op">==</span> <span class="st">"Railbelt"</span>)<span class="op">,</span> </span>
+<span id="cb9-409"><a href="#cb9-409" aria-hidden="true" tabindex="-1"></a>      {</span>
+<span id="cb9-410"><a href="#cb9-410" aria-hidden="true" tabindex="-1"></a>        <span class="dt">x</span><span class="op">:</span> <span class="st">"year"</span><span class="op">,</span></span>
+<span id="cb9-411"><a href="#cb9-411" aria-hidden="true" tabindex="-1"></a>        <span class="dt">y</span><span class="op">:</span> <span class="st">"customers"</span><span class="op">,</span></span>
+<span id="cb9-412"><a href="#cb9-412" aria-hidden="true" tabindex="-1"></a>        <span class="dt">fill</span><span class="op">:</span> <span class="st">"class"</span><span class="op">,</span></span>
+<span id="cb9-413"><a href="#cb9-413" aria-hidden="true" tabindex="-1"></a>        <span class="dt">tip</span><span class="op">:</span> {<span class="dt">format</span><span class="op">:</span> {</span>
+<span id="cb9-414"><a href="#cb9-414" aria-hidden="true" tabindex="-1"></a>            <span class="dt">x</span><span class="op">:</span> <span class="st">"d"</span><span class="op">,</span></span>
+<span id="cb9-415"><a href="#cb9-415" aria-hidden="true" tabindex="-1"></a>            <span class="dt">y</span><span class="op">:</span> (y) <span class="kw">=&gt;</span> <span class="vs">`</span><span class="sc">${</span>(y)<span class="op">.</span><span class="fu">toLocaleString</span>(<span class="kw">undefined</span><span class="op">,</span> {<span class="dt">maximumFractionDigits</span><span class="op">:</span> <span class="dv">2</span>})<span class="sc">}</span><span class="vs">`</span></span>
+<span id="cb9-416"><a href="#cb9-416" aria-hidden="true" tabindex="-1"></a>          }}</span>
+<span id="cb9-417"><a href="#cb9-417" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb9-418"><a href="#cb9-418" aria-hidden="true" tabindex="-1"></a>    )<span class="op">,</span></span>
+<span id="cb9-419"><a href="#cb9-419" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">ruleY</span>([<span class="dv">0</span>])</span>
+<span id="cb9-420"><a href="#cb9-420" aria-hidden="true" tabindex="-1"></a>  ]<span class="op">,</span></span>
+<span id="cb9-421"><a href="#cb9-421" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-422"><a href="#cb9-422" aria-hidden="true" tabindex="-1"></a>  <span class="dt">color</span><span class="op">:</span> {</span>
+<span id="cb9-423"><a href="#cb9-423" aria-hidden="true" tabindex="-1"></a>        <span class="dt">domain</span><span class="op">:</span> [<span class="st">"Residential"</span><span class="op">,</span><span class="st">"Commercial"</span><span class="op">,</span><span class="st">"Other"</span>]<span class="op">,</span></span>
+<span id="cb9-424"><a href="#cb9-424" aria-hidden="true" tabindex="-1"></a>        <span class="dt">range</span><span class="op">:</span> [<span class="st">"#0084c1"</span><span class="op">,</span><span class="st">"#e29617"</span><span class="op">,</span><span class="st">"#fad900"</span>]<span class="op">,</span></span>
+<span id="cb9-425"><a href="#cb9-425" aria-hidden="true" tabindex="-1"></a>        <span class="dt">legend</span><span class="op">:</span> <span class="kw">true</span></span>
+<span id="cb9-426"><a href="#cb9-426" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb9-427"><a href="#cb9-427" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-9" data-nodetype="expression">
+
+</div>
+</div>
+</div>
 </section>
 <section id="rural-remote" class="level2">
 <h2 class="anchored" data-anchor-id="rural-remote">Rural Remote</h2>
 <p>From 2011 to 2019, the Rural Remote region saw an average yearly growth rate of -0.43% for residential sales, 2.88% for commercial sales, and 2.7% for all other sales. Positive growth rates for the commercial and other customer classes are unique to the rural remote energy region as all other regions saw average yearly declines in sales. The following figure shows these sales in GWh for each year.</p>
-<p>[Figure. Delivered electricity by customer class, Rural Remote Region]</p>
+<div class="cell">
+<div class="sourceCode cell-code hidden" id="cb10" data-startfrom="435" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 434;"><span id="cb10-435"><a href="#cb10-435" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb10-436"><a href="#cb10-436" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-437"><a href="#cb10-437" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Plot setup</span></span>
+<span id="cb10-438"><a href="#cb10-438" aria-hidden="true" tabindex="-1"></a>  <span class="dt">title</span><span class="op">:</span> <span class="st">"Delivered electricity by customer class, Rural Remote region"</span><span class="op">,</span></span>
+<span id="cb10-439"><a href="#cb10-439" aria-hidden="true" tabindex="-1"></a>  <span class="dt">caption</span><span class="op">:</span> caption_include<span class="op">,</span></span>
+<span id="cb10-440"><a href="#cb10-440" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-441"><a href="#cb10-441" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Configure the x-axis</span></span>
+<span id="cb10-442"><a href="#cb10-442" aria-hidden="true" tabindex="-1"></a>    <span class="dt">x</span><span class="op">:</span> {</span>
+<span id="cb10-443"><a href="#cb10-443" aria-hidden="true" tabindex="-1"></a>      <span class="dt">tickFormat</span><span class="op">:</span> <span class="st">"d"</span><span class="op">,</span></span>
+<span id="cb10-444"><a href="#cb10-444" aria-hidden="true" tabindex="-1"></a>      <span class="dt">label</span><span class="op">:</span> <span class="st">"Year"</span></span>
+<span id="cb10-445"><a href="#cb10-445" aria-hidden="true" tabindex="-1"></a>    }<span class="op">,</span></span>
+<span id="cb10-446"><a href="#cb10-446" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb10-447"><a href="#cb10-447" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Configure the y-axis</span></span>
+<span id="cb10-448"><a href="#cb10-448" aria-hidden="true" tabindex="-1"></a>    <span class="dt">y</span><span class="op">:</span> {</span>
+<span id="cb10-449"><a href="#cb10-449" aria-hidden="true" tabindex="-1"></a>      <span class="dt">transform</span><span class="op">:</span> (y) <span class="kw">=&gt;</span> y <span class="op">/</span> <span class="dv">1000</span><span class="op">,</span></span>
+<span id="cb10-450"><a href="#cb10-450" aria-hidden="true" tabindex="-1"></a>      <span class="dt">domain</span><span class="op">:</span> [<span class="dv">0</span><span class="op">,</span> <span class="dv">500</span>]<span class="op">,</span></span>
+<span id="cb10-451"><a href="#cb10-451" aria-hidden="true" tabindex="-1"></a>      <span class="dt">label</span><span class="op">:</span> <span class="st">"GWh"</span><span class="op">,</span></span>
+<span id="cb10-452"><a href="#cb10-452" aria-hidden="true" tabindex="-1"></a>      <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span></span>
+<span id="cb10-453"><a href="#cb10-453" aria-hidden="true" tabindex="-1"></a>    }<span class="op">,</span></span>
+<span id="cb10-454"><a href="#cb10-454" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-455"><a href="#cb10-455" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [</span>
+<span id="cb10-456"><a href="#cb10-456" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">barY</span>(regional_consumption_data<span class="op">.</span><span class="fu">filter</span>((d) <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">class</span> <span class="op">!==</span> <span class="st">"Total"</span> <span class="op">&amp;&amp;</span> d<span class="op">.</span><span class="at">acep_region</span> <span class="op">==</span> <span class="st">"Rural Remote"</span>)<span class="op">,</span> </span>
+<span id="cb10-457"><a href="#cb10-457" aria-hidden="true" tabindex="-1"></a>      {</span>
+<span id="cb10-458"><a href="#cb10-458" aria-hidden="true" tabindex="-1"></a>        <span class="dt">x</span><span class="op">:</span> <span class="st">"year"</span><span class="op">,</span></span>
+<span id="cb10-459"><a href="#cb10-459" aria-hidden="true" tabindex="-1"></a>        <span class="dt">y</span><span class="op">:</span> <span class="st">"sales"</span><span class="op">,</span></span>
+<span id="cb10-460"><a href="#cb10-460" aria-hidden="true" tabindex="-1"></a>        <span class="dt">fill</span><span class="op">:</span> <span class="st">"class"</span><span class="op">,</span></span>
+<span id="cb10-461"><a href="#cb10-461" aria-hidden="true" tabindex="-1"></a>        <span class="dt">tip</span><span class="op">:</span> {<span class="dt">format</span><span class="op">:</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"d"</span>}}</span>
+<span id="cb10-462"><a href="#cb10-462" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb10-463"><a href="#cb10-463" aria-hidden="true" tabindex="-1"></a>    )<span class="op">,</span></span>
+<span id="cb10-464"><a href="#cb10-464" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">ruleY</span>([<span class="dv">0</span>])</span>
+<span id="cb10-465"><a href="#cb10-465" aria-hidden="true" tabindex="-1"></a>  ]<span class="op">,</span></span>
+<span id="cb10-466"><a href="#cb10-466" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-467"><a href="#cb10-467" aria-hidden="true" tabindex="-1"></a>  <span class="dt">color</span><span class="op">:</span> {</span>
+<span id="cb10-468"><a href="#cb10-468" aria-hidden="true" tabindex="-1"></a>        <span class="dt">domain</span><span class="op">:</span> [<span class="st">"Residential"</span><span class="op">,</span><span class="st">"Commercial"</span><span class="op">,</span><span class="st">"Other"</span>]<span class="op">,</span></span>
+<span id="cb10-469"><a href="#cb10-469" aria-hidden="true" tabindex="-1"></a>        <span class="dt">range</span><span class="op">:</span> [<span class="st">"#0084c1"</span><span class="op">,</span><span class="st">"#e29617"</span><span class="op">,</span><span class="st">"#fad900"</span>]<span class="op">,</span></span>
+<span id="cb10-470"><a href="#cb10-470" aria-hidden="true" tabindex="-1"></a>        <span class="dt">legend</span><span class="op">:</span> <span class="kw">true</span></span>
+<span id="cb10-471"><a href="#cb10-471" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb10-472"><a href="#cb10-472" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-10" data-nodetype="expression">
+
+</div>
+</div>
+</div>
 <p>The trends in the number of customer accounts by class are visualized in the following figure. The average yearly growth rate in customer accounts in the Rural Remote region was 1.14% for the residential class, 1.52% for the commercial class, and 2.79% for the other class.</p>
-<p>[Figure. Number of Customer Accounts, Rural Remote Region]</p>
+<div class="cell">
+<div class="sourceCode cell-code hidden" id="cb11" data-startfrom="478" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 477;"><span id="cb11-478"><a href="#cb11-478" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb11-479"><a href="#cb11-479" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-480"><a href="#cb11-480" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Plot setup</span></span>
+<span id="cb11-481"><a href="#cb11-481" aria-hidden="true" tabindex="-1"></a>  <span class="dt">title</span><span class="op">:</span> <span class="st">"Number of customer accounts, Rural Remote region"</span><span class="op">,</span></span>
+<span id="cb11-482"><a href="#cb11-482" aria-hidden="true" tabindex="-1"></a>  <span class="dt">caption</span><span class="op">:</span> caption_include<span class="op">,</span></span>
+<span id="cb11-483"><a href="#cb11-483" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-484"><a href="#cb11-484" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Configure the x-axis</span></span>
+<span id="cb11-485"><a href="#cb11-485" aria-hidden="true" tabindex="-1"></a>    <span class="dt">x</span><span class="op">:</span> {</span>
+<span id="cb11-486"><a href="#cb11-486" aria-hidden="true" tabindex="-1"></a>      <span class="dt">tickFormat</span><span class="op">:</span> <span class="st">"d"</span><span class="op">,</span></span>
+<span id="cb11-487"><a href="#cb11-487" aria-hidden="true" tabindex="-1"></a>      <span class="dt">label</span><span class="op">:</span> <span class="st">"Year"</span></span>
+<span id="cb11-488"><a href="#cb11-488" aria-hidden="true" tabindex="-1"></a>    }<span class="op">,</span></span>
+<span id="cb11-489"><a href="#cb11-489" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb11-490"><a href="#cb11-490" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Configure the y-axis</span></span>
+<span id="cb11-491"><a href="#cb11-491" aria-hidden="true" tabindex="-1"></a>    <span class="dt">y</span><span class="op">:</span> {</span>
+<span id="cb11-492"><a href="#cb11-492" aria-hidden="true" tabindex="-1"></a>      <span class="co">//transform: (y) =&gt; y / 1000,</span></span>
+<span id="cb11-493"><a href="#cb11-493" aria-hidden="true" tabindex="-1"></a>      <span class="dt">label</span><span class="op">:</span> <span class="st">"Accounts"</span><span class="op">,</span></span>
+<span id="cb11-494"><a href="#cb11-494" aria-hidden="true" tabindex="-1"></a>      <span class="dt">domain</span><span class="op">:</span> [<span class="dv">0</span><span class="op">,</span> <span class="dv">37500</span>]<span class="op">,</span></span>
+<span id="cb11-495"><a href="#cb11-495" aria-hidden="true" tabindex="-1"></a>      <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span></span>
+<span id="cb11-496"><a href="#cb11-496" aria-hidden="true" tabindex="-1"></a>    }<span class="op">,</span></span>
+<span id="cb11-497"><a href="#cb11-497" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-498"><a href="#cb11-498" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [</span>
+<span id="cb11-499"><a href="#cb11-499" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">barY</span>(regional_consumption_data<span class="op">.</span><span class="fu">filter</span>((d) <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">class</span> <span class="op">!==</span> <span class="st">"Total"</span> <span class="op">&amp;&amp;</span> d<span class="op">.</span><span class="at">acep_region</span> <span class="op">==</span> <span class="st">"Rural Remote"</span>)<span class="op">,</span> </span>
+<span id="cb11-500"><a href="#cb11-500" aria-hidden="true" tabindex="-1"></a>      {</span>
+<span id="cb11-501"><a href="#cb11-501" aria-hidden="true" tabindex="-1"></a>        <span class="dt">x</span><span class="op">:</span> <span class="st">"year"</span><span class="op">,</span></span>
+<span id="cb11-502"><a href="#cb11-502" aria-hidden="true" tabindex="-1"></a>        <span class="dt">y</span><span class="op">:</span> <span class="st">"customers"</span><span class="op">,</span></span>
+<span id="cb11-503"><a href="#cb11-503" aria-hidden="true" tabindex="-1"></a>        <span class="dt">fill</span><span class="op">:</span> <span class="st">"class"</span><span class="op">,</span></span>
+<span id="cb11-504"><a href="#cb11-504" aria-hidden="true" tabindex="-1"></a>        <span class="dt">tip</span><span class="op">:</span> {<span class="dt">format</span><span class="op">:</span> {</span>
+<span id="cb11-505"><a href="#cb11-505" aria-hidden="true" tabindex="-1"></a>            <span class="dt">x</span><span class="op">:</span> <span class="st">"d"</span><span class="op">,</span></span>
+<span id="cb11-506"><a href="#cb11-506" aria-hidden="true" tabindex="-1"></a>            <span class="dt">y</span><span class="op">:</span> (y) <span class="kw">=&gt;</span> <span class="vs">`</span><span class="sc">${</span>(y)<span class="op">.</span><span class="fu">toLocaleString</span>(<span class="kw">undefined</span><span class="op">,</span> {<span class="dt">maximumFractionDigits</span><span class="op">:</span> <span class="dv">2</span>})<span class="sc">}</span><span class="vs">`</span></span>
+<span id="cb11-507"><a href="#cb11-507" aria-hidden="true" tabindex="-1"></a>          }}</span>
+<span id="cb11-508"><a href="#cb11-508" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb11-509"><a href="#cb11-509" aria-hidden="true" tabindex="-1"></a>    )<span class="op">,</span></span>
+<span id="cb11-510"><a href="#cb11-510" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">ruleY</span>([<span class="dv">0</span>])</span>
+<span id="cb11-511"><a href="#cb11-511" aria-hidden="true" tabindex="-1"></a>  ]<span class="op">,</span></span>
+<span id="cb11-512"><a href="#cb11-512" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-513"><a href="#cb11-513" aria-hidden="true" tabindex="-1"></a>  <span class="dt">color</span><span class="op">:</span> {</span>
+<span id="cb11-514"><a href="#cb11-514" aria-hidden="true" tabindex="-1"></a>        <span class="dt">domain</span><span class="op">:</span> [<span class="st">"Residential"</span><span class="op">,</span><span class="st">"Commercial"</span><span class="op">,</span><span class="st">"Other"</span>]<span class="op">,</span></span>
+<span id="cb11-515"><a href="#cb11-515" aria-hidden="true" tabindex="-1"></a>        <span class="dt">range</span><span class="op">:</span> [<span class="st">"#0084c1"</span><span class="op">,</span><span class="st">"#e29617"</span><span class="op">,</span><span class="st">"#fad900"</span>]<span class="op">,</span></span>
+<span id="cb11-516"><a href="#cb11-516" aria-hidden="true" tabindex="-1"></a>        <span class="dt">legend</span><span class="op">:</span> <span class="kw">true</span></span>
+<span id="cb11-517"><a href="#cb11-517" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb11-518"><a href="#cb11-518" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-11" data-nodetype="expression">
+
+</div>
+</div>
+</div>
 
 
 </section>
@@ -282,6 +831,17 @@ ul.task-list li input[type="checkbox"] {
 <li id="fn1"><p>For EIA reported data, the Other group includes industrial and transportation customers. For PCE reported data, it includes community and government accounts. No industrial accounts were reported in the PCE data.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section></div></main> <!-- /main -->
+<script type="ojs-module-contents">
+eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6Ii8vIEltcG9ydCByZXF1aXJlZCBsaWJyYXJpZXMgKGNvbmRlbnNlIGxhdGVyKVxuaW1wb3J0IHt0aWR5LCBncm91cEJ5LCByZW5hbWUsIHN1bW1hcml6ZSwgc3VtLCBtdXRhdGUsIHNlbGVjdCwgbiwgbkRpc3RpbmN0LCBtZWFuLCBmaWx0ZXIsIHBpdm90V2lkZXIsIHBpdm90TG9uZ2VyLCBsZWZ0Sm9pbiwgc2xpY2UsIGZ1bGxKb2luLCBsYWcsIFRNYXRoLCByb3dOdW1iZXIsbXV0YXRlV2l0aFN1bW1hcnksIGFycmFuZ2UsIGFzY30gZnJvbSBcIkBwYmVzaGFpL3RpZHlqc1wiXG5cbi8vIEltcG9ydCB0aGUgY29uc3VtcHRpb24gZGF0YVxuY29uc3VtcHRpb25fZGF0YSA9IEZpbGVBdHRhY2htZW50KFwiZGF0YS93b3JraW5nL2NvbnN1bXB0aW9uL2NvbnN1bXB0aW9uX2xvbmcuY3N2XCIpLmNzdih7IHR5cGVkOiB0cnVlIH0pXG5cbi8vIENvbmRlbnNlIHRoZSBkYXRhIGZvciByZWdpb25hbCBwbG90dGluZ1xucmVnaW9uYWxfY29uc3VtcHRpb25fZGF0YSA9IHRpZHkoXG4gIGNvbnN1bXB0aW9uX2RhdGEsXG4gIGdyb3VwQnkoW1xuICAgIFwiYWNlcF9yZWdpb25cIiwgXCJ5ZWFyXCIsIFwiY2xhc3NcIlxuICBdLFxuICBbXG4gICAgc3VtbWFyaXplKHtcbiAgICAgIHJldmVudWU6IHN1bSgncmV2ZW51ZScpLFxuICAgICAgc2FsZXM6IHN1bSgnc2FsZXMnKSxcbiAgICAgIGN1c3RvbWVyczogc3VtKCdjdXN0b21lcnMnKVxuICAgIH0pXG4gIF0pXG4pXG5cbi8vIENoYW5nZSBpbiBzdGF0ZXdpZGUgdG90YWxzXG5zdGF0ZXdpZGVfZGVsdGEgPSB0aWR5KFxuICBjb25zdW1wdGlvbl9kYXRhLFxuICBncm91cEJ5KFxuICAgIFtcInllYXJcIixcImNsYXNzXCJdLFxuICAgIHN1bW1hcml6ZSh7XG4gICAgICByZXZlbnVlOiBzdW0oXCJyZXZlbnVlXCIpLFxuICAgICAgc2FsZXM6IHN1bShcInNhbGVzXCIpLFxuICAgICAgY3VzdG9tZXJzOiBzdW0oXCJjdXN0b21lcnNcIilcbiAgICB9KVxuICApLFxuICBmaWx0ZXIoKGQpID0+IChkLnllYXIgPT09IDIwMTEgfHwgZC55ZWFyID09PSAyMDE5KSAmJiBkLmNsYXNzICE9PSBcIlRvdGFsXCIpLFxuICBhcnJhbmdlKFtcInllYXJcIiwgYXNjKFwieWVhclwiKV0pLFxuICBncm91cEJ5KFxuICAgIFtcImNsYXNzXCJdLFxuICAgIG11dGF0ZVdpdGhTdW1tYXJ5KHtcbiAgICAgIHNhbGVzXzIwMTE6IGxhZyhcInNhbGVzXCIsIHtkZWZhdWx0OiAwfSksXG4gICAgICBjdXN0b21lcnNfMjAxMTogbGFnKFwiY3VzdG9tZXJzXCIsIHtkZWZhdWx0OiAwfSksXG4gICAgfSlcbiAgKSxcbiAgbXV0YXRlKHtcbiAgICBzYWxlc19kZWx0YTogKGQpID0+IChkLnNhbGVzIC0gZC5zYWxlc18yMDExKSAgLyBkLnNhbGVzXzIwMTEsXG4gICAgY3VzdG9tZXJzX2RlbHRhOiAoZCkgPT4gKGQuY3VzdG9tZXJzIC0gZC5jdXN0b21lcnNfMjAxMSkgLyBkLmN1c3RvbWVyc18yMDExLFxuICB9KSxcbiAgZmlsdGVyKChkKSA9PiBkLnllYXIgPT09IDIwMTkpXG4pXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTIiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJQbG90LnBsb3Qoe1xuXG4gIHRpdGxlOiBcIkNoYW5nZSBpbiBzYWxlcyBieSBjdXN0b21lciBjbGFzcywgc3RhdGV3aWRlLCBmcm9tIDIwMTEgdG8gMjAxOVwiLFxuICBoZWlnaHQ6IDUwMCxcbiAgbWFyZ2luTGVmdDogNzAsXG5cbiAgeToge1xuICAgIGxhYmVsOlwiXCIsXG4gICAgZ3JpZDogdHJ1ZSxcbiAgICBkb21haW46IFtcIlJlc2lkZW50aWFsXCIsXCJDb21tZXJjaWFsXCIsXCJPdGhlclwiXVxuICB9LFxuXG4gIHg6IHtcbiAgICB0cmFuc2Zvcm06IChkKSA9PiBkICogMTAwLFxuICAgIGRvbWFpbjogWy0xMiwwXSxcbiAgICBsYWJlbDpcIlBlcmNlbnQgQ2hhbmdlXCJcbiAgfSxcblxuICBtYXJrczogW1xuICAgIFBsb3QuZnJhbWUoKSxcbiAgICBQbG90LnJ1bGVYKFswXSksXG4gICAgUGxvdC5iYXJYKHN0YXRld2lkZV9kZWx0YSxcbiAgICAgIHtcbiAgICAgICAgeDogXCJzYWxlc19kZWx0YVwiLFxuICAgICAgICB5OiBcImNsYXNzXCIsXG4gICAgICAgIGZpbGw6IFwiY2xhc3NcIixcbiAgICAgICAgdGlwOiB7XG4gICAgICAgICAgZm9ybWF0OiB7XG4gICAgICAgICAgICB4OiAoZCkgPT4gYCR7KGQpLnRvTG9jYWxlU3RyaW5nKHVuZGVmaW5lZCwge21heGltdW1GcmFjdGlvbkRpZ2l0czogMn0pfSVgXG4gICAgICAgICAgfVxuICAgICAgICB9XG4gICAgICB9XG4gICAgKVxuICBdLFxuXG4gIGNvbG9yOiB7XG4gICAgICAgIGRvbWFpbjogW1wiUmVzaWRlbnRpYWxcIixcIkNvbW1lcmNpYWxcIixcIk90aGVyXCJdLFxuICAgICAgICByYW5nZTogW1wiIzAwODRjMVwiLFwiI2UyOTYxN1wiLFwiI2ZhZDkwMFwiXSxcbiAgICAgICAgbGVnZW5kOiB0cnVlXG4gICAgfVxufSlcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMyIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6IlBsb3QucGxvdCh7XG5cbiAgdGl0bGU6IFwiQ2hhbmdlIGluIGN1c3RvbWVyIGFjY291bnRzIGJ5IGNsYXNzLCBzdGF0ZXdpZGUsIDIwMTEgdG8gMjAxOVwiLFxuICBoZWlnaHQ6IDUwMCxcbiAgbWFyZ2luTGVmdDogNzAsXG5cbiAgeToge1xuICAgIGxhYmVsOlwiXCIsXG4gICAgZ3JpZDogdHJ1ZSxcbiAgICBkb21haW46IFtcIlJlc2lkZW50aWFsXCIsXCJDb21tZXJjaWFsXCIsXCJPdGhlclwiXVxuICB9LFxuXG4gIHg6IHtcbiAgICB0cmFuc2Zvcm06IChkKSA9PiBkICogMTAwLFxuICAgIGRvbWFpbjogWzAsIDE2XSxcbiAgICBsYWJlbDpcIlBlcmNlbnQgQ2hhbmdlXCJcbiAgfSxcblxuICBtYXJrczogW1xuICAgIFBsb3QuZnJhbWUoKSxcbiAgICBQbG90LnJ1bGVYKFswXSksXG4gICAgUGxvdC5iYXJYKHN0YXRld2lkZV9kZWx0YSxcbiAgICAgIHtcbiAgICAgICAgeDogXCJjdXN0b21lcnNfZGVsdGFcIixcbiAgICAgICAgeTogXCJjbGFzc1wiLFxuICAgICAgICBmaWxsOiBcImNsYXNzXCIsXG4gICAgICAgIHRpcDoge1xuICAgICAgICAgIGZvcm1hdDoge1xuICAgICAgICAgICAgeDogKGQpID0+IGAkeyhkKS50b0xvY2FsZVN0cmluZyh1bmRlZmluZWQsIHttYXhpbXVtRnJhY3Rpb25EaWdpdHM6IDJ9KX0lYFxuICAgICAgICAgIH1cbiAgICAgICAgfVxuICAgICAgfVxuICAgIClcbiAgXSxcblxuICBjb2xvcjoge1xuICAgICAgICBkb21haW46IFtcIlJlc2lkZW50aWFsXCIsXCJDb21tZXJjaWFsXCIsXCJPdGhlclwiXSxcbiAgICAgICAgcmFuZ2U6IFtcIiMwMDg0YzFcIixcIiNlMjk2MTdcIixcIiNmYWQ5MDBcIl0sXG4gICAgICAgIGxlZ2VuZDogdHJ1ZVxuICAgIH1cbn0pXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTQiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJzYWxlc19wZXJfY2FwaXRhX2RhdGEgPSB0aWR5KHJlZ2lvbmFsX2NvbnN1bXB0aW9uX2RhdGEuZmlsdGVyKChkKSA9PiBkLmNsYXNzID09PSBcIlJlc2lkZW50aWFsXCIpLFxuICBncm91cEJ5KFxuICAgIFsnYWNlcF9yZWdpb24nLCd5ZWFyJ10sXG4gICAgW1xuICAgICAgbXV0YXRlKHtcbiAgICAgICAgc2FsZXNfcGVyX2NhcGl0YTogKGQpID0+IChkLnNhbGVzIC8gZC5jdXN0b21lcnMpICogMTAwMFxuICAgICAgfSlcbiAgICBdXG4gIClcbilcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtNSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6ImNhcHRpb25faW5jbHVkZSA9IFwiTm90ZTogRm9yIEVJQSByZXBvcnRlZCBkYXRhLCB0aGUgT3RoZXIgY3VzdG9tZXIgY2xhc3MgaW5jbHVkZXMgaW5kdXN0cmlhbCBhbmQgdHJhbnNwb3J0YXRpb24gY3VzdG9tZXJzLiBGb3IgUENFIHJlcG9ydGVkIGRhdGEsIGl0IGluY2x1ZGVzIGNvbW11bml0eSBhbmQgZ292ZXJubWVudCBjdXN0b21lcnMuIE5vIGluZHVzdHJpYWwgY3VzdG9tZXJzIHdlcmUgcmVwb3J0ZWQgaW4gdGhlIFBDRSBkYXRhLlwiXG5cblBsb3QucGxvdCh7XG5cbiAgLy8gUGxvdCBzZXR1cFxuICB0aXRsZTogXCJBdmVyYWdlIFJlc2lkZW50aWFsIFNhbGVzIHBlciBDdXN0b21lclwiLFxuXG4gIC8vIENvbmZpZ3VyZSB0aGUgeC1heGlzXG4gICAgeDoge1xuICAgICAgZG9tYWluOiBbMjAxMSwgMjAxOV0sXG4gICAgICB0aWNrRm9ybWF0OiBcImRcIixcbiAgICAgIGxhYmVsOiBcIlllYXJcIixcbiAgICAgIGdyaWQ6IHRydWVcbiAgICB9LFxuICAgIFxuICAgIC8vIENvbmZpZ3VyZSB0aGUgeS1heGlzXG4gICAgeToge1xuICAgICAgZG9tYWluOiBbMzAwMCwgMTAwMDBdLFxuICAgICAgdGlja3M6IDYsXG4gICAgICBsYWJlbDogXCJrV2hcIixcbiAgICAgIGdyaWQ6IHRydWVcbiAgICB9LFxuXG4gIG1hcmtzOiBbXG4gICAgUGxvdC5saW5lKHNhbGVzX3Blcl9jYXBpdGFfZGF0YSwge1xuICAgICAgICB4OiBcInllYXJcIixcbiAgICAgICAgeTogXCJzYWxlc19wZXJfY2FwaXRhXCIsXG4gICAgICAgIHN0cm9rZTogXCJhY2VwX3JlZ2lvblwiLFxuICAgICAgICBzdHJva2VXaWR0aDogNSxcbiAgICAgICAgdGlwOiB7Zm9ybWF0OiB7eDogXCJkXCJ9fVxuICAgICAgfVxuICAgICksXG4gICAgUGxvdC5ydWxlWShbMzAwMF0pXG4gIF0sXG5cbiAgY29sb3I6IHtcbiAgICAgICAgZG9tYWluOiBbXCJDb2FzdGFsXCIsIFwiUmFpbGJlbHRcIiwgXCJSdXJhbCBSZW1vdGVcIl0sXG4gICAgICAgIHJhbmdlOiBbXCIjOENCQkRBXCIsIFwiIzk3Q0Q5M1wiLCBcIiNGMjhEOENcIl0sXG4gICAgICAgIGxlZ2VuZDogdHJ1ZVxuICAgIH1cbn0pXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTYiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJQbG90LnBsb3Qoe1xuXG4gIC8vIFBsb3Qgc2V0dXBcbiAgdGl0bGU6IFwiRGVsaXZlcmVkIGVsZWN0cmljaXR5IGJ5IGN1c3RvbWVyIGNsYXNzLCBDb2FzdGFsIHJlZ2lvblwiLFxuICBjYXB0aW9uOiBjYXB0aW9uX2luY2x1ZGUsXG5cbiAgLy8gQ29uZmlndXJlIHRoZSB4LWF4aXNcbiAgICB4OiB7XG4gICAgICB0aWNrRm9ybWF0OiBcImRcIixcbiAgICAgIGxhYmVsOiBcIlllYXJcIlxuICAgIH0sXG4gICAgXG4gICAgLy8gQ29uZmlndXJlIHRoZSB5LWF4aXNcbiAgICB5OiB7XG4gICAgICB0cmFuc2Zvcm06ICh5KSA9PiB5IC8gMTAwMCxcbiAgICAgIGRvbWFpbjogWzAsIDEyMDBdLFxuICAgICAgbGFiZWw6IFwiR1doXCIsXG4gICAgICBncmlkOiB0cnVlXG4gICAgfSxcblxuICBtYXJrczogW1xuICAgIFBsb3QuYmFyWShyZWdpb25hbF9jb25zdW1wdGlvbl9kYXRhLmZpbHRlcigoZCkgPT4gZC5jbGFzcyAhPT0gXCJUb3RhbFwiICYmIGQuYWNlcF9yZWdpb24gPT0gXCJDb2FzdGFsXCIpLCBcbiAgICAgIHtcbiAgICAgICAgeDogXCJ5ZWFyXCIsXG4gICAgICAgIHk6IFwic2FsZXNcIixcbiAgICAgICAgZmlsbDogXCJjbGFzc1wiLFxuICAgICAgICB0aXA6IHtmb3JtYXQ6IHt4OiBcImRcIn19XG4gICAgICB9XG4gICAgKSxcbiAgICBQbG90LnJ1bGVZKFswXSlcbiAgXSxcblxuICBjb2xvcjoge1xuICAgICAgICBkb21haW46IFtcIlJlc2lkZW50aWFsXCIsXCJDb21tZXJjaWFsXCIsXCJPdGhlclwiXSxcbiAgICAgICAgcmFuZ2U6IFtcIiMwMDg0YzFcIixcIiNlMjk2MTdcIixcIiNmYWQ5MDBcIl0sXG4gICAgICAgIGxlZ2VuZDogdHJ1ZVxuICAgIH1cbn0pXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTciLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJQbG90LnBsb3Qoe1xuXG4gIC8vIFBsb3Qgc2V0dXBcbiAgdGl0bGU6IFwiTnVtYmVyIG9mIGN1c3RvbWVyIGFjY291bnRzLCBDb2FzdGFsIHJlZ2lvblwiLFxuICBjYXB0aW9uOiBjYXB0aW9uX2luY2x1ZGUsXG5cbiAgLy8gQ29uZmlndXJlIHRoZSB4LWF4aXNcbiAgICB4OiB7XG4gICAgICB0aWNrRm9ybWF0OiBcImRcIixcbiAgICAgIGxhYmVsOiBcIlllYXJcIlxuICAgIH0sXG4gICAgXG4gICAgLy8gQ29uZmlndXJlIHRoZSB5LWF4aXNcbiAgICB5OiB7XG4gICAgICBsYWJlbDogXCJBY2NvdW50c1wiLFxuICAgICAgZG9tYWluOiBbMCwgNjAwMDBdLFxuICAgICAgZ3JpZDogdHJ1ZVxuICAgIH0sXG5cbiAgbWFya3M6IFtcbiAgICBQbG90LmJhclkocmVnaW9uYWxfY29uc3VtcHRpb25fZGF0YS5maWx0ZXIoKGQpID0+IGQuY2xhc3MgIT09IFwiVG90YWxcIiAmJiBkLmFjZXBfcmVnaW9uID09IFwiQ29hc3RhbFwiKSwgXG4gICAgICB7XG4gICAgICAgIHg6IFwieWVhclwiLFxuICAgICAgICB5OiBcImN1c3RvbWVyc1wiLFxuICAgICAgICBmaWxsOiBcImNsYXNzXCIsXG4gICAgICAgIHRpcDoge2Zvcm1hdDoge3g6IFwiZFwifX1cbiAgICAgIH1cbiAgICApLFxuICAgIFBsb3QucnVsZVkoWzBdKVxuICBdLFxuXG4gIGNvbG9yOiB7XG4gICAgICAgIGRvbWFpbjogW1wiUmVzaWRlbnRpYWxcIixcIkNvbW1lcmNpYWxcIixcIk90aGVyXCJdLFxuICAgICAgICByYW5nZTogW1wiIzAwODRjMVwiLFwiI2UyOTYxN1wiLFwiI2ZhZDkwMFwiXSxcbiAgICAgICAgbGVnZW5kOiB0cnVlXG4gICAgfVxufSlcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtOCIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6IlBsb3QucGxvdCh7XG5cbiAgLy8gUGxvdCBzZXR1cFxuICB0aXRsZTogXCJEZWxpdmVyZWQgZWxlY3RyaWNpdHkgYnkgY3VzdG9tZXIgY2xhc3MsIFJhaWxiZWx0IHJlZ2lvblwiLFxuICBjYXB0aW9uOiBjYXB0aW9uX2luY2x1ZGUsXG5cbiAgLy8gQ29uZmlndXJlIHRoZSB4LWF4aXNcbiAgICB4OiB7XG4gICAgICB0aWNrRm9ybWF0OiBcImRcIixcbiAgICAgIGxhYmVsOiBcIlllYXJcIlxuICAgIH0sXG4gICAgXG4gICAgLy8gQ29uZmlndXJlIHRoZSB5LWF4aXNcbiAgICB5OiB7XG4gICAgICB0cmFuc2Zvcm06ICh5KSA9PiB5IC8gMTAwMCxcbiAgICAgIGRvbWFpbjogWzAsIDUwMDBdLFxuICAgICAgbGFiZWw6IFwiR1doXCIsXG4gICAgICBncmlkOiB0cnVlXG4gICAgfSxcblxuICBtYXJrczogW1xuICAgIFBsb3QuYmFyWShyZWdpb25hbF9jb25zdW1wdGlvbl9kYXRhLmZpbHRlcigoZCkgPT4gZC5jbGFzcyAhPT0gXCJUb3RhbFwiICYmIGQuYWNlcF9yZWdpb24gPT0gXCJSYWlsYmVsdFwiKSwgXG4gICAgICB7XG4gICAgICAgIHg6IFwieWVhclwiLFxuICAgICAgICB5OiBcInNhbGVzXCIsXG4gICAgICAgIGZpbGw6IFwiY2xhc3NcIixcbiAgICAgICAgdGlwOiB7Zm9ybWF0OiB7eDogXCJkXCJ9fVxuICAgICAgfVxuICAgICksXG4gICAgUGxvdC5ydWxlWShbMF0pXG4gIF0sXG5cbiAgY29sb3I6IHtcbiAgICAgICAgZG9tYWluOiBbXCJSZXNpZGVudGlhbFwiLFwiQ29tbWVyY2lhbFwiLFwiT3RoZXJcIl0sXG4gICAgICAgIHJhbmdlOiBbXCIjMDA4NGMxXCIsXCIjZTI5NjE3XCIsXCIjZmFkOTAwXCJdLFxuICAgICAgICBsZWdlbmQ6IHRydWVcbiAgICB9XG59KVxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC05IiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoiUGxvdC5wbG90KHtcblxuICAvLyBQbG90IHNldHVwXG4gIHRpdGxlOiBcIk51bWJlciBvZiBjdXN0b21lciBhY2NvdW50cywgUmFpbGJlbHQgcmVnaW9uXCIsXG4gIGNhcHRpb246IGNhcHRpb25faW5jbHVkZSxcblxuICAvLyBDb25maWd1cmUgdGhlIHgtYXhpc1xuICAgIHg6IHtcbiAgICAgIHRpY2tGb3JtYXQ6IFwiZFwiLFxuICAgICAgbGFiZWw6IFwiWWVhclwiXG4gICAgfSxcbiAgICBcbiAgICAvLyBDb25maWd1cmUgdGhlIHktYXhpc1xuICAgIHk6IHtcbiAgICAgIHRyYW5zZm9ybTogKHkpID0+IHkgLyAxMDAwLFxuICAgICAgbGFiZWw6IFwiQWNjb3VudHMgKDAwMHMpXCIsXG4gICAgICBkb21haW46IFswLCAyNjBdLFxuICAgICAgZ3JpZDogdHJ1ZVxuICAgIH0sXG5cbiAgbWFya3M6IFtcbiAgICBQbG90LmJhclkocmVnaW9uYWxfY29uc3VtcHRpb25fZGF0YS5maWx0ZXIoKGQpID0+IGQuY2xhc3MgIT09IFwiVG90YWxcIiAmJiBkLmFjZXBfcmVnaW9uID09IFwiUmFpbGJlbHRcIiksIFxuICAgICAge1xuICAgICAgICB4OiBcInllYXJcIixcbiAgICAgICAgeTogXCJjdXN0b21lcnNcIixcbiAgICAgICAgZmlsbDogXCJjbGFzc1wiLFxuICAgICAgICB0aXA6IHtmb3JtYXQ6IHtcbiAgICAgICAgICAgIHg6IFwiZFwiLFxuICAgICAgICAgICAgeTogKHkpID0+IGAkeyh5KS50b0xvY2FsZVN0cmluZyh1bmRlZmluZWQsIHttYXhpbXVtRnJhY3Rpb25EaWdpdHM6IDJ9KX1gXG4gICAgICAgICAgfX1cbiAgICAgIH1cbiAgICApLFxuICAgIFBsb3QucnVsZVkoWzBdKVxuICBdLFxuXG4gIGNvbG9yOiB7XG4gICAgICAgIGRvbWFpbjogW1wiUmVzaWRlbnRpYWxcIixcIkNvbW1lcmNpYWxcIixcIk90aGVyXCJdLFxuICAgICAgICByYW5nZTogW1wiIzAwODRjMVwiLFwiI2UyOTYxN1wiLFwiI2ZhZDkwMFwiXSxcbiAgICAgICAgbGVnZW5kOiB0cnVlXG4gICAgfVxufSlcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMTAiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJQbG90LnBsb3Qoe1xuXG4gIC8vIFBsb3Qgc2V0dXBcbiAgdGl0bGU6IFwiRGVsaXZlcmVkIGVsZWN0cmljaXR5IGJ5IGN1c3RvbWVyIGNsYXNzLCBSdXJhbCBSZW1vdGUgcmVnaW9uXCIsXG4gIGNhcHRpb246IGNhcHRpb25faW5jbHVkZSxcblxuICAvLyBDb25maWd1cmUgdGhlIHgtYXhpc1xuICAgIHg6IHtcbiAgICAgIHRpY2tGb3JtYXQ6IFwiZFwiLFxuICAgICAgbGFiZWw6IFwiWWVhclwiXG4gICAgfSxcbiAgICBcbiAgICAvLyBDb25maWd1cmUgdGhlIHktYXhpc1xuICAgIHk6IHtcbiAgICAgIHRyYW5zZm9ybTogKHkpID0+IHkgLyAxMDAwLFxuICAgICAgZG9tYWluOiBbMCwgNTAwXSxcbiAgICAgIGxhYmVsOiBcIkdXaFwiLFxuICAgICAgZ3JpZDogdHJ1ZVxuICAgIH0sXG5cbiAgbWFya3M6IFtcbiAgICBQbG90LmJhclkocmVnaW9uYWxfY29uc3VtcHRpb25fZGF0YS5maWx0ZXIoKGQpID0+IGQuY2xhc3MgIT09IFwiVG90YWxcIiAmJiBkLmFjZXBfcmVnaW9uID09IFwiUnVyYWwgUmVtb3RlXCIpLCBcbiAgICAgIHtcbiAgICAgICAgeDogXCJ5ZWFyXCIsXG4gICAgICAgIHk6IFwic2FsZXNcIixcbiAgICAgICAgZmlsbDogXCJjbGFzc1wiLFxuICAgICAgICB0aXA6IHtmb3JtYXQ6IHt4OiBcImRcIn19XG4gICAgICB9XG4gICAgKSxcbiAgICBQbG90LnJ1bGVZKFswXSlcbiAgXSxcblxuICBjb2xvcjoge1xuICAgICAgICBkb21haW46IFtcIlJlc2lkZW50aWFsXCIsXCJDb21tZXJjaWFsXCIsXCJPdGhlclwiXSxcbiAgICAgICAgcmFuZ2U6IFtcIiMwMDg0YzFcIixcIiNlMjk2MTdcIixcIiNmYWQ5MDBcIl0sXG4gICAgICAgIGxlZ2VuZDogdHJ1ZVxuICAgIH1cbn0pXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTExIiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoiUGxvdC5wbG90KHtcblxuICAvLyBQbG90IHNldHVwXG4gIHRpdGxlOiBcIk51bWJlciBvZiBjdXN0b21lciBhY2NvdW50cywgUnVyYWwgUmVtb3RlIHJlZ2lvblwiLFxuICBjYXB0aW9uOiBjYXB0aW9uX2luY2x1ZGUsXG5cbiAgLy8gQ29uZmlndXJlIHRoZSB4LWF4aXNcbiAgICB4OiB7XG4gICAgICB0aWNrRm9ybWF0OiBcImRcIixcbiAgICAgIGxhYmVsOiBcIlllYXJcIlxuICAgIH0sXG4gICAgXG4gICAgLy8gQ29uZmlndXJlIHRoZSB5LWF4aXNcbiAgICB5OiB7XG4gICAgICAvL3RyYW5zZm9ybTogKHkpID0+IHkgLyAxMDAwLFxuICAgICAgbGFiZWw6IFwiQWNjb3VudHNcIixcbiAgICAgIGRvbWFpbjogWzAsIDM3NTAwXSxcbiAgICAgIGdyaWQ6IHRydWVcbiAgICB9LFxuXG4gIG1hcmtzOiBbXG4gICAgUGxvdC5iYXJZKHJlZ2lvbmFsX2NvbnN1bXB0aW9uX2RhdGEuZmlsdGVyKChkKSA9PiBkLmNsYXNzICE9PSBcIlRvdGFsXCIgJiYgZC5hY2VwX3JlZ2lvbiA9PSBcIlJ1cmFsIFJlbW90ZVwiKSwgXG4gICAgICB7XG4gICAgICAgIHg6IFwieWVhclwiLFxuICAgICAgICB5OiBcImN1c3RvbWVyc1wiLFxuICAgICAgICBmaWxsOiBcImNsYXNzXCIsXG4gICAgICAgIHRpcDoge2Zvcm1hdDoge1xuICAgICAgICAgICAgeDogXCJkXCIsXG4gICAgICAgICAgICB5OiAoeSkgPT4gYCR7KHkpLnRvTG9jYWxlU3RyaW5nKHVuZGVmaW5lZCwge21heGltdW1GcmFjdGlvbkRpZ2l0czogMn0pfWBcbiAgICAgICAgICB9fVxuICAgICAgfVxuICAgICksXG4gICAgUGxvdC5ydWxlWShbMF0pXG4gIF0sXG5cbiAgY29sb3I6IHtcbiAgICAgICAgZG9tYWluOiBbXCJSZXNpZGVudGlhbFwiLFwiQ29tbWVyY2lhbFwiLFwiT3RoZXJcIl0sXG4gICAgICAgIHJhbmdlOiBbXCIjMDA4NGMxXCIsXCIjZTI5NjE3XCIsXCIjZmFkOTAwXCJdLFxuICAgICAgICBsZWdlbmQ6IHRydWVcbiAgICB9XG59KVxuIn1dfQ==
+</script>
+<script type="module">
+if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
+window._ojs.paths.runtimeToDoc = "../..";
+window._ojs.paths.runtimeToRoot = "../..";
+window._ojs.paths.docToRoot = "";
+window._ojs.selfContained = false;
+window._ojs.runtime.interpretFromScriptTags();
+</script>
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
