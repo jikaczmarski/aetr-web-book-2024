@@ -302,20 +302,6 @@ Plot.plot({
 
 
 ```{ojs}
-// load libraries
-stdlib = require("@observablehq/stdlib")
-d3 = require("d3@7")
-import {tidy, groupBy, rename, summarize, sum, mutate, select, n, nDistinct, mean, filter, pivotWider, pivotLonger, leftJoin, slice} from "@pbeshai/tidyjs"
-
-// load data
-prices = FileAttachment("data/working/prices/prices.csv").csv({typed: true});
-weighted_prices = FileAttachment("data/working/prices/weighted_prices.csv").csv({typed: true});
-
-```
-
-
-
-```{ojs}
 // price extraction function
 
 function extract_price(region, year, sector) {
@@ -394,5 +380,18 @@ railbelt_other_change = percent_change("Railbelt", 2011, 2019, 'other');
 rural_res_change = percent_change("Rural Remote", 2011, 2019, 'residential');
 rural_com_change = percent_change("Rural Remote", 2011, 2019, 'commercial');
 rural_other_change = percent_change("Rural Remote", 2011, 2019, 'other');
+
+```
+
+
+```{ojs}
+// load libraries
+stdlib = require("@observablehq/stdlib")
+d3 = require("d3@7")
+import {tidy, groupBy, rename, summarize, sum, mutate, select, n, nDistinct, mean, filter, pivotWider, pivotLonger, leftJoin, slice} from "@pbeshai/tidyjs"
+
+// load data
+prices = FileAttachment("data/working/prices/prices.csv").csv({typed: true});
+weighted_prices = FileAttachment("data/working/prices/weighted_prices.csv").csv({typed: true});
 
 ```
