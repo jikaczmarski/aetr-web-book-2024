@@ -1,4 +1,3 @@
-# POC: Jesse Kaczmarski, jikaczmarski@alaska.edu
 ################################################################################
 # Regional compound average growth rate
 #
@@ -9,6 +8,9 @@
 #   - year1: First year of comparison (integer), default=2011
 #   - year2: Second year of comparison (integer), default=2019
 #   - decimals: Number of decimals for rounding (integer), default=2
+################################################################################
+##
+#
 
 cagr <- function(region, class, attribute, year1=2011, year2=2019, decimals=2) {
   
@@ -41,6 +43,9 @@ cagr <- function(region, class, attribute, year1=2011, year2=2019, decimals=2) {
 #   - year1: First year of comparison (integer), default=2011
 #   - year2: Second year of comparison (integer), default=2019
 #   - decimals: Number of decimals for rounding (integer), default=2
+################################################################################
+##
+#
 
 statewide_consumption_delta <- function(class, attribute, pct=FALSE, year1=2011, year2=2019, decimals=2) {
   
@@ -80,6 +85,9 @@ statewide_consumption_delta <- function(class, attribute, pct=FALSE, year1=2011,
 #   - year: Calendar year of interest (integer)
 #   - decimals: Number of decimals for rounding (integer), default=2
 #   - gwh: Reports consumption in GWh instead of MWh (boolean), default=TRUE
+################################################################################
+##
+#
 
 statewide_consumption <- function(class, attribute, year, decimals=2, gwh=TRUE) {
   
@@ -107,6 +115,9 @@ statewide_consumption <- function(class, attribute, year, decimals=2, gwh=TRUE) 
 #   - year: Calendar year of interest (integer), default=NULL
 #           NULL default results in average across all years
 #   - kwh: Reports consumption in kWh instead of MWh (boolean), default=TRUE
+################################################################################
+##
+#
 
 regional_consumption_per_capita <- function(region, class, year=NULL, kwh=TRUE) {
   
@@ -131,13 +142,3 @@ regional_consumption_per_capita <- function(region, class, year=NULL, kwh=TRUE) 
   # Output the result as a string with a comma for large numbers
   formatC(result, format="d", big.mark=",")
 }
-
-
-
-
-
-
-
-
-
-
