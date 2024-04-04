@@ -16,7 +16,10 @@ The data used in this web-book is derived from federal, state, commercial, and l
 ## Download Individual Tables
 Individual tables can be downloaded here as text files (CSV, comma-separated values). Once downloaded to your local machine, these files can be opened graphically using Microsoft Excel, or programmatically using R or Python. 
 
+
 ### Capacity (wide-format)
+`{ojs} capacity_wide_description`
+
 ```{ojs}
 capacity_wide = FileAttachment("data/working/capacity/capacity_wide.csv").csv({typed: true});
 Inputs.table(capacity_wide);
@@ -28,12 +31,20 @@ capacity_wide_metadata = metadata.resources[0].schema.fields
 
 button(capacity_wide_metadata, 'capacity_wide_metadata.csv')
 
+capacity_wide_path = metadata.resources[0].path
+capacity_wide_description = metadata.resources[0].description
+
 ```
 
+Filepath within repository: `{ojs} capacity_wide_path`
 <br>
 <br>
 
+
 ### Capacity (long-format)
+
+`{ojs} capacity_long_description `
+
 ```{ojs}
 capacity_long = FileAttachment("data/working/capacity/capacity_long.csv").csv({typed: true});
 Inputs.table(capacity_long);
@@ -45,44 +56,55 @@ capacity_long_metadata = metadata.resources[1].schema.fields
 
 button(capacity_long_metadata, 'capacity_long_metadata.csv')
 
+capacity_long_path = metadata.resources[1].path
+capacity_long_description = metadata.resources[1].description
+
 ```
 
+Filepath within repository = `{ojs} capacity_long_path`
 <br>
 <br>
 
 ### Net Generation (wide-format)
+`{ojs} net_generation_wide_description `
+
 ```{ojs}
 net_generation_wide = FileAttachment("data/working/generation/net_generation_wide.csv").csv({typed: true});
 Inputs.table(net_generation_wide);
-
 button(net_generation_long, `net_generation_wide.csv`)
 
-
 net_generation_wide_metadata = metadata.resources[3].schema.fields
-
 button(net_generation_wide_metadata, 'net_generation_wide_metadata.csv')
+
+net_generation_wide_path = metadata.resources[3].path
+net_generation_wide_description = metadata.resources[3].description
 
 ```
 
+Filepath within repository = `{ojs} net_generation_wide_path`
 <br>
 <br>
 
 ### Net Generation (long-format)
+`{ojs} net_generation_long_description `
+
 ```{ojs}
 net_generation_long = FileAttachment("data/working/generation/net_generation_long.csv").csv({typed: true});
 Inputs.table(net_generation_long);
-
 button(net_generation_long, `net_generation_long.csv`)
 
-
 net_generation_long_metadata = metadata.resources[2].schema.fields
-
 button(net_generation_long_metadata, 'net_generation_long_metadata.csv')
+
+net_generation_long_path = metadata.resources[2].path
+net_generation_long_description = metadata.resources[2].description
 
 ```
 
+Filepath within repository = `{ojs} net_generation_long_path`
 <br>
 <br>
+
 
 ### Prices
 ```{ojs}

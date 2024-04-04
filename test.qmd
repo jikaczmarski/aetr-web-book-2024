@@ -60,6 +60,7 @@ map = {
 <br>
 <br>
 
+`{ojs} capacity_wide_description `
 
 ```{ojs}
 //| echo: true
@@ -71,6 +72,8 @@ test = metadata.resources[0].schema.fields
 Inputs.table(test)
 
 button(test, 'test.csv')
+
+capacity_wide_description = metadata.resources[0].description
 
 ```
 
