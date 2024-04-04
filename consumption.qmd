@@ -16,9 +16,21 @@ library(tidyr)
 # Import the consumption data
 consumption_data <- read.csv(file = "data/working/consumption/consumption_long.csv")
 
-# Statewide data
+# Regionalized consumption data
 regional_consumption_data <- consumption_data %>%
   group_by(acep_region, year, class) %>%
+  summarise(
+    "revenue" = sum(revenue, na.rm = TRUE),
+    "sales" = sum(sales, na.rm = TRUE),
+    "customers" = sum(customers, na.rm = TRUE)
+  ) %>%
+  mutate(
+    sales_per_capita = sales / customers
+  )
+  
+# Statewide consumption data
+statewide_consumption_data <- consumption_data %>%
+  group_by(year, class) %>%
   summarise(
     "revenue" = sum(revenue, na.rm = TRUE),
     "sales" = sum(sales, na.rm = TRUE),
@@ -26,52 +38,24 @@ regional_consumption_data <- consumption_data %>%
   )
 
 # Function declarations
-# Compound average growth rate
-#
-# Attributes
-#   - region: ACEP region (string), e.g. "Coastal", str
-#   - class: Customer class (string), e.g., "Residential"
-#   - attribute: Either revenue, sales, customers, or price (string), e.g., "revenue"
-#   - year1: First year of comparison (integer), default=2011
-#   - year2: Second year of comparison (integer), default=2019
-#   - decimals: Number of decimals for rounding (integer), default=2
-
-cagr <- function(region, class, attribute, year1=2011, year2=2019, decimals=2) {
-  # Dataframe declaration
-  df = regional_consumption_data
-  
-  # Define the number of periods
-  n = year2 - year1
-  
-  # Generation in year 1
-  gen_1 = (df[[attribute]][df$acep_region == region & df$class == class & df$year == year1])
-  
-  # Generation in year 2
-  gen_2 = (df[[attribute]][df$acep_region == region & df$class == class & df$year == year2])
-  
-  # Compound Average Growth Rate Calculation
-  y = (((gen_2 / gen_1)^(1/n)) - 1)*100
-  
-  # Output the rounded CAGR to the specified decimal place
-  round(y, decimals)
-}
+source("scripts/inline_functions/consumption_inline_functions.R")
 ```
 
 ## General Overview
 
 The data presented in this section is from calendar years 2011 to 2019. More recent data has been omitted due to issues with data completeness and validity.
 
-Across the state, electricity sales (herein referred to as consumption), has fallen when comparing the 2011 and 2019 calendar years. To visualize this trend, we look at the percentage changes from 2011 to 2019 in electricity consumption by customer class and plot them in the following figure. Statewide electricity consumption by the residential sector decreased 10.86% from 2,141 GWh in 2011 to 1,909 GWh in 2019. The commercial sector also saw a decrease of 6.34% from 2,758 GWh in 2011 to 2,583 GWh in 2019. Statewide electricity consumption for the ‘Other’ customer class decreased 7.46% from 1,378 GWh in 2011 to 1,275 GWh in 2019.[^1]
+Across the state, electricity sales (herein referred to as consumption), has fallen when comparing the 2011 and 2019 calendar years. To visualize this trend, we look at the percentage changes from 2011 to 2019 in electricity consumption by customer class and plot them in the following figure. Statewide electricity consumption growth for the residential sector was `r statewide_consumption_delta("Residential","sales",pct=TRUE)`% from `r statewide_consumption("Residential","sales", 2011, decimals=0)` GWh in 2011 to `r statewide_consumption("Residential","sales", 2019, decimals=0)` GWh in 2019. The commercial sector growth was `r statewide_consumption_delta("Commercial","sales",pct=TRUE)`% from `r statewide_consumption("Commercial","sales", 2011, decimals=0)` GWh in 2011 to `r statewide_consumption("Commercial","sales", 2019, decimals=0)` GWh in 2019. Finally, Statewide electricity consumption growth for the ‘Other’ customer class was `r statewide_consumption_delta("Other","sales",pct=TRUE)`% from `r statewide_consumption("Other","sales", 2011, decimals=0)` GWh in 2011 to `r statewide_consumption("Other","sales", 2019, decimals=0)` GWh in 2019.[^1]
 
 [^1]: For EIA reported data, the Other group includes industrial and transportation customers. For PCE reported data, it includes community and government accounts. No industrial accounts were reported in the PCE data.
 
 [Figure. Change in sales by customer class, statewide, 2011 to 2019]
 
-We also examine the change in the number of customer accounts across the state. The total number of customer accounts in the state increased 6.15% from approximately 326,402 to 346,476. We plot the percentage increases in customer accounts by category in the following figure. Residential accounts across the state increased 5.22% from approximately 275,473 to 289,843. The number of commercial accounts across the state increased 11.77% from 46,410 to 51,875. Finally, the number of other accounts across the state has increased 14.87% from approximately 4,518 to 5,190.
+We also examine the change in the number of customer accounts across the state. The total number of customer accounts in the state increased `r statewide_consumption_delta("Total","customers",pct=TRUE)`% from approximately `r statewide_consumption("Total","customers",2011,decimals=0)` to `r statewide_consumption("Total","customers",2019,decimals=0)`. We plot the percentage increases in customer accounts by category in the following figure. Residential accounts across the state increased `r statewide_consumption_delta("Residential","customers",pct=TRUE)`% from approximately `r statewide_consumption("Residential","customers",2011,decimals=0)` to `r statewide_consumption("Residential","customers",2019,decimals=0)`. The number of commercial accounts across the state increased `r statewide_consumption_delta("Commercial","customers",pct=TRUE)`% from `r statewide_consumption("Commercial","customers",2011,decimals=0)` to `r statewide_consumption("Commercial","customers",2019,decimals=0)`. Finally, the number of other accounts across the state has increased `r statewide_consumption_delta("Other","customers",pct=TRUE)`% from approximately `r statewide_consumption("Other","customers",2011,decimals=0)` to `r statewide_consumption("Other","customers",2019,decimals=0)`.
 
 [Figure. Change in customer accounts by class, statewide, 2011 to 2019]
 
-The following table shows the average annual electricity consumption for each of the regions. The Coastal region led the state in consumption per capita, with an average of 8,980 kWh per customer per year. This was followed by the Railbelt region with 7,118 kWh per capita and the Rural Remote region with 4,869 kWh per capita. Overall, each region has seen reductions in consumption per capita, which may reflect improvements in energy efficient technologies and energy efficiency behaviors.
+The following table shows the average annual electricity consumption for each of the regions. The Coastal region led the state in consumption per capita, with an average of `r regional_consumption_per_capita("Coastal","Residential")` kWh per customer per year. This was followed by the Railbelt region with `r regional_consumption_per_capita("Railbelt","Residential")` kWh per capita and the Rural Remote region with `r regional_consumption_per_capita("Rural Remote","Residential")` kWh per capita. Overall, each region has seen reductions in consumption per capita, which may reflect improvements in energy efficient technologies and energy efficiency behaviors.
 
 [Figure. Average Residential Sales per Customer]
 
