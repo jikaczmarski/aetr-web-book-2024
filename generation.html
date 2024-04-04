@@ -289,7 +289,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">Apr 4, 2024 at 18:31 UTC</p>
+      <p class="date">Apr 4, 2024 at 19:17 UTC</p>
     </div>
   </div>
   
@@ -310,64 +310,64 @@ window.Quarto = {
 <section id="general-overview" class="level2">
 <h2 class="anchored" data-anchor-id="general-overview">General Overview</h2>
 <p>This section outlines the trends in generation by fuel type for each region. Generation in our context has two separate definitions. Data collected through the Energy Information Administration (EIA) records “net” generation, which excludes electricity use for power plant operations. However, data collected from the Alaska Energy Authority’s (AEA) Power Cost Equalization (PCE) program is presented as “gross” generation, which does not make this exclusion.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
-<p>The following figure provides a visual representation of yearly electricity generation for the Coastal, Railbelt, and Rural Remote regions. All regions produced a relatively consistent amount of electricity between 2011 and 2021. Across this time period, the Railbelt generated an average of 4772 GWh, the Coastal region generated an average of 1131 GWh, and the Rural Remote region generated an average of 509 GWh. Between 2011 and 2021, the average yearly growth rate for generation was 1.62% in the Coastal region, -0.31% in the Railbelt region, and 2.43% in Rural Remote communities.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> The Coastal and Rural Remote trends are in line with improvements in rural electrification, as well as modest population growth. Of the regions, the Railbelt is the only one that consistently saw decreases in generation across the years. Total statewide generation increased at an average annual growth rate of 0.22%.</p>
+<p>The following figure provides a visual representation of yearly electricity generation for the Coastal, Railbelt, and Rural Remote regions. All regions produced a relatively consistent amount of electricity between 2011 and 2021. Across this time period, the Railbelt generated an average of 4,772 GWh, the Coastal region generated an average of 1,131 GWh, and the Rural Remote region generated an average of 509 GWh. Between 2011 and 2021, the average yearly growth rate for generation was 1.62% in the Coastal region, -0.31% in the Railbelt region, and 2.43% in Rural Remote communities.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> The Coastal and Rural Remote trends are in line with improvements in rural electrification, as well as modest population growth. Of the regions, the Railbelt is the only one that consistently saw decreases in generation across the years. Total statewide generation increased at an average annual growth rate of 0.22%.</p>
 <div class="cell">
-<div class="sourceCode cell-code hidden" id="cb1" data-startfrom="51" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 50;"><span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> {tidy<span class="op">,</span> groupBy<span class="op">,</span> rename<span class="op">,</span> summarize<span class="op">,</span> sum<span class="op">,</span> mutate<span class="op">,</span> select<span class="op">,</span> n<span class="op">,</span> nDistinct<span class="op">,</span> mean<span class="op">,</span> filter<span class="op">,</span> pivotWider<span class="op">,</span> pivotLonger<span class="op">,</span> leftJoin<span class="op">,</span> slice<span class="op">,</span> fullJoin<span class="op">,</span> lag<span class="op">,</span> TMath<span class="op">,</span> rowNumber<span class="op">,</span>mutateWithSummary} <span class="im">from</span> <span class="st">"@pbeshai/tidyjs"</span></span>
-<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a><span class="co">// Import the long-form generation data</span></span>
-<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>gen_data <span class="op">=</span> <span class="fu">FileAttachment</span>(<span class="st">"data/working/generation/net_generation_long.csv"</span>)<span class="op">.</span><span class="fu">csv</span>({ <span class="dt">typed</span><span class="op">:</span> <span class="kw">true</span> })</span>
-<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a><span class="co">// Convert MWh to GWh</span></span>
-<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>gen_data_gwh <span class="op">=</span> <span class="fu">tidy</span>(gen_data<span class="op">,</span> <span class="fu">mutate</span>({</span>
-<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>  <span class="dt">generation</span><span class="op">:</span> (d) <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">generation</span> <span class="op">/</span> <span class="dv">1000</span></span>
-<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>}))<span class="op">;</span></span>
+<div class="sourceCode cell-code hidden" id="cb1" data-startfrom="59" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 58;"><span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> {tidy<span class="op">,</span> groupBy<span class="op">,</span> rename<span class="op">,</span> summarize<span class="op">,</span> sum<span class="op">,</span> mutate<span class="op">,</span> select<span class="op">,</span> n<span class="op">,</span> nDistinct<span class="op">,</span> mean<span class="op">,</span> filter<span class="op">,</span> pivotWider<span class="op">,</span> pivotLonger<span class="op">,</span> leftJoin<span class="op">,</span> slice<span class="op">,</span> fullJoin<span class="op">,</span> lag<span class="op">,</span> TMath<span class="op">,</span> rowNumber<span class="op">,</span>mutateWithSummary} <span class="im">from</span> <span class="st">"@pbeshai/tidyjs"</span></span>
 <span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a><span class="co">// Plotting total generation by region and year</span></span>
-<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
-<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Configure the plot</span></span>
-<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a>  <span class="dt">title</span><span class="op">:</span> <span class="st">" Electricity generation by region"</span><span class="op">,</span></span>
-<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a>  <span class="dt">insetLeft</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span></span>
-<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a>  <span class="dt">insetRight</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span></span>
-<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Configure the x-axis</span></span>
-<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a>  <span class="dt">x</span><span class="op">:</span> {</span>
-<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a>    <span class="dt">tickFormat</span><span class="op">:</span> <span class="st">"d"</span><span class="op">,</span></span>
-<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> <span class="st">"Year"</span></span>
-<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
-<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Configure the y-axis</span></span>
-<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a>  <span class="dt">y</span><span class="op">:</span> {</span>
-<span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a>    <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span></span>
-<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> <span class="st">"Generation (GWh)"</span></span>
-<span id="cb1-79"><a href="#cb1-79" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
-<span id="cb1-80"><a href="#cb1-80" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Plotting the series</span></span>
-<span id="cb1-82"><a href="#cb1-82" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [</span>
-<span id="cb1-83"><a href="#cb1-83" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">barY</span>(</span>
-<span id="cb1-84"><a href="#cb1-84" aria-hidden="true" tabindex="-1"></a>      gen_data_gwh<span class="op">,</span></span>
-<span id="cb1-85"><a href="#cb1-85" aria-hidden="true" tabindex="-1"></a>      Plot<span class="op">.</span><span class="fu">groupX</span>(</span>
-<span id="cb1-86"><a href="#cb1-86" aria-hidden="true" tabindex="-1"></a>        {</span>
-<span id="cb1-87"><a href="#cb1-87" aria-hidden="true" tabindex="-1"></a>          <span class="dt">y</span><span class="op">:</span> <span class="st">"sum"</span></span>
-<span id="cb1-88"><a href="#cb1-88" aria-hidden="true" tabindex="-1"></a>        }<span class="op">,</span></span>
-<span id="cb1-89"><a href="#cb1-89" aria-hidden="true" tabindex="-1"></a>        {</span>
-<span id="cb1-90"><a href="#cb1-90" aria-hidden="true" tabindex="-1"></a>          <span class="dt">x</span><span class="op">:</span> <span class="st">"year"</span><span class="op">,</span></span>
-<span id="cb1-91"><a href="#cb1-91" aria-hidden="true" tabindex="-1"></a>          <span class="dt">y</span><span class="op">:</span> <span class="st">"generation"</span><span class="op">,</span></span>
-<span id="cb1-92"><a href="#cb1-92" aria-hidden="true" tabindex="-1"></a>          <span class="dt">fill</span><span class="op">:</span> <span class="st">"acep_region"</span><span class="op">,</span></span>
-<span id="cb1-93"><a href="#cb1-93" aria-hidden="true" tabindex="-1"></a>          <span class="dt">tip</span><span class="op">:</span> {<span class="dt">format</span><span class="op">:</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"d"</span>}}</span>
-<span id="cb1-94"><a href="#cb1-94" aria-hidden="true" tabindex="-1"></a>        }</span>
-<span id="cb1-95"><a href="#cb1-95" aria-hidden="true" tabindex="-1"></a>      )</span>
-<span id="cb1-96"><a href="#cb1-96" aria-hidden="true" tabindex="-1"></a>    )<span class="op">,</span></span>
-<span id="cb1-97"><a href="#cb1-97" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">ruleY</span>([<span class="dv">0</span>])</span>
-<span id="cb1-98"><a href="#cb1-98" aria-hidden="true" tabindex="-1"></a>  ]<span class="op">,</span></span>
-<span id="cb1-99"><a href="#cb1-99" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb1-100"><a href="#cb1-100" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Legend</span></span>
-<span id="cb1-101"><a href="#cb1-101" aria-hidden="true" tabindex="-1"></a>  <span class="dt">color</span><span class="op">:</span> {</span>
-<span id="cb1-102"><a href="#cb1-102" aria-hidden="true" tabindex="-1"></a>    <span class="dt">domain</span><span class="op">:</span> [<span class="st">"Coastal"</span><span class="op">,</span><span class="st">"Railbelt"</span><span class="op">,</span><span class="st">"Rural Remote"</span>]<span class="op">,</span></span>
-<span id="cb1-103"><a href="#cb1-103" aria-hidden="true" tabindex="-1"></a>    <span class="dt">range</span><span class="op">:</span> [<span class="st">"#8cbbda"</span><span class="op">,</span><span class="st">"#97cd93"</span><span class="op">,</span><span class="st">"#f28d8c"</span>]<span class="op">,</span></span>
-<span id="cb1-104"><a href="#cb1-104" aria-hidden="true" tabindex="-1"></a>    <span class="dt">legend</span><span class="op">:</span> <span class="kw">true</span></span>
-<span id="cb1-105"><a href="#cb1-105" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb1-106"><a href="#cb1-106" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a><span class="co">// Import the long-form generation data</span></span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a>gen_data <span class="op">=</span> <span class="fu">FileAttachment</span>(<span class="st">"data/working/generation/net_generation_long.csv"</span>)<span class="op">.</span><span class="fu">csv</span>({ <span class="dt">typed</span><span class="op">:</span> <span class="kw">true</span> })</span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a><span class="co">// Convert MWh to GWh</span></span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a>gen_data_gwh <span class="op">=</span> <span class="fu">tidy</span>(gen_data<span class="op">,</span> <span class="fu">mutate</span>({</span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a>  <span class="dt">generation</span><span class="op">:</span> (d) <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">generation</span> <span class="op">/</span> <span class="dv">1000</span></span>
+<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a>}))<span class="op">;</span></span>
+<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a><span class="co">// Plotting total generation by region and year</span></span>
+<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Configure the plot</span></span>
+<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a>  <span class="dt">title</span><span class="op">:</span> <span class="st">" Electricity generation by region"</span><span class="op">,</span></span>
+<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a>  <span class="dt">insetLeft</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span></span>
+<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a>  <span class="dt">insetRight</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span></span>
+<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Configure the x-axis</span></span>
+<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a>  <span class="dt">x</span><span class="op">:</span> {</span>
+<span id="cb1-79"><a href="#cb1-79" aria-hidden="true" tabindex="-1"></a>    <span class="dt">tickFormat</span><span class="op">:</span> <span class="st">"d"</span><span class="op">,</span></span>
+<span id="cb1-80"><a href="#cb1-80" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> <span class="st">"Year"</span></span>
+<span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb1-82"><a href="#cb1-82" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-83"><a href="#cb1-83" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Configure the y-axis</span></span>
+<span id="cb1-84"><a href="#cb1-84" aria-hidden="true" tabindex="-1"></a>  <span class="dt">y</span><span class="op">:</span> {</span>
+<span id="cb1-85"><a href="#cb1-85" aria-hidden="true" tabindex="-1"></a>    <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span></span>
+<span id="cb1-86"><a href="#cb1-86" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> <span class="st">"Generation (GWh)"</span></span>
+<span id="cb1-87"><a href="#cb1-87" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb1-88"><a href="#cb1-88" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-89"><a href="#cb1-89" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Plotting the series</span></span>
+<span id="cb1-90"><a href="#cb1-90" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [</span>
+<span id="cb1-91"><a href="#cb1-91" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">barY</span>(</span>
+<span id="cb1-92"><a href="#cb1-92" aria-hidden="true" tabindex="-1"></a>      gen_data_gwh<span class="op">,</span></span>
+<span id="cb1-93"><a href="#cb1-93" aria-hidden="true" tabindex="-1"></a>      Plot<span class="op">.</span><span class="fu">groupX</span>(</span>
+<span id="cb1-94"><a href="#cb1-94" aria-hidden="true" tabindex="-1"></a>        {</span>
+<span id="cb1-95"><a href="#cb1-95" aria-hidden="true" tabindex="-1"></a>          <span class="dt">y</span><span class="op">:</span> <span class="st">"sum"</span></span>
+<span id="cb1-96"><a href="#cb1-96" aria-hidden="true" tabindex="-1"></a>        }<span class="op">,</span></span>
+<span id="cb1-97"><a href="#cb1-97" aria-hidden="true" tabindex="-1"></a>        {</span>
+<span id="cb1-98"><a href="#cb1-98" aria-hidden="true" tabindex="-1"></a>          <span class="dt">x</span><span class="op">:</span> <span class="st">"year"</span><span class="op">,</span></span>
+<span id="cb1-99"><a href="#cb1-99" aria-hidden="true" tabindex="-1"></a>          <span class="dt">y</span><span class="op">:</span> <span class="st">"generation"</span><span class="op">,</span></span>
+<span id="cb1-100"><a href="#cb1-100" aria-hidden="true" tabindex="-1"></a>          <span class="dt">fill</span><span class="op">:</span> <span class="st">"acep_region"</span><span class="op">,</span></span>
+<span id="cb1-101"><a href="#cb1-101" aria-hidden="true" tabindex="-1"></a>          <span class="dt">tip</span><span class="op">:</span> {<span class="dt">format</span><span class="op">:</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"d"</span>}}</span>
+<span id="cb1-102"><a href="#cb1-102" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb1-103"><a href="#cb1-103" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb1-104"><a href="#cb1-104" aria-hidden="true" tabindex="-1"></a>    )<span class="op">,</span></span>
+<span id="cb1-105"><a href="#cb1-105" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">ruleY</span>([<span class="dv">0</span>])</span>
+<span id="cb1-106"><a href="#cb1-106" aria-hidden="true" tabindex="-1"></a>  ]<span class="op">,</span></span>
+<span id="cb1-107"><a href="#cb1-107" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-108"><a href="#cb1-108" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Legend</span></span>
+<span id="cb1-109"><a href="#cb1-109" aria-hidden="true" tabindex="-1"></a>  <span class="dt">color</span><span class="op">:</span> {</span>
+<span id="cb1-110"><a href="#cb1-110" aria-hidden="true" tabindex="-1"></a>    <span class="dt">domain</span><span class="op">:</span> [<span class="st">"Coastal"</span><span class="op">,</span><span class="st">"Railbelt"</span><span class="op">,</span><span class="st">"Rural Remote"</span>]<span class="op">,</span></span>
+<span id="cb1-111"><a href="#cb1-111" aria-hidden="true" tabindex="-1"></a>    <span class="dt">range</span><span class="op">:</span> [<span class="st">"#8cbbda"</span><span class="op">,</span><span class="st">"#97cd93"</span><span class="op">,</span><span class="st">"#f28d8c"</span>]<span class="op">,</span></span>
+<span id="cb1-112"><a href="#cb1-112" aria-hidden="true" tabindex="-1"></a>    <span class="dt">legend</span><span class="op">:</span> <span class="kw">true</span></span>
+<span id="cb1-113"><a href="#cb1-113" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb1-114"><a href="#cb1-114" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <div id="ojs-cell-1-1" data-nodetype="declaration">
@@ -399,100 +399,100 @@ window.Quarto = {
 </div>
 <p>While generation did not change significantly during the observed time period, the resources from which generation occurred, did. The following figure shows how the mix of generation fuels changed between 2011 and 2021.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></p>
 <div class="cell">
-<div class="sourceCode cell-code hidden" id="cb2" data-startfrom="117" data-source-offset="-59"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 116;"><span id="cb2-117"><a href="#cb2-117" aria-hidden="true" tabindex="-1"></a>caption_gen_mix <span class="op">=</span> <span class="st">"Note: Storage is not included here due since net generation is negative."</span></span>
-<span id="cb2-118"><a href="#cb2-118" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-119"><a href="#cb2-119" aria-hidden="true" tabindex="-1"></a><span class="co">// Creating a modified version of the data</span></span>
-<span id="cb2-120"><a href="#cb2-120" aria-hidden="true" tabindex="-1"></a>share_data <span class="op">=</span> <span class="fu">tidy</span>(</span>
-<span id="cb2-121"><a href="#cb2-121" aria-hidden="true" tabindex="-1"></a>  gen_data<span class="op">,</span></span>
-<span id="cb2-122"><a href="#cb2-122" aria-hidden="true" tabindex="-1"></a>  <span class="fu">groupBy</span>(</span>
-<span id="cb2-123"><a href="#cb2-123" aria-hidden="true" tabindex="-1"></a>    [<span class="st">'year'</span><span class="op">,</span><span class="st">'acep_region'</span><span class="op">,</span><span class="st">'fuel_type'</span>]<span class="op">,</span> </span>
-<span id="cb2-124"><a href="#cb2-124" aria-hidden="true" tabindex="-1"></a>    [</span>
-<span id="cb2-125"><a href="#cb2-125" aria-hidden="true" tabindex="-1"></a>      <span class="fu">summarize</span>({</span>
-<span id="cb2-126"><a href="#cb2-126" aria-hidden="true" tabindex="-1"></a>        <span class="dt">generation</span><span class="op">:</span> <span class="fu">sum</span>(<span class="st">'generation'</span>)</span>
-<span id="cb2-127"><a href="#cb2-127" aria-hidden="true" tabindex="-1"></a>      })</span>
-<span id="cb2-128"><a href="#cb2-128" aria-hidden="true" tabindex="-1"></a>    ]</span>
-<span id="cb2-129"><a href="#cb2-129" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb2-130"><a href="#cb2-130" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb2-131"><a href="#cb2-131" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-132"><a href="#cb2-132" aria-hidden="true" tabindex="-1"></a><span class="co">// Creating total generation data from each region and year</span></span>
-<span id="cb2-133"><a href="#cb2-133" aria-hidden="true" tabindex="-1"></a>total_gen <span class="op">=</span> <span class="fu">tidy</span>(share_data<span class="op">,</span> <span class="fu">groupBy</span>([<span class="st">'year'</span><span class="op">,</span><span class="st">'acep_region'</span>]<span class="op">,</span> <span class="fu">summarize</span>({<span class="dt">total_generation</span><span class="op">:</span> <span class="fu">sum</span>(<span class="st">'generation'</span>)})))</span>
-<span id="cb2-134"><a href="#cb2-134" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-135"><a href="#cb2-135" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-136"><a href="#cb2-136" aria-hidden="true" tabindex="-1"></a><span class="co">// Creating a joined table from the above two</span></span>
-<span id="cb2-137"><a href="#cb2-137" aria-hidden="true" tabindex="-1"></a>join <span class="op">=</span> <span class="fu">tidy</span>(share_data<span class="op">,</span> <span class="fu">fullJoin</span>(total_gen<span class="op">,</span> {<span class="dt">by</span><span class="op">:</span> [<span class="st">'year'</span><span class="op">,</span><span class="st">'acep_region'</span>]}))</span>
-<span id="cb2-138"><a href="#cb2-138" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-139"><a href="#cb2-139" aria-hidden="true" tabindex="-1"></a><span class="co">// Creating a column with shares</span></span>
-<span id="cb2-140"><a href="#cb2-140" aria-hidden="true" tabindex="-1"></a>join_shares <span class="op">=</span> <span class="fu">tidy</span>(join<span class="op">.</span><span class="fu">filter</span>((d) <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">fuel_type</span> <span class="op">!==</span> <span class="st">"Storage"</span>)<span class="op">,</span></span>
-<span id="cb2-141"><a href="#cb2-141" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>({<span class="dt">generation_share</span><span class="op">:</span> (d) <span class="kw">=&gt;</span> (d<span class="op">.</span><span class="at">generation</span> <span class="op">/</span> d<span class="op">.</span><span class="at">total_generation</span>)<span class="op">*</span><span class="dv">100</span>})</span>
-<span id="cb2-142"><a href="#cb2-142" aria-hidden="true" tabindex="-1"></a>) <span class="co">// join_shares should be used for the 100% area charts</span></span>
+<div class="sourceCode cell-code hidden" id="cb2" data-startfrom="125" data-source-offset="-59"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 124;"><span id="cb2-125"><a href="#cb2-125" aria-hidden="true" tabindex="-1"></a>caption_gen_mix <span class="op">=</span> <span class="st">"Note: Storage is not included here due since net generation is negative."</span></span>
+<span id="cb2-126"><a href="#cb2-126" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-127"><a href="#cb2-127" aria-hidden="true" tabindex="-1"></a><span class="co">// Creating a modified version of the data</span></span>
+<span id="cb2-128"><a href="#cb2-128" aria-hidden="true" tabindex="-1"></a>share_data <span class="op">=</span> <span class="fu">tidy</span>(</span>
+<span id="cb2-129"><a href="#cb2-129" aria-hidden="true" tabindex="-1"></a>  gen_data<span class="op">,</span></span>
+<span id="cb2-130"><a href="#cb2-130" aria-hidden="true" tabindex="-1"></a>  <span class="fu">groupBy</span>(</span>
+<span id="cb2-131"><a href="#cb2-131" aria-hidden="true" tabindex="-1"></a>    [<span class="st">'year'</span><span class="op">,</span><span class="st">'acep_region'</span><span class="op">,</span><span class="st">'fuel_type'</span>]<span class="op">,</span> </span>
+<span id="cb2-132"><a href="#cb2-132" aria-hidden="true" tabindex="-1"></a>    [</span>
+<span id="cb2-133"><a href="#cb2-133" aria-hidden="true" tabindex="-1"></a>      <span class="fu">summarize</span>({</span>
+<span id="cb2-134"><a href="#cb2-134" aria-hidden="true" tabindex="-1"></a>        <span class="dt">generation</span><span class="op">:</span> <span class="fu">sum</span>(<span class="st">'generation'</span>)</span>
+<span id="cb2-135"><a href="#cb2-135" aria-hidden="true" tabindex="-1"></a>      })</span>
+<span id="cb2-136"><a href="#cb2-136" aria-hidden="true" tabindex="-1"></a>    ]</span>
+<span id="cb2-137"><a href="#cb2-137" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb2-138"><a href="#cb2-138" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-139"><a href="#cb2-139" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-140"><a href="#cb2-140" aria-hidden="true" tabindex="-1"></a><span class="co">// Creating total generation data from each region and year</span></span>
+<span id="cb2-141"><a href="#cb2-141" aria-hidden="true" tabindex="-1"></a>total_gen <span class="op">=</span> <span class="fu">tidy</span>(share_data<span class="op">,</span> <span class="fu">groupBy</span>([<span class="st">'year'</span><span class="op">,</span><span class="st">'acep_region'</span>]<span class="op">,</span> <span class="fu">summarize</span>({<span class="dt">total_generation</span><span class="op">:</span> <span class="fu">sum</span>(<span class="st">'generation'</span>)})))</span>
+<span id="cb2-142"><a href="#cb2-142" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-143"><a href="#cb2-143" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-144"><a href="#cb2-144" aria-hidden="true" tabindex="-1"></a><span class="co">// Table for just the 2011 and 2021 generation mix comparison</span></span>
-<span id="cb2-145"><a href="#cb2-145" aria-hidden="true" tabindex="-1"></a>gen_mix_diff <span class="op">=</span> <span class="fu">tidy</span>(</span>
-<span id="cb2-146"><a href="#cb2-146" aria-hidden="true" tabindex="-1"></a>  join_shares<span class="op">.</span><span class="fu">filter</span>((d) <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">year</span> <span class="op">===</span> <span class="dv">2011</span> <span class="op">||</span> d<span class="op">.</span><span class="at">year</span> <span class="op">===</span> <span class="dv">2021</span>)<span class="op">,</span></span>
-<span id="cb2-147"><a href="#cb2-147" aria-hidden="true" tabindex="-1"></a>  <span class="fu">groupBy</span>(</span>
-<span id="cb2-148"><a href="#cb2-148" aria-hidden="true" tabindex="-1"></a>    [<span class="st">'acep_region'</span><span class="op">,</span><span class="st">'fuel_type'</span>]<span class="op">,</span></span>
-<span id="cb2-149"><a href="#cb2-149" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutateWithSummary</span>({</span>
-<span id="cb2-150"><a href="#cb2-150" aria-hidden="true" tabindex="-1"></a>        <span class="dt">generation_share_2011</span><span class="op">:</span> <span class="fu">lag</span>(<span class="st">'generation_share'</span><span class="op">,</span> {<span class="cf">default</span><span class="op">:</span> <span class="dv">0</span>})</span>
-<span id="cb2-151"><a href="#cb2-151" aria-hidden="true" tabindex="-1"></a>    })</span>
-<span id="cb2-152"><a href="#cb2-152" aria-hidden="true" tabindex="-1"></a>  )<span class="op">,</span></span>
-<span id="cb2-153"><a href="#cb2-153" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>({</span>
-<span id="cb2-154"><a href="#cb2-154" aria-hidden="true" tabindex="-1"></a>    <span class="dt">delta</span><span class="op">:</span> (d) <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">generation_share</span> <span class="op">-</span> d<span class="op">.</span><span class="at">generation_share_2011</span></span>
-<span id="cb2-155"><a href="#cb2-155" aria-hidden="true" tabindex="-1"></a>  })<span class="op">,</span></span>
-<span id="cb2-156"><a href="#cb2-156" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(</span>
-<span id="cb2-157"><a href="#cb2-157" aria-hidden="true" tabindex="-1"></a>    (d)  <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">year</span> <span class="op">===</span> <span class="dv">2021</span></span>
-<span id="cb2-158"><a href="#cb2-158" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb2-159"><a href="#cb2-159" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb2-160"><a href="#cb2-160" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-161"><a href="#cb2-161" aria-hidden="true" tabindex="-1"></a><span class="co">// Plotting the deltas</span></span>
-<span id="cb2-162"><a href="#cb2-162" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
-<span id="cb2-163"><a href="#cb2-163" aria-hidden="true" tabindex="-1"></a>  <span class="dt">title</span><span class="op">:</span> <span class="st">"Regional changes in net generation"</span><span class="op">,</span></span>
-<span id="cb2-164"><a href="#cb2-164" aria-hidden="true" tabindex="-1"></a>  <span class="dt">subtitle</span><span class="op">:</span> <span class="st">"Percentage point differences in generation mix between 2021 and 2011"</span><span class="op">,</span></span>
-<span id="cb2-165"><a href="#cb2-165" aria-hidden="true" tabindex="-1"></a>  <span class="dt">insetLeft</span><span class="op">:</span> <span class="dv">15</span><span class="op">,</span></span>
-<span id="cb2-166"><a href="#cb2-166" aria-hidden="true" tabindex="-1"></a>  <span class="dt">insetRight</span><span class="op">:</span> <span class="dv">15</span><span class="op">,</span></span>
-<span id="cb2-167"><a href="#cb2-167" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marginRight</span><span class="op">:</span> <span class="dv">70</span><span class="op">,</span></span>
-<span id="cb2-168"><a href="#cb2-168" aria-hidden="true" tabindex="-1"></a>  <span class="dt">height</span><span class="op">:</span> <span class="dv">600</span><span class="op">,</span></span>
-<span id="cb2-169"><a href="#cb2-169" aria-hidden="true" tabindex="-1"></a>  <span class="dt">width</span><span class="op">:</span> <span class="dv">800</span><span class="op">,</span></span>
-<span id="cb2-170"><a href="#cb2-170" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-171"><a href="#cb2-171" aria-hidden="true" tabindex="-1"></a>  <span class="dt">x</span><span class="op">:</span> {</span>
-<span id="cb2-172"><a href="#cb2-172" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> <span class="st">"Percentage Point Change"</span><span class="op">,</span></span>
-<span id="cb2-173"><a href="#cb2-173" aria-hidden="true" tabindex="-1"></a>    <span class="dt">labelAnchor</span><span class="op">:</span> <span class="st">"center"</span></span>
-<span id="cb2-174"><a href="#cb2-174" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
-<span id="cb2-175"><a href="#cb2-175" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-176"><a href="#cb2-176" aria-hidden="true" tabindex="-1"></a>  <span class="dt">y</span><span class="op">:</span> {</span>
-<span id="cb2-177"><a href="#cb2-177" aria-hidden="true" tabindex="-1"></a>    <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span></span>
-<span id="cb2-178"><a href="#cb2-178" aria-hidden="true" tabindex="-1"></a>    <span class="dt">domain</span><span class="op">:</span> [<span class="st">"Coal"</span><span class="op">,</span><span class="st">"Oil"</span><span class="op">,</span><span class="st">"Gas"</span><span class="op">,</span><span class="st">"Hydro"</span><span class="op">,</span><span class="st">"Wind"</span><span class="op">,</span><span class="st">"Solar"</span>]<span class="op">,</span></span>
-<span id="cb2-179"><a href="#cb2-179" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> <span class="st">""</span></span>
-<span id="cb2-180"><a href="#cb2-180" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
-<span id="cb2-181"><a href="#cb2-181" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-182"><a href="#cb2-182" aria-hidden="true" tabindex="-1"></a>  <span class="dt">facet</span><span class="op">:</span> {</span>
-<span id="cb2-183"><a href="#cb2-183" aria-hidden="true" tabindex="-1"></a>    <span class="dt">data</span><span class="op">:</span> gen_mix_diff<span class="op">,</span></span>
-<span id="cb2-184"><a href="#cb2-184" aria-hidden="true" tabindex="-1"></a>    <span class="dt">y</span><span class="op">:</span> (d) <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">acep_region</span></span>
-<span id="cb2-185"><a href="#cb2-185" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
-<span id="cb2-186"><a href="#cb2-186" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-187"><a href="#cb2-187" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [</span>
-<span id="cb2-188"><a href="#cb2-188" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">frame</span>()<span class="op">,</span></span>
-<span id="cb2-189"><a href="#cb2-189" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">barX</span>(gen_mix_diff<span class="op">,</span> {</span>
-<span id="cb2-190"><a href="#cb2-190" aria-hidden="true" tabindex="-1"></a>        <span class="dt">x</span><span class="op">:</span> <span class="st">"delta"</span><span class="op">,</span></span>
-<span id="cb2-191"><a href="#cb2-191" aria-hidden="true" tabindex="-1"></a>        <span class="dt">y</span><span class="op">:</span> <span class="st">"fuel_type"</span><span class="op">,</span></span>
-<span id="cb2-192"><a href="#cb2-192" aria-hidden="true" tabindex="-1"></a>        <span class="dt">fill</span><span class="op">:</span> <span class="st">"fuel_type"</span><span class="op">,</span></span>
-<span id="cb2-193"><a href="#cb2-193" aria-hidden="true" tabindex="-1"></a>        <span class="dt">order</span><span class="op">:</span> [<span class="st">"Coal"</span><span class="op">,</span><span class="st">"Oil"</span><span class="op">,</span><span class="st">"Gas"</span><span class="op">,</span><span class="st">"Hydro"</span><span class="op">,</span><span class="st">"Wind"</span><span class="op">,</span><span class="st">"Solar"</span>]<span class="op">,</span></span>
-<span id="cb2-194"><a href="#cb2-194" aria-hidden="true" tabindex="-1"></a>        <span class="dt">tip</span><span class="op">:</span> {</span>
-<span id="cb2-195"><a href="#cb2-195" aria-hidden="true" tabindex="-1"></a>          <span class="dt">format</span><span class="op">:</span> {</span>
-<span id="cb2-196"><a href="#cb2-196" aria-hidden="true" tabindex="-1"></a>            <span class="dt">x</span><span class="op">:</span> (d) <span class="kw">=&gt;</span> <span class="vs">`</span><span class="sc">${</span>(d)<span class="op">.</span><span class="fu">toLocaleString</span>(<span class="kw">undefined</span><span class="op">,</span> {<span class="dt">maximumFractionDigits</span><span class="op">:</span> <span class="dv">2</span>})<span class="sc">}</span><span class="vs">%`</span><span class="op">,</span></span>
-<span id="cb2-197"><a href="#cb2-197" aria-hidden="true" tabindex="-1"></a>            <span class="dt">y</span><span class="op">:</span> <span class="kw">false</span></span>
-<span id="cb2-198"><a href="#cb2-198" aria-hidden="true" tabindex="-1"></a>          }</span>
-<span id="cb2-199"><a href="#cb2-199" aria-hidden="true" tabindex="-1"></a>        }</span>
-<span id="cb2-200"><a href="#cb2-200" aria-hidden="true" tabindex="-1"></a>      }</span>
-<span id="cb2-201"><a href="#cb2-201" aria-hidden="true" tabindex="-1"></a>    )<span class="op">,</span></span>
-<span id="cb2-202"><a href="#cb2-202" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">ruleX</span>([<span class="dv">0</span>])</span>
-<span id="cb2-203"><a href="#cb2-203" aria-hidden="true" tabindex="-1"></a>  ]<span class="op">,</span></span>
-<span id="cb2-204"><a href="#cb2-204" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-205"><a href="#cb2-205" aria-hidden="true" tabindex="-1"></a>  <span class="dt">color</span><span class="op">:</span> {</span>
-<span id="cb2-206"><a href="#cb2-206" aria-hidden="true" tabindex="-1"></a>    <span class="dt">domain</span><span class="op">:</span> [<span class="st">"Coal"</span><span class="op">,</span><span class="st">"Oil"</span><span class="op">,</span><span class="st">"Gas"</span><span class="op">,</span><span class="st">"Hydro"</span><span class="op">,</span><span class="st">"Wind"</span><span class="op">,</span><span class="st">"Solar"</span>]<span class="op">,</span></span>
-<span id="cb2-207"><a href="#cb2-207" aria-hidden="true" tabindex="-1"></a>    <span class="dt">range</span><span class="op">:</span> [<span class="st">"#7f7f7f"</span><span class="op">,</span><span class="st">"#BFBFBF"</span><span class="op">,</span><span class="st">"#DCD9C5"</span><span class="op">,</span><span class="st">"#96B3DF"</span><span class="op">,</span><span class="st">"#F79646"</span><span class="op">,</span><span class="st">"#F5C243"</span>]<span class="op">,</span></span>
-<span id="cb2-208"><a href="#cb2-208" aria-hidden="true" tabindex="-1"></a>    <span class="dt">legend</span><span class="op">:</span> <span class="kw">true</span></span>
-<span id="cb2-209"><a href="#cb2-209" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb2-210"><a href="#cb2-210" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-144"><a href="#cb2-144" aria-hidden="true" tabindex="-1"></a><span class="co">// Creating a joined table from the above two</span></span>
+<span id="cb2-145"><a href="#cb2-145" aria-hidden="true" tabindex="-1"></a>join <span class="op">=</span> <span class="fu">tidy</span>(share_data<span class="op">,</span> <span class="fu">fullJoin</span>(total_gen<span class="op">,</span> {<span class="dt">by</span><span class="op">:</span> [<span class="st">'year'</span><span class="op">,</span><span class="st">'acep_region'</span>]}))</span>
+<span id="cb2-146"><a href="#cb2-146" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-147"><a href="#cb2-147" aria-hidden="true" tabindex="-1"></a><span class="co">// Creating a column with shares</span></span>
+<span id="cb2-148"><a href="#cb2-148" aria-hidden="true" tabindex="-1"></a>join_shares <span class="op">=</span> <span class="fu">tidy</span>(join<span class="op">.</span><span class="fu">filter</span>((d) <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">fuel_type</span> <span class="op">!==</span> <span class="st">"Storage"</span>)<span class="op">,</span></span>
+<span id="cb2-149"><a href="#cb2-149" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>({<span class="dt">generation_share</span><span class="op">:</span> (d) <span class="kw">=&gt;</span> (d<span class="op">.</span><span class="at">generation</span> <span class="op">/</span> d<span class="op">.</span><span class="at">total_generation</span>)<span class="op">*</span><span class="dv">100</span>})</span>
+<span id="cb2-150"><a href="#cb2-150" aria-hidden="true" tabindex="-1"></a>) <span class="co">// join_shares should be used for the 100% area charts</span></span>
+<span id="cb2-151"><a href="#cb2-151" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-152"><a href="#cb2-152" aria-hidden="true" tabindex="-1"></a><span class="co">// Table for just the 2011 and 2021 generation mix comparison</span></span>
+<span id="cb2-153"><a href="#cb2-153" aria-hidden="true" tabindex="-1"></a>gen_mix_diff <span class="op">=</span> <span class="fu">tidy</span>(</span>
+<span id="cb2-154"><a href="#cb2-154" aria-hidden="true" tabindex="-1"></a>  join_shares<span class="op">.</span><span class="fu">filter</span>((d) <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">year</span> <span class="op">===</span> <span class="dv">2011</span> <span class="op">||</span> d<span class="op">.</span><span class="at">year</span> <span class="op">===</span> <span class="dv">2021</span>)<span class="op">,</span></span>
+<span id="cb2-155"><a href="#cb2-155" aria-hidden="true" tabindex="-1"></a>  <span class="fu">groupBy</span>(</span>
+<span id="cb2-156"><a href="#cb2-156" aria-hidden="true" tabindex="-1"></a>    [<span class="st">'acep_region'</span><span class="op">,</span><span class="st">'fuel_type'</span>]<span class="op">,</span></span>
+<span id="cb2-157"><a href="#cb2-157" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutateWithSummary</span>({</span>
+<span id="cb2-158"><a href="#cb2-158" aria-hidden="true" tabindex="-1"></a>        <span class="dt">generation_share_2011</span><span class="op">:</span> <span class="fu">lag</span>(<span class="st">'generation_share'</span><span class="op">,</span> {<span class="cf">default</span><span class="op">:</span> <span class="dv">0</span>})</span>
+<span id="cb2-159"><a href="#cb2-159" aria-hidden="true" tabindex="-1"></a>    })</span>
+<span id="cb2-160"><a href="#cb2-160" aria-hidden="true" tabindex="-1"></a>  )<span class="op">,</span></span>
+<span id="cb2-161"><a href="#cb2-161" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>({</span>
+<span id="cb2-162"><a href="#cb2-162" aria-hidden="true" tabindex="-1"></a>    <span class="dt">delta</span><span class="op">:</span> (d) <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">generation_share</span> <span class="op">-</span> d<span class="op">.</span><span class="at">generation_share_2011</span></span>
+<span id="cb2-163"><a href="#cb2-163" aria-hidden="true" tabindex="-1"></a>  })<span class="op">,</span></span>
+<span id="cb2-164"><a href="#cb2-164" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(</span>
+<span id="cb2-165"><a href="#cb2-165" aria-hidden="true" tabindex="-1"></a>    (d)  <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">year</span> <span class="op">===</span> <span class="dv">2021</span></span>
+<span id="cb2-166"><a href="#cb2-166" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb2-167"><a href="#cb2-167" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-168"><a href="#cb2-168" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-169"><a href="#cb2-169" aria-hidden="true" tabindex="-1"></a><span class="co">// Plotting the deltas</span></span>
+<span id="cb2-170"><a href="#cb2-170" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb2-171"><a href="#cb2-171" aria-hidden="true" tabindex="-1"></a>  <span class="dt">title</span><span class="op">:</span> <span class="st">"Regional changes in net generation"</span><span class="op">,</span></span>
+<span id="cb2-172"><a href="#cb2-172" aria-hidden="true" tabindex="-1"></a>  <span class="dt">subtitle</span><span class="op">:</span> <span class="st">"Percentage point differences in generation mix between 2021 and 2011"</span><span class="op">,</span></span>
+<span id="cb2-173"><a href="#cb2-173" aria-hidden="true" tabindex="-1"></a>  <span class="dt">insetLeft</span><span class="op">:</span> <span class="dv">15</span><span class="op">,</span></span>
+<span id="cb2-174"><a href="#cb2-174" aria-hidden="true" tabindex="-1"></a>  <span class="dt">insetRight</span><span class="op">:</span> <span class="dv">15</span><span class="op">,</span></span>
+<span id="cb2-175"><a href="#cb2-175" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marginRight</span><span class="op">:</span> <span class="dv">70</span><span class="op">,</span></span>
+<span id="cb2-176"><a href="#cb2-176" aria-hidden="true" tabindex="-1"></a>  <span class="dt">height</span><span class="op">:</span> <span class="dv">600</span><span class="op">,</span></span>
+<span id="cb2-177"><a href="#cb2-177" aria-hidden="true" tabindex="-1"></a>  <span class="dt">width</span><span class="op">:</span> <span class="dv">800</span><span class="op">,</span></span>
+<span id="cb2-178"><a href="#cb2-178" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-179"><a href="#cb2-179" aria-hidden="true" tabindex="-1"></a>  <span class="dt">x</span><span class="op">:</span> {</span>
+<span id="cb2-180"><a href="#cb2-180" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> <span class="st">"Percentage Point Change"</span><span class="op">,</span></span>
+<span id="cb2-181"><a href="#cb2-181" aria-hidden="true" tabindex="-1"></a>    <span class="dt">labelAnchor</span><span class="op">:</span> <span class="st">"center"</span></span>
+<span id="cb2-182"><a href="#cb2-182" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb2-183"><a href="#cb2-183" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-184"><a href="#cb2-184" aria-hidden="true" tabindex="-1"></a>  <span class="dt">y</span><span class="op">:</span> {</span>
+<span id="cb2-185"><a href="#cb2-185" aria-hidden="true" tabindex="-1"></a>    <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span></span>
+<span id="cb2-186"><a href="#cb2-186" aria-hidden="true" tabindex="-1"></a>    <span class="dt">domain</span><span class="op">:</span> [<span class="st">"Coal"</span><span class="op">,</span><span class="st">"Oil"</span><span class="op">,</span><span class="st">"Gas"</span><span class="op">,</span><span class="st">"Hydro"</span><span class="op">,</span><span class="st">"Wind"</span><span class="op">,</span><span class="st">"Solar"</span>]<span class="op">,</span></span>
+<span id="cb2-187"><a href="#cb2-187" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> <span class="st">""</span></span>
+<span id="cb2-188"><a href="#cb2-188" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb2-189"><a href="#cb2-189" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-190"><a href="#cb2-190" aria-hidden="true" tabindex="-1"></a>  <span class="dt">facet</span><span class="op">:</span> {</span>
+<span id="cb2-191"><a href="#cb2-191" aria-hidden="true" tabindex="-1"></a>    <span class="dt">data</span><span class="op">:</span> gen_mix_diff<span class="op">,</span></span>
+<span id="cb2-192"><a href="#cb2-192" aria-hidden="true" tabindex="-1"></a>    <span class="dt">y</span><span class="op">:</span> (d) <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">acep_region</span></span>
+<span id="cb2-193"><a href="#cb2-193" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb2-194"><a href="#cb2-194" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-195"><a href="#cb2-195" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [</span>
+<span id="cb2-196"><a href="#cb2-196" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">frame</span>()<span class="op">,</span></span>
+<span id="cb2-197"><a href="#cb2-197" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">barX</span>(gen_mix_diff<span class="op">,</span> {</span>
+<span id="cb2-198"><a href="#cb2-198" aria-hidden="true" tabindex="-1"></a>        <span class="dt">x</span><span class="op">:</span> <span class="st">"delta"</span><span class="op">,</span></span>
+<span id="cb2-199"><a href="#cb2-199" aria-hidden="true" tabindex="-1"></a>        <span class="dt">y</span><span class="op">:</span> <span class="st">"fuel_type"</span><span class="op">,</span></span>
+<span id="cb2-200"><a href="#cb2-200" aria-hidden="true" tabindex="-1"></a>        <span class="dt">fill</span><span class="op">:</span> <span class="st">"fuel_type"</span><span class="op">,</span></span>
+<span id="cb2-201"><a href="#cb2-201" aria-hidden="true" tabindex="-1"></a>        <span class="dt">order</span><span class="op">:</span> [<span class="st">"Coal"</span><span class="op">,</span><span class="st">"Oil"</span><span class="op">,</span><span class="st">"Gas"</span><span class="op">,</span><span class="st">"Hydro"</span><span class="op">,</span><span class="st">"Wind"</span><span class="op">,</span><span class="st">"Solar"</span>]<span class="op">,</span></span>
+<span id="cb2-202"><a href="#cb2-202" aria-hidden="true" tabindex="-1"></a>        <span class="dt">tip</span><span class="op">:</span> {</span>
+<span id="cb2-203"><a href="#cb2-203" aria-hidden="true" tabindex="-1"></a>          <span class="dt">format</span><span class="op">:</span> {</span>
+<span id="cb2-204"><a href="#cb2-204" aria-hidden="true" tabindex="-1"></a>            <span class="dt">x</span><span class="op">:</span> (d) <span class="kw">=&gt;</span> <span class="vs">`</span><span class="sc">${</span>(d)<span class="op">.</span><span class="fu">toLocaleString</span>(<span class="kw">undefined</span><span class="op">,</span> {<span class="dt">maximumFractionDigits</span><span class="op">:</span> <span class="dv">2</span>})<span class="sc">}</span><span class="vs">%`</span><span class="op">,</span></span>
+<span id="cb2-205"><a href="#cb2-205" aria-hidden="true" tabindex="-1"></a>            <span class="dt">y</span><span class="op">:</span> <span class="kw">false</span></span>
+<span id="cb2-206"><a href="#cb2-206" aria-hidden="true" tabindex="-1"></a>          }</span>
+<span id="cb2-207"><a href="#cb2-207" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb2-208"><a href="#cb2-208" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb2-209"><a href="#cb2-209" aria-hidden="true" tabindex="-1"></a>    )<span class="op">,</span></span>
+<span id="cb2-210"><a href="#cb2-210" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">ruleX</span>([<span class="dv">0</span>])</span>
+<span id="cb2-211"><a href="#cb2-211" aria-hidden="true" tabindex="-1"></a>  ]<span class="op">,</span></span>
+<span id="cb2-212"><a href="#cb2-212" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-213"><a href="#cb2-213" aria-hidden="true" tabindex="-1"></a>  <span class="dt">color</span><span class="op">:</span> {</span>
+<span id="cb2-214"><a href="#cb2-214" aria-hidden="true" tabindex="-1"></a>    <span class="dt">domain</span><span class="op">:</span> [<span class="st">"Coal"</span><span class="op">,</span><span class="st">"Oil"</span><span class="op">,</span><span class="st">"Gas"</span><span class="op">,</span><span class="st">"Hydro"</span><span class="op">,</span><span class="st">"Wind"</span><span class="op">,</span><span class="st">"Solar"</span>]<span class="op">,</span></span>
+<span id="cb2-215"><a href="#cb2-215" aria-hidden="true" tabindex="-1"></a>    <span class="dt">range</span><span class="op">:</span> [<span class="st">"#7f7f7f"</span><span class="op">,</span><span class="st">"#BFBFBF"</span><span class="op">,</span><span class="st">"#DCD9C5"</span><span class="op">,</span><span class="st">"#96B3DF"</span><span class="op">,</span><span class="st">"#F79646"</span><span class="op">,</span><span class="st">"#F5C243"</span>]<span class="op">,</span></span>
+<span id="cb2-216"><a href="#cb2-216" aria-hidden="true" tabindex="-1"></a>    <span class="dt">legend</span><span class="op">:</span> <span class="kw">true</span></span>
+<span id="cb2-217"><a href="#cb2-217" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb2-218"><a href="#cb2-218" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <div id="ojs-cell-2-1" data-nodetype="declaration">
@@ -550,48 +550,48 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="coastal">Coastal</h2>
 <p>In 2011, the Coastal region generated 89% of its electricity from hydro, 10% from oil, and the remainder from wind.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> In 2021, the region generated 92% of electricity from hydro, 6% from oil, and 2% from wind. In addition, storage played a role in generation, albeit the net result is negative due to efficiencies. The following figure shows how this generation mix has changed over the years.</p>
 <div class="cell">
-<div class="sourceCode cell-code hidden" id="cb3" data-startfrom="246" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 245;"><span id="cb3-246"><a href="#cb3-246" aria-hidden="true" tabindex="-1"></a><span class="co">// Plotting the shares for the coastal region</span></span>
-<span id="cb3-247"><a href="#cb3-247" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
-<span id="cb3-248"><a href="#cb3-248" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-249"><a href="#cb3-249" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Configure the plot</span></span>
-<span id="cb3-250"><a href="#cb3-250" aria-hidden="true" tabindex="-1"></a>  <span class="dt">title</span><span class="op">:</span> <span class="st">"Share of net generation by fuel type, Coastal region"</span><span class="op">,</span></span>
-<span id="cb3-251"><a href="#cb3-251" aria-hidden="true" tabindex="-1"></a>  <span class="dt">caption</span><span class="op">:</span> caption_gen_mix<span class="op">,</span></span>
-<span id="cb3-252"><a href="#cb3-252" aria-hidden="true" tabindex="-1"></a>  <span class="dt">insetLeft</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span></span>
-<span id="cb3-253"><a href="#cb3-253" aria-hidden="true" tabindex="-1"></a>  <span class="dt">insetRight</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span></span>
-<span id="cb3-254"><a href="#cb3-254" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb3-255"><a href="#cb3-255" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Configure the x-axis</span></span>
-<span id="cb3-256"><a href="#cb3-256" aria-hidden="true" tabindex="-1"></a>  <span class="dt">x</span><span class="op">:</span> {</span>
-<span id="cb3-257"><a href="#cb3-257" aria-hidden="true" tabindex="-1"></a>    <span class="dt">tickFormat</span><span class="op">:</span> <span class="st">"d"</span><span class="op">,</span></span>
-<span id="cb3-258"><a href="#cb3-258" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> <span class="st">"Year"</span></span>
-<span id="cb3-259"><a href="#cb3-259" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
-<span id="cb3-260"><a href="#cb3-260" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb3-261"><a href="#cb3-261" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Configure the y-axis</span></span>
-<span id="cb3-262"><a href="#cb3-262" aria-hidden="true" tabindex="-1"></a>  <span class="dt">y</span><span class="op">:</span> {</span>
-<span id="cb3-263"><a href="#cb3-263" aria-hidden="true" tabindex="-1"></a>    <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span></span>
-<span id="cb3-264"><a href="#cb3-264" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> <span class="st">"Share of electricity generation"</span></span>
-<span id="cb3-265"><a href="#cb3-265" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<div class="sourceCode cell-code hidden" id="cb3" data-startfrom="232" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 231;"><span id="cb3-232"><a href="#cb3-232" aria-hidden="true" tabindex="-1"></a><span class="co">// Plotting the shares for the coastal region</span></span>
+<span id="cb3-233"><a href="#cb3-233" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb3-234"><a href="#cb3-234" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-235"><a href="#cb3-235" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Configure the plot</span></span>
+<span id="cb3-236"><a href="#cb3-236" aria-hidden="true" tabindex="-1"></a>  <span class="dt">title</span><span class="op">:</span> <span class="st">"Share of net generation by fuel type, Coastal region"</span><span class="op">,</span></span>
+<span id="cb3-237"><a href="#cb3-237" aria-hidden="true" tabindex="-1"></a>  <span class="dt">caption</span><span class="op">:</span> caption_gen_mix<span class="op">,</span></span>
+<span id="cb3-238"><a href="#cb3-238" aria-hidden="true" tabindex="-1"></a>  <span class="dt">insetLeft</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span></span>
+<span id="cb3-239"><a href="#cb3-239" aria-hidden="true" tabindex="-1"></a>  <span class="dt">insetRight</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span></span>
+<span id="cb3-240"><a href="#cb3-240" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb3-241"><a href="#cb3-241" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Configure the x-axis</span></span>
+<span id="cb3-242"><a href="#cb3-242" aria-hidden="true" tabindex="-1"></a>  <span class="dt">x</span><span class="op">:</span> {</span>
+<span id="cb3-243"><a href="#cb3-243" aria-hidden="true" tabindex="-1"></a>    <span class="dt">tickFormat</span><span class="op">:</span> <span class="st">"d"</span><span class="op">,</span></span>
+<span id="cb3-244"><a href="#cb3-244" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> <span class="st">"Year"</span></span>
+<span id="cb3-245"><a href="#cb3-245" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb3-246"><a href="#cb3-246" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb3-247"><a href="#cb3-247" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Configure the y-axis</span></span>
+<span id="cb3-248"><a href="#cb3-248" aria-hidden="true" tabindex="-1"></a>  <span class="dt">y</span><span class="op">:</span> {</span>
+<span id="cb3-249"><a href="#cb3-249" aria-hidden="true" tabindex="-1"></a>    <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span></span>
+<span id="cb3-250"><a href="#cb3-250" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> <span class="st">"Share of electricity generation"</span></span>
+<span id="cb3-251"><a href="#cb3-251" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb3-252"><a href="#cb3-252" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb3-253"><a href="#cb3-253" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [</span>
+<span id="cb3-254"><a href="#cb3-254" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">areaY</span>(</span>
+<span id="cb3-255"><a href="#cb3-255" aria-hidden="true" tabindex="-1"></a>      join_shares<span class="op">.</span><span class="fu">filter</span>((d) <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">acep_region</span> <span class="op">===</span> <span class="st">"Coastal"</span>)<span class="op">,</span></span>
+<span id="cb3-256"><a href="#cb3-256" aria-hidden="true" tabindex="-1"></a>      {</span>
+<span id="cb3-257"><a href="#cb3-257" aria-hidden="true" tabindex="-1"></a>        <span class="dt">x</span><span class="op">:</span><span class="st">"year"</span><span class="op">,</span></span>
+<span id="cb3-258"><a href="#cb3-258" aria-hidden="true" tabindex="-1"></a>        <span class="dt">y</span><span class="op">:</span><span class="st">"generation_share"</span><span class="op">,</span> </span>
+<span id="cb3-259"><a href="#cb3-259" aria-hidden="true" tabindex="-1"></a>        <span class="dt">fill</span><span class="op">:</span> <span class="st">"fuel_type"</span><span class="op">,</span></span>
+<span id="cb3-260"><a href="#cb3-260" aria-hidden="true" tabindex="-1"></a>        <span class="dt">order</span><span class="op">:</span> [<span class="st">"Oil"</span><span class="op">,</span><span class="st">"Hydro"</span><span class="op">,</span><span class="st">"Wind"</span>]<span class="op">,</span></span>
+<span id="cb3-261"><a href="#cb3-261" aria-hidden="true" tabindex="-1"></a>        <span class="dt">tip</span><span class="op">:</span> {<span class="dt">format</span><span class="op">:</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"d"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> (d) <span class="kw">=&gt;</span> <span class="vs">`</span><span class="sc">${</span>(d)<span class="op">.</span><span class="fu">toLocaleString</span>(<span class="kw">undefined</span><span class="op">,</span> {<span class="dt">maximumFractionDigits</span><span class="op">:</span> <span class="dv">2</span>})<span class="sc">}</span><span class="vs">%`</span>}}</span>
+<span id="cb3-262"><a href="#cb3-262" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb3-263"><a href="#cb3-263" aria-hidden="true" tabindex="-1"></a>    )<span class="op">,</span></span>
+<span id="cb3-264"><a href="#cb3-264" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">ruleY</span>([<span class="dv">0</span>])</span>
+<span id="cb3-265"><a href="#cb3-265" aria-hidden="true" tabindex="-1"></a>  ]<span class="op">,</span></span>
 <span id="cb3-266"><a href="#cb3-266" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb3-267"><a href="#cb3-267" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [</span>
-<span id="cb3-268"><a href="#cb3-268" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">areaY</span>(</span>
-<span id="cb3-269"><a href="#cb3-269" aria-hidden="true" tabindex="-1"></a>      join_shares<span class="op">.</span><span class="fu">filter</span>((d) <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">acep_region</span> <span class="op">===</span> <span class="st">"Coastal"</span>)<span class="op">,</span></span>
-<span id="cb3-270"><a href="#cb3-270" aria-hidden="true" tabindex="-1"></a>      {</span>
-<span id="cb3-271"><a href="#cb3-271" aria-hidden="true" tabindex="-1"></a>        <span class="dt">x</span><span class="op">:</span><span class="st">"year"</span><span class="op">,</span></span>
-<span id="cb3-272"><a href="#cb3-272" aria-hidden="true" tabindex="-1"></a>        <span class="dt">y</span><span class="op">:</span><span class="st">"generation_share"</span><span class="op">,</span> </span>
-<span id="cb3-273"><a href="#cb3-273" aria-hidden="true" tabindex="-1"></a>        <span class="dt">fill</span><span class="op">:</span> <span class="st">"fuel_type"</span><span class="op">,</span></span>
-<span id="cb3-274"><a href="#cb3-274" aria-hidden="true" tabindex="-1"></a>        <span class="dt">order</span><span class="op">:</span> [<span class="st">"Oil"</span><span class="op">,</span><span class="st">"Hydro"</span><span class="op">,</span><span class="st">"Wind"</span>]<span class="op">,</span></span>
-<span id="cb3-275"><a href="#cb3-275" aria-hidden="true" tabindex="-1"></a>        <span class="dt">tip</span><span class="op">:</span> {<span class="dt">format</span><span class="op">:</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"d"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> (d) <span class="kw">=&gt;</span> <span class="vs">`</span><span class="sc">${</span>(d)<span class="op">.</span><span class="fu">toLocaleString</span>(<span class="kw">undefined</span><span class="op">,</span> {<span class="dt">maximumFractionDigits</span><span class="op">:</span> <span class="dv">2</span>})<span class="sc">}</span><span class="vs">%`</span>}}</span>
-<span id="cb3-276"><a href="#cb3-276" aria-hidden="true" tabindex="-1"></a>      }</span>
-<span id="cb3-277"><a href="#cb3-277" aria-hidden="true" tabindex="-1"></a>    )<span class="op">,</span></span>
-<span id="cb3-278"><a href="#cb3-278" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">ruleY</span>([<span class="dv">0</span>])</span>
-<span id="cb3-279"><a href="#cb3-279" aria-hidden="true" tabindex="-1"></a>  ]<span class="op">,</span></span>
-<span id="cb3-280"><a href="#cb3-280" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb3-281"><a href="#cb3-281" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Legend</span></span>
-<span id="cb3-282"><a href="#cb3-282" aria-hidden="true" tabindex="-1"></a>  <span class="dt">color</span><span class="op">:</span> {</span>
-<span id="cb3-283"><a href="#cb3-283" aria-hidden="true" tabindex="-1"></a>    <span class="dt">domain</span><span class="op">:</span> [<span class="st">"Oil"</span><span class="op">,</span><span class="st">"Hydro"</span><span class="op">,</span><span class="st">"Wind"</span>]<span class="op">,</span></span>
-<span id="cb3-284"><a href="#cb3-284" aria-hidden="true" tabindex="-1"></a>    <span class="dt">range</span><span class="op">:</span> [<span class="st">"#BFBFBF"</span><span class="op">,</span><span class="st">"#96B3DF"</span><span class="op">,</span><span class="st">"#F79646"</span>]<span class="op">,</span></span>
-<span id="cb3-285"><a href="#cb3-285" aria-hidden="true" tabindex="-1"></a>    <span class="dt">legend</span><span class="op">:</span> <span class="kw">true</span></span>
-<span id="cb3-286"><a href="#cb3-286" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb3-287"><a href="#cb3-287" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-267"><a href="#cb3-267" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Legend</span></span>
+<span id="cb3-268"><a href="#cb3-268" aria-hidden="true" tabindex="-1"></a>  <span class="dt">color</span><span class="op">:</span> {</span>
+<span id="cb3-269"><a href="#cb3-269" aria-hidden="true" tabindex="-1"></a>    <span class="dt">domain</span><span class="op">:</span> [<span class="st">"Oil"</span><span class="op">,</span><span class="st">"Hydro"</span><span class="op">,</span><span class="st">"Wind"</span>]<span class="op">,</span></span>
+<span id="cb3-270"><a href="#cb3-270" aria-hidden="true" tabindex="-1"></a>    <span class="dt">range</span><span class="op">:</span> [<span class="st">"#BFBFBF"</span><span class="op">,</span><span class="st">"#96B3DF"</span><span class="op">,</span><span class="st">"#F79646"</span>]<span class="op">,</span></span>
+<span id="cb3-271"><a href="#cb3-271" aria-hidden="true" tabindex="-1"></a>    <span class="dt">legend</span><span class="op">:</span> <span class="kw">true</span></span>
+<span id="cb3-272"><a href="#cb3-272" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-273"><a href="#cb3-273" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div id="ojs-cell-3" data-nodetype="expression">
 
@@ -600,53 +600,53 @@ window.Quarto = {
 </div>
 <p>Generation grew at an average annual growth rate of 1.62% from 2011 to 2021. The following figure highlights the yearly trends in generation by fuel source.</p>
 <div class="cell">
-<div class="sourceCode cell-code hidden" id="cb4" data-startfrom="295" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 294;"><span id="cb4-295"><a href="#cb4-295" aria-hidden="true" tabindex="-1"></a><span class="co">// Plotting total generation by region and year</span></span>
-<span id="cb4-296"><a href="#cb4-296" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
-<span id="cb4-297"><a href="#cb4-297" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb4-298"><a href="#cb4-298" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Configure the plot</span></span>
-<span id="cb4-299"><a href="#cb4-299" aria-hidden="true" tabindex="-1"></a>  <span class="dt">title</span><span class="op">:</span> <span class="st">"Coastal region electricity generation"</span><span class="op">,</span></span>
-<span id="cb4-300"><a href="#cb4-300" aria-hidden="true" tabindex="-1"></a>  <span class="dt">insetLeft</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span></span>
-<span id="cb4-301"><a href="#cb4-301" aria-hidden="true" tabindex="-1"></a>  <span class="dt">insetRight</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span></span>
-<span id="cb4-302"><a href="#cb4-302" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb4-303"><a href="#cb4-303" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Configure the x-axis</span></span>
-<span id="cb4-304"><a href="#cb4-304" aria-hidden="true" tabindex="-1"></a>  <span class="dt">x</span><span class="op">:</span> {</span>
-<span id="cb4-305"><a href="#cb4-305" aria-hidden="true" tabindex="-1"></a>    <span class="dt">tickFormat</span><span class="op">:</span> <span class="st">"d"</span><span class="op">,</span></span>
-<span id="cb4-306"><a href="#cb4-306" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> <span class="st">"Year"</span></span>
-<span id="cb4-307"><a href="#cb4-307" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
-<span id="cb4-308"><a href="#cb4-308" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb4-309"><a href="#cb4-309" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Configure the y-axis</span></span>
-<span id="cb4-310"><a href="#cb4-310" aria-hidden="true" tabindex="-1"></a>  <span class="dt">y</span><span class="op">:</span> {</span>
-<span id="cb4-311"><a href="#cb4-311" aria-hidden="true" tabindex="-1"></a>    <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span></span>
-<span id="cb4-312"><a href="#cb4-312" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> <span class="st">"Generation (GWh)"</span></span>
-<span id="cb4-313"><a href="#cb4-313" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
-<span id="cb4-314"><a href="#cb4-314" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb4-315"><a href="#cb4-315" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Plotting the series</span></span>
-<span id="cb4-316"><a href="#cb4-316" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [</span>
-<span id="cb4-317"><a href="#cb4-317" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">barY</span>(</span>
-<span id="cb4-318"><a href="#cb4-318" aria-hidden="true" tabindex="-1"></a>      gen_data_gwh<span class="op">.</span><span class="fu">filter</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">acep_region</span> <span class="op">===</span> <span class="st">"Coastal"</span> <span class="op">&amp;&amp;</span> d<span class="op">.</span><span class="at">generation</span> <span class="op">!==</span> <span class="kw">null</span>)<span class="op">,</span></span>
-<span id="cb4-319"><a href="#cb4-319" aria-hidden="true" tabindex="-1"></a>      Plot<span class="op">.</span><span class="fu">groupX</span>(</span>
-<span id="cb4-320"><a href="#cb4-320" aria-hidden="true" tabindex="-1"></a>        {</span>
-<span id="cb4-321"><a href="#cb4-321" aria-hidden="true" tabindex="-1"></a>          <span class="dt">y</span><span class="op">:</span> <span class="st">"sum"</span></span>
-<span id="cb4-322"><a href="#cb4-322" aria-hidden="true" tabindex="-1"></a>        }<span class="op">,</span></span>
-<span id="cb4-323"><a href="#cb4-323" aria-hidden="true" tabindex="-1"></a>        {</span>
-<span id="cb4-324"><a href="#cb4-324" aria-hidden="true" tabindex="-1"></a>          <span class="dt">x</span><span class="op">:</span> <span class="st">"year"</span><span class="op">,</span></span>
-<span id="cb4-325"><a href="#cb4-325" aria-hidden="true" tabindex="-1"></a>          <span class="dt">y</span><span class="op">:</span> <span class="st">"generation"</span><span class="op">,</span></span>
-<span id="cb4-326"><a href="#cb4-326" aria-hidden="true" tabindex="-1"></a>          <span class="dt">fill</span><span class="op">:</span> <span class="st">"fuel_type"</span><span class="op">,</span></span>
-<span id="cb4-327"><a href="#cb4-327" aria-hidden="true" tabindex="-1"></a>          <span class="dt">order</span><span class="op">:</span> [<span class="st">"Oil"</span><span class="op">,</span><span class="st">"Hydro"</span><span class="op">,</span><span class="st">"Wind"</span>]<span class="op">,</span></span>
-<span id="cb4-328"><a href="#cb4-328" aria-hidden="true" tabindex="-1"></a>          <span class="dt">tip</span><span class="op">:</span> {<span class="dt">format</span><span class="op">:</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"d"</span>}}</span>
-<span id="cb4-329"><a href="#cb4-329" aria-hidden="true" tabindex="-1"></a>        }</span>
-<span id="cb4-330"><a href="#cb4-330" aria-hidden="true" tabindex="-1"></a>      )</span>
-<span id="cb4-331"><a href="#cb4-331" aria-hidden="true" tabindex="-1"></a>    )<span class="op">,</span></span>
-<span id="cb4-332"><a href="#cb4-332" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">ruleY</span>([<span class="dv">0</span>])</span>
-<span id="cb4-333"><a href="#cb4-333" aria-hidden="true" tabindex="-1"></a>  ]<span class="op">,</span></span>
-<span id="cb4-334"><a href="#cb4-334" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb4-335"><a href="#cb4-335" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Legend</span></span>
-<span id="cb4-336"><a href="#cb4-336" aria-hidden="true" tabindex="-1"></a>  <span class="dt">color</span><span class="op">:</span> {</span>
-<span id="cb4-337"><a href="#cb4-337" aria-hidden="true" tabindex="-1"></a>    <span class="dt">domain</span><span class="op">:</span> [<span class="st">"Oil"</span><span class="op">,</span><span class="st">"Hydro"</span><span class="op">,</span><span class="st">"Wind"</span>]<span class="op">,</span></span>
-<span id="cb4-338"><a href="#cb4-338" aria-hidden="true" tabindex="-1"></a>    <span class="dt">range</span><span class="op">:</span> [<span class="st">"#BFBFBF"</span><span class="op">,</span><span class="st">"#96B3DF"</span><span class="op">,</span><span class="st">"#F79646"</span>]<span class="op">,</span></span>
-<span id="cb4-339"><a href="#cb4-339" aria-hidden="true" tabindex="-1"></a>    <span class="dt">legend</span><span class="op">:</span> <span class="kw">true</span></span>
-<span id="cb4-340"><a href="#cb4-340" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb4-341"><a href="#cb4-341" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code hidden" id="cb4" data-startfrom="281" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 280;"><span id="cb4-281"><a href="#cb4-281" aria-hidden="true" tabindex="-1"></a><span class="co">// Plotting total generation by region and year</span></span>
+<span id="cb4-282"><a href="#cb4-282" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb4-283"><a href="#cb4-283" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-284"><a href="#cb4-284" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Configure the plot</span></span>
+<span id="cb4-285"><a href="#cb4-285" aria-hidden="true" tabindex="-1"></a>  <span class="dt">title</span><span class="op">:</span> <span class="st">"Coastal region electricity generation"</span><span class="op">,</span></span>
+<span id="cb4-286"><a href="#cb4-286" aria-hidden="true" tabindex="-1"></a>  <span class="dt">insetLeft</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span></span>
+<span id="cb4-287"><a href="#cb4-287" aria-hidden="true" tabindex="-1"></a>  <span class="dt">insetRight</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span></span>
+<span id="cb4-288"><a href="#cb4-288" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-289"><a href="#cb4-289" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Configure the x-axis</span></span>
+<span id="cb4-290"><a href="#cb4-290" aria-hidden="true" tabindex="-1"></a>  <span class="dt">x</span><span class="op">:</span> {</span>
+<span id="cb4-291"><a href="#cb4-291" aria-hidden="true" tabindex="-1"></a>    <span class="dt">tickFormat</span><span class="op">:</span> <span class="st">"d"</span><span class="op">,</span></span>
+<span id="cb4-292"><a href="#cb4-292" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> <span class="st">"Year"</span></span>
+<span id="cb4-293"><a href="#cb4-293" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb4-294"><a href="#cb4-294" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-295"><a href="#cb4-295" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Configure the y-axis</span></span>
+<span id="cb4-296"><a href="#cb4-296" aria-hidden="true" tabindex="-1"></a>  <span class="dt">y</span><span class="op">:</span> {</span>
+<span id="cb4-297"><a href="#cb4-297" aria-hidden="true" tabindex="-1"></a>    <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span></span>
+<span id="cb4-298"><a href="#cb4-298" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> <span class="st">"Generation (GWh)"</span></span>
+<span id="cb4-299"><a href="#cb4-299" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb4-300"><a href="#cb4-300" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-301"><a href="#cb4-301" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Plotting the series</span></span>
+<span id="cb4-302"><a href="#cb4-302" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [</span>
+<span id="cb4-303"><a href="#cb4-303" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">barY</span>(</span>
+<span id="cb4-304"><a href="#cb4-304" aria-hidden="true" tabindex="-1"></a>      gen_data_gwh<span class="op">.</span><span class="fu">filter</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">acep_region</span> <span class="op">===</span> <span class="st">"Coastal"</span> <span class="op">&amp;&amp;</span> d<span class="op">.</span><span class="at">generation</span> <span class="op">!==</span> <span class="kw">null</span>)<span class="op">,</span></span>
+<span id="cb4-305"><a href="#cb4-305" aria-hidden="true" tabindex="-1"></a>      Plot<span class="op">.</span><span class="fu">groupX</span>(</span>
+<span id="cb4-306"><a href="#cb4-306" aria-hidden="true" tabindex="-1"></a>        {</span>
+<span id="cb4-307"><a href="#cb4-307" aria-hidden="true" tabindex="-1"></a>          <span class="dt">y</span><span class="op">:</span> <span class="st">"sum"</span></span>
+<span id="cb4-308"><a href="#cb4-308" aria-hidden="true" tabindex="-1"></a>        }<span class="op">,</span></span>
+<span id="cb4-309"><a href="#cb4-309" aria-hidden="true" tabindex="-1"></a>        {</span>
+<span id="cb4-310"><a href="#cb4-310" aria-hidden="true" tabindex="-1"></a>          <span class="dt">x</span><span class="op">:</span> <span class="st">"year"</span><span class="op">,</span></span>
+<span id="cb4-311"><a href="#cb4-311" aria-hidden="true" tabindex="-1"></a>          <span class="dt">y</span><span class="op">:</span> <span class="st">"generation"</span><span class="op">,</span></span>
+<span id="cb4-312"><a href="#cb4-312" aria-hidden="true" tabindex="-1"></a>          <span class="dt">fill</span><span class="op">:</span> <span class="st">"fuel_type"</span><span class="op">,</span></span>
+<span id="cb4-313"><a href="#cb4-313" aria-hidden="true" tabindex="-1"></a>          <span class="dt">order</span><span class="op">:</span> [<span class="st">"Oil"</span><span class="op">,</span><span class="st">"Hydro"</span><span class="op">,</span><span class="st">"Wind"</span>]<span class="op">,</span></span>
+<span id="cb4-314"><a href="#cb4-314" aria-hidden="true" tabindex="-1"></a>          <span class="dt">tip</span><span class="op">:</span> {<span class="dt">format</span><span class="op">:</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"d"</span>}}</span>
+<span id="cb4-315"><a href="#cb4-315" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb4-316"><a href="#cb4-316" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb4-317"><a href="#cb4-317" aria-hidden="true" tabindex="-1"></a>    )<span class="op">,</span></span>
+<span id="cb4-318"><a href="#cb4-318" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">ruleY</span>([<span class="dv">0</span>])</span>
+<span id="cb4-319"><a href="#cb4-319" aria-hidden="true" tabindex="-1"></a>  ]<span class="op">,</span></span>
+<span id="cb4-320"><a href="#cb4-320" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-321"><a href="#cb4-321" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Legend</span></span>
+<span id="cb4-322"><a href="#cb4-322" aria-hidden="true" tabindex="-1"></a>  <span class="dt">color</span><span class="op">:</span> {</span>
+<span id="cb4-323"><a href="#cb4-323" aria-hidden="true" tabindex="-1"></a>    <span class="dt">domain</span><span class="op">:</span> [<span class="st">"Oil"</span><span class="op">,</span><span class="st">"Hydro"</span><span class="op">,</span><span class="st">"Wind"</span>]<span class="op">,</span></span>
+<span id="cb4-324"><a href="#cb4-324" aria-hidden="true" tabindex="-1"></a>    <span class="dt">range</span><span class="op">:</span> [<span class="st">"#BFBFBF"</span><span class="op">,</span><span class="st">"#96B3DF"</span><span class="op">,</span><span class="st">"#F79646"</span>]<span class="op">,</span></span>
+<span id="cb4-325"><a href="#cb4-325" aria-hidden="true" tabindex="-1"></a>    <span class="dt">legend</span><span class="op">:</span> <span class="kw">true</span></span>
+<span id="cb4-326"><a href="#cb4-326" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb4-327"><a href="#cb4-327" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div id="ojs-cell-4" data-nodetype="expression">
 
@@ -658,48 +658,48 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="railbelt">Railbelt</h2>
 <p>Railbelt generation has seen notable changes in how it generates electricity between 2011 and 2021. In 2011, the Railbelt region generated 73% of electricity from gas, 8% from coal, 8% from hydro, and 11% from oil. Additionally, a small amount of wind generation was present. In 2021, the region generated 61% of electricity from gas, 15% from coal, 12% from hydro, 10% from oil, and 2% from wind. Additionally, a small amount of solar generation was present. In addition, storage played a role in generation, albeit the net result is negative due to non-perfect efficiencies. The following figure shows how this generation mix has changed over the years.</p>
 <div class="cell">
-<div class="sourceCode cell-code hidden" id="cb5" data-startfrom="352" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 351;"><span id="cb5-352"><a href="#cb5-352" aria-hidden="true" tabindex="-1"></a><span class="co">// Plotting the shares for the coastal region</span></span>
-<span id="cb5-353"><a href="#cb5-353" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
-<span id="cb5-354"><a href="#cb5-354" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-355"><a href="#cb5-355" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Configure the plot</span></span>
-<span id="cb5-356"><a href="#cb5-356" aria-hidden="true" tabindex="-1"></a>  <span class="dt">title</span><span class="op">:</span> <span class="st">"Share of net generation by fuel type, Railbelt region"</span><span class="op">,</span></span>
-<span id="cb5-357"><a href="#cb5-357" aria-hidden="true" tabindex="-1"></a>  <span class="dt">caption</span><span class="op">:</span> caption_gen_mix<span class="op">,</span></span>
-<span id="cb5-358"><a href="#cb5-358" aria-hidden="true" tabindex="-1"></a>  <span class="dt">insetLeft</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span></span>
-<span id="cb5-359"><a href="#cb5-359" aria-hidden="true" tabindex="-1"></a>  <span class="dt">insetRight</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span></span>
-<span id="cb5-360"><a href="#cb5-360" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb5-361"><a href="#cb5-361" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Configure the x-axis</span></span>
-<span id="cb5-362"><a href="#cb5-362" aria-hidden="true" tabindex="-1"></a>  <span class="dt">x</span><span class="op">:</span> {</span>
-<span id="cb5-363"><a href="#cb5-363" aria-hidden="true" tabindex="-1"></a>    <span class="dt">tickFormat</span><span class="op">:</span> <span class="st">"d"</span><span class="op">,</span></span>
-<span id="cb5-364"><a href="#cb5-364" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> <span class="st">"Year"</span></span>
-<span id="cb5-365"><a href="#cb5-365" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
-<span id="cb5-366"><a href="#cb5-366" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb5-367"><a href="#cb5-367" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Configure the y-axis</span></span>
-<span id="cb5-368"><a href="#cb5-368" aria-hidden="true" tabindex="-1"></a>  <span class="dt">y</span><span class="op">:</span> {</span>
-<span id="cb5-369"><a href="#cb5-369" aria-hidden="true" tabindex="-1"></a>    <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span></span>
-<span id="cb5-370"><a href="#cb5-370" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> <span class="st">"Share of electricity generation"</span></span>
-<span id="cb5-371"><a href="#cb5-371" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<div class="sourceCode cell-code hidden" id="cb5" data-startfrom="338" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 337;"><span id="cb5-338"><a href="#cb5-338" aria-hidden="true" tabindex="-1"></a><span class="co">// Plotting the shares for the coastal region</span></span>
+<span id="cb5-339"><a href="#cb5-339" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb5-340"><a href="#cb5-340" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-341"><a href="#cb5-341" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Configure the plot</span></span>
+<span id="cb5-342"><a href="#cb5-342" aria-hidden="true" tabindex="-1"></a>  <span class="dt">title</span><span class="op">:</span> <span class="st">"Share of net generation by fuel type, Railbelt region"</span><span class="op">,</span></span>
+<span id="cb5-343"><a href="#cb5-343" aria-hidden="true" tabindex="-1"></a>  <span class="dt">caption</span><span class="op">:</span> caption_gen_mix<span class="op">,</span></span>
+<span id="cb5-344"><a href="#cb5-344" aria-hidden="true" tabindex="-1"></a>  <span class="dt">insetLeft</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span></span>
+<span id="cb5-345"><a href="#cb5-345" aria-hidden="true" tabindex="-1"></a>  <span class="dt">insetRight</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span></span>
+<span id="cb5-346"><a href="#cb5-346" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb5-347"><a href="#cb5-347" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Configure the x-axis</span></span>
+<span id="cb5-348"><a href="#cb5-348" aria-hidden="true" tabindex="-1"></a>  <span class="dt">x</span><span class="op">:</span> {</span>
+<span id="cb5-349"><a href="#cb5-349" aria-hidden="true" tabindex="-1"></a>    <span class="dt">tickFormat</span><span class="op">:</span> <span class="st">"d"</span><span class="op">,</span></span>
+<span id="cb5-350"><a href="#cb5-350" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> <span class="st">"Year"</span></span>
+<span id="cb5-351"><a href="#cb5-351" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb5-352"><a href="#cb5-352" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb5-353"><a href="#cb5-353" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Configure the y-axis</span></span>
+<span id="cb5-354"><a href="#cb5-354" aria-hidden="true" tabindex="-1"></a>  <span class="dt">y</span><span class="op">:</span> {</span>
+<span id="cb5-355"><a href="#cb5-355" aria-hidden="true" tabindex="-1"></a>    <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span></span>
+<span id="cb5-356"><a href="#cb5-356" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> <span class="st">"Share of electricity generation"</span></span>
+<span id="cb5-357"><a href="#cb5-357" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb5-358"><a href="#cb5-358" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb5-359"><a href="#cb5-359" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [</span>
+<span id="cb5-360"><a href="#cb5-360" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">areaY</span>(</span>
+<span id="cb5-361"><a href="#cb5-361" aria-hidden="true" tabindex="-1"></a>      join_shares<span class="op">.</span><span class="fu">filter</span>((d) <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">acep_region</span> <span class="op">===</span> <span class="st">"Railbelt"</span>)<span class="op">,</span></span>
+<span id="cb5-362"><a href="#cb5-362" aria-hidden="true" tabindex="-1"></a>      {</span>
+<span id="cb5-363"><a href="#cb5-363" aria-hidden="true" tabindex="-1"></a>        <span class="dt">x</span><span class="op">:</span><span class="st">"year"</span><span class="op">,</span></span>
+<span id="cb5-364"><a href="#cb5-364" aria-hidden="true" tabindex="-1"></a>        <span class="dt">y</span><span class="op">:</span><span class="st">"generation_share"</span><span class="op">,</span> </span>
+<span id="cb5-365"><a href="#cb5-365" aria-hidden="true" tabindex="-1"></a>        <span class="dt">fill</span><span class="op">:</span> <span class="st">"fuel_type"</span><span class="op">,</span></span>
+<span id="cb5-366"><a href="#cb5-366" aria-hidden="true" tabindex="-1"></a>        <span class="dt">order</span><span class="op">:</span> [<span class="st">"Coal"</span><span class="op">,</span><span class="st">"Oil"</span><span class="op">,</span><span class="st">"Gas"</span><span class="op">,</span><span class="st">"Hydro"</span><span class="op">,</span><span class="st">"Wind"</span><span class="op">,</span><span class="st">"Solar"</span>]<span class="op">,</span></span>
+<span id="cb5-367"><a href="#cb5-367" aria-hidden="true" tabindex="-1"></a>        <span class="dt">tip</span><span class="op">:</span> {<span class="dt">format</span><span class="op">:</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"d"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> (d) <span class="kw">=&gt;</span> <span class="vs">`</span><span class="sc">${</span>(d)<span class="op">.</span><span class="fu">toLocaleString</span>(<span class="kw">undefined</span><span class="op">,</span> {<span class="dt">maximumFractionDigits</span><span class="op">:</span> <span class="dv">2</span>})<span class="sc">}</span><span class="vs">%`</span>}}</span>
+<span id="cb5-368"><a href="#cb5-368" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb5-369"><a href="#cb5-369" aria-hidden="true" tabindex="-1"></a>    )<span class="op">,</span></span>
+<span id="cb5-370"><a href="#cb5-370" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">ruleY</span>([<span class="dv">0</span>])</span>
+<span id="cb5-371"><a href="#cb5-371" aria-hidden="true" tabindex="-1"></a>  ]<span class="op">,</span></span>
 <span id="cb5-372"><a href="#cb5-372" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb5-373"><a href="#cb5-373" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [</span>
-<span id="cb5-374"><a href="#cb5-374" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">areaY</span>(</span>
-<span id="cb5-375"><a href="#cb5-375" aria-hidden="true" tabindex="-1"></a>      join_shares<span class="op">.</span><span class="fu">filter</span>((d) <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">acep_region</span> <span class="op">===</span> <span class="st">"Railbelt"</span>)<span class="op">,</span></span>
-<span id="cb5-376"><a href="#cb5-376" aria-hidden="true" tabindex="-1"></a>      {</span>
-<span id="cb5-377"><a href="#cb5-377" aria-hidden="true" tabindex="-1"></a>        <span class="dt">x</span><span class="op">:</span><span class="st">"year"</span><span class="op">,</span></span>
-<span id="cb5-378"><a href="#cb5-378" aria-hidden="true" tabindex="-1"></a>        <span class="dt">y</span><span class="op">:</span><span class="st">"generation_share"</span><span class="op">,</span> </span>
-<span id="cb5-379"><a href="#cb5-379" aria-hidden="true" tabindex="-1"></a>        <span class="dt">fill</span><span class="op">:</span> <span class="st">"fuel_type"</span><span class="op">,</span></span>
-<span id="cb5-380"><a href="#cb5-380" aria-hidden="true" tabindex="-1"></a>        <span class="dt">order</span><span class="op">:</span> [<span class="st">"Coal"</span><span class="op">,</span><span class="st">"Oil"</span><span class="op">,</span><span class="st">"Gas"</span><span class="op">,</span><span class="st">"Hydro"</span><span class="op">,</span><span class="st">"Wind"</span><span class="op">,</span><span class="st">"Solar"</span>]<span class="op">,</span></span>
-<span id="cb5-381"><a href="#cb5-381" aria-hidden="true" tabindex="-1"></a>        <span class="dt">tip</span><span class="op">:</span> {<span class="dt">format</span><span class="op">:</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"d"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> (d) <span class="kw">=&gt;</span> <span class="vs">`</span><span class="sc">${</span>(d)<span class="op">.</span><span class="fu">toLocaleString</span>(<span class="kw">undefined</span><span class="op">,</span> {<span class="dt">maximumFractionDigits</span><span class="op">:</span> <span class="dv">2</span>})<span class="sc">}</span><span class="vs">%`</span>}}</span>
-<span id="cb5-382"><a href="#cb5-382" aria-hidden="true" tabindex="-1"></a>      }</span>
-<span id="cb5-383"><a href="#cb5-383" aria-hidden="true" tabindex="-1"></a>    )<span class="op">,</span></span>
-<span id="cb5-384"><a href="#cb5-384" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">ruleY</span>([<span class="dv">0</span>])</span>
-<span id="cb5-385"><a href="#cb5-385" aria-hidden="true" tabindex="-1"></a>  ]<span class="op">,</span></span>
-<span id="cb5-386"><a href="#cb5-386" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb5-387"><a href="#cb5-387" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Legend</span></span>
-<span id="cb5-388"><a href="#cb5-388" aria-hidden="true" tabindex="-1"></a>  <span class="dt">color</span><span class="op">:</span> {</span>
-<span id="cb5-389"><a href="#cb5-389" aria-hidden="true" tabindex="-1"></a>    <span class="dt">domain</span><span class="op">:</span> [<span class="st">"Coal"</span><span class="op">,</span><span class="st">"Oil"</span><span class="op">,</span><span class="st">"Gas"</span><span class="op">,</span><span class="st">"Hydro"</span><span class="op">,</span><span class="st">"Wind"</span><span class="op">,</span><span class="st">"Solar"</span>]<span class="op">,</span></span>
-<span id="cb5-390"><a href="#cb5-390" aria-hidden="true" tabindex="-1"></a>    <span class="dt">range</span><span class="op">:</span> [<span class="st">"#7f7f7f"</span><span class="op">,</span><span class="st">"#BFBFBF"</span><span class="op">,</span><span class="st">"#DCD9C5"</span><span class="op">,</span><span class="st">"#96B3DF"</span><span class="op">,</span><span class="st">"#F79646"</span><span class="op">,</span><span class="st">"#F5C243"</span>]<span class="op">,</span></span>
-<span id="cb5-391"><a href="#cb5-391" aria-hidden="true" tabindex="-1"></a>    <span class="dt">legend</span><span class="op">:</span> <span class="kw">true</span></span>
-<span id="cb5-392"><a href="#cb5-392" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
-<span id="cb5-393"><a href="#cb5-393" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-373"><a href="#cb5-373" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Legend</span></span>
+<span id="cb5-374"><a href="#cb5-374" aria-hidden="true" tabindex="-1"></a>  <span class="dt">color</span><span class="op">:</span> {</span>
+<span id="cb5-375"><a href="#cb5-375" aria-hidden="true" tabindex="-1"></a>    <span class="dt">domain</span><span class="op">:</span> [<span class="st">"Coal"</span><span class="op">,</span><span class="st">"Oil"</span><span class="op">,</span><span class="st">"Gas"</span><span class="op">,</span><span class="st">"Hydro"</span><span class="op">,</span><span class="st">"Wind"</span><span class="op">,</span><span class="st">"Solar"</span>]<span class="op">,</span></span>
+<span id="cb5-376"><a href="#cb5-376" aria-hidden="true" tabindex="-1"></a>    <span class="dt">range</span><span class="op">:</span> [<span class="st">"#7f7f7f"</span><span class="op">,</span><span class="st">"#BFBFBF"</span><span class="op">,</span><span class="st">"#DCD9C5"</span><span class="op">,</span><span class="st">"#96B3DF"</span><span class="op">,</span><span class="st">"#F79646"</span><span class="op">,</span><span class="st">"#F5C243"</span>]<span class="op">,</span></span>
+<span id="cb5-377"><a href="#cb5-377" aria-hidden="true" tabindex="-1"></a>    <span class="dt">legend</span><span class="op">:</span> <span class="kw">true</span></span>
+<span id="cb5-378"><a href="#cb5-378" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb5-379"><a href="#cb5-379" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div id="ojs-cell-5" data-nodetype="expression">
 
@@ -708,53 +708,53 @@ window.Quarto = {
 </div>
 <p>Generation from 2011 to 2021 saw an average annual growth rate of -0.31%. The following figure highlights the yearly trends in generation by fuel source.</p>
 <div class="cell">
-<div class="sourceCode cell-code hidden" id="cb6" data-startfrom="401" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 400;"><span id="cb6-401"><a href="#cb6-401" aria-hidden="true" tabindex="-1"></a><span class="co">// Plotting total generation by region and year</span></span>
-<span id="cb6-402"><a href="#cb6-402" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
-<span id="cb6-403"><a href="#cb6-403" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb6-404"><a href="#cb6-404" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Configure the plot</span></span>
-<span id="cb6-405"><a href="#cb6-405" aria-hidden="true" tabindex="-1"></a>  <span class="dt">title</span><span class="op">:</span> <span class="st">"Railbelt region electricity generation"</span><span class="op">,</span></span>
-<span id="cb6-406"><a href="#cb6-406" aria-hidden="true" tabindex="-1"></a>  <span class="dt">insetLeft</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span></span>
-<span id="cb6-407"><a href="#cb6-407" aria-hidden="true" tabindex="-1"></a>  <span class="dt">insetRight</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span></span>
-<span id="cb6-408"><a href="#cb6-408" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb6-409"><a href="#cb6-409" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Configure the x-axis</span></span>
-<span id="cb6-410"><a href="#cb6-410" aria-hidden="true" tabindex="-1"></a>  <span class="dt">x</span><span class="op">:</span> {</span>
-<span id="cb6-411"><a href="#cb6-411" aria-hidden="true" tabindex="-1"></a>    <span class="dt">tickFormat</span><span class="op">:</span> <span class="st">"d"</span><span class="op">,</span></span>
-<span id="cb6-412"><a href="#cb6-412" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> <span class="st">"Year"</span></span>
-<span id="cb6-413"><a href="#cb6-413" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
-<span id="cb6-414"><a href="#cb6-414" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb6-415"><a href="#cb6-415" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Configure the y-axis</span></span>
-<span id="cb6-416"><a href="#cb6-416" aria-hidden="true" tabindex="-1"></a>  <span class="dt">y</span><span class="op">:</span> {</span>
-<span id="cb6-417"><a href="#cb6-417" aria-hidden="true" tabindex="-1"></a>    <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span></span>
-<span id="cb6-418"><a href="#cb6-418" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> <span class="st">"Generation (GWh)"</span></span>
-<span id="cb6-419"><a href="#cb6-419" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
-<span id="cb6-420"><a href="#cb6-420" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb6-421"><a href="#cb6-421" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Plotting the series</span></span>
-<span id="cb6-422"><a href="#cb6-422" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [</span>
-<span id="cb6-423"><a href="#cb6-423" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">barY</span>(</span>
-<span id="cb6-424"><a href="#cb6-424" aria-hidden="true" tabindex="-1"></a>      gen_data_gwh<span class="op">.</span><span class="fu">filter</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">acep_region</span> <span class="op">===</span> <span class="st">"Railbelt"</span>)<span class="op">,</span></span>
-<span id="cb6-425"><a href="#cb6-425" aria-hidden="true" tabindex="-1"></a>      Plot<span class="op">.</span><span class="fu">groupX</span>(</span>
-<span id="cb6-426"><a href="#cb6-426" aria-hidden="true" tabindex="-1"></a>        {</span>
-<span id="cb6-427"><a href="#cb6-427" aria-hidden="true" tabindex="-1"></a>          <span class="dt">y</span><span class="op">:</span> <span class="st">"sum"</span></span>
-<span id="cb6-428"><a href="#cb6-428" aria-hidden="true" tabindex="-1"></a>        }<span class="op">,</span></span>
-<span id="cb6-429"><a href="#cb6-429" aria-hidden="true" tabindex="-1"></a>        {</span>
-<span id="cb6-430"><a href="#cb6-430" aria-hidden="true" tabindex="-1"></a>          <span class="dt">x</span><span class="op">:</span> <span class="st">"year"</span><span class="op">,</span></span>
-<span id="cb6-431"><a href="#cb6-431" aria-hidden="true" tabindex="-1"></a>          <span class="dt">y</span><span class="op">:</span> <span class="st">"generation"</span><span class="op">,</span></span>
-<span id="cb6-432"><a href="#cb6-432" aria-hidden="true" tabindex="-1"></a>          <span class="dt">fill</span><span class="op">:</span> <span class="st">"fuel_type"</span><span class="op">,</span></span>
-<span id="cb6-433"><a href="#cb6-433" aria-hidden="true" tabindex="-1"></a>          <span class="dt">order</span><span class="op">:</span> [<span class="st">"Coal"</span><span class="op">,</span><span class="st">"Oil"</span><span class="op">,</span><span class="st">"Gas"</span><span class="op">,</span><span class="st">"Hydro"</span><span class="op">,</span><span class="st">"Wind"</span><span class="op">,</span><span class="st">"Solar"</span>]<span class="op">,</span></span>
-<span id="cb6-434"><a href="#cb6-434" aria-hidden="true" tabindex="-1"></a>          <span class="dt">tip</span><span class="op">:</span> {<span class="dt">format</span><span class="op">:</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"d"</span>}}</span>
-<span id="cb6-435"><a href="#cb6-435" aria-hidden="true" tabindex="-1"></a>        }</span>
-<span id="cb6-436"><a href="#cb6-436" aria-hidden="true" tabindex="-1"></a>      )</span>
-<span id="cb6-437"><a href="#cb6-437" aria-hidden="true" tabindex="-1"></a>    )<span class="op">,</span></span>
-<span id="cb6-438"><a href="#cb6-438" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">ruleY</span>([<span class="dv">0</span>])</span>
-<span id="cb6-439"><a href="#cb6-439" aria-hidden="true" tabindex="-1"></a>  ]<span class="op">,</span></span>
-<span id="cb6-440"><a href="#cb6-440" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb6-441"><a href="#cb6-441" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Legend</span></span>
-<span id="cb6-442"><a href="#cb6-442" aria-hidden="true" tabindex="-1"></a>  <span class="dt">color</span><span class="op">:</span> {</span>
-<span id="cb6-443"><a href="#cb6-443" aria-hidden="true" tabindex="-1"></a>    <span class="dt">domain</span><span class="op">:</span> [<span class="st">"Coal"</span><span class="op">,</span><span class="st">"Oil"</span><span class="op">,</span><span class="st">"Gas"</span><span class="op">,</span><span class="st">"Hydro"</span><span class="op">,</span><span class="st">"Wind"</span><span class="op">,</span><span class="st">"Solar"</span>]<span class="op">,</span></span>
-<span id="cb6-444"><a href="#cb6-444" aria-hidden="true" tabindex="-1"></a>    <span class="dt">range</span><span class="op">:</span> [<span class="st">"#7f7f7f"</span><span class="op">,</span><span class="st">"#BFBFBF"</span><span class="op">,</span><span class="st">"#DCD9C5"</span><span class="op">,</span><span class="st">"#96B3DF"</span><span class="op">,</span><span class="st">"#F79646"</span><span class="op">,</span><span class="st">"#F5C243"</span>]<span class="op">,</span></span>
-<span id="cb6-445"><a href="#cb6-445" aria-hidden="true" tabindex="-1"></a>    <span class="dt">legend</span><span class="op">:</span> <span class="kw">true</span></span>
-<span id="cb6-446"><a href="#cb6-446" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb6-447"><a href="#cb6-447" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code hidden" id="cb6" data-startfrom="387" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 386;"><span id="cb6-387"><a href="#cb6-387" aria-hidden="true" tabindex="-1"></a><span class="co">// Plotting total generation by region and year</span></span>
+<span id="cb6-388"><a href="#cb6-388" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb6-389"><a href="#cb6-389" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-390"><a href="#cb6-390" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Configure the plot</span></span>
+<span id="cb6-391"><a href="#cb6-391" aria-hidden="true" tabindex="-1"></a>  <span class="dt">title</span><span class="op">:</span> <span class="st">"Railbelt region electricity generation"</span><span class="op">,</span></span>
+<span id="cb6-392"><a href="#cb6-392" aria-hidden="true" tabindex="-1"></a>  <span class="dt">insetLeft</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span></span>
+<span id="cb6-393"><a href="#cb6-393" aria-hidden="true" tabindex="-1"></a>  <span class="dt">insetRight</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span></span>
+<span id="cb6-394"><a href="#cb6-394" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-395"><a href="#cb6-395" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Configure the x-axis</span></span>
+<span id="cb6-396"><a href="#cb6-396" aria-hidden="true" tabindex="-1"></a>  <span class="dt">x</span><span class="op">:</span> {</span>
+<span id="cb6-397"><a href="#cb6-397" aria-hidden="true" tabindex="-1"></a>    <span class="dt">tickFormat</span><span class="op">:</span> <span class="st">"d"</span><span class="op">,</span></span>
+<span id="cb6-398"><a href="#cb6-398" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> <span class="st">"Year"</span></span>
+<span id="cb6-399"><a href="#cb6-399" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb6-400"><a href="#cb6-400" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-401"><a href="#cb6-401" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Configure the y-axis</span></span>
+<span id="cb6-402"><a href="#cb6-402" aria-hidden="true" tabindex="-1"></a>  <span class="dt">y</span><span class="op">:</span> {</span>
+<span id="cb6-403"><a href="#cb6-403" aria-hidden="true" tabindex="-1"></a>    <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span></span>
+<span id="cb6-404"><a href="#cb6-404" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> <span class="st">"Generation (GWh)"</span></span>
+<span id="cb6-405"><a href="#cb6-405" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb6-406"><a href="#cb6-406" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-407"><a href="#cb6-407" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Plotting the series</span></span>
+<span id="cb6-408"><a href="#cb6-408" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [</span>
+<span id="cb6-409"><a href="#cb6-409" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">barY</span>(</span>
+<span id="cb6-410"><a href="#cb6-410" aria-hidden="true" tabindex="-1"></a>      gen_data_gwh<span class="op">.</span><span class="fu">filter</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">acep_region</span> <span class="op">===</span> <span class="st">"Railbelt"</span>)<span class="op">,</span></span>
+<span id="cb6-411"><a href="#cb6-411" aria-hidden="true" tabindex="-1"></a>      Plot<span class="op">.</span><span class="fu">groupX</span>(</span>
+<span id="cb6-412"><a href="#cb6-412" aria-hidden="true" tabindex="-1"></a>        {</span>
+<span id="cb6-413"><a href="#cb6-413" aria-hidden="true" tabindex="-1"></a>          <span class="dt">y</span><span class="op">:</span> <span class="st">"sum"</span></span>
+<span id="cb6-414"><a href="#cb6-414" aria-hidden="true" tabindex="-1"></a>        }<span class="op">,</span></span>
+<span id="cb6-415"><a href="#cb6-415" aria-hidden="true" tabindex="-1"></a>        {</span>
+<span id="cb6-416"><a href="#cb6-416" aria-hidden="true" tabindex="-1"></a>          <span class="dt">x</span><span class="op">:</span> <span class="st">"year"</span><span class="op">,</span></span>
+<span id="cb6-417"><a href="#cb6-417" aria-hidden="true" tabindex="-1"></a>          <span class="dt">y</span><span class="op">:</span> <span class="st">"generation"</span><span class="op">,</span></span>
+<span id="cb6-418"><a href="#cb6-418" aria-hidden="true" tabindex="-1"></a>          <span class="dt">fill</span><span class="op">:</span> <span class="st">"fuel_type"</span><span class="op">,</span></span>
+<span id="cb6-419"><a href="#cb6-419" aria-hidden="true" tabindex="-1"></a>          <span class="dt">order</span><span class="op">:</span> [<span class="st">"Coal"</span><span class="op">,</span><span class="st">"Oil"</span><span class="op">,</span><span class="st">"Gas"</span><span class="op">,</span><span class="st">"Hydro"</span><span class="op">,</span><span class="st">"Wind"</span><span class="op">,</span><span class="st">"Solar"</span>]<span class="op">,</span></span>
+<span id="cb6-420"><a href="#cb6-420" aria-hidden="true" tabindex="-1"></a>          <span class="dt">tip</span><span class="op">:</span> {<span class="dt">format</span><span class="op">:</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"d"</span>}}</span>
+<span id="cb6-421"><a href="#cb6-421" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb6-422"><a href="#cb6-422" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb6-423"><a href="#cb6-423" aria-hidden="true" tabindex="-1"></a>    )<span class="op">,</span></span>
+<span id="cb6-424"><a href="#cb6-424" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">ruleY</span>([<span class="dv">0</span>])</span>
+<span id="cb6-425"><a href="#cb6-425" aria-hidden="true" tabindex="-1"></a>  ]<span class="op">,</span></span>
+<span id="cb6-426"><a href="#cb6-426" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-427"><a href="#cb6-427" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Legend</span></span>
+<span id="cb6-428"><a href="#cb6-428" aria-hidden="true" tabindex="-1"></a>  <span class="dt">color</span><span class="op">:</span> {</span>
+<span id="cb6-429"><a href="#cb6-429" aria-hidden="true" tabindex="-1"></a>    <span class="dt">domain</span><span class="op">:</span> [<span class="st">"Coal"</span><span class="op">,</span><span class="st">"Oil"</span><span class="op">,</span><span class="st">"Gas"</span><span class="op">,</span><span class="st">"Hydro"</span><span class="op">,</span><span class="st">"Wind"</span><span class="op">,</span><span class="st">"Solar"</span>]<span class="op">,</span></span>
+<span id="cb6-430"><a href="#cb6-430" aria-hidden="true" tabindex="-1"></a>    <span class="dt">range</span><span class="op">:</span> [<span class="st">"#7f7f7f"</span><span class="op">,</span><span class="st">"#BFBFBF"</span><span class="op">,</span><span class="st">"#DCD9C5"</span><span class="op">,</span><span class="st">"#96B3DF"</span><span class="op">,</span><span class="st">"#F79646"</span><span class="op">,</span><span class="st">"#F5C243"</span>]<span class="op">,</span></span>
+<span id="cb6-431"><a href="#cb6-431" aria-hidden="true" tabindex="-1"></a>    <span class="dt">legend</span><span class="op">:</span> <span class="kw">true</span></span>
+<span id="cb6-432"><a href="#cb6-432" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb6-433"><a href="#cb6-433" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div id="ojs-cell-6" data-nodetype="expression">
 
@@ -766,48 +766,48 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="rural-remote">Rural Remote</h2>
 <p>The Rural Remote region has seen notable changes between 2011 and 2021 in how it generates electricity. In 2011, the region generated 84% of electricity from oil, 12% from gas, 2% from hydro, and 2% from wind. In 2021, the region generated 77% of electricity from oil (mostly diesel), 19% from gas, 1% from hydro, and 3% from wind. Additionally, a small amount of solar generation was present. The following figure shows how this generation mix has changed over the years.</p>
 <div class="cell">
-<div class="sourceCode cell-code hidden" id="cb7" data-startfrom="457" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 456;"><span id="cb7-457"><a href="#cb7-457" aria-hidden="true" tabindex="-1"></a><span class="co">// Plotting the shares for the coastal region</span></span>
-<span id="cb7-458"><a href="#cb7-458" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
-<span id="cb7-459"><a href="#cb7-459" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-460"><a href="#cb7-460" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Configure the plot</span></span>
-<span id="cb7-461"><a href="#cb7-461" aria-hidden="true" tabindex="-1"></a>  <span class="dt">title</span><span class="op">:</span> <span class="st">"Share of net generation by fuel type, Rural Remote region"</span><span class="op">,</span></span>
-<span id="cb7-462"><a href="#cb7-462" aria-hidden="true" tabindex="-1"></a>  <span class="dt">caption</span><span class="op">:</span> caption_gen_mix<span class="op">,</span></span>
-<span id="cb7-463"><a href="#cb7-463" aria-hidden="true" tabindex="-1"></a>  <span class="dt">insetLeft</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span></span>
-<span id="cb7-464"><a href="#cb7-464" aria-hidden="true" tabindex="-1"></a>  <span class="dt">insetRight</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span></span>
-<span id="cb7-465"><a href="#cb7-465" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb7-466"><a href="#cb7-466" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Configure the x-axis</span></span>
-<span id="cb7-467"><a href="#cb7-467" aria-hidden="true" tabindex="-1"></a>  <span class="dt">x</span><span class="op">:</span> {</span>
-<span id="cb7-468"><a href="#cb7-468" aria-hidden="true" tabindex="-1"></a>    <span class="dt">tickFormat</span><span class="op">:</span> <span class="st">"d"</span><span class="op">,</span></span>
-<span id="cb7-469"><a href="#cb7-469" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> <span class="st">"Year"</span></span>
-<span id="cb7-470"><a href="#cb7-470" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
-<span id="cb7-471"><a href="#cb7-471" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb7-472"><a href="#cb7-472" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Configure the y-axis</span></span>
-<span id="cb7-473"><a href="#cb7-473" aria-hidden="true" tabindex="-1"></a>  <span class="dt">y</span><span class="op">:</span> {</span>
-<span id="cb7-474"><a href="#cb7-474" aria-hidden="true" tabindex="-1"></a>    <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span></span>
-<span id="cb7-475"><a href="#cb7-475" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> <span class="st">"Share of electricity generation"</span></span>
-<span id="cb7-476"><a href="#cb7-476" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<div class="sourceCode cell-code hidden" id="cb7" data-startfrom="443" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 442;"><span id="cb7-443"><a href="#cb7-443" aria-hidden="true" tabindex="-1"></a><span class="co">// Plotting the shares for the coastal region</span></span>
+<span id="cb7-444"><a href="#cb7-444" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb7-445"><a href="#cb7-445" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-446"><a href="#cb7-446" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Configure the plot</span></span>
+<span id="cb7-447"><a href="#cb7-447" aria-hidden="true" tabindex="-1"></a>  <span class="dt">title</span><span class="op">:</span> <span class="st">"Share of net generation by fuel type, Rural Remote region"</span><span class="op">,</span></span>
+<span id="cb7-448"><a href="#cb7-448" aria-hidden="true" tabindex="-1"></a>  <span class="dt">caption</span><span class="op">:</span> caption_gen_mix<span class="op">,</span></span>
+<span id="cb7-449"><a href="#cb7-449" aria-hidden="true" tabindex="-1"></a>  <span class="dt">insetLeft</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span></span>
+<span id="cb7-450"><a href="#cb7-450" aria-hidden="true" tabindex="-1"></a>  <span class="dt">insetRight</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span></span>
+<span id="cb7-451"><a href="#cb7-451" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb7-452"><a href="#cb7-452" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Configure the x-axis</span></span>
+<span id="cb7-453"><a href="#cb7-453" aria-hidden="true" tabindex="-1"></a>  <span class="dt">x</span><span class="op">:</span> {</span>
+<span id="cb7-454"><a href="#cb7-454" aria-hidden="true" tabindex="-1"></a>    <span class="dt">tickFormat</span><span class="op">:</span> <span class="st">"d"</span><span class="op">,</span></span>
+<span id="cb7-455"><a href="#cb7-455" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> <span class="st">"Year"</span></span>
+<span id="cb7-456"><a href="#cb7-456" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb7-457"><a href="#cb7-457" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb7-458"><a href="#cb7-458" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Configure the y-axis</span></span>
+<span id="cb7-459"><a href="#cb7-459" aria-hidden="true" tabindex="-1"></a>  <span class="dt">y</span><span class="op">:</span> {</span>
+<span id="cb7-460"><a href="#cb7-460" aria-hidden="true" tabindex="-1"></a>    <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span></span>
+<span id="cb7-461"><a href="#cb7-461" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> <span class="st">"Share of electricity generation"</span></span>
+<span id="cb7-462"><a href="#cb7-462" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb7-463"><a href="#cb7-463" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb7-464"><a href="#cb7-464" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [</span>
+<span id="cb7-465"><a href="#cb7-465" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">areaY</span>(</span>
+<span id="cb7-466"><a href="#cb7-466" aria-hidden="true" tabindex="-1"></a>      join_shares<span class="op">.</span><span class="fu">filter</span>((d) <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">acep_region</span> <span class="op">===</span> <span class="st">"Rural Remote"</span>)<span class="op">,</span></span>
+<span id="cb7-467"><a href="#cb7-467" aria-hidden="true" tabindex="-1"></a>      {</span>
+<span id="cb7-468"><a href="#cb7-468" aria-hidden="true" tabindex="-1"></a>        <span class="dt">x</span><span class="op">:</span><span class="st">"year"</span><span class="op">,</span></span>
+<span id="cb7-469"><a href="#cb7-469" aria-hidden="true" tabindex="-1"></a>        <span class="dt">y</span><span class="op">:</span><span class="st">"generation_share"</span><span class="op">,</span> </span>
+<span id="cb7-470"><a href="#cb7-470" aria-hidden="true" tabindex="-1"></a>        <span class="dt">fill</span><span class="op">:</span> <span class="st">"fuel_type"</span><span class="op">,</span></span>
+<span id="cb7-471"><a href="#cb7-471" aria-hidden="true" tabindex="-1"></a>        <span class="dt">order</span><span class="op">:</span> [<span class="st">"Oil"</span><span class="op">,</span><span class="st">"Gas"</span><span class="op">,</span><span class="st">"Hydro"</span><span class="op">,</span><span class="st">"Wind"</span><span class="op">,</span><span class="st">"Solar"</span><span class="op">,</span><span class="st">"Other"</span>]<span class="op">,</span></span>
+<span id="cb7-472"><a href="#cb7-472" aria-hidden="true" tabindex="-1"></a>        <span class="dt">tip</span><span class="op">:</span> {<span class="dt">format</span><span class="op">:</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"d"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> (d) <span class="kw">=&gt;</span> <span class="vs">`</span><span class="sc">${</span>(d)<span class="op">.</span><span class="fu">toLocaleString</span>(<span class="kw">undefined</span><span class="op">,</span> {<span class="dt">maximumFractionDigits</span><span class="op">:</span> <span class="dv">2</span>})<span class="sc">}</span><span class="vs">%`</span>}}</span>
+<span id="cb7-473"><a href="#cb7-473" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb7-474"><a href="#cb7-474" aria-hidden="true" tabindex="-1"></a>    )<span class="op">,</span></span>
+<span id="cb7-475"><a href="#cb7-475" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">ruleY</span>([<span class="dv">0</span>])</span>
+<span id="cb7-476"><a href="#cb7-476" aria-hidden="true" tabindex="-1"></a>  ]<span class="op">,</span></span>
 <span id="cb7-477"><a href="#cb7-477" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb7-478"><a href="#cb7-478" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [</span>
-<span id="cb7-479"><a href="#cb7-479" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">areaY</span>(</span>
-<span id="cb7-480"><a href="#cb7-480" aria-hidden="true" tabindex="-1"></a>      join_shares<span class="op">.</span><span class="fu">filter</span>((d) <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">acep_region</span> <span class="op">===</span> <span class="st">"Rural Remote"</span>)<span class="op">,</span></span>
-<span id="cb7-481"><a href="#cb7-481" aria-hidden="true" tabindex="-1"></a>      {</span>
-<span id="cb7-482"><a href="#cb7-482" aria-hidden="true" tabindex="-1"></a>        <span class="dt">x</span><span class="op">:</span><span class="st">"year"</span><span class="op">,</span></span>
-<span id="cb7-483"><a href="#cb7-483" aria-hidden="true" tabindex="-1"></a>        <span class="dt">y</span><span class="op">:</span><span class="st">"generation_share"</span><span class="op">,</span> </span>
-<span id="cb7-484"><a href="#cb7-484" aria-hidden="true" tabindex="-1"></a>        <span class="dt">fill</span><span class="op">:</span> <span class="st">"fuel_type"</span><span class="op">,</span></span>
-<span id="cb7-485"><a href="#cb7-485" aria-hidden="true" tabindex="-1"></a>        <span class="dt">order</span><span class="op">:</span> [<span class="st">"Oil"</span><span class="op">,</span><span class="st">"Gas"</span><span class="op">,</span><span class="st">"Hydro"</span><span class="op">,</span><span class="st">"Wind"</span><span class="op">,</span><span class="st">"Solar"</span><span class="op">,</span><span class="st">"Other"</span>]<span class="op">,</span></span>
-<span id="cb7-486"><a href="#cb7-486" aria-hidden="true" tabindex="-1"></a>        <span class="dt">tip</span><span class="op">:</span> {<span class="dt">format</span><span class="op">:</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"d"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> (d) <span class="kw">=&gt;</span> <span class="vs">`</span><span class="sc">${</span>(d)<span class="op">.</span><span class="fu">toLocaleString</span>(<span class="kw">undefined</span><span class="op">,</span> {<span class="dt">maximumFractionDigits</span><span class="op">:</span> <span class="dv">2</span>})<span class="sc">}</span><span class="vs">%`</span>}}</span>
-<span id="cb7-487"><a href="#cb7-487" aria-hidden="true" tabindex="-1"></a>      }</span>
-<span id="cb7-488"><a href="#cb7-488" aria-hidden="true" tabindex="-1"></a>    )<span class="op">,</span></span>
-<span id="cb7-489"><a href="#cb7-489" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">ruleY</span>([<span class="dv">0</span>])</span>
-<span id="cb7-490"><a href="#cb7-490" aria-hidden="true" tabindex="-1"></a>  ]<span class="op">,</span></span>
-<span id="cb7-491"><a href="#cb7-491" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb7-492"><a href="#cb7-492" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Legend</span></span>
-<span id="cb7-493"><a href="#cb7-493" aria-hidden="true" tabindex="-1"></a>  <span class="dt">color</span><span class="op">:</span> {</span>
-<span id="cb7-494"><a href="#cb7-494" aria-hidden="true" tabindex="-1"></a>    <span class="dt">domain</span><span class="op">:</span> [<span class="st">"Oil"</span><span class="op">,</span><span class="st">"Gas"</span><span class="op">,</span><span class="st">"Hydro"</span><span class="op">,</span><span class="st">"Wind"</span><span class="op">,</span><span class="st">"Solar"</span><span class="op">,</span><span class="st">"Other"</span>]<span class="op">,</span></span>
-<span id="cb7-495"><a href="#cb7-495" aria-hidden="true" tabindex="-1"></a>    <span class="dt">range</span><span class="op">:</span> [<span class="st">"#BFBFBF"</span><span class="op">,</span><span class="st">"#DCD9C5"</span><span class="op">,</span><span class="st">"#96B3DF"</span><span class="op">,</span><span class="st">"#F79646"</span><span class="op">,</span><span class="st">"#F5C243"</span><span class="op">,</span><span class="st">"#C0504D"</span>]<span class="op">,</span></span>
-<span id="cb7-496"><a href="#cb7-496" aria-hidden="true" tabindex="-1"></a>    <span class="dt">legend</span><span class="op">:</span> <span class="kw">true</span></span>
-<span id="cb7-497"><a href="#cb7-497" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb7-498"><a href="#cb7-498" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-478"><a href="#cb7-478" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Legend</span></span>
+<span id="cb7-479"><a href="#cb7-479" aria-hidden="true" tabindex="-1"></a>  <span class="dt">color</span><span class="op">:</span> {</span>
+<span id="cb7-480"><a href="#cb7-480" aria-hidden="true" tabindex="-1"></a>    <span class="dt">domain</span><span class="op">:</span> [<span class="st">"Oil"</span><span class="op">,</span><span class="st">"Gas"</span><span class="op">,</span><span class="st">"Hydro"</span><span class="op">,</span><span class="st">"Wind"</span><span class="op">,</span><span class="st">"Solar"</span><span class="op">,</span><span class="st">"Other"</span>]<span class="op">,</span></span>
+<span id="cb7-481"><a href="#cb7-481" aria-hidden="true" tabindex="-1"></a>    <span class="dt">range</span><span class="op">:</span> [<span class="st">"#BFBFBF"</span><span class="op">,</span><span class="st">"#DCD9C5"</span><span class="op">,</span><span class="st">"#96B3DF"</span><span class="op">,</span><span class="st">"#F79646"</span><span class="op">,</span><span class="st">"#F5C243"</span><span class="op">,</span><span class="st">"#C0504D"</span>]<span class="op">,</span></span>
+<span id="cb7-482"><a href="#cb7-482" aria-hidden="true" tabindex="-1"></a>    <span class="dt">legend</span><span class="op">:</span> <span class="kw">true</span></span>
+<span id="cb7-483"><a href="#cb7-483" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb7-484"><a href="#cb7-484" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div id="ojs-cell-7" data-nodetype="expression">
 
@@ -816,53 +816,53 @@ window.Quarto = {
 </div>
 <p>Generation from 2011 to 2021 saw an average annual growth rate of 2.43%. The following figure highlights the yearly trends in generation by fuel source. From 2013 to 2014, a large increase in gas generation is observed due to operations on the North Slope - specifically in the Barrow Utilities &amp; Electric Cooperative, Inc.&nbsp;(BUECI), Deadhorse, and Nuiqsut service regions.</p>
 <div class="cell">
-<div class="sourceCode cell-code hidden" id="cb8" data-startfrom="505" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 504;"><span id="cb8-505"><a href="#cb8-505" aria-hidden="true" tabindex="-1"></a><span class="co">// Plotting total generation by region and year</span></span>
-<span id="cb8-506"><a href="#cb8-506" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
-<span id="cb8-507"><a href="#cb8-507" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb8-508"><a href="#cb8-508" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Configure the plot</span></span>
-<span id="cb8-509"><a href="#cb8-509" aria-hidden="true" tabindex="-1"></a>  <span class="dt">title</span><span class="op">:</span> <span class="st">"Rural remote region electricity generation"</span><span class="op">,</span></span>
-<span id="cb8-510"><a href="#cb8-510" aria-hidden="true" tabindex="-1"></a>  <span class="dt">insetLeft</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span></span>
-<span id="cb8-511"><a href="#cb8-511" aria-hidden="true" tabindex="-1"></a>  <span class="dt">insetRight</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span></span>
-<span id="cb8-512"><a href="#cb8-512" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb8-513"><a href="#cb8-513" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Configure the x-axis</span></span>
-<span id="cb8-514"><a href="#cb8-514" aria-hidden="true" tabindex="-1"></a>  <span class="dt">x</span><span class="op">:</span> {</span>
-<span id="cb8-515"><a href="#cb8-515" aria-hidden="true" tabindex="-1"></a>    <span class="dt">tickFormat</span><span class="op">:</span> <span class="st">"d"</span><span class="op">,</span></span>
-<span id="cb8-516"><a href="#cb8-516" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> <span class="st">"Year"</span></span>
-<span id="cb8-517"><a href="#cb8-517" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
-<span id="cb8-518"><a href="#cb8-518" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb8-519"><a href="#cb8-519" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Configure the y-axis</span></span>
-<span id="cb8-520"><a href="#cb8-520" aria-hidden="true" tabindex="-1"></a>  <span class="dt">y</span><span class="op">:</span> {</span>
-<span id="cb8-521"><a href="#cb8-521" aria-hidden="true" tabindex="-1"></a>    <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span></span>
-<span id="cb8-522"><a href="#cb8-522" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> <span class="st">"Generation (GWh)"</span></span>
-<span id="cb8-523"><a href="#cb8-523" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
-<span id="cb8-524"><a href="#cb8-524" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb8-525"><a href="#cb8-525" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Plotting the series</span></span>
-<span id="cb8-526"><a href="#cb8-526" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [</span>
-<span id="cb8-527"><a href="#cb8-527" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">barY</span>(</span>
-<span id="cb8-528"><a href="#cb8-528" aria-hidden="true" tabindex="-1"></a>      gen_data_gwh<span class="op">.</span><span class="fu">filter</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">acep_region</span> <span class="op">===</span> <span class="st">"Rural Remote"</span>)<span class="op">,</span></span>
-<span id="cb8-529"><a href="#cb8-529" aria-hidden="true" tabindex="-1"></a>      Plot<span class="op">.</span><span class="fu">groupX</span>(</span>
-<span id="cb8-530"><a href="#cb8-530" aria-hidden="true" tabindex="-1"></a>        {</span>
-<span id="cb8-531"><a href="#cb8-531" aria-hidden="true" tabindex="-1"></a>          <span class="dt">y</span><span class="op">:</span> <span class="st">"sum"</span></span>
-<span id="cb8-532"><a href="#cb8-532" aria-hidden="true" tabindex="-1"></a>        }<span class="op">,</span></span>
-<span id="cb8-533"><a href="#cb8-533" aria-hidden="true" tabindex="-1"></a>        {</span>
-<span id="cb8-534"><a href="#cb8-534" aria-hidden="true" tabindex="-1"></a>          <span class="dt">x</span><span class="op">:</span> <span class="st">"year"</span><span class="op">,</span></span>
-<span id="cb8-535"><a href="#cb8-535" aria-hidden="true" tabindex="-1"></a>          <span class="dt">y</span><span class="op">:</span> <span class="st">"generation"</span><span class="op">,</span></span>
-<span id="cb8-536"><a href="#cb8-536" aria-hidden="true" tabindex="-1"></a>          <span class="dt">fill</span><span class="op">:</span> <span class="st">"fuel_type"</span><span class="op">,</span></span>
-<span id="cb8-537"><a href="#cb8-537" aria-hidden="true" tabindex="-1"></a>          <span class="dt">order</span><span class="op">:</span> [<span class="st">"Oil"</span><span class="op">,</span><span class="st">"Gas"</span><span class="op">,</span><span class="st">"Hydro"</span><span class="op">,</span><span class="st">"Wind"</span><span class="op">,</span><span class="st">"Solar"</span><span class="op">,</span><span class="st">"Other"</span>]<span class="op">,</span></span>
-<span id="cb8-538"><a href="#cb8-538" aria-hidden="true" tabindex="-1"></a>          <span class="dt">tip</span><span class="op">:</span> {<span class="dt">format</span><span class="op">:</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"d"</span>}}</span>
-<span id="cb8-539"><a href="#cb8-539" aria-hidden="true" tabindex="-1"></a>        }</span>
-<span id="cb8-540"><a href="#cb8-540" aria-hidden="true" tabindex="-1"></a>      )</span>
-<span id="cb8-541"><a href="#cb8-541" aria-hidden="true" tabindex="-1"></a>    )<span class="op">,</span></span>
-<span id="cb8-542"><a href="#cb8-542" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">ruleY</span>([<span class="dv">0</span>])</span>
-<span id="cb8-543"><a href="#cb8-543" aria-hidden="true" tabindex="-1"></a>  ]<span class="op">,</span></span>
-<span id="cb8-544"><a href="#cb8-544" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb8-545"><a href="#cb8-545" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Legend</span></span>
-<span id="cb8-546"><a href="#cb8-546" aria-hidden="true" tabindex="-1"></a>  <span class="dt">color</span><span class="op">:</span> {</span>
-<span id="cb8-547"><a href="#cb8-547" aria-hidden="true" tabindex="-1"></a>    <span class="dt">domain</span><span class="op">:</span> [<span class="st">"Oil"</span><span class="op">,</span><span class="st">"Gas"</span><span class="op">,</span><span class="st">"Hydro"</span><span class="op">,</span><span class="st">"Wind"</span><span class="op">,</span><span class="st">"Solar"</span><span class="op">,</span><span class="st">"Other"</span>]<span class="op">,</span></span>
-<span id="cb8-548"><a href="#cb8-548" aria-hidden="true" tabindex="-1"></a>    <span class="dt">range</span><span class="op">:</span> [<span class="st">"#BFBFBF"</span><span class="op">,</span><span class="st">"#DCD9C5"</span><span class="op">,</span><span class="st">"#96B3DF"</span><span class="op">,</span><span class="st">"#F79646"</span><span class="op">,</span><span class="st">"#F5C243"</span><span class="op">,</span><span class="st">"#C0504D"</span>]<span class="op">,</span></span>
-<span id="cb8-549"><a href="#cb8-549" aria-hidden="true" tabindex="-1"></a>    <span class="dt">legend</span><span class="op">:</span> <span class="kw">true</span></span>
-<span id="cb8-550"><a href="#cb8-550" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb8-551"><a href="#cb8-551" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code hidden" id="cb8" data-startfrom="491" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 490;"><span id="cb8-491"><a href="#cb8-491" aria-hidden="true" tabindex="-1"></a><span class="co">// Plotting total generation by region and year</span></span>
+<span id="cb8-492"><a href="#cb8-492" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb8-493"><a href="#cb8-493" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb8-494"><a href="#cb8-494" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Configure the plot</span></span>
+<span id="cb8-495"><a href="#cb8-495" aria-hidden="true" tabindex="-1"></a>  <span class="dt">title</span><span class="op">:</span> <span class="st">"Rural remote region electricity generation"</span><span class="op">,</span></span>
+<span id="cb8-496"><a href="#cb8-496" aria-hidden="true" tabindex="-1"></a>  <span class="dt">insetLeft</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span></span>
+<span id="cb8-497"><a href="#cb8-497" aria-hidden="true" tabindex="-1"></a>  <span class="dt">insetRight</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span></span>
+<span id="cb8-498"><a href="#cb8-498" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb8-499"><a href="#cb8-499" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Configure the x-axis</span></span>
+<span id="cb8-500"><a href="#cb8-500" aria-hidden="true" tabindex="-1"></a>  <span class="dt">x</span><span class="op">:</span> {</span>
+<span id="cb8-501"><a href="#cb8-501" aria-hidden="true" tabindex="-1"></a>    <span class="dt">tickFormat</span><span class="op">:</span> <span class="st">"d"</span><span class="op">,</span></span>
+<span id="cb8-502"><a href="#cb8-502" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> <span class="st">"Year"</span></span>
+<span id="cb8-503"><a href="#cb8-503" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb8-504"><a href="#cb8-504" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb8-505"><a href="#cb8-505" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Configure the y-axis</span></span>
+<span id="cb8-506"><a href="#cb8-506" aria-hidden="true" tabindex="-1"></a>  <span class="dt">y</span><span class="op">:</span> {</span>
+<span id="cb8-507"><a href="#cb8-507" aria-hidden="true" tabindex="-1"></a>    <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span></span>
+<span id="cb8-508"><a href="#cb8-508" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> <span class="st">"Generation (GWh)"</span></span>
+<span id="cb8-509"><a href="#cb8-509" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb8-510"><a href="#cb8-510" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb8-511"><a href="#cb8-511" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Plotting the series</span></span>
+<span id="cb8-512"><a href="#cb8-512" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [</span>
+<span id="cb8-513"><a href="#cb8-513" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">barY</span>(</span>
+<span id="cb8-514"><a href="#cb8-514" aria-hidden="true" tabindex="-1"></a>      gen_data_gwh<span class="op">.</span><span class="fu">filter</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">acep_region</span> <span class="op">===</span> <span class="st">"Rural Remote"</span>)<span class="op">,</span></span>
+<span id="cb8-515"><a href="#cb8-515" aria-hidden="true" tabindex="-1"></a>      Plot<span class="op">.</span><span class="fu">groupX</span>(</span>
+<span id="cb8-516"><a href="#cb8-516" aria-hidden="true" tabindex="-1"></a>        {</span>
+<span id="cb8-517"><a href="#cb8-517" aria-hidden="true" tabindex="-1"></a>          <span class="dt">y</span><span class="op">:</span> <span class="st">"sum"</span></span>
+<span id="cb8-518"><a href="#cb8-518" aria-hidden="true" tabindex="-1"></a>        }<span class="op">,</span></span>
+<span id="cb8-519"><a href="#cb8-519" aria-hidden="true" tabindex="-1"></a>        {</span>
+<span id="cb8-520"><a href="#cb8-520" aria-hidden="true" tabindex="-1"></a>          <span class="dt">x</span><span class="op">:</span> <span class="st">"year"</span><span class="op">,</span></span>
+<span id="cb8-521"><a href="#cb8-521" aria-hidden="true" tabindex="-1"></a>          <span class="dt">y</span><span class="op">:</span> <span class="st">"generation"</span><span class="op">,</span></span>
+<span id="cb8-522"><a href="#cb8-522" aria-hidden="true" tabindex="-1"></a>          <span class="dt">fill</span><span class="op">:</span> <span class="st">"fuel_type"</span><span class="op">,</span></span>
+<span id="cb8-523"><a href="#cb8-523" aria-hidden="true" tabindex="-1"></a>          <span class="dt">order</span><span class="op">:</span> [<span class="st">"Oil"</span><span class="op">,</span><span class="st">"Gas"</span><span class="op">,</span><span class="st">"Hydro"</span><span class="op">,</span><span class="st">"Wind"</span><span class="op">,</span><span class="st">"Solar"</span><span class="op">,</span><span class="st">"Other"</span>]<span class="op">,</span></span>
+<span id="cb8-524"><a href="#cb8-524" aria-hidden="true" tabindex="-1"></a>          <span class="dt">tip</span><span class="op">:</span> {<span class="dt">format</span><span class="op">:</span> {<span class="dt">x</span><span class="op">:</span> <span class="st">"d"</span>}}</span>
+<span id="cb8-525"><a href="#cb8-525" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb8-526"><a href="#cb8-526" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb8-527"><a href="#cb8-527" aria-hidden="true" tabindex="-1"></a>    )<span class="op">,</span></span>
+<span id="cb8-528"><a href="#cb8-528" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">ruleY</span>([<span class="dv">0</span>])</span>
+<span id="cb8-529"><a href="#cb8-529" aria-hidden="true" tabindex="-1"></a>  ]<span class="op">,</span></span>
+<span id="cb8-530"><a href="#cb8-530" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb8-531"><a href="#cb8-531" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Legend</span></span>
+<span id="cb8-532"><a href="#cb8-532" aria-hidden="true" tabindex="-1"></a>  <span class="dt">color</span><span class="op">:</span> {</span>
+<span id="cb8-533"><a href="#cb8-533" aria-hidden="true" tabindex="-1"></a>    <span class="dt">domain</span><span class="op">:</span> [<span class="st">"Oil"</span><span class="op">,</span><span class="st">"Gas"</span><span class="op">,</span><span class="st">"Hydro"</span><span class="op">,</span><span class="st">"Wind"</span><span class="op">,</span><span class="st">"Solar"</span><span class="op">,</span><span class="st">"Other"</span>]<span class="op">,</span></span>
+<span id="cb8-534"><a href="#cb8-534" aria-hidden="true" tabindex="-1"></a>    <span class="dt">range</span><span class="op">:</span> [<span class="st">"#BFBFBF"</span><span class="op">,</span><span class="st">"#DCD9C5"</span><span class="op">,</span><span class="st">"#96B3DF"</span><span class="op">,</span><span class="st">"#F79646"</span><span class="op">,</span><span class="st">"#F5C243"</span><span class="op">,</span><span class="st">"#C0504D"</span>]<span class="op">,</span></span>
+<span id="cb8-535"><a href="#cb8-535" aria-hidden="true" tabindex="-1"></a>    <span class="dt">legend</span><span class="op">:</span> <span class="kw">true</span></span>
+<span id="cb8-536"><a href="#cb8-536" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb8-537"><a href="#cb8-537" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div id="ojs-cell-8" data-nodetype="expression">
 
