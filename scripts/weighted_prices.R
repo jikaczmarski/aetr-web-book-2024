@@ -32,7 +32,13 @@ weighted_prices <- long_price %>%
   drop_na() %>%
   group_by(`acep_energy_region`, sector, year) %>%
   summarize(avg_price = mean(price, na.rm=T),
-            weighted_price = weighted.mean(price, `customers`, na.rm=T))
+            weighted_price = weighted.mean(price, `customers`, na.rm=T)) %>%
+  select(
+    "year",
+    "acep_energy_region",
+    "sector",
+    "avg_price",
+    "weighted_price")
 
 
 

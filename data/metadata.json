@@ -102,54 +102,6 @@
             }
         },
         {
-            "path" : "working/generation/net_generation_long.csv",
-            "description" : "A dataset compiled from Table 2.3b from the 2011-2021 Alaska Energy Statistics Workbooks deliverables. Long version of the data in data/generation/net_generation_wide.csv. Used for building the webpages and interactive plots.",
-            "schema" : {
-                "fields" : [
-                    {
-                        "name" : "year",
-                        "description" : "Calendar year",
-                        "type" : "integer"
-                    },
-                    {
-                        "name" : "plant_name",
-                        "description" : "Reporting name for the power plant",
-                        "type" : "string"
-                    },
-                    {
-                        "name" : "aea_region",
-                        "description" : "Alaska Energy Authority Energy Region",
-                        "type" : "string"
-                    },
-                    {
-                        "name" : "source",
-                        "description" : "Data source",
-                        "type" : "string"
-                    },
-                    {
-                        "name" : "data_version",
-                        "description" : "Verification status of the data",
-                        "type" : "string"
-                    },
-                    {
-                        "name" : "fuel_type",
-                        "description" : "Primary fuel used at the power plant",
-                        "type" : "string"
-                    },
-                    {
-                        "name" : "generation",
-                        "description" : "Total generation in MWh",
-                        "type" : "float"
-                    },
-                    {
-                        "name" : "acep_region",
-                        "description" : "Alaska Center for Energy and Power Energy Region",
-                        "type" : "string"
-                    }
-                ]
-            }
-        },
-        {
             "path" : "working/generation/net_generation_wide.csv",
             "description" : "A dataset compiled from Table 2.3b from the 2011-2021 Alaska Energy Statistics Workbooks deliverables.",
             "schema" : {
@@ -221,10 +173,202 @@
                     }
                 ]
             }
+        },
+        {
+            "path" : "working/generation/net_generation_long.csv",
+            "description" : "A dataset compiled from Table 2.3b from the 2011-2021 Alaska Energy Statistics Workbooks deliverables. Long version of the data in data/generation/net_generation_wide.csv. Used for building the webpages and interactive plots.",
+            "schema" : {
+                "fields" : [
+                    {
+                        "name" : "year",
+                        "description" : "Calendar year",
+                        "type" : "integer"
+                    },
+                    {
+                        "name" : "plant_name",
+                        "description" : "Reporting name for the power plant",
+                        "type" : "string"
+                    },
+                    {
+                        "name" : "aea_region",
+                        "description" : "Alaska Energy Authority Energy Region",
+                        "type" : "string"
+                    },
+                    {
+                        "name" : "source",
+                        "description" : "Data source",
+                        "type" : "string"
+                    },
+                    {
+                        "name" : "data_version",
+                        "description" : "Verification status of the data",
+                        "type" : "string"
+                    },
+                    {
+                        "name" : "fuel_type",
+                        "description" : "Primary fuel used at the power plant",
+                        "type" : "string"
+                    },
+                    {
+                        "name" : "generation",
+                        "description" : "Total generation in MWh",
+                        "type" : "float"
+                    },
+                    {
+                        "name" : "acep_region",
+                        "description" : "Alaska Center for Energy and Power Energy Region",
+                        "type" : "string"
+                    }
+                ]
+            }
+        },
+        {
+            "path" : "working/prices/prices.csv",
+            "description" : "A dataset compiled from Table 2.5 from the 2011-2021 Alaska Energy Statistics Workbooks deliverables.",
+            "schema" : {
+                "fields" : [
+                    {
+                        "name" : "year", 
+                        "description" : "Calendar year",
+                        "type" : "integer"
+                    },
+                    {
+                        "name" : "aea_sales_reporting_id", 
+                        "description" : "Identification used for Alaska Energy Authority sales reporting",
+                        "type" : "string"
+                    },
+                    {
+                        "name" : "pce_id", 
+                        "description" : "Identification used for Power Cost Equalization reporting (pce_id = 0 if not part of PCE)",
+                        "type" : "integer"
+                    },
+                    {
+                        "name" : "rca_cpcn", 
+                        "description" : "Identification used for Regulatory Commission of Alaska",
+                        "type" : "integer"
+                    },
+                    {
+                        "name" : "utility_name", 
+                        "description" : "Name of utility company",
+                        "type" : "string"
+                    },
+                    {
+                        "name" : "reporting_name", 
+                        "description" : "Name reported by utility",
+                        "type" : "string"
+                    },
+                    {
+                        "name" : "intertie_name", 
+                        "description" : "Name of intertie",
+                        "type" : "string"
+                    },
+                    {
+                        "name" : "aea_energy_region", 
+                        "description" : "Energy regions as defined by Alaska Energy Authority, 11 in total",
+                        "type" : "string"
+                    },
+                    {
+                        "name" : "acep_energy_region", 
+                        "description" : "Energy regions as defined by Alaska Center for Energy and Power: Coastal, Railbelt, Rural Remote",
+                        "type" : "string"
+                    },
+                    {
+                        "name" : "residential_price_kwh_2021_dollars", 
+                        "description" : "Electrical rate of residential customers, expressed as cents per kilowatt hour, inflation-adjusted to 2021 dollars",
+                        "type" : "float"
+                    },
+                    {
+                        "name" : "residential_customers", 
+                        "description" : "Number of reported customers (not individuals) in the residential sector",
+                        "type" : "integer"
+                    },
+                    {
+                        "name" : "residential_sales_mwh", 
+                        "description" : "Total megawatt hours sold to the residential sector",
+                        "type" : "float"
+                    },
+                    {
+                        "name" : "commercial_price_kwh_2021_dollars", 
+                        "description" : "Electrical rate of commercial customers, expressed as cents per kilowatt hour, inflation-adjusted to 2021 dollars",
+                        "type" : "float" 
+                    },
+                    {
+                        "name" : "commercial_customers", 
+                        "description" : "Number of reported customers (not individuals) in the commercial sector",
+                        "type" : "integer"
+                    },
+                    {
+                        "name" : "commercial_sales_mwh", 
+                        "description" : "Total megawatt hours sold to the commercial sector",
+                        "type" : "float"
+                    },
+                    {
+                        "name" : "other_price_kwh_2021_dollars", 
+                        "description" : "Electrical rate of other customers, expressed as cents per kilowatt hour. Inflation-adjusted to 2021 dollars.",
+                        "type" : "float"
+                    },
+                    {
+                        "name" : "other_customers", 
+                        "description" : "Number of reported customers (not individuals) in the other sector",
+                        "type" : "integer"
+                    },
+                    {
+                        "name" : "other_sales_mwh", 
+                        "description" : "Total megawatt hours sold to the other sector",
+                        "type" : "float"
+                    },
+                    {
+                        "name" : "total_customers", 
+                        "description" : "Total number of reported customers (not individuals)",
+                        "type" : "integer"
+                    },
+                    {
+                        "name" : "ak_cpi", 
+                        "description" : "Alaska Consumer Price Index used to calculate inflation-adjustment, CUUSA427SA0 from Bureau of Labor Statistics",
+                        "type" : "float" 
+                    }
+                ]
+            }
+        },
+        {
+            "path" : "working/prices/prices.csv",
+            "description" : "A dataset compiled from Table 2.5 from the 2011-2021 Alaska Energy Statistics Workbooks deliverables.",
+            "schema" : {
+                "fields" : [ 
+                    {
+                        "name" : "year",
+                        "description" : "Calendar year",
+                        "type" : "integer"
+                    },
+                    {
+                        "name" : "acep_energy_region",
+                        "description" : "Energy regions as defined by Alaska Center for Energy and Power: Coastal, Railbelt, Rural Remote",
+                        "type" : "string"
+                    },
+                    {
+                        "name" : "sector",
+                        "description" : "Customer class of reported price",
+                        "type" : "string"
+                    },
+                    { 
+                        "name" : "avg_price",
+                        "description" : "Calculated average price for the given combination (year, acep_energy_region, sector)",
+                        "type" : "float"
+                    },
+                    { 
+                        "name" : "weighted_price",
+                        "description" : "Population-weighted average price for the given combination (year, acep_energy_region, sector)",
+                        "type" : "float"
+                    }
+                ]
+            }
         }
+
     ],
     "keywords" : [
         "capacity",
-        "generation"
+        "generation",
+        "prices"
     ]
 }
+

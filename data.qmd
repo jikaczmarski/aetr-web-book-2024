@@ -17,7 +17,7 @@ The data used in this web-book is derived from federal, state, commercial, and l
 Individual tables can be downloaded here as text files (CSV, comma-separated values). Once downloaded to your local machine, these files can be opened graphically using Microsoft Excel, or programmatically using R or Python. 
 
 
-### Capacity (wide-format)
+### Capacity
 `{ojs} capacity_wide_description`
 
 ```{ojs}
@@ -26,40 +26,25 @@ capacity_wide = FileAttachment("data/working/capacity/capacity_wide.csv").csv({t
 capacity_wide_path = metadata.resources[0].path;
 capacity_wide_metadata = metadata.resources[0].schema.fields;
 
-Inputs.table(capacity_wide);
-```
-Filepath within repository: `{ojs} capacity_wide_path`
-```{ojs}
-button(capacity_wide, `capacity_wide.csv`)
+
+viewof capacity_input = Inputs.select(new Map([["Capacity Metadata", capacity_wide_metadata], 
+              ["Capacity", capacity_wide]]), 
+              {value: capacity_wide_metadata, label: "Preview:"}
+              );
+
+Inputs.table(capacity_input);
+
+
 button(capacity_wide_metadata, 'capacity_wide_metadata.csv')
+button(capacity_wide, `capacity_wide.csv`)
+
 
 ```
 
 <br>
 <br>
 
-### Capacity (long-format)
-`{ojs} capacity_long_description `
-
-```{ojs}
-capacity_long_description = metadata.resources[1].description;
-capacity_long = FileAttachment("data/working/capacity/capacity_long.csv").csv({typed: true});
-capacity_long_path = metadata.resources[1].path;
-capacity_long_metadata = metadata.resources[1].schema.fields;
-
-Inputs.table(capacity_long);
-```
-Filepath within repository = `{ojs} capacity_long_path`
-```{ojs}
-button(capacity_long, `capacity_long.csv`);
-button(capacity_long_metadata, 'capacity_long_metadata.csv');
-
-```
-
-<br>
-<br>
-
-### Net Generation (wide-format)
+### Net Generation
 `{ojs} net_generation_wide_description `
 
 ```{ojs}
@@ -68,33 +53,14 @@ net_generation_wide = FileAttachment("data/working/generation/net_generation_wid
 net_generation_wide_path = metadata.resources[2].path
 net_generation_wide_metadata = metadata.resources[2].schema.fields
 
-Inputs.table(net_generation_wide);
-```
-Filepath within repository = `{ojs} net_generation_wide_path`
-```{ojs}
-button(net_generation_long, `net_generation_wide.csv`)
+viewof generation_input = Inputs.select(new Map([["Generation Metadata", net_generation_wide_metadata], 
+              ["Generation", net_generation_wide]]), 
+              {value: net_generation_wide_metadata, label: "Preview:"}
+              );
+Inputs.table(generation_input);
+
 button(net_generation_wide_metadata, 'net_generation_wide_metadata.csv')
-
-```
-
-<br>
-<br>
-
-### Net Generation (long-format)
-`{ojs} net_generation_long_description `
-
-```{ojs}
-net_generation_long_description = metadata.resources[3].description
-net_generation_long = FileAttachment("data/working/generation/net_generation_long.csv").csv({typed: true});
-net_generation_long_path = metadata.resources[3].path
-net_generation_long_metadata = metadata.resources[3].schema.fields
-
-Inputs.table(net_generation_long);
-```
-Filepath within repository = `{ojs} net_generation_long_path`
-```{ojs}
-button(net_generation_long, `net_generation_long.csv`)
-button(net_generation_long_metadata, 'net_generation_long_metadata.csv')
+button(net_generation_wide, `net_generation_wide.csv`)
 
 ```
 
@@ -103,26 +69,53 @@ button(net_generation_long_metadata, 'net_generation_long_metadata.csv')
 
 
 ### Prices
+`{ojs} prices_description `
+
 ```{ojs}
+prices_description = metadata.resources[4].description;
 prices = FileAttachment("data/working/prices/prices.csv").csv({typed: true});
-Inputs.table(prices);
+prices_path = metadata.resources[4].path;
+prices_metadata = metadata.resources[4].schema.fields;
 
-button(prices, `prices.csv`)
 
-```
+viewof prices_input = Inputs.select(new Map([["Prices Metadata", prices_metadata], 
+              ["Prices", prices]]), 
+              {value: prices_metadata, label: "Preview:"}
+              );
+
+Inputs.table(prices_input);
+
+button(prices_metadata, `prices_metadata.csv`);
+button(prices, `prices.csv`);
+
+``` 
 
 <br>
 <br>
 
-### Population Weighted Prices
+### Population-Weighted Average Prices
+`{ojs} weighted_prices_description `
+
 ```{ojs}
+weighted_prices_description = metadata.resources[5].description;
 weighted_prices = FileAttachment("data/working/prices/weighted_prices.csv").csv({typed: true});
+weighted_prices_path = metadata.resources[5].path;
+weighted_prices_metadata = metadata.resources[5].schema.fields;
 
-Inputs.table(weighted_prices);
+viewof weighted_prices_input = Inputs.select(new Map([["Weighted Prices Metadata", weighted_prices_metadata], 
+              ["Weighted Prices", weighted_prices]]), 
+              {value: weighted_prices_metadata, label: "Preview:"}
+              );
 
+Inputs.table(weighted_prices_input);
+
+button(weighted_prices_metadata, `weighted_prices_metadata.csv`);
 button(weighted_prices, `weighted_prices.csv`)
 
 ```
+
+
+
 
 
 ```{ojs}
@@ -134,8 +127,6 @@ d3 = require("d3@7")
 metadata = FileAttachment("data/metadata.json").json();
 
 ```
-
-
 
 ```{ojs}
 // download button function
@@ -154,16 +145,12 @@ button = (data, filename = 'data.csv') => {
 ```
 
 
-
-
-
-
-
-
+<br>
+<br>
+<br>
 
 ```{ojs}
 //| eval: false
-
 // DEPRECATED
 // THIS CHUNK DOES NOT RUN (eval: false)
 
@@ -172,15 +159,15 @@ button = (data, filename = 'data.csv') => {
 // connect to database
 db = FileAttachment("data/working/aetr.db").sqlite()
 
-database = db.query(`SELECT * FROM ${dbTable}`)
-
 viewof dbTable = Inputs.select((await db.describe()).value.map(d => d.name), 
                     { label: "" })
+
+database = db.query(`SELECT * FROM ${dbTable}`)
 
 
 Inputs.table(database)
 
-button = (database, filename = 'data.csv') => {
+db_button = (database, filename = 'data.csv') => {
   const downloadData = new Blob([d3.csvFormat(database)], { type: "text/csv" });
 
   const size = (downloadData.size / 1024).toFixed(1);
@@ -192,5 +179,5 @@ button = (database, filename = 'data.csv') => {
   return button;
 }
 
-button(database, `${dbTable}`)
+db_button(database, `${dbTable}`)
 ```
