@@ -32,7 +32,7 @@ website:
 
     style: "docked"
     search: true
-    collapse-level: 1
+    collapse-level: 3
     contents:
       - href: index.qmd
         text: Summary
@@ -43,21 +43,21 @@ website:
       - href: methods.qmd
         text: Methods
         icon: dot
-      - href: capacity.qmd
-        text: Capacity
+      - section: "Discussion"
         icon: dot
-      - href: generation.qmd
-        text: Net Generation
-        icon: dot
-      - href: consumption.qmd
-        text: Consumption
-        icon: dot
-      - href: prices.qmd
-        text: Price of Electricity
-        icon: dot   
-      - href: acronyms.qmd
-        text: Definitions of Acronyms
-        icon: dot
+        contents:
+        - href: capacity.qmd
+          text: Capacity
+          icon: dot
+        - href: generation.qmd
+          text: Net Generation
+          icon: dot
+        - href: consumption.qmd
+          text: Consumption
+          icon: dot
+        - href: prices.qmd
+          text: Price of Electricity
+          icon: dot   
       - href: historic_reports.qmd
         text: Historical Reports
         icon: dot
@@ -67,6 +67,9 @@ website:
       - href: credits.qmd
         text: About the Team
         icon: dot     
+      - href: acronyms.qmd
+        text: Definitions of Acronyms
+        icon: dot
 
 format:
   html:
