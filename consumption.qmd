@@ -1,7 +1,7 @@
 ---
 title: "Electricity Consumption"
 subtitle: "Electricity Sales, 2011-2019"
-date-modified: "2024-03-13T15:39:00-08:00"
+date-modified: "2024-04-05T12:45:00-08:00"
 date-format: "MMM D, YYYY [at] HH:mm z"
 output:
     quarto::quarto_html:
@@ -46,7 +46,7 @@ source("scripts/inline_functions/consumption_inline_functions.R")
 
 The data presented in this section is from calendar years 2011 to 2019. More recent data has been omitted due to issues with data completeness and validity.
 
-Across the state, electricity sales (herein referred to as consumption), has fallen when comparing the 2011 and 2019 calendar years. To visualize this trend, we look at the percentage changes from 2011 to 2019 in electricity consumption by customer class and plot them in the following figure. Statewide electricity consumption growth for the residential sector was `r statewide_consumption_delta("Residential","sales",pct=TRUE)`% from `r statewide_consumption("Residential","sales", 2011, decimals=0)` GWh in 2011 to `r statewide_consumption("Residential","sales", 2019, decimals=0)` GWh in 2019. The commercial sector growth was `r statewide_consumption_delta("Commercial","sales",pct=TRUE)`% from `r statewide_consumption("Commercial","sales", 2011, decimals=0)` GWh in 2011 to `r statewide_consumption("Commercial","sales", 2019, decimals=0)` GWh in 2019. Finally, Statewide electricity consumption growth for the ‘Other’ customer class was `r statewide_consumption_delta("Other","sales",pct=TRUE)`% from `r statewide_consumption("Other","sales", 2011, decimals=0)` GWh in 2011 to `r statewide_consumption("Other","sales", 2019, decimals=0)` GWh in 2019.[^1]
+Across the state, electricity sales (herein referred to as consumption), has fallen when comparing the 2011 and 2019 calendar years. To visualize this trend, we look at the percentage changes from 2011 to 2019 in electricity consumption by customer class (@fig-change-customer-sales). Statewide electricity consumption growth for the residential sector was `r statewide_consumption_delta("Residential","sales",pct=TRUE)`% from `r statewide_consumption("Residential","sales", 2011, decimals=0)` GWh in 2011 to `r statewide_consumption("Residential","sales", 2019, decimals=0)` GWh in 2019. The commercial sector growth was `r statewide_consumption_delta("Commercial","sales",pct=TRUE)`% from `r statewide_consumption("Commercial","sales", 2011, decimals=0)` GWh in 2011 to `r statewide_consumption("Commercial","sales", 2019, decimals=0)` GWh in 2019. Finally, Statewide electricity consumption growth for the ‘Other’ customer class was `r statewide_consumption_delta("Other","sales",pct=TRUE)`% from `r statewide_consumption("Other","sales", 2011, decimals=0)` GWh in 2011 to `r statewide_consumption("Other","sales", 2019, decimals=0)` GWh in 2019.[^1]
 
 [^1]: For EIA reported data, the Other group includes industrial and transportation customers. For PCE reported data, it includes community and government accounts. No industrial accounts were reported in the PCE data.
 
@@ -101,6 +101,9 @@ statewide_delta = tidy(
 ```
 
 ```{ojs}
+//| label: fig-change-customer-sales
+//| fig-cap: "Change in Sales by Customer Class, Statewide, from 2011 to 2019"
+
 Plot.plot({
 
   title: "Change in sales by customer class, statewide, from 2011 to 2019",
@@ -145,9 +148,11 @@ Plot.plot({
 })
 ```
 
-We also examine the change in the number of customer accounts across the state. The total number of customer accounts in the state increased `r statewide_consumption_delta("Total","customers",pct=TRUE)`% from approximately `r statewide_consumption("Total","customers",2011,decimals=0)` to `r statewide_consumption("Total","customers",2019,decimals=0)`. We plot the percentage increases in customer accounts by category in the following figure. Residential accounts across the state increased `r statewide_consumption_delta("Residential","customers",pct=TRUE)`% from approximately `r statewide_consumption("Residential","customers",2011,decimals=0)` to `r statewide_consumption("Residential","customers",2019,decimals=0)`. The number of commercial accounts across the state increased `r statewide_consumption_delta("Commercial","customers",pct=TRUE)`% from `r statewide_consumption("Commercial","customers",2011,decimals=0)` to `r statewide_consumption("Commercial","customers",2019,decimals=0)`. Finally, the number of other accounts across the state has increased `r statewide_consumption_delta("Other","customers",pct=TRUE)`% from approximately `r statewide_consumption("Other","customers",2011,decimals=0)` to `r statewide_consumption("Other","customers",2019,decimals=0)`.
+We also examine the change in the number of customer accounts across the state. The total number of customer accounts in the state increased `r statewide_consumption_delta("Total","customers",pct=TRUE)`% from approximately `r statewide_consumption("Total","customers",2011,decimals=0)` to `r statewide_consumption("Total","customers",2019,decimals=0)`. We plot the percentage increases in customer accounts by category in @fig-change-customer-accounts. Residential accounts across the state increased `r statewide_consumption_delta("Residential","customers",pct=TRUE)`% from approximately `r statewide_consumption("Residential","customers",2011,decimals=0)` to `r statewide_consumption("Residential","customers",2019,decimals=0)`. The number of commercial accounts across the state increased `r statewide_consumption_delta("Commercial","customers",pct=TRUE)`% from `r statewide_consumption("Commercial","customers",2011,decimals=0)` to `r statewide_consumption("Commercial","customers",2019,decimals=0)`. Finally, the number of other accounts across the state has increased `r statewide_consumption_delta("Other","customers",pct=TRUE)`% from approximately `r statewide_consumption("Other","customers",2011,decimals=0)` to `r statewide_consumption("Other","customers",2019,decimals=0)`.
 
 ```{ojs}
+//| label: fig-change-customer-accounts
+//| fig-cap: "Change in Customer Accounts by Class, Statewide, from 2011 to 2019"
 Plot.plot({
 
   title: "Change in customer accounts by class, statewide, 2011 to 2019",
@@ -192,7 +197,7 @@ Plot.plot({
 })
 ```
 
-The following table shows the average annual electricity consumption for each of the regions. The Coastal region led the state in consumption per capita, with an average of `r regional_consumption_per_capita("Coastal","Residential")` kWh per customer per year. This was followed by the Railbelt region with `r regional_consumption_per_capita("Railbelt","Residential")` kWh per capita and the Rural Remote region with `r regional_consumption_per_capita("Rural Remote","Residential")` kWh per capita. Overall, each region has seen reductions in consumption per capita, which may reflect improvements in energy efficient technologies and energy efficiency behaviors.
+@fig-sales_per_capita <!--orig: The following table--> shows the average annual electricity consumption for each of the regions. The Coastal region led the state in consumption per capita, with an average of `r regional_consumption_per_capita("Coastal","Residential")` kWh per customer per year. This was followed by the Railbelt region with `r regional_consumption_per_capita("Railbelt","Residential")` kWh per capita and the Rural Remote region with `r regional_consumption_per_capita("Rural Remote","Residential")` kWh per capita. Overall, each region has seen reductions in consumption per capita, which may reflect improvements in energy efficient technologies and energy efficiency behaviors.
 
 ```{ojs}
 sales_per_capita_data = tidy(regional_consumption_data.filter((d) => d.class === "Residential"),
@@ -208,7 +213,9 @@ sales_per_capita_data = tidy(regional_consumption_data.filter((d) => d.class ===
 ```
 
 ```{ojs}
-caption_include = "Note: For EIA reported data, the Other customer class includes industrial and transportation customers. For PCE reported data, it includes community and government customers. No industrial customers were reported in the PCE data."
+//| label: fig-sales_per_capita
+//| fig-cap: "Average Residential Sales per Customer"
+//caption_include = "Note: For EIA reported data, the Other customer class includes industrial and transportation customers. For PCE reported data, it includes community and government customers. No industrial customers were reported in the PCE data."
 
 Plot.plot({
 
@@ -253,14 +260,16 @@ Plot.plot({
 
 ## Coastal
 
-To estimate the average yearly growth rate in each customer class, we calculate the cumulative compound average growth rate (CAGR). From 2011 to 2019, the coastal region saw an average yearly growth rate of `r cagr("Coastal", "Residential", "sales")`% for residential sales, `r cagr("Coastal", "Commercial", "sales")`% for commercial sales, and `r cagr("Coastal", "Other", "sales")`% for all other sales. The following figure shows these sales in GWh for each year.
+To estimate the average yearly growth rate in each customer class, we calculate the cumulative compound average growth rate (CAGR). From 2011 to 2019, the coastal region saw an average yearly growth rate of `r cagr("Coastal", "Residential", "sales")`% for residential sales, `r cagr("Coastal", "Commercial", "sales")`% for commercial sales, and `r cagr("Coastal", "Other", "sales")`% for all other sales. @fig-delivered-by-class-coastal shows these sales in GWh for each year.
 
 ```{ojs}
-Plot.plot({
+//| label: fig-delivered-by-class-coastal
+//| fig-cap: "Delivered Electricity by Customer Class, Coastal region"
+Plot.plot({//| 
 
   // Plot setup
-  title: "Delivered electricity by customer class, Coastal region",
-  caption: caption_include,
+  title: "Delivered electricity by customer class, Coastal Region",
+  //caption: caption_include,
 
   // Configure the x-axis
     x: {
@@ -297,14 +306,16 @@ Plot.plot({
 ```
 
 
-While customer sales fell overall, customer accounts in the Coastal region increased for all customer classes. The following figure shows the trend in customer accounts by class for the Coastal region. The average yearly growth rate in customer accounts was `r cagr("Coastal", "Residential", "customers")`% for the residential class, `r cagr("Coastal", "Commercial", "customers")`% for the commercial class, and `r cagr("Coastal", "Other", "customers")`% for the other class.
+While customer sales fell overall, customer accounts in the Coastal region increased for all customer classes. @fig-accounts-coastal shows the trend in customer accounts by class for the Coastal region. The average yearly growth rate in customer accounts was `r cagr("Coastal", "Residential", "customers")`% for the residential class, `r cagr("Coastal", "Commercial", "customers")`% for the commercial class, and `r cagr("Coastal", "Other", "customers")`% for the other class.
 
 ```{ojs}
+//| label: fig-accounts-coastal
+//| fig-cap: "Number of Customer Accounts, Coastal region"
 Plot.plot({
 
   // Plot setup
   title: "Number of customer accounts, Coastal region",
-  caption: caption_include,
+  //caption: caption_include,
 
   // Configure the x-axis
     x: {
@@ -341,14 +352,16 @@ Plot.plot({
 
 ## Railbelt
 
-From 2011 to 2019, the Railbelt region saw an average yearly growth rate of `r cagr("Railbelt", "Residential", "sales")`% for residential sales, `r cagr("Railbelt", "Commercial", "sales")`% for commercial sales, and `r cagr("Railbelt", "Other", "sales")`% for all other sales. The following figure shows these sales in GWh for each year.
+From 2011 to 2019, the Railbelt region saw an average yearly growth rate of `r cagr("Railbelt", "Residential", "sales")`% for residential sales, `r cagr("Railbelt", "Commercial", "sales")`% for commercial sales, and `r cagr("Railbelt", "Other", "sales")`% for all other sales. @fig-delivered-by-class-railbelt shows these sales in GWh for each year.
 
 ```{ojs}
-Plot.plot({
+//| label: fig-delivered-by-class-railbelt
+//| fig-cap: "Delivered Electricity by Customer Class, Railbelt Region"
+Plot.plot({//| 
 
   // Plot setup
   title: "Delivered electricity by customer class, Railbelt region",
-  caption: caption_include,
+  //caption: caption_include,
 
   // Configure the x-axis
     x: {
@@ -384,14 +397,16 @@ Plot.plot({
 })
 ```
 
-The trends in the number of customer accounts by class are visualized in the following figure. The average yearly growth rate in customer accounts on the Railbelt was `r cagr("Railbelt", "Residential", "customers")`% for the residential class, `r cagr("Railbelt", "Commercial", "customers")`% for the commercial class, and `r cagr("Railbelt", "Other", "customers")`% for the other class.
+The trends in the number of customer accounts by class are visualized in @fig-accounts-railbelt. The average yearly growth rate in customer accounts on the Railbelt was `r cagr("Railbelt", "Residential", "customers")`% for the residential class, `r cagr("Railbelt", "Commercial", "customers")`% for the commercial class, and `r cagr("Railbelt", "Other", "customers")`% for the other class.
 
 ```{ojs}
+//| label: fig-accounts-railbelt
+//| fig-cap: "Number of Customer Accounts, Railbelt Region"
 Plot.plot({
 
   // Plot setup
   title: "Number of customer accounts, Railbelt region",
-  caption: caption_include,
+  //caption: caption_include,
 
   // Configure the x-axis
     x: {
@@ -432,14 +447,16 @@ Plot.plot({
 
 ## Rural Remote
 
-From 2011 to 2019, the Rural Remote region saw an average yearly growth rate of `r cagr("Rural Remote", "Residential", "sales")`% for residential sales, `r cagr("Rural Remote", "Commercial", "sales")`% for commercial sales, and `r cagr("Rural Remote", "Other", "sales")`% for all other sales. Positive growth rates for the commercial and other customer classes are unique to the rural remote energy region as all other regions saw average yearly declines in sales. The following figure shows these sales in GWh for each year.
+From 2011 to 2019, the Rural Remote region saw an average yearly growth rate of `r cagr("Rural Remote", "Residential", "sales")`% for residential sales, `r cagr("Rural Remote", "Commercial", "sales")`% for commercial sales, and `r cagr("Rural Remote", "Other", "sales")`% for all other sales. Positive growth rates for the commercial and other customer classes are unique to the rural remote energy region as all other regions saw average yearly declines in sales. @fig-delivered-by-class-rural shows these sales in GWh for each year.
 
 ```{ojs}
+//| label: fig-delivered-by-class-rural
+//| fig-cap: "Delivered Electricity by Customer Class, Rural Remote Region"
 Plot.plot({
 
   // Plot setup
   title: "Delivered electricity by customer class, Rural Remote region",
-  caption: caption_include,
+  //caption: caption_include,
 
   // Configure the x-axis
     x: {
@@ -475,14 +492,16 @@ Plot.plot({
 })
 ```
 
-The trends in the number of customer accounts by class are visualized in the following figure. The average yearly growth rate in customer accounts in the Rural Remote region was `r cagr("Rural Remote", "Residential", "customers")`% for the residential class, `r cagr("Rural Remote", "Commercial", "customers")`% for the commercial class, and `r cagr("Rural Remote", "Other", "customers")`% for the other class.
+The trends in the number of customer accounts by class are visualized in @fig-accounts-rural. The average yearly growth rate in customer accounts in the Rural Remote region was `r cagr("Rural Remote", "Residential", "customers")`% for the residential class, `r cagr("Rural Remote", "Commercial", "customers")`% for the commercial class, and `r cagr("Rural Remote", "Other", "customers")`% for the other class.
 
 ```{ojs}
+//| label: fig-accounts-rural
+//| fig-cap: "Number of Customer Accounts, Rural Remote Region"
 Plot.plot({
 
   // Plot setup
   title: "Number of customer accounts, Rural Remote region",
-  caption: caption_include,
+  //caption: caption_include,
 
   // Configure the x-axis
     x: {
