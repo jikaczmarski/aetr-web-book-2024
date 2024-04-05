@@ -28,11 +28,6 @@ Most notably, the dramatic effects of the PCE subsidy can be seen by comparing t
 
  {{< include _prices_raincloud.qmd >}}
 
-The data used for this figure is included as a table below, which can be sorted by column by clicking on the column name.
-
-```{ojs}
-Inputs.table(data);
-```
 
 <br>
 
@@ -77,7 +72,7 @@ Plot.plot({
                     y: "mean_weighted_price",
                     strokeWidth: 5,
                     stroke: "acep_energy_region",
-                    tip: {format: {x: "d"}}
+                    tip: {format: {x: "d", stroke: false}}
         }),
     Plot.text(region_weighted_prices, 
       Plot.selectLast(
@@ -109,7 +104,7 @@ The average real price (in 2021 dollars) of electricity for Residential customer
 Residential customers in the Coastal region saw increases in electricity while commercial and other customers saw decreases. However, the residential customer class continues to pay the lowest per kWh in the region due to a combination of low prices in high population areas and PCE subsidies in eligible communities.
 
 
-##### Sector Price Over Time
+**Sector Price Over Time**
 ```{ojs}
 // aggregate
 coastal_weighted_prices = tidy(weighted_prices, 
@@ -176,7 +171,7 @@ The average real price of electricity for Residential customers in the Railbelt 
 
 This region differs significantly from the Coastal and Rural Remote regions in that residential customers pay more for electricity than the Commercial or Other customer classes.
 
-##### Sector Price Over Time
+**Sector Price Over Time**
 ```{ojs}
 // aggregate
 railbelt_weighted_prices = tidy(weighted_prices, 
@@ -240,7 +235,7 @@ The following figure shows the average price of electricity in the Rural Remote 
 
 The average price of electricity for the Residential customers in the Rural Remote region rose `{ojs} rural_res_change`% from `{ojs} rural_res_2011` cents/kWh in 2011 to `{ojs} rural_res_2019` cents/kWh in 2019. The average price of electricity for Commercial customers in the Rural Remote region fell `{ojs} rural_com_change`% from `{ojs} rural_com_2011` cents/kWh in 2011 to `{ojs} rural_com_2019` cents/kWh in 2019. Finally, the average price of electricity for Other customers in the Rural Remote region fell `{ojs} rural_other_change`% from `{ojs} rural_other_2011` cents/kWh in 2011 to `{ojs} rural_other_2019` cents/kWh in 2019.
 
-##### Sector Price Over Time
+**Sector Price Over Time**
 ```{ojs}
 // aggregate
 rural_remote_weighted_prices = tidy(weighted_prices, 
