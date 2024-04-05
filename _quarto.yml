@@ -58,18 +58,25 @@ website:
         - href: prices.qmd
           text: Price of Electricity
           icon: dot   
-      - href: historic_reports.qmd
-        text: Historical Reports
+      - href: conclusions.qmd
+        text: Conclusions
         icon: dot
-      - href: data.qmd
-        text: Data Portal
+      - section: "Appendices"
         icon: dot
+        contents:
+        - href: historic_reports.qmd
+          text: Historical Reports
+          icon: dot
+        - href: data.qmd
+          text: Data Portal
+          icon: dot
+        - href: acronyms.qmd
+          text: Definitions of Acronyms
+          icon: dot
       - href: credits.qmd
         text: About the Team
         icon: dot     
-      - href: acronyms.qmd
-        text: Definitions of Acronyms
-        icon: dot
+
 
 format:
   html:
