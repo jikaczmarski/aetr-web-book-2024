@@ -7,6 +7,7 @@ output:
     quarto::quarto_html:
         pre_processor: quarto::observable
 echo: false
+cap-location: top
 ---
 
 ```{r, echo=FALSE,warning=FALSE,message=FALSE}
@@ -106,7 +107,7 @@ statewide_delta = tidy(
 
 Plot.plot({
 
-  title: "Change in sales by customer class, statewide, from 2011 to 2019",
+  //title: "Change in sales by customer class, statewide, from 2011 to 2019",
   height: 500,
   marginLeft: 70,
 
@@ -155,7 +156,7 @@ We also examine the change in the number of customer accounts across the state. 
 //| fig-cap: "Change in Customer Accounts by Class, Statewide, from 2011 to 2019"
 Plot.plot({
 
-  title: "Change in customer accounts by class, statewide, 2011 to 2019",
+  //title: "Change in customer accounts by class, statewide, 2011 to 2019",
   height: 500,
   marginLeft: 70,
 
@@ -220,7 +221,7 @@ sales_per_capita_data = tidy(regional_consumption_data.filter((d) => d.class ===
 Plot.plot({
 
   // Plot setup
-  title: "Average Residential Sales per Customer",
+  //title: "Average Residential Sales per Customer",
 
   // Configure the x-axis
     x: {
@@ -268,7 +269,7 @@ To estimate the average yearly growth rate in each customer class, we calculate 
 Plot.plot({//| 
 
   // Plot setup
-  title: "Delivered electricity by customer class, Coastal Region",
+  //title: "Delivered electricity by customer class, Coastal Region",
   //caption: caption_include,
 
   // Configure the x-axis
@@ -314,7 +315,7 @@ While customer sales fell overall, customer accounts in the Coastal region incre
 Plot.plot({
 
   // Plot setup
-  title: "Number of customer accounts, Coastal region",
+  //title: "Number of customer accounts, Coastal region",
   //caption: caption_include,
 
   // Configure the x-axis
@@ -360,7 +361,7 @@ From 2011 to 2019, the Railbelt region saw an average yearly growth rate of `r c
 Plot.plot({//| 
 
   // Plot setup
-  title: "Delivered electricity by customer class, Railbelt region",
+  //title: "Delivered electricity by customer class, Railbelt region",
   //caption: caption_include,
 
   // Configure the x-axis
@@ -405,7 +406,7 @@ The trends in the number of customer accounts by class are visualized in @fig-ac
 Plot.plot({
 
   // Plot setup
-  title: "Number of customer accounts, Railbelt region",
+  //title: "Number of customer accounts, Railbelt region",
   //caption: caption_include,
 
   // Configure the x-axis
@@ -452,10 +453,11 @@ From 2011 to 2019, the Rural Remote region saw an average yearly growth rate of 
 ```{ojs}
 //| label: fig-delivered-by-class-rural
 //| fig-cap: "Delivered Electricity by Customer Class, Rural Remote Region"
+//| fig-cap-location: top
 Plot.plot({
 
   // Plot setup
-  title: "Delivered electricity by customer class, Rural Remote region",
+  //title: "Delivered electricity by customer class, Rural Remote region",
   //caption: caption_include,
 
   // Configure the x-axis
@@ -500,7 +502,7 @@ The trends in the number of customer accounts by class are visualized in @fig-ac
 Plot.plot({
 
   // Plot setup
-  title: "Number of customer accounts, Rural Remote region",
+  //title: "Number of customer accounts, Rural Remote region",
   //caption: caption_include,
 
   // Configure the x-axis

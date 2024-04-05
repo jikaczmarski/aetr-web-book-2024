@@ -6,6 +6,7 @@ date-format: "MMM D, YYYY [at] HH:mm z"
 output:
   quarto::quarto_html:
     pre_processor: quarto::observable
+cap-location: top
 ---
 
 ```{r, echo=FALSE,warning=FALSE,message=FALSE}
@@ -45,7 +46,7 @@ cap_data = FileAttachment("data/working/capacity/capacity_long.csv").csv({ typed
 
 Plot.plot({
   // Configure the plot
-  title: "Capacity changes, Statewide",
+  //title: "Capacity changes, Statewide",
   insetLeft: 0,
   insetRight: 0,
   
@@ -111,7 +112,7 @@ Plot.plot({
     label: "Capacity (MW)"
   },
   // Configure the plot
-  title: "Coastal region capacity",
+  //title: "Coastal region capacity",
   insetLeft: 0,
   insetRight: 0,
 
@@ -161,7 +162,7 @@ Plot.plot({
     label: "Capacity (MW)"
   },
   // Configure the plot
-  title: "Coastal region renewable capacity",
+  //title: "Coastal region renewable capacity",
   insetLeft: 0,
   insetRight: 0,
 
@@ -199,7 +200,7 @@ For the Railbelt region, capacity additions were dominated by more-efficient fos
 ```{ojs}
 //| echo: false
 //| label: fig-capacity-railbelt
-//| fig-cap: "Railbelt Region Capacity. The category of Landfill Gas refers to the 11.5 MW power plant at the Anchorage Regional Landfill that is fueled by methane from decomposing waste. Although this plant uses reciprocating engines as its prime mover, we decided to show landfill gas as a separate category because it is a significant addition to the mix of renewable energy capacity."
+//| fig-cap: "Railbelt Region Capacity."
 Plot.plot({
   // Configure the x-axis
   x: {
@@ -213,8 +214,8 @@ Plot.plot({
     label: "Capacity (MW)"
   },
   // Configure the plot
-  title: "Railbelt region capacity",
-  //caption: "Figure note: The category of Landfill Gas refers to the 11.5 MW power plant at the Anchorage Regional Landfill that is fueled by methane from decomposing waste. Although this plant uses reciprocating engines as its prime mover, we decided to show landfill gas as a separate category because it is a significant addition to the mix of renewable energy capacity.",
+  //title: "Railbelt region capacity",
+  caption: "Figure note: The category of Landfill Gas refers to the 11.5 MW power plant at the Anchorage Regional Landfill that is fueled by methane from decomposing waste. Although this plant uses reciprocating engines as its prime mover, we decided to show landfill gas as a separate category because it is a significant addition to the mix of renewable energy capacity.",
   insetLeft: 0,
   insetRight: 0,
 
@@ -264,7 +265,7 @@ Plot.plot({
     label: "Capacity (MW)"
   },
   // Configure the plot
-  title: "Railbelt region renewable capacity",
+  //title: "Railbelt region renewable capacity",
   insetLeft: 0,
   insetRight: 0,
 
@@ -315,7 +316,7 @@ Plot.plot({
     label: "Capacity (MW)"
   },
   // Configure the plot
-  title: "Rural Remote region capacity",
+  //title: "Rural Remote region capacity",
   insetLeft: 0,
   insetRight: 0,
 
@@ -365,7 +366,7 @@ Plot.plot({
     label: "Capacity (MW)"
   },
   // Configure the plot
-  title: "Rural Remote region renewable capacity",
+  //title: "Rural Remote region renewable capacity",
   insetLeft: 0,
   insetRight: 0,
 
