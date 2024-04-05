@@ -5,6 +5,8 @@ date-modified: "2024-03-25T09:52:00-08:00"
 date-format: "MMM D, YYYY [at] HH:mm z"
 ---
 
+&nbsp;
+
 The Alaska Electrical Trends web book has been produced by the Alaska Center for Energy and Power ([ACEP](https://www.uaf.edu/acep/)) at the University of Alaska Fairbanks ([UAF](https://www.uaf.edu/uaf/index.php)). It is a collaboration between data scientists, researchers, and policy experts.
 
 ## Data and Cyberinfrastructure Management (DCM) Team
@@ -26,15 +28,19 @@ ACEP's ETI is ...
 
 ## Associated Researchers and Commentators
 
-* Neil McMahon, Project Manager, [DOWL](https://www.dowl.com/)
-* [Steve Colt](https://www.uaf.edu/acep/about/our-team/steve-colt.php), ACEP
+* Neil McMahon, Project Manager, [DOWL](https://www.dowl.com/) who created and updated [2011-2021 workbooks](https://acep-uaf.github.io/ak-energy-statistics-2011_2021/)
+* [Steve Colt](https://www.uaf.edu/acep/about/our-team/steve-colt.php), ACEP who collaborated on validation and correcting the workbooks
 * Sara Fisher-Goad, UAF's Office of the Vice Chancellor for Research
 * [Shivani Mathur](https://www.uaf.edu/acep/about/our-team/shivani-mathur.php), ACEP
 
 # Acknowledgements
 
-We would like to acknowledge the federal and Alaska state agencies that make their reports and data publicly accessible. Without this openness, this report would not be possible. We would also like to thank the utilities who responded directly when we had questions. A full list of these organizations has been complied in our [Methods Section](methods.qmd).
+Funding support for this team was provided by leveraging support from multiple partners that include: 
 
-This work was funded by the Alaska Regional Collaboration for Innovation and Commercialization ([ARCTIC](https://thearcticprogram.net/about/)) Program, an Office of Navy Research ([ONR](https://www.onr.navy.mil/)) Initiative. 
+- Office of Naval Research's ([ONR](https://www.onr.navy.mil/)) Alaska Regional Collaboration for Technology Innovation and Commercialization ([ARCTIC](https://thearcticprogram.net/about/)) program 
+- [Denali Commission](https://www.denali.gov)
+- State of Alaska
+- Alaska Center for Energy and Power ([ACEP](https://www.uaf.edu/acep/)) at the University of Alaska Fairbanks ([UAF](https://www.uaf.edu/uaf/index.php))
+- Institute of Social and Economic Research ([ISER](https://iseralaska.org)) at the University of Alaska Anchorage ([UAA](https://www.uaa.alaska.edu))
 
-> The core mission of ARCTIC is to build capacity and support a thriving economy, centered on expertise in the energy sector, and related areas of emphasis (i.e. food, water).
+Data used in the energy workbooks comes from a variety of sources and partners, but special thanks to the Alaska Energy Authority for partnering with the team to get the base line power cost equalization datasets made available. Without this openness, this report would not be possible. We would also like to thank the utilities who responded directly when we had questions. A full list of these organizations has been complied in our [Methods Section](methods.qmd).

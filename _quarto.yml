@@ -55,9 +55,6 @@ website:
       - href: prices.qmd
         text: Price of Electricity
         icon: dot   
-      - href: credits.qmd
-        text: About the Team
-        icon: dot     
       - href: acronyms.qmd
         text: Definitions of Acronyms
         icon: dot
@@ -67,7 +64,9 @@ website:
       - href: data.qmd
         text: Data Portal
         icon: dot
-
+      - href: credits.qmd
+        text: About the Team
+        icon: dot     
 
 format:
   html:
