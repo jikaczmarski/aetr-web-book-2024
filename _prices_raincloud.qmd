@@ -102,10 +102,12 @@ rawDataX = Plot.dot(
     y: jitter(data, seed),
     fill: 'acep_energy_region',
     r: 1.5,
-    channels: {reporting_name: "reporting_name", year: "year"},
-    tip: true
+    channels: {Name: "reporting_name", Year: "year"},
+    tip: {format: {fill: false, 
+                  fy: false, 
+                  y: false
+                  }}
 
-    // stroke: null
   }
 )
 
