@@ -30,7 +30,7 @@ regional_capacity <- capacity_data %>%
 source("scripts/inline_functions/capacity_inline_functions.R")
 ```
 
-# General Overview
+## General Overview
 
 Generation capacity represents the maximum amount of electricity that can be generated at any given time dependent on certain conditions. The combination of generation sources is often referred to as the capacity mix. Changes in the capacity mix over time reflect decisions to build and retire generators. These decisions are a result of shifting costs, technological innovations, the normal aging of the generation fleet, and/or stakeholder policies. Due to data limitations, we show capacity levels for calendar years 2011-2013, 2018, and 2021. While we cannot observe year-to-year trends, there are enough years of data to visualize capacity trends from 2011 to 2021.
 
@@ -89,7 +89,7 @@ Plot.plot({
 ```
 
 
-# Coastal
+## Coastal
 
 For the coastal region, we observe a `r capacity_delta("Coastal")` MW increase in generation capacity (an increase of approximately `r capacity_delta("Coastal", pct=TRUE)` percent) between 2011 and 2021. @fig-capacity-coastal shows the change in total installed capacity for each prime mover in the coastal region. This region saw additions of `r capacity_delta("Coastal", prime_mover = "Fossil Turbines")` MW of fossil turbines, and `r capacity_delta("Coastal", prime_mover = "Recip Engines")` MW of reciprocating engines. The remaining increases were renewable and storage capacity which we look at in more depth in @fig-capacity-coastal-renewable.
 
@@ -146,6 +146,7 @@ Across the 53 MW of added renewable and storage capacity <!--the remaining capac
 ```{ojs}
 //| label: fig-capacity-coastal-renewable
 //| fig-cap: "Coastal Region Renewable Capacity"
+
 Plot.plot({
   // Configure the x-axis
   x: {
@@ -191,12 +192,13 @@ Plot.plot({
 ```
 
 
-# Railbelt
+## Railbelt
 For the Railbelt region, capacity additions were dominated by more-efficient fossil fuel generating units and new battery storage. These additions are visualized in @fig-capacity-railbelt. There were `r capacity_delta("Railbelt")` MW of capacity additions between 2011 and 2021. The Railbelt region saw `r capacity_delta("Railbelt", prime_mover = "Recip Engines")` MW of reciprocating engine additions and `r capacity_delta("Railbelt", prime_mover = "Fossil Turbines")` MW of fossil fuel turbines. The remaining capacity additions were renewables and storage and are shown in @fig-capacity-railbelt-renewable.
 
 ```{ojs}
 //| label: fig-capacity-railbelt
 //| fig-cap: "Railbelt Region Capacity."
+
 Plot.plot({
   // Configure the x-axis
   x: {
@@ -247,6 +249,7 @@ Total renewable and storage capacity in the Railbelt region increased by 165 MW.
 ```{ojs}
 //| label: fig-capacity-railbelt-renewable
 //| fig-cap: "Railbelt Region Renewable Capacity"
+
 Plot.plot({
   // Configure the x-axis
   x: {
@@ -291,12 +294,13 @@ Plot.plot({
 })
 ```
 
-# Rural Remote
+## Rural Remote
 The rural remote region saw an increase of `r capacity_delta("Rural Remote")` MW in capacity (a `r capacity_delta("Rural Remote", pct = TRUE)`% increase) (@fig-capacity-rural). Most of the increases in capacity were fossil fuel turbines (`r capacity_delta("Rural Remote", prime_mover = "Fossil Turbines")` MW added on the North Slope) and reciprocating engines (`r capacity_delta("Rural Remote", prime_mover = "Recip Engines")` MW). Renewable capacity is explored in further detail in the @fig-capacity-rural-renewable.
 
 ```{ojs}
 //| label: fig-capacity-rural
 //| fig-cap: "Rural Remote Region Capacity"
+
 Plot.plot({
   // Configure the x-axis
   x: {

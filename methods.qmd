@@ -8,7 +8,7 @@ cap-location: top
 
 
 
-# Data Sources
+## Data Sources
 The data in this report was collected from a variety of sources that are listed below. Many electric utilities throughout the state are not required to submit annual reports to the federal government due to their size and/or number of customers. Therefore, our data sources encompass federal, state, commercial, and local filings as well as direct communications with utilities and state program managers. Each section of the report pulls data from a variety of these sources. The data was downloaded directly from the original sources and concatenated to develop a dataset for this report. In some cases, a single observation is derived from multiple sources due to reporting limitations. 
 
 Below are relevant sources of data for the report.
@@ -37,13 +37,13 @@ Below are relevant sources of data for the report.
 - [Intelligent Energy Systems](https://www.iesconnect.net)
 
 
-## Compilation
+### Compilation
 
 Neil McMahon, first at AEA and then at [DOWL](https://www.dowl.com/), an Alaska engineering firm, did the preliminary compilation of data and developed the Excel workbooks that support this report. This step involved careful cross-referencing of assets between the various data sources and error checking by domain experts. At this point, aggregate calculations were created to match the tables found in previous _Alaska Energy Statistics Reports_. Data in this report were derived from those workbooks exported to CSV files; the original workbooks are available via a GitHub repo [ak-energy-statistics-2011_2021](https://acep-uaf.github.io/ak-energy-statistics-2011_2021/).
 
 
 
-# Regional Summaries
+## Regional Summaries
 
 For the purpose of energy planning, AEA has defined [eleven energy regions](https://dcra-cdo-dcced.opendata.arcgis.com/datasets/edb3e790ea4b40579f29e925afc061c5_0/explore?showTable=true) for the State of Alaska. Previous versions of the _Alaska Electric Energy Statistics_ reports presented data summarized by those regions. In order to provide visualizations that are easier to understand, we have condensed these eleven regions into three major energy regions: Coastal, Railbelt, and Rural Remote. @fig-regions-scheme shows the diagrammatic relationship between these two classification systems and Figure @fig-regions-map displays this relationship cartographically.
 
@@ -54,7 +54,7 @@ We note that the Coastal and Rural Remote regions include mixtures of power cost
 ![Cartographic Relationship between Energy Regions as defined by AEA and ACEP](images/AEA_ACEP_regions_map.png){width=600 #fig-regions-map}
 
 
-# A Note on Power Cost Equalization (PCE)
+## Power Cost Equalization (PCE)
 
 Alaska is famous for wide expanses of rugged terrain. Towns are often extremely distant from one another, or are separated by inaccessible mountains and glaciers. The utility landscape of Alaska resembles a sea of islands, very different from the interconnected grids of the contiguous United States. 
 
@@ -67,6 +67,6 @@ The PCE program reimburses rural utilities for credits that have been provided t
 Please visit the Alaska Energy Authority  [PCE webpage](https://www.akenergyauthority.org/What-We-Do/Power-Cost-Equalization) for more information about the Power Cost Equalization program.
 
 
-# Feedback Regarding Potential Errors
+## Feedback Regarding Potential Errors
 
 Since these data come from multiple sources, there is potential for errors in its compilation. An integral part of this effort is the creation of a high quality dataset that can constructively contribute to future work. Therefore, any discrepancies or noted errors should be reported using email or GitHub issues via the links in the right hand navigation menu of every page. Alternatively, direct contact information for members of the DCM team is listed on the [Credits Page](credits.qmd).
