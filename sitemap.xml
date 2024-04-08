@@ -1,55 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://acep-uaf.github.io/aetr-web-book/capacity.html</loc>
-    <lastmod>2024-04-05T23:42:02.780Z</lastmod>
-  </url>
-  <url>
-    <loc>https://acep-uaf.github.io/aetr-web-book/historic_reports.html</loc>
-    <lastmod>2024-04-05T23:42:02.872Z</lastmod>
-  </url>
-  <url>
-    <loc>https://acep-uaf.github.io/aetr-web-book/test.html</loc>
-    <lastmod>2024-04-05T23:42:02.884Z</lastmod>
-  </url>
-  <url>
-    <loc>https://acep-uaf.github.io/aetr-web-book/about.html</loc>
-    <lastmod>2024-04-05T23:42:02.780Z</lastmod>
-  </url>
-  <url>
-    <loc>https://acep-uaf.github.io/aetr-web-book/conclusions.html</loc>
-    <lastmod>2024-04-05T23:42:02.780Z</lastmod>
-  </url>
-  <url>
-    <loc>https://acep-uaf.github.io/aetr-web-book/credits.html</loc>
-    <lastmod>2024-04-05T23:42:02.780Z</lastmod>
-  </url>
-  <url>
-    <loc>https://acep-uaf.github.io/aetr-web-book/methods.html</loc>
-    <lastmod>2024-04-05T23:42:02.884Z</lastmod>
-  </url>
-  <url>
-    <loc>https://acep-uaf.github.io/aetr-web-book/consumption.html</loc>
-    <lastmod>2024-04-05T23:42:02.780Z</lastmod>
-  </url>
-  <url>
     <loc>https://acep-uaf.github.io/aetr-web-book/data.html</loc>
-    <lastmod>2024-04-05T23:42:02.780Z</lastmod>
+    <lastmod>2024-04-08T16:45:17.870Z</lastmod>
   </url>
   <url>
     <loc>https://acep-uaf.github.io/aetr-web-book/prices.html</loc>
-    <lastmod>2024-04-05T23:42:02.884Z</lastmod>
-  </url>
-  <url>
-    <loc>https://acep-uaf.github.io/aetr-web-book/index.html</loc>
-    <lastmod>2024-04-05T23:42:02.884Z</lastmod>
+    <lastmod>2024-04-08T16:45:19.378Z</lastmod>
   </url>
   <url>
     <loc>https://acep-uaf.github.io/aetr-web-book/generation.html</loc>
-    <lastmod>2024-04-05T23:42:02.872Z</lastmod>
+    <lastmod>2024-04-08T16:45:19.366Z</lastmod>
+  </url>
+  <url>
+    <loc>https://acep-uaf.github.io/aetr-web-book/historic_reports.html</loc>
+    <lastmod>2024-04-08T16:45:19.366Z</lastmod>
+  </url>
+  <url>
+    <loc>https://acep-uaf.github.io/aetr-web-book/consumption.html</loc>
+    <lastmod>2024-04-08T16:45:17.870Z</lastmod>
   </url>
   <url>
     <loc>https://acep-uaf.github.io/aetr-web-book/acronyms.html</loc>
-    <lastmod>2024-04-05T23:42:02.780Z</lastmod>
+    <lastmod>2024-04-08T16:45:17.870Z</lastmod>
+  </url>
+  <url>
+    <loc>https://acep-uaf.github.io/aetr-web-book/index.html</loc>
+    <lastmod>2024-04-08T16:45:19.378Z</lastmod>
+  </url>
+  <url>
+    <loc>https://acep-uaf.github.io/aetr-web-book/capacity.html</loc>
+    <lastmod>2024-04-08T16:45:17.870Z</lastmod>
+  </url>
+  <url>
+    <loc>https://acep-uaf.github.io/aetr-web-book/credits.html</loc>
+    <lastmod>2024-04-08T16:45:17.870Z</lastmod>
+  </url>
+  <url>
+    <loc>https://acep-uaf.github.io/aetr-web-book/test.html</loc>
+    <lastmod>2024-04-08T16:45:19.382Z</lastmod>
+  </url>
+  <url>
+    <loc>https://acep-uaf.github.io/aetr-web-book/methods.html</loc>
+    <lastmod>2024-04-08T16:45:19.378Z</lastmod>
+  </url>
+  <url>
+    <loc>https://acep-uaf.github.io/aetr-web-book/conclusions.html</loc>
+    <lastmod>2024-04-08T16:45:17.870Z</lastmod>
+  </url>
+  <url>
+    <loc>https://acep-uaf.github.io/aetr-web-book/about.html</loc>
+    <lastmod>2024-04-08T16:45:17.870Z</lastmod>
   </url>
 </urlset>
