@@ -240,7 +240,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#compilation" id="toc-compilation" class="nav-link" data-scroll-target="#compilation">Compilation</a></li>
   </ul></li>
   <li><a href="#regional-summaries" id="toc-regional-summaries" class="nav-link" data-scroll-target="#regional-summaries">Regional Summaries</a></li>
-  <li><a href="#a-note-on-power-cost-equalization-pce" id="toc-a-note-on-power-cost-equalization-pce" class="nav-link" data-scroll-target="#a-note-on-power-cost-equalization-pce">A Note on Power Cost Equalization (PCE)</a></li>
+  <li><a href="#power-cost-equalization-pce" id="toc-power-cost-equalization-pce" class="nav-link" data-scroll-target="#power-cost-equalization-pce">Power Cost Equalization (PCE)</a></li>
   <li><a href="#feedback-regarding-potential-errors" id="toc-feedback-regarding-potential-errors" class="nav-link" data-scroll-target="#feedback-regarding-potential-errors">Feedback Regarding Potential Errors</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/acep-uaf/aetr-web-book/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div><div class="quarto-other-links"><h2>Other Links</h2><ul><li><a href="mailto:uaf-acep-dcm-support@alaska.edu"><i class="bi bi-envelope-exclamation"></i>Report an issue via email</a></li></ul></div></nav>
@@ -262,7 +262,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">Apr 8, 2024 at 16:45 UTC</p>
+      <p class="date">Apr 8, 2024 at 20:02 UTC</p>
     </div>
   </div>
   
@@ -280,8 +280,8 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="data-sources" class="level1">
-<h1>Data Sources</h1>
+<section id="data-sources" class="level2">
+<h2 class="anchored" data-anchor-id="data-sources">Data Sources</h2>
 <p>The data in this report was collected from a variety of sources that are listed below. Many electric utilities throughout the state are not required to submit annual reports to the federal government due to their size and/or number of customers. Therefore, our data sources encompass federal, state, commercial, and local filings as well as direct communications with utilities and state program managers. Each section of the report pulls data from a variety of these sources. The data was downloaded directly from the original sources and concatenated to develop a dataset for this report. In some cases, a single observation is derived from multiple sources due to reporting limitations.</p>
 <p>Below are relevant sources of data for the report.</p>
 <section id="federal" class="level3">
@@ -329,13 +329,13 @@ ul.task-list li input[type="checkbox"] {
 <li><a href="https://www.iesconnect.net">Intelligent Energy Systems</a></li>
 </ul>
 </section>
-<section id="compilation" class="level2">
-<h2 class="anchored" data-anchor-id="compilation">Compilation</h2>
+<section id="compilation" class="level3">
+<h3 class="anchored" data-anchor-id="compilation">Compilation</h3>
 <p>Neil McMahon, first at AEA and then at <a href="https://www.dowl.com/">DOWL</a>, an Alaska engineering firm, did the preliminary compilation of data and developed the Excel workbooks that support this report. This step involved careful cross-referencing of assets between the various data sources and error checking by domain experts. At this point, aggregate calculations were created to match the tables found in previous <em>Alaska Energy Statistics Reports</em>. Data in this report were derived from those workbooks exported to CSV files; the original workbooks are available via a GitHub repo <a href="https://acep-uaf.github.io/ak-energy-statistics-2011_2021/">ak-energy-statistics-2011_2021</a>.</p>
 </section>
 </section>
-<section id="regional-summaries" class="level1">
-<h1>Regional Summaries</h1>
+<section id="regional-summaries" class="level2">
+<h2 class="anchored" data-anchor-id="regional-summaries">Regional Summaries</h2>
 <p>For the purpose of energy planning, AEA has defined <a href="https://dcra-cdo-dcced.opendata.arcgis.com/datasets/edb3e790ea4b40579f29e925afc061c5_0/explore?showTable=true">eleven energy regions</a> for the State of Alaska. Previous versions of the <em>Alaska Electric Energy Statistics</em> reports presented data summarized by those regions. In order to provide visualizations that are easier to understand, we have condensed these eleven regions into three major energy regions: Coastal, Railbelt, and Rural Remote. <a href="#fig-regions-scheme" class="quarto-xref">Figure&nbsp;1</a> shows the diagrammatic relationship between these two classification systems and Figure <a href="#fig-regions-map" class="quarto-xref">Figure&nbsp;2</a> displays this relationship cartographically.</p>
 <p>We note that the Coastal and Rural Remote regions include mixtures of power cost equalization (PCE) and non-PCE eligible communities. The Coastal region includes Copper River/Chugach and incorporates all communities served by Copper Valley Electric Association. PCE communities are largely dependent on diesel generation.</p>
 <div id="fig-regions-scheme" class="quarto-figure quarto-figure-center quarto-float anchored">
@@ -359,16 +359,16 @@ Figure&nbsp;2: Cartographic Relationship between Energy Regions as defined by AE
 </figure>
 </div>
 </section>
-<section id="a-note-on-power-cost-equalization-pce" class="level1">
-<h1>A Note on Power Cost Equalization (PCE)</h1>
+<section id="power-cost-equalization-pce" class="level2">
+<h2 class="anchored" data-anchor-id="power-cost-equalization-pce">Power Cost Equalization (PCE)</h2>
 <p>Alaska is famous for wide expanses of rugged terrain. Towns are often extremely distant from one another, or are separated by inaccessible mountains and glaciers. The utility landscape of Alaska resembles a sea of islands, very different from the interconnected grids of the contiguous United States.</p>
 <p>In total, Alaska contains over 100 separate utilities, many of which serve a single small community. Most rely on diesel generators connected to huge fuel tanks, which receive a barge shipment of fuel in the summer that must last through the winter. If the town runs out of fuel during winter months, additional fuel has to be flown in at extreme expense. Predictably, electricity in these remote towns is extremely expensive.</p>
 <p>Some rural towns pay 3 to 5 times the rates of urban Alaska. Urban Alaska has greatly benefited from large state-subsidized energy projects, such as the Bradley Lake Hydroelectric Project, the Four Dam Pool Projects, and the Alaska Intertie. In an effort to confer similar benefits to rural Alaska, the state of Alaska developed the Power Cost Equalization Program (PCE).</p>
 <p>The PCE program reimburses rural utilities for credits that have been provided to eligible customers. Eligibility is limited to residential customers and community facilities. The subsidy applies to the first 750 kWh per month of residential consumption. Community facilities are subsidized up to the first 70 kWh per month per resident. The program is administered by the Regulatory Commission of Alaska (RCA) and the Alaska Energy Authority (AEA).</p>
 <p>Please visit the Alaska Energy Authority <a href="https://www.akenergyauthority.org/What-We-Do/Power-Cost-Equalization">PCE webpage</a> for more information about the Power Cost Equalization program.</p>
 </section>
-<section id="feedback-regarding-potential-errors" class="level1">
-<h1>Feedback Regarding Potential Errors</h1>
+<section id="feedback-regarding-potential-errors" class="level2">
+<h2 class="anchored" data-anchor-id="feedback-regarding-potential-errors">Feedback Regarding Potential Errors</h2>
 <p>Since these data come from multiple sources, there is potential for errors in its compilation. An integral part of this effort is the creation of a high quality dataset that can constructively contribute to future work. Therefore, any discrepancies or noted errors should be reported using email or GitHub issues via the links in the right hand navigation menu of every page. Alternatively, direct contact information for members of the DCM team is listed on the <a href="./credits.html">Credits Page</a>.</p>
 
 
