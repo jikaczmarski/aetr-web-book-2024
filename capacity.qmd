@@ -350,6 +350,7 @@ This region saw an absolute increase of 12 MW of renewable capacity between 2011
 ```{ojs}
 //| label: fig-capacity-rural-renewable
 //| fig-cap: "Rural Remote Region Renewable Capacity"
+//| 
 Plot.plot({
   // Configure the x-axis
   x: {

@@ -1,8 +1,13 @@
 ---
 title: "Alaska Electricity Generation"
 subtitle: "Generation by Fuel Type, 2011-2021"
-date-modified: "2024-03-13T15:39:00-08:00"
+date-modified: "2024-04-08T15:39:00-08:00"
 date-format: "MMM D, YYYY [at] HH:mm z"
+output:
+  quarto::quarto_html:
+    pre_processor: quarto::observable
+cap-location: top
+echo: false
 ---
 
 ```{r, echo=FALSE,warning=FALSE,message=FALSE}
@@ -50,7 +55,7 @@ This section outlines the trends in generation by fuel type for each region. Gen
 
 [^1]: The PCE data do show powerhouse consumption as a separate data item, which would allow for the computation of “net generation” in PCE communities. However, we have continued to report generation in PCE communities as the gross amount in order to be consistent with previous Alaska Energy Statistics Reports.
 
-The following figure provides a visual representation of yearly electricity generation for the Coastal, Railbelt, and Rural Remote regions. All regions produced a relatively consistent amount of electricity between 2011 and 2021. Across this time period, the Railbelt generated an average of `r regional_generation("Railbelt")` GWh, the Coastal region generated an average of `r regional_generation("Coastal")` GWh, and the Rural Remote region generated an average of `r regional_generation("Rural Remote")` GWh. Between 2011 and 2021, the average yearly growth rate for generation was `r cagr("Coastal")`% in the Coastal region, `r cagr("Railbelt")`% in the Railbelt region, and `r cagr("Rural Remote")`% in Rural Remote communities.[^2] The Coastal and Rural Remote trends are in line with improvements in rural electrification, as well as modest population growth. Of the regions, the Railbelt is the only one that consistently saw decreases in generation across the years. Total statewide generation increased at an average annual growth rate of 0.22%.
+@fig-generation-by-region provides a visual representation of yearly electricity generation for the Coastal, Railbelt, and Rural Remote regions. All regions produced a relatively consistent amount of electricity between 2011 and 2021. Across this time period, the Railbelt generated an average of `r regional_generation("Railbelt")` GWh, the Coastal region generated an average of `r regional_generation("Coastal")` GWh, and the Rural Remote region generated an average of `r regional_generation("Rural Remote")` GWh. Between 2011 and 2021, the average yearly growth rate for generation was `r cagr("Coastal")`% in the Coastal region, `r cagr("Railbelt")`% in the Railbelt region, and `r cagr("Rural Remote")`% in Rural Remote communities.[^2] The Coastal and Rural Remote trends are in line with improvements in rural electrification, as well as modest population growth. Of the regions, the Railbelt is the only one that consistently saw decreases in generation across the years. Total statewide generation increased at an average annual growth rate of 0.22%.
 
 [^2]: Calculated with the compound average growth rate: $CAGR = \left(\left(\frac{gen_{2021}}{gen_{2011}} \right)^{\frac{1}{2021-2011}} -1\right)$
 
@@ -65,12 +70,17 @@ gen_data = FileAttachment("data/working/generation/net_generation_long.csv").csv
 gen_data_gwh = tidy(gen_data, mutate({
   generation: (d) => d.generation / 1000
 }));
+```
 
-// Plotting total generation by region and year
+```{ojs}
+//| label: fig-generation-by-region
+//| fig-cap: "Electricity Generation by Region"
+
+// Plotting total generation by region and year//| 
 Plot.plot({
   
   // Configure the plot
-  title: " Electricity generation by region",
+  //title: " Electricity generation by region",
   insetLeft: 0,
   insetRight: 0,
   
@@ -114,7 +124,7 @@ Plot.plot({
 })
 ```
 
-While generation did not change significantly during the observed time period, the resources from which generation occurred, did. The following figure shows how the mix of generation fuels changed between 2011 and 2021.[^3]
+While generation did not change significantly during the observed time period, the resources from which generation occurred, did. @fig-generation-changes-by-region shows how the mix of generation fuels changed between 2011 and 2021.[^3]
 
 [^3]: Oil consists of generators whose primary fuel source is diesel/distillate, naphtha, or jet fuel. Gas consists of natural or landfill gas. Hydro refers to conventional hydroelectric turbines. Wind and solar are both utility-scale (excluding behind-the-meter solar). Storage is not included in these calculations.
 
@@ -165,11 +175,16 @@ gen_mix_diff = tidy(
     (d)  => d.year === 2021
   )
 )
+```
+
+```{ojs}
+//| label: fig-generation-changes-by-region
+//| fig-cap: "Regional Changes in Net Generation"
 
 // Plotting the deltas
 Plot.plot({
-  title: "Regional changes in net generation",
-  subtitle: "Percentage point differences in generation mix between 2021 and 2011",
+  //title: "Regional changes in net generation",
+  caption: "Percentage point differences in generation mix between 2021 and 2011",
   insetLeft: 15,
   insetRight: 15,
   marginRight: 70,
@@ -224,18 +239,19 @@ This figure does not include trends in storage or the other category. Storage ne
 
 ## Coastal
 
-In 2011, the Coastal region generated `r generation_share("Coastal",2011,"Hydro")`% of its electricity from hydro, `r generation_share("Coastal",2011,"Oil")`% from oil, and the remainder from wind.[^4] In 2021, the region generated `r generation_share("Coastal",2021,"Hydro")`% of electricity from hydro, `r generation_share("Coastal",2021,"Oil")`% from oil, and `r generation_share("Coastal",2021,"Wind")`% from wind. In addition, storage played a role in generation, albeit the net result is negative due to efficiencies. The following figure shows how this generation mix has changed over the years.
+In 2011, the Coastal region generated `r generation_share("Coastal",2011,"Hydro")`% of its electricity from hydro, `r generation_share("Coastal",2011,"Oil")`% from oil, and the remainder from wind.[^4] In 2021, the region generated `r generation_share("Coastal",2021,"Hydro")`% of electricity from hydro, `r generation_share("Coastal",2021,"Oil")`% from oil, and `r generation_share("Coastal",2021,"Wind")`% from wind. In addition, storage played a role in generation, albeit the net result is negative due to efficiencies.  @fig-generation-fuel-coastal shows how this generation mix has changed over the years.
 
 [^4]: Net generation from storage facilities are not included in these calculations.
 
 ```{ojs}
-//| echo: false
+//| label: fig-generation-fuel-coastal
+//| fig-cap: "Share of Net Generation by Fuel Type, Coastal Region"
 
 // Plotting the shares for the coastal region
 Plot.plot({
 
   // Configure the plot
-  title: "Share of net generation by fuel type, Coastal region",
+  //title: "Share of net generation by fuel type, Coastal region",
   caption: caption_gen_mix,
   insetLeft: 0,
   insetRight: 0,
@@ -275,17 +291,17 @@ Plot.plot({
 })
 ```
 
-Generation grew at an average annual growth rate of `r cagr("Coastal")`% from 2011 to 2021. The following figure highlights the yearly trends in generation by fuel source.
+Generation grew at an average annual growth rate of `r cagr("Coastal")`% from 2011 to 2021. @fig-generation-coastal highlights the yearly trends in generation by fuel source.
 
 ```{ojs}
-//| echo: false
-
+//| label: fig-generation-coastal
+//| fig-cap: "Electricity Generation, Coastal Region"
 
 // Plotting total generation by region and year
 Plot.plot({
   
   // Configure the plot
-  title: "Coastal region electricity generation",
+  //title: "Coastal region electricity generation",
   insetLeft: 0,
   insetRight: 0,
   
@@ -332,15 +348,16 @@ Plot.plot({
 
 ## Railbelt
 
-Railbelt generation has seen notable changes in how it generates electricity between 2011 and 2021. In 2011, the Railbelt region generated `r generation_share("Railbelt",2011,"Gas")`% of electricity from gas, `r generation_share("Railbelt",2011,"Coal")`% from coal, `r generation_share("Railbelt",2011,"Hydro")`% from hydro, and `r generation_share("Railbelt",2011,"Oil")`% from oil. Additionally, a small amount of wind generation was present. In 2021, the region generated `r generation_share("Railbelt",2021,"Gas")`% of electricity from gas, `r generation_share("Railbelt",2021,"Coal")`% from coal, `r generation_share("Railbelt",2021,"Hydro")`% from hydro, `r generation_share("Railbelt",2021,"Oil")`% from oil, and `r generation_share("Railbelt",2021,"Wind")`% from wind. Additionally, a small amount of solar generation was present. In addition, storage played a role in generation, albeit the net result is negative due to non-perfect efficiencies. The following figure shows how this generation mix has changed over the years. 
+Railbelt generation has seen notable changes in how it generates electricity between 2011 and 2021. In 2011, the Railbelt region generated `r generation_share("Railbelt",2011,"Gas")`% of electricity from gas, `r generation_share("Railbelt",2011,"Coal")`% from coal, `r generation_share("Railbelt",2011,"Hydro")`% from hydro, and `r generation_share("Railbelt",2011,"Oil")`% from oil. Additionally, a small amount of wind generation was present. In 2021, the region generated `r generation_share("Railbelt",2021,"Gas")`% of electricity from gas, `r generation_share("Railbelt",2021,"Coal")`% from coal, `r generation_share("Railbelt",2021,"Hydro")`% from hydro, `r generation_share("Railbelt",2021,"Oil")`% from oil, and `r generation_share("Railbelt",2021,"Wind")`% from wind. Additionally, a small amount of solar generation was present. In addition, storage played a role in generation, albeit the net result is negative due to non-perfect efficiencies. @fig-generation-fuel-railbelt shows how this generation mix has changed over the years. 
 
 ```{ojs}
-//| echo: false
-// Plotting the shares for the coastal region
-Plot.plot({
+//| label: fig-generation-fuel-railbelt
+//| fig-cap: "Share of Net Generation by Fuel Type, Railbelt Region"
+
+Plot.plot({//| 
 
   // Configure the plot
-  title: "Share of net generation by fuel type, Railbelt region",
+  //title: "Share of net generation by fuel type, Railbelt region",
   caption: caption_gen_mix,
   insetLeft: 0,
   insetRight: 0,
@@ -381,16 +398,17 @@ Plot.plot({
 ```
 
 
-Generation from 2011 to 2021 saw an average annual growth rate of `r cagr("Railbelt")`%. The following figure highlights the yearly trends in generation by fuel source.
+Generation from 2011 to 2021 saw an average annual growth rate of `r cagr("Railbelt")`%. @fig-generation-railbelt highlights the yearly trends in generation by fuel source.
 
 ```{ojs}
-//| echo: false
+//| label: fig-generation-railbelt
+//| fig-cap: "Electricity Generation, Railbelt Region"
 
 // Plotting total generation by region and year
 Plot.plot({
   
   // Configure the plot
-  title: "Railbelt region electricity generation",
+  //title: "Railbelt region electricity generation",
   insetLeft: 0,
   insetRight: 0,
   
@@ -437,15 +455,17 @@ Plot.plot({
 
 ## Rural Remote
 
-The Rural Remote region has seen notable changes between 2011 and 2021 in how it generates electricity. In 2011, the region generated `r generation_share("Rural Remote",2011,"Oil")`% of electricity from oil, `r generation_share("Rural Remote",2011,"Gas")`% from gas, `r generation_share("Rural Remote",2011,"Hydro")`% from hydro, and `r generation_share("Rural Remote",2011,"Wind")`% from wind. In 2021, the region generated `r generation_share("Rural Remote",2021,"Oil")`% of electricity from oil (mostly diesel), `r generation_share("Rural Remote",2021,"Gas")`% from gas, `r generation_share("Rural Remote",2021,"Hydro")`% from hydro, and `r generation_share("Rural Remote",2021,"Wind")`% from wind. Additionally, a small amount of solar generation was present. The following figure shows how this generation mix has changed over the years.
+The Rural Remote region has seen notable changes between 2011 and 2021 in how it generates electricity. In 2011, the region generated `r generation_share("Rural Remote",2011,"Oil")`% of electricity from oil, `r generation_share("Rural Remote",2011,"Gas")`% from gas, `r generation_share("Rural Remote",2011,"Hydro")`% from hydro, and `r generation_share("Rural Remote",2011,"Wind")`% from wind. In 2021, the region generated `r generation_share("Rural Remote",2021,"Oil")`% of electricity from oil (mostly diesel), `r generation_share("Rural Remote",2021,"Gas")`% from gas, `r generation_share("Rural Remote",2021,"Hydro")`% from hydro, and `r generation_share("Rural Remote",2021,"Wind")`% from wind. Additionally, a small amount of solar generation was present. @fig-generation-fuel-rural shows how this generation mix has changed over the years.
 
 ```{ojs}
-//| echo: false
+//| label: fig-generation-fuel-rural
+//| fig-cap: "Share of Net Generation by Fuel Type, Rural Remote Region"
+
 // Plotting the shares for the coastal region
 Plot.plot({
 
   // Configure the plot
-  title: "Share of net generation by fuel type, Rural Remote region",
+  //title: "Share of net generation by fuel type, Rural Remote region",
   caption: caption_gen_mix,
   insetLeft: 0,
   insetRight: 0,
@@ -485,16 +505,17 @@ Plot.plot({
 })
 ```
 
-Generation from 2011 to 2021 saw an average annual growth rate of `r cagr("Rural Remote")`%. The following figure highlights the yearly trends in generation by fuel source. From 2013 to 2014, a large increase in gas generation is observed due to operations on the North Slope - specifically in the Barrow Utilities & Electric Cooperative, Inc. (BUECI), Deadhorse, and Nuiqsut service regions.
+Generation from 2011 to 2021 saw an average annual growth rate of `r cagr("Rural Remote")`%. @fig-generation-rural highlights the yearly trends in generation by fuel source. From 2013 to 2014, a large increase in gas generation is observed due to operations on the North Slope - specifically in the Barrow Utilities & Electric Cooperative, Inc. (BUECI), Deadhorse, and Nuiqsut service regions.
 
 ```{ojs}
-//| echo: false
+//| label: fig-generation-rural
+//| fig-cap: "Electricity Generation, Rural Remote Region"
 
 // Plotting total generation by region and year
 Plot.plot({
   
   // Configure the plot
-  title: "Rural remote region electricity generation",
+  //title: "Rural remote region electricity generation",
   insetLeft: 0,
   insetRight: 0,
   
