@@ -12,7 +12,7 @@ This Alaska Electrical Trends Report (AETR) Web Book has been produced by the Al
 Throughout the years, several agencies have prepared and published reports and data compilations on energy use in Alaska. AETR is complimentary to those prior reports, but is not a direct successor to them because it focuses on electricity only. 
 
 
-## Historical Timeline of Prior Reports
+## Historical Timeline of Prior Reports {#sec-historic-timeline}
 
 ![Timeline of Energy Reports](images/energy_stats_timeline.png)
 
@@ -34,7 +34,7 @@ The following table provides a summary of this timeline. This report serves to s
 
 &nbsp;
 
-For a full list of links to these described reports, please visit [Historical Electric Power Reports](historic_reports.qmd).
+For a table of links to these historic reports, please visit [Appendix @sec-historic-reports].
 
 ## Technical Details
 

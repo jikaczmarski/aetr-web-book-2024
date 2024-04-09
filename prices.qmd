@@ -19,7 +19,7 @@ In rural areas, many communities are eligible to participate in the [PCE program
 Note that all prices in this section have been adjusted for inflation over time to 2021 dollars using the Bureau of Labor Statistics (BLS) Consumer Price Index (CPI) for all items in urban Alaska (BLS CUUSA427SA0). To our knowledge, there is no CPI that properly accounts for price changes over time in rural Alaska. However, the general trend shows that customer account-weighted prices have been relatively stagnant across all regions of the state.
 
 
-## Regional Overview
+### Regional Overview
 @fig-price-regions-classes shows the distribution of prices across a selected customer class. The three classes used in this analysis can be selected from the dropdown menu. Hover your pointer over the dot to display utility information.  
 
 Most notably, the dramatic effects of the PCE subsidy can be seen by comparing the price distribution of the residential customer class against the price distribution of the commercial/other customer classes in the Rural Remote and Coastal regions. 
@@ -33,7 +33,7 @@ Most notably, the dramatic effects of the PCE subsidy can be seen by comparing t
 <br>
 
 
-## Regional Averages
+### Regional Averages
 Due to the wide range of electricity prices in Alaska, it is difficult to accurately summarize the data. Because of this, we determined that averages were best calculated using a customer account weighted average. Population is roughly correlated to price, with small communities experiencing higher rates than larger communities. The average number of customer accounts for the year was used to calculate the weighted arithmetic mean price for each year and region. @fig-price-over-time is a graph of residential customer prices over time using population-weighted averages.  
 
 ```{ojs}
