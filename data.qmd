@@ -22,7 +22,11 @@ Individual tables can be downloaded here as text files (CSV, comma-separated val
 
 ```{ojs}
 capacity_wide_description = metadata.resources[0].description;
-capacity_wide = FileAttachment("data/working/capacity/capacity_wide.csv").csv({typed: true});
+capacity_wide_raw = FileAttachment("data/working/capacity/capacity_wide.csv").csv({typed: true});
+
+capacity_wide = tidy(capacity_wide_raw,
+                  filter((d) => d.year < 2020))
+
 capacity_wide_path = metadata.resources[0].path;
 capacity_wide_metadata = metadata.resources[0].schema.fields;
 
@@ -49,7 +53,11 @@ button(capacity_wide, `capacity_wide.csv`)
 
 ```{ojs}
 net_generation_wide_description = metadata.resources[2].description
-net_generation_wide = FileAttachment("data/working/generation/net_generation_wide.csv").csv({typed: true});
+net_generation_wide_raw = FileAttachment("data/working/generation/net_generation_wide.csv").csv({typed: true});
+
+net_generation_wide = tidy(net_generation_wide_raw,
+                  filter((d) => d.year < 2020))
+
 net_generation_wide_path = metadata.resources[2].path
 net_generation_wide_metadata = metadata.resources[2].schema.fields
 
@@ -73,7 +81,11 @@ button(net_generation_wide, `net_generation_wide.csv`)
 
 ```{ojs}
 prices_description = metadata.resources[4].description;
-prices = FileAttachment("data/working/prices/prices.csv").csv({typed: true});
+prices_raw = FileAttachment("data/working/prices/prices.csv").csv({typed: true});
+
+prices = tidy(prices_raw,
+            filter((d) => d.year < 2020))
+
 prices_path = metadata.resources[4].path;
 prices_metadata = metadata.resources[4].schema.fields;
 
@@ -98,7 +110,11 @@ button(prices, `prices.csv`);
 
 ```{ojs}
 weighted_prices_description = metadata.resources[5].description;
-weighted_prices = FileAttachment("data/working/prices/weighted_prices.csv").csv({typed: true});
+weighted_prices_raw = FileAttachment("data/working/prices/weighted_prices.csv").csv({typed: true});
+
+weighted_prices = tidy(weighted_prices_raw,
+                    filter((d) => d.year < 2020))
+
 weighted_prices_path = metadata.resources[5].path;
 weighted_prices_metadata = metadata.resources[5].schema.fields;
 
@@ -122,6 +138,7 @@ button(weighted_prices, `weighted_prices.csv`)
 // load libraries
 stdlib = require("@observablehq/stdlib")
 d3 = require("d3@7")
+import {tidy, groupBy, rename, summarize, sum, mutate, select, n, nDistinct, mean, filter, pivotWider, pivotLonger, leftJoin, slice} from "@pbeshai/tidyjs"
 
 // load metadata
 metadata = FileAttachment("data/metadata.json").json();
