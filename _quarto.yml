@@ -17,16 +17,16 @@ book:
 
   chapters:
     - index.qmd
-    - about.qmd
     - methods.qmd
     - capacity.qmd
     - generation.qmd
     - consumption.qmd
     - prices.qmd
     - conclusions.qmd
-  appendices:
-    - historic_reports.qmd
     - data.qmd
+  appendices:
+    - about.qmd
+    - historic_reports.qmd
     - acronyms.qmd
     - credits.qmd 
 

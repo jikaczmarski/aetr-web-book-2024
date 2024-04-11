@@ -1,7 +1,7 @@
 ---
-title: "Electricity Consumption"
-subtitle: "Electricity Sales, 2011-2019"
-date-modified: "2024-04-05T12:45:00-08:00"
+title: "Consumption and Sales"
+subtitle: "Electricity Sales in Alaska, 2011-2019"
+date-modified: "2024-04-11T09:11:00-08:00"
 date-format: "MMM D, YYYY [at] HH:mm z"
 output:
     quarto::quarto_html:
