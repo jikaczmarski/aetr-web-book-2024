@@ -57,7 +57,7 @@ format:
     # fig-align: center  Tried this but it overridden by Observable defaults (bootstrap?) 
     number-depth: 2
     theme:
-      light: [cosmo, theme.scss] # from https://github.com/sta210-s22/website/blob/main/_quarto.yml
+      light: [cosmo, theme.scss, custom.scss] # from https://github.com/sta210-s22/website/blob/main/_quarto.yml
       #dark: [cosmo, theme-dark.scss]
     toc: true
 

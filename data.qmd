@@ -154,7 +154,7 @@ button = (data, filename = 'data.csv') => {
   const button = DOM.download(
     downloadData,
     filename,
-    `Download ${filename} (${size} KB)`
+    `${filename} (${size} KB)`
   );
   return button;
 }
