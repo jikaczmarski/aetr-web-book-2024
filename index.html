@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Alaska Center for Energy and Power">
+<meta name="description" content="An interactive report that summarizes federal, state, and utility electricity data for Alaska.">
 
-<title>AETR Web Book - 2024 Alaska Electricity Trends Report</title>
+<title>2024 Alaska Electricity Trends Report</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -29,7 +31,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./about.html" rel="next">
+<link href="./methods.html" rel="next">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -71,7 +73,7 @@ ul.task-list li input[type="checkbox"] {
 <link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="nav-sidebar docked">
+<body class="nav-sidebar floating">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -80,7 +82,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Summary</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -92,7 +94,7 @@ ul.task-list li input[type="checkbox"] {
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-center sidebar-header sidebar-header-stacked">
       <a href="./index.html" class="sidebar-logo-link">
       <img src="./images/ACEP_gear.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
@@ -101,7 +103,7 @@ ul.task-list li input[type="checkbox"] {
       <a href="./"><strong>2024 Alaska Electricity Trends Report</strong><br><small><em>(Data Years 2011-2021)</em></small><br></a> 
         <div class="sidebar-tools-main">
     <a href="https://www.uaf.edu/acep/" title="Alaska Center for Energy and Power" class="quarto-navigation-tool px-1" aria-label="Alaska Center for Energy and Power"><i class="bi bi-globe"></i></a>
-    <a href="https://github.com/acep-uaf/aetr-web-book" title="Project GitHub" class="quarto-navigation-tool px-1" aria-label="Project GitHub"><i class="bi bi-github"></i></a>
+    <a href="https://github.com/acep-uaf/aetr-web-book-2024" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
 </div>
     </div>
       </div>
@@ -114,30 +116,56 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active"><i class="bi bi-dot" role="img">
-</i> 
- <span class="menu-text">Summary</span></a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./about.html" class="sidebar-item-text sidebar-link"><i class="bi bi-dot" role="img">
-</i> 
- <span class="menu-text">About this Report</span></a>
+  <a href="./methods.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Methods</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./methods.html" class="sidebar-item-text sidebar-link"><i class="bi bi-dot" role="img">
-</i> 
- <span class="menu-text">Methods</span></a>
+  <a href="./capacity.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Installed Capacity</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./generation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Net/Gross Generation</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./consumption.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Consumption and Sales</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./prices.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Price of Electricity</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./conclusions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Conclusions</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Data Portal</span></span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true"><i class="bi bi-dot" role="img">
-</i> 
- <span class="menu-text">Discussion</span></a>
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -145,81 +173,30 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./capacity.html" class="sidebar-item-text sidebar-link"><i class="bi bi-dot" role="img">
-</i> 
- <span class="menu-text">Capacity</span></a>
+  <a href="./about.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">About this Report</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./generation.html" class="sidebar-item-text sidebar-link"><i class="bi bi-dot" role="img">
-</i> 
- <span class="menu-text">Net Generation</span></a>
+  <a href="./historic_reports.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Historical Electric Power Statistics Reports</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./consumption.html" class="sidebar-item-text sidebar-link"><i class="bi bi-dot" role="img">
-</i> 
- <span class="menu-text">Consumption</span></a>
+  <a href="./acronyms.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Acronym Definitions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./prices.html" class="sidebar-item-text sidebar-link"><i class="bi bi-dot" role="img">
-</i> 
- <span class="menu-text">Price of Electricity</span></a>
+  <a href="./credits.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Credits</span></span></a>
   </div>
 </li>
       </ul>
   </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./conclusions.html" class="sidebar-item-text sidebar-link"><i class="bi bi-dot" role="img">
-</i> 
- <span class="menu-text">Conclusions</span></a>
-  </div>
-</li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true"><i class="bi bi-dot" role="img">
-</i> 
- <span class="menu-text">Appendices</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./historic_reports.html" class="sidebar-item-text sidebar-link"><i class="bi bi-dot" role="img">
-</i> 
- <span class="menu-text">Historical Reports</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./data.html" class="sidebar-item-text sidebar-link"><i class="bi bi-dot" role="img">
-</i> 
- <span class="menu-text">Data Portal</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./acronyms.html" class="sidebar-item-text sidebar-link"><i class="bi bi-dot" role="img">
-</i> 
- <span class="menu-text">Definitions of Acronyms</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./credits.html" class="sidebar-item-text sidebar-link"><i class="bi bi-dot" role="img">
-</i> 
- <span class="menu-text">About the Team</span></a>
-  </div>
-</li>
     </ul>
     </div>
 </nav>
@@ -227,7 +204,7 @@ ul.task-list li input[type="checkbox"] {
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
+    <h2 id="toc-title">Table of contents</h2>
    
   <ul>
   <li><a href="#welcome" id="toc-welcome" class="nav-link active" data-scroll-target="#welcome">Welcome</a></li>
@@ -240,7 +217,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#prices" id="toc-prices" class="nav-link" data-scroll-target="#prices">Prices</a></li>
   </ul></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/acep-uaf/aetr-web-book/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div><div class="quarto-other-links"><h2>Other Links</h2><ul><li><a href="mailto:uaf-acep-dcm-support@alaska.edu"><i class="bi bi-envelope-exclamation"></i>Report an issue via email</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/acep-uaf/aetr-web-book-2024/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div><div class="quarto-other-links"><h2>Other Links</h2><ul><li><a href="mailto:uaf-acep-dcm-support@alaska.edu"><i class="bi bi-envelope-exclamation"></i>Report an issue via email</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -251,24 +228,29 @@ ul.task-list li input[type="checkbox"] {
 <p class="subtitle lead">An Analysis of Electricity in Alaska, Data Years 2011-2021</p>
 </div>
 
+<div>
+  <div class="description">
+    An interactive report that summarizes federal, state, and utility electricity data for Alaska.
+  </div>
+</div>
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Alaska Center for Energy and Power </p>
+          </div>
+  </div>
     
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">Apr 10, 2024 at 21:58 UTC</p>
+      <p class="date">Apr 11, 2024 at 17:39 UTC</p>
     </div>
   </div>
   
-    <div>
-    <div class="quarto-title-meta-heading">Modified</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date-modified">Mar 26, 2024 at 01:22 UTC</p>
-    </div>
-  </div>
     
   </div>
   
@@ -277,8 +259,8 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="welcome" class="level2">
-<h2 class="anchored" data-anchor-id="welcome">Welcome</h2>
+<section id="welcome" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="welcome">Welcome</h2>
 <p>This interactive report summarizes federal, state, and utility electricity data in the form of a web book. It provides an overview of electricity capacity, generation, consumption, and price trends from 2011 to 2021. A comprehensive report highlighting these trends has not been produced for the state of Alaska since the 2013 <em>Alaska Energy Statistics Report</em>.</p>
 <p>The book has been designed to be a living document that will be updated as more data becomes available. Please explore the data using the chapter navigation links in the left sidebar and the section navigation links in the right sidebar. Additional chapters include:</p>
 <ul>
@@ -287,15 +269,15 @@ ul.task-list li input[type="checkbox"] {
 <li>Methods: a description of data sources, the Power Cost Equalization (PCE) program, and the geographic regions used for analysis.</li>
 </ul>
 </section>
-<section id="executive-summary" class="level2">
-<h2 class="anchored" data-anchor-id="executive-summary">Executive Summary</h2>
+<section id="executive-summary" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="executive-summary">Executive Summary</h2>
 <p>The objective of this work is to provide regulators, legislators, and other energy stakeholders with a holistic look at recent trends in electrical generation. The first impetus for this report is a lack of combined reporting on electricity generation across the state that extends to federally and non-federally regulated electric utilities. The second impetus for this report is to aid in decision-making processes surrounding Alaska’s energy future.</p>
 <p>With uncertainty in natural gas sources on the Railbelt, changing technology, and lower-cost alternatives, understanding trends in the state’s capacity, generation, consumption, and prices is vital to more informed decision-making.</p>
 <p>In this report, we present data collected from federal, state, and local sources supplemented by correspondence with utilities. We show trends for capacity, generation, consumption, and prices. The capacity and generation trends include data from 2011 to 2021, and the consumption and prices trends are data limited to 2019. More information on sources and methods are provided in the subsequent sections throughout the report. This report uses data visualizations as the primary mode for presenting the trends. To accommodate this presentation style, we present trends as simplified regions of the state as opposed to the Alaska Energy Authority energy regions.</p>
 <p>We emphasize that this report is designed to provide factual information to the best of our ability without providing recommendations or in-depth analysis. However, context is provided for more impactful trends.</p>
 </section>
-<section id="key-takeaways" class="level2">
-<h2 class="anchored" data-anchor-id="key-takeaways">Key Takeaways</h2>
+<section id="key-takeaways" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="key-takeaways">Key Takeaways</h2>
 <section id="capacity" class="level3">
 <h3 class="anchored" data-anchor-id="capacity">Capacity</h3>
 <ul>
@@ -335,7 +317,7 @@ ul.task-list li input[type="checkbox"] {
 </section>
 </section>
 
-<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -417,7 +399,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/acep-uaf\.github\.io\/aetr-web-book\/");
+      var filterRegex = new RegExp("https:\/\/acep-uaf\.github\.io\/aetr-web-book-2024\/");
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
@@ -749,27 +731,14 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   <div class="nav-page nav-page-previous">
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./about.html" class="pagination-link" aria-label="About this Report">
-        <span class="nav-page-text">About this Report</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./methods.html" class="pagination-link" aria-label="Methods">
+        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Methods</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
-<footer class="footer">
-  <div class="nav-footer">
-    <div class="nav-footer-left">
-<p>© CC-By , 2023</p>
-</div>   
-    <div class="nav-footer-center">
-      &nbsp;
-    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/acep-uaf/aetr-web-book/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
-    <div class="nav-footer-right">
-<p>This page is based on Openscape’s <a href="https://github.com/Openscapes/quarto-website-tutorial">Quarto Site Template</a> and built with <a href="https://quarto.org/">Quarto</a> .</p>
-</div>
-  </div>
-</footer>
 
 
 
 
-</body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/acep-uaf/aetr-web-book-2024/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>

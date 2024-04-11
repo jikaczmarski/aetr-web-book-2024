@@ -1,1 +1,1 @@
-Sitemap: https://acep-uaf.github.io/aetr-web-book/sitemap.xml
+Sitemap: https://acep-uaf.github.io/aetr-web-book-2024/sitemap.xml

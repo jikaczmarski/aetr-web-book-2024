@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="description" content="An interactive report that summarizes federal, state, and utility electricity data for Alaska.">
 
-<title>AETR Web Book - Alaska Electricity Generation</title>
+<title>2024 Alaska Electricity Trends Report - 4&nbsp; Net/Gross Generation</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -137,7 +138,7 @@ window.Quarto = {
 <link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="nav-sidebar docked">
+<body class="nav-sidebar floating">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -146,7 +147,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./capacity.html">Discussion</a></li><li class="breadcrumb-item"><a href="./generation.html">Net Generation</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./generation.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Net/Gross Generation</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -158,7 +159,7 @@ window.Quarto = {
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-center sidebar-header sidebar-header-stacked">
       <a href="./index.html" class="sidebar-logo-link">
       <img src="./images/ACEP_gear.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
@@ -167,7 +168,7 @@ window.Quarto = {
       <a href="./"><strong>2024 Alaska Electricity Trends Report</strong><br><small><em>(Data Years 2011-2021)</em></small><br></a> 
         <div class="sidebar-tools-main">
     <a href="https://www.uaf.edu/acep/" title="Alaska Center for Energy and Power" class="quarto-navigation-tool px-1" aria-label="Alaska Center for Energy and Power"><i class="bi bi-globe"></i></a>
-    <a href="https://github.com/acep-uaf/aetr-web-book" title="Project GitHub" class="quarto-navigation-tool px-1" aria-label="Project GitHub"><i class="bi bi-github"></i></a>
+    <a href="https://github.com/acep-uaf/aetr-web-book-2024" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
 </div>
     </div>
       </div>
@@ -180,30 +181,56 @@ window.Quarto = {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link"><i class="bi bi-dot" role="img">
-</i> 
- <span class="menu-text">Summary</span></a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./about.html" class="sidebar-item-text sidebar-link"><i class="bi bi-dot" role="img">
-</i> 
- <span class="menu-text">About this Report</span></a>
+  <a href="./methods.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Methods</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./methods.html" class="sidebar-item-text sidebar-link"><i class="bi bi-dot" role="img">
-</i> 
- <span class="menu-text">Methods</span></a>
+  <a href="./capacity.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Installed Capacity</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./generation.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Net/Gross Generation</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./consumption.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Consumption and Sales</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./prices.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Price of Electricity</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./conclusions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Conclusions</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Data Portal</span></span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true"><i class="bi bi-dot" role="img">
-</i> 
- <span class="menu-text">Discussion</span></a>
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -211,81 +238,30 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./capacity.html" class="sidebar-item-text sidebar-link"><i class="bi bi-dot" role="img">
-</i> 
- <span class="menu-text">Capacity</span></a>
+  <a href="./about.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">About this Report</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./generation.html" class="sidebar-item-text sidebar-link active"><i class="bi bi-dot" role="img">
-</i> 
- <span class="menu-text">Net Generation</span></a>
+  <a href="./historic_reports.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Historical Electric Power Statistics Reports</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./consumption.html" class="sidebar-item-text sidebar-link"><i class="bi bi-dot" role="img">
-</i> 
- <span class="menu-text">Consumption</span></a>
+  <a href="./acronyms.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Acronym Definitions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./prices.html" class="sidebar-item-text sidebar-link"><i class="bi bi-dot" role="img">
-</i> 
- <span class="menu-text">Price of Electricity</span></a>
+  <a href="./credits.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Credits</span></span></a>
   </div>
 </li>
       </ul>
   </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./conclusions.html" class="sidebar-item-text sidebar-link"><i class="bi bi-dot" role="img">
-</i> 
- <span class="menu-text">Conclusions</span></a>
-  </div>
-</li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true"><i class="bi bi-dot" role="img">
-</i> 
- <span class="menu-text">Appendices</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./historic_reports.html" class="sidebar-item-text sidebar-link"><i class="bi bi-dot" role="img">
-</i> 
- <span class="menu-text">Historical Reports</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./data.html" class="sidebar-item-text sidebar-link"><i class="bi bi-dot" role="img">
-</i> 
- <span class="menu-text">Data Portal</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./acronyms.html" class="sidebar-item-text sidebar-link"><i class="bi bi-dot" role="img">
-</i> 
- <span class="menu-text">Definitions of Acronyms</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./credits.html" class="sidebar-item-text sidebar-link"><i class="bi bi-dot" role="img">
-</i> 
- <span class="menu-text">About the Team</span></a>
-  </div>
-</li>
     </ul>
     </div>
 </nav>
@@ -293,23 +269,23 @@ window.Quarto = {
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
+    <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#general-overview" id="toc-general-overview" class="nav-link active" data-scroll-target="#general-overview">General Overview</a></li>
-  <li><a href="#coastal" id="toc-coastal" class="nav-link" data-scroll-target="#coastal">Coastal</a></li>
-  <li><a href="#railbelt" id="toc-railbelt" class="nav-link" data-scroll-target="#railbelt">Railbelt</a></li>
-  <li><a href="#rural-remote" id="toc-rural-remote" class="nav-link" data-scroll-target="#rural-remote">Rural Remote</a></li>
+  <li><a href="#general-overview" id="toc-general-overview" class="nav-link active" data-scroll-target="#general-overview"><span class="header-section-number">4.1</span> General Overview</a></li>
+  <li><a href="#coastal" id="toc-coastal" class="nav-link" data-scroll-target="#coastal"><span class="header-section-number">4.2</span> Coastal</a></li>
+  <li><a href="#railbelt" id="toc-railbelt" class="nav-link" data-scroll-target="#railbelt"><span class="header-section-number">4.3</span> Railbelt</a></li>
+  <li><a href="#rural-remote" id="toc-rural-remote" class="nav-link" data-scroll-target="#rural-remote"><span class="header-section-number">4.4</span> Rural Remote</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/acep-uaf/aetr-web-book/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div><div class="quarto-other-links"><h2>Other Links</h2><ul><li><a href="mailto:uaf-acep-dcm-support@alaska.edu"><i class="bi bi-envelope-exclamation"></i>Report an issue via email</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/acep-uaf/aetr-web-book-2024/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div><div class="quarto-other-links"><h2>Other Links</h2><ul><li><a href="mailto:uaf-acep-dcm-support@alaska.edu"><i class="bi bi-envelope-exclamation"></i>Report an issue via email</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./capacity.html">Discussion</a></li><li class="breadcrumb-item"><a href="./generation.html">Net Generation</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Alaska Electricity Generation</h1>
-<p class="subtitle lead">Generation by Fuel Type, 2011-2021</p>
+<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Net/Gross Generation</span></h1>
+<p class="subtitle lead">Generation by Fuel Type in Alaska, 2011-2021</p>
 </div>
 
 
@@ -320,14 +296,14 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">Apr 10, 2024 at 21:58 UTC</p>
+      <p class="date">Apr 11, 2024 at 17:39 UTC</p>
     </div>
   </div>
   
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">Apr 8, 2024 at 23:39 UTC</p>
+      <p class="date-modified">Apr 11, 2024 at 17:11 UTC</p>
     </div>
   </div>
     
@@ -338,10 +314,10 @@ window.Quarto = {
 </header>
 
 
-<section id="general-overview" class="level2">
-<h2 class="anchored" data-anchor-id="general-overview">General Overview</h2>
+<section id="general-overview" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="general-overview"><span class="header-section-number">4.1</span> General Overview</h2>
 <p>This section outlines the trends in generation by fuel type for each region. Generation in our context has two separate definitions. Data collected through the Energy Information Administration (EIA) records “net” generation, which excludes electricity use for power plant operations. However, data collected from the Alaska Energy Authority’s (AEA) Power Cost Equalization (PCE) program is presented as “gross” generation, which does not make this exclusion.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
-<p><a href="#fig-generation-by-region" class="quarto-xref">Figure&nbsp;1</a> provides a visual representation of yearly electricity generation for the Coastal, Railbelt, and Rural Remote regions. All regions produced a relatively consistent amount of electricity between 2011 and 2021. Across this time period, the Railbelt generated an average of 4,772 GWh, the Coastal region generated an average of 1,131 GWh, and the Rural Remote region generated an average of 509 GWh. Between 2011 and 2021, the average yearly growth rate for generation was 1.62% in the Coastal region, -0.31% in the Railbelt region, and 2.43% in Rural Remote communities.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> The Coastal and Rural Remote trends are in line with improvements in rural electrification, as well as modest population growth. Of the regions, the Railbelt is the only one that consistently saw decreases in generation across the years. Total statewide generation increased at an average annual growth rate of 0.22%.</p>
+<p><a href="#fig-generation-by-region" class="quarto-xref">Figure&nbsp;<span>4.1</span></a> provides a visual representation of yearly electricity generation for the Coastal, Railbelt, and Rural Remote regions. All regions produced a relatively consistent amount of electricity between 2011 and 2021. Across this time period, the Railbelt generated an average of 4,772 GWh, the Coastal region generated an average of 1,131 GWh, and the Rural Remote region generated an average of 509 GWh. Between 2011 and 2021, the average yearly growth rate for generation was 1.62% in the Coastal region, -0.31% in the Railbelt region, and 2.43% in Rural Remote communities.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> The Coastal and Rural Remote trends are in line with improvements in rural electrification, as well as modest population growth. Of the regions, the Railbelt is the only one that consistently saw decreases in generation across the years. Total statewide generation increased at an average annual growth rate of 0.22%.</p>
 <div class="cell">
 <div class="sourceCode cell-code hidden" id="cb1" data-startfrom="64" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 63;"><span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> {tidy<span class="op">,</span> groupBy<span class="op">,</span> rename<span class="op">,</span> summarize<span class="op">,</span> sum<span class="op">,</span> mutate<span class="op">,</span> select<span class="op">,</span> n<span class="op">,</span> nDistinct<span class="op">,</span> mean<span class="op">,</span> filter<span class="op">,</span> pivotWider<span class="op">,</span> pivotLonger<span class="op">,</span> leftJoin<span class="op">,</span> slice<span class="op">,</span> fullJoin<span class="op">,</span> lag<span class="op">,</span> TMath<span class="op">,</span> rowNumber<span class="op">,</span>mutateWithSummary} <span class="im">from</span> <span class="st">"@pbeshai/tidyjs"</span></span>
 <span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a></span>
@@ -424,7 +400,7 @@ window.Quarto = {
 <div id="fig-generation-by-region" class="cell-output cell-output-display quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-generation-by-region-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: Electricity Generation by Region
+Figure&nbsp;4.1: Electricity Generation by Region
 </figcaption>
 <div aria-describedby="fig-generation-by-region-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div id="ojs-cell-2" data-nodetype="expression">
@@ -434,7 +410,7 @@ Figure&nbsp;1: Electricity Generation by Region
 </figure>
 </div>
 </div>
-<p>While generation did not change significantly during the observed time period, the resources from which generation occurred, did. <a href="#fig-generation-changes-by-region" class="quarto-xref">Figure&nbsp;2</a> shows how the mix of generation fuels changed between 2011 and 2021.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></p>
+<p>While generation did not change significantly during the observed time period, the resources from which generation occurred, did. <a href="#fig-generation-changes-by-region" class="quarto-xref">Figure&nbsp;<span>4.2</span></a> shows how the mix of generation fuels changed between 2011 and 2021.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></p>
 <div class="cell">
 <div class="sourceCode cell-code hidden" id="cb3" data-startfrom="135" data-source-offset="-59"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 134;"><span id="cb3-135"><a href="#cb3-135" aria-hidden="true" tabindex="-1"></a>caption_gen_mix <span class="op">=</span> <span class="st">"Note: Storage is not included here due since net generation is negative."</span></span>
 <span id="cb3-136"><a href="#cb3-136" aria-hidden="true" tabindex="-1"></a></span>
@@ -576,7 +552,7 @@ Figure&nbsp;1: Electricity Generation by Region
 <div id="fig-generation-changes-by-region" class="cell-output cell-output-display quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-generation-changes-by-region-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2: Regional Changes in Net Generation
+Figure&nbsp;4.2: Regional Changes in Net Generation
 </figcaption>
 <div aria-describedby="fig-generation-changes-by-region-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div id="ojs-cell-4" data-nodetype="expression">
@@ -589,9 +565,9 @@ Figure&nbsp;2: Regional Changes in Net Generation
 <p>We show that for these resources, the Coastal region displaced oil generation with hydro and wind generation. The Railbelt displaced gas and oil generation with coal, hydro, and solar generation. Finally, the Rural Remote region of the state displaced coal and a small amount of hydro with gas, solar, and wind generation.</p>
 <p>This figure does not include trends in storage or the other category. Storage net generation is always negative due to the efficiency of current battery systems where more energy is sent to storage than can be recovered. The “other” category was not included in this figure as net generation was zero in 2011 and 2021 (but not throughout the series, which we show in the subsequent sections).</p>
 </section>
-<section id="coastal" class="level2">
-<h2 class="anchored" data-anchor-id="coastal">Coastal</h2>
-<p>In 2011, the Coastal region generated 89% of its electricity from hydro, 10% from oil, and the remainder from wind.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> In 2021, the region generated 92% of electricity from hydro, 6% from oil, and 2% from wind. In addition, storage played a role in generation, albeit the net result is negative due to efficiencies. <a href="#fig-generation-fuel-coastal" class="quarto-xref">Figure&nbsp;3</a> shows how this generation mix has changed over the years.</p>
+<section id="coastal" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="coastal"><span class="header-section-number">4.2</span> Coastal</h2>
+<p>In 2011, the Coastal region generated 89% of its electricity from hydro, 10% from oil, and the remainder from wind.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> In 2021, the region generated 92% of electricity from hydro, 6% from oil, and 2% from wind. In addition, storage played a role in generation, albeit the net result is negative due to efficiencies. <a href="#fig-generation-fuel-coastal" class="quarto-xref">Figure&nbsp;<span>4.3</span></a> shows how this generation mix has changed over the years.</p>
 <div class="cell">
 <div class="sourceCode cell-code hidden" id="cb5" data-startfrom="248" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 247;"><span id="cb5-248"><a href="#cb5-248" aria-hidden="true" tabindex="-1"></a><span class="co">// Plotting the shares for the coastal region</span></span>
 <span id="cb5-249"><a href="#cb5-249" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
@@ -638,7 +614,7 @@ Figure&nbsp;2: Regional Changes in Net Generation
 <div id="fig-generation-fuel-coastal" class="cell-output cell-output-display quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-generation-fuel-coastal-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3: Share of Net Generation by Fuel Type, Coastal Region
+Figure&nbsp;4.3: Share of Net Generation by Fuel Type, Coastal Region
 </figcaption>
 <div aria-describedby="fig-generation-fuel-coastal-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div id="ojs-cell-5" data-nodetype="expression">
@@ -648,7 +624,7 @@ Figure&nbsp;3: Share of Net Generation by Fuel Type, Coastal Region
 </figure>
 </div>
 </div>
-<p>Generation grew at an average annual growth rate of 1.62% from 2011 to 2021. <a href="#fig-generation-coastal" class="quarto-xref">Figure&nbsp;4</a> highlights the yearly trends in generation by fuel source.</p>
+<p>Generation grew at an average annual growth rate of 1.62% from 2011 to 2021. <a href="#fig-generation-coastal" class="quarto-xref">Figure&nbsp;<span>4.4</span></a> highlights the yearly trends in generation by fuel source.</p>
 <div class="cell">
 <div class="sourceCode cell-code hidden" id="cb6" data-startfrom="298" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 297;"><span id="cb6-298"><a href="#cb6-298" aria-hidden="true" tabindex="-1"></a><span class="co">// Plotting total generation by region and year</span></span>
 <span id="cb6-299"><a href="#cb6-299" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
@@ -700,7 +676,7 @@ Figure&nbsp;3: Share of Net Generation by Fuel Type, Coastal Region
 <div id="fig-generation-coastal" class="cell-output cell-output-display quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-generation-coastal-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;4: Electricity Generation, Coastal Region
+Figure&nbsp;4.4: Electricity Generation, Coastal Region
 </figcaption>
 <div aria-describedby="fig-generation-coastal-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div id="ojs-cell-6" data-nodetype="expression">
@@ -711,9 +687,9 @@ Figure&nbsp;4: Electricity Generation, Coastal Region
 </div>
 </div>
 </section>
-<section id="railbelt" class="level2">
-<h2 class="anchored" data-anchor-id="railbelt">Railbelt</h2>
-<p>Railbelt generation has seen notable changes in how it generates electricity between 2011 and 2021. In 2011, the Railbelt region generated 73% of electricity from gas, 8% from coal, 8% from hydro, and 11% from oil. Additionally, a small amount of wind generation was present. In 2021, the region generated 61% of electricity from gas, 15% from coal, 12% from hydro, 10% from oil, and 2% from wind. Additionally, a small amount of solar generation was present. In addition, storage played a role in generation, albeit the net result is negative due to non-perfect efficiencies. <a href="#fig-generation-fuel-railbelt" class="quarto-xref">Figure&nbsp;5</a> shows how this generation mix has changed over the years.</p>
+<section id="railbelt" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="railbelt"><span class="header-section-number">4.3</span> Railbelt</h2>
+<p>Railbelt generation has seen notable changes in how it generates electricity between 2011 and 2021. In 2011, the Railbelt region generated 73% of electricity from gas, 8% from coal, 8% from hydro, and 11% from oil. Additionally, a small amount of wind generation was present. In 2021, the region generated 61% of electricity from gas, 15% from coal, 12% from hydro, 10% from oil, and 2% from wind. Additionally, a small amount of solar generation was present. In addition, storage played a role in generation, albeit the net result is negative due to non-perfect efficiencies. <a href="#fig-generation-fuel-railbelt" class="quarto-xref">Figure&nbsp;<span>4.5</span></a> shows how this generation mix has changed over the years.</p>
 <div class="cell">
 <div class="sourceCode cell-code hidden" id="cb7" data-startfrom="355" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 354;"><span id="cb7-355"><a href="#cb7-355" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({<span class="co">//| </span></span>
 <span id="cb7-356"><a href="#cb7-356" aria-hidden="true" tabindex="-1"></a></span>
@@ -759,7 +735,7 @@ Figure&nbsp;4: Electricity Generation, Coastal Region
 <div id="fig-generation-fuel-railbelt" class="cell-output cell-output-display quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-generation-fuel-railbelt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;5: Share of Net Generation by Fuel Type, Railbelt Region
+Figure&nbsp;4.5: Share of Net Generation by Fuel Type, Railbelt Region
 </figcaption>
 <div aria-describedby="fig-generation-fuel-railbelt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div id="ojs-cell-7" data-nodetype="expression">
@@ -769,7 +745,7 @@ Figure&nbsp;5: Share of Net Generation by Fuel Type, Railbelt Region
 </figure>
 </div>
 </div>
-<p>Generation from 2011 to 2021 saw an average annual growth rate of -0.31%. <a href="#fig-generation-railbelt" class="quarto-xref">Figure&nbsp;6</a> highlights the yearly trends in generation by fuel source.</p>
+<p>Generation from 2011 to 2021 saw an average annual growth rate of -0.31%. <a href="#fig-generation-railbelt" class="quarto-xref">Figure&nbsp;<span>4.6</span></a> highlights the yearly trends in generation by fuel source.</p>
 <div class="cell">
 <div class="sourceCode cell-code hidden" id="cb8" data-startfrom="405" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 404;"><span id="cb8-405"><a href="#cb8-405" aria-hidden="true" tabindex="-1"></a><span class="co">// Plotting total generation by region and year</span></span>
 <span id="cb8-406"><a href="#cb8-406" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
@@ -821,7 +797,7 @@ Figure&nbsp;5: Share of Net Generation by Fuel Type, Railbelt Region
 <div id="fig-generation-railbelt" class="cell-output cell-output-display quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-generation-railbelt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;6: Electricity Generation, Railbelt Region
+Figure&nbsp;4.6: Electricity Generation, Railbelt Region
 </figcaption>
 <div aria-describedby="fig-generation-railbelt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div id="ojs-cell-8" data-nodetype="expression">
@@ -832,9 +808,9 @@ Figure&nbsp;6: Electricity Generation, Railbelt Region
 </div>
 </div>
 </section>
-<section id="rural-remote" class="level2">
-<h2 class="anchored" data-anchor-id="rural-remote">Rural Remote</h2>
-<p>The Rural Remote region has seen notable changes between 2011 and 2021 in how it generates electricity. In 2011, the region generated 84% of electricity from oil, 12% from gas, 2% from hydro, and 2% from wind. In 2021, the region generated 77% of electricity from oil (mostly diesel), 19% from gas, 1% from hydro, and 3% from wind. Additionally, a small amount of solar generation was present. <a href="#fig-generation-fuel-rural" class="quarto-xref">Figure&nbsp;7</a> shows how this generation mix has changed over the years.</p>
+<section id="rural-remote" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="rural-remote"><span class="header-section-number">4.4</span> Rural Remote</h2>
+<p>The Rural Remote region has seen notable changes between 2011 and 2021 in how it generates electricity. In 2011, the region generated 84% of electricity from oil, 12% from gas, 2% from hydro, and 2% from wind. In 2021, the region generated 77% of electricity from oil (mostly diesel), 19% from gas, 1% from hydro, and 3% from wind. Additionally, a small amount of solar generation was present. <a href="#fig-generation-fuel-rural" class="quarto-xref">Figure&nbsp;<span>4.7</span></a> shows how this generation mix has changed over the years.</p>
 <div class="cell">
 <div class="sourceCode cell-code hidden" id="cb9" data-startfrom="462" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 461;"><span id="cb9-462"><a href="#cb9-462" aria-hidden="true" tabindex="-1"></a><span class="co">// Plotting the shares for the coastal region</span></span>
 <span id="cb9-463"><a href="#cb9-463" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
@@ -881,7 +857,7 @@ Figure&nbsp;6: Electricity Generation, Railbelt Region
 <div id="fig-generation-fuel-rural" class="cell-output cell-output-display quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-generation-fuel-rural-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;7: Share of Net Generation by Fuel Type, Rural Remote Region
+Figure&nbsp;4.7: Share of Net Generation by Fuel Type, Rural Remote Region
 </figcaption>
 <div aria-describedby="fig-generation-fuel-rural-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div id="ojs-cell-9" data-nodetype="expression">
@@ -891,7 +867,7 @@ Figure&nbsp;7: Share of Net Generation by Fuel Type, Rural Remote Region
 </figure>
 </div>
 </div>
-<p>Generation from 2011 to 2021 saw an average annual growth rate of 2.43%. <a href="#fig-generation-rural" class="quarto-xref">Figure&nbsp;8</a> highlights the yearly trends in generation by fuel source. From 2013 to 2014, a large increase in gas generation is observed due to operations on the North Slope - specifically in the Barrow Utilities &amp; Electric Cooperative, Inc.&nbsp;(BUECI), Deadhorse, and Nuiqsut service regions.</p>
+<p>Generation from 2011 to 2021 saw an average annual growth rate of 2.43%. <a href="#fig-generation-rural" class="quarto-xref">Figure&nbsp;<span>4.8</span></a> highlights the yearly trends in generation by fuel source. From 2013 to 2014, a large increase in gas generation is observed due to operations on the North Slope - specifically in the Barrow Utilities &amp; Electric Cooperative, Inc.&nbsp;(BUECI), Deadhorse, and Nuiqsut service regions.</p>
 <div class="cell">
 <div class="sourceCode cell-code hidden" id="cb10" data-startfrom="512" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 511;"><span id="cb10-512"><a href="#cb10-512" aria-hidden="true" tabindex="-1"></a><span class="co">// Plotting total generation by region and year</span></span>
 <span id="cb10-513"><a href="#cb10-513" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
@@ -943,7 +919,7 @@ Figure&nbsp;7: Share of Net Generation by Fuel Type, Rural Remote Region
 <div id="fig-generation-rural" class="cell-output cell-output-display quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-fig" id="fig-generation-rural-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;8: Electricity Generation, Rural Remote Region
+Figure&nbsp;4.8: Electricity Generation, Rural Remote Region
 </figcaption>
 <div aria-describedby="fig-generation-rural-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div id="ojs-cell-10" data-nodetype="expression">
@@ -956,17 +932,17 @@ Figure&nbsp;8: Electricity Generation, Rural Remote Region
 
 
 </section>
-
-
-<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
-
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
 <ol>
 <li id="fn1"><p>The PCE data do show powerhouse consumption as a separate data item, which would allow for the computation of “net generation” in PCE communities. However, we have continued to report generation in PCE communities as the gross amount in order to be consistent with previous Alaska Energy Statistics Reports.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn2"><p>Calculated with the compound average growth rate: <span class="math inline">\(CAGR = \left(\left(\frac{gen_{2021}}{gen_{2011}} \right)^{\frac{1}{2021-2011}} -1\right)\)</span><a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn3"><p>Oil consists of generators whose primary fuel source is diesel/distillate, naphtha, or jet fuel. Gas consists of natural or landfill gas. Hydro refers to conventional hydroelectric turbines. Wind and solar are both utility-scale (excluding behind-the-meter solar). Storage is not included in these calculations.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn4"><p>Net generation from storage facilities are not included in these calculations.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
-</section></div></main> <!-- /main -->
+</section>
+
+</main> <!-- /main -->
 <script type="ojs-module-contents">
 eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6ImltcG9ydCB7dGlkeSwgZ3JvdXBCeSwgcmVuYW1lLCBzdW1tYXJpemUsIHN1bSwgbXV0YXRlLCBzZWxlY3QsIG4sIG5EaXN0aW5jdCwgbWVhbiwgZmlsdGVyLCBwaXZvdFdpZGVyLCBwaXZvdExvbmdlciwgbGVmdEpvaW4sIHNsaWNlLCBmdWxsSm9pbiwgbGFnLCBUTWF0aCwgcm93TnVtYmVyLG11dGF0ZVdpdGhTdW1tYXJ5fSBmcm9tIFwiQHBiZXNoYWkvdGlkeWpzXCJcblxuLy8gSW1wb3J0IHRoZSBsb25nLWZvcm0gZ2VuZXJhdGlvbiBkYXRhXG5nZW5fZGF0YSA9IEZpbGVBdHRhY2htZW50KFwiZGF0YS93b3JraW5nL2dlbmVyYXRpb24vbmV0X2dlbmVyYXRpb25fbG9uZy5jc3ZcIikuY3N2KHsgdHlwZWQ6IHRydWUgfSlcblxuLy8gQ29udmVydCBNV2ggdG8gR1doXG5nZW5fZGF0YV9nd2ggPSB0aWR5KGdlbl9kYXRhLCBtdXRhdGUoe1xuICBnZW5lcmF0aW9uOiAoZCkgPT4gZC5nZW5lcmF0aW9uIC8gMTAwMFxufSkpO1xuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC0yIiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoiXG4vLyBQbG90dGluZyB0b3RhbCBnZW5lcmF0aW9uIGJ5IHJlZ2lvbiBhbmQgeWVhci8vfCBcblBsb3QucGxvdCh7XG4gIFxuICAvLyBDb25maWd1cmUgdGhlIHBsb3RcbiAgLy90aXRsZTogXCIgRWxlY3RyaWNpdHkgZ2VuZXJhdGlvbiBieSByZWdpb25cIixcbiAgaW5zZXRMZWZ0OiAwLFxuICBpbnNldFJpZ2h0OiAwLFxuICBcbiAgLy8gQ29uZmlndXJlIHRoZSB4LWF4aXNcbiAgeDoge1xuICAgIHRpY2tGb3JtYXQ6IFwiZFwiLFxuICAgIGxhYmVsOiBcIlllYXJcIlxuICB9LFxuICBcbiAgLy8gQ29uZmlndXJlIHRoZSB5LWF4aXNcbiAgeToge1xuICAgIGdyaWQ6IHRydWUsXG4gICAgbGFiZWw6IFwiR2VuZXJhdGlvbiAoR1doKVwiXG4gIH0sXG4gIFxuICAvLyBQbG90dGluZyB0aGUgc2VyaWVzXG4gIG1hcmtzOiBbXG4gICAgUGxvdC5iYXJZKFxuICAgICAgZ2VuX2RhdGFfZ3doLFxuICAgICAgUGxvdC5ncm91cFgoXG4gICAgICAgIHtcbiAgICAgICAgICB5OiBcInN1bVwiXG4gICAgICAgIH0sXG4gICAgICAgIHtcbiAgICAgICAgICB4OiBcInllYXJcIixcbiAgICAgICAgICB5OiBcImdlbmVyYXRpb25cIixcbiAgICAgICAgICBmaWxsOiBcImFjZXBfcmVnaW9uXCIsXG4gICAgICAgICAgdGlwOiB7Zm9ybWF0OiB7eDogXCJkXCJ9fVxuICAgICAgICB9XG4gICAgICApXG4gICAgKSxcbiAgICBQbG90LnJ1bGVZKFswXSlcbiAgXSxcbiAgXG4gIC8vIExlZ2VuZFxuICBjb2xvcjoge1xuICAgIGRvbWFpbjogW1wiQ29hc3RhbFwiLFwiUmFpbGJlbHRcIixcIlJ1cmFsIFJlbW90ZVwiXSxcbiAgICByYW5nZTogW1wiIzhjYmJkYVwiLFwiIzk3Y2Q5M1wiLFwiI2YyOGQ4Y1wiXSxcbiAgICBsZWdlbmQ6IHRydWVcbiAgfVxufSlcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMyIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6IlxuLy8gRXN0YWJsaXNoIHRoZSBmaWd1cmUgY2FwdGlvbiBmb3IgZ2VuZXJhdGlvbiBtaXggY2hhcnRzXG5jYXB0aW9uX2dlbl9taXggPSBcIk5vdGU6IFN0b3JhZ2UgaXMgbm90IGluY2x1ZGVkIGhlcmUgZHVlIHNpbmNlIG5ldCBnZW5lcmF0aW9uIGlzIG5lZ2F0aXZlLlwiXG5cbi8vIENyZWF0aW5nIGEgbW9kaWZpZWQgdmVyc2lvbiBvZiB0aGUgZGF0YVxuc2hhcmVfZGF0YSA9IHRpZHkoXG4gIGdlbl9kYXRhLFxuICBncm91cEJ5KFxuICAgIFsneWVhcicsJ2FjZXBfcmVnaW9uJywnZnVlbF90eXBlJ10sIFxuICAgIFtcbiAgICAgIHN1bW1hcml6ZSh7XG4gICAgICAgIGdlbmVyYXRpb246IHN1bSgnZ2VuZXJhdGlvbicpXG4gICAgICB9KVxuICAgIF1cbiAgKVxuKVxuXG4vLyBDcmVhdGluZyB0b3RhbCBnZW5lcmF0aW9uIGRhdGEgZnJvbSBlYWNoIHJlZ2lvbiBhbmQgeWVhclxudG90YWxfZ2VuID0gdGlkeShzaGFyZV9kYXRhLCBncm91cEJ5KFsneWVhcicsJ2FjZXBfcmVnaW9uJ10sIHN1bW1hcml6ZSh7dG90YWxfZ2VuZXJhdGlvbjogc3VtKCdnZW5lcmF0aW9uJyl9KSkpXG5cblxuLy8gQ3JlYXRpbmcgYSBqb2luZWQgdGFibGUgZnJvbSB0aGUgYWJvdmUgdHdvXG5qb2luID0gdGlkeShzaGFyZV9kYXRhLCBmdWxsSm9pbih0b3RhbF9nZW4sIHtieTogWyd5ZWFyJywnYWNlcF9yZWdpb24nXX0pKVxuXG4vLyBDcmVhdGluZyBhIGNvbHVtbiB3aXRoIHNoYXJlc1xuam9pbl9zaGFyZXMgPSB0aWR5KGpvaW4uZmlsdGVyKChkKSA9PiBkLmZ1ZWxfdHlwZSAhPT0gXCJTdG9yYWdlXCIpLFxuICBtdXRhdGUoe2dlbmVyYXRpb25fc2hhcmU6IChkKSA9PiAoZC5nZW5lcmF0aW9uIC8gZC50b3RhbF9nZW5lcmF0aW9uKSoxMDB9KVxuKSAvLyBqb2luX3NoYXJlcyBzaG91bGQgYmUgdXNlZCBmb3IgdGhlIDEwMCUgYXJlYSBjaGFydHNcblxuLy8gVGFibGUgZm9yIGp1c3QgdGhlIDIwMTEgYW5kIDIwMjEgZ2VuZXJhdGlvbiBtaXggY29tcGFyaXNvblxuZ2VuX21peF9kaWZmID0gdGlkeShcbiAgam9pbl9zaGFyZXMuZmlsdGVyKChkKSA9PiBkLnllYXIgPT09IDIwMTEgfHwgZC55ZWFyID09PSAyMDIxKSxcbiAgZ3JvdXBCeShcbiAgICBbJ2FjZXBfcmVnaW9uJywnZnVlbF90eXBlJ10sXG4gICAgbXV0YXRlV2l0aFN1bW1hcnkoe1xuICAgICAgICBnZW5lcmF0aW9uX3NoYXJlXzIwMTE6IGxhZygnZ2VuZXJhdGlvbl9zaGFyZScsIHtkZWZhdWx0OiAwfSlcbiAgICB9KVxuICApLFxuICBtdXRhdGUoe1xuICAgIGRlbHRhOiAoZCkgPT4gZC5nZW5lcmF0aW9uX3NoYXJlIC0gZC5nZW5lcmF0aW9uX3NoYXJlXzIwMTFcbiAgfSksXG4gIGZpbHRlcihcbiAgICAoZCkgID0+IGQueWVhciA9PT0gMjAyMVxuICApXG4pXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTQiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJcbi8vIFBsb3R0aW5nIHRoZSBkZWx0YXNcblBsb3QucGxvdCh7XG4gIC8vdGl0bGU6IFwiUmVnaW9uYWwgY2hhbmdlcyBpbiBuZXQgZ2VuZXJhdGlvblwiLFxuICBjYXB0aW9uOiBcIlBlcmNlbnRhZ2UgcG9pbnQgZGlmZmVyZW5jZXMgaW4gZ2VuZXJhdGlvbiBtaXggYmV0d2VlbiAyMDIxIGFuZCAyMDExXCIsXG4gIGluc2V0TGVmdDogMTUsXG4gIGluc2V0UmlnaHQ6IDE1LFxuICBtYXJnaW5SaWdodDogNzAsXG4gIGhlaWdodDogNjAwLFxuICB3aWR0aDogODAwLFxuXG4gIHg6IHtcbiAgICBsYWJlbDogXCJQZXJjZW50YWdlIFBvaW50IENoYW5nZVwiLFxuICAgIGxhYmVsQW5jaG9yOiBcImNlbnRlclwiXG4gIH0sXG5cbiAgeToge1xuICAgIGdyaWQ6IHRydWUsXG4gICAgZG9tYWluOiBbXCJDb2FsXCIsXCJPaWxcIixcIkdhc1wiLFwiSHlkcm9cIixcIldpbmRcIixcIlNvbGFyXCJdLFxuICAgIGxhYmVsOiBcIlwiXG4gIH0sXG5cbiAgZmFjZXQ6IHtcbiAgICBkYXRhOiBnZW5fbWl4X2RpZmYsXG4gICAgeTogKGQpID0+IGQuYWNlcF9yZWdpb25cbiAgfSxcblxuICBtYXJrczogW1xuICAgIFBsb3QuZnJhbWUoKSxcbiAgICBQbG90LmJhclgoZ2VuX21peF9kaWZmLCB7XG4gICAgICAgIHg6IFwiZGVsdGFcIixcbiAgICAgICAgeTogXCJmdWVsX3R5cGVcIixcbiAgICAgICAgZmlsbDogXCJmdWVsX3R5cGVcIixcbiAgICAgICAgb3JkZXI6IFtcIkNvYWxcIixcIk9pbFwiLFwiR2FzXCIsXCJIeWRyb1wiLFwiV2luZFwiLFwiU29sYXJcIl0sXG4gICAgICAgIHRpcDoge1xuICAgICAgICAgIGZvcm1hdDoge1xuICAgICAgICAgICAgeDogKGQpID0+IGAkeyhkKS50b0xvY2FsZVN0cmluZyh1bmRlZmluZWQsIHttYXhpbXVtRnJhY3Rpb25EaWdpdHM6IDJ9KX0lYCxcbiAgICAgICAgICAgIHk6IGZhbHNlXG4gICAgICAgICAgfVxuICAgICAgICB9XG4gICAgICB9XG4gICAgKSxcbiAgICBQbG90LnJ1bGVYKFswXSlcbiAgXSxcblxuICBjb2xvcjoge1xuICAgIGRvbWFpbjogW1wiQ29hbFwiLFwiT2lsXCIsXCJHYXNcIixcIkh5ZHJvXCIsXCJXaW5kXCIsXCJTb2xhclwiXSxcbiAgICByYW5nZTogW1wiIzdmN2Y3ZlwiLFwiI0JGQkZCRlwiLFwiI0RDRDlDNVwiLFwiIzk2QjNERlwiLFwiI0Y3OTY0NlwiLFwiI0Y1QzI0M1wiXSxcbiAgICBsZWdlbmQ6IHRydWVcbiAgfVxufSlcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtNSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6IlxuLy8gUGxvdHRpbmcgdGhlIHNoYXJlcyBmb3IgdGhlIGNvYXN0YWwgcmVnaW9uXG5QbG90LnBsb3Qoe1xuXG4gIC8vIENvbmZpZ3VyZSB0aGUgcGxvdFxuICAvL3RpdGxlOiBcIlNoYXJlIG9mIG5ldCBnZW5lcmF0aW9uIGJ5IGZ1ZWwgdHlwZSwgQ29hc3RhbCByZWdpb25cIixcbiAgY2FwdGlvbjogY2FwdGlvbl9nZW5fbWl4LFxuICBpbnNldExlZnQ6IDAsXG4gIGluc2V0UmlnaHQ6IDAsXG4gIFxuICAvLyBDb25maWd1cmUgdGhlIHgtYXhpc1xuICB4OiB7XG4gICAgdGlja0Zvcm1hdDogXCJkXCIsXG4gICAgbGFiZWw6IFwiWWVhclwiXG4gIH0sXG4gIFxuICAvLyBDb25maWd1cmUgdGhlIHktYXhpc1xuICB5OiB7XG4gICAgZ3JpZDogdHJ1ZSxcbiAgICBsYWJlbDogXCJTaGFyZSBvZiBlbGVjdHJpY2l0eSBnZW5lcmF0aW9uXCJcbiAgfSxcbiAgXG4gIG1hcmtzOiBbXG4gICAgUGxvdC5hcmVhWShcbiAgICAgIGpvaW5fc2hhcmVzLmZpbHRlcigoZCkgPT4gZC5hY2VwX3JlZ2lvbiA9PT0gXCJDb2FzdGFsXCIpLFxuICAgICAge1xuICAgICAgICB4OlwieWVhclwiLFxuICAgICAgICB5OlwiZ2VuZXJhdGlvbl9zaGFyZVwiLCBcbiAgICAgICAgZmlsbDogXCJmdWVsX3R5cGVcIixcbiAgICAgICAgb3JkZXI6IFtcIk9pbFwiLFwiSHlkcm9cIixcIldpbmRcIl0sXG4gICAgICAgIHRpcDoge2Zvcm1hdDoge3g6IFwiZFwiLCB5OiAoZCkgPT4gYCR7KGQpLnRvTG9jYWxlU3RyaW5nKHVuZGVmaW5lZCwge21heGltdW1GcmFjdGlvbkRpZ2l0czogMn0pfSVgfX1cbiAgICAgIH1cbiAgICApLFxuICAgIFBsb3QucnVsZVkoWzBdKVxuICBdLFxuICBcbiAgLy8gTGVnZW5kXG4gIGNvbG9yOiB7XG4gICAgZG9tYWluOiBbXCJPaWxcIixcIkh5ZHJvXCIsXCJXaW5kXCJdLFxuICAgIHJhbmdlOiBbXCIjQkZCRkJGXCIsXCIjOTZCM0RGXCIsXCIjRjc5NjQ2XCJdLFxuICAgIGxlZ2VuZDogdHJ1ZVxufVxufSlcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtNiIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6IlxuLy8gUGxvdHRpbmcgdG90YWwgZ2VuZXJhdGlvbiBieSByZWdpb24gYW5kIHllYXJcblBsb3QucGxvdCh7XG4gIFxuICAvLyBDb25maWd1cmUgdGhlIHBsb3RcbiAgLy90aXRsZTogXCJDb2FzdGFsIHJlZ2lvbiBlbGVjdHJpY2l0eSBnZW5lcmF0aW9uXCIsXG4gIGluc2V0TGVmdDogMCxcbiAgaW5zZXRSaWdodDogMCxcbiAgXG4gIC8vIENvbmZpZ3VyZSB0aGUgeC1heGlzXG4gIHg6IHtcbiAgICB0aWNrRm9ybWF0OiBcImRcIixcbiAgICBsYWJlbDogXCJZZWFyXCJcbiAgfSxcbiAgXG4gIC8vIENvbmZpZ3VyZSB0aGUgeS1heGlzXG4gIHk6IHtcbiAgICBncmlkOiB0cnVlLFxuICAgIGxhYmVsOiBcIkdlbmVyYXRpb24gKEdXaClcIlxuICB9LFxuICBcbiAgLy8gUGxvdHRpbmcgdGhlIHNlcmllc1xuICBtYXJrczogW1xuICAgIFBsb3QuYmFyWShcbiAgICAgIGdlbl9kYXRhX2d3aC5maWx0ZXIoZCA9PiBkLmFjZXBfcmVnaW9uID09PSBcIkNvYXN0YWxcIiAmJiBkLmdlbmVyYXRpb24gIT09IG51bGwpLFxuICAgICAgUGxvdC5ncm91cFgoXG4gICAgICAgIHtcbiAgICAgICAgICB5OiBcInN1bVwiXG4gICAgICAgIH0sXG4gICAgICAgIHtcbiAgICAgICAgICB4OiBcInllYXJcIixcbiAgICAgICAgICB5OiBcImdlbmVyYXRpb25cIixcbiAgICAgICAgICBmaWxsOiBcImZ1ZWxfdHlwZVwiLFxuICAgICAgICAgIG9yZGVyOiBbXCJPaWxcIixcIkh5ZHJvXCIsXCJXaW5kXCJdLFxuICAgICAgICAgIHRpcDoge2Zvcm1hdDoge3g6IFwiZFwifX1cbiAgICAgICAgfVxuICAgICAgKVxuICAgICksXG4gICAgUGxvdC5ydWxlWShbMF0pXG4gIF0sXG4gIFxuICAvLyBMZWdlbmRcbiAgY29sb3I6IHtcbiAgICBkb21haW46IFtcIk9pbFwiLFwiSHlkcm9cIixcIldpbmRcIl0sXG4gICAgcmFuZ2U6IFtcIiNCRkJGQkZcIixcIiM5NkIzREZcIixcIiNGNzk2NDZcIl0sXG4gICAgbGVnZW5kOiB0cnVlXG4gIH1cbn0pXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTciLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJcblBsb3QucGxvdCh7Ly98IFxuXG4gIC8vIENvbmZpZ3VyZSB0aGUgcGxvdFxuICAvL3RpdGxlOiBcIlNoYXJlIG9mIG5ldCBnZW5lcmF0aW9uIGJ5IGZ1ZWwgdHlwZSwgUmFpbGJlbHQgcmVnaW9uXCIsXG4gIGNhcHRpb246IGNhcHRpb25fZ2VuX21peCxcbiAgaW5zZXRMZWZ0OiAwLFxuICBpbnNldFJpZ2h0OiAwLFxuICBcbiAgLy8gQ29uZmlndXJlIHRoZSB4LWF4aXNcbiAgeDoge1xuICAgIHRpY2tGb3JtYXQ6IFwiZFwiLFxuICAgIGxhYmVsOiBcIlllYXJcIlxuICB9LFxuICBcbiAgLy8gQ29uZmlndXJlIHRoZSB5LWF4aXNcbiAgeToge1xuICAgIGdyaWQ6IHRydWUsXG4gICAgbGFiZWw6IFwiU2hhcmUgb2YgZWxlY3RyaWNpdHkgZ2VuZXJhdGlvblwiXG4gIH0sXG4gIFxuICBtYXJrczogW1xuICAgIFBsb3QuYXJlYVkoXG4gICAgICBqb2luX3NoYXJlcy5maWx0ZXIoKGQpID0+IGQuYWNlcF9yZWdpb24gPT09IFwiUmFpbGJlbHRcIiksXG4gICAgICB7XG4gICAgICAgIHg6XCJ5ZWFyXCIsXG4gICAgICAgIHk6XCJnZW5lcmF0aW9uX3NoYXJlXCIsIFxuICAgICAgICBmaWxsOiBcImZ1ZWxfdHlwZVwiLFxuICAgICAgICBvcmRlcjogW1wiQ29hbFwiLFwiT2lsXCIsXCJHYXNcIixcIkh5ZHJvXCIsXCJXaW5kXCIsXCJTb2xhclwiXSxcbiAgICAgICAgdGlwOiB7Zm9ybWF0OiB7eDogXCJkXCIsIHk6IChkKSA9PiBgJHsoZCkudG9Mb2NhbGVTdHJpbmcodW5kZWZpbmVkLCB7bWF4aW11bUZyYWN0aW9uRGlnaXRzOiAyfSl9JWB9fVxuICAgICAgfVxuICAgICksXG4gICAgUGxvdC5ydWxlWShbMF0pXG4gIF0sXG4gIFxuICAvLyBMZWdlbmRcbiAgY29sb3I6IHtcbiAgICBkb21haW46IFtcIkNvYWxcIixcIk9pbFwiLFwiR2FzXCIsXCJIeWRyb1wiLFwiV2luZFwiLFwiU29sYXJcIl0sXG4gICAgcmFuZ2U6IFtcIiM3ZjdmN2ZcIixcIiNCRkJGQkZcIixcIiNEQ0Q5QzVcIixcIiM5NkIzREZcIixcIiNGNzk2NDZcIixcIiNGNUMyNDNcIl0sXG4gICAgbGVnZW5kOiB0cnVlXG4gIH0sXG59KVxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC04IiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoiXG4vLyBQbG90dGluZyB0b3RhbCBnZW5lcmF0aW9uIGJ5IHJlZ2lvbiBhbmQgeWVhclxuUGxvdC5wbG90KHtcbiAgXG4gIC8vIENvbmZpZ3VyZSB0aGUgcGxvdFxuICAvL3RpdGxlOiBcIlJhaWxiZWx0IHJlZ2lvbiBlbGVjdHJpY2l0eSBnZW5lcmF0aW9uXCIsXG4gIGluc2V0TGVmdDogMCxcbiAgaW5zZXRSaWdodDogMCxcbiAgXG4gIC8vIENvbmZpZ3VyZSB0aGUgeC1heGlzXG4gIHg6IHtcbiAgICB0aWNrRm9ybWF0OiBcImRcIixcbiAgICBsYWJlbDogXCJZZWFyXCJcbiAgfSxcbiAgXG4gIC8vIENvbmZpZ3VyZSB0aGUgeS1heGlzXG4gIHk6IHtcbiAgICBncmlkOiB0cnVlLFxuICAgIGxhYmVsOiBcIkdlbmVyYXRpb24gKEdXaClcIlxuICB9LFxuICBcbiAgLy8gUGxvdHRpbmcgdGhlIHNlcmllc1xuICBtYXJrczogW1xuICAgIFBsb3QuYmFyWShcbiAgICAgIGdlbl9kYXRhX2d3aC5maWx0ZXIoZCA9PiBkLmFjZXBfcmVnaW9uID09PSBcIlJhaWxiZWx0XCIpLFxuICAgICAgUGxvdC5ncm91cFgoXG4gICAgICAgIHtcbiAgICAgICAgICB5OiBcInN1bVwiXG4gICAgICAgIH0sXG4gICAgICAgIHtcbiAgICAgICAgICB4OiBcInllYXJcIixcbiAgICAgICAgICB5OiBcImdlbmVyYXRpb25cIixcbiAgICAgICAgICBmaWxsOiBcImZ1ZWxfdHlwZVwiLFxuICAgICAgICAgIG9yZGVyOiBbXCJDb2FsXCIsXCJPaWxcIixcIkdhc1wiLFwiSHlkcm9cIixcIldpbmRcIixcIlNvbGFyXCJdLFxuICAgICAgICAgIHRpcDoge2Zvcm1hdDoge3g6IFwiZFwifX1cbiAgICAgICAgfVxuICAgICAgKVxuICAgICksXG4gICAgUGxvdC5ydWxlWShbMF0pXG4gIF0sXG4gIFxuICAvLyBMZWdlbmRcbiAgY29sb3I6IHtcbiAgICBkb21haW46IFtcIkNvYWxcIixcIk9pbFwiLFwiR2FzXCIsXCJIeWRyb1wiLFwiV2luZFwiLFwiU29sYXJcIl0sXG4gICAgcmFuZ2U6IFtcIiM3ZjdmN2ZcIixcIiNCRkJGQkZcIixcIiNEQ0Q5QzVcIixcIiM5NkIzREZcIixcIiNGNzk2NDZcIixcIiNGNUMyNDNcIl0sXG4gICAgbGVnZW5kOiB0cnVlXG4gIH1cbn0pXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTkiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJcbi8vIFBsb3R0aW5nIHRoZSBzaGFyZXMgZm9yIHRoZSBjb2FzdGFsIHJlZ2lvblxuUGxvdC5wbG90KHtcblxuICAvLyBDb25maWd1cmUgdGhlIHBsb3RcbiAgLy90aXRsZTogXCJTaGFyZSBvZiBuZXQgZ2VuZXJhdGlvbiBieSBmdWVsIHR5cGUsIFJ1cmFsIFJlbW90ZSByZWdpb25cIixcbiAgY2FwdGlvbjogY2FwdGlvbl9nZW5fbWl4LFxuICBpbnNldExlZnQ6IDAsXG4gIGluc2V0UmlnaHQ6IDAsXG4gIFxuICAvLyBDb25maWd1cmUgdGhlIHgtYXhpc1xuICB4OiB7XG4gICAgdGlja0Zvcm1hdDogXCJkXCIsXG4gICAgbGFiZWw6IFwiWWVhclwiXG4gIH0sXG4gIFxuICAvLyBDb25maWd1cmUgdGhlIHktYXhpc1xuICB5OiB7XG4gICAgZ3JpZDogdHJ1ZSxcbiAgICBsYWJlbDogXCJTaGFyZSBvZiBlbGVjdHJpY2l0eSBnZW5lcmF0aW9uXCJcbiAgfSxcbiAgXG4gIG1hcmtzOiBbXG4gICAgUGxvdC5hcmVhWShcbiAgICAgIGpvaW5fc2hhcmVzLmZpbHRlcigoZCkgPT4gZC5hY2VwX3JlZ2lvbiA9PT0gXCJSdXJhbCBSZW1vdGVcIiksXG4gICAgICB7XG4gICAgICAgIHg6XCJ5ZWFyXCIsXG4gICAgICAgIHk6XCJnZW5lcmF0aW9uX3NoYXJlXCIsIFxuICAgICAgICBmaWxsOiBcImZ1ZWxfdHlwZVwiLFxuICAgICAgICBvcmRlcjogW1wiT2lsXCIsXCJHYXNcIixcIkh5ZHJvXCIsXCJXaW5kXCIsXCJTb2xhclwiLFwiT3RoZXJcIl0sXG4gICAgICAgIHRpcDoge2Zvcm1hdDoge3g6IFwiZFwiLCB5OiAoZCkgPT4gYCR7KGQpLnRvTG9jYWxlU3RyaW5nKHVuZGVmaW5lZCwge21heGltdW1GcmFjdGlvbkRpZ2l0czogMn0pfSVgfX1cbiAgICAgIH1cbiAgICApLFxuICAgIFBsb3QucnVsZVkoWzBdKVxuICBdLFxuICBcbiAgLy8gTGVnZW5kXG4gIGNvbG9yOiB7XG4gICAgZG9tYWluOiBbXCJPaWxcIixcIkdhc1wiLFwiSHlkcm9cIixcIldpbmRcIixcIlNvbGFyXCIsXCJPdGhlclwiXSxcbiAgICByYW5nZTogW1wiI0JGQkZCRlwiLFwiI0RDRDlDNVwiLFwiIzk2QjNERlwiLFwiI0Y3OTY0NlwiLFwiI0Y1QzI0M1wiLFwiI0MwNTA0RFwiXSxcbiAgICBsZWdlbmQ6IHRydWVcbn1cbn0pXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTEwIiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoiXG4vLyBQbG90dGluZyB0b3RhbCBnZW5lcmF0aW9uIGJ5IHJlZ2lvbiBhbmQgeWVhclxuUGxvdC5wbG90KHtcbiAgXG4gIC8vIENvbmZpZ3VyZSB0aGUgcGxvdFxuICAvL3RpdGxlOiBcIlJ1cmFsIHJlbW90ZSByZWdpb24gZWxlY3RyaWNpdHkgZ2VuZXJhdGlvblwiLFxuICBpbnNldExlZnQ6IDAsXG4gIGluc2V0UmlnaHQ6IDAsXG4gIFxuICAvLyBDb25maWd1cmUgdGhlIHgtYXhpc1xuICB4OiB7XG4gICAgdGlja0Zvcm1hdDogXCJkXCIsXG4gICAgbGFiZWw6IFwiWWVhclwiXG4gIH0sXG4gIFxuICAvLyBDb25maWd1cmUgdGhlIHktYXhpc1xuICB5OiB7XG4gICAgZ3JpZDogdHJ1ZSxcbiAgICBsYWJlbDogXCJHZW5lcmF0aW9uIChHV2gpXCJcbiAgfSxcbiAgXG4gIC8vIFBsb3R0aW5nIHRoZSBzZXJpZXNcbiAgbWFya3M6IFtcbiAgICBQbG90LmJhclkoXG4gICAgICBnZW5fZGF0YV9nd2guZmlsdGVyKGQgPT4gZC5hY2VwX3JlZ2lvbiA9PT0gXCJSdXJhbCBSZW1vdGVcIiksXG4gICAgICBQbG90Lmdyb3VwWChcbiAgICAgICAge1xuICAgICAgICAgIHk6IFwic3VtXCJcbiAgICAgICAgfSxcbiAgICAgICAge1xuICAgICAgICAgIHg6IFwieWVhclwiLFxuICAgICAgICAgIHk6IFwiZ2VuZXJhdGlvblwiLFxuICAgICAgICAgIGZpbGw6IFwiZnVlbF90eXBlXCIsXG4gICAgICAgICAgb3JkZXI6IFtcIk9pbFwiLFwiR2FzXCIsXCJIeWRyb1wiLFwiV2luZFwiLFwiU29sYXJcIixcIk90aGVyXCJdLFxuICAgICAgICAgIHRpcDoge2Zvcm1hdDoge3g6IFwiZFwifX1cbiAgICAgICAgfVxuICAgICAgKVxuICAgICksXG4gICAgUGxvdC5ydWxlWShbMF0pXG4gIF0sXG4gIFxuICAvLyBMZWdlbmRcbiAgY29sb3I6IHtcbiAgICBkb21haW46IFtcIk9pbFwiLFwiR2FzXCIsXCJIeWRyb1wiLFwiV2luZFwiLFwiU29sYXJcIixcIk90aGVyXCJdLFxuICAgIHJhbmdlOiBbXCIjQkZCRkJGXCIsXCIjRENEOUM1XCIsXCIjOTZCM0RGXCIsXCIjRjc5NjQ2XCIsXCIjRjVDMjQzXCIsXCIjQzA1MDREXCJdLFxuICAgIGxlZ2VuZDogdHJ1ZVxuICB9XG59KVxuIn1dfQ==
 </script>
@@ -1059,7 +1035,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/acep-uaf\.github\.io\/aetr-web-book\/");
+      var filterRegex = new RegExp("https:\/\/acep-uaf\.github\.io\/aetr-web-book-2024\/");
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
@@ -1389,32 +1365,19 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./capacity.html" class="pagination-link" aria-label="Capacity">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Capacity</span>
+      <a href="./capacity.html" class="pagination-link" aria-label="Installed Capacity">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Installed Capacity</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./consumption.html" class="pagination-link" aria-label="Consumption">
-        <span class="nav-page-text">Consumption</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./consumption.html" class="pagination-link" aria-label="Consumption and Sales">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Consumption and Sales</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
-<footer class="footer">
-  <div class="nav-footer">
-    <div class="nav-footer-left">
-<p>© CC-By , 2023</p>
-</div>   
-    <div class="nav-footer-center">
-      &nbsp;
-    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/acep-uaf/aetr-web-book/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
-    <div class="nav-footer-right">
-<p>This page is based on Openscape’s <a href="https://github.com/Openscapes/quarto-website-tutorial">Quarto Site Template</a> and built with <a href="https://quarto.org/">Quarto</a> .</p>
-</div>
-  </div>
-</footer>
 
 
 
 
-</body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/acep-uaf/aetr-web-book-2024/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
