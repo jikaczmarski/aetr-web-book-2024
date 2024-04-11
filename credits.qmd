@@ -9,7 +9,7 @@ date-format: "MMM D, YYYY [at] HH:mm z"
 
 The Alaska Electrical Trends web book has been produced by the Alaska Center for Energy and Power ([ACEP](https://www.uaf.edu/acep/)) at the University of Alaska Fairbanks ([UAF](https://www.uaf.edu/uaf/index.php)). It is a collaboration between data scientists, researchers, and policy experts.
 
-## Data and Cyberinfrastructure Management (DCM) Team
+## Data and Cyberinfrastructure Management (DCM) Team {#sec-contacts}
 
 ACEP's DCM Team <!-- (add a link when it becomes available) -->  includes software developers, mathematicians, spatial analysts, economists, open science enthusiasts, and experts in information security and the deployment of computer infrastructure. Together, DCM creates stable and secure pipelines for data from collection to publication. These DCM members generated figures, wrote text, and coded this web book:
 

@@ -1,11 +1,11 @@
 ---
-title: "2024 Alaska Electricity Trends Report"
+title: "Introduction"
 subtitle: "An Analysis of Electricity in Alaska, Data Years 2011-2021"
-date-modified: "2024-03-25T17:22:00-08:00"
-date-format: "MMM D, YYYY [at] HH:mm z"
+#date-modified: "2024-03-25T17:22:00-08:00"
+#date-format: "MMM D, YYYY [at] HH:mm z"
 ---
 
-## Welcome  {#welcome}
+## Welcome  {#welcome .unnumbered}
 
 This interactive report summarizes federal, state, and utility electricity data in the form of a web book. It provides an overview of electricity capacity, generation, consumption, and price trends from 2011 to 2021. A comprehensive report highlighting these trends has not been produced for the state of Alaska since the 2013 _Alaska Energy Statistics Report_.
 
@@ -15,12 +15,12 @@ The book has been designed to be a living document that will be updated as more 
 - About the Team: credits and acknowledgments for the people and funding sources that contributed to this report.
 - Methods: a description of data sources, the Power Cost Equalization (PCE) program, and the geographic regions used for analysis.
 
-## Executive Summary
+## Executive Summary {.unnumbered}
 
 {{< include _executive_summary.qmd >}}
 
 
-## Key Takeaways
+## Key Takeaways {.unnumbered}
 
 {{< include _key_takeaways.qmd >}}
 
