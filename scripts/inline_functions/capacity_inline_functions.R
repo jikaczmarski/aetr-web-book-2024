@@ -65,7 +65,7 @@ capacity <- function(region=NULL, prime_mover=NULL, year, decimals=2, numeric_ou
 ##
 #
 
-capacity_delta <- function(region, prime_mover=NULL, year1=2011, year2=2021, decimals=2, pct=FALSE, gw=FALSE) {
+capacity_delta <- function(region, prime_mover=NULL, year1=2011, year2=2021, decimals=2, pct=FALSE, gw=FALSE, numeric_out=FALSE) {
   
   # Dataframe declaration
   df = regional_capacity
@@ -104,11 +104,26 @@ capacity_delta <- function(region, prime_mover=NULL, year1=2011, year2=2021, dec
   if (pct==TRUE) {
     result <- (result / abs(cap_1))*100
     
-    # Output the result as a string if percentage
-    formatC(round(result,2), format="g")
+    if (numeric_out==TRUE){
+      # Output the result as a number
+      round(result,2)
+    }
+    else {
+      # Output the result as a string if percentage
+      formatC(round(result,2), format="g")
+    }
+    
   }
-  # Output the result as a string if difference
+  
+  # Output the result
   else  {
-    formatC(round(result,2), format="g", big.mark = ",")
+    if (numeric_out==TRUE){
+      # Output the result as a number
+      round(result,2)
+    }
+    else {
+      # Output the result as a string if difference
+      formatC(round(result,2), format="g", big.mark = ",")
+    }
   }
 }

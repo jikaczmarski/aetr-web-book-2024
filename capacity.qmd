@@ -141,7 +141,7 @@ Plot.plot({
 })
 ```
 
-Across the 53 MW of added renewable and storage capacity <!--the remaining capacity expansions-->, hydropower accounted for the bulk of the capacity additions with `r capacity_delta("Coastal", prime_mover = "Hydro")` MW. Storage capacity increased by `r capacity_delta("Coastal", prime_mover = "Storage")` MW and wind generation capacity increased by `r capacity_delta("Coastal", prime_mover = "Wind")` MW. Between 2013 and 2018, significant hydropower additions were made in the Southeast (19.4 MW), Kodiak (11.3 MW), and the Copper-River/Chugach (6.5 MW) AEA energy regions.
+Across the `r capacity_delta(region = "Coastal", numeric_out = TRUE) - capacity_delta(region = "Coastal", prime_mover = "Fossil Turbines", numeric_out = TRUE) - capacity_delta(region = "Coastal", prime_mover = "Recip Engines", numeric_out = TRUE)` MW of added renewable and storage capacity <!--the remaining capacity expansions-->, hydropower accounted for the bulk of the capacity additions with `r capacity_delta("Coastal", prime_mover = "Hydro")` MW. Storage capacity increased by `r capacity_delta("Coastal", prime_mover = "Storage")` MW and wind generation capacity increased by `r capacity_delta("Coastal", prime_mover = "Wind")` MW. Between 2013 and 2018, significant hydropower additions were made in the Southeast (19.4 MW), Kodiak (11.3 MW), and the Copper-River/Chugach (6.5 MW) AEA energy regions.
 
 ```{ojs}
 //| label: fig-capacity-coastal-renewable
@@ -244,7 +244,7 @@ Plot.plot({
 })
 ```
 
-Total renewable and storage capacity in the Railbelt region increased by 165 MW. Notable additions included the commercial commissioning of the 18 MW Fire Island Wind site in September 2012 and the 25 MW Eva Creek Wind site in October 2012. Significant investments in storage capacity have also been made. Since 2011, `r capacity_delta("Railbelt", prime_mover = "Storage")` MW of storage, `r capacity_delta("Railbelt", prime_mover = "Wind")` MW of wind, `r capacity_delta("Railbelt", prime_mover = "Hydro")` MW of hydro, `r capacity_delta("Railbelt", prime_mover = "Utility Solar")` MW of utility solar, `r capacity_delta("Railbelt", prime_mover = "Rooftop Solar")` MW of rooftop – also known as “behind-the-meter”  – solar, and `r capacity_delta("Railbelt", prime_mover = "Landfill Gas")` MW of landfill gas have been added.
+Total renewable and storage capacity in the Railbelt region increased by `r capacity_delta(region = "Railbelt", numeric_out = TRUE) - capacity_delta(region = "Railbelt", prime_mover = "Fossil Turbines", numeric_out = TRUE) - capacity_delta(region = "Railbelt", prime_mover = "Recip Engines", numeric_out = TRUE)` MW. Notable additions included the commercial commissioning of the 18 MW Fire Island Wind site in September 2012 and the 25 MW Eva Creek Wind site in October 2012. Significant investments in storage capacity have also been made. Since 2011, `r capacity_delta("Railbelt", prime_mover = "Storage")` MW of storage, `r capacity_delta("Railbelt", prime_mover = "Wind")` MW of wind, `r capacity_delta("Railbelt", prime_mover = "Hydro")` MW of hydro, `r capacity_delta("Railbelt", prime_mover = "Utility Solar")` MW of utility solar, `r capacity_delta("Railbelt", prime_mover = "Rooftop Solar")` MW of rooftop – also known as “behind-the-meter”  – solar, and `r capacity_delta("Railbelt", prime_mover = "Landfill Gas")` MW of landfill gas have been added.
 
 ```{ojs}
 //| label: fig-capacity-railbelt-renewable
@@ -345,7 +345,7 @@ Plot.plot({
 })
 ```
 
-This region saw an absolute increase of 12 MW of renewable capacity between 2011 to 2021. Over this time period, hydropower generation resources increased by `r capacity_delta("Rural Remote", prime_mover = "Hydro")` MW, wind increased by `r capacity_delta("Rural Remote", prime_mover = "Wind")` MW, utility-scale solar increased by `r capacity_delta("Rural Remote", prime_mover = "Utility Solar")` MW and storage increased by `r capacity_delta("Rural Remote", prime_mover = "Storage")` MW. Between 2018 and 2021, 2 MW of wind was retired in the Bering Straits energy region, 1.2 MW in Kotzebue, and 0.2 MW in the Aleutians, explaining the reduction in wind capacity between the calendar years.
+This region saw an absolute increase of `r capacity_delta(region = "Rural Remote", numeric_out = TRUE) - capacity_delta(region = "Rural Remote", prime_mover = "Fossil Turbines", numeric_out = TRUE) - capacity_delta(region = "Rural Remote", prime_mover = "Recip Engines", numeric_out = TRUE)` MW of renewable capacity between 2011 to 2021. Over this time period, hydropower generation resources increased by `r capacity_delta("Rural Remote", prime_mover = "Hydro")` MW, wind increased by `r capacity_delta("Rural Remote", prime_mover = "Wind")` MW, utility-scale solar increased by `r capacity_delta("Rural Remote", prime_mover = "Utility Solar")` MW and storage increased by `r capacity_delta("Rural Remote", prime_mover = "Storage")` MW. Between 2018 and 2021, 2 MW of wind was retired in the Bering Straits energy region, 1.2 MW in Kotzebue, and 0.2 MW in the Aleutians, explaining the reduction in wind capacity between the calendar years.
 
 ```{ojs}
 //| label: fig-capacity-rural-renewable
