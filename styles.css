@@ -7,3 +7,7 @@
     margin-bottom: 75px;
     text-align: center;
 }
+
+.quarto-figure {
+  margin-top: -3em;
+}
