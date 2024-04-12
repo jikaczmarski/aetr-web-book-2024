@@ -47,6 +47,7 @@ Plot.plot({
   //title: "Capacity changes, Statewide",
   insetLeft: 0,
   insetRight: 0,
+  width: width,
   
   // Configure the x-axis
   x: {
@@ -113,6 +114,7 @@ Plot.plot({
   //title: "Coastal region capacity",
   insetLeft: 0,
   insetRight: 0,
+  width: width,
 
   // Stacked area plot
   marks: [
@@ -163,6 +165,7 @@ Plot.plot({
   //title: "Coastal region renewable capacity",
   insetLeft: 0,
   insetRight: 0,
+  width: width,
 
   // Stacked area plot
   marks: [
@@ -216,6 +219,7 @@ Plot.plot({
   caption: "Figure note: The category of Landfill Gas refers to the 11.5 MW power plant at the Anchorage Regional Landfill that is fueled by methane from decomposing waste. Although this plant uses reciprocating engines as its prime mover, we decided to show landfill gas as a separate category because it is a significant addition to the mix of renewable energy capacity.",
   insetLeft: 0,
   insetRight: 0,
+  width: width,
 
   // Stacked area plot
   marks: [
@@ -266,6 +270,7 @@ Plot.plot({
   //title: "Railbelt region renewable capacity",
   insetLeft: 0,
   insetRight: 0,
+  width: width,
 
   // Stacked area plot
   marks: [
@@ -317,6 +322,7 @@ Plot.plot({
   //title: "Rural Remote region capacity",
   insetLeft: 0,
   insetRight: 0,
+  width: width,
 
   // Stacked area plot
   marks: [
@@ -367,6 +373,7 @@ Plot.plot({
   //title: "Rural Remote region renewable capacity",
   insetLeft: 0,
   insetRight: 0,
+  width: width,
 
   // Stacked area plot
   marks: [

@@ -83,6 +83,7 @@ Plot.plot({
   //title: " Electricity generation by region",
   insetLeft: 0,
   insetRight: 0,
+  width: width,
   
   // Configure the x-axis
   x: {
@@ -189,7 +190,7 @@ Plot.plot({
   insetRight: 15,
   marginRight: 70,
   height: 600,
-  width: 800,
+  width: width,
 
   x: {
     label: "Percentage Point Change",
@@ -255,6 +256,7 @@ Plot.plot({
   caption: caption_gen_mix,
   insetLeft: 0,
   insetRight: 0,
+  width: width,
   
   // Configure the x-axis
   x: {
@@ -304,6 +306,7 @@ Plot.plot({
   //title: "Coastal region electricity generation",
   insetLeft: 0,
   insetRight: 0,
+  width: width,
   
   // Configure the x-axis
   x: {
@@ -361,6 +364,7 @@ Plot.plot({//|
   caption: caption_gen_mix,
   insetLeft: 0,
   insetRight: 0,
+  width: width,
   
   // Configure the x-axis
   x: {
@@ -411,6 +415,7 @@ Plot.plot({
   //title: "Railbelt region electricity generation",
   insetLeft: 0,
   insetRight: 0,
+  width: width,
   
   // Configure the x-axis
   x: {
@@ -469,6 +474,7 @@ Plot.plot({
   caption: caption_gen_mix,
   insetLeft: 0,
   insetRight: 0,
+  width: width,
   
   // Configure the x-axis
   x: {
@@ -518,6 +524,7 @@ Plot.plot({
   //title: "Rural remote region electricity generation",
   insetLeft: 0,
   insetRight: 0,
+  width: width,
   
   // Configure the x-axis
   x: {

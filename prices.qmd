@@ -70,6 +70,7 @@ Plot.plot({
     grid: true,
     marginRight: 70,
     height: 600,
+  width: width,
   
     marks: [
         Plot.line(region_weighted_prices,
@@ -140,6 +141,7 @@ Plot.plot({
     // Configure the plot
     grid: true,
     marginRight: 70,
+  width: width,
   
   
     marks: [
@@ -211,6 +213,7 @@ Plot.plot({
     // Configure the plot
     grid: true,
     marginRight: 70,
+  width: width,
 
 
     marks: [
@@ -280,6 +283,7 @@ Plot.plot({
     grid: true,
     marginRight: 70,
     height: 700,
+  width: width,
 
     marks: [
  

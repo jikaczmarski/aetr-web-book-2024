@@ -52,6 +52,7 @@ Plot.plot(rainCloudX)
 rainCloudX = ({
   grid: true,
   label: null,
+  width: width,
   marks: [
     Plot.ruleX([0]),
     halfViolinX,

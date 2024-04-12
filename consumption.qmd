@@ -110,6 +110,7 @@ Plot.plot({
   //title: "Change in sales by customer class, statewide, from 2011 to 2019",
   height: 500,
   marginLeft: 70,
+  width: width,
 
   y: {
     label:"",
@@ -159,6 +160,7 @@ Plot.plot({
   //title: "Change in customer accounts by class, statewide, 2011 to 2019",
   height: 500,
   marginLeft: 70,
+  width: width,
 
   y: {
     label:"",
@@ -238,6 +240,8 @@ Plot.plot({
       label: "kWh",
       grid: true
     },
+    
+  width: width,
 
   marks: [
     Plot.line(sales_per_capita_data, {
@@ -285,6 +289,8 @@ Plot.plot({//|
       label: "GWh",
       grid: true
     },
+    
+  width: width,
 
   marks: [
     Plot.barY(regional_consumption_data.filter((d) => d.class !== "Total" && d.acep_region == "Coastal"), 
@@ -330,6 +336,8 @@ Plot.plot({
       domain: [0, 60000],
       grid: true
     },
+    
+  width: width,
 
   marks: [
     Plot.barY(regional_consumption_data.filter((d) => d.class !== "Total" && d.acep_region == "Coastal"), 
@@ -377,6 +385,8 @@ Plot.plot({//|
       label: "GWh",
       grid: true
     },
+    
+  width: width,
 
   marks: [
     Plot.barY(regional_consumption_data.filter((d) => d.class !== "Total" && d.acep_region == "Railbelt"), 
@@ -422,6 +432,8 @@ Plot.plot({
       domain: [0, 260],
       grid: true
     },
+    
+  width: width,
 
   marks: [
     Plot.barY(regional_consumption_data.filter((d) => d.class !== "Total" && d.acep_region == "Railbelt"), 
@@ -473,6 +485,8 @@ Plot.plot({
       label: "GWh",
       grid: true
     },
+    
+  width: width,
 
   marks: [
     Plot.barY(regional_consumption_data.filter((d) => d.class !== "Total" && d.acep_region == "Rural Remote"), 
@@ -518,6 +532,8 @@ Plot.plot({
       domain: [0, 37500],
       grid: true
     },
+    
+  width: width,
 
   marks: [
     Plot.barY(regional_consumption_data.filter((d) => d.class !== "Total" && d.acep_region == "Rural Remote"), 
