@@ -47,9 +47,15 @@ source("scripts/inline_functions/consumption_inline_functions.R")
 
 The data presented in this section is from calendar years 2011 to 2019. More recent data has been omitted due to issues with data completeness and validity.
 
-Across the state, electricity sales (herein referred to as consumption), has fallen when comparing the 2011 and 2019 calendar years. To visualize this trend, we look at the percentage changes from 2011 to 2019 in electricity consumption by customer class (@fig-change-customer-sales). Statewide electricity consumption growth for the residential sector was `r statewide_consumption_delta("Residential","sales",pct=TRUE)`% from `r statewide_consumption("Residential","sales", 2011, decimals=0)` GWh in 2011 to `r statewide_consumption("Residential","sales", 2019, decimals=0)` GWh in 2019. The commercial sector growth was `r statewide_consumption_delta("Commercial","sales",pct=TRUE)`% from `r statewide_consumption("Commercial","sales", 2011, decimals=0)` GWh in 2011 to `r statewide_consumption("Commercial","sales", 2019, decimals=0)` GWh in 2019. Finally, Statewide electricity consumption growth for the ‘Other’ customer class was `r statewide_consumption_delta("Other","sales",pct=TRUE)`% from `r statewide_consumption("Other","sales", 2011, decimals=0)` GWh in 2011 to `r statewide_consumption("Other","sales", 2019, decimals=0)` GWh in 2019.[^1]
+Across the state, electricity sales (herein referred to as consumption), has fallen when comparing the 2011 and 2019 calendar years. To visualize this trend, we look at the percentage changes from 2011 to 2019 in electricity consumption by customer class (@fig-change-customer-sales). We highlight the following customer class definitions:
 
-[^1]: For EIA reported data, the Other group includes industrial and transportation customers. For PCE reported data, it includes community and government accounts. No industrial accounts were reported in the PCE data.
+- **Residential**: Residential electric customers
+- **Commercial**: Commercial electric customers
+- **Other**: For EIA reported data, the Other group includes industrial and transportation customers. For PCE reported data, it includes community and government accounts. No industrial accounts were reported in the PCE data.
+
+Statewide electricity consumption growth for the residential sector was `r statewide_consumption_delta("Residential","sales",pct=TRUE)`% from `r statewide_consumption("Residential","sales", 2011, decimals=0)` GWh in 2011 to `r statewide_consumption("Residential","sales", 2019, decimals=0)` GWh in 2019. The commercial sector growth was `r statewide_consumption_delta("Commercial","sales",pct=TRUE)`% from `r statewide_consumption("Commercial","sales", 2011, decimals=0)` GWh in 2011 to `r statewide_consumption("Commercial","sales", 2019, decimals=0)` GWh in 2019. Finally, Statewide electricity consumption growth for the ‘Other’ customer class was `r statewide_consumption_delta("Other","sales",pct=TRUE)`% from `r statewide_consumption("Other","sales", 2011, decimals=0)` GWh in 2011 to `r statewide_consumption("Other","sales", 2019, decimals=0)` GWh in 2019.
+
+<!-- [^1]: For EIA reported data, the Other group includes industrial and transportation customers. For PCE reported data, it includes community and government accounts. No industrial accounts were reported in the PCE data. -->
 
 ```{ojs}
 // Import required libraries (condense later)
