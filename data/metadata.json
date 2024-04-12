@@ -3,9 +3,9 @@
     "id": "NULL", 
     "licenses": [
         {
-          "name": "other",
-          "title": "BSD 3-Clause License",
-          "path": "https://opensource.org/license/bsd-3-clause"
+          "name": "CC-BY-SA-4.0",
+          "title": "Creative Commons Attribution Share-Alike 4.0",
+          "path": "https://creativecommons.org/licenses/by-sa/4.0/"
         }
     ],
     "description" : "Electricity capacity, generation, consumption, and price data from 2011-2019/21",
