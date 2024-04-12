@@ -41,6 +41,7 @@ rawDataOffset = 5
 ```{ojs}
 //| label: fig-price-regions-classes
 //| fig-cap: "Prices by Region and Customer Class"
+//| class: raincloud-custom
 Plot.plot(rainCloudX)
 
 ```

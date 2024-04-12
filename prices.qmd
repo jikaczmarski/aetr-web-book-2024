@@ -25,7 +25,7 @@ Note that all prices in this section have been adjusted for inflation over time 
 Most notably, the dramatic effects of the PCE subsidy can be seen by comparing the price distribution of the residential customer class against the price distribution of the commercial/other customer classes in the Rural Remote and Coastal regions. 
 
 
-<br>
+<!--<br> -->
 
  {{< include _prices_raincloud.qmd >}}
 
