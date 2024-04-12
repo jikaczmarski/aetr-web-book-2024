@@ -93,7 +93,7 @@ Plot.plot({
     ],
     color: {
         domain: ["Coastal", "Railbelt", "Rural Remote"],
-        range: ["#4285F4", "#34A853", "#EA4335"]
+        range: ["#8CBBDA", "#97CD93", "#F28D8C"]
     }
 });
 
