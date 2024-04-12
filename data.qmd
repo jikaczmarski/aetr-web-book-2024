@@ -31,8 +31,9 @@ capacity_wide_path = metadata.resources[0].path;
 capacity_wide_metadata = metadata.resources[0].schema.fields;
 
 
-viewof capacity_input = Inputs.select(new Map([["Capacity Metadata", capacity_wide_metadata], 
-              ["Capacity", capacity_wide]]), 
+viewof capacity_input = Inputs.select(new Map([
+                ["Capacity Metadata", capacity_wide_metadata], 
+                ["Capacity", capacity_wide]]), 
               {value: capacity_wide_metadata, label: "Preview:"}
               );
 

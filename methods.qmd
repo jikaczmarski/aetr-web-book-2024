@@ -4,6 +4,7 @@ subtitle: "Data Sources, Region Definitions, and Description of the PCE Program"
 date-modified: "2024-04-11T09:11:00-08:00"
 date-format: "MMM D, YYYY [at] HH:mm z"
 cap-location: top
+echo: false
 ---
 
 
@@ -53,8 +54,15 @@ We note that the Coastal and Rural Remote regions include mixtures of power cost
 
 &nbsp;
 
-![Cartographic Relationship between Energy Regions as defined by AEA and ACEP](images/AEA_ACEP_regions_map.png){width=600 #fig-regions-map}
+<!-- ![Cartographic Relationship between Energy Regions as defined by AEA and ACEP](images/AEA_ACEP_regions_map.png){width=600 #fig-regions-map} -->
 
+<br>
+<br>
+
+{{< include _regions_map.qmd >}}
+
+<br>
+<br>
 
 ## Power Cost Equalization (PCE) {#sec-pce-description}
 
