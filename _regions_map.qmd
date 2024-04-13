@@ -21,7 +21,6 @@ acep_regions = FileAttachment("data/working/regions/acep_regions.geojson").json(
 ```
 
 ```{ojs}
-
 aea_regions_input = L.geoJSON(aea_regions, {
                         style: function(feature) {
                             switch (feature.properties.NAME) {
@@ -50,6 +49,11 @@ acep_regions_input = L.geoJSON(acep_regions, {
                           }
                         });
 
+```
+
+```{ojs}
+//| label: fig-regions-map
+//| fig-cap: "Cartographic Relationship between Energy Regions as defined by AEA and ACEP"
 
 viewof region_input = Inputs.select(new Map([
                 ["AEA Regions", aea_regions_input], 
@@ -72,7 +76,6 @@ viewof region_input = Inputs.select(new Map([
 // );
 
 ```
-
 
 ```{ojs}
 // the order of the container calls is important, do first, don't mess with

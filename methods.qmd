@@ -46,13 +46,13 @@ Neil McMahon, first at AEA and then at [DOWL](https://www.dowl.com/), an Alaska 
 
 ## Regional Summaries
 
-For the purpose of energy planning, AEA has defined [eleven energy regions](https://dcra-cdo-dcced.opendata.arcgis.com/datasets/edb3e790ea4b40579f29e925afc061c5_0/explore?showTable=true) for the State of Alaska. Previous versions of the _Alaska Electric Energy Statistics_ reports presented data summarized by those regions. In order to provide visualizations that are easier to understand, we have condensed these eleven regions into three major energy regions: Coastal, Railbelt, and Rural Remote. @fig-regions-scheme shows the diagrammatic relationship between these two classification systems and Figure @fig-regions-map displays this relationship cartographically.
+For the purpose of energy planning, AEA has defined [eleven energy regions](https://dcra-cdo-dcced.opendata.arcgis.com/datasets/edb3e790ea4b40579f29e925afc061c5_0/explore?showTable=true) for the State of Alaska. Previous versions of the _Alaska Electric Energy Statistics_ reports presented data summarized by those regions. In order to provide visualizations that are easier to understand, we have condensed these eleven regions into three major energy regions: Coastal, Railbelt, and Rural Remote. @fig-regions-scheme shows the diagrammatic relationship between these two classification systems and @fig-regions-map displays this relationship cartographically.
 
 We note that the Coastal and Rural Remote regions include mixtures of power cost equalization (PCE) and non-PCE eligible communities. The Coastal region includes Copper River/Chugach and incorporates all communities served by Copper Valley Electric Association. PCE communities are largely dependent on diesel generation. 
 
-![Schematic Relationship between Energy Regions as defined by AEA and ACEP](images/AEA_ACEP_regions.png){#fig-regions-scheme}
-
 &nbsp;
+
+![Schematic Relationship between Energy Regions as defined by AEA and ACEP](images/AEA_ACEP_regions.png){#fig-regions-scheme}
 
 <!-- ![Cartographic Relationship between Energy Regions as defined by AEA and ACEP](images/AEA_ACEP_regions_map.png){width=600 #fig-regions-map} -->
 
