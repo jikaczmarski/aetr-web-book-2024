@@ -10,8 +10,13 @@
 ```{ojs}
 // active inputs
 
-// weighted/unweighted
-viewof dimension = Inputs.select(['residential_price', 'commercial_price', 'other_price'], { label: 'Sector', value: 'residential_price' })
+viewof dimension = Inputs.select(new Map([
+                ["Residential", 'residential_price'], 
+                ["Commercial", 'commercial_price'],
+                ["Other", 'other_price']]), 
+              {value: "Residential", label: "Customer Class:"}
+              );
+
 
 // viewof flipCoords = Inputs.toggle({ label: 'Flip', value: false })
 
