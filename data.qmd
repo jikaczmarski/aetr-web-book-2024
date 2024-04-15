@@ -39,12 +39,20 @@ viewof capacity_input = Inputs.select(new Map([
 
 Inputs.table(capacity_input);
 
-
-button(capacity_wide_metadata, 'capacity_metadata.csv', `Metadata`)
-button(capacity_wide, `capacity.csv`, `Capacity`)
-
-
 ```
+
+:::: {.columns}
+::: {.column width="20%"}
+#### Download
+#### Download
+:::
+::: {.column width="80%"}
+```{ojs}
+button(capacity_wide_metadata, 'capacity_metadata.csv', `Capacity Metadata`)
+button(capacity_wide, `capacity.csv`, `Capacity`)
+```
+:::
+:::
 
 <br>
 <br>
@@ -68,10 +76,20 @@ viewof generation_input = Inputs.select(new Map([["Generation Metadata", net_gen
               );
 Inputs.table(generation_input);
 
-button(net_generation_wide_metadata, 'net_generation_wide_metadata.csv', `Metadata`)
-button(net_generation_wide, `net_generation_wide.csv`, `Net Generation`)
-
 ```
+
+:::: {.columns}
+::: {.column width="20%"}
+#### Download
+#### Download
+:::
+::: {.column width="80%"}
+```{ojs}
+button(net_generation_wide_metadata, 'net_generation_wide_metadata.csv', `Generation Metadata`)
+button(net_generation_wide, `net_generation_wide.csv`, `Net Generation`)
+```
+:::
+:::
 
 <br>
 <br>
@@ -95,10 +113,21 @@ viewof consumption_input = Inputs.select(new Map([["Consumption Metadata", consu
               );
 Inputs.table(consumption_input);
 
-button(consumption_wide_metadata, 'consumption_wide_metadata.csv', `Metadata`)
+```
+
+:::: {.columns}
+::: {.column width="20%"}
+#### Download
+#### Download
+:::
+::: {.column width="80%"}
+```{ojs}
+button(consumption_wide_metadata, 'consumption_wide_metadata.csv', `Consumption Metadata`)
 button(consumption_wide, `consumption_wide.csv`, `Consumption`)
 
 ```
+:::
+:::
 
 <br>
 <br>
@@ -125,10 +154,20 @@ viewof prices_input = Inputs.select(new Map([["Prices Metadata", prices_metadata
 
 Inputs.table(prices_input);
 
+```
+
+:::: {.columns}
+::: {.column width="20%"}
+#### Download
+#### Download
+:::
+::: {.column width="80%"}
+```{ojs}
 button(prices_metadata, `prices_metadata.csv`, `Metadata`);
 button(prices, `prices.csv`, `Prices`);
-
 ``` 
+:::
+:::
 
 <br>
 <br>
@@ -153,13 +192,20 @@ viewof weighted_prices_input = Inputs.select(new Map([["Weighted Prices Metadata
 
 Inputs.table(weighted_prices_input);
 
-button(weighted_prices_metadata, `weighted_prices_metadata.csv`, `Metadata`);
-button(weighted_prices, `weighted_prices.csv`, `Weighted Prices`)
-
-
-
 ```
 
+:::: {.columns}
+::: {.column width="20%"}
+#### Download
+#### Download
+:::
+::: {.column width="80%"}
+```{ojs}
+button(weighted_prices_metadata, `weighted_prices_metadata.csv`, `Metadata`);
+button(weighted_prices, `weighted_prices.csv`, `Weighted Prices`)
+```
+:::
+:::
 
 
 
