@@ -40,8 +40,8 @@ viewof capacity_input = Inputs.select(new Map([
 Inputs.table(capacity_input);
 
 
-button(capacity_wide_metadata, 'capacity_wide_metadata.csv')
-button(capacity_wide, `capacity_wide.csv`)
+button(capacity_wide_metadata, 'capacity_metadata.csv', `Metadata`)
+button(capacity_wide, `capacity.csv`, `Capacity`)
 
 
 ```
@@ -68,8 +68,8 @@ viewof generation_input = Inputs.select(new Map([["Generation Metadata", net_gen
               );
 Inputs.table(generation_input);
 
-button(net_generation_wide_metadata, 'net_generation_wide_metadata.csv')
-button(net_generation_wide, `net_generation_wide.csv`)
+button(net_generation_wide_metadata, 'net_generation_wide_metadata.csv', `Metadata`)
+button(net_generation_wide, `net_generation_wide.csv`, `Net Generation`)
 
 ```
 
@@ -95,8 +95,8 @@ viewof consumption_input = Inputs.select(new Map([["Consumption Metadata", consu
               );
 Inputs.table(consumption_input);
 
-button(consumption_wide_metadata, 'consumption_wide_metadata.csv')
-button(consumption_wide, `consumption_wide.csv`)
+button(consumption_wide_metadata, 'consumption_wide_metadata.csv', `Metadata`)
+button(consumption_wide, `consumption_wide.csv`, `Consumption`)
 
 ```
 
@@ -125,8 +125,8 @@ viewof prices_input = Inputs.select(new Map([["Prices Metadata", prices_metadata
 
 Inputs.table(prices_input);
 
-button(prices_metadata, `prices_metadata.csv`);
-button(prices, `prices.csv`);
+button(prices_metadata, `prices_metadata.csv`, `Metadata`);
+button(prices, `prices.csv`, `Prices`);
 
 ``` 
 
@@ -153,8 +153,10 @@ viewof weighted_prices_input = Inputs.select(new Map([["Weighted Prices Metadata
 
 Inputs.table(weighted_prices_input);
 
-button(weighted_prices_metadata, `weighted_prices_metadata.csv`);
-button(weighted_prices, `weighted_prices.csv`)
+button(weighted_prices_metadata, `weighted_prices_metadata.csv`, `Metadata`);
+button(weighted_prices, `weighted_prices.csv`, `Weighted Prices`)
+
+
 
 ```
 
@@ -175,14 +177,14 @@ metadata = FileAttachment("data/metadata.json").json();
 
 ```{ojs}
 // download button function
-button = (data, filename = 'data.csv') => {
+button = (data, filename = 'data.csv', displayname) => {
   const downloadData = new Blob([d3.csvFormat(data)], { type: "text/csv" });
 
   const size = (downloadData.size / 1024).toFixed(1);
   const button = DOM.download(
     downloadData,
     filename,
-    `${filename} (${size} KB)`
+    `${displayname} (${size} KB)`
   );
   return button;
 }
