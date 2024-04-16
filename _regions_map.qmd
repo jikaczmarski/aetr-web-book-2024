@@ -43,6 +43,7 @@ aea_regions_input = L.geoJSON(aea_regions, {
                         },
                         {
                         sticky: true,
+                        offset: [0, 45],
                         direction: "right",
                         opacity: 0.75
                       });
@@ -61,6 +62,7 @@ acep_regions_input = L.geoJSON(acep_regions, {
                         },
                         {
                         sticky: true,
+                        offset: [0, 45],
                         direction: "right",
                         opacity: 0.75
                       });
