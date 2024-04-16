@@ -15,8 +15,9 @@ css=html`<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2
 aea_regions = FileAttachment("data/working/regions/aea_regions.geojson").json()
 acep_regions = FileAttachment("data/working/regions/acep_regions.geojson").json()
 
+coords_json = FileAttachment("data/working/regions/coordinates.geojson").json()
+
 // coords_csv = FileAttachment("data/working/regions/coordinates_pce.csv").csv({typed: true})
-// coords_json = FileAttachment("data/working/regions/coordinates.geojson").json()
 
 ```
 
@@ -37,7 +38,15 @@ aea_regions_input = L.geoJSON(aea_regions, {
                                 case 'Yukon-Koyukuk Upper Tanana': return {color: "#FF8C00"};
                             }
                           }
-                        });
+                      }).bindTooltip(function (layer) {
+                        return layer.feature.properties.NAME;
+                        },
+                        {
+                        sticky: true,
+                        direction: "right",
+                        opacity: 0.75
+                      });
+
 
 acep_regions_input = L.geoJSON(acep_regions, {
                         style: function(feature) {
@@ -47,8 +56,29 @@ acep_regions_input = L.geoJSON(acep_regions, {
                                 case 'Railbelt': return {color: "#228B22"};
                             }
                           }
-                        });
+                      }).bindTooltip(function (layer) {
+                        return layer.feature.properties.NAME;
+                        },
+                        {
+                        sticky: true,
+                        direction: "right",
+                        opacity: 0.75
+                      });
 
+// Code below builds community location points
+points = L.geoJson(coords_json, {
+      //inital css style of grid
+      style: function(feature){
+        return {
+          color: "#FF0000",
+          weight: 0.25,
+          opacity: 0.5,
+          fillOpacity: 10
+        }
+      }
+
+    }
+);
 ```
 
 ```{ojs}
@@ -61,19 +91,6 @@ viewof region_input = Inputs.select(new Map([
               {value: aea_regions_input, label: "Display below:"}
               );
 
-// // Code below builds community location points
-// points = L.geoJson(coords_json, {
-//       //inital css style of grid
-//       style: function(feature){
-//         return {
-//           color: "#000000",
-//           weight: 0.25,
-//           opacity: 0.5,
-//           fillOpacity: 10
-//         }
-//       }
-//     }
-// );
 
 ```
 
@@ -93,10 +110,12 @@ map = {
     hillshade.addTo(map);
 
     // add dropdown input selection
-    region_input.addTo(map);
+    region_input
+    .addTo(map);
 
-    // add community points
+    // // add community points
     // points.addTo(map);
+    
 
 }
 
