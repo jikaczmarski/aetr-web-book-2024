@@ -65,6 +65,11 @@ acep_regions_input = L.geoJSON(acep_regions, {
                         opacity: 0.75
                       });
 
+
+```
+
+
+```{ojs}
 // Code below builds community location points
 points = L.geoJson(coords_json, {
       //inital css style of grid
@@ -79,6 +84,25 @@ points = L.geoJson(coords_json, {
 
     }
 );
+
+
+// geojsonMarkerOptions = {
+//     radius: 8,
+//     fillColor: "#ff7800",
+//     color: "#000",
+//     weight: 1,
+//     opacity: 1,
+//     fillOpacity: 0.8
+// };
+
+// points = L.geoJSON(coords_json, {
+//     pointToLayer: function (feature, latlng) {
+//         return L.circleMarker(latlng, geojsonMarkerOptions);
+//     }
+// })
+
+
+
 ```
 
 ```{ojs}
@@ -103,15 +127,15 @@ map = {
     // create map object
     let map = L.map(container).setView([62.945279601222396, -155.5946697727831], 4);
 
-    // add hillshade basemap
-    let hillshade = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}', 
-        {attribution: 'Tiles &copy; Esri  and the GIS User Community'
-        });
-    hillshade.addTo(map);
+    // add basemap
+    var basemap = L.tileLayer('https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/tile/{z}/{y}/{x}', {
+      maxZoom: 20,
+      attribution: 'Tiles courtesy of the <a href="https://usgs.gov/">U.S. Geological Survey</a>'
+    });
+    basemap.addTo(map);
 
     // add dropdown input selection
-    region_input
-    .addTo(map);
+    region_input.addTo(map);
 
     // // add community points
     // points.addTo(map);
