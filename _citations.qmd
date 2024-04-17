@@ -1,0 +1,18 @@
+Alaska Center for Energy and Power. "2024 Alaska Energy Trends Report Web Book." Accessed `{ojs} currentDate`. https://acep-uaf.github.io/aetr-web-book-2024
+
+[BibTeX](/citations/aetr_web_book_2024.bibtex)  
+[BibLaTeX](/citations/aetr_web_book_2024.bib)  
+[RIS](/citations/aetr_web_book_2024.ris)  
+
+
+```{ojs}
+//| echo: false
+date = new Date();
+
+day = date.getDate();
+month = date.toLocaleString('default', { month: 'long' });
+year = date.getFullYear();
+
+currentDate = `${month} ${day}, ${year}`
+
+```

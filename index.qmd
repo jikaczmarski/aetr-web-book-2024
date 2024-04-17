@@ -3,6 +3,7 @@ title: "Introduction"
 subtitle: "An Analysis of Electricity in Alaska, Data Years 2011-2021"
 #date-modified: "2024-03-25T17:22:00-08:00"
 #date-format: "MMM D, YYYY [at] HH:mm z"
+bibliography: citations/aetr_web_book_2024.bibtex
 ---
 
 ## Welcome  {#welcome .unnumbered}
@@ -16,6 +17,9 @@ Please explore the data using the chapter navigation links in the left sidebar a
 - About the Report: an historical timeline of previous Alaskan energy reports and technical details on this version.
 - About the Team: credits and acknowledgments for the people and funding sources that contributed to this report.
 - Methods: a description of data sources, the Power Cost Equalization (PCE) program, and the geographic regions used for analysis.
+
+### How to Cite
+{{< include _citations.qmd >}}
 
 ## Executive Summary {.unnumbered}
 
