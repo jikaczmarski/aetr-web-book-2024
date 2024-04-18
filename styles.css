@@ -21,3 +21,15 @@
 }
 
 path.leaflet-interactive{outline: none;}
+
+.btn-quarto {
+  background-color: dodgerblue;
+  border: none;
+  color: white;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  cursor: pointer;
+  font-size: 20px;
+  border-radius: 5px;
+  margin: 10px;
+}
