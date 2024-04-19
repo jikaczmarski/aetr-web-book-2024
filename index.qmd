@@ -1,22 +1,18 @@
 ---
 title: "Introduction"
 subtitle: "An Analysis of Electricity in Alaska, Data Years 2011-2021"
+author: "Alaska Center for Energy and Power"
 #date-modified: "2024-03-25T17:22:00-08:00"
 #date-format: "MMM D, YYYY [at] HH:mm z"
-bibliography: citations/aetr_web_book_2024.bibtex
 ---
 
 ## Welcome  {#welcome .unnumbered}
 
-This interactive report summarizes federal, state, and utility electricity data in the form of a web book. It provides an overview of electricity capacity, generation, consumption, and price trends from 2011 to 2021. A comprehensive report highlighting these trends has not been produced for the state of Alaska since the 2013 _Alaska Energy Statistics Report_.
+This interactive report summarizes federal, state, and utility electricity data in the form of a web book. It provides an overview of electricity capacity, generation, consumption, and price trends from 2011 to 2021. A comprehensive report highlighting these trends has not been produced for the state of Alaska since 2013's _Alaska Energy Statistics Report_.
 
 This web book is designed as 'best available' document for the 2011-2021 energy trends data and reports. This website will be updated when updates to the underlying 2011-2021 data or fixes become available. Future year trends reports will be tackled in a different context and reporting structure.
 
-Please explore the data using the chapter navigation links in the left sidebar and the section navigation links in the right sidebar. Additional chapters include:
-
-- About the Report: an historical timeline of previous Alaskan energy reports and technical details on this version.
-- About the Team: credits and acknowledgments for the people and funding sources that contributed to this report.
-- Methods: a description of data sources, the Power Cost Equalization (PCE) program, and the geographic regions used for analysis.
+Please explore the data using the chapter navigation links in the left sidebar and the section navigation links in the right sidebar. 
 
 ### How to Cite
 {{< include _citations.qmd >}}
