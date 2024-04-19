@@ -42,7 +42,7 @@ region_weighted_prices = tidy(weighted_prices,
                               groupBy(['acep_energy_region', 'year'], [
                                 summarize({ mean_weighted_price: mean('weighted_price')})
                               ]),
-                              filter((d) => d.year < 2020))
+                              filter((d) => d.year < 2020)).map((d) => ({...d, "ACEP Region": d.acep_energy_region}))
 ```
  
 ```{ojs}
@@ -77,15 +77,15 @@ Plot.plot({
                     {x: "year", 
                     y: "mean_weighted_price",
                     strokeWidth: 5,
-                    stroke: "acep_energy_region",
+                    stroke: "ACEP Region",
                     tip: {format: {x: "d", stroke: false}}
         }),
     Plot.text(region_weighted_prices, 
       Plot.selectLast(
         {x: "year", 
         y: "mean_weighted_price", 
-        z: "acep_energy_region",
-        text: "acep_energy_region", 
+        z: "ACEP Region",
+        text: "ACEP Region", 
         frameAnchor: "bottom", 
         dy: -5,
         dx: 25
@@ -114,7 +114,7 @@ Residential customers in the Coastal region saw increases in the price of electr
 coastal_weighted_prices = tidy(weighted_prices, 
                               filter((d) => d.acep_energy_region === "Coastal"),
                               filter((d) => d.year < 2020)
-                            )
+                            ).map((d) => ({...d, "Customer Class": d.sector}))
 ```
 
 ```{ojs}
@@ -150,15 +150,15 @@ Plot.plot({
         {x: "year", 
         y: "weighted_price",
         strokeWidth: 5,
-        stroke: "sector",
+        stroke: "Customer Class",
         tip: {format: {x: "d"}}
         }),
     Plot.text(coastal_weighted_prices, 
       Plot.selectLast(
         {x: "year", 
         y: "weighted_price", 
-        z: "sector",
-        text: "sector", 
+        z: "Customer Class",
+        text: "Customer Class", 
         frameAnchor: "bottom", 
         dy: -5,
         dx: 35
@@ -186,7 +186,7 @@ This region differs significantly from the Coastal and Rural Remote regions in t
 railbelt_weighted_prices = tidy(weighted_prices, 
                               filter((d) => d.acep_energy_region === "Railbelt"),
                               filter((d) => d.year < 2020)
-                            )
+                            ).map((d) => ({...d, "Customer Class": d.sector}))
 ```
 
 ```{ojs}
@@ -222,15 +222,15 @@ Plot.plot({
         {x: "year", 
         y: "weighted_price",
         strokeWidth: 5,
-        stroke: "sector",
+        stroke: "Customer Class",
         tip: {format: {x: "d"}}
         }),
     Plot.text(railbelt_weighted_prices, 
       Plot.selectLast(
         {x: "year", 
         y: "weighted_price", 
-        z: "sector",
-        text: "sector", 
+        z: "Customer Class",
+        text: "Customer Class", 
         frameAnchor: "bottom", 
         dy: -5,
         dx: 35
@@ -255,7 +255,7 @@ The average price of electricity for the Residential customers in the Rural Remo
 rural_remote_weighted_prices = tidy(weighted_prices, 
                               filter((d) => d.acep_energy_region === "Rural Remote"),
                               filter((d) => d.year < 2020)
-                            )
+                            ).map((d) => ({...d, "Customer Class": d.sector}))
 ```
 
 ```{ojs}
@@ -291,15 +291,15 @@ Plot.plot({
           {x: "year", 
           y: "weighted_price",
           strokeWidth: 5,
-          stroke: "sector",
+          stroke: "Customer Class",
           tip: {format: {x: "d"}}
           }),
       Plot.text(rural_remote_weighted_prices, 
         Plot.selectLast(
           {x: "year", 
           y: "weighted_price", 
-          z: "sector",
-          text: "sector", 
+          z: "Customer Class",
+          text: "Customer Class", 
           frameAnchor: "bottom", 
           dy: -5,
           dx: 35

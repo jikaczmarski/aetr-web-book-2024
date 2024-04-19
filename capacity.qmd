@@ -72,7 +72,7 @@ Plot.plot({
         {
           x: "year",
           y: "capacity",
-          fill: "prime_mover",
+          fill: "Prime Mover",
           order: ["Fossil Turbines", "Recip Engines", "Hydro", "Wind","Utility Solar","Rooftop Solar","Storage","Landfill Gas"],
           tip: {format: {x: "d"}}
         }
@@ -127,7 +127,7 @@ Plot.plot({
         {
           x: "year",
           y: "capacity",
-          fill: "prime_mover",
+          fill: "Prime Mover",
           order: ["Fossil Turbines", "Recip Engines", "Hydro", "Wind","Storage"],
           tip: {format: {x: "d"}}
         }
@@ -178,7 +178,7 @@ Plot.plot({
         {
           x: "year",
           y: "capacity",
-          fill: "prime_mover",
+          fill: "Prime Mover",
           order: ["Hydro", "Wind","Storage"],
           tip: {format: {x: "d"}}
         }
@@ -232,7 +232,7 @@ Plot.plot({
         {
           x: "year",
           y: "capacity",
-          fill: "prime_mover",
+          fill: "Prime Mover",
           order: ["Fossil Turbines", "Recip Engines", "Hydro", "Wind","Utility Solar","Rooftop Solar","Storage","Landfill Gas"],
           tip: {format: {x: "d"}}
         }
@@ -283,7 +283,7 @@ Plot.plot({
         {
           x: "year",
           y: "capacity",
-          fill: "prime_mover",
+          fill: "Prime Mover",
           order: ["Hydro", "Wind","Utility Solar","Rooftop Solar","Storage","Landfill Gas"],
           tip: {format: {x: "d"}}
         }
@@ -335,7 +335,7 @@ Plot.plot({
         {
           x: "year",
           y: "capacity",
-          fill: "prime_mover",
+          fill: "Prime Mover",
           order: ["Fossil Turbines", "Recip Engines", "Hydro", "Wind","Utility Solar","Storage"],
           tip: {format: {x: "d"}}
         }
@@ -386,7 +386,7 @@ Plot.plot({
         {
           x: "year",
           y: "capacity",
-          fill: "prime_mover",
+          fill: "Prime Mover",
           order: ["Hydro", "Wind","Utility Solar","Storage"],
           tip: {format: {x: "d"}}
         }
@@ -405,5 +405,6 @@ Plot.plot({
 
 
 ```{ojs}
-cap_data = FileAttachment("data/working/capacity/capacity_long.csv").csv({ typed: true })
+original_cap_data = FileAttachment("data/working/capacity/capacity_long.csv").csv({ typed: true })
+cap_data = original_cap_data.map((d) => ({...d, "Prime Mover": d.prime_mover}))
 ```

@@ -77,7 +77,7 @@ regional_consumption_data = tidy(
       customers: sum('customers')
     })
   ])
-)
+).map((d) => ({...d, "Customer Class": d.class})).map((d) => ({...d, "ACEP Region": d.acep_region}))
 
 // Change in statewide totals
 statewide_delta = tidy(
@@ -104,7 +104,7 @@ statewide_delta = tidy(
     customers_delta: (d) => (d.customers - d.customers_2011) / d.customers_2011,
   }),
   filter((d) => d.year === 2019)
-)
+).map((d) => ({...d, "Customer Class": d.class}))
 ```
 
 ```{ojs}
@@ -136,8 +136,8 @@ Plot.plot({
     Plot.barX(statewide_delta,
       {
         x: "sales_delta",
-        y: "class",
-        fill: "class",
+        y: "Customer Class",
+        fill: "Customer Class",
         tip: {
           format: {
             x: (d) => `${(d).toLocaleString(undefined, {maximumFractionDigits: 2})}%`,
@@ -186,8 +186,8 @@ Plot.plot({
     Plot.barX(statewide_delta,
       {
         x: "customers_delta",
-        y: "class",
-        fill: "class",
+        y: "Customer Class",
+        fill: "Customer Class",
         tip: {
           format: {
             x: (d) => `${(d).toLocaleString(undefined, {maximumFractionDigits: 2})}%`,
@@ -211,7 +211,7 @@ Plot.plot({
 ```{ojs}
 sales_per_capita_data = tidy(regional_consumption_data.filter((d) => d.class === "Residential"),
   groupBy(
-    ['acep_region','year'],
+    ['ACEP Region','year'],
     [
       mutate({
         sales_per_capita: (d) => (d.sales / d.customers) * 1000
@@ -253,7 +253,7 @@ Plot.plot({
     Plot.line(sales_per_capita_data, {
         x: "year",
         y: "sales_per_capita",
-        stroke: "acep_region",
+        stroke: "ACEP Region",
         strokeWidth: 5,
         tip: {format: {x: "d"}}
       }
@@ -303,7 +303,7 @@ Plot.plot({//|
       {
         x: "year",
         y: "sales",
-        fill: "class",
+        fill: "Customer Class",
         tip: {format: {x: "d"}}
       }
     ),
@@ -350,7 +350,7 @@ Plot.plot({
       {
         x: "year",
         y: "customers",
-        fill: "class",
+        fill: "Customer Class",
         tip: {format: {x: "d"}}
       }
     ),
@@ -399,7 +399,7 @@ Plot.plot({//|
       {
         x: "year",
         y: "sales",
-        fill: "class",
+        fill: "Customer Class",
         tip: {format: {x: "d"}}
       }
     ),
@@ -446,7 +446,7 @@ Plot.plot({
       {
         x: "year",
         y: "customers",
-        fill: "class",
+        fill: "Customer Class",
         tip: {format: {
             x: "d",
             y: (y) => `${(y).toLocaleString(undefined, {maximumFractionDigits: 2})}`
@@ -499,7 +499,7 @@ Plot.plot({
       {
         x: "year",
         y: "sales",
-        fill: "class",
+        fill: "Customer Class",
         tip: {format: {x: "d"}}
       }
     ),
@@ -546,7 +546,7 @@ Plot.plot({
       {
         x: "year",
         y: "customers",
-        fill: "class",
+        fill: "Customer Class",
         tip: {format: {
             x: "d",
             y: (y) => `${(y).toLocaleString(undefined, {maximumFractionDigits: 2})}`

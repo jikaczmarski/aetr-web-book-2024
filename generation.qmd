@@ -69,7 +69,10 @@ gen_data = FileAttachment("data/working/generation/net_generation_long.csv").csv
 // Convert MWh to GWh
 gen_data_gwh = tidy(gen_data, mutate({
   generation: (d) => d.generation / 1000
-}));
+})).map((d) => ({...d, "Fuel Type": d.fuel_type})).map((d) => ({...d, "ACEP Region": d.acep_region}));
+
+//gen_data_gwh = gen_data_gwh_.map((d) => ({...d, "ACEP Region": d.acep_region},{...d, "Fuel Type": d.fuel_type}))
+
 ```
 
 ```{ojs}
@@ -108,7 +111,7 @@ Plot.plot({
         {
           x: "year",
           y: "generation",
-          fill: "acep_region",
+          fill: "ACEP Region",
           tip: {format: {x: "d"}}
         }
       )
@@ -158,13 +161,13 @@ join = tidy(share_data, fullJoin(total_gen, {by: ['year','acep_region']}))
 // Creating a column with shares
 join_shares = tidy(join.filter((d) => d.fuel_type !== "Storage"),
   mutate({generation_share: (d) => (d.generation / d.total_generation)*100})
-) // join_shares should be used for the 100% area charts
+).map((d) => ({...d, "Fuel Type": d.fuel_type})).map((d) => ({...d, "ACEP Region": d.acep_region})) // join_shares should be used for the 100% area charts
 
 // Table for just the 2011 and 2021 generation mix comparison
 gen_mix_diff = tidy(
   join_shares.filter((d) => d.year === 2011 || d.year === 2021),
   groupBy(
-    ['acep_region','fuel_type'],
+    ['ACEP Region','Fuel Type'],
     mutateWithSummary({
         generation_share_2011: lag('generation_share', {default: 0})
     })
@@ -212,13 +215,14 @@ Plot.plot({
     Plot.frame(),
     Plot.barX(gen_mix_diff, {
         x: "delta",
-        y: "fuel_type",
-        fill: "fuel_type",
+        y: "Fuel Type",
+        fill: "Fuel Type",
         order: ["Coal","Oil","Gas","Hydro","Wind","Solar"],
         tip: {
           format: {
             x: (d) => `${(d).toLocaleString(undefined, {maximumFractionDigits: 2})}%`,
-            y: false
+            y: false,
+            fy: false
           }
         }
       }
@@ -276,7 +280,7 @@ Plot.plot({
       {
         x:"year",
         y:"generation_share", 
-        fill: "fuel_type",
+        fill: "Fuel Type",
         order: ["Oil","Hydro","Wind"],
         tip: {format: {x: "d", y: (d) => `${(d).toLocaleString(undefined, {maximumFractionDigits: 2})}%`}}
       }
@@ -331,7 +335,7 @@ Plot.plot({
         {
           x: "year",
           y: "generation",
-          fill: "fuel_type",
+          fill: "Fuel Type",
           order: ["Oil","Hydro","Wind"],
           tip: {format: {x: "d"}}
         }
@@ -384,7 +388,7 @@ Plot.plot({//|
       {
         x:"year",
         y:"generation_share", 
-        fill: "fuel_type",
+        fill: "Fuel Type",
         order: ["Coal","Oil","Gas","Hydro","Wind","Solar"],
         tip: {format: {x: "d", y: (d) => `${(d).toLocaleString(undefined, {maximumFractionDigits: 2})}%`}}
       }
@@ -440,7 +444,7 @@ Plot.plot({
         {
           x: "year",
           y: "generation",
-          fill: "fuel_type",
+          fill: "Fuel Type",
           order: ["Coal","Oil","Gas","Hydro","Wind","Solar"],
           tip: {format: {x: "d"}}
         }
@@ -494,7 +498,7 @@ Plot.plot({
       {
         x:"year",
         y:"generation_share", 
-        fill: "fuel_type",
+        fill: "Fuel Type",
         order: ["Oil","Gas","Hydro","Wind","Solar","Other"],
         tip: {format: {x: "d", y: (d) => `${(d).toLocaleString(undefined, {maximumFractionDigits: 2})}%`}}
       }
@@ -549,7 +553,7 @@ Plot.plot({
         {
           x: "year",
           y: "generation",
-          fill: "fuel_type",
+          fill: "Fuel Type",
           order: ["Oil","Gas","Hydro","Wind","Solar","Other"],
           tip: {format: {x: "d"}}
         }
