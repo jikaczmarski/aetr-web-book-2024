@@ -286,7 +286,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">Apr 18, 2024 at 23:16 UTC</p>
+      <p class="date">Apr 19, 2024 at 00:02 UTC</p>
     </div>
   </div>
   
@@ -334,14 +334,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="co">// BibTeX content</span></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>bibtexContent <span class="op">=</span> </span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="vs">`@misc{aetr_web_book_2024,</span></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="vs">    author = {{Alaska Center for Energy and Power}},</span></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="vs">    title = {{2024 Alaska Electricity Trends Report}},</span></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="vs">    year = 2024,</span></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="vs">    url = { "https://acep-uaf.github.io/aetr-web-book-2024" },</span></span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="vs">    note = {Accessed on </span><span class="sc">${</span>currentDate<span class="sc">}</span><span class="vs">}</span></span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="vs">}`</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="co">// bibtexContent = </span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="co">// `@misc{aetr_web_book_2024,</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="co">//     author = {{Alaska Center for Energy and Power}},</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="co">//     title = {{2024 Alaska Electricity Trends Report}},</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="co">//     year = 2024,</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="co">//     url = { "https://acep-uaf.github.io/aetr-web-book-2024" },</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="co">//     note = {Accessed on ${currentDate}}</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="co">// }`</span></span>
 <span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="co">// BibLaTeX content</span></span>
 <span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>biblatexContent <span class="op">=</span> </span>
@@ -363,12 +363,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a><span class="vs">N1  - Accessed on </span><span class="sc">${</span>currentDate<span class="sc">}</span><span class="vs">$`</span></span>
 <span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a><span class="co">// Create the blobs</span></span>
-<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>bibtex_blob <span class="op">=</span> <span class="kw">new</span> <span class="bu">Blob</span>([bibtexContent]<span class="op">,</span> { <span class="dt">type</span><span class="op">:</span> <span class="st">'text/plain'</span> })<span class="op">;</span></span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a><span class="co">// bibtex_blob = new Blob([bibtexContent], { type: 'text/plain' });</span></span>
 <span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>biblatex_blob <span class="op">=</span> <span class="kw">new</span> <span class="bu">Blob</span>([biblatexContent]<span class="op">,</span> { <span class="dt">type</span><span class="op">:</span> <span class="st">'text/plain'</span> })<span class="op">;</span> </span>
 <span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>ris_blob <span class="op">=</span> <span class="kw">new</span> <span class="bu">Blob</span>([risContent]<span class="op">,</span> { <span class="dt">type</span><span class="op">:</span> <span class="st">'text/plain'</span> })<span class="op">;</span> </span>
 <span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a><span class="co">// Insert blobs into buttons</span></span>
-<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a><span class="fu">button</span>(bibtex_blob<span class="op">,</span> <span class="st">'aetr_web_book_2024.bibtex'</span><span class="op">,</span> <span class="st">'BibTeX'</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a><span class="co">// button(bibtex_blob, 'aetr_web_book_2024.bibtex', 'BibTeX');</span></span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a><span class="fu">button</span>(biblatex_blob<span class="op">,</span> <span class="st">'aetr_web_book_2024.bib'</span><span class="op">,</span> <span class="st">'BibLaTeX'</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <div id="ojs-cell-1-1" data-nodetype="declaration">
@@ -448,37 +449,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="cell-output cell-output-display">
 <div>
-<div id="ojs-cell-1-12" data-nodetype="declaration">
+<div id="ojs-cell-1-12" data-nodetype="expression">
 
 </div>
 </div>
 </div>
+<div class="sourceCode cell-code hidden" id="cb2" data-startfrom="58" data-source-offset="-1616"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 57;"><span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a><span class="fu">button</span>(ris_blob<span class="op">,</span> <span class="st">'aetr_web_book_2024.ris'</span><span class="op">,</span> <span class="st">'RIS'</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
-<div id="ojs-cell-1-13" data-nodetype="declaration">
-
-</div>
-</div>
-</div>
-<div class="cell-output cell-output-display">
-<div>
-<div id="ojs-cell-1-14" data-nodetype="expression">
-
-</div>
-</div>
-</div>
-<div class="sourceCode cell-code hidden" id="cb2" data-startfrom="57" data-source-offset="-1525"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 56;"><span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a><span class="fu">button</span>(biblatex_blob<span class="op">,</span> <span class="st">'aetr_web_book_2024.bib'</span><span class="op">,</span> <span class="st">'BibLaTeX'</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div>
-<div id="ojs-cell-1-15" data-nodetype="expression">
-
-</div>
-</div>
-</div>
-<div class="sourceCode cell-code hidden" id="cb3" data-startfrom="58" data-source-offset="-1586"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 57;"><span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a><span class="fu">button</span>(ris_blob<span class="op">,</span> <span class="st">'aetr_web_book_2024.ris'</span><span class="op">,</span> <span class="st">'RIS'</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div>
-<div id="ojs-cell-1-16" data-nodetype="expression">
+<div id="ojs-cell-1-13" data-nodetype="expression">
 
 </div>
 </div>
@@ -541,7 +520,7 @@ eyJjb250ZW50cyI6WyAgeyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiaW5saW5lIjoidHJ1ZSIsInNv
 
 </main> <!-- /main -->
 <script type="ojs-module-contents">
-eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6IlxuLy8gc2V0IHVwIHRvZGF5J3MgZGF0ZVxuZGF0ZSA9IG5ldyBEYXRlKCk7XG5kYXkgPSBkYXRlLmdldERhdGUoKTtcbm1vbnRoID0gZGF0ZS50b0xvY2FsZVN0cmluZygnZGVmYXVsdCcsIHsgbW9udGg6ICdsb25nJyB9KTtcbm1vbnRoX3Nob3J0ID0gZGF0ZS5nZXRNb250aCgpO1xueWVhciA9IGRhdGUuZ2V0RnVsbFllYXIoKTtcblxuY3VycmVudERhdGUgPSBgJHttb250aH0gJHtkYXl9LCAke3llYXJ9YFxuXG4vLyBidWlsZCBhIGJ1dHRvblxuYnV0dG9uID0gKGJsb2IsIGZpbGVuYW1lID0gJ3Rlc3QuYmliJywgZGlzcGxheW5hbWUpID0+IHtcbiAgY29uc3QgYnV0dG9uID0gRE9NLmRvd25sb2FkKFxuICAgIGJsb2IsXG4gICAgZmlsZW5hbWUsXG4gICAgYCR7ZGlzcGxheW5hbWV9YFxuICApO1xuICByZXR1cm4gYnV0dG9uO1xufVxuXG4vLyBCaWJUZVggY29udGVudFxuYmlidGV4Q29udGVudCA9IFxuYEBtaXNje2FldHJfd2ViX2Jvb2tfMjAyNCxcbiAgICBhdXRob3IgPSB7e0FsYXNrYSBDZW50ZXIgZm9yIEVuZXJneSBhbmQgUG93ZXJ9fSxcbiAgICB0aXRsZSA9IHt7MjAyNCBBbGFza2EgRWxlY3RyaWNpdHkgVHJlbmRzIFJlcG9ydH19LFxuICAgIHllYXIgPSAyMDI0LFxuICAgIHVybCA9IHsgXCJodHRwczovL2FjZXAtdWFmLmdpdGh1Yi5pby9hZXRyLXdlYi1ib29rLTIwMjRcIiB9LFxuICAgIG5vdGUgPSB7QWNjZXNzZWQgb24gJHtjdXJyZW50RGF0ZX19XG59YFxuXG4vLyBCaWJMYVRlWCBjb250ZW50XG5iaWJsYXRleENvbnRlbnQgPSBcbmBAb25saW5le2FldHJfd2ViX2Jvb2tfMjAyNCxcbiAgICBhdXRob3IgPSB7e0FsYXNrYSBDZW50ZXIgZm9yIEVuZXJneSBhbmQgUG93ZXJ9fSxcbiAgICB0aXRsZSA9IHt7MjAyNCBBbGFza2EgRWxlY3RyaWNpdHkgVHJlbmRzIFJlcG9ydH19LFxuICAgIHllYXIgPSAyMDI0LFxuICAgIHVybCA9IHtodHRwczovL2FjZXAtdWFmLmdpdGh1Yi5pby9hZXRyLXdlYi1ib29rLTIwMjQvfSxcbiAgICB1cmxkYXRlID0geyR7eWVhcn0tJHttb250aF9zaG9ydH0tJHtkYXl9fVxufWBcblxucmlzQ29udGVudCA9IFxuYFRZICAtIE1JU0NcbkFVICAtIEFsYXNrYSBDZW50ZXIgZm9yIEVuZXJneSBhbmQgUG93ZXJcblRJICAtIDIwMjQgQWxhc2thIEVsZWN0cmljaXR5IFRyZW5kcyBSZXBvcnRcblBZICAtIDIwMjRcbkRBICAtIDIwMjRcblVSICAtIGh0dHBzOi8vYWNlcC11YWYuZ2l0aHViLmlvL2FldHItd2ViLWJvb2stMjAyNC9cbk4xICAtIEFjY2Vzc2VkIG9uICR7Y3VycmVudERhdGV9JGBcblxuLy8gQ3JlYXRlIHRoZSBibG9ic1xuYmlidGV4X2Jsb2IgPSBuZXcgQmxvYihbYmlidGV4Q29udGVudF0sIHsgdHlwZTogJ3RleHQvcGxhaW4nIH0pO1xuYmlibGF0ZXhfYmxvYiA9IG5ldyBCbG9iKFtiaWJsYXRleENvbnRlbnRdLCB7IHR5cGU6ICd0ZXh0L3BsYWluJyB9KTsgXG5yaXNfYmxvYiA9IG5ldyBCbG9iKFtyaXNDb250ZW50XSwgeyB0eXBlOiAndGV4dC9wbGFpbicgfSk7IFxuXG4vLyBJbnNlcnQgYmxvYnMgaW50byBidXR0b25zXG5idXR0b24oYmlidGV4X2Jsb2IsICdhZXRyX3dlYl9ib29rXzIwMjQuYmlidGV4JywgJ0JpYlRlWCcpO1xuYnV0dG9uKGJpYmxhdGV4X2Jsb2IsICdhZXRyX3dlYl9ib29rXzIwMjQuYmliJywgJ0JpYkxhVGVYJyk7XG5idXR0b24ocmlzX2Jsb2IsICdhZXRyX3dlYl9ib29rXzIwMjQucmlzJywgJ1JJUycpO1xuXG5cbiJ9XX0=
+eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6IlxuLy8gc2V0IHVwIHRvZGF5J3MgZGF0ZVxuZGF0ZSA9IG5ldyBEYXRlKCk7XG5kYXkgPSBkYXRlLmdldERhdGUoKTtcbm1vbnRoID0gZGF0ZS50b0xvY2FsZVN0cmluZygnZGVmYXVsdCcsIHsgbW9udGg6ICdsb25nJyB9KTtcbm1vbnRoX3Nob3J0ID0gZGF0ZS5nZXRNb250aCgpO1xueWVhciA9IGRhdGUuZ2V0RnVsbFllYXIoKTtcblxuY3VycmVudERhdGUgPSBgJHttb250aH0gJHtkYXl9LCAke3llYXJ9YFxuXG4vLyBidWlsZCBhIGJ1dHRvblxuYnV0dG9uID0gKGJsb2IsIGZpbGVuYW1lID0gJ3Rlc3QuYmliJywgZGlzcGxheW5hbWUpID0+IHtcbiAgY29uc3QgYnV0dG9uID0gRE9NLmRvd25sb2FkKFxuICAgIGJsb2IsXG4gICAgZmlsZW5hbWUsXG4gICAgYCR7ZGlzcGxheW5hbWV9YFxuICApO1xuICByZXR1cm4gYnV0dG9uO1xufVxuXG4vLyBCaWJUZVggY29udGVudFxuLy8gYmlidGV4Q29udGVudCA9IFxuLy8gYEBtaXNje2FldHJfd2ViX2Jvb2tfMjAyNCxcbi8vICAgICBhdXRob3IgPSB7e0FsYXNrYSBDZW50ZXIgZm9yIEVuZXJneSBhbmQgUG93ZXJ9fSxcbi8vICAgICB0aXRsZSA9IHt7MjAyNCBBbGFza2EgRWxlY3RyaWNpdHkgVHJlbmRzIFJlcG9ydH19LFxuLy8gICAgIHllYXIgPSAyMDI0LFxuLy8gICAgIHVybCA9IHsgXCJodHRwczovL2FjZXAtdWFmLmdpdGh1Yi5pby9hZXRyLXdlYi1ib29rLTIwMjRcIiB9LFxuLy8gICAgIG5vdGUgPSB7QWNjZXNzZWQgb24gJHtjdXJyZW50RGF0ZX19XG4vLyB9YFxuXG4vLyBCaWJMYVRlWCBjb250ZW50XG5iaWJsYXRleENvbnRlbnQgPSBcbmBAb25saW5le2FldHJfd2ViX2Jvb2tfMjAyNCxcbiAgICBhdXRob3IgPSB7e0FsYXNrYSBDZW50ZXIgZm9yIEVuZXJneSBhbmQgUG93ZXJ9fSxcbiAgICB0aXRsZSA9IHt7MjAyNCBBbGFza2EgRWxlY3RyaWNpdHkgVHJlbmRzIFJlcG9ydH19LFxuICAgIHllYXIgPSAyMDI0LFxuICAgIHVybCA9IHtodHRwczovL2FjZXAtdWFmLmdpdGh1Yi5pby9hZXRyLXdlYi1ib29rLTIwMjQvfSxcbiAgICB1cmxkYXRlID0geyR7eWVhcn0tJHttb250aF9zaG9ydH0tJHtkYXl9fVxufWBcblxucmlzQ29udGVudCA9IFxuYFRZICAtIE1JU0NcbkFVICAtIEFsYXNrYSBDZW50ZXIgZm9yIEVuZXJneSBhbmQgUG93ZXJcblRJICAtIDIwMjQgQWxhc2thIEVsZWN0cmljaXR5IFRyZW5kcyBSZXBvcnRcblBZICAtIDIwMjRcbkRBICAtIDIwMjRcblVSICAtIGh0dHBzOi8vYWNlcC11YWYuZ2l0aHViLmlvL2FldHItd2ViLWJvb2stMjAyNC9cbk4xICAtIEFjY2Vzc2VkIG9uICR7Y3VycmVudERhdGV9JGBcblxuLy8gQ3JlYXRlIHRoZSBibG9ic1xuLy8gYmlidGV4X2Jsb2IgPSBuZXcgQmxvYihbYmlidGV4Q29udGVudF0sIHsgdHlwZTogJ3RleHQvcGxhaW4nIH0pO1xuYmlibGF0ZXhfYmxvYiA9IG5ldyBCbG9iKFtiaWJsYXRleENvbnRlbnRdLCB7IHR5cGU6ICd0ZXh0L3BsYWluJyB9KTsgXG5yaXNfYmxvYiA9IG5ldyBCbG9iKFtyaXNDb250ZW50XSwgeyB0eXBlOiAndGV4dC9wbGFpbicgfSk7IFxuXG4vLyBJbnNlcnQgYmxvYnMgaW50byBidXR0b25zXG4vLyBidXR0b24oYmlidGV4X2Jsb2IsICdhZXRyX3dlYl9ib29rXzIwMjQuYmlidGV4JywgJ0JpYlRlWCcpO1xuYnV0dG9uKGJpYmxhdGV4X2Jsb2IsICdhZXRyX3dlYl9ib29rXzIwMjQuYmliJywgJ0JpYkxhVGVYJyk7XG5idXR0b24ocmlzX2Jsb2IsICdhZXRyX3dlYl9ib29rXzIwMjQucmlzJywgJ1JJUycpO1xuXG5cbiJ9XX0=
 </script>
 <script type="module">
 if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
