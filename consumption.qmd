@@ -43,7 +43,7 @@ statewide_consumption_data <- consumption_data %>%
 source("scripts/inline_functions/consumption_inline_functions.R")
 ```
 
-## General Overview
+## General Overview {#sec-consumption}
 
 The data presented in this section is from calendar years 2011 to 2019. More recent data has been omitted due to issues with data completeness and validity.
 

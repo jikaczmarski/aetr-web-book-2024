@@ -1,39 +1,12 @@
 ---
-title: "Credits"
+title: "Acknowledgements and Roles"
 subtitle: "About the Team that Created the 2024 Alaska Electricity Trends Report"
-date-modified: "2024-03-25T09:52:00-08:00"
+date-modified: "2024-04-19T09:52:00-08:00"
 date-format: "MMM D, YYYY [at] HH:mm z"
+author: "Alaska Center for Energy and Power"
 ---
 
-&nbsp;
-
-The Alaska Electrical Trends web book has been produced by the Alaska Center for Energy and Power ([ACEP](https://www.uaf.edu/acep/)) at the University of Alaska Fairbanks ([UAF](https://www.uaf.edu/uaf/index.php)). It is a collaboration between data scientists, researchers, and policy experts.
-
-## Data and Cyberinfrastructure Management (DCM) Team {#sec-contacts}
-
-ACEP's DCM Team <!-- (add a link when it becomes available) -->  includes software developers, mathematicians, spatial analysts, economists, open science enthusiasts, and experts in information security and the deployment of computer infrastructure. Together, DCM creates stable and secure pipelines for data from collection to publication. These DCM members generated figures, wrote text, and coded this web book:
-
-* [Jesse Kaczmarski](https://www.uaf.edu/acep/about/our-team/jesse-kaczmarski.php)
-* [Ian MacDougall](https://www.uaf.edu/acep/about/our-team/ian-macdougall.php)
-* [Elizabeth (Liz) Dobbins](https://www.uaf.edu/acep/about/our-team/elizabeth-dobbins.php)
-* [Dayne Broderson](https://www.uaf.edu/acep/about/our-team/dayne-broderson.php)
-
-## Energy Transitions Initiative (ETI) Team 
-
-ACEP's ETI is ...
-
-* [Brittany Smart](https://www.uaf.edu/acep/about/our-team/brittany-smart.php)
-* [Gwen Holdmann](https://www.uaf.edu/acep/about/our-team/gwen-holdmann.php)
-* [Erika Boice](https://www.uaf.edu/acep/about/our-team/erika-boice.php)
-
-## Associated Researchers and Commentators
-
-* Neil McMahon, Project Manager, [DOWL](https://www.dowl.com/) who created and updated [2011-2021 workbooks](https://acep-uaf.github.io/ak-energy-statistics-2011_2021/)
-* [Steve Colt](https://www.uaf.edu/acep/about/our-team/steve-colt.php), ACEP who collaborated on validation and correcting the workbooks
-* Sara Fisher-Goad, UAF's Office of the Vice Chancellor for Research
-* [Shivani Mathur](https://www.uaf.edu/acep/about/our-team/shivani-mathur.php), ACEP
-
-# Acknowledgements
+## Acknowledgements
 
 Funding support for this team was provided by leveraging support from multiple partners that include: 
 
@@ -43,4 +16,49 @@ Funding support for this team was provided by leveraging support from multiple p
 - Alaska Center for Energy and Power ([ACEP](https://www.uaf.edu/acep/)) at the University of Alaska Fairbanks ([UAF](https://www.uaf.edu/uaf/index.php))
 - Institute of Social and Economic Research ([ISER](https://iseralaska.org)) at the University of Alaska Anchorage ([UAA](https://www.uaa.alaska.edu))
 
-Data used in the energy workbooks comes from a variety of sources and partners, but special thanks to the Alaska Energy Authority for partnering with the team to get the base line power cost equalization datasets made available. Without this openness, this report would not be possible. We would also like to thank the utilities who responded directly when we had questions. A full list of these organizations has been complied in our [Methods Section](methods.qmd).
+Data used in the energy workbooks comes from a variety of sources and partners, but special thanks to the Alaska Energy Authority for partnering with the team to make the base line power cost equalization datasets available. Without this openness, this report would not be possible. We would also like to thank the utilities who responded directly when we had questions. A full list of these organizations has been complied in @sec-sources.
+
+## Credits and Roles  {#sec-contacts}
+
+```{r}
+#| echo: false
+# Hack to reuse footnotes from https://stackoverflow.com/questions/74632879/use-footnote-multiple-times-in-html-quarto
+
+gen_fn <- function(n, id) {
+  # n is number of footnote
+  # id is a unique id for that footnote
+  paste0('<a href="#',id, '" class="footnote-ref" role="doc-noteref" aria-expanded="false"><sup>', n, '</sup></a>')
+}
+```
+
+The Alaska Electrical Trends web book has been produced by the Alaska Center for Energy and Power ([ACEP](https://www.uaf.edu/acep/)) at the University of Alaska Fairbanks ([UAF](https://www.uaf.edu/uaf/index.php)). It is a collaboration between data scientists, researchers, and policy experts.
+
+* [Jesse Kaczmarski](https://www.uaf.edu/acep/about/our-team/jesse-kaczmarski.php)`r gen_fn(1, "fn1")`
+* [Ian MacDougall](https://www.uaf.edu/acep/about/our-team/ian-macdougall.php)`r gen_fn(1, "fn1")`
+* [Elizabeth (Liz) Dobbins](https://www.uaf.edu/acep/about/our-team/elizabeth-dobbins.php)`r gen_fn(1, "fn1")`
+* [Dayne Broderson](https://www.uaf.edu/acep/about/our-team/dayne-broderson.php)`r gen_fn(1, "fn1")`
+* [Brittany Smart](https://www.uaf.edu/acep/about/our-team/brittany-smart.php)`r gen_fn(2, "fn2")`
+* [Gwen Holdmann](https://www.uaf.edu/acep/about/our-team/gwen-holdmann.php)`r gen_fn(2, "fn2")`
+* [Erika Boice](https://www.uaf.edu/acep/about/our-team/erika-boice.php)`r gen_fn(2, "fn2")`
+* Neil McMahon`r gen_fn(3, "fn3")`
+  * created and updated [2011-2021 workbooks](https://acep-uaf.github.io/ak-energy-statistics-2011_2021/)
+* [Steve Colt](https://www.uaf.edu/acep/about/our-team/steve-colt.php)`r gen_fn(2, "fn2")`
+  *  collaborated on validation and correcting the workbooks
+* [Sara Fisher-Goad](https://www.uaf.edu/research/contact-us/index.php)`r gen_fn(4, "fn4")`
+* [Shivani Mathur](https://www.uaf.edu/acep/about/our-team/shivani-mathur.php)`r gen_fn(2, "fn2")`
+
+
+### Affiliations
+
+ACEP's Data and Cyberinfrastructure Management (DCM) Team <!-- (add a link when it becomes available) -->  includes software developers, mathematicians, spatial analysts, economists, open science enthusiasts, and experts in information security and the deployment of computer infrastructure. Together, DCM creates stable and secure pipelines for data from collection to publication. ACEP's Energy Transition Initiative (ETI) is designed to respond quickly to requests for information about Alaska energy.
+
+```{=html}
+<footer>
+  <ol  style="padding-left: 1rem;">
+    <li id="fn1"><p>Data and Cyberinfrastructure Management, ACEP, UAF.</p></li>
+    <li id="fn2"><p>Energy Transition Initiative, ACEP, UAF</p></li>
+    <li id="fn3"><p>Project Manager, <a href="https://www.dowl.com/">DOWL, LLC</a></p></li>
+    <li id="fn3"><p>Office of the Vice Chancellor for Research, UAF</p></li>
+  </ol>
+</footer>
+```

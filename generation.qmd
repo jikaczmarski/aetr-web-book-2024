@@ -49,7 +49,7 @@ regional_generation_mix <- generation_data %>%
 source("scripts/inline_functions/generation_inline_functions.R")
 ```
 
-## General Overview
+## General Overview {#sec-generation}
 
 This section outlines the trends in generation by fuel type for each region. Generation in our context has two separate definitions. Data collected through the Energy Information Administration (EIA) records “net” generation, which excludes electricity use for power plant operations. However, data collected from the Alaska Energy Authority’s (AEA) Power Cost Equalization (PCE) program is presented as “gross” generation, which does not make this exclusion.[^1]
 
