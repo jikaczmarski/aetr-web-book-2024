@@ -18,52 +18,56 @@
                     {
                         "name": "year",
                         "description": "Calendar year",
-                        "type": "integer"
-                    },
-                    {
-                        "name": "aea_region",
-                        "description": "Alaska Energy Authority Energy Region",
-                        "type": "string"
+                        "type": "integer",
+                        "units": "NA"
                     },
                     {
                         "name": "acep_region",
                         "description": "Alaska Center for Energy and Power Energy Region",
-                        "type": "string"
+                        "type": "string",
+                        "units": "NA"
                     },
                     {
                         "name": "ff_turbines",
                         "description": "Capacity in megawatts (MW) using prime movers of types: combined cycle, gas turbines, and steam turbines",
-                        "type": "float"
+                        "type": "float",
+                        "units": "MW"
                     },
                     {
                         "name": "ff_ice",
                         "description": "Capacity in megawatts (MW) by internal combustion engine prime movers",
-                        "type": "float"
+                        "type": "float",
+                        "units": "MW"
                     },
                     {
                         "name": "hydro",
                         "description": "Capacity in megawatts (MW) by hydroelectric prime movers.",
-                        "type": "float"
+                        "type": "float", 
+                        "units": "MW"
                     },
                     {
                         "name": "solar",
                         "description": "Capacity in megawatts (MW) from utility-scale solarvoltaic panels.",
-                        "type": "float"
+                        "type": "float",
+                        "units": "MW"
                     },
                     {
                         "name": "storage",
                         "description": "Capacity in megawatts (MW) from utility-scale battery storage.",
-                        "type": "float"
+                        "type": "float",
+                        "units": "MW"
                     },
                     {
                         "name": "rooftop_solar",
                         "description": "Capacity in megawatts (MW) from rooftop (behind-the-meter) solarvoltaic panels.",
-                        "type": "float"
+                        "type": "float", 
+                        "units": "MW"
                     },
                     {
                         "name": "landfill_gas",
                         "description": "Capacity in megawatts (MW) from landfill gas generating units.",
-                        "type": "float"
+                        "type": "float", 
+                        "units": "MW"
                     }
                 ]
             }
@@ -76,27 +80,32 @@
                     {
                         "name": "year",
                         "description": "Calendar year",
-                        "type": "integer"
+                        "type": "integer",
+                        "units": "NA"
                     },
                     {
                         "name": "aea_region",
                         "description": "Alaska Energy Authority Energy Region",
-                        "type": "string"
+                        "type": "string",
+                        "units": "NA"
                     },
                     {
                         "name": "acep_region",
                         "description": "Alaska Center for Energy and Power Energy Region",
-                        "type": "string"
+                        "type": "string",
+                        "units": "NA"
                     },
                     {
                         "name": "prime_mover",
                         "description": "Powerhouse technology",
-                        "type": "string"
+                        "type": "string",
+                        "units": "NA"
                     },
                     {
                         "name": "total_capacity",
                         "description": "Capacity in megawatts (MW) for the powerhouse technology",
-                        "type": "float"
+                        "type": "float", 
+                        "units": "MW"
                     }
                 ]
             }
@@ -109,67 +118,80 @@
                     {
                         "name": "year",
                         "description": "Calendar year",
-                        "type": "integer"
+                        "type": "integer",
+                        "units": "NA"
                     },
                     {
                         "name": "plant_name",
                         "description": "Reporting name for the power plant",
-                        "type": "string"
+                        "type": "string",
+                        "units": "NA"
                     },
                     {
                         "name": "oil",
                         "description": "Net/Gross generation in MWh. Includes Distillate Fuel Oil, Jet Fuel, Residual Fuel Oil, and Waste/Other Oil",
-                        "type": "float"
+                        "type": "float", 
+                        "units": "MWh"
                     },
                     {
                         "name": "gas",
                         "description": "Net/Gross generation in MWh. Includes natural gas",
-                        "type": "float"
+                        "type": "float",
+                        "units": "MWh"
                     },
                     {
                         "name": "coal",
                         "description": "Net/Gross generation in MWh. Includes Sub-bituminous Coal, Waste Coal, and Lignite",
-                        "type": "float"
+                        "type": "float",
+                        "units": "MWh"
                     },
                     {
                         "name": "hydro",
                         "description": "Net/Gross generation in MWh from Conventional Hydroelectric Turbines",
-                        "type": "float"
+                        "type": "float",
+                        "units": "MWh"
                     },
                     {
                         "name": "wind",
                         "description": "Net/Gross generation in MWh from wind",
-                        "type": "float"
+                        "type": "float",
+                        "units": "MWh"
                     },
                     {
                         "name": "solar",
                         "description": "Net/Gross generation in MWh from solar",
-                        "type": "float"
+                        "type": "float",
+                        "units": "MWh"
                     },
                     {
                         "name": "storage",
                         "description": "Net/Gross generation in MWh from battery cells.",
-                        "type": "float"
+                        "type": "float",
+                        "units": "MWh"
                     },
                     {
                         "name": "other",
                         "description": "Net/Gross generation in MWh from Agricultural By-Products, Wood Solids, and Other sources",
-                        "type": "float"
+                        "type": "float",
+                        "units": "MWh"
                     },
                     {
                         "name": "aea_region",
                         "description": "Alaska Energy Authority Energy Region",
-                        "type": "string"
+                        "type": "string",
+                        "units": "NA"
                     },
                     {
                         "name": "source",
                         "description": "Data source",
-                        "type": "string"
+                        "type": "string",
+                        "units": "NA"
                     },
                     {
                         "name": "data_version",
                         "description": "Verification status of the data",
-                        "type": "string"
+                        "type": "string",
+                        "units": "NA"
                     }
                 ]
             }
@@ -182,42 +204,50 @@
                     {
                         "name": "year",
                         "description": "Calendar year",
-                        "type": "integer"
+                        "type": "integer",
+                        "units": "NA"
                     },
                     {
                         "name": "plant_name",
                         "description": "Reporting name for the power plant",
-                        "type": "string"
+                        "type": "string",
+                        "units": "NA"
                     },
                     {
                         "name": "aea_region",
                         "description": "Alaska Energy Authority Energy Region",
-                        "type": "string"
+                        "type": "string",
+                        "units": "NA"
                     },
                     {
                         "name": "source",
                         "description": "Data source",
-                        "type": "string"
+                        "type": "string",
+                        "units": "NA"
                     },
                     {
                         "name": "data_version",
                         "description": "Verification status of the data",
-                        "type": "string"
+                        "type": "string",
+                        "units": "NA"
                     },
                     {
                         "name": "fuel_type",
                         "description": "Primary fuel used at the power plant",
-                        "type": "string"
+                        "type": "string",
+                        "units": "NA"
                     },
                     {
                         "name": "generation",
                         "description": "Total generation in MWh",
-                        "type": "float"
+                        "type": "float",
+                        "units": "MWh"
                     },
                     {
                         "name": "acep_region",
                         "description": "Alaska Center for Energy and Power Energy Region",
-                        "type": "string"
+                        "type": "string",
+                        "units": "NA"
                     }
                 ]
             }
@@ -230,132 +260,158 @@
                     {
                         "name": "year",
                         "description": "Calendar year",
-                        "type": "integer"
+                        "type": "integer",
+                        "units": "NA"
                     },
                     {
                         "name": "aea_srid",
                         "description": "An unofficial unique identifier for all known entities that report sales to either PCE or EIA. Developed because EIA and PCE unique identifiers for sales were not compatible.",
-                        "type": "string"
+                        "type": "string",
+                        "units": "NA"
                     },
                     {
                         "name": "pce_id",
                         "description": "Alaska Energy Authority (AEA) accounting code for PCE reporters, used as the unique identifier for PCE reporters.",
-                        "type": "integer"
+                        "type": "integer",
+                        "units": "NA"
                     },
                     {
                         "name": "rca_cpcn",
                         "description": "Certificate of Public Convenience and Necessity (CPCN) number issued by Regulatory Commission of Alaska",
-                        "type": "integer"
+                        "type": "integer",
+                        "units": "NA"
                     },
                     {
                         "name": "utility_name",
                         "description": "Unofficial unique names for utilities and/or operators that include a combination of EIA utility/operator names, PCE utility names, and/or CPCN holder names, as appropriate",
-                        "type": "string"
+                        "type": "string",
+                        "units": "NA"
                     },
                     {
                         "name": "reporting_name",
                         "description": "For PCE reporting entities, this variable is the name of a community (or a group of communities) that is separately reimbursed by the PCE program and is treated as a distinct utility entity by the Regulatory Commission of Alaska when determining allowable PCE reimbursements.",
-                        "type": "string"
+                        "type": "string",
+                        "units": "NA"
                     },
                     {
                         "name": "intertie_name",
                         "description": "Unofficial unique identifiers for all known microgrids in Alaska—including ones that only include one community, plant, and/or sales reporter",
-                        "type": "string"
+                        "type": "string",
+                        "units": "NA"
                     },
                     {
                         "name": "aea_region",
                         "description": "Regions defined by Alaska Energy Authority for regional energy planning",
-                        "type": "string"
+                        "type": "string",
+                        "units": "NA"
                     },
                     {
                         "name": "residential_revenue",
                         "description": "Revenue from sales to residential customers, in thousands of dollars. For EIA data, this reported directly. For PCE data, the residential rate is reported and revenue is calculated as Residential Sales x Residential $/kWh",
-                        "type": "string"
+                        "type": "float",
+                        "units": "USD * 1000"
                     },
                     {
                         "name": "residential_sales",
                         "description": "Sales to residential customers, in megawatt-hours (MWh)",
-                        "type": "string"
+                        "type": "float",
+                        "units": "MWh"
                     },
                     {
                         "name": "residential_customers",
                         "description": "The average of the 12 monthly close-of-month residential customer counts.",
-                        "type": "string"
+                        "type": "float",
+                        "units": "NA"
                     },
                     {
                         "name": "residential_price",
                         "description": "Average revenue per kWh for residential customers. For EIA data, calculated as Residential Revenue $000 / Residential Sales MWh. For PCE data, equal to the reported residential rate.",
-                        "type": "float"
+                        "type": "float",
+                        "units": "USD / kWh"
                     },
                     {
                         "name": "commercial_revenue",
                         "description": "Revenue from sales to residential customers, in thousands of dollars. For EIA data, this reported directly. For PCE data, the residential rate is utilized to estimate commercical revenue, calculated as Commercial Sales x Residential $/kWh",
-                        "type": "string"
+                        "type": "float",
+                        "units": "USD * 1000"
                     },
                     {
                         "name": "commercial_sales",
                         "description": "Sales to commercial customers, in megawatt-hours (MWh)",
-                        "type": "string"
+                        "type": "float",
+                        "units": "MWh"
                     },
                     {
                         "name": "commercial_customers",
                         "description": "The average of the 12 monthly close-of-month commercial customer counts.",
-                        "type": "string"
+                        "type": "float",
+                        "units": "NA"
                     },
                     {
                         "name": "commercial_price",
                         "description": "Average revenue per kWh for commercial customers, calculated as Commercial Revenue $000 / Commercial Sales MWh. For PCE data, Commercial $/kWh equals the residential rate, which is the reported data, and is used to calculate revenue.",
-                        "type": "float"
+                        "type": "float",
+                        "units": "USD / kWh"
                     },
                     {
                         "name": "other_revenue",
                         "description": "Revenue from sales to other customers, in thousands of dollars. For EIA data, 'Other' equals the sum of reported 'Industrial' plus 'Transportation' categories. For PCE data, 'Other' equals the sum of reported 'Community Facilities' and 'Government' categories. For EIA data, Other revenues are reported directly. For PCE data, the residential rate is utilized to estimate other revenue, calculated as Other Sales x Residential $/kWh",
-                        "type": "string"
+                        "type": "float",
+                        "units": "USD * 1000"
                     },
                     {
                         "name": "other_sales",
                         "description": "Sales to other customers, in megawatt-hours (MWh)",
-                        "type": "string"
+                        "type": "float",
+                        "units": "MWh"
                     },
                     {
                         "name": "other_customers",
                         "description": "The average of the 12 monthly close-of-month other customer counts.",
-                        "type": "string"
+                        "type": "float",
+                        "units": "NA"
                     },
                     {
                         "name": "other_price",
                         "description": "Average revenue per kWh, calculated as Other Revenue $000 / Other Sales MWh. (For PCE data, Other $/kWh equals the residential rate, which is the reported data, and is used to calculate revenue.)",
-                        "type": "float"
+                        "type": "float",
+                        "units": "USD / kWh"
                     },
                     {
                         "name": "total_revenue",
                         "description": "Total revenue from sales to all retail customers, in thousands of dollars. ",
-                        "type": "float"
+                        "type": "float",
+                        "units": "USD * 1000"
                     },
                     {
                         "name": "total_sales",
                         "description": "Total sales to retail customers, in megawatt-hours (MWh)",
-                        "type": "float"
+                        "type": "float",
+                        "units": "MWh"
                     },
                     {
                         "name": "total_customers",
                         "description": "The sum of Residential Customers plus Commercial Customers plus Other Customers",
-                        "type": "float"
+                        "type": "float",
+                        "units": "NA"
                     },
                     {
                         "name": "total_price",
                         "description": "Average revenue per kWh sold, calculated as Total Revenue $000 / Total Sales MWh.",
-                        "type": "float"
+                        "type": "float",
+                        "units": "USD / kWh"
                     },
                     {
                         "name": "data_source",
                         "description": "Source of the data",
-                        "type": "string"
+                        "type": "string",
+                        "units": "NA"
                     },
                     {
                         "name": "acep_region",
                         "description": "Energy regions as defined by Alaska Center for Energy and Power: Coastal, Railbelt, Rural Remote",
-                        "type": "string"
+                        "type": "string",
+                        "units": "NA"
                     }
                 ]
             }
@@ -368,77 +424,92 @@
                     {
                         "name": "year",
                         "description": "Calendar year",
-                        "type": "integer"
+                        "type": "integer",
+                        "units": "NA"
                     },
                     {
                         "name": "aea_srid",
                         "description": "An unofficial unique identifier for all known entities that report sales to either PCE or EIA. Developed because EIA and PCE unique identifiers for sales were not compatible.",
-                        "type": "string"
+                        "type": "string",
+                        "units": "NA"
                     },
                     {
                         "name": "pce_id",
                         "description": "Alaska Energy Authority (AEA) accounting code for PCE reporters, used as the unique identifier for PCE reporters.",
-                        "type": "string"
+                        "type": "string",
+                        "units": "NA"
                     },
                     {
                         "name": "rca_cpcn",
                         "description": "Certificate of Public Convenience and Necessity (CPCN) number issued by Regulatory Commission of Alaska",
-                        "type": "integer"
+                        "type": "integer",
+                        "units": "NA"
                     },
                     {
                         "name": "utility_name",
                         "description": "Unofficial unique names for utilities and/or operators that include a combination of EIA utility/operator names, PCE utility names, and/or CPCN holder names, as appropriate",
-                        "type": "string"
+                        "type": "string",
+                        "units": "NA"
                     },
                     {
                         "name": "reporting_name",
                         "description": "For PCE reporting entities, this variable is the name of a community (or a group of communities) that is separately reimbursed by the PCE program and is treated as a distinct utility entity by the Regulatory Commission of Alaska when determining allowable PCE reimbursements.",
-                        "type": "string"
+                        "type": "string",
+                        "units": "NA"
                     },
                     {
                         "name": "intertie_name",
                         "description": "Unofficial unique identifiers for all known microgrids in Alaska—including ones that only include one community, plant, and/or sales reporter",
-                        "type": "string"
+                        "type": "string",
+                        "units": "NA"
                     },
                     {
                         "name": "aea_region",
                         "description": "Regions defined by Alaska Energy Authority for regional energy planning",
-                        "type": "string"
+                        "type": "string",
+                        "units": "NA"
                     },
                     {
                         "name": "data_source",
                         "description": "Source of the data",
-                        "type": "string"
+                        "type": "string",
+                        "units": "NA"
                     },
                     {
                         "name": "acep_region",
                         "description": "Energy regions as defined by Alaska Center for Energy and Power: Coastal, Railbelt, Rural Remote",
-                        "type": "string"
+                        "type": "string",
+                        "units": "NA"
                     },
                     {
                         "name": "class",
                         "description": "Retail customer class. Of Residential, Commerical, Other, or Total. For EIA data, 'Other' equals the sum of reported 'Industrial' plus 'Transportation' categories. For PCE data, 'Other' equals the sum of reported 'Community Facilities' and 'Government' categories. Total represents all customer classes.",
-                        "type": "string"
+                        "type": "string",
+                        "units": "NA"
                     },
                     {
                         "name": "revenue",
                         "description": "Revenue from sales to the customer class in thousands of dollars. For EIA data, this is reported directly. For PCE data, the residential rate is reported and revenue is calculated as Residential Sales x Residential $/kWh",
-                        "type": "float"
+                        "type": "float",
+                        "units": "USD * 1000"
                     },
                     {
                         "name": "sales",
                         "description": "Sales to the retail customer class, in megawatt-hours (MWh)",
-                        "type": "float"
+                        "type": "float",
+                        "units": "MWh"
                     },
                     {
                         "name": "customers",
                         "description": "The average of the 12 monthly close-of-month customer counts.",
-                        "type": "float"
+                        "type": "float",
+                        "units": "NA"
                     },
                     {
                         "name": "price",
                         "description": "Average revenue per kWh for the customer class. Calculated as Revenue / sales (kWh). For PCE data, Commercial $/kWh equals the residential rate, which is the reported data, and is used to calculate revenue.",
-                        "type": "float"
+                        "type": "float",
+                        "units":"USD / kWh"
                     }
                 ]
             }
@@ -451,102 +522,122 @@
                     {
                         "name" : "year", 
                         "description" : "Calendar year",
-                        "type" : "integer"
+                        "type" : "integer",
+                        "units": "NA"
                     },
                     {
                         "name" : "aea_sales_reporting_id", 
                         "description" : "Identification used for Alaska Energy Authority sales reporting",
-                        "type" : "string"
+                        "type" : "string",
+                        "units": "NA"
                     },
                     {
                         "name" : "pce_id", 
                         "description" : "Identification used for Power Cost Equalization reporting (pce_id = 0 if not part of PCE)",
-                        "type" : "integer"
+                        "type" : "integer",
+                        "units": "NA"
                     },
                     {
                         "name" : "rca_cpcn", 
                         "description" : "Identification used for Regulatory Commission of Alaska",
-                        "type" : "integer"
+                        "type" : "integer",
+                        "units": "NA"
                     },
                     {
                         "name" : "utility_name", 
                         "description" : "Name of utility company",
-                        "type" : "string"
+                        "type" : "string",
+                        "units": "NA"
                     },
                     {
                         "name" : "reporting_name", 
                         "description" : "Name reported by utility",
-                        "type" : "string"
+                        "type" : "string",
+                        "units": "NA"
                     },
                     {
                         "name" : "intertie_name", 
                         "description" : "Name of intertie",
-                        "type" : "string"
+                        "type" : "string",
+                        "units": "NA"
                     },
                     {
                         "name" : "aea_energy_region", 
                         "description" : "Energy regions as defined by Alaska Energy Authority, 11 in total",
-                        "type" : "string"
+                        "type" : "string",
+                        "units": "NA"
                     },
                     {
                         "name" : "acep_energy_region", 
                         "description" : "Energy regions as defined by Alaska Center for Energy and Power: Coastal, Railbelt, Rural Remote",
-                        "type" : "string"
+                        "type" : "string",
+                        "units": "NA"
                     },
                     {
                         "name" : "residential_price_kwh_2021_dollars", 
                         "description" : "Electrical rate of residential customers, expressed as cents per kilowatt hour, inflation-adjusted to 2021 dollars",
-                        "type" : "float"
+                        "type" : "float",
+                        "units": "(USD/100) / KWh"
                     },
                     {
                         "name" : "residential_customers", 
                         "description" : "Number of reported customers (not individuals) in the residential sector",
-                        "type" : "integer"
+                        "type" : "integer",
+                        "units": "NA"
                     },
                     {
                         "name" : "residential_sales_mwh", 
                         "description" : "Total megawatt hours sold to the residential sector",
-                        "type" : "float"
+                        "type" : "float",
+                        "units": "Mwh"
                     },
                     {
                         "name" : "commercial_price_kwh_2021_dollars", 
                         "description" : "Electrical rate of commercial customers, expressed as cents per kilowatt hour, inflation-adjusted to 2021 dollars",
-                        "type" : "float" 
+                        "type" : "float",
+                        "units": "(USD/100) / KWh" 
                     },
                     {
                         "name" : "commercial_customers", 
                         "description" : "Number of reported customers (not individuals) in the commercial sector",
-                        "type" : "integer"
+                        "type" : "integer",
+                        "units": "NA"
                     },
                     {
                         "name" : "commercial_sales_mwh", 
                         "description" : "Total megawatt hours sold to the commercial sector",
-                        "type" : "float"
+                        "type" : "float",
+                        "units": "MWh"
                     },
                     {
                         "name" : "other_price_kwh_2021_dollars", 
                         "description" : "Electrical rate of other customers, expressed as cents per kilowatt hour. Inflation-adjusted to 2021 dollars.",
-                        "type" : "float"
+                        "type" : "float",
+                        "units": "(USD/100) / KWh"
                     },
                     {
                         "name" : "other_customers", 
                         "description" : "Number of reported customers (not individuals) in the other sector",
-                        "type" : "integer"
+                        "type" : "integer",
+                        "units": "NA"
                     },
                     {
                         "name" : "other_sales_mwh", 
                         "description" : "Total megawatt hours sold to the other sector",
-                        "type" : "float"
+                        "type" : "float",
+                        "units": "MWh"
                     },
                     {
                         "name" : "total_customers", 
                         "description" : "Total number of reported customers (not individuals)",
-                        "type" : "integer"
+                        "type" : "integer",
+                        "units": "NA"
                     },
                     {
                         "name" : "ak_cpi", 
                         "description" : "Alaska Consumer Price Index used to calculate inflation-adjustment, CUUSA427SA0 from Bureau of Labor Statistics",
-                        "type" : "float" 
+                        "type" : "float",
+                        "units": "NA"
                     }
                 ]
             }
@@ -559,27 +650,32 @@
                     {
                         "name" : "year",
                         "description" : "Calendar year",
-                        "type" : "integer"
+                        "type" : "integer",
+                        "units": "NA"
                     },
                     {
                         "name" : "acep_energy_region",
                         "description" : "Energy regions as defined by Alaska Center for Energy and Power: Coastal, Railbelt, Rural Remote",
-                        "type" : "string"
+                        "type" : "string",
+                        "units": "NA"
                     },
                     {
                         "name" : "sector",
                         "description" : "Customer class of reported price",
-                        "type" : "string"
+                        "type" : "string",
+                        "units": "NA"
                     },
                     {
                         "name" : "avg_price",
                         "description" : "Calculated average price for the given combination (year, acep_energy_region, sector)",
-                        "type" : "float"
+                        "type" : "float",
+                        "units": "(USD/100) / KWh"
                     },
                     {
                         "name" : "weighted_price",
                         "description" : "Population-weighted average price for the given combination (year, acep_energy_region, sector)",
-                        "type" : "float"
+                        "type" : "float",
+                        "units": "(USD/100) / KWh"
                     }
                 ]
             }
