@@ -18,10 +18,10 @@ These abbreviations are used throughout this report
 - ETI:  Energy Transitions Initiative, ACEP
 - FERC: Federal Energy Regulatory Commission
 - CAGR: Compound Annual Growth Rate
-- KW:  Kilowatts
-- KWh: Kilowatt Hours
-- MW:  Megawatts
-- MWh: Megawatt Hours
+- kW:  Kilowatt
+- kWh: Kilowatt-hour
+- MW:  Megawatt
+- MWh: Megawatt-hour
 - GW:  Gigawatts
-- GWh: Gigawatt Hours
+- GWh: Gigawatt-hour
 - UAF: University of Alaska Fairbanks

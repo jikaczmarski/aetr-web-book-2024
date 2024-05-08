@@ -10,13 +10,13 @@
 - We have seen significant increases in the usage of utility-scale battery storage.
 
 ### Consumption
-- Electricity consumption has fallen for all customer classes, with residential customers seeing the most reductions.
+- Electricity consumption overall has fallen for all customer classes, with residential customers seeing the most reductions.
 - The number of customer accounts have continued to increase throughout the state.
 - Per capita consumption for the residential sector is highest in the Coastal region and lowest in the Rural Remote region.
 
 ### Prices
 - Residential electricity rates increased on average across Alaska after adjusting for inflation, the PCE subsidy, and population weighting.
-- The region that experienced the least residential rate gain was the Coastal region with a 6% increase.
-- The region experiencing the highest residential rate gain was the Railbelt with a 26% increase.
+- The region that experienced the least residential rate increase was the Coastal region with a 6% increase.
+- The region experiencing the highest residential rate increase was the Railbelt with a 26% increase.
 - Commercial and Other customers in the Coastal and Rural Remote regions saw rate decreases where Commercial customers in the Railbelt region saw price increases of about 15%.
 - PCE subsidies continue to dampen residential prices in the Coastal and Rural Remote regions.

@@ -24,7 +24,7 @@ Electricity consumption (@sec-consumption) throughout the state fell on average.
 
 ### Prices
 
-Electricity prices (@sec-prices) across the state were variable but trended upward. After adjusting for inflation, PCE subsidies, and controlling for population, average residential electricity prices across the state increased. The largest residential rate increases from 2011 to 2019 were observed in the Railbelt region (26%), and the smallest were observed in the Coastal region (6%). Throughout the Coastal and Rural Remote regions, commercial and other customer classes saw rate decreases. Rate decreases were also observed on the Railbelt for commercial customers. We also observed that PCE subsidies were paramount to mitigating the cost of electricity for residential and community customers in the Rural Remote and Coastal regions.
+Electricity prices (@sec-prices) across the state were variable but trended upward. After adjusting for inflation, PCE subsidies, and including a population weight, the average residential electricity price across the state increased. The largest residential rate increases from 2011 to 2019 were observed in the Railbelt region (26%), and the smallest were observed in the Coastal region (6%). Throughout the Coastal and Rural Remote regions, commercial and other customer classes saw rate decreases. Rate decreases were also observed on the Railbelt for commercial customers. We also observed that PCE subsidies were paramount to mitigating the cost of electricity for residential and community customers in the Rural Remote and Coastal regions.
 
 ## Future Plans
 

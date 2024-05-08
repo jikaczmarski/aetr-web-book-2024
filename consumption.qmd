@@ -206,7 +206,7 @@ Plot.plot({
 })
 ```
 
-@fig-sales_per_capita <!--orig: The following table--> shows the average annual electricity consumption for each of the regions. The Coastal region led the state in consumption per capita, with an average of `r regional_consumption_per_capita("Coastal","Residential")` kWh per customer per year. This was followed by the Railbelt region with `r regional_consumption_per_capita("Railbelt","Residential")` kWh per capita and the Rural Remote region with `r regional_consumption_per_capita("Rural Remote","Residential")` kWh per capita. Overall, each region has seen reductions in consumption per capita, which may reflect improvements in energy efficient technologies and energy efficiency behaviors.
+@fig-sales_per_capita <!--orig: The following table--> shows the average annual electricity consumption for each of the regions. The Coastal region led the state in consumption per capita, with an average of `r regional_consumption_per_capita("Coastal","Residential")` kWh per customer per year. This was followed by the Railbelt region with `r regional_consumption_per_capita("Railbelt","Residential")` kWh per capita and the Rural Remote region with `r regional_consumption_per_capita("Rural Remote","Residential")` kWh per capita. Overall, each region has seen reductions in consumption per capita, which may reflect improvements in energy efficient technologies and energy efficiency/conservation behaviors.
 
 ```{ojs}
 sales_per_capita_data = tidy(regional_consumption_data.filter((d) => d.class === "Residential"),

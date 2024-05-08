@@ -8,7 +8,7 @@ author: "Alaska Center for Energy and Power"
 
 ## Welcome  {#welcome .unnumbered}
 
-This interactive report summarizes federal, state, and utility electricity data in the form of a web book. It provides an overview of electricity capacity, generation, consumption, and price trends from 2011 to 2021. A comprehensive report highlighting these trends has not been produced for the state of Alaska since 2013's _Alaska Energy Statistics Report_.
+This interactive report summarizes electricity data gathered from federal, state, and utility sources and presented in the form of a web book. It provides an overview of electricity capacity, generation, consumption, and price trends from 2011 to 2021. A comprehensive report highlighting these trends has not been produced for the state of Alaska since 2013's _Alaska Energy Statistics Report_.
 
 This web book is designed as 'best available' document for the 2011-2021 energy trends data and reports. This website will be updated when updates to the underlying 2011-2021 data or fixes become available. Future year trends reports will be tackled in a different context and reporting structure.
 
