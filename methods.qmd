@@ -10,7 +10,7 @@ echo: false
 
 
 ## Data Sources {#sec-sources}
-The data in this report was collected from a variety of sources that are listed below. Many electric utilities throughout the state are not required to submit annual reports to the federal government due to their size and/or number of customers. Therefore, our data sources encompass federal, state, commercial, and local filings as well as direct communications with utilities and state program managers. Each section of the report pulls data from a variety of these sources. The data was downloaded directly from the original sources and concatenated to develop a dataset for this report. In some cases, a single observation is derived from multiple sources due to reporting limitations. 
+The data in this report was collected from a variety of sources that are listed below. Most electric utilities throughout the state are not required to submit annual reports to the federal government due to their size and/or number of customers. Therefore, our data sources encompass federal, state, commercial, and local filings as well as direct communications with utilities and state program managers. Each section of the report pulls data from a variety of these sources. The data was downloaded directly from the original sources and concatenated to develop a dataset for this report. In some cases, a single observation is derived from multiple sources due to reporting limitations. 
 
 Below are relevant sources of data for the report.
 
@@ -48,7 +48,7 @@ Neil McMahon, first at AEA and then at [DOWL](https://www.dowl.com/), an Alaska 
 
 For the purpose of energy planning, AEA has defined [eleven energy regions](https://dcra-cdo-dcced.opendata.arcgis.com/datasets/edb3e790ea4b40579f29e925afc061c5_0/explore?showTable=true) for the State of Alaska. Previous versions of the _Alaska Electric Energy Statistics_ reports presented data summarized by those regions. In order to provide visualizations that are easier to understand, we have condensed these eleven regions into three major energy regions: Coastal, Railbelt, and Rural Remote. @fig-regions-scheme shows the diagrammatic relationship between these two classification systems and @fig-regions-map displays this relationship cartographically.
 
-We note that the Coastal and Rural Remote regions include mixtures of power cost equalization (PCE) and non-PCE eligible communities. The Coastal region includes Copper River/Chugach and incorporates all communities served by Copper Valley Electric Association. PCE communities are largely dependent on diesel generation. 
+We note that the Coastal and Rural Remote regions include mixtures of Power Cost Equalization (PCE) and non-PCE eligible communities. The Coastal region includes Copper River/Chugach and incorporates all communities served by Copper Valley Electric Association. PCE communities are largely dependent on diesel generation. 
 
 &nbsp;
 
@@ -68,7 +68,7 @@ We note that the Coastal and Rural Remote regions include mixtures of power cost
 
 Alaska is famous for wide expanses of rugged terrain. Towns are often extremely distant from one another, or are separated by inaccessible mountains and glaciers. The utility landscape of Alaska resembles a sea of islands, very different from the interconnected grids of the contiguous United States. 
 
-In total, Alaska contains over 100 separate utilities, many of which serve a single small community. Most rely on diesel generators connected to huge fuel tanks, which receive a barge shipment of fuel in the summer that must last through the winter. If the town runs out of fuel during winter months, additional fuel has to be flown in at extreme expense. Predictably, electricity in these remote towns is extremely expensive. 
+In total, Alaska contains over 100 separate utilities, many of which serve a single, small community. Most rely on diesel generators connected to huge fuel tanks, which receive a barge shipment of fuel in the summer that must last through the winter. If the town runs out of fuel during winter months, additional fuel has to be flown in at extreme expense. Predictably, electricity in these remote towns is extremely expensive. 
 
 Some rural towns pay 3 to 5 times the rates of urban Alaska. Urban Alaska has greatly benefited from large state-subsidized energy projects, such as the Bradley Lake Hydroelectric Project, the Four Dam Pool Projects, and the Alaska Intertie. In an effort to confer similar benefits to rural Alaska, the state of Alaska developed the Power Cost Equalization Program (PCE).
 
