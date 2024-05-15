@@ -38,11 +38,8 @@ Due to the wide range of electricity prices in Alaska, it is difficult to accura
 
 ```{ojs}
 // aggregate
-region_weighted_prices = tidy(weighted_prices, 
-                              groupBy(['acep_energy_region', 'year'], [
-                                summarize({ mean_weighted_price: mean('weighted_price')})
-                              ]),
-                              filter((d) => d.year < 2020)).map((d) => ({...d, "ACEP Region": d.acep_energy_region}))
+region_weighted_prices = tidy(weighted_prices,
+                              filter((d) => d.year < 2020 && d.sector == "residential")).map((d) => ({...d, "ACEP Region": d.acep_energy_region}))
 ```
  
 ```{ojs}
@@ -61,7 +58,7 @@ Plot.plot({
     
     // Configure the y-axis
     y: {
-      domain: [10, 60],
+      domain: [15, 30],
       ticks: 6,
       label: "Cents per Kilowatt Hour"
     },
@@ -75,7 +72,7 @@ Plot.plot({
     marks: [
         Plot.line(region_weighted_prices,
                     {x: "year", 
-                    y: "mean_weighted_price",
+                    y: "weighted_price",
                     strokeWidth: 5,
                     stroke: "ACEP Region",
                     tip: {format: {x: "d", stroke: false}}
@@ -83,7 +80,7 @@ Plot.plot({
     Plot.text(region_weighted_prices, 
       Plot.selectLast(
         {x: "year", 
-        y: "mean_weighted_price", 
+        y: "weighted_price", 
         z: "ACEP Region",
         text: "ACEP Region", 
         frameAnchor: "bottom", 
