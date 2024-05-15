@@ -70,8 +70,7 @@ rainCloudX = ({
     marginRight: 80
   },
   x: {
-    label: "Cents per Kilowatt Hour",
-    domain: [0, 160]
+    label: "Cents per Kilowatt Hour"
   },
   y: {
     ticks: 0,
