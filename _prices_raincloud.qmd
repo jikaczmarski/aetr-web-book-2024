@@ -170,28 +170,6 @@ seedrandom = require('seedrandom')
 
 
 ```{ojs}
-// pivot longer
-// tidy(data, rename({ b: 'newB', c: 'newC' }));
-
-
-// tidy(
-//   data,
-//   pivotLonger({
-//     cols: ['canada', 'usa', 'campbell', 'brampton', 'boston'],
-//     namesTo: 'place',
-//     valuesTo: 'val',
-//   })
-// )
-
-
-// tidy(data,
-//   when((items) => items.length === 2, [
-//     mutate({ y: 52 })
-//   ])
-// );
-
-
-// tidy(data, leftJoin(joinData, { by: ['a', 'J'] }));
 
 prices_tidy = tidy(
   prices, 
@@ -261,10 +239,15 @@ customers_pivot = tidy(
 
 data = tidy(
   prices_tidy,
-    filter((d) => d.year < 2020),
-    filter((d) => d.reporting_name != "Lime Village"),
-    filter((d) => d.reporting_name != "Healy Lake"))
-    ;
+  mutate({
+    residential_price: (d) => d.residential_price === 0 ? null : d.residential_price,
+    commercial_price: (d) => d.commercial_price === 0 ? null : d.commercial_price,
+    other_price: (d) => d.other_price === 0 ? null : d.other_price,
+  }),
+  filter((d) => d.year < 2020),
+  filter((d) => d.reporting_name != "Lime Village"),
+  filter((d) => d.reporting_name != "Healy Lake")
+);
 
 
 ```
