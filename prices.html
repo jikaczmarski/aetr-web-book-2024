@@ -271,7 +271,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">May 16, 2024 at 17:29 UTC</p>
+      <p class="date">May 24, 2024 at 23:30 UTC</p>
     </div>
   </div>
   
@@ -623,7 +623,7 @@ Figure&nbsp;6.1: Prices by Region and Customer Class
 </section>
 <section id="regional-averages" class="level3">
 <h3 class="anchored" data-anchor-id="regional-averages">Regional Averages</h3>
-<p>Due to the wide range of electricity prices in Alaska, it is difficult to accurately summarize the data. Because of this, we determined that averages were best calculated using a customer account weighted average. Population is roughly correlated to price, with small communities experiencing higher rates than larger communities. The average number of customer accounts for the year was used to calculate the weighted arithmetic mean price for each year and region. <a href="#fig-price-over-time" class="quarto-xref">Figure&nbsp;<span>6.2</span></a> is a graph of residential customer prices over time using population-weighted averages.</p>
+<p>Due to the wide range of electricity prices in Alaska, it is difficult to accurately summarize the data. Because of this, we determined that averages were best calculated using a customer account weighted average. Population is roughly correlated to price, with small communities experiencing higher rates than larger communities. The average number of customer accounts for the year was used to calculate the weighted arithmetic mean price for each year and region. <a href="#fig-price-over-time" class="quarto-xref">Figure&nbsp;<span>6.2</span></a> is a graph of residential customer prices over time after weighting for the number of customer accounts.</p>
 <div class="cell">
 <div class="sourceCode cell-code hidden" id="cb9" data-startfrom="314" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 313;"><span id="cb9-314"><a href="#cb9-314" aria-hidden="true" tabindex="-1"></a><span class="co">// aggregate</span></span>
 <span id="cb9-315"><a href="#cb9-315" aria-hidden="true" tabindex="-1"></a>region_weighted_prices <span class="op">=</span> <span class="fu">tidy</span>(weighted_prices<span class="op">,</span></span>
