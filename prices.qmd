@@ -34,7 +34,7 @@ Most notably, the dramatic effects of the PCE subsidy can be seen by comparing t
 
 
 ### Regional Averages
-Due to the wide range of electricity prices in Alaska, it is difficult to accurately summarize the data. Because of this, we determined that averages were best calculated using a customer account weighted average. Population is roughly correlated to price, with small communities experiencing higher rates than larger communities. The average number of customer accounts for the year was used to calculate the weighted arithmetic mean price for each year and region. @fig-price-over-time is a graph of residential customer prices over time using population-weighted averages.  
+Due to the wide range of electricity prices in Alaska, it is difficult to accurately summarize the data. Because of this, we determined that averages were best calculated using a customer account weighted average. Population is roughly correlated to price, with small communities experiencing higher rates than larger communities. The average number of customer accounts for the year was used to calculate the weighted arithmetic mean price for each year and region. @fig-price-over-time is a graph of residential customer prices over time after weighting for the number of customer accounts.  
 
 ```{ojs}
 // aggregate
