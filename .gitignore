@@ -9,6 +9,8 @@
 _site/
 _book/
 
+node_modules/
+
 # MacOS Specific Files
 .DS_Store
 ._*
