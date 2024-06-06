@@ -11,7 +11,7 @@ echo: false
 
 
 ## Data Overview
-The data used in this web-book is derived from federal, state, commercial, and local sources, as well as direct communications with utilities and state program managers. More information about data sources can be found on the [methods page](./methods.html) of this web-book.
+The data used in this web-book is derived from federal, state, commercial, and local sources, as well as direct communications with utilities and state program managers. More information about [data sources](https://acep-uaf.github.io/ak-energy-statistics-2011_2021/) can be found on the [methods page](./methods.html) of this web-book.
 
 ## Download Individual Tables
 Individual tables can be downloaded here as text files (CSV, comma-separated values). Once downloaded to your local machine, these files can be opened graphically using Microsoft Excel, or programmatically using R or Python. 
