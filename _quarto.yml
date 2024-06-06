@@ -13,6 +13,9 @@ book:
     - href: mailto:uaf-acep-dcm-support@alaska.edu
       text: Report an issue via email
       icon: envelope-exclamation
+    - href: https://acep-uaf.github.io/ak-energy-statistics-2011_2021/
+      text: Alaska Energy Statistics Workbooks (2011-2021)
+      icon: bi-file-spreadsheet
   repo-actions: [issue]
 
   chapters:
