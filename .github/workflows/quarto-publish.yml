@@ -30,9 +30,7 @@ jobs:
           packages: |
             any::knitr
             any::rmarkdown
-            any::tidyr
-            any::dplyr
-            any::readr
+            any::renv
             
       # set the file modification times to the time of the last commit for every file
       # This did not work as expected, so deactivated. But left in case we want to come back to it.
