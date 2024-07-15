@@ -10,6 +10,19 @@ cap-location: top
 echo: false
 ---
 
+```{r}
+#| output: false
+
+library(readr)
+library(dplyr)
+library(stringr)
+library(ggplot2)
+library(ggiraph)
+
+weighted_prices <- read_csv("./data/working/prices/weighted_prices.csv")
+
+```
+
 ## General Overview  {#sec-prices}
 
 Utilities in Alaska serve multiple customers, namely residential, commercial, industrial, government/municipal, and community customer classes. Each customer class experiences a different set of costs such as per kWh charge as well as monthly customer charges. In this section, we aim to highlight trends in electricity prices for the residential, commercial, and other customer classes across the Coastal, Railbelt, and Rural Remote regions. We again restrict the data years in this section to 2011 to 2019 due to concerns with data validity for 2020-21.
@@ -36,66 +49,64 @@ Most notably, the dramatic effects of the PCE subsidy can be seen by comparing t
 ### Regional Averages
 Due to the wide range of electricity prices in Alaska, it is difficult to accurately summarize the data. Because of this, we determined that averages were best calculated using a customer account weighted average. Population is roughly correlated to price, with small communities experiencing higher rates than larger communities. The average number of customer accounts for the year was used to calculate the weighted arithmetic mean price for each year and region. @fig-price-over-time is a graph of residential customer prices over time after weighting for the number of customer accounts.  
 
-```{ojs}
-// aggregate
-region_weighted_prices = tidy(weighted_prices,
-                              filter((d) => d.year < 2020 && d.sector == "residential")).map((d) => ({...d, "ACEP Region": d.acep_energy_region}))
-```
- 
-```{ojs}
-//| label: fig-price-over-time
-//| fig-cap: "Residential Price Over Time"
+```{r}
+#| label: fig-price-over-time
+#| fig-cap: "Residential Price Over Time"
 
-// plot of regional average prices
-Plot.plot({
+region_residential_weighted_prices <- 
+  weighted_prices %>%
+  filter(year < 2020 & sector == "residential") %>%
+    rename(`ACEP Region` = acep_energy_region, Sector = sector)
 
-    // Configure the x-axis
-    x: {
-      domain: [2011, 2019],
-      tickFormat: "d",
-      label: "Year"
-    },
-    
-    // Configure the y-axis
-    y: {
-      domain: [15, 30],
-      ticks: 6,
-      label: "Cents per Kilowatt Hour"
-    },
-    
-    // Configure the plot
-    grid: true,
-    marginRight: 70,
-  width: width,
+# Filter the last year for each region for the text labels
+last_year_data <- region_residential_weighted_prices %>%
+  group_by(`ACEP Region`) %>%
+  filter(year == max(year))
+
+p <- 
+  ggplot(
+    region_residential_weighted_prices, 
+    aes(
+      x = year, 
+      y = weighted_price, 
+      color = `ACEP Region`, 
+      group = `ACEP Region`)) +
+
+  geom_line_interactive(linewidth = 2) +
   
-    marks: [
-        Plot.line(region_weighted_prices,
-                    {x: "year", 
-                    y: "weighted_price",
-                    strokeWidth: 5,
-                    stroke: "ACEP Region",
-                    tip: {format: {x: "d", stroke: false}}
-        }),
-    Plot.text(region_weighted_prices, 
-      Plot.selectLast(
-        {x: "year", 
-        y: "weighted_price", 
-        z: "ACEP Region",
-        text: "ACEP Region", 
-        frameAnchor: "bottom", 
-        dy: -5,
-        dx: 25
-        }))
-    ],
-    color: {
-        domain: ["Coastal", "Railbelt", "Rural Remote"],
-        range: ["#8CBBDA", "#97CD93", "#F28D8C"]
-    }
-});
+  geom_point_interactive(
+    aes(
+      tooltip = paste(
+        "Year:", year, 
+        "<br>Region:", `ACEP Region`,
+        "<br>Cents per Kilowatt Hour:", round(weighted_price, 2))
+        ), 
+    size = 10, color = "transparent") +
 
+  geom_text_interactive(
+    data = last_year_data, 
+    aes(label = `ACEP Region`, tooltip = `ACEP Region`), 
+    hjust = 1.1, 
+    vjust = 2.5) +
+
+  scale_x_continuous(
+    name = "Year", 
+    breaks = seq(2011, 2019, 1), 
+    expand = c(0, 0.1)) + 
+
+  scale_y_continuous(
+    name = "Cents per Kilowatt Hour", 
+    limits = c(16, 28), 
+    breaks = seq(16, 28, 2),
+    expand = c(0, 0.2)) +
+
+  scale_color_manual(values = c("#8CBBDA", "#97CD93", "#F28D8C")) +
+  theme_minimal() +
+  theme(legend.position = "none", panel.grid.minor.x = element_blank())
+
+girafe(code = print(p))
 
 ```
-
 
 ## Coastal
 
@@ -105,69 +116,64 @@ The average real price (in 2021 dollars) of electricity for Residential customer
 
 Residential customers in the Coastal region saw increases in the price of electricity while commercial and other customers saw decreases. However, the residential customer class continues to pay the lowest per kWh in the region due to a combination of low prices in high population areas and PCE subsidies in eligible communities.
 
-```{ojs}
-// aggregate
-coastal_weighted_prices = tidy(weighted_prices, 
-                              filter((d) => d.acep_energy_region === "Coastal"),
-                              filter((d) => d.year < 2020)
-                            ).map((d) => ({...d, "Customer Class": d.sector}))
-```
+```{r}
+#| label: fig-price-sector-coastal
+#| fig-cap: "Sector Price Over Time, Coastal Region"
 
-```{ojs}
-//| label: fig-price-sector-coastal
-//| fig-cap: "Sector Price Over Time, Coastal Region"
+coastal_weighted_prices <- 
+  weighted_prices %>%
+  filter(year < 2020 &  
+        acep_energy_region == "Coastal") %>%
+  rename(`ACEP Region` = acep_energy_region, Sector = sector) %>%
+  mutate(Sector = str_to_title(Sector))
 
-// plot of regional average prices
-Plot.plot({
-    
-    // Configure the x-axis
-    x: {
-      domain: [2011, 2019],
-      label: "Year",
-      tickFormat: "d"
-    },
-    
-    // Configure the y-axis
-    y: {
-      domain: [10, 40],
-      ticks: 4,
-      label: "Cents per Kilowatt Hour"
-    },
-    
-    // Configure the plot
-    grid: true,
-    marginRight: 70,
-  width: width,
-  
-  
-    marks: [
+# Filter the last year for each region for the text labels
+last_year_data <- coastal_weighted_prices %>%
+  group_by(`Sector`) %>%
+  filter(year == max(year))
 
-    Plot.line(coastal_weighted_prices,
-        {x: "year", 
-        y: "weighted_price",
-        strokeWidth: 5,
-        stroke: "Customer Class",
-        tip: {format: {x: "d"}}
-        }),
-    Plot.text(coastal_weighted_prices, 
-      Plot.selectLast(
-        {x: "year", 
-        y: "weighted_price", 
-        z: "Customer Class",
-        text: "Customer Class", 
-        frameAnchor: "bottom", 
-        dy: -5,
-        dx: 35
-        }))
-    ],
-    color: {
-        domain: ["residential", "commercial", "other"],
-        range: ["#0084c1", "#e29617", "#fad900"]
-    }
-})
+q <- 
+  ggplot(
+    coastal_weighted_prices, 
+    aes(x = year, y = weighted_price, color = Sector)) +
 
+    geom_line_interactive(linewidth = 2) +
+
+    geom_point_interactive(
+      aes(
+        tooltip = paste(
+          "Year:", year, 
+          "<br>Sector:", Sector,
+          "<br>Cents per Kilowatt Hour:", round(weighted_price, 2))
+          ), 
+      size = 10, color = "transparent") +
+
+    geom_text_interactive(
+      data = last_year_data, 
+      aes(label = Sector, tooltip = Sector), 
+      hjust = 1.05, 
+      vjust = -1) +
+
+    scale_x_continuous(
+      name = "Year", 
+      breaks = seq(2011, 2019, 1), 
+      expand = c(0, 0.1)) + 
+
+    scale_y_continuous(
+      name = "Cents per Kilowatt Hour", 
+      limits = c(10, 40.5), 
+      breaks = seq(10, 40.5, 10),
+      expand = c(0, 0.2)) +
+
+    scale_color_manual(values = c("#e29617", "#fad900", "#0084c1")) +
+    theme_minimal() +
+    theme(legend.position = "none", panel.grid.minor.x = element_blank())
+
+girafe(code = print(q))
 
 ```
+
+
 
 ## Railbelt
 
@@ -177,67 +183,61 @@ The average real price of electricity for Residential customers in the Railbelt 
 
 This region differs significantly from the Coastal and Rural Remote regions in that residential customers pay more for electricity than the Commercial or Other customer classes.
 
-```{ojs}
-// aggregate
-railbelt_weighted_prices = tidy(weighted_prices, 
-                              filter((d) => d.acep_energy_region === "Railbelt"),
-                              filter((d) => d.year < 2020)
-                            ).map((d) => ({...d, "Customer Class": d.sector}))
-```
 
-```{ojs}
-//| label: fig-price-sector-railbelt
-//| fig-cap: "Sector Price Over Time, Railbelt Region"
+```{r}
+#| label: fig-price-sector-railbelt
+#| fig-cap: "Sector Price Over Time, Railbelt Region"
 
-// plot of regional average prices
-Plot.plot({
+railbelt_weighted_prices <- 
+  weighted_prices %>%
+  filter(year < 2020 &  
+        acep_energy_region == "Railbelt") %>%
+  rename(`ACEP Region` = acep_energy_region, Sector = sector) %>%
+  mutate(Sector = str_to_title(Sector))
 
-    // Configure the x-axis
-    x: {
-      domain: [2011, 2019],
-      tickFormat: "d",
-      label: "Year"
-    },
-    
-    // Configure the y-axis
-    y: {
-      domain: [10, 40],
-      ticks: 4,
-      label: "Cents per Kilowatt Hour"
-    },
-    
-    // Configure the plot
-    grid: true,
-    marginRight: 70,
-  width: width,
+# Filter the last year for each region for the text labels
+last_year_data <- railbelt_weighted_prices %>%
+  group_by(`Sector`) %>%
+  filter(year == max(year))
 
+r <- 
+  ggplot(
+    railbelt_weighted_prices, 
+    aes(x = year, y = weighted_price, color = Sector)) +
 
-    marks: [
+    geom_line_interactive(linewidth = 2) +
 
-    Plot.line(railbelt_weighted_prices,
-        {x: "year", 
-        y: "weighted_price",
-        strokeWidth: 5,
-        stroke: "Customer Class",
-        tip: {format: {x: "d"}}
-        }),
-    Plot.text(railbelt_weighted_prices, 
-      Plot.selectLast(
-        {x: "year", 
-        y: "weighted_price", 
-        z: "Customer Class",
-        text: "Customer Class", 
-        frameAnchor: "bottom", 
-        dy: -5,
-        dx: 35
-        }))
-    ],
-    color: {
-        domain: ["residential", "commercial", "other"],
-        range: ["#0084c1", "#e29617", "#fad900"]
-    }
-})
+    geom_point_interactive(
+      aes(
+        tooltip = paste(
+          "Year:", year, 
+          "<br>Sector:", Sector,
+          "<br>Cents per Kilowatt Hour:", round(weighted_price, 2))
+          ), 
+      size = 10, color = "transparent") +
 
+    geom_text_interactive(
+      data = last_year_data, 
+      aes(label = Sector, tooltip = Sector), 
+      hjust = 1.05, 
+      vjust = -1) +
+
+    scale_x_continuous(
+      name = "Year", 
+      breaks = seq(2011, 2019, 1), 
+      expand = c(0, 0.1)) + 
+
+    scale_y_continuous(
+      name = "Cents per Kilowatt Hour", 
+      limits = c(10, 40.5), 
+      breaks = seq(10, 40.5, 10),
+      expand = c(0, 0.2)) +
+
+    scale_color_manual(values = c("#e29617", "#fad900", "#0084c1")) +
+    theme_minimal() +
+    theme(legend.position = "none", panel.grid.minor.x = element_blank())
+
+girafe(code = print(r))
 
 ```
 
@@ -246,66 +246,61 @@ Plot.plot({
 
 The average price of electricity for the Residential customers in the Rural Remote region rose `{ojs} rural_res_change`% from `{ojs} rural_res_2011` cents/kWh in 2011 to `{ojs} rural_res_2019` cents/kWh in 2019. The average price of electricity for Commercial customers in the Rural Remote region fell `{ojs} rural_com_change`% from `{ojs} rural_com_2011` cents/kWh in 2011 to `{ojs} rural_com_2019` cents/kWh in 2019. Finally, the average price of electricity for Other customers in the Rural Remote region fell `{ojs} rural_other_change`% from `{ojs} rural_other_2011` cents/kWh in 2011 to `{ojs} rural_other_2019` cents/kWh in 2019.
 
-```{ojs}
-// aggregate
-rural_remote_weighted_prices = tidy(weighted_prices, 
-                              filter((d) => d.acep_energy_region === "Rural Remote"),
-                              filter((d) => d.year < 2020)
-                            ).map((d) => ({...d, "Customer Class": d.sector}))
-```
 
-```{ojs}
-//| label: fig-price-sector-rural
-//| fig-cap: "Sector Price Over Time, Rural Remote Region"
+```{r}
+#| label: fig-price-sector-rural
+#| fig-cap: "Sector Price Over Time, Rural Remote Region"
 
-// plot of regional average prices
-Plot.plot({
-    
-    // Configure the x-axis
-    x: {
-      domain: [2011, 2019],
-      tickFormat: "d",
-      label: "Year"
-    },
-  
-    // Configure the y-axis
-    y: {
-      domain: [10, 70],
-      ticks: 7,
-      label: "Cents per Kilowatt Hour"
-    },
-    
-    // Configure the plot
-    grid: true,
-    marginRight: 70,
-  width: width,
+rural_remote_weighted_prices <- 
+  weighted_prices %>%
+  filter(year < 2020 &  
+        acep_energy_region == "Rural Remote") %>%
+  rename(`ACEP Region` = acep_energy_region, Sector = sector) %>%
+  mutate(Sector = str_to_title(Sector))
 
-    marks: [
- 
-      Plot.line(rural_remote_weighted_prices,
-          {x: "year", 
-          y: "weighted_price",
-          strokeWidth: 5,
-          stroke: "Customer Class",
-          tip: {format: {x: "d"}}
-          }),
-      Plot.text(rural_remote_weighted_prices, 
-        Plot.selectLast(
-          {x: "year", 
-          y: "weighted_price", 
-          z: "Customer Class",
-          text: "Customer Class", 
-          frameAnchor: "bottom", 
-          dy: -5,
-          dx: 35
-          }))
-    ],
-    color: {
-        domain: ["residential", "commercial", "other"],
-        range: ["#0084c1", "#e29617", "#fad900"]
-    }
-})
+# Filter the last year for each region for the text labels
+last_year_data <- rural_remote_weighted_prices %>%
+  group_by(`Sector`) %>%
+  filter(year == max(year))
 
+s <- 
+  ggplot(
+    rural_remote_weighted_prices, 
+    aes(x = year, y = weighted_price, color = Sector)) +
+
+    geom_line_interactive(linewidth = 2) +
+
+    geom_point_interactive(
+      aes(
+        tooltip = paste(
+          "Year:", year, 
+          "<br>Sector:", Sector,
+          "<br>Cents per Kilowatt Hour:", round(weighted_price, 2))
+          ), 
+      size = 10, color = "transparent") +
+
+    geom_text_interactive(
+      data = last_year_data, 
+      aes(label = Sector, tooltip = Sector), 
+      hjust = 1.05, 
+      vjust = -1) +
+
+    scale_x_continuous(
+      name = "Year", 
+      breaks = seq(2011, 2019, 1), 
+      expand = c(0, 0.1)) + 
+
+    scale_y_continuous(
+      name = "Cents per Kilowatt Hour", 
+      limits = c(10, 70), 
+      breaks = seq(10, 70, 10),
+      expand = c(0, 0.2)) +
+
+    scale_color_manual(values = c("#e29617", "#fad900", "#0084c1")) +
+    theme_minimal() +
+    theme(legend.position = "none", panel.grid.minor.x = element_blank())
+
+girafe(code = print(s))
 
 ```
 
