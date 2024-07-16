@@ -98,7 +98,7 @@ regions_plot <-
 ```{r, eval=knitr::is_html_output()}
 #| label: fig-price-over-time
 #| fig-cap: "Residential Price Over Time"
-p <- 
+regions_html <- 
   regions_plot +
   geom_line_interactive(linewidth = 2) +
   geom_point_interactive(
@@ -110,18 +110,18 @@ p <-
         ), 
     size = 10, color = "transparent") 
 
-girafe(code = print(p))
+girafe(code = print(regions_html))
 
 ```
 
 
 ```{r, eval=knitr::is_latex_output()}
-pdf <- 
+regions_pdf <- 
   regions_plot +
   geom_line(linewidth = 2) +
   ggtitle("Figure 2: Residential Price Over Time")
 
-print(pdf)
+print(regions_pdf)
 
 ```
 
@@ -135,10 +135,7 @@ The average real price (in 2021 dollars) of electricity for Residential customer
 
 Residential customers in the Coastal region saw increases in the price of electricity while commercial and other customers saw decreases. However, the residential customer class continues to pay the lowest per kWh in the region due to a combination of low prices in high population areas and PCE subsidies in eligible communities.
 
-```{r, eval=knitr::is_html_output()}
-#| label: fig-price-sector-coastal
-#| fig-cap: "Sector Price Over Time, Coastal Region"
-
+```{r}
 coastal_weighted_prices <- 
   weighted_prices %>%
   filter(year < 2020 &  
@@ -151,25 +148,14 @@ last_year_data <- coastal_weighted_prices %>%
   group_by(`Sector`) %>%
   filter(year == max(year))
 
-q <- 
+coastal_plot <- 
   ggplot(
     coastal_weighted_prices, 
     aes(x = year, y = weighted_price, color = Sector)) +
 
-    geom_line_interactive(linewidth = 2) +
-
-    geom_point_interactive(
-      aes(
-        tooltip = paste(
-          "Year:", year, 
-          "<br>Sector:", Sector,
-          "<br>Cents per Kilowatt Hour:", round(weighted_price, 2))
-          ), 
-      size = 10, color = "transparent") +
-
-    geom_text_interactive(
+    geom_text(
       data = last_year_data, 
-      aes(label = Sector, tooltip = Sector), 
+      aes(label = Sector), 
       hjust = 1.05, 
       vjust = -1) +
 
@@ -181,17 +167,48 @@ q <-
     scale_y_continuous(
       name = "Cents per Kilowatt Hour", 
       limits = c(10, 40.5), 
-      breaks = seq(10, 40.5, 10),
+      breaks = seq(10, 40.5, 5),
       expand = c(0, 0.2)) +
 
     scale_color_manual(values = c("#e29617", "#fad900", "#0084c1")) +
     theme_minimal() +
-    theme(legend.position = "none", panel.grid.minor.x = element_blank())
-
-girafe(code = print(q))
+    theme(
+      legend.position = "none", 
+      panel.grid.minor.x = element_blank(),
+      panel.grid.minor.y = element_blank())
 
 ```
 
+```{r, eval=knitr::is_html_output()}
+#| label: fig-price-sector-coastal
+#| fig-cap: "Sector Price Over Time, Coastal Region"
+
+coastal_html <- 
+  coastal_plot +
+  geom_line_interactive(linewidth = 2) +
+  geom_point_interactive(
+    aes(
+      tooltip = paste(
+        "Year:", year, 
+        "<br>Sector:", Sector,
+        "<br>Cents per Kilowatt Hour:", round(weighted_price, 2))
+        ), 
+    size = 10, color = "transparent") 
+
+girafe(code = print(coastal_html))
+
+```
+
+```{r, eval=knitr::is_latex_output()}
+
+coastal_pdf <- 
+  coastal_plot +
+  geom_line(linewidth = 2) +
+  ggtitle("Figure 3: Sector Price Over Time, Coastal Region")
+
+print(coastal_pdf)
+
+```
 
 
 ## Railbelt
@@ -202,11 +219,7 @@ The average real price of electricity for Residential customers in the Railbelt 
 
 This region differs significantly from the Coastal and Rural Remote regions in that residential customers pay more for electricity than the Commercial or Other customer classes.
 
-
-```{r, eval=knitr::is_html_output()}
-#| label: fig-price-sector-railbelt
-#| fig-cap: "Sector Price Over Time, Railbelt Region"
-
+```{r}
 railbelt_weighted_prices <- 
   weighted_prices %>%
   filter(year < 2020 &  
@@ -214,30 +227,20 @@ railbelt_weighted_prices <-
   rename(`ACEP Region` = acep_energy_region, Sector = sector) %>%
   mutate(Sector = str_to_title(Sector))
 
-# Filter the last year for each region for the text labels
+# filter the last year for each region for the text labels
 last_year_data <- railbelt_weighted_prices %>%
   group_by(`Sector`) %>%
   filter(year == max(year))
 
-r <- 
+
+railbelt_plot <- 
   ggplot(
     railbelt_weighted_prices, 
     aes(x = year, y = weighted_price, color = Sector)) +
 
-    geom_line_interactive(linewidth = 2) +
-
-    geom_point_interactive(
-      aes(
-        tooltip = paste(
-          "Year:", year, 
-          "<br>Sector:", Sector,
-          "<br>Cents per Kilowatt Hour:", round(weighted_price, 2))
-          ), 
-      size = 10, color = "transparent") +
-
-    geom_text_interactive(
+    geom_text(
       data = last_year_data, 
-      aes(label = Sector, tooltip = Sector), 
+      aes(label = Sector), 
       hjust = 1.05, 
       vjust = -1) +
 
@@ -256,7 +259,38 @@ r <-
     theme_minimal() +
     theme(legend.position = "none", panel.grid.minor.x = element_blank())
 
-girafe(code = print(r))
+```
+
+```{r, eval=knitr::is_html_output()}
+#| label: fig-price-sector-railbelt
+#| fig-cap: "Sector Price Over Time, Railbelt Region"
+
+railbelt_html <- 
+  railbelt_plot +
+
+  geom_line_interactive(linewidth = 2) +
+
+  geom_point_interactive(
+    aes(
+      tooltip = paste(
+        "Year:", year, 
+        "<br>Sector:", Sector,
+        "<br>Cents per Kilowatt Hour:", round(weighted_price, 2))
+        ), 
+    size = 10, color = "transparent")
+
+girafe(code = print(railbelt_html))
+
+```
+
+```{r, eval=knitr::is_latex_output()}
+
+railbelt_pdf <- 
+  railbelt_plot +
+  geom_line(linewidth = 2) +
+  ggtitle("Figure 3: Sector Price Over Time, Railbelt Region")
+
+print(railbelt_pdf)
 
 ```
 
@@ -265,11 +299,7 @@ girafe(code = print(r))
 
 The average price of electricity for the Residential customers in the Rural Remote region rose `{ojs} rural_res_change`% from `{ojs} rural_res_2011` cents/kWh in 2011 to `{ojs} rural_res_2019` cents/kWh in 2019. The average price of electricity for Commercial customers in the Rural Remote region fell `{ojs} rural_com_change`% from `{ojs} rural_com_2011` cents/kWh in 2011 to `{ojs} rural_com_2019` cents/kWh in 2019. Finally, the average price of electricity for Other customers in the Rural Remote region fell `{ojs} rural_other_change`% from `{ojs} rural_other_2011` cents/kWh in 2011 to `{ojs} rural_other_2019` cents/kWh in 2019.
 
-
-```{r, eval=knitr::is_html_output()}
-#| label: fig-price-sector-rural
-#| fig-cap: "Sector Price Over Time, Rural Remote Region"
-
+```{r}
 rural_remote_weighted_prices <- 
   weighted_prices %>%
   filter(year < 2020 &  
@@ -282,25 +312,14 @@ last_year_data <- rural_remote_weighted_prices %>%
   group_by(`Sector`) %>%
   filter(year == max(year))
 
-s <- 
+rural_remote_plot <- 
   ggplot(
     rural_remote_weighted_prices, 
     aes(x = year, y = weighted_price, color = Sector)) +
 
-    geom_line_interactive(linewidth = 2) +
-
-    geom_point_interactive(
-      aes(
-        tooltip = paste(
-          "Year:", year, 
-          "<br>Sector:", Sector,
-          "<br>Cents per Kilowatt Hour:", round(weighted_price, 2))
-          ), 
-      size = 10, color = "transparent") +
-
-    geom_text_interactive(
+    geom_text(
       data = last_year_data, 
-      aes(label = Sector, tooltip = Sector), 
+      aes(label = Sector), 
       hjust = 1.05, 
       vjust = -1) +
 
@@ -319,10 +338,43 @@ s <-
     theme_minimal() +
     theme(legend.position = "none", panel.grid.minor.x = element_blank())
 
-girafe(code = print(s))
 
 ```
 
+
+```{r, eval=knitr::is_html_output()}
+#| label: fig-price-sector-rural
+#| fig-cap: "Sector Price Over Time, Rural Remote Region"
+
+
+rural_remote_html <- 
+  rural_remote_plot +
+
+  geom_line_interactive(linewidth = 2) +
+
+  geom_point_interactive(
+    aes(
+      tooltip = paste(
+        "Year:", year, 
+        "<br>Sector:", Sector,
+        "<br>Cents per Kilowatt Hour:", round(weighted_price, 2))
+        ), 
+    size = 10, color = "transparent") 
+
+girafe(code = print(rural_remote_html))
+
+```
+
+```{r, eval=knitr::is_latex_output()}
+
+rural_remote_pdf <- 
+  rural_remote_plot +
+  geom_line(linewidth = 2) +
+  ggtitle("Figure 3: Sector Price Over Time, Rural Remote Region")
+
+print(rural_remote_pdf)
+
+```
 
 
 ```{ojs}
