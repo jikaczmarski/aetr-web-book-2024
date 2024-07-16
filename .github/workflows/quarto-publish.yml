@@ -24,6 +24,9 @@ jobs:
       - name: Set up R
         uses: r-lib/actions/setup-r@v2
 
+      - name: Install system dependencies
+        run: sudo apt-get install -y libcurl4-openssl-dev        
+
       - name: Cache Renv packages
         uses: actions/cache@v2
         with:
@@ -48,3 +51,6 @@ jobs:
           target: gh-pages
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # this secret is always available for github actions
+
+      - name: Render PDF
+        run: quarto render index.qmd --to pdf --output-dir .
