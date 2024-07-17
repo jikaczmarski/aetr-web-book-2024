@@ -589,7 +589,7 @@
                         "name" : "residential_sales_mwh", 
                         "description" : "Total megawatt hours sold to the residential sector",
                         "type" : "float",
-                        "units": "Mwh"
+                        "units": "MWh"
                     },
                     {
                         "name" : "commercial_price_kwh_2021_dollars", 
