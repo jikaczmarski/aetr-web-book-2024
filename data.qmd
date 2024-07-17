@@ -7,8 +7,6 @@ output:
   quarto::quarto_html:
     pre_processor: quarto::observable
 echo: false
-execute:
-  when: "knitr::is_html_output()"
 ---
 
 
