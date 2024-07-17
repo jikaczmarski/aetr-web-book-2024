@@ -67,6 +67,40 @@ format:
       light: [cosmo, theme.scss, custom.scss] # from https://github.com/sta210-s22/website/blob/main/_quarto.yml
       #dark: [cosmo, theme-dark.scss]
     toc: true
+  pdf:
+    pdfengine: xelatex
+    documentclass: scrreprt
+    papersize: a4
+
+    fontsize: 11pt
+    # mainfont: "Arial"
+    # sansfont: "Arial"
+    # monofont: "Courier New"
+
+    geometry:
+      - inner=3cm
+      - outer=3cm
+      - top=3cm
+      - bottom=2.5cm
+      - headsep=22pt
+      - headheight=11pt
+      - footskip=33pt
+      - ignorehead
+      - ignorefoot
+      - heightrounded
+
+    toc: true
+    toc-depth: 3
+    toc-title: "Table of contents"
+    lof: true
+    lot: true
+    number-sections: true
+    number-depth: 2
+
+    template-partials:
+      - before-body.tex
+
+    include-in-header: include-in-header.tex
 
 date: last-modified
 date-format: "MMM D, YYYY [at] HH:mm z"

@@ -52,7 +52,7 @@ We note that the Coastal and Rural Remote regions include mixtures of Power Cost
 
 &nbsp;
 
-![Schematic Relationship between Energy Regions as defined by AEA and ACEP](images/region_mapping.drawio.svg){width=50% #fig-regions-scheme}
+![Schematic Relationship between Energy Regions as defined by AEA and ACEP](images/region_mapping.drawio.png){width=50% #fig-regions-scheme}
 
 <!-- ![Cartographic Relationship between Energy Regions as defined by AEA and ACEP](images/AEA_ACEP_regions_map.png){width=600 #fig-regions-map} -->
 
