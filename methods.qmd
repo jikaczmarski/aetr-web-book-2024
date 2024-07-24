@@ -59,7 +59,147 @@ We note that the Coastal and Rural Remote regions include mixtures of Power Cost
 <br>
 <br>
 
-{{< include _regions_map.qmd >}}
+::: {.content-visible when-format="html"}
+```{ojs}
+// The OJS chunks below build the interactive map for the HTML version
+// These chunks will not render for the PDF version, use PNG instead
+
+stdlib = require("@observablehq/stdlib")
+d3 = require("d3@7")
+
+L = require('leaflet@1.9.4')
+html`<link href='${resolve('leaflet@1.2.0/dist/leaflet.css')}' rel='stylesheet' />`
+
+bootstrap=require("bootstrap")
+css=html`<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">`
+```
+
+```{ojs}
+aea_regions = FileAttachment("data/working/regions/aea_regions.geojson").json()
+acep_regions = FileAttachment("data/working/regions/acep_regions.geojson").json()
+
+coords_json = FileAttachment("data/working/regions/coordinates.geojson").json()
+
+// coords_csv = FileAttachment("data/working/regions/coordinates_pce.csv").csv({typed: true})
+
+```
+
+```{ojs}
+aea_regions_input = L.geoJSON(aea_regions, {
+                        style: function(feature) {
+                            switch (feature.properties.NAME) {
+                                case 'Aleutians': return {color: "#FF5733"};
+                                case 'Bering Straits': return {color: "#FF1493"};
+                                case 'Bristol Bay': return {color: "#20B2AA"};
+                                case 'Copper River Chugach': return {color: "#7D3C98"};
+                                case 'Kodiak': return {color: "#C70039"};
+                                case 'Lower Yukon Kuskokwim': return {color: "#00B4D8"};
+                                case 'North Slope': return {color: "#4682B4"};
+                                case 'Northwest Arctic': return {color: "#6A5ACD"};
+                                case 'Railbelt': return {color: "#228B22"};
+                                case 'Southeast': return {color: "#FFC300"};
+                                case 'Yukon-Koyukuk Upper Tanana': return {color: "#FF8C00"};
+                            }
+                          }
+                      }).bindTooltip(function (layer) {
+                        return layer.feature.properties.NAME;
+                        },
+                        {
+                        sticky: true,
+                        offset: [10, 0],
+                        direction: "right",
+                        opacity: 0.75
+                      });
+
+
+acep_regions_input = L.geoJSON(acep_regions, {
+                        style: function(feature) {
+                            switch (feature.properties.NAME) {
+                                case 'Rural Remote': return {color: "#FF0000"};
+                                case 'Coastal': return {color: "#0000FF"};
+                                case 'Railbelt': return {color: "#228B22"};
+                            }
+                          }
+                      }).bindTooltip(function (layer) {
+                        return layer.feature.properties.NAME;
+                        },
+                        {
+                        sticky: true,
+                        offset: [10, 0],
+                        direction: "right",
+                        opacity: 0.75
+                      });
+
+
+```
+
+
+```{ojs}
+// Code below builds community location points
+points = L.geoJSON(coords_json, {
+    pointToLayer: function (feature, latlng) {
+        return L.circleMarker(latlng, 
+          {radius: 5,
+          fillColor: "#808080",
+          color: "#000",
+          weight: 1,
+          opacity: 1,
+          fillOpacity: 0.8
+     });
+    }
+}).bindTooltip(function (layer) {
+                        return layer.feature.properties.name;
+                        },
+                        {
+                        sticky: true,
+                        offset: [10, 0],
+                        direction: "right",
+                        opacity: 0.75
+                      });
+
+```
+
+```{ojs}
+//| label: fig-regions-map
+//| fig-cap: "Cartographic Relationship between Energy Regions as defined by AEA and ACEP"
+
+viewof region_input = Inputs.select(new Map([
+                ["AEA Regions", aea_regions_input], 
+                ["ACEP Regions", acep_regions_input]]), 
+              {value: aea_regions_input, label: "Display below:"}
+              );
+
+
+```
+
+```{ojs}
+// the order of the container calls is important, do first, don't mess with
+map = {
+    let container = DOM.element('div', { style: `width:${width}px;height:${width/1.2}px` });
+    yield container;
+
+    // create map object
+    let map = L.map(container).setView([62.945279601222396, -155.5946697727831], 4);
+
+    // add basemap
+    var basemap = L.tileLayer('https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/tile/{z}/{y}/{x}', {
+      maxZoom: 20,
+      attribution: 'Tiles courtesy of the <a href="https://usgs.gov/">U.S. Geological Survey</a>'
+    });
+    basemap.addTo(map);
+
+    // // add dropdown input selection
+    region_input.addTo(map);
+
+    // add community points
+    points.addTo(map);
+    
+
+}
+
+```
+
+:::
 
 <br>
 <br>
