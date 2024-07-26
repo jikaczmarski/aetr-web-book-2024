@@ -20,13 +20,20 @@ library(stringr)
 library(ggplot2)
 library(ggiraph)
 
+library(see)  # slices violin plots in half
+library(ggridges) # mountains beyond mountains
+library(ggrepel) # labels on ends of lines
+library(ggdist) # raincloud plots
+library(ggrain) # other raincloud package
+
 weighted_prices <- read_csv("./data/working/prices/weighted_prices.csv")
-prices <- read_csv("./data/working/prices/weighted_prices.csv")
+prices <- read_csv("./data/working/prices/prices.csv")
 
 # Function declaration
 source("scripts/inline_functions/price_inline_functions.R")
 ```
 
+::: {.content-visible when-format="html"}
 ```{ojs}
 // load libraries
 stdlib = require("@observablehq/stdlib")
@@ -38,6 +45,7 @@ prices = FileAttachment("data/working/prices/prices.csv").csv({typed: true});
 weighted_prices = FileAttachment("data/working/prices/weighted_prices.csv").csv({typed: true});
 
 ```
+:::
 
 ## General Overview  {#sec-prices}
 
@@ -49,6 +57,7 @@ Note that all prices in this section have been adjusted for inflation over time 
 
 
 ### Regional Overview
+::: {.content-visible when-format="html"}
 @fig-price-regions-classes shows the distribution of prices across a selected customer class. The three classes used in this analysis can be selected from the dropdown menu. Hover your pointer over the dot to display utility information.  
 
 Most notably, the dramatic effects of the PCE subsidy can be seen by comparing the price distribution of the residential customer class against the price distribution of the commercial/other customer classes in the Rural Remote and Coastal regions. 
@@ -56,7 +65,6 @@ Most notably, the dramatic effects of the PCE subsidy can be seen by comparing t
 
 <!--<br> -->
 
-::: {.content-visible when-format="html"}
 ```{r}
 # desired future inputs:  
 # community size
@@ -64,7 +72,6 @@ Most notably, the dramatic effects of the PCE subsidy can be seen by comparing t
 # year
 # weighted/unweighted
 ```
-
 
 ```{ojs}
 // active inputs
@@ -99,9 +106,6 @@ rawDataOffset = 5
 
 ```
 
-
-
-
 ```{ojs}
 //| label: fig-price-regions-classes
 //| fig-cap: "Prices by Region and Customer Class"
@@ -109,9 +113,6 @@ rawDataOffset = 5
 Plot.plot(rainCloudX)
 
 ```
-
-
-
 
 ```{ojs}
 rainCloudX = ({
@@ -142,7 +143,6 @@ rainCloudX = ({
 })
 ```
 
-
 ```{ojs}
 halfViolinX = Plot.areaY(
   data,
@@ -159,7 +159,6 @@ halfViolinX = Plot.areaY(
   )
 )
 ```
-
 
 ```{ojs}
 rawDataX = Plot.dot(
@@ -197,7 +196,6 @@ rawDataX = Plot.dot(
 
 ```
 
-
 ```{ojs}
 //| echo: false
 // appendix
@@ -225,8 +223,6 @@ bins = d3
 
 seedrandom = require('seedrandom')
 ```
-
-
 
 ```{ojs}
 
@@ -314,7 +310,130 @@ data = tidy(
 :::
 
 
-<br>
+::: {.content-visible when-format="pdf"}
+```{r}
+p_prices <- prices %>%
+  rename(c("residential" = "residential_price_kwh_2021_dollars",
+           "commercial" = "commercial_price_kwh_2021_dollars",
+           "other" = "other_price_kwh_2021_dollars")) %>%
+  pivot_longer( 
+    cols = c("residential",
+             "commercial",
+             "other"), 
+    names_to ="sector", 
+    values_to = "price")
+
+long_price <- p_prices %>%
+  mutate(customers = NA) %>%
+  mutate(customers = ifelse(sector == "residential", residential_customers, customers)) %>%
+  mutate(customers = ifelse(sector == "commercial", commercial_customers, customers)) %>%
+  mutate(customers = ifelse(sector == "other", other_customers, customers)) %>%
+  mutate(customers = round(customers, 0)) %>%
+  
+  select("year",
+         "reporting_name",
+         "acep_energy_region",
+         "sector",
+         "price",
+         "customers",
+         "total_customers")
+```
+
+```{r}
+raincloud <- function(sector_input="residential", start_year=2011, end_year=2019, y_axis_max=65){
+  d <- long_price %>%
+    filter(sector == sector_input) %>% 
+    filter(price > 0) %>%
+    filter(year >= start_year & year <= end_year) %>%
+    left_join(weighted_prices, join_by(year, sector, acep_energy_region))
+
+output <-
+  ggplot(d) +
+  
+  geom_violinhalf(aes(x=acep_energy_region, 
+                      y=price, 
+                      fill=acep_energy_region),
+                  position = position_nudge(x=.1, y=0)) +
+  
+  geom_jitter(aes(x=acep_energy_region, 
+                  y=price, 
+                  color=acep_energy_region), # Use color instead of fill for points
+              alpha=0.75, 
+              width = .07,
+              height = 0) +
+  
+  scale_fill_manual(values = c("#98BAD6", "#A4CD9A", "#E3918F")) +
+  scale_color_manual(values = c("#98BAD6", "#A4CD9A", "#E3918F")) +
+  
+  theme_classic() +
+  theme(legend.position = "none",
+        # plot.title = element_text(size=16, hjust = 0.5),
+        # plot.subtitle = element_text(size=14, hjust = 0.5),
+        plot.caption = element_text(size = 8)) +
+  
+  labs(title = paste(str_to_title(sector_input), "Sector Prices,", start_year, "-", end_year),
+       x = "",
+       y = "Cents/kWh") +
+  
+  ylim(c(0,y_axis_max)) + #take axis limits as arguments?
+  coord_flip() 
+
+
+#E3918F Rural Remote
+#98BAD6 Coastal
+#A4CD9A Railbelt
+#F1BF42 State
+
+print(output)
+
+}
+
+```
+:::
+
+
+Below are three raincloud plots to show the distribution of prices across the three customer classes. Each dot represents the average annual price of a community for a single year in the range. For this report, data is displayed for 9 years, 2011-2019, therefore each community will render 9 points on the plot. Communities are grouped by the three regions, and the half-violin shows distribution of the prices.
+
+::: {.content-visible when-format="pdf"}
+\vspace{3ex}
+:::
+
+```{r warning=FALSE, eval=knitr::is_latex_output()}
+raincloud(sector_input="residential", start_year=2011, end_year=2019, y_axis_max=120)
+```
+
+::: {.content-visible when-format="pdf"}
+\vspace{3ex}
+:::
+
+Most notably, the dramatic effects of the PCE subsidy can be seen by comparing the price distribution of the residential customer class against the price distribution of the commercial/other customer classes in the Rural Remote and Coastal regions. 
+
+::: {.content-visible when-format="pdf"}
+\vspace{3ex}
+:::
+
+```{r warning=FALSE, eval=knitr::is_latex_output()}
+raincloud(sector_input="commercial", start_year=2011, end_year=2019, y_axis_max=120)
+```
+
+::: {.content-visible when-format="pdf"}
+\vspace{3ex}
+:::
+
+sample textsample textsaple textsample text
+sample textsample textsaple textsample textsample textsample textsaple textsample textsample textsample textsaple textsample textsample textsample textsaple textsample text
+
+::: {.content-visible when-format="pdf"}
+\vspace{3ex}
+:::
+
+```{r warning=FALSE, eval=knitr::is_latex_output()}
+raincloud(sector_input="other", start_year=2011, end_year=2019, y_axis_max=120)
+```
+
+::: {.content-visible when-format="pdf"}
+\vspace{3ex}
+:::
 
 
 ### Regional Averages
@@ -365,6 +484,7 @@ regions_plot <-
 
 
 ```
+
 
 ```{r, eval=knitr::is_html_output()}
 #| label: fig-price-over-time
