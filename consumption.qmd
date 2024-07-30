@@ -7,40 +7,84 @@ output:
     quarto::quarto_html:
         pre_processor: quarto::observable
 echo: false
+warning: false
 cap-location: top
 ---
 
 ```{r, echo=FALSE,warning=FALSE,message=FALSE}
 # Import packages
+library(readr)
 library(dplyr)
 library(tidyr)
+library(stringr)
+library(ggplot2)
+library(ggiraph)
+library(scales)
 
 # Import the consumption data
 consumption_data <- read.csv(file = "data/working/consumption/consumption_long.csv")
 
-# Regionalized consumption data
+# Function declarations
+source("scripts/inline_functions/consumption_inline_functions.R")
+
+```
+
+```{r}
+# Data transformations
+
+# Regionalized consumption transform
 regional_consumption_data <- consumption_data %>%
   group_by(acep_region, year, class) %>%
   summarise(
-    "revenue" = sum(revenue, na.rm = TRUE),
-    "sales" = sum(sales, na.rm = TRUE),
-    "customers" = sum(customers, na.rm = TRUE)
+    revenue = sum(revenue, na.rm = TRUE),
+    sales = sum(sales, na.rm = TRUE),
+    customers = sum(customers, na.rm = TRUE)
   ) %>%
   mutate(
     sales_per_capita = sales / customers
   )
   
-# Statewide consumption data
+# Statewide consumption transform
 statewide_consumption_data <- consumption_data %>%
   group_by(year, class) %>%
   summarise(
-    "revenue" = sum(revenue, na.rm = TRUE),
-    "sales" = sum(sales, na.rm = TRUE),
-    "customers" = sum(customers, na.rm = TRUE)
+    revenue = sum(revenue, na.rm = TRUE),
+    sales = sum(sales, na.rm = TRUE),
+    customers = sum(customers, na.rm = TRUE)
   )
 
-# Function declarations
-source("scripts/inline_functions/consumption_inline_functions.R")
+# Statewide change transform
+statewide_delta <- consumption_data %>%
+  group_by(year, class) %>%
+  summarize(
+    revenue = sum(revenue, na.rm = TRUE),
+    sales = sum(sales, na.rm = TRUE),
+    customers = sum(customers, na.rm = TRUE),
+    .groups = 'drop'
+  ) %>%
+  filter((year == 2011 | year == 2019) & class != "Total") %>%
+  arrange(year) %>%
+  group_by(class) %>%
+  mutate(
+    sales_2011 = lag(sales, default = 0),
+    customers_2011 = lag(customers, default = 0)
+  ) %>%
+  ungroup() %>%
+  mutate(
+    sales_delta = (sales - sales_2011) / sales_2011,
+    customers_delta = (customers - customers_2011) / customers_2011,
+    sales_delta_percent = sales_delta * 100  
+  ) %>%
+  filter(year == 2019)
+
+# Sales per capita transform
+sales_per_capita_data <- 
+  regional_consumption_data %>%
+  filter(class == "Residential") %>%
+  group_by(acep_region, year) %>%
+  mutate(sales_per_capita = (sales/customers) * 1000) %>%
+  ungroup()
+
 ```
 
 ## General Overview {#sec-consumption}
@@ -108,8 +152,6 @@ statewide_delta = tidy(
 ```
 
 ```{ojs}
-//| label: fig-change-customer-sales
-//| fig-cap: "Change in Sales by Customer Class, Statewide, from 2011 to 2019"
 
 Plot.plot({
 
@@ -156,11 +198,87 @@ Plot.plot({
 })
 ```
 
+```{r}
+# Plot for statewide change in sales (html and pdf code)
+
+sales_plot <- 
+  ggplot(
+    statewide_delta, 
+    aes(
+      x = sales_delta_percent, 
+      y = reorder(class, sales_delta), 
+      fill = class)) +
+
+    geom_bar(stat = "identity") +
+    geom_vline(xintercept = 0, color = "black") + # Add a vertical line at x = 0
+    
+    scale_x_continuous(
+      name = "Percent Change", 
+      breaks = seq(-12, 1, 2), 
+      expand = c(0, 0.1)) +
+    
+    scale_y_discrete(
+      name = "", 
+      expand = c(0, 0.1)) +
+    
+    scale_fill_manual(
+      values = c(
+        "Other" = "#fad900", 
+        "Residential" = "#0084c1", 
+        "Commercial" = "#e29617")) +
+
+    theme_minimal() +
+    theme(
+      legend.position = "none",
+      panel.grid.major.y = element_blank(),
+      panel.grid.minor = element_blank()
+      )
+
+
+```
+
+```{r, eval=knitr::is_html_output()}
+#| label: fig-change-customer-sales
+#| fig-cap: "Change in Sales by Customer Class, Statewide, from 2011 to 2019"
+
+sales_html <- 
+  sales_plot +
+  geom_bar_interactive(
+    stat = "identity",
+    aes(
+      tooltip = paste0( 
+        round(sales_delta * 100, 1), 
+        "% ", 
+        "Change in Sales",
+        "<br>", 
+        class,
+        " Customers"))
+    )
+
+girafe(
+  code = print(sales_html))
+```
+
+```{r, eval=knitr::is_latex_output()}
+# code for static pdf plot
+sales_pdf <- 
+  sales_plot +
+  geom_bar(stat = "identity") +     
+  labs(
+    title = "Change in Sales by Customer Class, Statewide",
+    subtitle = "2011 - 2019") +
+  theme(
+    plot.title = element_text(hjust = 0.5),
+    plot.subtitle = element_text(hjust = 0.5))
+
+print(sales_pdf)
+
+```
+
 We also examine the change in the number of customer accounts across the state. The total number of customer accounts in the state increased `r statewide_consumption_delta("Total","customers",pct=TRUE)`% from approximately `r statewide_consumption("Total","customers",2011,decimals=0)` to `r statewide_consumption("Total","customers",2019,decimals=0)`. We plot the percentage increases in customer accounts by category in @fig-change-customer-accounts. Residential accounts across the state increased `r statewide_consumption_delta("Residential","customers",pct=TRUE)`% from approximately `r statewide_consumption("Residential","customers",2011,decimals=0)` to `r statewide_consumption("Residential","customers",2019,decimals=0)`. The number of commercial accounts across the state increased `r statewide_consumption_delta("Commercial","customers",pct=TRUE)`% from `r statewide_consumption("Commercial","customers",2011,decimals=0)` to `r statewide_consumption("Commercial","customers",2019,decimals=0)`. Finally, the number of other accounts across the state has increased `r statewide_consumption_delta("Other","customers",pct=TRUE)`% from approximately `r statewide_consumption("Other","customers",2011,decimals=0)` to `r statewide_consumption("Other","customers",2019,decimals=0)`.
 
 ```{ojs}
-//| label: fig-change-customer-accounts
-//| fig-cap: "Change in Customer Accounts by Class, Statewide, from 2011 to 2019"
+
 Plot.plot({
 
   //title: "Change in customer accounts by class, statewide, 2011 to 2019",
@@ -206,6 +324,79 @@ Plot.plot({
 })
 ```
 
+```{r}
+# statewide increase in customer accounts
+# code for both html and pdf
+
+customers_plot <-
+  ggplot(
+    statewide_delta, 
+    aes(
+      x = customers_delta * 100, 
+      y = reorder(class, desc(customers_delta)), 
+      fill = class)) +
+    
+    scale_x_continuous(
+      name = "Percent Change", 
+      breaks = seq(0, 16, 2),
+      expand = c(0, 0.1)) +
+    
+    scale_y_discrete(
+      name = "",
+      expand = c(0, 0.5)) +
+    
+    scale_fill_manual(
+      values = c(
+        "Residential" = "#0084c1", 
+        "Commercial" = "#e29617", 
+        "Other" = "#fad900")) +
+
+    theme_minimal() +
+    theme(
+      legend.position = "none",
+      panel.grid.major.y = element_blank(),
+      panel.grid.minor = element_blank()
+      )
+  
+```
+
+```{r, eval=knitr::is_html_output()}
+#| label: fig-change-customer-accounts
+#| fig-cap: "Change in Customer Accounts by Class, Statewide, from 2011 to 2019"
+
+customers_html <- 
+  customers_plot + 
+  geom_bar_interactive(
+    stat = "identity",
+    aes(
+      tooltip = paste0(
+        round(customers_delta * 100, 1), 
+        "% ", 
+        "Change in Accounts",
+        "<br>",
+        class,
+        " Customers"
+        ))
+    )
+
+girafe(code = print(customers_html))
+
+```
+
+```{r, eval=knitr::is_latex_output()}
+# code for static pdf plot
+customers_pdf <- 
+  customers_plot +
+  geom_bar(stat = "identity") +
+  labs(title = "Change in Customer Accounts by Class, Statewide, from 2011 to 2019") +
+  theme(
+    plot.title = element_text(hjust = 0.5), 
+    plot.subtitle = element_text(hjust = 0.5))
+
+print(customers_pdf)
+
+```
+
 @fig-sales_per_capita <!--orig: The following table--> shows the average annual electricity consumption for each of the regions. The Coastal region led the state in consumption per capita, with an average of `r regional_consumption_per_capita("Coastal","Residential")` kWh per customer per year. This was followed by the Railbelt region with `r regional_consumption_per_capita("Railbelt","Residential")` kWh per capita and the Rural Remote region with `r regional_consumption_per_capita("Rural Remote","Residential")` kWh per capita. Overall, each region has seen reductions in consumption per capita, which may reflect improvements in energy efficient technologies and energy efficiency/conservation behaviors.
 
 ```{ojs}
@@ -222,8 +413,8 @@ sales_per_capita_data = tidy(regional_consumption_data.filter((d) => d.class ===
 ```
 
 ```{ojs}
-//| label: fig-sales_per_capita
-//| fig-cap: "Average Residential Sales per Customer"
+// label: fig-sales_per_capita
+// fig-cap: "Average Residential Sales per Customer"
 //caption_include = "Note: For EIA reported data, the Other customer class includes industrial and transportation customers. For PCE reported data, it includes community and government customers. No industrial customers were reported in the PCE data."
 
 Plot.plot({
@@ -269,13 +460,90 @@ Plot.plot({
 })
 ```
 
+
+```{r}
+# code for both html and pdf
+
+# filter the last year for each region for the text labels
+last_year_data <- sales_per_capita_data %>%
+  group_by() %>%
+  filter(year == max(year))
+
+sales_per_capita_plot <-
+  ggplot(
+    sales_per_capita_data, 
+    aes(
+      x = year, 
+      y = sales_per_capita, 
+      color = acep_region, 
+      group = acep_region)) +
+
+  geom_text(
+    data = last_year_data, 
+    aes(label = acep_region), 
+    hjust = 1.1, 
+    vjust = 2.5) +
+
+  scale_x_continuous(
+    name = "", 
+    breaks = seq(2011, 2019, 1), 
+    expand = c(0, 0.1)) + 
+
+  scale_y_continuous(
+    name = "Kilowatt Hours (kWh)", 
+    limits = c(3000, 10000),
+    breaks = seq(3000, 10000, 1000),
+    labels = scales::comma,
+    expand = c(0, 0.2)) +
+
+  scale_color_manual(values = c("#8CBBDA", "#97CD93", "#F28D8C")) +
+  theme_minimal() +
+  theme(
+    legend.position = "none", 
+    panel.grid.minor = element_blank()
+  ) 
+
+```
+
+```{r, eval=knitr::is_html_output()}
+#| label: fig-sales_per_capita
+#| fig-cap: "Average Residential Sales per Customer"
+caption_include = "Note: For EIA reported data, the Other customer class includes industrial and transportation customers. For PCE reported data, it includes community and government customers. No industrial customers were reported in the PCE data."
+
+sales_per_capita_html <- 
+  sales_per_capita_plot +
+  geom_line_interactive(linewidth = 2) +
+  geom_point_interactive(
+    aes(
+      tooltip = paste(
+        comma(round(sales_per_capita, 0)),
+        "kWh per Customer",
+        "<br>Year", year
+      )
+        ), 
+    size = 10, color = "transparent") 
+
+girafe(code = print(sales_per_capita_html))
+
+```
+
+```{r, eval=knitr::is_latex_output()}
+sales_per_capita_pdf <- 
+  sales_per_capita_plot +
+  geom_line(linewidth = 2) +
+  ggtitle("Average Residential Sales per Customer")
+
+print(sales_per_capita_pdf)
+
+```
+
+
+
 ## Coastal
 
 To estimate the average yearly growth rate in each customer class, we calculate the cumulative compound average growth rate (CAGR). From 2011 to 2019, the coastal region saw an average yearly growth rate of `r cagr("Coastal", "Residential", "sales")`% for residential sales, `r cagr("Coastal", "Commercial", "sales")`% for commercial sales, and `r cagr("Coastal", "Other", "sales")`% for all other sales. @fig-delivered-by-class-coastal shows these sales in GWh for each year.
 
 ```{ojs}
-//| label: fig-delivered-by-class-coastal
-//| fig-cap: "Delivered Electricity by Customer Class, Coastal region"
 Plot.plot({//| 
 
   // Plot setup
@@ -318,12 +586,93 @@ Plot.plot({//|
 })
 ```
 
+```{r}
+# Filter data
+filtered_data <- regional_consumption_data %>%
+  filter(class != "Total" & acep_region == "Coastal") %>%
+  mutate(
+    class = factor(class, levels = c("Residential", "Commercial", "Other")),
+    tooltip = paste(
+      comma(round((sales / 1000), 0)), "GWh Delivered",
+      "<br>", class, "Customers",
+      "<br>Year", year
+    )
+  )
+
+# Create plot
+coastal_consumption_plot <- 
+  ggplot(
+    filtered_data, 
+    aes(
+      x = year, 
+      y = sales / 1000, 
+      fill = reorder(class, sales))) +
+
+    scale_x_continuous(
+      name = "", 
+      breaks = seq(2011, 2019, 1)) +
+    
+    scale_y_continuous(
+      name = "Gigawatt Hours (GWh)", 
+      limits = c(0, 1200), 
+      breaks = seq(0, 1200, 200),
+      expand = c(0, 0), 
+      labels = scales::comma) +
+    
+    scale_fill_manual(
+      values = c(
+        "Residential" = "#0084c1", 
+        "Commercial" = "#e29617", 
+        "Other" = "#fad900"),
+      name = "Customer Class"
+    ) +
+    
+    theme_minimal() +
+    theme(
+      plot.title = element_text(hjust = 0.5),
+      legend.position = "top",
+      panel.grid.minor = element_blank(),
+      panel.grid.major.x = element_blank()
+    ) +
+
+    guides(fill = guide_legend(title = NULL)) 
+
+
+
+
+```
+
+```{r, eval=knitr::is_html_output()}
+#| label: fig-delivered-by-class-coastal
+#| fig-cap: "Delivered Electricity by Customer Class, Coastal Region"
+
+coastal_consumption_html <- 
+  coastal_consumption_plot +
+  geom_bar_interactive(
+    tooltip = filtered_data$tooltip,
+    stat = "identity",
+    position = "stack"
+  )
+
+girafe(code = print(coastal_consumption_html))
+
+
+```
+
+```{r, eval=knitr::is_latex_output()}
+coastal_consumption_pdf <- 
+  coastal_consumption_plot +
+  geom_bar(stat = "identity", position = "stack") +
+  labs(
+    title = "Delivered Electricity by Customer Class, Coastal region")
+
+print(coastal_consumption_pdf)
+
+```
 
 While customer sales fell overall, customer accounts in the Coastal region increased for all customer classes. @fig-accounts-coastal shows the trend in customer accounts by class for the Coastal region. The average yearly growth rate in customer accounts was `r cagr("Coastal", "Residential", "customers")`% for the residential class, `r cagr("Coastal", "Commercial", "customers")`% for the commercial class, and `r cagr("Coastal", "Other", "customers")`% for the other class.
 
 ```{ojs}
-//| label: fig-accounts-coastal
-//| fig-cap: "Number of Customer Accounts, Coastal region"
 Plot.plot({
 
   // Plot setup
@@ -365,13 +714,92 @@ Plot.plot({
 })
 ```
 
+```{r}
+# Filter data
+filtered_data <- regional_consumption_data %>%
+  filter(class != "Total" & acep_region == "Coastal") %>%
+  mutate(
+    class = factor(class, levels = c("Residential", "Commercial", "Other")),
+    tooltip = paste(
+      comma(round((customers), 0)), "Accounts",
+      "<br>", class, "Class",
+      "<br>Year", year
+    )
+  )
+
+# Create plot
+coastal_customers_plot <- 
+  ggplot(
+    filtered_data, 
+    aes(
+      x = year, 
+      y = customers, 
+      fill = reorder(class, sales))) +
+
+    scale_x_continuous(
+      name = "", 
+      breaks = seq(2011, 2019, 1)) +
+    
+    scale_y_continuous(
+      name = "Accounts", 
+      limits = c(0, 60000), 
+      breaks = seq(0, 60000, 20000),
+      expand = c(0, 0), 
+      labels = scales::comma) +
+    
+    scale_fill_manual(
+      values = c(
+        "Residential" = "#0084c1", 
+        "Commercial" = "#e29617", 
+        "Other" = "#fad900"),
+      name = "Customer Class"
+    ) +
+    
+    theme_minimal() +
+    theme(
+      plot.title = element_text(hjust = 0.5),
+      legend.position = "top",
+      panel.grid.minor = element_blank(),
+      panel.grid.major.x = element_blank()
+    ) +
+
+    guides(fill = guide_legend(title = NULL)) 
+
+```
+
+```{r, eval=knitr::is_html_output()}
+#| label: fig-accounts-coastal
+#| fig-cap: "Number of Customer Accounts, Coastal region"
+
+coastal_customers_html <- 
+  coastal_customers_plot +
+  geom_bar_interactive(
+    tooltip = filtered_data$tooltip,
+    stat = "identity",
+    position = "stack"
+  )
+
+girafe(code = print(coastal_customers_html))
+
+```
+
+```{r, eval=knitr::is_latex_output()}
+coastal_customers_pdf <- 
+  coastal_customers_plot +
+  geom_bar(stat = "identity", position = "stack") +
+  labs(
+    title = "Number of Customer Accounts, Coastal Region")
+
+print(coastal_customers_pdf)
+
+```
+
 ## Railbelt
 
 From 2011 to 2019, the Railbelt region saw an average yearly growth rate of `r cagr("Railbelt", "Residential", "sales")`% for residential sales, `r cagr("Railbelt", "Commercial", "sales")`% for commercial sales, and `r cagr("Railbelt", "Other", "sales")`% for all other sales. @fig-delivered-by-class-railbelt shows these sales in GWh for each year.
 
 ```{ojs}
-//| label: fig-delivered-by-class-railbelt
-//| fig-cap: "Delivered Electricity by Customer Class, Railbelt Region"
+
 Plot.plot({//| 
 
   // Plot setup
@@ -414,11 +842,92 @@ Plot.plot({//|
 })
 ```
 
+```{r}
+# Filter data
+filtered_data <- regional_consumption_data %>%
+  filter(class != "Total" & acep_region == "Railbelt") %>%
+  mutate(
+    class = factor(class, levels = c("Residential", "Commercial", "Other")),
+    tooltip = paste(
+      comma(round((sales / 1000), 0)), "GWh Delivered",
+      "<br>", class, "Customers",
+      "<br>Year", year
+    )
+  )
+
+# Create plot
+railbelt_consumption_plot <- 
+  ggplot(
+    filtered_data, 
+    aes(
+      x = year, 
+      y = sales / 1000, 
+      fill = reorder(class, sales))) +
+
+    scale_x_continuous(
+      name = "", 
+      breaks = seq(2011, 2019, 1)) +
+    
+    scale_y_continuous(
+      name = "Gigawatt Hours (GWh)", 
+      limits = c(0, 5000), 
+      breaks = seq(0, 5000, 500),
+      expand = c(0, 0), 
+      labels = scales::comma) +
+    
+    scale_fill_manual(
+      values = c(
+        "Residential" = "#0084c1", 
+        "Commercial" = "#e29617", 
+        "Other" = "#fad900"),
+      name = "Customer Class"
+    ) +
+    
+    theme_minimal() +
+    theme(
+      plot.title = element_text(hjust = 0.5),
+      legend.position = "top",
+      panel.grid.minor = element_blank(),
+      panel.grid.major.x = element_blank()
+    ) +
+
+    guides(fill = guide_legend(title = NULL)) 
+
+
+
+```
+
+```{r, eval=knitr::is_html_output()}
+#| label: fig-delivered-by-class-railbelt
+#| fig-cap: "Delivered Electricity by Customer Class, Railbelt Region"
+
+railbelt_consumption_html <- 
+  railbelt_consumption_plot +
+  geom_bar_interactive(
+    tooltip = filtered_data$tooltip,
+    stat = "identity",
+    position = "stack"
+  )
+
+girafe(code = print(railbelt_consumption_html))
+
+
+```
+
+```{r, eval=knitr::is_latex_output()}
+railbelt_consumption_pdf <- 
+  railbelt_consumption_plot +
+  geom_bar(stat = "identity") +
+  labs(
+    title = "Delivered Electricity by Customer Class, Railbelt Region")
+
+print(railbelt_consumption_pdf)
+
+```
+
 The trends in the number of customer accounts by class are visualized in @fig-accounts-railbelt. The average yearly growth rate in customer accounts on the Railbelt was `r cagr("Railbelt", "Residential", "customers")`% for the residential class, `r cagr("Railbelt", "Commercial", "customers")`% for the commercial class, and `r cagr("Railbelt", "Other", "customers")`% for the other class.
 
 ```{ojs}
-//| label: fig-accounts-railbelt
-//| fig-cap: "Number of Customer Accounts, Railbelt Region"
 Plot.plot({
 
   // Plot setup
@@ -464,14 +973,91 @@ Plot.plot({
 })
 ```
 
+```{r}
+# Filter data
+filtered_data <- regional_consumption_data %>%
+  filter(class != "Total" & acep_region == "Railbelt") %>%
+  mutate(
+    class = factor(class, levels = c("Residential", "Commercial", "Other")),
+    tooltip = paste(
+      comma(round((customers), 0)), "Accounts",
+      "<br>", class, "Class",
+      "<br>Year", year
+    )
+  )
+
+# Create plot
+railbelt_customers_plot <- 
+  ggplot(
+    filtered_data, 
+    aes(
+      x = year, 
+      y = customers, 
+      fill = reorder(class, sales))) +
+
+    scale_x_continuous(
+      name = "", 
+      breaks = seq(2011, 2019, 1)) +
+    
+    scale_y_continuous(
+      name = "Accounts", 
+      limits = c(0, 260000), 
+      breaks = seq(0, 260000, 20000),
+      expand = c(0, 0), 
+      labels = scales::comma) +
+    
+    scale_fill_manual(
+      values = c(
+        "Residential" = "#0084c1", 
+        "Commercial" = "#e29617", 
+        "Other" = "#fad900"),
+      name = "Customer Class"
+    ) +
+    
+    theme_minimal() +
+    theme(
+      plot.title = element_text(hjust = 0.5),
+      legend.position = "top",
+      panel.grid.minor = element_blank(),
+      panel.grid.major.x = element_blank()
+    ) +
+
+    guides(fill = guide_legend(title = NULL)) 
+
+```
+
+```{r, eval=knitr::is_html_output()}
+#| label: fig-accounts-railbelt
+#| fig-cap: "Number of Customer Accounts, Railbelt Region"
+
+railbelt_customers_html <- 
+  railbelt_customers_plot +
+  geom_bar_interactive(
+    tooltip = filtered_data$tooltip,
+    stat = "identity",
+    position = "stack"
+  )
+
+girafe(code = print(railbelt_customers_html))
+
+```
+
+```{r, eval=knitr::is_latex_output()}
+railbelt_customers_pdf <- 
+  railbelt_customers_plot +
+  geom_bar(stat = "identity", position = "stack") +
+  labs(
+    title = "Number of Customer Accounts, Railbelt Region")
+
+print(railbelt_customers_pdf)
+
+```
+
 ## Rural Remote
 
 From 2011 to 2019, the Rural Remote region saw an average yearly growth rate of `r cagr("Rural Remote", "Residential", "sales")`% for residential sales, `r cagr("Rural Remote", "Commercial", "sales")`% for commercial sales, and `r cagr("Rural Remote", "Other", "sales")`% for all other sales. Positive growth rates for the commercial and other customer classes are unique to the rural remote energy region as all other regions saw average yearly declines in sales. @fig-delivered-by-class-rural shows these sales in GWh for each year.
 
 ```{ojs}
-//| label: fig-delivered-by-class-rural
-//| fig-cap: "Delivered Electricity by Customer Class, Rural Remote Region"
-//| fig-cap-location: top
 Plot.plot({
 
   // Plot setup
@@ -514,11 +1100,96 @@ Plot.plot({
 })
 ```
 
+```{r}
+# Filter data
+filtered_data <- regional_consumption_data %>%
+  filter(class != "Total" & acep_region == "Rural Remote") %>%
+  mutate(
+    class = factor(class, levels = c("Residential", "Commercial", "Other")),
+    tooltip = paste(
+      comma(round((sales / 1000), 0)), "GWh Delivered",
+      "<br>", class, "Customers",
+      "<br>Year", year
+    )
+  )
+
+# Create plot
+rural_remote_consumption_plot <- 
+  ggplot(
+    filtered_data, 
+    aes(
+      x = year, 
+      y = sales / 1000, 
+      fill = reorder(class, sales))) +
+
+    scale_x_continuous(
+      name = "", 
+      breaks = seq(2011, 2019, 1)) +
+    
+    scale_y_continuous(
+      name = "Gigawatt Hours (GWh)", 
+      limits = c(0, 500), 
+      breaks = seq(0, 500, 50),
+      expand = c(0, 0), 
+      labels = scales::comma) +
+    
+    scale_fill_manual(
+      values = c(
+        "Residential" = "#0084c1", 
+        "Commercial" = "#e29617", 
+        "Other" = "#fad900"),
+      name = "Customer Class"
+    ) +
+    
+    theme_minimal() +
+    theme(
+      plot.title = element_text(hjust = 0.5),
+      legend.position = "top",
+      panel.grid.minor = element_blank(),
+      panel.grid.major.x = element_blank()
+    ) +
+
+    guides(fill = guide_legend(title = NULL)) 
+
+
+
+
+```
+
+```{r, eval=knitr::is_html_output()}
+#| label: fig-delivered-by-class-rural
+#| fig-cap: "Delivered Electricity by Customer Class, Rural Remote Region"
+#| fig-cap-location: top
+
+rural_remote_consumption_html <- 
+  rural_remote_consumption_plot +
+  geom_bar_interactive(
+    tooltip = filtered_data$tooltip,
+    stat = "identity",
+    position = "stack"
+  )
+
+girafe(code = print(rural_remote_consumption_html))
+
+
+```
+
+```{r, eval=knitr::is_latex_output()}
+rural_remote_consumption_pdf <- 
+  rural_remote_consumption_plot +
+  geom_bar(stat = "identity", position = "stack") +
+  labs(
+    title = "Delivered Electricity by Customer Class, Rural Remote Region")
+
+print(rural_remote_consumption_pdf)
+
+```
+
 The trends in the number of customer accounts by class are visualized in @fig-accounts-rural. The average yearly growth rate in customer accounts in the Rural Remote region was `r cagr("Rural Remote", "Residential", "customers")`% for the residential class, `r cagr("Rural Remote", "Commercial", "customers")`% for the commercial class, and `r cagr("Rural Remote", "Other", "customers")`% for the other class.
 
 ```{ojs}
-//| label: fig-accounts-rural
-//| fig-cap: "Number of Customer Accounts, Rural Remote Region"
+// label: fig-accounts-rural
+// fig-cap: "Number of Customer Accounts, Rural Remote Region"
 Plot.plot({
 
   // Plot setup
@@ -562,4 +1233,81 @@ Plot.plot({
         legend: true
     }
 })
+```
+
+```{r}
+# Filter data
+filtered_data <- regional_consumption_data %>%
+  filter(class != "Total" & acep_region == "Rural Remote") %>%
+  mutate(
+    class = factor(class, levels = c("Residential", "Commercial", "Other")),
+    tooltip = paste(
+      comma(round((customers), 0)), "Accounts",
+      "<br>", class, "Class",
+      "<br>Year", year
+    )
+  )
+
+# Create plot
+rural_remote_customers_plot <- 
+  ggplot(
+    filtered_data, 
+    aes(
+      x = year, 
+      y = customers, 
+      fill = reorder(class, sales))) +
+
+    scale_x_continuous(
+      name = "", 
+      breaks = seq(2011, 2019, 1)) +
+    
+    scale_y_continuous(
+      name = "Customers", 
+      limits = c(0, 40000), 
+      breaks = seq(0, 40000, 5000),
+      expand = c(0, 0), 
+      labels = scales::comma) +
+    
+    scale_fill_manual(
+      values = c(
+        "Residential" = "#0084c1", 
+        "Commercial" = "#e29617", 
+        "Other" = "#fad900"),
+      name = "Customer Class"
+    ) +
+    
+    theme_minimal() +
+    theme(
+      plot.title = element_text(hjust = 0.5),
+      legend.position = "top",
+      panel.grid.minor = element_blank(),
+      panel.grid.major.x = element_blank()
+    ) +
+
+    guides(fill = guide_legend(title = NULL)) 
+
+```
+
+```{r, eval=knitr::is_html_output()}
+rural_remote_customers_html <- 
+  rural_remote_customers_plot +
+  geom_bar_interactive(
+    tooltip = filtered_data$tooltip,
+    stat = "identity",
+    position = "stack"
+  )
+
+girafe(code = print(rural_remote_customers_html))
+
+```
+
+```{r, eval=knitr::is_latex_output()}
+rural_remote_customers_pdf <- 
+  rural_remote_customers_plot +
+  geom_bar(stat = "identity", position = "stack") +
+  labs(
+    title = "Number of Customer Accounts, Rural Remote Region")
+
+print(rural_remote_customers_pdf)
+
 ```
