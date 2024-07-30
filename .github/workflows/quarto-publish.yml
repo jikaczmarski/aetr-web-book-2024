@@ -7,6 +7,9 @@ name: Render and Publish
 jobs:
   build-deploy:
     runs-on: ubuntu-latest
+    concurrency:
+      group: pages-deploy
+      cancel-in-progress: true
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
@@ -61,12 +64,35 @@ jobs:
         env:
           QUARTO_PROFILE: pdf
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    
+        # Debug: List files after rendering PDF
+      - name: List files after rendering PDF
+        run: |
+          ls -l
+          find . -name "*.pdf"
+  
+      - name: Checkout gh-pages branch
+        uses: actions/checkout@v2
+        with:
+          ref: gh-pages
+          path: gh-pages
+  
+        # Copy the PDF to the gh-pages directory
+      - name: Copy PDF to gh-pages directory
+        run: |
+          cp ./_book/*.pdf gh-pages/
+  
+      # Debug: List files in gh-pages directory
+      - name: List files in gh-pages directory
+        run: |
+          ls -l gh-pages
+          find gh-pages -name "*.pdf"
 
       - name: Commit and Push PDF to gh-pages
-        working-directory: .
+        working-directory: ./gh-pages
         run: |
           git config user.email "action@github.com"
           git config user.name "GitHub Action"
-          git add -f ./_book/*.pdf
+          git add -f *.pdf
           git commit -m "Automatically generated PDF" -a || echo "No changes to commit"
           git push origin gh-pages
