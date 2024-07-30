@@ -7,8 +7,6 @@ book:
   chapters:
     - index.qmd
     - methods.qmd
-    - capacity.qmd
-    - generation.qmd
     - consumption.qmd
     - prices.qmd
     - conclusions.qmd
