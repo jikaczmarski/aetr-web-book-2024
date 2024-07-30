@@ -212,7 +212,9 @@ customers_plot <-
     theme(
       legend.position = "none",
       panel.grid.major.y = element_blank(),
-      panel.grid.minor = element_blank()
+      panel.grid.minor = element_blank(),
+      plot.title = element_text(hjust = 0.5), 
+      plot.subtitle = element_text(hjust = 0.5)
       )
   
 ```
@@ -246,11 +248,9 @@ customers_pdf <-
   customers_plot +
   geom_bar(stat = "identity") +
   labs(
-    title = "Change in Customer Accounts by Class, Statewide, from 2011 to 2019",
-    subtitle = "Statewide, from 2011 to 2019") +
-  theme(
-    plot.title = element_text(hjust = 0.5), 
-    plot.subtitle = element_text(hjust = 0.5))
+    title = "Change in Customer Accounts by Class",
+    subtitle = "Statewide, from 2011 to 2019") 
+
 
 print(customers_pdf)
 
@@ -297,7 +297,9 @@ sales_per_capita_plot <-
   theme_minimal() +
   theme(
     legend.position = "none", 
-    panel.grid.minor = element_blank()
+    panel.grid.minor = element_blank(),
+    plot.title = element_text(hjust = 0.5), 
+    plot.subtitle = element_text(hjust = 0.5)
   ) 
 
 ```
@@ -418,7 +420,7 @@ coastal_consumption_pdf <-
   coastal_consumption_plot +
   geom_bar(stat = "identity", position = "stack") +
   labs(
-    title = "Delivered Electricity by Customer Class, Coastal region")
+    title = "Delivered Electricity by Customer Class, Coastal Region")
 
 print(coastal_consumption_pdf)
 
@@ -469,10 +471,11 @@ coastal_customers_plot <-
     
     theme_minimal() +
     theme(
-      plot.title = element_text(hjust = 0.5),
       legend.position = "top",
       panel.grid.minor = element_blank(),
-      panel.grid.major.x = element_blank()
+      panel.grid.major.x = element_blank(),
+      plot.title = element_text(hjust = 0.5), 
+      plot.subtitle = element_text(hjust = 0.5)
     ) +
 
     guides(fill = guide_legend(title = NULL)) 
@@ -552,10 +555,11 @@ railbelt_consumption_plot <-
     
     theme_minimal() +
     theme(
-      plot.title = element_text(hjust = 0.5),
       legend.position = "top",
       panel.grid.minor = element_blank(),
-      panel.grid.major.x = element_blank()
+      panel.grid.major.x = element_blank(),
+      plot.title = element_text(hjust = 0.5), 
+      plot.subtitle = element_text(hjust = 0.5)
     ) +
 
     guides(fill = guide_legend(title = NULL)) 
@@ -637,10 +641,11 @@ railbelt_customers_plot <-
     
     theme_minimal() +
     theme(
-      plot.title = element_text(hjust = 0.5),
       legend.position = "top",
       panel.grid.minor = element_blank(),
-      panel.grid.major.x = element_blank()
+      panel.grid.major.x = element_blank(),
+      plot.title = element_text(hjust = 0.5), 
+      plot.subtitle = element_text(hjust = 0.5)
     ) +
 
     guides(fill = guide_legend(title = NULL)) 
@@ -721,10 +726,11 @@ rural_remote_consumption_plot <-
     
     theme_minimal() +
     theme(
-      plot.title = element_text(hjust = 0.5),
       legend.position = "top",
       panel.grid.minor = element_blank(),
-      panel.grid.major.x = element_blank()
+      panel.grid.major.x = element_blank(),
+      plot.title = element_text(hjust = 0.5), 
+      plot.subtitle = element_text(hjust = 0.5)
     ) +
 
     guides(fill = guide_legend(title = NULL)) 
@@ -807,10 +813,11 @@ rural_remote_customers_plot <-
     
     theme_minimal() +
     theme(
-      plot.title = element_text(hjust = 0.5),
       legend.position = "top",
       panel.grid.minor = element_blank(),
-      panel.grid.major.x = element_blank()
+      panel.grid.major.x = element_blank(),
+      plot.title = element_text(hjust = 0.5), 
+      plot.subtitle = element_text(hjust = 0.5)
     ) +
 
     guides(fill = guide_legend(title = NULL)) 
