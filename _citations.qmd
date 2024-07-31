@@ -15,7 +15,7 @@ day_2digit   = date.getDate().toString().padStart(2, "0");
 currentDate = `${month} ${day}, ${year}`
 
 // build a button
-button = (blob, filename = 'test.bib', displayname) => {
+citation_button = (blob, filename = 'test.bib', displayname) => {
   const button = DOM.download(
     blob,
     filename,
@@ -49,7 +49,7 @@ biblatex_blob = new Blob([biblatexContent], { type: 'text/plain' });
 ris_blob = new Blob([risContent], { type: 'text/plain' }); 
 
 // Insert blobs into buttons
-button(biblatex_blob, 'aetr_web_book_2024.bib', 'BibLaTeX');
-button(ris_blob, 'aetr_web_book_2024.ris', 'RIS');
+citation_button(biblatex_blob, 'aetr_web_book_2024.bib', 'BibLaTeX');
+citation_button(ris_blob, 'aetr_web_book_2024.ris', 'RIS');
 
 ```

@@ -6,8 +6,16 @@ book:
 
   chapters:
     - index.qmd
+    - methods.qmd
+    - consumption.qmd
+    - prices.qmd
+    - conclusions.qmd
+    - data.qmd
   appendices:
     - about.qmd
+    - historic_reports.qmd
+    - acronyms.qmd
+    - credits.qmd 
 
 # These change page titles https://quarto.org/docs/books/book-structure.html#parts-appendices 
 # but not in the sidebar navigation or in cross-references

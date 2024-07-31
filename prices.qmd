@@ -15,13 +15,39 @@ echo: false
 
 library(readr)
 library(dplyr)
+library(tidyr)
 library(stringr)
 library(ggplot2)
 library(ggiraph)
 
+library(see)  # slices violin plots in half
+library(ggridges) # mountains beyond mountains
+library(ggrepel) # labels on ends of lines
+library(ggdist) # raincloud plots
+library(ggrain) # other raincloud package
+
+weighted_prices <- read_csv("./data/working/prices/weighted_prices.csv")
+prices <- read_csv("./data/working/prices/prices.csv")
+
+# Function declaration
+source("scripts/inline_functions/price_inline_functions.R")
+
 weighted_prices <- read_csv("./data/final_data/weighted_prices.csv")
+```
+
+::: {.content-visible when-format="html"}
+```{ojs}
+// load libraries
+stdlib = require("@observablehq/stdlib")
+d3 = require("d3@7")
+import {tidy, groupBy, rename, summarize, sum, mutate, select, n, nDistinct, mean, filter, pivotWider, pivotLonger, leftJoin, slice} from "@pbeshai/tidyjs"
+
+// load data
+prices = FileAttachment("data/working/prices/prices.csv").csv({typed: true});
+weighted_prices = FileAttachment("data/working/prices/weighted_prices.csv").csv({typed: true});
 
 ```
+:::
 
 ## General Overview  {#sec-prices}
 
@@ -33,6 +59,7 @@ Note that all prices in this section have been adjusted for inflation over time 
 
 
 ### Regional Overview
+::: {.content-visible when-format="html"}
 @fig-price-regions-classes shows the distribution of prices across a selected customer class. The three classes used in this analysis can be selected from the dropdown menu. Hover your pointer over the dot to display utility information.  
 
 Most notably, the dramatic effects of the PCE subsidy can be seen by comparing the price distribution of the residential customer class against the price distribution of the commercial/other customer classes in the Rural Remote and Coastal regions. 
@@ -40,10 +67,390 @@ Most notably, the dramatic effects of the PCE subsidy can be seen by comparing t
 
 <!--<br> -->
 
- {{< include _prices_raincloud.qmd >}}
+```{r}
+# desired future inputs:  
+# community size
+# sector
+# year
+# weighted/unweighted
+```
+
+```{ojs}
+// active inputs
+
+viewof dimension = Inputs.select(new Map([
+                ["Residential", 'residential_price'], 
+                ["Commercial", 'commercial_price'],
+                ["Other", 'other_price']]), 
+              {value: "Residential", label: "Customer Class:"}
+              );
 
 
-<br>
+// viewof flipCoords = Inputs.toggle({ label: 'Flip', value: false })
+
+// Inputs.table(customers_pivot)
+```
+
+```{ojs}
+// hardcoded inputs here
+
+// viewof thresholds = Inputs.select([10, 20, 60], { label: 'Bins', value: 60 })
+thresholds = 40
+
+// viewof seed = Inputs.range([1, 100], { step: 1, label: 'Raw Data Seed', value: 1 })
+seed = 1
+
+// viewof rawDataSize = Inputs.range([10, 100], { value: 40, step: 10, label: 'Raw Data Size (%)' })
+rawDataSize = 20
+
+// viewof rawDataOffset = Inputs.range([0, 50], { value: 5, step: 5, label: 'Raw Data Offset (%)' })
+rawDataOffset = 5
+
+```
+
+```{ojs}
+//| label: fig-price-regions-classes
+//| fig-cap: "Prices by Region and Customer Class"
+//| class: raincloud-custom
+Plot.plot(rainCloudX)
+
+```
+
+```{ojs}
+rainCloudX = ({
+  grid: true,
+  label: null,
+  width: width,
+  marks: [
+    Plot.ruleX([0]),
+    halfViolinX,
+    rawDataX
+  ],
+  facet: {
+    data: data,
+    y: 'acep_energy_region',
+    marginRight: 80
+  },
+  x: {
+    label: "Cents per Kilowatt Hour"
+  },
+  y: {
+    ticks: 0,
+    tickFormat: d => d < 0 ? '' : d 
+  },
+  color: {
+      domain: ["Coastal", "Railbelt", "Rural Remote"],
+      range: ["#8CBBDA", "#97CD93", "#F28D8C"]
+  }
+})
+```
+
+```{ojs}
+halfViolinX = Plot.areaY(
+  data,
+  Plot.binX(
+    {
+      y: 'count'
+    },
+    {
+      x: dimension,
+      fill: 'acep_energy_region',
+      thresholds: thresholds,
+      curve: 'basis'
+    }
+  )
+)
+```
+
+```{ojs}
+rawDataX = Plot.dot(
+  data,
+  {
+	  x: dimension,
+    y: jitter(data, seed),
+    fill: 'acep_energy_region',
+    r: 1.5,
+    channels: {Name: "reporting_name", Year: "year"},
+    tip: {format: {fill: false, 
+                  fy: false, 
+                  y: false
+                  }}
+
+  }
+)
+
+// tip = Plot.tip(
+//   data, Plot.pointer(
+//   {
+//   x: dimension,
+//   y: 'acep_energy_region',
+//   format: {
+//     year: true,
+//     reporting_name: true,
+//     dimension: true,
+//     filter: (d) => d.reporting_name,
+//     title: (d) => [d.reporting_name, d.year].join("\n\n")
+//     stroke: false
+//   }
+//   }
+// )
+// )
+
+```
+
+```{ojs}
+//| echo: false
+// appendix
+
+jitter = (data, seed) => {
+  const rng = seedrandom(seed);
+  return data.map(() => -(rng() * rawDataSize + rawDataOffset) * maxTotal / 100);
+}
+
+maxTotal = d3.max(
+  Array.from(
+    d3
+    .group(data, d => d.aea_energy_region)
+    .values()
+  )
+  .flatMap(g => bins(g.map(d => d[dimension])))
+  .map(bin => bin.length)
+)
+
+bins = d3
+  .bin()
+  .domain(d3.extent(data, d => d[dimension]))
+  .thresholds(thresholds)
+
+
+seedrandom = require('seedrandom')
+```
+
+```{ojs}
+
+prices_tidy = tidy(
+  prices, 
+    rename({
+      'residential_price_kwh_2021_dollars': 'residential_price',
+      'commercial_price_kwh_2021_dollars': 'commercial_price',
+      'other_price_kwh_2021_dollars': 'other_price',
+    }),
+    // pivotLonger({
+    //   cols: ['residential', 'commercial', 'other'],
+    //   namesTo: 'sector',
+    //   valuesTo: 'price'
+    // }),
+    select([
+      'year',
+      'reporting_name',
+      'acep_energy_region',
+      'residential_price',
+      'commercial_price',
+      'other_price'
+    ])
+)
+
+customers_pivot = tidy(
+  prices,
+    rename({
+      'residential_price_kwh_2021_dollars': 'residential_price',
+      'commercial_price_kwh_2021_dollars': 'commercial_price',
+      'other_price_kwh_2021_dollars': 'other_price',
+    }),
+    rename({
+      'residential_customers': 'residential',
+      'commercial_customers': 'commercial',
+      'other_customers': 'other',
+    }),
+    pivotLonger({
+      cols: ['residential', 'commercial', 'other'],
+      namesTo: 'sector',
+      valuesTo: 'customers'
+    }),
+    select([
+      'year',
+      'reporting_name',
+      'acep_energy_region',
+      'residential_price',
+      'commercial_price',
+      'other_price',
+      'customers',
+      'total_customers'
+    ])
+)
+
+// prices_customers_long = tidy(
+//   prices_pivot,
+//     leftJoin(customers_pivot,
+//       { by: ['year', 'aea_sales_reporting_id', 'reporting_name', 'sector'] }),
+//     select([
+//       'year',
+//       'reporting_name',
+//       'acep_energy_region',
+//       'sector',
+//       'price',
+//       'customers',
+//       'total_customers'
+//     ])
+// )
+
+data = tidy(
+  prices_tidy,
+  mutate({
+    residential_price: (d) => d.residential_price === 0 ? null : d.residential_price,
+    commercial_price: (d) => d.commercial_price === 0 ? null : d.commercial_price,
+    other_price: (d) => d.other_price === 0 ? null : d.other_price,
+  }),
+  filter((d) => d.year < 2020),
+  filter((d) => d.reporting_name != "Lime Village"),
+  filter((d) => d.reporting_name != "Healy Lake")
+);
+
+
+```
+
+:::
+
+
+::: {.content-visible when-format="pdf"}
+```{r}
+p_prices <- prices %>%
+  rename(c("residential" = "residential_price_kwh_2021_dollars",
+           "commercial" = "commercial_price_kwh_2021_dollars",
+           "other" = "other_price_kwh_2021_dollars")) %>%
+  pivot_longer( 
+    cols = c("residential",
+             "commercial",
+             "other"), 
+    names_to ="sector", 
+    values_to = "price")
+
+long_price <- p_prices %>%
+  mutate(customers = NA) %>%
+  mutate(customers = ifelse(sector == "residential", residential_customers, customers)) %>%
+  mutate(customers = ifelse(sector == "commercial", commercial_customers, customers)) %>%
+  mutate(customers = ifelse(sector == "other", other_customers, customers)) %>%
+  mutate(customers = round(customers, 0)) %>%
+  
+  select("year",
+         "reporting_name",
+         "acep_energy_region",
+         "sector",
+         "price",
+         "customers",
+         "total_customers")
+```
+
+```{r warning=FALSE, eval=knitr::is_latex_output()}
+raincloud <- function(sector_input="residential", start_year=2011, end_year=2019, x_axis_max=65){
+  d <- long_price %>%
+    filter(sector == sector_input) %>% 
+    filter(price > 0) %>%
+    filter(year >= start_year & year <= end_year) %>%
+    left_join(weighted_prices, join_by(year, sector, acep_energy_region))
+  
+  output <-
+    ggplot(d) +
+    
+    geom_violinhalf(
+      aes(x=acep_energy_region, 
+          y=price, 
+          fill=acep_energy_region),
+      position = position_nudge(x=.1, y=0)) +
+    
+    geom_jitter(
+      aes(x=acep_energy_region, y=price), 
+      color="black",
+      alpha=0.25, 
+      width = .05,
+      height = 0) +
+    
+    scale_fill_manual(values = c("#98BAD6", "#A4CD9A", "#E3918F")) +
+    scale_color_manual(values = c("#98BAD6", "#A4CD9A", "#E3918F")) +
+    
+    scale_y_continuous(
+      breaks = seq(0, x_axis_max, 20), 
+      limits = c(0, x_axis_max),
+      expand = c(0, 0.1)) + 
+    
+    theme_classic() +
+    theme(legend.position = "none",
+          # plot.title = element_text(size=16, hjust = 0.5),
+          # plot.subtitle = element_text(size=14, hjust = 0.5),
+          plot.caption = element_text(size = 8),
+          panel.grid.major.x = element_line(color = "grey80", size = 0.5),
+          plot.margin = unit(c(t=5, r=15, b=5, l=0), "pt")) +
+    
+    labs(title = paste(str_to_title(sector_input), "Sector Prices,", start_year, "-", end_year),
+         x = "",
+         y = "Cents per kWh") +
+    
+    # ylim(c(0,x_axis_max)) + #remember the coord_flip, y axis is now the x axis
+    coord_flip() 
+  
+  
+  #E3918F Rural Remote
+  #98BAD6 Coastal
+  #A4CD9A Railbelt
+  #F1BF42 State
+  
+  print(output)
+  
+}
+```
+:::
+
+
+Below are three raincloud plots to show the distribution of prices across the three customer classes. Each dot represents the average annual price of a community for a single year in the range. For this report, data is displayed for 9 years, 2011-2019, therefore each community will render 9 points on the plot. Communities are grouped by the three regions, and the half-violin shows distribution of the prices.
+
+::: {.content-visible when-format="pdf"}
+\vspace{3ex}
+:::
+
+```{r warning=FALSE, eval=knitr::is_latex_output()}
+raincloud(
+  sector_input="residential", 
+  start_year=2011, 
+  end_year=2019, 
+  x_axis_max=120)
+
+```
+
+::: {.content-visible when-format="pdf"}
+\vspace{3ex}
+:::
+
+Most notably, the dramatic effects of the PCE subsidy can be seen by comparing the price distribution of the residential customer class against the price distribution of the commercial/other customer classes in the Rural Remote and Coastal regions. 
+
+::: {.content-visible when-format="pdf"}
+\vspace{3ex}
+:::
+
+```{r warning=FALSE, eval=knitr::is_latex_output()}
+raincloud(
+  sector_input="commercial", 
+  start_year=2011, 
+  end_year=2019, 
+  x_axis_max=120)
+
+```
+
+::: {.content-visible when-format="pdf"}
+\vspace{3ex}
+:::
+
+```{r warning=FALSE, eval=knitr::is_latex_output()}
+raincloud(
+  sector_input="other", 
+  start_year=2011, 
+  end_year=2019, 
+  x_axis_max=120)
+
+```
+
+::: {.content-visible when-format="pdf"}
+\vspace{3ex}
+:::
 
 
 ### Regional Averages
@@ -95,6 +502,7 @@ regions_plot <-
 
 ```
 
+
 ```{r, eval=knitr::is_html_output()}
 #| label: fig-price-over-time
 #| fig-cap: "Residential Price Over Time"
@@ -131,7 +539,7 @@ print(regions_pdf)
 
 @fig-price-sector-coastal shows the average price of electricity in the Coastal region for each customer class and year. Between 2011 and 2019, the region experienced decreasing prices for Commercial and Other customers, while Residential customers have seen a slight increase in price.
 
-The average real price (in 2021 dollars) of electricity for Residential customers in the Coastal region rose `{ojs} coastal_res_change`% from `{ojs} coastal_res_2011` cents/kWh in 2011 to `{ojs} coastal_res_2019` cents/kWh in 2019. The average price of electricity for Commercial customers in the Coastal region fell `{ojs} coastal_com_change`% from `{ojs} coastal_com_2011` cents/kWh in 2011 to `{ojs} coastal_com_2019` cents/kWh in 2019. Finally, the average price of electricity for Other customers in the Coastal region fell `{ojs} coastal_other_change`% from `{ojs} coastal_other_2011` cents/kWh in 2011 to `{ojs} coastal_other_2019` cents/kWh in 2019.  
+The average real price (in 2021 dollars) of electricity for Residential customers in the Coastal region rose `r price_delta(region="Coastal", sector="residential", pct=TRUE, numeric_out=TRUE)`% from `r price(region="Coastal", sector="residential", year=2011)` cents/kWh in 2011 to `r price(region="Coastal", sector="residential", year=2019)` cents/kWh in 2019. The average price of electricity for Commercial customers in the Coastal region fell `r price_delta(region="Coastal", sector="commercial", pct=TRUE, numeric_out=TRUE)`% from `r price(region="Coastal", sector="commercial", year=2011)` cents/kWh in 2011 to `r price(region="Coastal", sector="commercial", year=2019)` cents/kWh in 2019. Finally, the average price of electricity for Other customers in the Coastal region fell `r price_delta(region="Coastal", sector="other", pct=TRUE, numeric_out=TRUE)`% from `r price(region="Coastal", sector="other", year=2011)` cents/kWh in 2011 to `r price(region="Coastal", sector="other", year=2019)` cents/kWh in 2019.  
 
 Residential customers in the Coastal region saw increases in the price of electricity while commercial and other customers saw decreases. However, the residential customer class continues to pay the lowest per kWh in the region due to a combination of low prices in high population areas and PCE subsidies in eligible communities.
 
@@ -214,7 +622,7 @@ print(coastal_pdf)
 
 @fig-price-sector-railbelt shows the average price of electricity in the Railbelt region for each customer class and each year of the report. Between 2011 and 2019, Other customers saw a large decrease in price, followed by a gradual increase. Residential and Commercial customers experienced slight decreases in price until 2013 when prices reversed and rose dramatically. 
 
-The average real price of electricity for Residential customers in the Railbelt rose `{ojs} railbelt_res_change`% from `{ojs} railbelt_res_2011` cents/kWh in 2011 to `{ojs} railbelt_res_2019` cents/kWh in 2019. The average price of electricity for Commercial customers in the Railbelt rose `{ojs} railbelt_com_change`% from `{ojs} railbelt_com_2011` cents/kWh in 2011 to `{ojs} railbelt_com_2019` cents/kWh in 2019. Finally, the average price of electricity for Other customers in the Railbelt fell `{ojs} railbelt_other_change`% from `{ojs} railbelt_other_2011` cents/kWh in 2011 to `{ojs} railbelt_other_2019` cents/kWh in 2019.  
+The average real price of electricity for Residential customers in the Railbelt rose `r price_delta(region="Railbelt", sector="residential", pct=TRUE, numeric_out=TRUE)`% from `r price(region="Railbelt", sector="residential", year=2011)` cents/kWh in 2011 to `r price(region="Railbelt", sector="residential", year=2019)` cents/kWh in 2019. The average price of electricity for Commercial customers in the Railbelt rose `r price_delta(region="Railbelt", sector="commercial", pct=TRUE, numeric_out=TRUE)`% from `r price(region="Railbelt", sector="commercial", year=2011)` cents/kWh in 2011 to `r price(region="Railbelt", sector="commercial", year=2019)` cents/kWh in 2019. Finally, the average price of electricity for Other customers in the Railbelt fell `r price_delta(region="Railbelt", sector="other", pct=TRUE, numeric_out=TRUE)`% from `r price(region="Railbelt", sector="other", year=2011)` cents/kWh in 2011 to `r price(region="Railbelt", sector="other", year=2019)` cents/kWh in 2019.  
 
 This region differs significantly from the Coastal and Rural Remote regions in that residential customers pay more for electricity than the Commercial or Other customer classes.
 
@@ -296,7 +704,7 @@ print(railbelt_pdf)
 ## Rural Remote
 @fig-price-sector-rural shows the average price of electricity in the Rural Remote region for each customer class and year of the report. Between 2011 and 2019, Residential customers experienced a gradual increase in rates, while Commercial and Other customers experienced a gradual decrease in rates. 
 
-The average price of electricity for the Residential customers in the Rural Remote region rose `{ojs} rural_res_change`% from `{ojs} rural_res_2011` cents/kWh in 2011 to `{ojs} rural_res_2019` cents/kWh in 2019. The average price of electricity for Commercial customers in the Rural Remote region fell `{ojs} rural_com_change`% from `{ojs} rural_com_2011` cents/kWh in 2011 to `{ojs} rural_com_2019` cents/kWh in 2019. Finally, the average price of electricity for Other customers in the Rural Remote region fell `{ojs} rural_other_change`% from `{ojs} rural_other_2011` cents/kWh in 2011 to `{ojs} rural_other_2019` cents/kWh in 2019.
+The average price of electricity for the Residential customers in the Rural Remote region rose `r price_delta(region="Rural Remote", sector="residential", pct=TRUE, numeric_out=TRUE)`% from `r price(region="Rural Remote", sector="residential", year=2011)` cents/kWh in 2011 to `r price(region="Rural Remote", sector="residential", year=2019)` cents/kWh in 2019. The average price of electricity for Commercial customers in the Rural Remote region fell `r price_delta(region="Rural Remote", sector="commercial", pct=TRUE, numeric_out=TRUE)`% from `r price(region="Rural Remote", sector="commercial", year=2011)` cents/kWh in 2011 to `r price(region="Rural Remote", sector="commercial", year=2019)` cents/kWh in 2019. Finally, the average price of electricity for Other customers in the Rural Remote region fell `r price_delta(region="Rural Remote", sector="other", pct=TRUE, numeric_out=TRUE)`% from `r price(region="Rural Remote", sector="other", year=2011)` cents/kWh in 2011 to `r price(region="Rural Remote", sector="other", year=2019)` cents/kWh in 2019.
 
 ```{r}
 rural_remote_weighted_prices <- 
@@ -376,97 +784,3 @@ print(rural_remote_pdf)
 ```
 
 
-```{ojs}
-// price extraction function
-
-function extract_price(region, year, sector) {
-  const filteredData = weighted_prices.filter(
-    d => d.year === year && 
-    d.sector === sector &&
-    d.acep_energy_region === region);
-
-  const extractedPrice = Math.round(filteredData.map(d => d.weighted_price));
-
-  return extractedPrice;
-};
-
-```
-
-```{ojs}
-// percentage function
-
-function percent_change(region, start_year, end_year, sector){
-  const start_price = extract_price(region, start_year, sector);
-  const end_price = extract_price(region, end_year, sector);
-
-  const rawPercent = (((start_price - end_price)/start_price) * 100);
-  const percent = Math.abs(Math.round(rawPercent));
-
-  return percent;
-} 
-
-```
-
-```{ojs}
-// starting prices
-
-rural_res_2011 = extract_price("Rural Remote", 2011, 'residential');
-railbelt_res_2011 = extract_price("Railbelt", 2011, 'residential');
-coastal_res_2011 = extract_price("Coastal", 2011, 'residential');
-
-rural_com_2011 = extract_price("Rural Remote", 2011, 'commercial');
-railbelt_com_2011 = extract_price("Railbelt", 2011, 'commercial');
-coastal_com_2011 = extract_price("Coastal", 2011, 'commercial');
-
-rural_other_2011 = extract_price("Rural Remote", 2011, 'other');
-railbelt_other_2011 = extract_price("Railbelt", 2011, 'other');
-coastal_other_2011 = extract_price("Coastal", 2011, 'other');
-
-```
-
-```{ojs}
-// ending prices
-
-rural_res_2019 = extract_price("Rural Remote", 2019, 'residential');
-railbelt_res_2019 = extract_price("Railbelt", 2019, 'residential');
-coastal_res_2019 = extract_price("Coastal", 2019, 'residential');
-
-rural_com_2019 = extract_price("Rural Remote", 2019, 'commercial');
-railbelt_com_2019 = extract_price("Railbelt", 2019, 'commercial');
-coastal_com_2019 = extract_price("Coastal", 2019, 'commercial');
-
-rural_other_2019 = extract_price("Rural Remote", 2019, 'other');
-railbelt_other_2019 = extract_price("Railbelt", 2019, 'other');
-coastal_other_2019 = extract_price("Coastal", 2019, 'other');
-
-```
-
-```{ojs}
-// percent changes
-
-coastal_res_change = percent_change("Coastal", 2011, 2019, 'residential');
-coastal_com_change = percent_change("Coastal", 2011, 2019, 'commercial');
-coastal_other_change = percent_change("Coastal", 2011, 2019, 'other');
-
-railbelt_res_change = percent_change("Railbelt", 2011, 2019, 'residential');
-railbelt_com_change = percent_change("Railbelt", 2011, 2019, 'commercial');
-railbelt_other_change = percent_change("Railbelt", 2011, 2019, 'other');
-
-rural_res_change = percent_change("Rural Remote", 2011, 2019, 'residential');
-rural_com_change = percent_change("Rural Remote", 2011, 2019, 'commercial');
-rural_other_change = percent_change("Rural Remote", 2011, 2019, 'other');
-
-```
-
-
-```{ojs}
-// load libraries
-stdlib = require("@observablehq/stdlib")
-d3 = require("d3@7")
-import {tidy, groupBy, rename, summarize, sum, mutate, select, n, nDistinct, mean, filter, pivotWider, pivotLonger, leftJoin, slice} from "@pbeshai/tidyjs"
-
-// load data
-prices = FileAttachment("data/final_data/prices.csv").csv({typed: true});
-weighted_prices = FileAttachment("./data/final_data/weighted_prices.csv").csv({typed: true});
-
-```
