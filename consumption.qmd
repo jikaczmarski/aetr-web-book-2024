@@ -22,7 +22,7 @@ library(ggiraph)
 library(scales)
 
 # Import the consumption data
-consumption_data <- read.csv(file = "data/working/consumption/consumption_long.csv")
+consumption_data <- read.csv(file = "data/final_data/consumption.csv")
 
 # Function declarations
 source("scripts/inline_functions/consumption_inline_functions.R")
@@ -101,45 +101,6 @@ Statewide electricity consumption growth for the residential sector was `r state
 
 <!-- [^1]: For EIA reported data, the Other group includes industrial and transportation customers. For PCE reported data, it includes community and government accounts. No industrial accounts were reported in the PCE data. -->
 
-
-```{r}
-# Plot for statewide change in sales (html and pdf code)
-
-sales_plot <- 
-  ggplot(
-    statewide_delta, 
-    aes(
-      x = sales_delta_percent, 
-      y = reorder(class, sales_delta), 
-      fill = class)) +
-
-    geom_bar(stat = "identity") +
-    geom_vline(xintercept = 0, color = "black") + # Add a vertical line at x = 0
-    
-    scale_x_continuous(
-      name = "Percent Change", 
-      breaks = seq(-12, 1, 2), 
-      expand = c(0, 0.1)) +
-    
-    scale_y_discrete(
-      name = "", 
-      expand = c(0, 0.1)) +
-    
-    scale_fill_manual(
-      values = c(
-        "Other" = "#fad900", 
-        "Residential" = "#0084c1", 
-        "Commercial" = "#e29617")) +
-
-    theme_minimal() +
-    theme(
-      legend.position = "none",
-      panel.grid.major.y = element_blank(),
-      panel.grid.minor = element_blank()
-      )
-
-
-```
 
 ```{r, eval=knitr::is_html_output()}
 #| label: fig-change-customer-sales

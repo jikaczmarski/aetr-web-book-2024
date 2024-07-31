@@ -31,6 +31,8 @@ prices <- read_csv("./data/working/prices/prices.csv")
 
 # Function declaration
 source("scripts/inline_functions/price_inline_functions.R")
+
+weighted_prices <- read_csv("./data/final_data/weighted_prices.csv")
 ```
 
 ::: {.content-visible when-format="html"}
@@ -780,4 +782,5 @@ rural_remote_pdf <-
 print(rural_remote_pdf)
 
 ```
+
 
