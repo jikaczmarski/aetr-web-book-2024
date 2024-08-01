@@ -41,7 +41,7 @@ source("scripts/inline_functions/capacity_inline_functions.R")
 
 Generation capacity represents the maximum amount of electricity that can be generated at any given time dependent on certain conditions. The combination of generation sources is often referred to as the capacity mix. Changes in the capacity mix over time reflect decisions to build and retire generators. These decisions are a result of shifting costs, technological innovations, the normal aging of the generation fleet, and/or stakeholder policies. Due to data limitations, we show capacity levels for calendar years 2011-2013, 2018, and 2021. While we cannot observe year-to-year trends, there are enough years of data to visualize capacity trends from 2011 to 2021.
 
-We begin this section by showcasing the increases in total capacity across the state. In 2011, it is estimated that the total statewide electricity generation capacity was `r capacity(year=2011)` MW. We estimate that this has increased to approximately `r capacity(year=2021)` MW in 2021 based on best available data. This represents an increase of `r formatC(capacity(year=2021, numeric_out = TRUE) - capacity(year=2011, numeric_out = TRUE), format="d", big.mark=",")` MW, or `r round((capacity(year=2021, numeric_out = TRUE) - capacity(year=2011, numeric_out = TRUE))/abs(capacity(year=2011, numeric_out = TRUE)),2)*100` percent increase since 2011. To illustrate this example, we show a stacked area chart in @fig-capacity-state that showcases growth over time for various technologies.[^1]
+We begin this section by showcasing the increases in total capacity across the state. In 2011, it is estimated that the total statewide electricity generation capacity was `r capacity(year=2011)` MW. We estimate that this has increased to approximately `r capacity(year=2021)` MW in 2021 based on best available data. This represents an increase of `r formatC(capacity(year=2021, numeric_out = TRUE) - capacity(year=2011, numeric_out = TRUE), format="d", big.mark=",")` MW, or `r round((capacity(year=2021, numeric_out = TRUE) - capacity(year=2011, numeric_out = TRUE))/abs(capacity(year=2011, numeric_out = TRUE)),2)*100` percent increase since 2011. To illustrate this example, we show a stacked area chart in `r if (knitr::is_html_output())"@fig-capacity-state-html" else if (knitr::is_latex_output()) "@fig-capacity-state-pdf"` that showcases growth over time for various technologies.[^1]
 
 [^1]: Prime movers are categorized as follows. Fossil turbines include combined cycle turbines, gas turbines, and steam turbines. Reciprocating engines include internal combustion engines. Hydro includes hydraulic turbines and hydrokinetics. Wind includes wind turbines. Utility solar includes utility-owned photovoltaic (PV), and Rooftop solar includes customer-sited, behind-the-meter PV. Storage refers to batteries and flywheels.
 
@@ -84,9 +84,10 @@ statewide_plot <-
 
 ```
 
-```{r, eval=knitr::is_html_output()}
-#| label: fig-capacity-state
+```{r, eval=knitr::is_html_output(), fig.pos = "H"}
+#| label: fig-capacity-state-html
 #| fig-cap: "Capacity Changes, Statewide"
+
 statewide_html <- 
   statewide_plot +
   
@@ -100,20 +101,21 @@ girafe(code = print(statewide_html))
 
 ```
 
-```{r, eval=knitr::is_latex_output()}
+```{r, eval=knitr::is_latex_output(), fig.pos = "H"}
+#| label: fig-capacity-state-pdf
+#| fig-cap: "Capacity Changes, Statewide"
+
 statewide_pdf <- 
   statewide_plot +
     
-  geom_col(position = position_stack(reverse = TRUE)) +
-  
-  ggtitle("Figure 3.1: Capacity Changes, Statewide")
+  geom_col(position = position_stack(reverse = TRUE)) 
 
 print(statewide_pdf)
 ```
 
 ## Coastal
 
-For the coastal region, we observe a `r capacity_delta("Coastal")` MW increase in generation capacity (an increase of approximately `r capacity_delta("Coastal", pct=TRUE)` percent) between 2011 and 2021. @fig-capacity-coastal shows the change in total installed capacity for each prime mover in the coastal region. This region saw additions of `r capacity_delta("Coastal", prime_mover = "Fossil Turbines")` MW of fossil turbines, and `r capacity_delta("Coastal", prime_mover = "Recip Engines")` MW of reciprocating engines. The remaining increases were renewable and storage capacity which we look at in more depth in @fig-capacity-coastal-renewable.
+For the coastal region, we observe a `r capacity_delta("Coastal")` MW increase in generation capacity (an increase of approximately `r capacity_delta("Coastal", pct=TRUE)` percent) between 2011 and 2021. `r if (knitr::is_html_output())"@fig-capacity-coastal-html" else if (knitr::is_latex_output()) "@fig-capacity-coastal-pdf"` shows the change in total installed capacity for each prime mover in the coastal region. This region saw additions of `r capacity_delta("Coastal", prime_mover = "Fossil Turbines")` MW of fossil turbines, and `r capacity_delta("Coastal", prime_mover = "Recip Engines")` MW of reciprocating engines. The remaining increases were renewable and storage capacity which we look at in more depth in `r if (knitr::is_html_output())"@fig-capacity-coastal-renewable-html" else if (knitr::is_latex_output()) "@fig-capacity-coastal-renewable-pdf"`.
 
 ```{r}
 coastal_capacity_names <- c("Fossil Turbines", "Recip Engines", "Hydro", "Wind", "Storage")
@@ -157,9 +159,10 @@ coastal_plot <-
   guides(fill = guide_legend(nrow = 1))
 ```
 
-```{r, eval=knitr::is_html_output()}
-#| label: fig-capacity-coastal
+```{r, eval=knitr::is_html_output(), fig.pos = "H"}
+#| label: fig-capacity-coastal-html
 #| fig-cap: "Coastal Region Capacity"
+
 coastal_html <- 
   coastal_plot +
   
@@ -172,13 +175,14 @@ geom_col_interactive(aes(fill = prime_mover,
 girafe(code = print(coastal_html))
 ```
 
-```{r, eval=knitr::is_latex_output()}
+```{r, eval=knitr::is_latex_output(), fig.pos = "H"}
+#| label: fig-capacity-coastal-pdf
+#| fig-cap: "Coastal Region Capacity"
+
 coastal_pdf <- 
   coastal_plot +
     
-  geom_col(position = position_stack(reverse = TRUE)) +
-  
-  ggtitle("Figure 3.2: Coastal Region Capacity")
+  geom_col(position = position_stack(reverse = TRUE)) 
 
 print(coastal_pdf)
 ```
@@ -210,7 +214,6 @@ coastal_renewable_plot <-
     breaks = seq(0,300, by = 50),
     expand = c(0, 0.2)) +
   
-    
   scale_fill_manual(values = c("#00a1b7", "#F79646","#71346a")) +
   
   theme_bw() +
@@ -227,9 +230,10 @@ coastal_renewable_plot <-
   guides(fill = guide_legend(nrow = 1))
 ```
 
-```{r, eval=knitr::is_html_output()}
-#| label: fig-capacity-coastal-renewable
+```{r, eval=knitr::is_html_output(), fig.pos = "H"}
+#| label: fig-capacity-coastal-renewable-html
 #| fig-cap: "Coastal Region Renewable Capacity"
+
 coastal_renewable_html <- 
   coastal_renewable_plot +
   
@@ -242,20 +246,21 @@ geom_col_interactive(aes(fill = prime_mover,
 girafe(code = print(coastal_renewable_html))
 ```
 
-```{r, eval=knitr::is_latex_output()}
+```{r, eval=knitr::is_latex_output(), fig.pos = "H"}
+#| label: fig-capacity-coastal-renewable-pdf
+#| fig-cap: "Coastal Region Renewable Capacity"
+
 coastal_renewable_pdf <- 
   coastal_renewable_plot +
     
-  geom_col(position = position_stack(reverse = TRUE)) +
-  
-  ggtitle("Figure 3.3: Coastal Region Renewable Capacity")
+  geom_col(position = position_stack(reverse = TRUE)) 
 
 print(coastal_renewable_pdf)
 ```
 
 ## Railbelt
 
-For the Railbelt region, capacity additions were dominated by more-efficient fossil fuel generating units and new battery storage. These additions are visualized in @fig-capacity-railbelt. There were `r capacity_delta("Railbelt")` MW of capacity additions between 2011 and 2021. The Railbelt region saw `r capacity_delta("Railbelt", prime_mover = "Recip Engines")` MW of reciprocating engine additions and `r capacity_delta("Railbelt", prime_mover = "Fossil Turbines")` MW of fossil fuel turbines. The remaining capacity additions were renewables and storage and are shown in @fig-capacity-railbelt-renewable.
+For the Railbelt region, capacity additions were dominated by more-efficient fossil fuel generating units and new battery storage. These additions are visualized in `r if (knitr::is_html_output())"@fig-capacity-railbelt-html" else if (knitr::is_latex_output()) "@fig-capacity-railbelt-pdf"`. There were `r capacity_delta("Railbelt")` MW of capacity additions between 2011 and 2021. The Railbelt region saw `r capacity_delta("Railbelt", prime_mover = "Recip Engines")` MW of reciprocating engine additions and `r capacity_delta("Railbelt", prime_mover = "Fossil Turbines")` MW of fossil fuel turbines. The remaining capacity additions were renewables and storage and are shown in `r if (knitr::is_html_output())"@fig-capacity-railbelt-renewable-html" else if (knitr::is_latex_output()) "@fig-capacity-railbelt-renewable-pdf"`.
 
 ```{r}
 
@@ -280,7 +285,6 @@ railbelt_plot <-
     limits = c(0,2500),
     breaks = seq(0,2000, by = 250),
     expand = c(0, 0.2)) +
-  
     
   scale_fill_manual(values = c("#606571", "#9da7bf", "#00a1b7", "#F79646", "#fad900","#9BBB59","#71346a","#896D09")) +
   
@@ -298,9 +302,10 @@ railbelt_plot <-
   guides(fill = guide_legend(nrow = 1))
 ```
 
-```{r, eval=knitr::is_html_output()}
-#| label: fig-capacity-railbelt
+```{r, eval=knitr::is_html_output(), fig.pos = "H"}
+#| label: fig-capacity-railbelt-html
 #| fig-cap: "Railbelt Region Capacity"
+
 railbelt_html <- 
   railbelt_plot +
   
@@ -313,13 +318,14 @@ geom_col_interactive(aes(fill = prime_mover,
 girafe(code = print(railbelt_html))
 ```
 
-```{r, eval=knitr::is_latex_output()}
+```{r, eval=knitr::is_latex_output(), fig.pos = "H"}
+#| label: fig-capacity-railbelt-pdf
+#| fig-cap: "Railbelt Region Capacity"
+
 railbelt_pdf <- 
   railbelt_plot +
     
-  geom_col(position = position_stack(reverse = TRUE)) +
-  
-  ggtitle("Figure 3.4: Railbelt Region Capacity")
+  geom_col(position = position_stack(reverse = TRUE)) 
 
 print(railbelt_pdf)
 ```
@@ -351,7 +357,6 @@ railbelt_renewable_plot <-
     limits = c(0,400),
     breaks = seq(0,350, by = 50),
     expand = c(0, 0.2)) +
-  
     
   scale_fill_manual(values = c("#00a1b7", "#F79646","#fad900","#9BBB59","#71346a","#896D09")) +
   
@@ -369,9 +374,10 @@ railbelt_renewable_plot <-
   guides(fill = guide_legend(nrow = 1))
 ```
 
-```{r, eval=knitr::is_html_output()}
-#| label: fig-capacity-railbelt-renewable
+```{r, eval=knitr::is_html_output(), fig.pos = "H"}
+#| label: fig-capacity-railbelt-renewable-html
 #| fig-cap: "Railbelt Region Renewable Capacity"
+
 railbelt_renewable_html <- 
   railbelt_renewable_plot +
   
@@ -384,20 +390,21 @@ geom_col_interactive(aes(fill = prime_mover,
 girafe(code = print(railbelt_renewable_html))
 ```
 
-```{r, eval=knitr::is_latex_output()}
+```{r, eval=knitr::is_latex_output(), fig.pos = "H"}
+#| label: fig-capacity-railbelt-renewable-pdf
+#| fig-cap: "Railbelt Region Renewable Capacity"
+
 railbelt_renewable_pdf <- 
   railbelt_renewable_plot +
     
-  geom_col(position = position_stack(reverse = TRUE)) +
-  
-  ggtitle("Figure 3.5: Railbelt Region Renewable Capacity")
+  geom_col(position = position_stack(reverse = TRUE)) 
 
 print(railbelt_renewable_pdf)
 ```
 
 ## Rural Remote
 
-The rural remote region saw an increase of `r capacity_delta("Rural Remote")` MW in capacity (a `r capacity_delta("Rural Remote", pct = TRUE)`% increase) (@fig-capacity-rural). Most of the increases in capacity were fossil fuel turbines (`r capacity_delta("Rural Remote", prime_mover = "Fossil Turbines")` MW added on the North Slope) and reciprocating engines (`r capacity_delta("Rural Remote", prime_mover = "Recip Engines")` MW). Renewable capacity is explored in further detail in the @fig-capacity-rural-renewable.
+The rural remote region saw an increase of `r capacity_delta("Rural Remote")` MW in capacity (a `r capacity_delta("Rural Remote", pct = TRUE)`% increase) (`r if (knitr::is_html_output())"@fig-capacity-rural-html" else if (knitr::is_latex_output()) "@fig-capacity-rural-pdf"`). Most of the increases in capacity were fossil fuel turbines (`r capacity_delta("Rural Remote", prime_mover = "Fossil Turbines")` MW added on the North Slope) and reciprocating engines (`r capacity_delta("Rural Remote", prime_mover = "Recip Engines")` MW). Renewable capacity is explored in further detail in the `r if (knitr::is_html_output())"@fig-capacity-rural-renewable-html" else if (knitr::is_latex_output()) "@fig-capacity-rural-renewable-pdf"`.
 
 ```{r}
 
@@ -425,7 +432,6 @@ rural_remote_plot <-
     breaks = seq(0,300, by = 50),
     expand = c(0, 0.2)) +
   
-    
   scale_fill_manual(values = c("#606571", "#9da7bf", "#00a1b7", "#F79646", "#fad900","#71346a")) +
   
   theme_bw() +
@@ -442,9 +448,10 @@ rural_remote_plot <-
   guides(fill = guide_legend(nrow = 1))
 ```
 
-```{r, eval=knitr::is_html_output()}
-#| label: fig-capacity-rural
+```{r, eval=knitr::is_html_output(), fig.pos = "H"}
+#| label: fig-capacity-rural-html
 #| fig-cap: "Rural Remote Region Capacity"
+
 rural_remote_html <- 
   rural_remote_plot +
   
@@ -457,13 +464,14 @@ geom_col_interactive(aes(fill = prime_mover,
 girafe(code = print(rural_remote_html))
 ```
 
-```{r, eval=knitr::is_latex_output()}
+```{r, eval=knitr::is_latex_output(), fig.pos = "H"}
+#| label: fig-capacity-rural-pdf
+#| fig-cap: "Rural Remote Region Capacity"
+
 rural_remote_pdf <- 
   rural_remote_plot +
     
-  geom_col(position = position_stack(reverse = TRUE)) +
-  
-  ggtitle("Figure 3.6: Rural Remote Region Capacity")
+  geom_col(position = position_stack(reverse = TRUE)) 
 
 print(rural_remote_pdf)
 ```
@@ -513,9 +521,10 @@ rural_remote_renewable_plot <-
   guides(fill = guide_legend(nrow = 1))
 ```
 
-```{r, eval=knitr::is_html_output()}
-#| label: fig-capacity-rural-renewable
+```{r, eval=knitr::is_html_output(), fig.pos = "H"}
+#| label: fig-capacity-rural-renewable-html
 #| fig-cap: "Rural Remote Region Renewable Capacity"
+
 rural_remote_renewable_html <- 
   rural_remote_renewable_plot +
   
@@ -528,18 +537,14 @@ geom_col_interactive(aes(fill = prime_mover,
 girafe(code = print(rural_remote_renewable_html))
 ```
 
-```{r, eval=knitr::is_latex_output()}
+```{r, eval=knitr::is_latex_output(), fig.pos = "H"}
+#| label: fig-capacity-rural-renewable-pdf
+#| fig-cap: "Rural Remote Region Renewable Capacity"
+
 rural_remote_renewable_pdf <- 
   rural_remote_renewable_plot +
     
-  geom_col(position = position_stack(reverse = TRUE)) +
-  
-  ggtitle("Figure 3.7: Railbelt Region Renewable Capacity")
+  geom_col(position = position_stack(reverse = TRUE)) 
 
 print(rural_remote_renewable_pdf)
-```
-
-```{ojs}
-original_cap_data = FileAttachment("data/final_data/capacity.csv").csv({ typed: true })
-cap_data = original_cap_data.map((d) => ({...d, "Prime Mover": d.prime_mover}))
 ```
