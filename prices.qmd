@@ -70,7 +70,7 @@ Note that all prices in this section have been adjusted for inflation over time 
 
 ### Regional Overview
 ::: {.content-visible when-format="html"}
-@fig-price-regions-classes shows the distribution of prices across a selected customer class. The three classes used in this analysis can be selected from the dropdown menu. Hover your pointer over the dot to display utility information.  
+@fig-price-regions-classes-html shows the distribution of prices across a selected customer class. The three classes used in this analysis can be selected from the dropdown menu. Hover your pointer over the dot to display utility information.  
 
 Most notably, the dramatic effects of the PCE subsidy can be seen by comparing the price distribution of the residential customer class against the price distribution of the commercial/other customer classes in the Rural Remote and Coastal regions. 
 
