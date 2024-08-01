@@ -15,16 +15,23 @@ echo: false
 library(tidyr)
 library(dplyr)
 library(readr)
+library(ggplot2)
+library(ggiraph)
 
 # Import the data
 capacity_data <- read.csv("data/final_data/capacity.csv")
 
-# Regional capacity
 regional_capacity <- capacity_data %>%
   group_by(year,acep_region,prime_mover) %>%
   summarize(
-    "total_capacity" = sum(capacity, na.rm = TRUE)
-  )
+    "total_capacity" = sum(capacity, na.rm = TRUE), .groups = "drop") %>%
+   mutate(prime_mover = factor(prime_mover, 
+                                  levels = 
+                                    c("Fossil Turbines","Recip Engines",
+                                          "Hydro","Wind","Utility Solar",
+                                          "Rooftop Solar","Storage",
+                                          "Landfill Gas")),
+             year = as.character(year))
 
 # Function declaration
 source("scripts/inline_functions/capacity_inline_functions.R")
@@ -38,371 +45,499 @@ We begin this section by showcasing the increases in total capacity across the s
 
 [^1]: Prime movers are categorized as follows. Fossil turbines include combined cycle turbines, gas turbines, and steam turbines. Reciprocating engines include internal combustion engines. Hydro includes hydraulic turbines and hydrokinetics. Wind includes wind turbines. Utility solar includes utility-owned photovoltaic (PV), and Rooftop solar includes customer-sited, behind-the-meter PV. Storage refers to batteries and flywheels.
 
+```{r}
+#code for both html and pdf
+statewide_capacity <- regional_capacity %>%
+      group_by(year, prime_mover) %>%
+      summarize(statewide_capacity = sum(total_capacity, na.rm = TRUE), .groups = "drop")
 
-```{ojs}
-//| label: fig-capacity-state
-//| fig-cap: "Capacity Changes, Statewide"
+statewide_plot <-
+  ggplot(
+    statewide_capacity, 
+    aes(
+      x = year, 
+      y = statewide_capacity,
+      fill = prime_mover)) +
 
-Plot.plot({
-  // Configure the plot
-  //title: "Capacity changes, Statewide",
-  insetLeft: 0,
-  insetRight: 0,
-  width: width,
+  scale_x_discrete(name = "\nYear") +
   
-  // Configure the x-axis
-  x: {
-    tickFormat: "d",
-    label: "Year",
-    //domain: [2011,2012,2013,2018,2021]
-  },
-  // Configure the y-axis
-  y: {
-    grid: true,
-    label: "Capacity (MW)"
-  },
-
-  // Stacked area plot
-  marks: [
-    Plot.areaY(cap_data,
-      Plot.groupX(
-        {
-          y: "sum"
-        },
-        {
-          x: "year",
-          y: "capacity",
-          fill: "Prime Mover",
-          order: ["Fossil Turbines", "Recip Engines", "Hydro", "Wind","Utility Solar","Rooftop Solar","Storage","Landfill Gas"],
-          tip: {format: {x: "d"}}
-        }
-      )
-    ),
-    Plot.ruleY([0])
-  ],
+  scale_y_continuous(
+    name = "Capacity (MW)\n",
+    limits = c(0,3500),
+    breaks = seq(0,3000, by = 500),
+    expand = c(0, 0.2)) +
   
-  // Configure the color scheme
-  color: {
-        domain: ["Fossil Turbines", "Recip Engines", "Hydro", "Wind","Utility Solar","Rooftop Solar","Storage","Landfill Gas"],
-        range: ["#606571", "#9da7bf", "#00a1b7", "#F79646", "#fad900","#9BBB59","#71346a","#896D09"],
-        legend: true
-    }
-})
+    
+  scale_fill_manual(values = c("#606571", "#9da7bf", "#00a1b7", "#F79646", "#fad900","#9BBB59","#71346a","#896D09")) +
+  theme_bw() +
+  
+  theme(legend.position = "top",
+        legend.title = element_blank(),
+        legend.text = element_text(size=7),
+        legend.key.size = unit(.4, "cm"),
+        legend.key.spacing.x = unit(.05, "cm"),
+        panel.grid.major.x = element_blank(),
+        panel.grid.minor.x = element_blank(),
+        panel.grid.minor.y = element_blank(),
+        panel.border = element_blank()) +
+  guides(fill = guide_legend(nrow = 1))
+
 ```
 
+```{r, eval=knitr::is_html_output()}
+#| label: fig-capacity-state
+#| fig-cap: "Capacity Changes, Statewide"
+statewide_html <- 
+  statewide_plot +
+  
+geom_col_interactive(aes(fill = prime_mover,
+                         tooltip = 
+                           paste("Year:", year,
+                                 "<br>Prime Mover:", prime_mover,
+                                 "<br>Capacity (MW):",statewide_capacity)), 
+                     position = position_stack(reverse = TRUE))
+girafe(code = print(statewide_html))
+
+```
+
+```{r, eval=knitr::is_latex_output()}
+statewide_pdf <- 
+  statewide_plot +
+    
+  geom_col(position = position_stack(reverse = TRUE)) +
+  
+  ggtitle("Figure 3.1: Capacity Changes, Statewide")
+
+print(statewide_pdf)
+```
 
 ## Coastal
 
 For the coastal region, we observe a `r capacity_delta("Coastal")` MW increase in generation capacity (an increase of approximately `r capacity_delta("Coastal", pct=TRUE)` percent) between 2011 and 2021. @fig-capacity-coastal shows the change in total installed capacity for each prime mover in the coastal region. This region saw additions of `r capacity_delta("Coastal", prime_mover = "Fossil Turbines")` MW of fossil turbines, and `r capacity_delta("Coastal", prime_mover = "Recip Engines")` MW of reciprocating engines. The remaining increases were renewable and storage capacity which we look at in more depth in @fig-capacity-coastal-renewable.
 
-```{ojs}
-//| label: fig-capacity-coastal
-//| fig-cap: "Coastal Region Capacity"
+```{r}
+coastal_capacity_names <- c("Fossil Turbines", "Recip Engines", "Hydro", "Wind", "Storage")
 
-Plot.plot({
-  // Configure the x-axis
-  x: {
-    tickFormat: "d",
-    type: "band",
-    label: "Year"
-  },
-  // Configure the y-axis
-  y: {
-    grid: true,
-    label: "Capacity (MW)"
-  },
-  // Configure the plot
-  //title: "Coastal region capacity",
-  insetLeft: 0,
-  insetRight: 0,
-  width: width,
+coastal_capacity <- 
+  regional_capacity %>%
+  filter(acep_region == "Coastal", prime_mover %in% coastal_capacity_names) %>%
+  group_by(year, prime_mover) %>%
+      summarize(coastal_capacity = sum(total_capacity, na.rm = TRUE), .groups = "drop")
 
-  // Stacked area plot
-  marks: [
-    Plot.barY(cap_data.filter((d) => d.acep_region === "Coastal" && d.capacity !== 0.0),
-      Plot.groupX(
-        {
-          y: "sum"
-        },
-        {
-          x: "year",
-          y: "capacity",
-          fill: "Prime Mover",
-          order: ["Fossil Turbines", "Recip Engines", "Hydro", "Wind","Storage"],
-          tip: {format: {x: "d"}}
-        }
-      )
-    ),
-    Plot.ruleY([0])
-  ],
-  // Configure the color scheme
-  color: {
-        domain: ["Fossil Turbines", "Recip Engines", "Hydro", "Wind","Storage"],
-        range: ["#606571", "#9da7bf", "#00a1b7", "#F79646", "#71346a"],
-        legend: true
-    }
-})
+coastal_plot <-
+  ggplot(
+    coastal_capacity, 
+    aes(
+      x = year, 
+      y = coastal_capacity,
+      fill = prime_mover)) +
+
+  scale_x_discrete(name = "\nYear") +
+  
+  scale_y_continuous(
+    name = "Capacity (MW)\n",
+    limits = c(0,700),
+    breaks = seq(0,650, by = 50),
+    expand = c(0, 0.2)) +
+  
+    
+  scale_fill_manual(values = c("#606571", "#9da7bf", "#00a1b7", "#F79646","#71346a")) +
+  
+  theme_bw() +
+  
+  theme(legend.position = "top",
+        legend.title = element_blank(),
+        legend.text = element_text(size=7),
+        legend.key.size = unit(.4, "cm"),
+        legend.key.spacing.x = unit(.05, "cm"),
+        panel.grid.major.x = element_blank(),
+        panel.grid.minor.x = element_blank(),
+        panel.grid.minor.y = element_blank(),
+        panel.border = element_blank()) +
+  guides(fill = guide_legend(nrow = 1))
+```
+
+```{r, eval=knitr::is_html_output()}
+#| label: fig-capacity-coastal
+#| fig-cap: "Coastal Region Capacity"
+coastal_html <- 
+  coastal_plot +
+  
+geom_col_interactive(aes(fill = prime_mover,
+                         tooltip = 
+                           paste("Year:", year,
+                                 "<br>Prime Mover:", prime_mover,
+                                 "<br>Capacity (MW):",coastal_capacity)),
+                     position = position_stack(reverse = TRUE))
+girafe(code = print(coastal_html))
+```
+
+```{r, eval=knitr::is_latex_output()}
+coastal_pdf <- 
+  coastal_plot +
+    
+  geom_col(position = position_stack(reverse = TRUE)) +
+  
+  ggtitle("Figure 3.2: Coastal Region Capacity")
+
+print(coastal_pdf)
 ```
 
 Across the `r capacity_delta(region = "Coastal", numeric_out = TRUE) - capacity_delta(region = "Coastal", prime_mover = "Fossil Turbines", numeric_out = TRUE) - capacity_delta(region = "Coastal", prime_mover = "Recip Engines", numeric_out = TRUE)` MW of added renewable and storage capacity <!--the remaining capacity expansions-->, hydropower accounted for the bulk of the capacity additions with `r capacity_delta("Coastal", prime_mover = "Hydro")` MW. Storage capacity increased by `r capacity_delta("Coastal", prime_mover = "Storage")` MW and wind generation capacity increased by `r capacity_delta("Coastal", prime_mover = "Wind")` MW. Between 2013 and 2018, significant hydropower additions were made in the Southeast (19.4 MW), Kodiak (11.3 MW), and the Copper-River/Chugach (6.5 MW) AEA energy regions.
 
-```{ojs}
-//| label: fig-capacity-coastal-renewable
-//| fig-cap: "Coastal Region Renewable Capacity"
+```{r}
+coastal_renewables_names <- c("Hydro", "Wind", "Storage")
 
-Plot.plot({
-  // Configure the x-axis
-  x: {
-    tickFormat: "d",
-    type: "band",
-    label: "Year"
-  },
-  // Configure the y-axis
-  y: {
-    grid: true,
-    label: "Capacity (MW)"
-  },
-  // Configure the plot
-  //title: "Coastal region renewable capacity",
-  insetLeft: 0,
-  insetRight: 0,
-  width: width,
+coastal_renewable_capacity <- 
+  regional_capacity %>%
+  filter(acep_region == "Coastal", prime_mover %in% coastal_renewables_names) %>%
+  group_by(year, prime_mover) %>%
+      summarize(coastal_renewable_capacity = sum(total_capacity, na.rm = TRUE), .groups = "drop")
 
-  // Stacked area plot
-  marks: [
-    Plot.barY(cap_data.filter((d) => d.acep_region === "Coastal" && d.capacity !== 0.0 && d.prime_mover !== "Fossil Turbines" && d.prime_mover !== "Recip Engines"),
-      Plot.groupX(
-        {
-          y: "sum"
-        },
-        {
-          x: "year",
-          y: "capacity",
-          fill: "Prime Mover",
-          order: ["Hydro", "Wind","Storage"],
-          tip: {format: {x: "d"}}
-        }
-      )
-    ),
-    Plot.ruleY([0])
-  ],
-  // Configure the color scheme
-  color: {
-        domain: ["Hydro", "Wind","Storage"],
-        range: ["#00a1b7", "#F79646", "#71346a"],
-        legend: true
-    }
-})
+coastal_renewable_plot <-
+  ggplot(
+    coastal_renewable_capacity, 
+    aes(
+      x = year, 
+      y = coastal_renewable_capacity,
+      fill = prime_mover)) +
+
+  scale_x_discrete(name = "\nYear") +
+  
+  scale_y_continuous(
+    name = "Capacity (MW)\n",
+    limits = c(0,350),
+    breaks = seq(0,300, by = 50),
+    expand = c(0, 0.2)) +
+  
+    
+  scale_fill_manual(values = c("#00a1b7", "#F79646","#71346a")) +
+  
+  theme_bw() +
+  
+  theme(legend.position = "top",
+        legend.title = element_blank(),
+        legend.text = element_text(size=7),
+        legend.key.size = unit(.4, "cm"),
+        legend.key.spacing.x = unit(.05, "cm"),
+        panel.grid.major.x = element_blank(),
+        panel.grid.minor.x = element_blank(),
+        panel.grid.minor.y = element_blank(),
+        panel.border = element_blank()) +
+  guides(fill = guide_legend(nrow = 1))
 ```
 
+```{r, eval=knitr::is_html_output()}
+#| label: fig-capacity-coastal-renewable
+#| fig-cap: "Coastal Region Renewable Capacity"
+coastal_renewable_html <- 
+  coastal_renewable_plot +
+  
+geom_col_interactive(aes(fill = prime_mover,
+                         tooltip = 
+                           paste("Year:", year,
+                                 "<br>Prime Mover:", prime_mover,
+                                 "<br>Capacity (MW):",coastal_renewable_capacity)),
+                     position = position_stack(reverse = TRUE))
+girafe(code = print(coastal_renewable_html))
+```
+
+```{r, eval=knitr::is_latex_output()}
+coastal_renewable_pdf <- 
+  coastal_renewable_plot +
+    
+  geom_col(position = position_stack(reverse = TRUE)) +
+  
+  ggtitle("Figure 3.3: Coastal Region Renewable Capacity")
+
+print(coastal_renewable_pdf)
+```
 
 ## Railbelt
+
 For the Railbelt region, capacity additions were dominated by more-efficient fossil fuel generating units and new battery storage. These additions are visualized in @fig-capacity-railbelt. There were `r capacity_delta("Railbelt")` MW of capacity additions between 2011 and 2021. The Railbelt region saw `r capacity_delta("Railbelt", prime_mover = "Recip Engines")` MW of reciprocating engine additions and `r capacity_delta("Railbelt", prime_mover = "Fossil Turbines")` MW of fossil fuel turbines. The remaining capacity additions were renewables and storage and are shown in @fig-capacity-railbelt-renewable.
 
-```{ojs}
-//| label: fig-capacity-railbelt
-//| fig-cap: "Railbelt Region Capacity."
+```{r}
 
-Plot.plot({
-  // Configure the x-axis
-  x: {
-    tickFormat: "d",
-    type: "band",
-    label: "Year"
-  },
-  // Configure the y-axis
-  y: {
-    grid: true,
-    label: "Capacity (MW)"
-  },
-  // Configure the plot
-  //title: "Railbelt region capacity",
-  caption: "Figure note: The category of Landfill Gas refers to the 11.5 MW power plant at the Anchorage Regional Landfill that is fueled by methane from decomposing waste. Although this plant uses reciprocating engines as its prime mover, we decided to show landfill gas as a separate category because it is a significant addition to the mix of renewable energy capacity.",
-  insetLeft: 0,
-  insetRight: 0,
-  width: width,
+railbelt_capacity <- 
+  regional_capacity %>%
+  filter(acep_region == "Railbelt") %>%
+  group_by(year, prime_mover) %>%
+      summarize(railbelt_capacity = sum(total_capacity, na.rm = TRUE), .groups = "drop")
 
-  // Stacked area plot
-  marks: [
-    Plot.barY(cap_data.filter((d) => d.acep_region === "Railbelt" && d.capacity !== 0.0),
-      Plot.groupX(
-        {
-          y: "sum"
-        },
-        {
-          x: "year",
-          y: "capacity",
-          fill: "Prime Mover",
-          order: ["Fossil Turbines", "Recip Engines", "Hydro", "Wind","Utility Solar","Rooftop Solar","Storage","Landfill Gas"],
-          tip: {format: {x: "d"}}
-        }
-      )
-    ),
-    Plot.ruleY([0])
-  ],
-  // Configure the color scheme
-  color: {
-        domain: ["Fossil Turbines", "Recip Engines", "Hydro", "Wind","Utility Solar","Rooftop Solar","Storage","Landfill Gas"],
-        range: ["#606571", "#9da7bf", "#00a1b7", "#F79646", "#fad900","#9BBB59","#71346a","#896D09"],
-        legend: true
-    }
-})
+railbelt_plot <-
+  ggplot(
+    railbelt_capacity, 
+    aes(
+      x = year, 
+      y = railbelt_capacity,
+      fill = prime_mover)) +
+
+  scale_x_discrete(name = "\nYear") +
+  
+  scale_y_continuous(
+    name = "Capacity (MW)\n",
+    limits = c(0,2500),
+    breaks = seq(0,2000, by = 250),
+    expand = c(0, 0.2)) +
+  
+    
+  scale_fill_manual(values = c("#606571", "#9da7bf", "#00a1b7", "#F79646", "#fad900","#9BBB59","#71346a","#896D09")) +
+  
+  theme_bw() +
+  
+  theme(legend.position = "top",
+        legend.title = element_blank(),
+        legend.text = element_text(size=7),
+        legend.key.size = unit(.4, "cm"),
+        legend.key.spacing.x = unit(.05, "cm"),
+        panel.grid.major.x = element_blank(),
+        panel.grid.minor.x = element_blank(),
+        panel.grid.minor.y = element_blank(),
+        panel.border = element_blank()) +
+  guides(fill = guide_legend(nrow = 1))
 ```
 
-Total renewable and storage capacity in the Railbelt region increased by `r capacity_delta(region = "Railbelt", numeric_out = TRUE) - capacity_delta(region = "Railbelt", prime_mover = "Fossil Turbines", numeric_out = TRUE) - capacity_delta(region = "Railbelt", prime_mover = "Recip Engines", numeric_out = TRUE)` MW. Notable additions included the commercial commissioning of the 18 MW Fire Island Wind site in September 2012 and the 25 MW Eva Creek Wind site in October 2012. Significant investments in storage capacity have also been made. Since 2011, `r capacity_delta("Railbelt", prime_mover = "Storage")` MW of storage, `r capacity_delta("Railbelt", prime_mover = "Wind")` MW of wind, `r capacity_delta("Railbelt", prime_mover = "Hydro")` MW of hydro, `r capacity_delta("Railbelt", prime_mover = "Utility Solar")` MW of utility solar, `r capacity_delta("Railbelt", prime_mover = "Rooftop Solar")` MW of rooftop – also known as “behind-the-meter”  – solar, and `r capacity_delta("Railbelt", prime_mover = "Landfill Gas")` MW of landfill gas have been added.
+```{r, eval=knitr::is_html_output()}
+#| label: fig-capacity-railbelt
+#| fig-cap: "Railbelt Region Capacity"
+railbelt_html <- 
+  railbelt_plot +
+  
+geom_col_interactive(aes(fill = prime_mover,
+                         tooltip = 
+                           paste("Year:", year,
+                                 "<br>Prime Mover:", prime_mover,
+                                 "<br>Capacity (MW):",railbelt_capacity)),
+                     position = position_stack(reverse = TRUE))
+girafe(code = print(railbelt_html))
+```
 
-```{ojs}
-//| label: fig-capacity-railbelt-renewable
-//| fig-cap: "Railbelt Region Renewable Capacity"
+```{r, eval=knitr::is_latex_output()}
+railbelt_pdf <- 
+  railbelt_plot +
+    
+  geom_col(position = position_stack(reverse = TRUE)) +
+  
+  ggtitle("Figure 3.4: Railbelt Region Capacity")
 
-Plot.plot({
-  // Configure the x-axis
-  x: {
-    tickFormat: "d",
-    type: "band",
-    label: "Year"
-  },
-  // Configure the y-axis
-  y: {
-    grid: true,
-    label: "Capacity (MW)"
-  },
-  // Configure the plot
-  //title: "Railbelt region renewable capacity",
-  insetLeft: 0,
-  insetRight: 0,
-  width: width,
+print(railbelt_pdf)
+```
 
-  // Stacked area plot
-  marks: [
-    Plot.barY(cap_data.filter((d) => d.acep_region === "Railbelt" && d.capacity !== 0.0 && d.prime_mover !== "Fossil Turbines" && d.prime_mover !== "Recip Engines"),
-      Plot.groupX(
-        {
-          y: "sum"
-        },
-        {
-          x: "year",
-          y: "capacity",
-          fill: "Prime Mover",
-          order: ["Hydro", "Wind","Utility Solar","Rooftop Solar","Storage","Landfill Gas"],
-          tip: {format: {x: "d"}}
-        }
-      )
-    ),
-    Plot.ruleY([0])
-  ],
-  // Configure the color scheme
-  color: {
-        domain: ["Hydro", "Wind","Utility Solar","Rooftop Solar","Storage","Landfill Gas"],
-        range: ["#00a1b7", "#F79646", "#fad900","#9BBB59","#71346a","#896D09"],
-        legend: true
-    }
-})
+Total renewable and storage capacity in the Railbelt region increased by `r capacity_delta(region = "Railbelt", numeric_out = TRUE) - capacity_delta(region = "Railbelt", prime_mover = "Fossil Turbines", numeric_out = TRUE) - capacity_delta(region = "Railbelt", prime_mover = "Recip Engines", numeric_out = TRUE)` MW. Notable additions included the commercial commissioning of the 18 MW Fire Island Wind site in September 2012 and the 25 MW Eva Creek Wind site in October 2012. Significant investments in storage capacity have also been made. Since 2011, `r capacity_delta("Railbelt", prime_mover = "Storage")` MW of storage, `r capacity_delta("Railbelt", prime_mover = "Wind")` MW of wind, `r capacity_delta("Railbelt", prime_mover = "Hydro")` MW of hydro, `r capacity_delta("Railbelt", prime_mover = "Utility Solar")` MW of utility solar, `r capacity_delta("Railbelt", prime_mover = "Rooftop Solar")` MW of rooftop – also known as “behind-the-meter” – solar, and `r capacity_delta("Railbelt", prime_mover = "Landfill Gas")` MW of landfill gas have been added.
+
+```{r}
+
+railbelt_renewable_names <- c("Hydro", "Wind", "Utility Solar", "Rooftop Solar", "Storage", "Landfill Gas")
+
+railbelt_renewable_capacity <- 
+  regional_capacity %>%
+  filter(acep_region == "Railbelt", prime_mover %in% railbelt_renewable_names) %>%
+  group_by(year, prime_mover) %>%
+      summarize(railbelt_renewable_capacity = sum(total_capacity, na.rm = TRUE), .groups = "drop")
+
+railbelt_renewable_plot <-
+  ggplot(
+    railbelt_renewable_capacity, 
+    aes(
+      x = year, 
+      y = railbelt_renewable_capacity,
+      fill = prime_mover)) +
+
+  scale_x_discrete(name = "\nYear") +
+  
+  scale_y_continuous(
+    name = "Capacity (MW)\n",
+    limits = c(0,400),
+    breaks = seq(0,350, by = 50),
+    expand = c(0, 0.2)) +
+  
+    
+  scale_fill_manual(values = c("#00a1b7", "#F79646","#fad900","#9BBB59","#71346a","#896D09")) +
+  
+  theme_bw() +
+  
+  theme(legend.position = "top",
+        legend.title = element_blank(),
+        legend.text = element_text(size=7),
+        legend.key.size = unit(.4, "cm"),
+        legend.key.spacing.x = unit(.05, "cm"),
+        panel.grid.major.x = element_blank(),
+        panel.grid.minor.x = element_blank(),
+        panel.grid.minor.y = element_blank(),
+        panel.border = element_blank()) +
+  guides(fill = guide_legend(nrow = 1))
+```
+
+```{r, eval=knitr::is_html_output()}
+#| label: fig-capacity-railbelt-renewable
+#| fig-cap: "Railbelt Region Renewable Capacity"
+railbelt_renewable_html <- 
+  railbelt_renewable_plot +
+  
+geom_col_interactive(aes(fill = prime_mover,
+                         tooltip = 
+                           paste("Year:", year,
+                                 "<br>Prime Mover:", prime_mover,
+                                 "<br>Capacity (MW):", railbelt_renewable_capacity)),
+                     position = position_stack(reverse = TRUE))
+girafe(code = print(railbelt_renewable_html))
+```
+
+```{r, eval=knitr::is_latex_output()}
+railbelt_renewable_pdf <- 
+  railbelt_renewable_plot +
+    
+  geom_col(position = position_stack(reverse = TRUE)) +
+  
+  ggtitle("Figure 3.5: Railbelt Region Renewable Capacity")
+
+print(railbelt_renewable_pdf)
 ```
 
 ## Rural Remote
+
 The rural remote region saw an increase of `r capacity_delta("Rural Remote")` MW in capacity (a `r capacity_delta("Rural Remote", pct = TRUE)`% increase) (@fig-capacity-rural). Most of the increases in capacity were fossil fuel turbines (`r capacity_delta("Rural Remote", prime_mover = "Fossil Turbines")` MW added on the North Slope) and reciprocating engines (`r capacity_delta("Rural Remote", prime_mover = "Recip Engines")` MW). Renewable capacity is explored in further detail in the @fig-capacity-rural-renewable.
 
-```{ojs}
-//| label: fig-capacity-rural
-//| fig-cap: "Rural Remote Region Capacity"
+```{r}
 
-Plot.plot({
-  // Configure the x-axis
-  x: {
-    tickFormat: "d",
-    type: "band",
-    label: "Year"
-  },
-  // Configure the y-axis
-  y: {
-    grid: true,
-    label: "Capacity (MW)"
-  },
-  // Configure the plot
-  //title: "Rural Remote region capacity",
-  insetLeft: 0,
-  insetRight: 0,
-  width: width,
+rural_remote_names <- c("Fossil Turbines", "Recip Engines", "Hydro", "Wind", "Utility Solar", "Storage")
 
-  // Stacked area plot
-  marks: [
-    Plot.barY(cap_data.filter((d) => d.acep_region === "Rural Remote" && d.capacity !== 0.0),
-      Plot.groupX(
-        {
-          y: "sum"
-        },
-        {
-          x: "year",
-          y: "capacity",
-          fill: "Prime Mover",
-          order: ["Fossil Turbines", "Recip Engines", "Hydro", "Wind","Utility Solar","Storage"],
-          tip: {format: {x: "d"}}
-        }
-      )
-    ),
-    Plot.ruleY([0])
-  ],
-  // Configure the color scheme
-  color: {
-        domain: ["Fossil Turbines", "Recip Engines", "Hydro", "Wind","Utility Solar","Storage"],
-        range: ["#606571", "#9da7bf", "#00a1b7", "#F79646", "#fad900","#71346a"],
-        legend: true
-    }
-})
+rural_remote_capacity <- 
+  regional_capacity %>%
+  filter(acep_region == "Rural Remote", prime_mover %in% rural_remote_names) %>%
+  group_by(year, prime_mover) %>%
+      summarize(rural_remote_capacity = sum(total_capacity, na.rm = TRUE), .groups = "drop")
+
+rural_remote_plot <-
+  ggplot(
+    rural_remote_capacity, 
+    aes(
+      x = year, 
+      y = rural_remote_capacity,
+      fill = prime_mover)) +
+
+  scale_x_discrete(name = "\nYear") +
+  
+  scale_y_continuous(
+    name = "Capacity (MW)\n",
+    limits = c(0,400),
+    breaks = seq(0,300, by = 50),
+    expand = c(0, 0.2)) +
+  
+    
+  scale_fill_manual(values = c("#606571", "#9da7bf", "#00a1b7", "#F79646", "#fad900","#71346a")) +
+  
+  theme_bw() +
+  
+  theme(legend.position = "top",
+        legend.title = element_blank(),
+        legend.text = element_text(size=7),
+        legend.key.size = unit(.4, "cm"),
+        legend.key.spacing.x = unit(.05, "cm"),
+        panel.grid.major.x = element_blank(),
+        panel.grid.minor.x = element_blank(),
+        panel.grid.minor.y = element_blank(),
+        panel.border = element_blank()) +
+  guides(fill = guide_legend(nrow = 1))
+```
+
+```{r, eval=knitr::is_html_output()}
+#| label: fig-capacity-rural
+#| fig-cap: "Rural Remote Region Capacity"
+rural_remote_html <- 
+  rural_remote_plot +
+  
+geom_col_interactive(aes(fill = prime_mover,
+                         tooltip = 
+                           paste("Year:", year,
+                                 "<br>Prime Mover:", prime_mover,
+                                 "<br>Capacity (MW):",rural_remote_capacity)),
+                     position = position_stack(reverse = TRUE))
+girafe(code = print(rural_remote_html))
+```
+
+```{r, eval=knitr::is_latex_output()}
+rural_remote_pdf <- 
+  rural_remote_plot +
+    
+  geom_col(position = position_stack(reverse = TRUE)) +
+  
+  ggtitle("Figure 3.6: Rural Remote Region Capacity")
+
+print(rural_remote_pdf)
 ```
 
 This region saw an absolute increase of `r capacity_delta(region = "Rural Remote", numeric_out = TRUE) - capacity_delta(region = "Rural Remote", prime_mover = "Fossil Turbines", numeric_out = TRUE) - capacity_delta(region = "Rural Remote", prime_mover = "Recip Engines", numeric_out = TRUE)` MW of renewable capacity between 2011 to 2021. Over this time period, hydropower generation resources increased by `r capacity_delta("Rural Remote", prime_mover = "Hydro")` MW, wind increased by `r capacity_delta("Rural Remote", prime_mover = "Wind")` MW, utility-scale solar increased by `r capacity_delta("Rural Remote", prime_mover = "Utility Solar")` MW and storage increased by `r capacity_delta("Rural Remote", prime_mover = "Storage")` MW. Between 2018 and 2021, 2 MW of wind was retired in the Bering Straits energy region, 1.2 MW in Kotzebue, and 0.2 MW in the Aleutians, explaining the reduction in wind capacity between the calendar years.
 
-```{ojs}
-//| label: fig-capacity-rural-renewable
-//| fig-cap: "Rural Remote Region Renewable Capacity"
-//| 
-Plot.plot({
-  // Configure the x-axis
-  x: {
-    tickFormat: "d",
-    type: "band",
-    label: "Year"
-  },
-  // Configure the y-axis
-  y: {
-    grid: true,
-    label: "Capacity (MW)"
-  },
-  // Configure the plot
-  //title: "Rural Remote region renewable capacity",
-  insetLeft: 0,
-  insetRight: 0,
-  width: width,
+```{r}
 
-  // Stacked area plot
-  marks: [
-    Plot.barY(cap_data.filter((d) => d.acep_region === "Rural Remote" && d.capacity !== 0.0 && d.prime_mover !== "Fossil Turbines" && d.prime_mover !== "Recip Engines"),
-      Plot.groupX(
-        {
-          y: "sum"
-        },
-        {
-          x: "year",
-          y: "capacity",
-          fill: "Prime Mover",
-          order: ["Hydro", "Wind","Utility Solar","Storage"],
-          tip: {format: {x: "d"}}
-        }
-      )
-    ),
-    Plot.ruleY([0])
-  ],
-  // Configure the color scheme
-  color: {
-        domain: ["Hydro", "Wind","Utility Solar","Storage"],
-        range: ["#00a1b7", "#F79646", "#fad900","#71346a"],
-        legend: true
-    }
-})
+rural_remote_renewable_names <- c("Hydro", "Wind", "Utility Solar","Storage")
+
+rural_remote_renewable_capacity <- 
+  regional_capacity %>%
+  filter(acep_region == "Rural Remote", prime_mover %in% rural_remote_renewable_names) %>%
+  group_by(year, prime_mover) %>%
+      summarize(rural_remote_renewable_capacity = sum(total_capacity, na.rm = TRUE), .groups = "drop")
+
+rural_remote_renewable_plot <-
+  ggplot(
+    rural_remote_renewable_capacity, 
+    aes(
+      x = year, 
+      y = rural_remote_renewable_capacity,
+      fill = prime_mover)) +
+
+  scale_x_discrete(name = "\nYear") +
+  
+  scale_y_continuous(
+    name = "Capacity (MW)\n",
+    limits = c(0,24),
+    breaks = seq(0,22, by = 2),
+    expand = c(0, 0.2)) +
+  
+    
+  scale_fill_manual(values = c("#00a1b7", "#F79646","#fad900","#71346a")) +
+  
+  theme_bw() +
+  
+  theme(legend.position = "top",
+        legend.title = element_blank(),
+        legend.text = element_text(size=7),
+        legend.key.size = unit(.4, "cm"),
+        legend.key.spacing.x = unit(.05, "cm"),
+        panel.grid.major.x = element_blank(),
+        panel.grid.minor.x = element_blank(),
+        panel.grid.minor.y = element_blank(),
+        panel.border = element_blank()) +
+  guides(fill = guide_legend(nrow = 1))
 ```
 
+```{r, eval=knitr::is_html_output()}
+#| label: fig-capacity-rural-renewable
+#| fig-cap: "Rural Remote Region Renewable Capacity"
+rural_remote_renewable_html <- 
+  rural_remote_renewable_plot +
+  
+geom_col_interactive(aes(fill = prime_mover,
+                         tooltip = 
+                           paste("Year:", year,
+                                 "<br>Prime Mover:", prime_mover,
+                                 "<br>Capacity (MW):",rural_remote_renewable_capacity)),
+                     position = position_stack(reverse = TRUE))
+girafe(code = print(rural_remote_renewable_html))
+```
+
+```{r, eval=knitr::is_latex_output()}
+rural_remote_renewable_pdf <- 
+  rural_remote_renewable_plot +
+    
+  geom_col(position = position_stack(reverse = TRUE)) +
+  
+  ggtitle("Figure 3.7: Railbelt Region Renewable Capacity")
+
+print(rural_remote_renewable_pdf)
+```
 
 ```{ojs}
 original_cap_data = FileAttachment("data/final_data/capacity.csv").csv({ typed: true })

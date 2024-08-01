@@ -15,35 +15,57 @@ echo: false
 library(tidyr)
 library(dplyr)
 library(readr)
+library(ggplot2)
+library(ggiraph)
 
 # Import the data
 generation_data <- read.csv(file = "data/final_data/generation.csv")
 
+#Generation data in gWh
+gen_data_gwh <- generation_data %>%
+  mutate(generation = generation/1000)
+
 # Regional totals
 regional_generation_data <- generation_data %>%
-  group_by(acep_region, year) %>%
+  
+  group_by(
+    acep_region, year) %>%
+  
   summarize(
-    "total_gen" = sum(generation, na.rm = TRUE)
-  ) %>%
+    "total_gen" = sum(generation, na.rm = TRUE)) %>%
+  
   mutate(
-    total_gen = total_gen / 1000
-  )
+    total_gen = total_gen / 1000) %>%
+  
+  mutate(
+    acep_region = factor(acep_region, levels = c("Coastal", "Railbelt", "Rural Remote")))
 
 # Regional generation mixes
 regional_generation_mix <- generation_data %>%
+  
   group_by(acep_region, year, fuel_type) %>%
+  
   summarize(
-    generation = sum(generation, na.rm=TRUE)
-  ) %>%
-  filter(fuel_type != "Storage") %>%
-  group_by(acep_region, year) %>%
+    generation = sum(generation, na.rm=TRUE)) %>%
+  
+  filter(
+    fuel_type != c("Storage", "Other")) %>%
+  
+  group_by(
+    acep_region, year) %>%
+  
   mutate(
-    total_generation = sum(generation,na.rm=TRUE)
-  ) %>%
-  group_by(acep_region,year,fuel_type) %>%
+    total_generation = sum(generation,na.rm=TRUE)) %>%
+  
+  group_by(
+    acep_region,year,fuel_type) %>%
+  
   mutate(
-    gen_share = ((generation / total_generation)*100)
-  )
+    gen_share = ((generation / total_generation)*100)) %>%
+  
+  mutate(
+    acep_region = factor(acep_region, 
+                         levels = c("Coastal", "Railbelt", "Rural Remote")))
 
 # Function declarations
 source("scripts/inline_functions/generation_inline_functions.R")
@@ -61,183 +83,160 @@ This section outlines the trends in generation by fuel type for each region. Gen
 
 [^3]: Calculated with the compound average growth rate: $CAGR = \left(\left(\frac{gen_{2021}}{gen_{2011}} \right)^{\frac{1}{2021-2011}} -1\right)$
 
-```{ojs}
-//| echo: false
-import {tidy, groupBy, rename, summarize, sum, mutate, select, n, nDistinct, mean, filter, pivotWider, pivotLonger, leftJoin, slice, fullJoin, lag, TMath, rowNumber,mutateWithSummary} from "@pbeshai/tidyjs"
+```{r}
+regional_generation_plot <-
+  ggplot(
+    regional_generation_data, 
+    aes(
+      x = year, 
+      y = total_gen,
+      fill = acep_region)) +
 
-// Import the long-form generation data
-gen_data = FileAttachment("data/final_data/generation.csv").csv({ typed: true })
-
-// Convert MWh to GWh
-gen_data_gwh = tidy(gen_data, mutate({
-  generation: (d) => d.generation / 1000
-})).map((d) => ({...d, "Fuel Type": d.fuel_type})).map((d) => ({...d, "ACEP Region": d.acep_region}));
-
-//gen_data_gwh = gen_data_gwh_.map((d) => ({...d, "ACEP Region": d.acep_region},{...d, "Fuel Type": d.fuel_type}))
-
+  scale_x_continuous(name = "\nYear",
+                   breaks = seq(2011, 2021, by = 1),
+    expand = c(0, 0)) +
+  
+  scale_y_continuous(
+    name = "Generation (GWh)\n",
+    limits = c(0,7000),
+    breaks = seq(0,6500, by = 500),
+    expand = c(0, 0)) +
+  
+    
+  scale_fill_manual(values = c("#8cbbda","#97cd93","#f28d8c")) +
+  
+  theme_bw() +
+  theme(legend.position = "top",
+        legend.title = element_blank(),
+        legend.text = element_text(size=7),
+        legend.key.size = unit(.4, "cm"),
+        panel.grid.major.x = element_blank(),
+        panel.grid.minor.x = element_blank(),
+        panel.grid.minor.y = element_blank(),
+        panel.border = element_blank()) +
+  guides(fill = guide_legend(nrow = 1))
 ```
 
-```{ojs}
-//| label: fig-generation-by-region
-//| fig-cap: "Electricity Generation by Region"
+```{r, eval=knitr::is_html_output()}
+#| label: fig-generation-by-region
+#| fig-cap: "Electricity Generation by Region"
+regional_generation_html <- 
+  regional_generation_plot +
+  
+geom_col_interactive(aes(fill = acep_region,
+                         tooltip = 
+                           paste("Year:", year,
+                                 "<br>ACEP Region", acep_region,
+                                 "<br>Generation (GWh):", round(total_gen, 2))),
+                     position = position_stack(reverse = TRUE))
+girafe(code = print(regional_generation_html))
+```
 
-// Plotting total generation by region and year//| 
-Plot.plot({
+```{r, eval=knitr::is_latex_output()}
+regional_generation_pdf <- 
+  regional_generation_plot +
+    
+  geom_col(position = position_stack(reverse = TRUE)) +
   
-  // Configure the plot
-  //title: " Electricity generation by region",
-  insetLeft: 0,
-  insetRight: 0,
-  width: width,
-  
-  // Configure the x-axis
-  x: {
-    tickFormat: "d",
-    label: "Year"
-  },
-  
-  // Configure the y-axis
-  y: {
-    grid: true,
-    label: "Generation (GWh)"
-  },
-  
-  // Plotting the series
-  marks: [
-    Plot.barY(
-      gen_data_gwh,
-      Plot.groupX(
-        {
-          y: "sum"
-        },
-        {
-          x: "year",
-          y: "generation",
-          fill: "ACEP Region",
-          tip: {format: {x: "d"}}
-        }
-      )
-    ),
-    Plot.ruleY([0])
-  ],
-  
-  // Legend
-  color: {
-    domain: ["Coastal","Railbelt","Rural Remote"],
-    range: ["#8cbbda","#97cd93","#f28d8c"],
-    legend: true
-  }
-})
+  ggtitle("Figure 4.1: Electricity Generation by Region")
+
+print(regional_generation_pdf)
 ```
 
 While generation did not change significantly during the observed time period, the resources from which generation occurred, did. @fig-generation-changes-by-region shows how the mix of generation fuels changed between 2011 and 2021.[^4]
 
 [^4]: Oil consists of generators whose primary fuel source is diesel/distillate, naphtha, or jet fuel. Gas consists of natural or landfill gas. Hydro refers to conventional hydroelectric turbines. Wind and solar are both utility-scale (excluding behind-the-meter solar). Storage is not included in these calculations.
 
-```{ojs}
-//| echo: false
+```{r}
+#Creating a modified version of the data
+share_data <- generation_data %>%
+  group_by(year, acep_region, fuel_type) %>%
+  summarize(generation = sum(generation, na.rm = T), .groups = "drop")
 
-// Establish the figure caption for generation mix charts
-caption_gen_mix = "Note: Storage is not included here due since net generation is negative."
+#Creating total generation data from each region and year
+total_gen <- share_data %>%
+  group_by(year, acep_region) %>%
+  summarize(total_generation = sum(generation, na.rm = T), .groups = "drop")
 
-// Creating a modified version of the data
-share_data = tidy(
-  gen_data,
-  groupBy(
-    ['year','acep_region','fuel_type'], 
-    [
-      summarize({
-        generation: sum('generation')
-      })
-    ]
-  )
-)
+#Creating a joined table from the above two
+join <- share_data %>%
+  full_join(total_gen, by = join_by(year == year, acep_region == acep_region))
 
-// Creating total generation data from each region and year
-total_gen = tidy(share_data, groupBy(['year','acep_region'], summarize({total_generation: sum('generation')})))
+#Creating a column with shares
+join_shares <- join %>%
+  filter(!fuel_type %in% c("Storage", "Other")) %>%
+  mutate(generation_share = (generation/total_generation)*100)
 
+join_shares_2011_2021 <- join_shares %>%
+  filter(year %in% c(2011, 2021))
 
-// Creating a joined table from the above two
-join = tidy(share_data, fullJoin(total_gen, {by: ['year','acep_region']}))
+fuel_type_names <- c("Coal", "Oil", "Gas", "Hydro", "Wind", "Solar")
 
-// Creating a column with shares
-join_shares = tidy(join.filter((d) => d.fuel_type !== "Storage"),
-  mutate({generation_share: (d) => (d.generation / d.total_generation)*100})
-).map((d) => ({...d, "Fuel Type": d.fuel_type})).map((d) => ({...d, "ACEP Region": d.acep_region})) // join_shares should be used for the 100% area charts
+gen_mix_diff <- join_shares_2011_2021 %>%
+  mutate(delta = generation_share - lag(generation_share, n = nrow(.)/2)) %>%
+  filter(year == 2021) %>%
+  mutate(fuel_type = factor(fuel_type, levels = rev(fuel_type_names)))
 
-// Table for just the 2011 and 2021 generation mix comparison
-gen_mix_diff = tidy(
-  join_shares.filter((d) => d.year === 2011 || d.year === 2021),
-  groupBy(
-    ['ACEP Region','Fuel Type'],
-    mutateWithSummary({
-        generation_share_2011: lag('generation_share', {default: 0})
-    })
-  ),
-  mutate({
-    delta: (d) => d.generation_share - d.generation_share_2011
-  }),
-  filter(
-    (d)  => d.year === 2021
-  )
-)
+gen_data_gwh <- join %>%
+  filter(!fuel_type %in% c("Storage", "Other")) %>%
+  mutate(generation_gwh = generation/1000)
+
 ```
 
-```{ojs}
-//| label: fig-generation-changes-by-region
-//| fig-cap: "Regional Changes in Net Generation"
+```{r}
+regional_changes_plot <- 
+ggplot(gen_mix_diff, 
+       aes(x = delta, y = fuel_type, fill = fuel_type)) +
+  
+  facet_grid(rows = vars(acep_region)) + 
+  
+  scale_x_continuous(name = "\nPercentage Point Change",
+                     limits = c(-14, 8),
+                     breaks = seq(-14,8, by = 2),
+                     expand = c(0, 0.2)) +
+  
+  scale_y_discrete(name = "") +
+  
+  scale_fill_manual(values = rev(c("#7f7f7f","#BFBFBF","#DCD9C5","#96B3DF","#F79646","#F5C243"))) +
+  labs(caption = "Percentage point differences in generation mix between 2021 and 2011") +
+  theme_bw() +
+  theme(legend.position = "top",
+        legend.title = element_blank(),
+        legend.text = element_text(size=6),
+        strip.background = element_blank(),
+        strip.text.y.right = element_text(angle = 0),
+        panel.grid.major.x = element_blank(),
+        panel.grid.minor.x = element_blank(),
+        panel.border = element_rect(color = "black", fill = NA),
+        plot.caption = element_text(hjust = 0.5, colour = "gray65"),
+        plot.caption.position = "plot") +
+  guides(fill = guide_legend(nrow = 1, reverse = TRUE))
 
-// Plotting the deltas
-Plot.plot({
-  //title: "Regional changes in net generation",
-  caption: "Percentage point differences in generation mix between 2021 and 2011",
-  insetLeft: 15,
-  insetRight: 15,
-  marginRight: 70,
-  height: 600,
-  width: width,
+```
 
-  x: {
-    label: "Percentage Point Change",
-    labelAnchor: "center"
-  },
+```{r, eval=knitr::is_html_output()}
+#| label: fig-generation-changes-by-region
+#| fig-cap: "Regional Changes in Net Generation"
+regional_changes_html <- 
+  regional_changes_plot +
+  
+geom_col_interactive(aes(fill = fuel_type,
+                         tooltip = 
+                           paste("Percentage Point Change:", round(delta,2),
+                                 "<br>Fuel Type:",fuel_type)))
+girafe(code = print(regional_changes_html))
 
-  y: {
-    grid: true,
-    domain: ["Coal","Oil","Gas","Hydro","Wind","Solar"],
-    label: ""
-  },
+```
 
-  facet: {
-    data: gen_mix_diff,
-    y: (d) => d.acep_region
-  },
+```{r, eval=knitr::is_latex_output()}
+regional_changes_pdf <- 
+  regional_changes_plot +
 
-  marks: [
-    Plot.frame(),
-    Plot.barX(gen_mix_diff, {
-        x: "delta",
-        y: "Fuel Type",
-        fill: "Fuel Type",
-        order: ["Coal","Oil","Gas","Hydro","Wind","Solar"],
-        tip: {
-          format: {
-            x: (d) => `${(d).toLocaleString(undefined, {maximumFractionDigits: 2})}%`,
-            y: false,
-            fy: false
-          }
-        }
-      }
-    ),
-    Plot.ruleX([0])
-  ],
+  geom_col() +
+  
+  ggtitle("Figure 4.2:  Regional Changes in Net Generation")
 
-  color: {
-    domain: ["Coal","Oil","Gas","Hydro","Wind","Solar"],
-    range: ["#7f7f7f","#BFBFBF","#DCD9C5","#96B3DF","#F79646","#F5C243"],
-    legend: true
-  }
-})
+print(regional_changes_pdf)
 ```
 
 We show that for these resources, the Coastal region displaced oil generation with hydro and wind generation. The Railbelt displaced gas and oil generation with coal, hydro, and solar generation. Finally, the Rural Remote region of the state displaced coal and a small amount of hydro with gas, solar, and wind generation.
@@ -250,324 +249,366 @@ In 2011, the Coastal region generated `r generation_share("Coastal",2011,"Hydro"
 
 [^5]: Net generation from storage facilities are not included in these calculations.
 
-```{ojs}
-//| label: fig-generation-fuel-coastal
-//| fig-cap: "Share of Net Generation by Fuel Type, Coastal Region"
+```{r}
+coastal_shares <- join_shares %>% filter(acep_region == "Coastal",
+                              fuel_type %in% c("Oil", "Hydro", "Wind")) %>%
+                              mutate(fuel_type = factor(fuel_type, levels = c("Oil", "Hydro", "Wind")))
+coastal_shares_plot <- 
+  ggplot(coastal_shares, 
+       aes(x = year, 
+           y = generation_share, 
+           fill = fuel_type)) +
 
-// Plotting the shares for the coastal region
-Plot.plot({
+  scale_x_continuous(name = "\nYear",
+                     breaks = seq(2011, 2021, by = 1),
+                     expand = c(0,0)) +
+  
+  scale_y_continuous(name = "Share of Electricity Generation (%)\n",
+                   limits = c(0,101),
+                   breaks = seq(0, 100, by = 10),
+                   expand = c(0,0)) +
+  
+  
+  scale_fill_manual(values = c("#BFBFBF","#96B3DF","#F79646")) +
+  #theme_minimal() +
+  labs(caption ="Note: Storage is not included here since net generation is negative.") +
+  theme(legend.position = "top",
+        panel.background = element_blank(), 
+        panel.grid = element_blank(),
+        legend.title = element_blank(),
+        legend.text = element_text(size=6),
+        plot.caption = element_text(hjust = 0.5, colour = "gray65"),
+        plot.caption.position = "plot") +
+  guides(fill = guide_legend(nrow = 1))
+```
 
-  // Configure the plot
-  //title: "Share of net generation by fuel type, Coastal region",
-  caption: caption_gen_mix,
-  insetLeft: 0,
-  insetRight: 0,
-  width: width,
-  
-  // Configure the x-axis
-  x: {
-    tickFormat: "d",
-    label: "Year"
-  },
-  
-  // Configure the y-axis
-  y: {
-    grid: true,
-    label: "Share of electricity generation"
-  },
-  
-  marks: [
-    Plot.areaY(
-      join_shares.filter((d) => d.acep_region === "Coastal"),
-      {
-        x:"year",
-        y:"generation_share", 
-        fill: "Fuel Type",
-        order: ["Oil","Hydro","Wind"],
-        tip: {format: {x: "d", y: (d) => `${(d).toLocaleString(undefined, {maximumFractionDigits: 2})}%`}}
-      }
-    ),
-    Plot.ruleY([0])
-  ],
-  
-  // Legend
-  color: {
-    domain: ["Oil","Hydro","Wind"],
-    range: ["#BFBFBF","#96B3DF","#F79646"],
-    legend: true
-}
-})
+```{r, eval=knitr::is_html_output()}
+#| label: fig-generation-fuel-coastal
+#| fig-cap: "Share of Net Generation by Fuel Type, Coastal Region"
+coastal_shares_html <-
+  coastal_shares_plot +
+  geom_col_interactive(aes(fill = fuel_type, tooltip = paste("Year:", year, 
+                                           "<br>Fuel Type:", fuel_type,
+                                           "<br>Share of Electricity Generation", round(generation_share,2))),
+                       position = position_stack(reverse = TRUE))
+
+girafe(code = print(coastal_shares_html))
+
+```
+
+```{r, eval=knitr::is_latex_output()}
+coastal_shares_pdf <- 
+  coastal_shares_plot +
+  geom_col(position = position_stack(reverse = TRUE)) +
+  ggtitle("Figure 4.3: Share of Net Generation by Fuel Type, Coastal Region")
+
+print(coastal_shares_pdf)
 ```
 
 Generation grew at an average annual growth rate of `r cagr("Coastal")`% from 2011 to 2021. @fig-generation-coastal highlights the yearly trends in generation by fuel source.
 
-```{ojs}
-//| label: fig-generation-coastal
-//| fig-cap: "Electricity Generation, Coastal Region"
+```{r}
+coastal_generation_gwh <- gen_data_gwh %>% filter(acep_region == "Coastal",
+                              fuel_type %in% c("Oil", "Hydro", "Wind")) %>%
+                              mutate(fuel_type = factor(fuel_type, levels = c("Oil", "Hydro", "Wind")))
+coastal_generation_gwh_plot <- 
+  ggplot(coastal_generation_gwh, 
+       aes(x = year, 
+           y = generation_gwh, 
+           fill = fuel_type)) +
 
-// Plotting total generation by region and year
-Plot.plot({
+  scale_x_continuous(name = "\nYear",
+                     breaks = seq(2011, 2021, by = 1),
+                     expand = c(0,0)) +
   
-  // Configure the plot
-  //title: "Coastal region electricity generation",
-  insetLeft: 0,
-  insetRight: 0,
-  width: width,
+  scale_y_continuous(name = "Generation (GWh)\n",
+                   limits = c(0,1300),
+                   breaks = seq(0, 1200, by = 100),
+                   expand = c(0,0)) +
   
-  // Configure the x-axis
-  x: {
-    tickFormat: "d",
-    label: "Year"
-  },
   
-  // Configure the y-axis
-  y: {
-    grid: true,
-    label: "Generation (GWh)"
-  },
+  scale_fill_manual(values = c("#BFBFBF","#96B3DF","#F79646")) +
+
+  theme_bw() +
   
-  // Plotting the series
-  marks: [
-    Plot.barY(
-      gen_data_gwh.filter(d => d.acep_region === "Coastal" && d.generation !== null),
-      Plot.groupX(
-        {
-          y: "sum"
-        },
-        {
-          x: "year",
-          y: "generation",
-          fill: "Fuel Type",
-          order: ["Oil","Hydro","Wind"],
-          tip: {format: {x: "d"}}
-        }
-      )
-    ),
-    Plot.ruleY([0])
-  ],
-  
-  // Legend
-  color: {
-    domain: ["Oil","Hydro","Wind"],
-    range: ["#BFBFBF","#96B3DF","#F79646"],
-    legend: true
-  }
-})
+  theme(legend.position = "top",
+        legend.title = element_blank(),
+        legend.text = element_text(size=7),
+        legend.key.size = unit(.4, "cm"),
+        panel.grid.major.x = element_blank(),
+        panel.grid.minor.x = element_blank(),
+        panel.grid.minor.y = element_blank(),
+        panel.border = element_blank()) +
+  guides(fill = guide_legend(nrow = 1))
 ```
+
+```{r, eval=knitr::is_html_output()}
+#| label: fig-generation-coastal
+#| fig-cap: "Electricity Generation, Coastal Region"
+coastal_generation_gwh_html <-
+  coastal_generation_gwh_plot +
+  geom_col_interactive(aes(fill = fuel_type, tooltip = paste("Year:", year, 
+                                           "<br>Fuel Type:", fuel_type,
+                                           "<br>Generation (GWh)", round(generation_gwh,2))),
+                       position = position_stack(reverse = TRUE))
+
+girafe(code = print(coastal_generation_gwh_html))
+
+```
+
+```{r, eval=knitr::is_latex_output()}
+coastal_generation_gwh_pdf <- 
+  coastal_generation_gwh_plot +
+  geom_col(position = position_stack(reverse = TRUE)) +
+  ggtitle("Figure 4.4: Electricity Generation, Coastal Region")
+
+print(coastal_generation_gwh_pdf)
+```
+
 
 ## Railbelt
 
 Railbelt generation has seen notable changes in how it generates electricity between 2011 and 2021. In 2011, the Railbelt region generated `r generation_share("Railbelt",2011,"Gas")`% of electricity from gas, `r generation_share("Railbelt",2011,"Coal")`% from coal, `r generation_share("Railbelt",2011,"Hydro")`% from hydro, and `r generation_share("Railbelt",2011,"Oil")`% from oil. Additionally, a small amount of wind generation was present. In 2021, the region generated `r generation_share("Railbelt",2021,"Gas")`% of electricity from gas, `r generation_share("Railbelt",2021,"Coal")`% from coal, `r generation_share("Railbelt",2021,"Hydro")`% from hydro, `r generation_share("Railbelt",2021,"Oil")`% from oil, and `r generation_share("Railbelt",2021,"Wind")`% from wind. Additionally, a small amount of solar generation was present. In addition, storage played a role in generation, albeit the net result is negative due to non-perfect efficiencies. @fig-generation-fuel-railbelt shows how this generation mix has changed over the years.
 
-```{ojs}
-//| label: fig-generation-fuel-railbelt
-//| fig-cap: "Share of Net Generation by Fuel Type, Railbelt Region"
+```{r}
+railbelt_shares <- join_shares %>% filter(acep_region == "Railbelt",
+                              fuel_type %in% c("Coal", "Oil", "Gas", "Hydro", "Wind", "Solar")) %>%
+                              mutate(fuel_type = factor(fuel_type, levels = c("Coal", "Oil", "Gas", "Hydro", "Wind", "Solar")))
 
-Plot.plot({//| 
+railbelt_shares_plot <- 
+  ggplot(railbelt_shares, 
+       aes(x = year, 
+           y = generation_share, 
+           fill = fuel_type)) +
 
-  // Configure the plot
-  //title: "Share of net generation by fuel type, Railbelt region",
-  caption: caption_gen_mix,
-  insetLeft: 0,
-  insetRight: 0,
-  width: width,
+  scale_x_continuous(name = "\nYear",
+                     breaks = seq(2011, 2021, by = 1),
+                     expand = c(0,0)) +
   
-  // Configure the x-axis
-  x: {
-    tickFormat: "d",
-    label: "Year"
-  },
+  scale_y_continuous(name = "Share of Electricity Generation (%)\n",
+                   limits = c(0,101),
+                   breaks = seq(0, 100, by = 10),
+                   expand = c(0,0)) +
   
-  // Configure the y-axis
-  y: {
-    grid: true,
-    label: "Share of electricity generation"
-  },
   
-  marks: [
-    Plot.areaY(
-      join_shares.filter((d) => d.acep_region === "Railbelt"),
-      {
-        x:"year",
-        y:"generation_share", 
-        fill: "Fuel Type",
-        order: ["Coal","Oil","Gas","Hydro","Wind","Solar"],
-        tip: {format: {x: "d", y: (d) => `${(d).toLocaleString(undefined, {maximumFractionDigits: 2})}%`}}
-      }
-    ),
-    Plot.ruleY([0])
-  ],
-  
-  // Legend
-  color: {
-    domain: ["Coal","Oil","Gas","Hydro","Wind","Solar"],
-    range: ["#7f7f7f","#BFBFBF","#DCD9C5","#96B3DF","#F79646","#F5C243"],
-    legend: true
-  },
-})
+  scale_fill_manual(values = c("#7f7f7f","#BFBFBF","#DCD9C5","#96B3DF","#F79646","#F5C243")) +
+  #theme_minimal() +
+  labs(caption ="Note: Storage is not included here since net generation is negative.") +
+  theme(legend.position = "top",
+        panel.background = element_blank(), 
+        panel.grid = element_blank(),
+        legend.title = element_blank(),
+        legend.text = element_text(size=6),
+        plot.caption = element_text(hjust = 0.5, colour = "gray65"),
+        plot.caption.position = "plot") +
+  guides(fill = guide_legend(nrow = 1))
+```
+
+```{r, eval=knitr::is_html_output()}
+#| label: fig-generation-fuel-railbelt
+#| fig-cap: "Share of Net Generation by Fuel Type, Railbelt Region"
+railbelt_shares_html <-
+  railbelt_shares_plot +
+  geom_col_interactive(aes(fill = fuel_type, tooltip = paste("Year:", year, 
+                                           "<br>Fuel Type:", fuel_type,
+                                           "<br>Share of Electricity Generation", round(generation_share,2))),
+                       position = position_stack(reverse = TRUE))
+
+girafe(code = print(railbelt_shares_html))
+
+```
+
+```{r, eval=knitr::is_latex_output()}
+railbelt_shares_pdf <- 
+  railbelt_shares_plot +
+  geom_col(position = position_stack(reverse = TRUE)) +
+  ggtitle("Figure 4.5: Share of Net Generation by Fuel Type, Railbelt Region")
+
+print(railbelt_shares_pdf)
 ```
 
 Generation from 2011 to 2021 saw an average annual growth rate of `r cagr("Railbelt")`%. @fig-generation-railbelt highlights the yearly trends in generation by fuel source.
 
-```{ojs}
-//| label: fig-generation-railbelt
-//| fig-cap: "Electricity Generation, Railbelt Region"
+```{r}
+railbelt_generation_gwh <- gen_data_gwh %>% filter(acep_region == "Railbelt",
+                              fuel_type %in% c("Coal","Oil","Gas","Hydro","Wind","Solar")) %>%
+                              mutate(fuel_type = factor(fuel_type, levels = c("Coal","Oil","Gas","Hydro","Wind","Solar")))
+railbelt_generation_gwh_plot <- 
+  ggplot(railbelt_generation_gwh, 
+       aes(x = year, 
+           y = generation_gwh, 
+           fill = fuel_type)) +
 
-// Plotting total generation by region and year
-Plot.plot({
+  scale_x_continuous(name = "\nYear",
+                     breaks = seq(2011, 2021, by = 1),
+                     expand = c(0,0)) +
   
-  // Configure the plot
-  //title: "Railbelt region electricity generation",
-  insetLeft: 0,
-  insetRight: 0,
-  width: width,
+  scale_y_continuous(name = "Generation (GWh)\n",
+                   limits = c(0,5500),
+                   breaks = seq(0, 5000, by = 500),
+                   expand = c(0,0)) +
   
-  // Configure the x-axis
-  x: {
-    tickFormat: "d",
-    label: "Year"
-  },
   
-  // Configure the y-axis
-  y: {
-    grid: true,
-    label: "Generation (GWh)"
-  },
+  scale_fill_manual(values = c("#7f7f7f","#BFBFBF","#DCD9C5","#96B3DF","#F79646","#F5C243")) +
+
+  theme_bw() +
   
-  // Plotting the series
-  marks: [
-    Plot.barY(
-      gen_data_gwh.filter(d => d.acep_region === "Railbelt"),
-      Plot.groupX(
-        {
-          y: "sum"
-        },
-        {
-          x: "year",
-          y: "generation",
-          fill: "Fuel Type",
-          order: ["Coal","Oil","Gas","Hydro","Wind","Solar"],
-          tip: {format: {x: "d"}}
-        }
-      )
-    ),
-    Plot.ruleY([0])
-  ],
-  
-  // Legend
-  color: {
-    domain: ["Coal","Oil","Gas","Hydro","Wind","Solar"],
-    range: ["#7f7f7f","#BFBFBF","#DCD9C5","#96B3DF","#F79646","#F5C243"],
-    legend: true
-  }
-})
+  theme(legend.position = "top",
+        legend.title = element_blank(),
+        legend.text = element_text(size=7),
+        legend.key.size = unit(.4, "cm"),
+        panel.grid.major.x = element_blank(),
+        panel.grid.minor.x = element_blank(),
+        panel.grid.minor.y = element_blank(),
+        panel.border = element_blank()) +
+  guides(fill = guide_legend(nrow = 1))
+```
+
+```{r, eval=knitr::is_html_output()}
+#| label: fig-generation-railbelt
+#| fig-cap: "Electricity Generation, Railbelt Region"
+railbelt_generation_gwh_html <-
+  railbelt_generation_gwh_plot +
+  geom_col_interactive(aes(fill = fuel_type, tooltip = paste("Year:", year, 
+                                           "<br>Fuel Type:", fuel_type,
+                                           "<br>Generation (GWh)", round(generation_gwh,2))),
+                       position = position_stack(reverse = TRUE))
+
+girafe(code = print(railbelt_generation_gwh_html))
+
+```
+
+```{r, eval=knitr::is_latex_output()}
+railbelt_generation_gwh_pdf <- 
+  railbelt_generation_gwh_plot +
+  geom_col(position = position_stack(reverse = TRUE)) +
+  ggtitle("Figure 4.6: Electricity Generation, Railbelt Region")
+
+print(railbelt_generation_gwh_pdf)
 ```
 
 ## Rural Remote
 
 The Rural Remote region has seen notable changes between 2011 and 2021 in how it generates electricity. In 2011, the region generated `r generation_share("Rural Remote",2011,"Oil")`% of electricity from oil, `r generation_share("Rural Remote",2011,"Gas")`% from gas, `r generation_share("Rural Remote",2011,"Hydro")`% from hydro, and `r generation_share("Rural Remote",2011,"Wind")`% from wind. In 2021, the region generated `r generation_share("Rural Remote",2021,"Oil")`% of electricity from oil (mostly diesel), `r generation_share("Rural Remote",2021,"Gas")`% from gas, `r generation_share("Rural Remote",2021,"Hydro")`% from hydro, and `r generation_share("Rural Remote",2021,"Wind")`% from wind. Additionally, a small amount of solar generation was present. @fig-generation-fuel-rural shows how this generation mix has changed over the years.
 
-```{ojs}
-//| label: fig-generation-fuel-rural
-//| fig-cap: "Share of Net Generation by Fuel Type, Rural Remote Region"
+```{r}
+rural_remote_shares <- join %>% filter(acep_region == "Rural Remote",
+                              fuel_type %in% c("Oil", "Gas", "Hydro", "Wind", "Solar", "Other")) %>% 
+  mutate(generation_share = generation/total_generation*100,
+fuel_type = factor(fuel_type, levels = c("Oil", "Gas", "Hydro", "Wind", "Solar", "Other")))
 
-// Plotting the shares for the coastal region
-Plot.plot({
+rural_remote_shares_plot <- 
+  ggplot(rural_remote_shares, 
+       aes(x = year, 
+           y = generation_share, 
+           fill = fuel_type)) +
 
-  // Configure the plot
-  //title: "Share of net generation by fuel type, Rural Remote region",
-  caption: caption_gen_mix,
-  insetLeft: 0,
-  insetRight: 0,
-  width: width,
+  scale_x_continuous(name = "\nYear",
+                     breaks = seq(2011, 2021, by = 1),
+                     expand = c(0,0)) +
   
-  // Configure the x-axis
-  x: {
-    tickFormat: "d",
-    label: "Year"
-  },
+  scale_y_continuous(name = "Share of Electricity Generation (%)\n",
+                   limits = c(0,101),
+                   breaks = seq(0, 100, by = 10),
+                   expand = c(0,0)) +
   
-  // Configure the y-axis
-  y: {
-    grid: true,
-    label: "Share of electricity generation"
-  },
   
-  marks: [
-    Plot.areaY(
-      join_shares.filter((d) => d.acep_region === "Rural Remote"),
-      {
-        x:"year",
-        y:"generation_share", 
-        fill: "Fuel Type",
-        order: ["Oil","Gas","Hydro","Wind","Solar","Other"],
-        tip: {format: {x: "d", y: (d) => `${(d).toLocaleString(undefined, {maximumFractionDigits: 2})}%`}}
-      }
-    ),
-    Plot.ruleY([0])
-  ],
-  
-  // Legend
-  color: {
-    domain: ["Oil","Gas","Hydro","Wind","Solar","Other"],
-    range: ["#BFBFBF","#DCD9C5","#96B3DF","#F79646","#F5C243","#C0504D"],
-    legend: true
-}
-})
+  scale_fill_manual(values = c("#BFBFBF","#DCD9C5","#96B3DF","#F79646","#F5C243","#C0504D")) +
+  #theme_minimal() +
+  labs(caption ="Note: Storage is not included here since net generation is negative.") +
+  theme(legend.position = "top",
+        panel.background = element_blank(), 
+        panel.grid = element_blank(),
+        legend.title = element_blank(),
+        legend.text = element_text(size=6),
+        plot.caption = element_text(hjust = 0.5, colour = "gray65"),
+        plot.caption.position = "plot") +
+  guides(fill = guide_legend(nrow = 1))
+```
+
+```{r, eval=knitr::is_html_output()}
+#| label: fig-generation-fuel-rural
+#| fig-cap: "Share of Net Generation by Fuel Type, Rural Remote Region"
+rural_remote_shares_html <-
+  rural_remote_shares_plot +
+  geom_col_interactive(aes(fill = fuel_type, tooltip = paste("Year:", year, 
+                                           "<br>Fuel Type:", fuel_type,
+                                           "<br>Share of Electricity Generation", round(generation_share,2))),
+                       position = position_stack(reverse = TRUE))
+
+girafe(code = print(rural_remote_shares_html))
+
+```
+
+```{r, eval=knitr::is_latex_output()}
+rural_remote_shares_pdf <- 
+  rural_remote_shares_plot +
+  geom_col(position = position_stack(reverse = TRUE)) +
+  ggtitle("Figure 4.7: Share of Net Generation by Fuel Type, Rural Remote Region")
+
+print(rural_remote_shares_pdf)
 ```
 
 Generation from 2011 to 2021 saw an average annual growth rate of `r cagr("Rural Remote")`%. @fig-generation-rural highlights the yearly trends in generation by fuel source. From 2013 to 2014, a large increase in gas generation is observed due to operations on the North Slope - specifically in the Barrow Utilities & Electric Cooperative, Inc. (BUECI), Deadhorse, and Nuiqsut service regions.
 
-```{ojs}
-//| label: fig-generation-rural
-//| fig-cap: "Electricity Generation, Rural Remote Region"
+```{r}
+gen_data_gwh_rural_remote <- join %>%
+  filter(fuel_type != "Storage" ) %>%
+  mutate(generation_gwh = generation/1000)
 
-// Plotting total generation by region and year
-Plot.plot({
+rural_remote_generation_gwh <- gen_data_gwh_rural_remote %>% filter(acep_region == "Rural Remote",
+                              fuel_type %in% c("Oil","Gas","Hydro","Wind","Solar", "Other")) %>%
+                              mutate(fuel_type = factor(fuel_type, levels = c("Oil","Gas","Hydro","Wind","Solar", "Other")))
+rural_remote_generation_gwh_plot <- 
+  ggplot(rural_remote_generation_gwh, 
+       aes(x = year, 
+           y = generation_gwh, 
+           fill = fuel_type)) +
+
+  scale_x_continuous(name = "\nYear",
+                     breaks = seq(2011, 2021, by = 1),
+                     expand = c(0,0)) +
   
-  // Configure the plot
-  //title: "Rural remote region electricity generation",
-  insetLeft: 0,
-  insetRight: 0,
-  width: width,
+  scale_y_continuous(name = "Generation (GWh)\n",
+                   limits = c(0,600),
+                   breaks = seq(0, 550, by = 50),
+                   expand = c(0,0)) +
   
-  // Configure the x-axis
-  x: {
-    tickFormat: "d",
-    label: "Year"
-  },
   
-  // Configure the y-axis
-  y: {
-    grid: true,
-    label: "Generation (GWh)"
-  },
+  scale_fill_manual(values = c("#BFBFBF","#DCD9C5","#96B3DF","#F79646","#F5C243","#C0504D")) +
+
+  theme_bw() +
   
-  // Plotting the series
-  marks: [
-    Plot.barY(
-      gen_data_gwh.filter(d => d.acep_region === "Rural Remote"),
-      Plot.groupX(
-        {
-          y: "sum"
-        },
-        {
-          x: "year",
-          y: "generation",
-          fill: "Fuel Type",
-          order: ["Oil","Gas","Hydro","Wind","Solar","Other"],
-          tip: {format: {x: "d"}}
-        }
-      )
-    ),
-    Plot.ruleY([0])
-  ],
-  
-  // Legend
-  color: {
-    domain: ["Oil","Gas","Hydro","Wind","Solar","Other"],
-    range: ["#BFBFBF","#DCD9C5","#96B3DF","#F79646","#F5C243","#C0504D"],
-    legend: true
-  }
-})
+  theme(legend.position = "top",
+        legend.title = element_blank(),
+        legend.text = element_text(size=7),
+        legend.key.size = unit(.4, "cm"),
+        panel.grid.major.x = element_blank(),
+        panel.grid.minor.x = element_blank(),
+        panel.grid.minor.y = element_blank(),
+        panel.border = element_blank()) +
+  guides(fill = guide_legend(nrow = 1))
+```
+
+```{r, eval=knitr::is_html_output()}
+#| label: fig-generation-rural
+#| fig-cap: "Electricity Generation, Rural Remote Region"
+rural_remote_generation_gwh_html <-
+  rural_remote_generation_gwh_plot +
+  geom_col_interactive(aes(fill = fuel_type, tooltip = paste("Year:", year, 
+                                           "<br>Fuel Type:", fuel_type,
+                                           "<br>Generation (GWh)", round(generation_gwh,2))),
+                       position = position_stack(reverse = TRUE))
+
+girafe(code = print(rural_remote_generation_gwh_html))
+
+```
+
+```{r, eval=knitr::is_latex_output()}
+rural_remote_generation_gwh_pdf <- 
+  rural_remote_generation_gwh_plot +
+  geom_col(position = position_stack(reverse = TRUE)) +
+  ggtitle("Figure 4.8: Electricity Generation, Rural Remote Region")
+
+print(rural_remote_generation_gwh_pdf)
 ```
