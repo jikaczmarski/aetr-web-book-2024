@@ -8,6 +8,10 @@ output:
     pre_processor: quarto::observable
 cap-location: top
 echo: false
+format:
+  pdf:
+    fig-width: 6
+    fig-height: 3.5
 ---
 
 ```{r}
@@ -33,6 +37,12 @@ prices <- read_csv("./data/final_data/prices.csv")
 source("scripts/inline_functions/price_inline_functions.R")
 
 weighted_prices <- read_csv("./data/final_data/weighted_prices.csv")
+
+# Function to make space regardless of execution format
+# To use: write `r space` outside of a code block
+# Modify globally at ./scripts/inline_functions/space.R
+source("scripts/inline_functions/space.R")
+
 ```
 
 ::: {.content-visible when-format="html"}
@@ -64,8 +74,7 @@ Note that all prices in this section have been adjusted for inflation over time 
 
 Most notably, the dramatic effects of the PCE subsidy can be seen by comparing the price distribution of the residential customer class against the price distribution of the commercial/other customer classes in the Rural Remote and Coastal regions. 
 
-
-<!--<br> -->
+`r space`
 
 ```{r}
 # desired future inputs:  
@@ -462,6 +471,8 @@ raincloud(
 ### Regional Averages
 Due to the wide range of electricity prices in Alaska, it is difficult to accurately summarize the data. Because of this, we determined that averages were best calculated using a customer account weighted average. Population is roughly correlated to price, with small communities experiencing higher rates than larger communities. The average number of customer accounts for the year was used to calculate the weighted arithmetic mean price for each year and region. `r if (knitr::is_html_output())"@fig-price-over-time-html" else if (knitr::is_latex_output()) "@fig-price-over-time-pdf"` is a graph of residential customer prices over time after weighting for the number of customer accounts.  
 
+`r space`
+
 ```{r}
 # code for both html and pdf
 
@@ -542,7 +553,7 @@ print(regions_pdf)
 
 ```
 
-
+`r space`
 
 ## Coastal
 
@@ -551,6 +562,8 @@ print(regions_pdf)
 The average real price (in 2021 dollars) of electricity for Residential customers in the Coastal region rose `r price_delta(region="Coastal", sector="residential", pct=TRUE, numeric_out=TRUE)`% from `r price(region="Coastal", sector="residential", year=2011)` cents/kWh in 2011 to `r price(region="Coastal", sector="residential", year=2019)` cents/kWh in 2019. The average price of electricity for Commercial customers in the Coastal region fell `r price_delta(region="Coastal", sector="commercial", pct=TRUE, numeric_out=TRUE)`% from `r price(region="Coastal", sector="commercial", year=2011)` cents/kWh in 2011 to `r price(region="Coastal", sector="commercial", year=2019)` cents/kWh in 2019. Finally, the average price of electricity for Other customers in the Coastal region fell `r price_delta(region="Coastal", sector="other", pct=TRUE, numeric_out=TRUE)`% from `r price(region="Coastal", sector="other", year=2011)` cents/kWh in 2011 to `r price(region="Coastal", sector="other", year=2019)` cents/kWh in 2019.  
 
 Residential customers in the Coastal region saw increases in the price of electricity while commercial and other customers saw decreases. However, the residential customer class continues to pay the lowest per kWh in the region due to a combination of low prices in high population areas and PCE subsidies in eligible communities.
+
+`r space`
 
 ```{r}
 coastal_weighted_prices <- 
@@ -627,6 +640,7 @@ print(coastal_pdf)
 
 ```
 
+`r space`
 
 ## Railbelt
 
@@ -635,6 +649,8 @@ print(coastal_pdf)
 The average real price of electricity for Residential customers in the Railbelt rose `r price_delta(region="Railbelt", sector="residential", pct=TRUE, numeric_out=TRUE)`% from `r price(region="Railbelt", sector="residential", year=2011)` cents/kWh in 2011 to `r price(region="Railbelt", sector="residential", year=2019)` cents/kWh in 2019. The average price of electricity for Commercial customers in the Railbelt rose `r price_delta(region="Railbelt", sector="commercial", pct=TRUE, numeric_out=TRUE)`% from `r price(region="Railbelt", sector="commercial", year=2011)` cents/kWh in 2011 to `r price(region="Railbelt", sector="commercial", year=2019)` cents/kWh in 2019. Finally, the average price of electricity for Other customers in the Railbelt fell `r price_delta(region="Railbelt", sector="other", pct=TRUE, numeric_out=TRUE)`% from `r price(region="Railbelt", sector="other", year=2011)` cents/kWh in 2011 to `r price(region="Railbelt", sector="other", year=2019)` cents/kWh in 2019.  
 
 This region differs significantly from the Coastal and Rural Remote regions in that residential customers pay more for electricity than the Commercial or Other customer classes.
+
+`r space`
 
 ```{r}
 railbelt_weighted_prices <- 
@@ -712,10 +728,14 @@ print(railbelt_pdf)
 
 ```
 
+`r space`
+
 ## Rural Remote
 `r if (knitr::is_html_output())"@fig-price-sector-rural-html" else if (knitr::is_latex_output()) "@fig-price-sector-rural-pdf"` shows the average price of electricity in the Rural Remote region for each customer class and year of the report. Between 2011 and 2019, Residential customers experienced a gradual increase in rates, while Commercial and Other customers experienced a gradual decrease in rates. 
 
 The average price of electricity for the Residential customers in the Rural Remote region rose `r price_delta(region="Rural Remote", sector="residential", pct=TRUE, numeric_out=TRUE)`% from `r price(region="Rural Remote", sector="residential", year=2011)` cents/kWh in 2011 to `r price(region="Rural Remote", sector="residential", year=2019)` cents/kWh in 2019. The average price of electricity for Commercial customers in the Rural Remote region fell `r price_delta(region="Rural Remote", sector="commercial", pct=TRUE, numeric_out=TRUE)`% from `r price(region="Rural Remote", sector="commercial", year=2011)` cents/kWh in 2011 to `r price(region="Rural Remote", sector="commercial", year=2019)` cents/kWh in 2019. Finally, the average price of electricity for Other customers in the Rural Remote region fell `r price_delta(region="Rural Remote", sector="other", pct=TRUE, numeric_out=TRUE)`% from `r price(region="Rural Remote", sector="other", year=2011)` cents/kWh in 2011 to `r price(region="Rural Remote", sector="other", year=2019)` cents/kWh in 2019.
+
+`r space`
 
 ```{r}
 rural_remote_weighted_prices <- 

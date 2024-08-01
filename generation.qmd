@@ -8,6 +8,10 @@ output:
     pre_processor: quarto::observable
 cap-location: top
 echo: false
+format:
+  pdf:
+    fig-width: 6 
+    fig-height: 3.5
 ---
 
 ```{r, echo=FALSE,warning=FALSE,message=FALSE}
@@ -69,6 +73,12 @@ regional_generation_mix <- generation_data %>%
 
 # Function declarations
 source("scripts/inline_functions/generation_inline_functions.R")
+
+# Function to make space regardless of execution format
+# To use: write `r space` outside of a code block
+# Modify globally at ./scripts/inline_functions/space.R
+source("scripts/inline_functions/space.R")
+
 ```
 
 ## General Overview {#sec-generation}
@@ -79,9 +89,11 @@ This section outlines the trends in generation by fuel type for each region. Gen
 
 [^2]: The PCE data do show powerhouse consumption as a separate data item, which would allow for the computation of "net generation" in PCE communities. However, we have continued to report generation in PCE communities as the gross amount in order to be consistent with previous Alaska Energy Statistics Reports.
 
-@fig-generation-by-region provides a visual representation of yearly electricity generation for the Coastal, Railbelt, and Rural Remote regions. All regions produced a relatively consistent amount of electricity between 2011 and 2021. Across this time period, the Railbelt generated an average of `r regional_generation("Railbelt")` GWh, the Coastal region generated an average of `r regional_generation("Coastal")` GWh, and the Rural Remote region generated an average of `r regional_generation("Rural Remote")` GWh. Between 2011 and 2021, the average yearly growth rate for generation was `r cagr("Coastal")`% in the Coastal region, `r cagr("Railbelt")`% in the Railbelt region, and `r cagr("Rural Remote")`% in Rural Remote communities.[^3] The Coastal and Rural Remote trends are in line with improvements in rural electrification, as well as modest population growth. Of the regions, the Railbelt is the only one that consistently saw decreases in generation across the years. Total statewide generation increased at an average annual growth rate of 0.22%.
+`r if (knitr::is_html_output())"@fig-generation-by-region-html" else if (knitr::is_latex_output()) "@fig-generation-by-region-pdf"` provides a visual representation of yearly electricity generation for the Coastal, Railbelt, and Rural Remote regions. All regions produced a relatively consistent amount of electricity between 2011 and 2021. Across this time period, the Railbelt generated an average of `r regional_generation("Railbelt")` GWh, the Coastal region generated an average of `r regional_generation("Coastal")` GWh, and the Rural Remote region generated an average of `r regional_generation("Rural Remote")` GWh. Between 2011 and 2021, the average yearly growth rate for generation was `r cagr("Coastal")`% in the Coastal region, `r cagr("Railbelt")`% in the Railbelt region, and `r cagr("Rural Remote")`% in Rural Remote communities.[^3] The Coastal and Rural Remote trends are in line with improvements in rural electrification, as well as modest population growth. Of the regions, the Railbelt is the only one that consistently saw decreases in generation across the years. Total statewide generation increased at an average annual growth rate of 0.22%.
 
 [^3]: Calculated with the compound average growth rate: $CAGR = \left(\left(\frac{gen_{2021}}{gen_{2011}} \right)^{\frac{1}{2021-2011}} -1\right)$
+
+`r space`
 
 ```{r}
 regional_generation_plot <-
@@ -102,7 +114,6 @@ regional_generation_plot <-
     breaks = seq(0,6500, by = 500),
     expand = c(0, 0)) +
   
-    
   scale_fill_manual(values = c("#8cbbda","#97cd93","#f28d8c")) +
   
   theme_bw() +
@@ -115,11 +126,13 @@ regional_generation_plot <-
         panel.grid.minor.y = element_blank(),
         panel.border = element_blank()) +
   guides(fill = guide_legend(nrow = 1))
+
 ```
 
-```{r, eval=knitr::is_html_output()}
-#| label: fig-generation-by-region
+```{r, eval=knitr::is_html_output(), fig.pos = "H"}
+#| label: fig-generation-by-region-html
 #| fig-cap: "Electricity Generation by Region"
+
 regional_generation_html <- 
   regional_generation_plot +
   
@@ -129,23 +142,29 @@ geom_col_interactive(aes(fill = acep_region,
                                  "<br>ACEP Region", acep_region,
                                  "<br>Generation (GWh):", round(total_gen, 2))),
                      position = position_stack(reverse = TRUE))
+
 girafe(code = print(regional_generation_html))
 ```
 
-```{r, eval=knitr::is_latex_output()}
+```{r, eval=knitr::is_latex_output(), fig.pos = "H"}
+#| label: fig-generation-by-region-pdf
+#| fig-cap: "Electricity Generation by Region"
+
 regional_generation_pdf <- 
   regional_generation_plot +
     
-  geom_col(position = position_stack(reverse = TRUE)) +
-  
-  ggtitle("Figure 4.1: Electricity Generation by Region")
+  geom_col(position = position_stack(reverse = TRUE)) 
 
 print(regional_generation_pdf)
 ```
 
-While generation did not change significantly during the observed time period, the resources from which generation occurred, did. @fig-generation-changes-by-region shows how the mix of generation fuels changed between 2011 and 2021.[^4]
+`r space`
+
+While generation did not change significantly during the observed time period, the resources from which generation occurred, did. `r if (knitr::is_html_output())"@fig-generation-changes-by-region-html" else if (knitr::is_latex_output()) "@fig-generation-changes-by-region-pdf"` shows how the mix of generation fuels changed between 2011 and 2021.[^4]
 
 [^4]: Oil consists of generators whose primary fuel source is diesel/distillate, naphtha, or jet fuel. Gas consists of natural or landfill gas. Hydro refers to conventional hydroelectric turbines. Wind and solar are both utility-scale (excluding behind-the-meter solar). Storage is not included in these calculations.
+
+`r space`
 
 ```{r}
 #Creating a modified version of the data
@@ -214,9 +233,10 @@ ggplot(gen_mix_diff,
 
 ```
 
-```{r, eval=knitr::is_html_output()}
-#| label: fig-generation-changes-by-region
+```{r, eval=knitr::is_html_output(), fig.pos = "H"}
+#| label: fig-generation-changes-by-region-html
 #| fig-cap: "Regional Changes in Net Generation"
+
 regional_changes_html <- 
   regional_changes_plot +
   
@@ -224,30 +244,38 @@ geom_col_interactive(aes(fill = fuel_type,
                          tooltip = 
                            paste("Percentage Point Change:", round(delta,2),
                                  "<br>Fuel Type:",fuel_type)))
+
 girafe(code = print(regional_changes_html))
 
 ```
 
-```{r, eval=knitr::is_latex_output()}
+```{r, eval=knitr::is_latex_output(), fig.pos = "H"}
+#| label: fig-generation-changes-by-region-pdf
+#| fig-cap: "Regional Changes in Net Generation"
+
 regional_changes_pdf <- 
   regional_changes_plot +
 
-  geom_col() +
-  
-  ggtitle("Figure 4.2:  Regional Changes in Net Generation")
+  geom_col()
 
 print(regional_changes_pdf)
 ```
+
+`r space`
 
 We show that for these resources, the Coastal region displaced oil generation with hydro and wind generation. The Railbelt displaced gas and oil generation with coal, hydro, and solar generation. Finally, the Rural Remote region of the state displaced coal and a small amount of hydro with gas, solar, and wind generation.
 
 This figure does not include trends in storage or the other category. Storage net generation is always negative due to the efficiency of current battery systems where more energy is sent to storage than can be recovered. The "other" category was not included in this figure as net generation was zero in 2011 and 2021 (but not throughout the series, which we show in the subsequent sections).
 
+`r space`
+
 ## Coastal
 
-In 2011, the Coastal region generated `r generation_share("Coastal",2011,"Hydro")`% of its electricity from hydro, `r generation_share("Coastal",2011,"Oil")`% from oil, and the remainder from wind.[^5] In 2021, the region generated `r generation_share("Coastal",2021,"Hydro")`% of electricity from hydro, `r generation_share("Coastal",2021,"Oil")`% from oil, and `r generation_share("Coastal",2021,"Wind")`% from wind. In addition, storage played a role in generation, albeit the net result is negative due to efficiencies. @fig-generation-fuel-coastal shows how this generation mix has changed over the years.
+In 2011, the Coastal region generated `r generation_share("Coastal",2011,"Hydro")`% of its electricity from hydro, `r generation_share("Coastal",2011,"Oil")`% from oil, and the remainder from wind.[^5] In 2021, the region generated `r generation_share("Coastal",2021,"Hydro")`% of electricity from hydro, `r generation_share("Coastal",2021,"Oil")`% from oil, and `r generation_share("Coastal",2021,"Wind")`% from wind. In addition, storage played a role in generation, albeit the net result is negative due to efficiencies. `r if (knitr::is_html_output())"@fig-generation-fuel-coastal-html" else if (knitr::is_latex_output()) "@fig-generation-fuel-coastal-pdf"` shows how this generation mix has changed over the years.
 
 [^5]: Net generation from storage facilities are not included in these calculations.
+
+`r space`
 
 ```{r}
 coastal_shares <- join_shares %>% filter(acep_region == "Coastal",
@@ -282,9 +310,10 @@ coastal_shares_plot <-
   guides(fill = guide_legend(nrow = 1))
 ```
 
-```{r, eval=knitr::is_html_output()}
-#| label: fig-generation-fuel-coastal
+```{r, eval=knitr::is_html_output(), fig.pos = "H"}
+#| label: fig-generation-fuel-coastal-html
 #| fig-cap: "Share of Net Generation by Fuel Type, Coastal Region"
+
 coastal_shares_html <-
   coastal_shares_plot +
   geom_col_interactive(aes(fill = fuel_type, tooltip = paste("Year:", year, 
@@ -296,16 +325,22 @@ girafe(code = print(coastal_shares_html))
 
 ```
 
-```{r, eval=knitr::is_latex_output()}
+```{r, eval=knitr::is_latex_output(), fig.pos = "H"}
+#| label: fig-generation-fuel-coastal-pdf
+#| fig-cap: "Share of Net Generation by Fuel Type, Coastal Region"
+
 coastal_shares_pdf <- 
   coastal_shares_plot +
-  geom_col(position = position_stack(reverse = TRUE)) +
-  ggtitle("Figure 4.3: Share of Net Generation by Fuel Type, Coastal Region")
+  geom_col(position = position_stack(reverse = TRUE))
 
 print(coastal_shares_pdf)
 ```
 
-Generation grew at an average annual growth rate of `r cagr("Coastal")`% from 2011 to 2021. @fig-generation-coastal highlights the yearly trends in generation by fuel source.
+`r space`
+
+Generation grew at an average annual growth rate of `r cagr("Coastal")`% from 2011 to 2021. `r if (knitr::is_html_output())"@fig-generation-coastal-html" else if (knitr::is_latex_output()) "@fig-generation-coastal-pdf"` highlights the yearly trends in generation by fuel source.
+
+`r space`
 
 ```{r}
 coastal_generation_gwh <- gen_data_gwh %>% filter(acep_region == "Coastal",
@@ -340,11 +375,13 @@ coastal_generation_gwh_plot <-
         panel.grid.minor.y = element_blank(),
         panel.border = element_blank()) +
   guides(fill = guide_legend(nrow = 1))
+
 ```
 
-```{r, eval=knitr::is_html_output()}
-#| label: fig-generation-coastal
+```{r, eval=knitr::is_html_output(), fig.pos = "H"}
+#| label: fig-generation-coastal-html
 #| fig-cap: "Electricity Generation, Coastal Region"
+
 coastal_generation_gwh_html <-
   coastal_generation_gwh_plot +
   geom_col_interactive(aes(fill = fuel_type, tooltip = paste("Year:", year, 
@@ -356,19 +393,24 @@ girafe(code = print(coastal_generation_gwh_html))
 
 ```
 
-```{r, eval=knitr::is_latex_output()}
+```{r, eval=knitr::is_latex_output(), fig.pos = "H"}
+#| label: fig-generation-coastal-pdf
+#| fig-cap: "Electricity Generation, Coastal Region"
+
 coastal_generation_gwh_pdf <- 
   coastal_generation_gwh_plot +
-  geom_col(position = position_stack(reverse = TRUE)) +
-  ggtitle("Figure 4.4: Electricity Generation, Coastal Region")
+  geom_col(position = position_stack(reverse = TRUE))
 
 print(coastal_generation_gwh_pdf)
 ```
 
+`r space`
 
 ## Railbelt
 
-Railbelt generation has seen notable changes in how it generates electricity between 2011 and 2021. In 2011, the Railbelt region generated `r generation_share("Railbelt",2011,"Gas")`% of electricity from gas, `r generation_share("Railbelt",2011,"Coal")`% from coal, `r generation_share("Railbelt",2011,"Hydro")`% from hydro, and `r generation_share("Railbelt",2011,"Oil")`% from oil. Additionally, a small amount of wind generation was present. In 2021, the region generated `r generation_share("Railbelt",2021,"Gas")`% of electricity from gas, `r generation_share("Railbelt",2021,"Coal")`% from coal, `r generation_share("Railbelt",2021,"Hydro")`% from hydro, `r generation_share("Railbelt",2021,"Oil")`% from oil, and `r generation_share("Railbelt",2021,"Wind")`% from wind. Additionally, a small amount of solar generation was present. In addition, storage played a role in generation, albeit the net result is negative due to non-perfect efficiencies. @fig-generation-fuel-railbelt shows how this generation mix has changed over the years.
+Railbelt generation has seen notable changes in how it generates electricity between 2011 and 2021. In 2011, the Railbelt region generated `r generation_share("Railbelt",2011,"Gas")`% of electricity from gas, `r generation_share("Railbelt",2011,"Coal")`% from coal, `r generation_share("Railbelt",2011,"Hydro")`% from hydro, and `r generation_share("Railbelt",2011,"Oil")`% from oil. Additionally, a small amount of wind generation was present. In 2021, the region generated `r generation_share("Railbelt",2021,"Gas")`% of electricity from gas, `r generation_share("Railbelt",2021,"Coal")`% from coal, `r generation_share("Railbelt",2021,"Hydro")`% from hydro, `r generation_share("Railbelt",2021,"Oil")`% from oil, and `r generation_share("Railbelt",2021,"Wind")`% from wind. Additionally, a small amount of solar generation was present. In addition, storage played a role in generation, albeit the net result is negative due to non-perfect efficiencies. `r if (knitr::is_html_output())"@fig-generation-fuel-railbelt-html" else if (knitr::is_latex_output()) "@fig-generation-fuel-railbelt-pdf"` shows how this generation mix has changed over the years.
+
+`r space`
 
 ```{r}
 railbelt_shares <- join_shares %>% filter(acep_region == "Railbelt",
@@ -402,11 +444,13 @@ railbelt_shares_plot <-
         plot.caption = element_text(hjust = 0.5, colour = "gray65"),
         plot.caption.position = "plot") +
   guides(fill = guide_legend(nrow = 1))
+
 ```
 
-```{r, eval=knitr::is_html_output()}
-#| label: fig-generation-fuel-railbelt
+```{r, eval=knitr::is_html_output(), fig.pos = "H"}
+#| label: fig-generation-fuel-railbelt-html
 #| fig-cap: "Share of Net Generation by Fuel Type, Railbelt Region"
+
 railbelt_shares_html <-
   railbelt_shares_plot +
   geom_col_interactive(aes(fill = fuel_type, tooltip = paste("Year:", year, 
@@ -418,16 +462,22 @@ girafe(code = print(railbelt_shares_html))
 
 ```
 
-```{r, eval=knitr::is_latex_output()}
+```{r, eval=knitr::is_latex_output(), fig.pos = "H"}
+#| label: fig-generation-fuel-railbelt-pdf
+#| fig-cap: "Share of Net Generation by Fuel Type, Railbelt Region"
+
 railbelt_shares_pdf <- 
   railbelt_shares_plot +
-  geom_col(position = position_stack(reverse = TRUE)) +
-  ggtitle("Figure 4.5: Share of Net Generation by Fuel Type, Railbelt Region")
+  geom_col(position = position_stack(reverse = TRUE)) 
 
 print(railbelt_shares_pdf)
 ```
 
-Generation from 2011 to 2021 saw an average annual growth rate of `r cagr("Railbelt")`%. @fig-generation-railbelt highlights the yearly trends in generation by fuel source.
+`r space`
+
+Generation from 2011 to 2021 saw an average annual growth rate of `r cagr("Railbelt")`%. `r if (knitr::is_html_output())"@fig-generation-railbelt-html" else if (knitr::is_latex_output()) "@fig-generation-railbelt-pdf"` highlights the yearly trends in generation by fuel source.
+
+`r space`
 
 ```{r}
 railbelt_generation_gwh <- gen_data_gwh %>% filter(acep_region == "Railbelt",
@@ -462,11 +512,13 @@ railbelt_generation_gwh_plot <-
         panel.grid.minor.y = element_blank(),
         panel.border = element_blank()) +
   guides(fill = guide_legend(nrow = 1))
+
 ```
 
-```{r, eval=knitr::is_html_output()}
-#| label: fig-generation-railbelt
+```{r, eval=knitr::is_html_output(), fig.pos = "H"}
+#| label: fig-generation-railbelt-html
 #| fig-cap: "Electricity Generation, Railbelt Region"
+
 railbelt_generation_gwh_html <-
   railbelt_generation_gwh_plot +
   geom_col_interactive(aes(fill = fuel_type, tooltip = paste("Year:", year, 
@@ -478,18 +530,24 @@ girafe(code = print(railbelt_generation_gwh_html))
 
 ```
 
-```{r, eval=knitr::is_latex_output()}
+```{r, eval=knitr::is_latex_output(), fig.pos = "H"}
+#| label: fig-generation-railbelt-pdf
+#| fig-cap: "Electricity Generation, Railbelt Region"
+
 railbelt_generation_gwh_pdf <- 
   railbelt_generation_gwh_plot +
-  geom_col(position = position_stack(reverse = TRUE)) +
-  ggtitle("Figure 4.6: Electricity Generation, Railbelt Region")
+  geom_col(position = position_stack(reverse = TRUE)) 
 
 print(railbelt_generation_gwh_pdf)
 ```
 
+`r space`
+
 ## Rural Remote
 
-The Rural Remote region has seen notable changes between 2011 and 2021 in how it generates electricity. In 2011, the region generated `r generation_share("Rural Remote",2011,"Oil")`% of electricity from oil, `r generation_share("Rural Remote",2011,"Gas")`% from gas, `r generation_share("Rural Remote",2011,"Hydro")`% from hydro, and `r generation_share("Rural Remote",2011,"Wind")`% from wind. In 2021, the region generated `r generation_share("Rural Remote",2021,"Oil")`% of electricity from oil (mostly diesel), `r generation_share("Rural Remote",2021,"Gas")`% from gas, `r generation_share("Rural Remote",2021,"Hydro")`% from hydro, and `r generation_share("Rural Remote",2021,"Wind")`% from wind. Additionally, a small amount of solar generation was present. @fig-generation-fuel-rural shows how this generation mix has changed over the years.
+The Rural Remote region has seen notable changes between 2011 and 2021 in how it generates electricity. In 2011, the region generated `r generation_share("Rural Remote",2011,"Oil")`% of electricity from oil, `r generation_share("Rural Remote",2011,"Gas")`% from gas, `r generation_share("Rural Remote",2011,"Hydro")`% from hydro, and `r generation_share("Rural Remote",2011,"Wind")`% from wind. In 2021, the region generated `r generation_share("Rural Remote",2021,"Oil")`% of electricity from oil (mostly diesel), `r generation_share("Rural Remote",2021,"Gas")`% from gas, `r generation_share("Rural Remote",2021,"Hydro")`% from hydro, and `r generation_share("Rural Remote",2021,"Wind")`% from wind. Additionally, a small amount of solar generation was present. `r if (knitr::is_html_output())"@fig-generation-fuel-rural-html" else if (knitr::is_latex_output()) "@fig-generation-fuel-rural-pdf"` shows how this generation mix has changed over the years.
+
+`r space`
 
 ```{r}
 rural_remote_shares <- join %>% filter(acep_region == "Rural Remote",
@@ -524,11 +582,13 @@ rural_remote_shares_plot <-
         plot.caption = element_text(hjust = 0.5, colour = "gray65"),
         plot.caption.position = "plot") +
   guides(fill = guide_legend(nrow = 1))
+
 ```
 
-```{r, eval=knitr::is_html_output()}
-#| label: fig-generation-fuel-rural
+```{r, eval=knitr::is_html_output(), fig.pos = "H"}
+#| label: fig-generation-fuel-rural-html
 #| fig-cap: "Share of Net Generation by Fuel Type, Rural Remote Region"
+
 rural_remote_shares_html <-
   rural_remote_shares_plot +
   geom_col_interactive(aes(fill = fuel_type, tooltip = paste("Year:", year, 
@@ -540,16 +600,22 @@ girafe(code = print(rural_remote_shares_html))
 
 ```
 
-```{r, eval=knitr::is_latex_output()}
+```{r, eval=knitr::is_latex_output(), fig.pos = "H"}
+#| label: fig-generation-fuel-rural-pdf
+#| fig-cap: "Share of Net Generation by Fuel Type, Rural Remote Region"
+
 rural_remote_shares_pdf <- 
   rural_remote_shares_plot +
-  geom_col(position = position_stack(reverse = TRUE)) +
-  ggtitle("Figure 4.7: Share of Net Generation by Fuel Type, Rural Remote Region")
+  geom_col(position = position_stack(reverse = TRUE)) 
 
 print(rural_remote_shares_pdf)
 ```
 
-Generation from 2011 to 2021 saw an average annual growth rate of `r cagr("Rural Remote")`%. @fig-generation-rural highlights the yearly trends in generation by fuel source. From 2013 to 2014, a large increase in gas generation is observed due to operations on the North Slope - specifically in the Barrow Utilities & Electric Cooperative, Inc. (BUECI), Deadhorse, and Nuiqsut service regions.
+`r space`
+
+Generation from 2011 to 2021 saw an average annual growth rate of `r cagr("Rural Remote")`%. `r if (knitr::is_html_output())"@fig-generation-rural-html" else if (knitr::is_latex_output()) "@fig-generation-rural-pdf"` highlights the yearly trends in generation by fuel source. From 2013 to 2014, a large increase in gas generation is observed due to operations on the North Slope - specifically in the Barrow Utilities & Electric Cooperative, Inc. (BUECI), Deadhorse, and Nuiqsut service regions.
+
+`r space`
 
 ```{r}
 gen_data_gwh_rural_remote <- join %>%
@@ -588,11 +654,13 @@ rural_remote_generation_gwh_plot <-
         panel.grid.minor.y = element_blank(),
         panel.border = element_blank()) +
   guides(fill = guide_legend(nrow = 1))
+
 ```
 
-```{r, eval=knitr::is_html_output()}
-#| label: fig-generation-rural
+```{r, eval=knitr::is_html_output(), fig.pos = "H"}
+#| label: fig-generation-rural-html
 #| fig-cap: "Electricity Generation, Rural Remote Region"
+
 rural_remote_generation_gwh_html <-
   rural_remote_generation_gwh_plot +
   geom_col_interactive(aes(fill = fuel_type, tooltip = paste("Year:", year, 
@@ -604,11 +672,13 @@ girafe(code = print(rural_remote_generation_gwh_html))
 
 ```
 
-```{r, eval=knitr::is_latex_output()}
+```{r, eval=knitr::is_latex_output(), fig.pos = "H"}
+#| label: fig-generation-rural-pdf
+#| fig-cap: "Electricity Generation, Rural Remote Region"
+
 rural_remote_generation_gwh_pdf <- 
   rural_remote_generation_gwh_plot +
-  geom_col(position = position_stack(reverse = TRUE)) +
-  ggtitle("Figure 4.8: Electricity Generation, Rural Remote Region")
+  geom_col(position = position_stack(reverse = TRUE)) 
 
 print(rural_remote_generation_gwh_pdf)
 ```
