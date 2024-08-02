@@ -8,6 +8,10 @@ output:
     pre_processor: quarto::observable
 cap-location: top
 echo: false
+format:
+  pdf:
+    fig-width: 6
+    fig-height: 3.5
 ---
 
 ```{r}
@@ -33,6 +37,12 @@ prices <- read_csv("./data/final_data/prices.csv")
 source("scripts/inline_functions/price_inline_functions.R")
 
 weighted_prices <- read_csv("./data/final_data/weighted_prices.csv")
+
+# Function to make space regardless of execution format
+# To use: write `r space` outside of a code block
+# Modify globally at ./scripts/inline_functions/space.R
+source("scripts/inline_functions/space.R")
+
 ```
 
 ::: {.content-visible when-format="html"}
@@ -60,12 +70,11 @@ Note that all prices in this section have been adjusted for inflation over time 
 
 ### Regional Overview
 ::: {.content-visible when-format="html"}
-@fig-price-regions-classes shows the distribution of prices across a selected customer class. The three classes used in this analysis can be selected from the dropdown menu. Hover your pointer over the dot to display utility information.  
+@fig-price-regions-classes-html shows the distribution of prices across a selected customer class. The three classes used in this analysis can be selected from the dropdown menu. Hover your pointer over the dot to display utility information.  
 
 Most notably, the dramatic effects of the PCE subsidy can be seen by comparing the price distribution of the residential customer class against the price distribution of the commercial/other customer classes in the Rural Remote and Coastal regions. 
 
-
-<!--<br> -->
+`r space`
 
 ```{r}
 # desired future inputs:  
@@ -109,9 +118,10 @@ rawDataOffset = 5
 ```
 
 ```{ojs}
-//| label: fig-price-regions-classes
+//| label: fig-price-regions-classes-html
 //| fig-cap: "Prices by Region and Customer Class"
 //| class: raincloud-custom
+
 Plot.plot(rainCloudX)
 
 ```
@@ -341,7 +351,7 @@ long_price <- p_prices %>%
          "total_customers")
 ```
 
-```{r warning=FALSE, eval=knitr::is_latex_output()}
+```{r warning=FALSE, eval=knitr::is_latex_output(), fig.pos = "H"}
 raincloud <- function(sector_input="residential", start_year=2011, end_year=2019, x_axis_max=65){
   d <- long_price %>%
     filter(sector == sector_input) %>% 
@@ -381,9 +391,7 @@ raincloud <- function(sector_input="residential", start_year=2011, end_year=2019
           panel.grid.major.x = element_line(color = "grey80", size = 0.5),
           plot.margin = unit(c(t=5, r=15, b=5, l=0), "pt")) +
     
-    labs(title = paste(str_to_title(sector_input), "Sector Prices,", start_year, "-", end_year),
-         x = "",
-         y = "Cents per kWh") +
+    labs(x = "", y = "Cents per kWh") +
     
     # ylim(c(0,x_axis_max)) + #remember the coord_flip, y axis is now the x axis
     coord_flip() 
@@ -401,13 +409,19 @@ raincloud <- function(sector_input="residential", start_year=2011, end_year=2019
 :::
 
 
-Below are three raincloud plots to show the distribution of prices across the three customer classes. Each dot represents the average annual price of a community for a single year in the range. For this report, data is displayed for 9 years, 2011-2019, therefore each community will render 9 points on the plot. Communities are grouped by the three regions, and the half-violin shows distribution of the prices.
+::: {.content-visible when-format="pdf"}
+Below are three raincloud plots to show the distribution of prices across the three customer classes. @fig-price-regions-residential shows Residential prices, @fig-price-regions-commercial shows Commercial prices, and @fig-price-regions-other shows prices for Other customers. Each dot on the graphs represents the average annual price of a community for a single year in the range. For this report, data is displayed for 9 years, 2011-2019, therefore each community will render 9 points on the plot. Communities are grouped by the three regions, and the colored half-violin above the dots shows distributions of the prices.
+
+:::
 
 ::: {.content-visible when-format="pdf"}
 \vspace{3ex}
 :::
 
-```{r warning=FALSE, eval=knitr::is_latex_output()}
+```{r warning=FALSE, eval=knitr::is_latex_output(), fig.pos = "H"}
+#| label: fig-price-regions-residential
+#| fig-cap: "Residential Sector Prices, 2011-2019"
+
 raincloud(
   sector_input="residential", 
   start_year=2011, 
@@ -417,16 +431,15 @@ raincloud(
 ```
 
 ::: {.content-visible when-format="pdf"}
-\vspace{3ex}
-:::
-
 Most notably, the dramatic effects of the PCE subsidy can be seen by comparing the price distribution of the residential customer class against the price distribution of the commercial/other customer classes in the Rural Remote and Coastal regions. 
 
-::: {.content-visible when-format="pdf"}
 \vspace{3ex}
 :::
 
-```{r warning=FALSE, eval=knitr::is_latex_output()}
+```{r warning=FALSE, eval=knitr::is_latex_output(), fig.pos = "H"}
+#| label: fig-price-regions-commercial
+#| fig-cap: "Commercial Sector Prices, 2011-2019"
+
 raincloud(
   sector_input="commercial", 
   start_year=2011, 
@@ -439,7 +452,10 @@ raincloud(
 \vspace{3ex}
 :::
 
-```{r warning=FALSE, eval=knitr::is_latex_output()}
+```{r warning=FALSE, eval=knitr::is_latex_output(), fig.pos = "H"}
+#| label: fig-price-regions-other
+#| fig-cap: "Other Sector Prices, 2011-2019"
+
 raincloud(
   sector_input="other", 
   start_year=2011, 
@@ -452,9 +468,10 @@ raincloud(
 \vspace{3ex}
 :::
 
-
 ### Regional Averages
-Due to the wide range of electricity prices in Alaska, it is difficult to accurately summarize the data. Because of this, we determined that averages were best calculated using a customer account weighted average. Population is roughly correlated to price, with small communities experiencing higher rates than larger communities. The average number of customer accounts for the year was used to calculate the weighted arithmetic mean price for each year and region. @fig-price-over-time is a graph of residential customer prices over time after weighting for the number of customer accounts.  
+Due to the wide range of electricity prices in Alaska, it is difficult to accurately summarize the data. Because of this, we determined that averages were best calculated using a customer account weighted average. Population is roughly correlated to price, with small communities experiencing higher rates than larger communities. The average number of customer accounts for the year was used to calculate the weighted arithmetic mean price for each year and region. `r if (knitr::is_html_output())"@fig-price-over-time-html" else if (knitr::is_latex_output()) "@fig-price-over-time-pdf"` is a graph of residential customer prices over time after weighting for the number of customer accounts.  
+
+`r space`
 
 ```{r}
 # code for both html and pdf
@@ -503,9 +520,10 @@ regions_plot <-
 ```
 
 
-```{r, eval=knitr::is_html_output()}
-#| label: fig-price-over-time
+```{r, eval=knitr::is_html_output(), fig.pos = "H"}
+#| label: fig-price-over-time-html
 #| fig-cap: "Residential Price Over Time"
+
 regions_html <- 
   regions_plot +
   geom_line_interactive(linewidth = 2) +
@@ -523,25 +541,29 @@ girafe(code = print(regions_html))
 ```
 
 
-```{r, eval=knitr::is_latex_output()}
+```{r, eval=knitr::is_latex_output(), fig.pos = "H"}
+#| label: fig-price-over-time-pdf
+#| fig-cap: "Residential Price Over Time"
+
 regions_pdf <- 
   regions_plot +
-  geom_line(linewidth = 2) +
-  ggtitle("Figure 2: Residential Price Over Time")
+  geom_line(linewidth = 2) 
 
 print(regions_pdf)
 
 ```
 
-
+`r space`
 
 ## Coastal
 
-@fig-price-sector-coastal shows the average price of electricity in the Coastal region for each customer class and year. Between 2011 and 2019, the region experienced decreasing prices for Commercial and Other customers, while Residential customers have seen a slight increase in price.
+`r if (knitr::is_html_output())"@fig-price-sector-coastal-html" else if (knitr::is_latex_output()) "@fig-price-sector-coastal-pdf"` shows the average price of electricity in the Coastal region for each customer class and year. Between 2011 and 2019, the region experienced decreasing prices for Commercial and Other customers, while Residential customers have seen a slight increase in price.
 
 The average real price (in 2021 dollars) of electricity for Residential customers in the Coastal region rose `r price_delta(region="Coastal", sector="residential", pct=TRUE, numeric_out=TRUE)`% from `r price(region="Coastal", sector="residential", year=2011)` cents/kWh in 2011 to `r price(region="Coastal", sector="residential", year=2019)` cents/kWh in 2019. The average price of electricity for Commercial customers in the Coastal region fell `r price_delta(region="Coastal", sector="commercial", pct=TRUE, numeric_out=TRUE)`% from `r price(region="Coastal", sector="commercial", year=2011)` cents/kWh in 2011 to `r price(region="Coastal", sector="commercial", year=2019)` cents/kWh in 2019. Finally, the average price of electricity for Other customers in the Coastal region fell `r price_delta(region="Coastal", sector="other", pct=TRUE, numeric_out=TRUE)`% from `r price(region="Coastal", sector="other", year=2011)` cents/kWh in 2011 to `r price(region="Coastal", sector="other", year=2019)` cents/kWh in 2019.  
 
 Residential customers in the Coastal region saw increases in the price of electricity while commercial and other customers saw decreases. However, the residential customer class continues to pay the lowest per kWh in the region due to a combination of low prices in high population areas and PCE subsidies in eligible communities.
+
+`r space`
 
 ```{r}
 coastal_weighted_prices <- 
@@ -586,8 +608,8 @@ coastal_plot <-
 
 ```
 
-```{r, eval=knitr::is_html_output()}
-#| label: fig-price-sector-coastal
+```{r, eval=knitr::is_html_output(), fig.pos = "H"}
+#| label: fig-price-sector-coastal-html
 #| fig-cap: "Sector Price Over Time, Coastal Region"
 
 coastal_html <- 
@@ -606,25 +628,29 @@ girafe(code = print(coastal_html))
 
 ```
 
-```{r, eval=knitr::is_latex_output()}
+```{r, eval=knitr::is_latex_output(), fig.pos = "H"}
+#| label: fig-price-sector-coastal-pdf
+#| fig-cap: "Sector Price Over Time, Coastal Region"
 
 coastal_pdf <- 
   coastal_plot +
-  geom_line(linewidth = 2) +
-  ggtitle("Figure 3: Sector Price Over Time, Coastal Region")
+  geom_line(linewidth = 2)
 
 print(coastal_pdf)
 
 ```
 
+`r space`
 
 ## Railbelt
 
-@fig-price-sector-railbelt shows the average price of electricity in the Railbelt region for each customer class and each year of the report. Between 2011 and 2019, Other customers saw a large decrease in price, followed by a gradual increase. Residential and Commercial customers experienced slight decreases in price until 2013 when prices reversed and rose dramatically. 
+`r if (knitr::is_html_output())"@fig-price-sector-railbelt-html" else if (knitr::is_latex_output()) "@fig-price-sector-railbelt-pdf"` shows the average price of electricity in the Railbelt region for each customer class and each year of the report. Between 2011 and 2019, Other customers saw a large decrease in price, followed by a gradual increase. Residential and Commercial customers experienced slight decreases in price until 2013 when prices reversed and rose dramatically. 
 
 The average real price of electricity for Residential customers in the Railbelt rose `r price_delta(region="Railbelt", sector="residential", pct=TRUE, numeric_out=TRUE)`% from `r price(region="Railbelt", sector="residential", year=2011)` cents/kWh in 2011 to `r price(region="Railbelt", sector="residential", year=2019)` cents/kWh in 2019. The average price of electricity for Commercial customers in the Railbelt rose `r price_delta(region="Railbelt", sector="commercial", pct=TRUE, numeric_out=TRUE)`% from `r price(region="Railbelt", sector="commercial", year=2011)` cents/kWh in 2011 to `r price(region="Railbelt", sector="commercial", year=2019)` cents/kWh in 2019. Finally, the average price of electricity for Other customers in the Railbelt fell `r price_delta(region="Railbelt", sector="other", pct=TRUE, numeric_out=TRUE)`% from `r price(region="Railbelt", sector="other", year=2011)` cents/kWh in 2011 to `r price(region="Railbelt", sector="other", year=2019)` cents/kWh in 2019.  
 
 This region differs significantly from the Coastal and Rural Remote regions in that residential customers pay more for electricity than the Commercial or Other customer classes.
+
+`r space`
 
 ```{r}
 railbelt_weighted_prices <- 
@@ -668,8 +694,8 @@ railbelt_plot <-
 
 ```
 
-```{r, eval=knitr::is_html_output()}
-#| label: fig-price-sector-railbelt
+```{r, eval=knitr::is_html_output(), fig.pos = "H"}
+#| label: fig-price-sector-railbelt-html
 #| fig-cap: "Sector Price Over Time, Railbelt Region"
 
 railbelt_html <- 
@@ -690,21 +716,26 @@ girafe(code = print(railbelt_html))
 
 ```
 
-```{r, eval=knitr::is_latex_output()}
+```{r, eval=knitr::is_latex_output(), fig.pos = "H"}
+#| label: fig-price-sector-railbelt-pdf
+#| fig-cap: "Sector Price Over Time, Railbelt Region"
 
 railbelt_pdf <- 
   railbelt_plot +
-  geom_line(linewidth = 2) +
-  ggtitle("Figure 3: Sector Price Over Time, Railbelt Region")
+  geom_line(linewidth = 2) 
 
 print(railbelt_pdf)
 
 ```
 
+`r space`
+
 ## Rural Remote
-@fig-price-sector-rural shows the average price of electricity in the Rural Remote region for each customer class and year of the report. Between 2011 and 2019, Residential customers experienced a gradual increase in rates, while Commercial and Other customers experienced a gradual decrease in rates. 
+`r if (knitr::is_html_output())"@fig-price-sector-rural-html" else if (knitr::is_latex_output()) "@fig-price-sector-rural-pdf"` shows the average price of electricity in the Rural Remote region for each customer class and year of the report. Between 2011 and 2019, Residential customers experienced a gradual increase in rates, while Commercial and Other customers experienced a gradual decrease in rates. 
 
 The average price of electricity for the Residential customers in the Rural Remote region rose `r price_delta(region="Rural Remote", sector="residential", pct=TRUE, numeric_out=TRUE)`% from `r price(region="Rural Remote", sector="residential", year=2011)` cents/kWh in 2011 to `r price(region="Rural Remote", sector="residential", year=2019)` cents/kWh in 2019. The average price of electricity for Commercial customers in the Rural Remote region fell `r price_delta(region="Rural Remote", sector="commercial", pct=TRUE, numeric_out=TRUE)`% from `r price(region="Rural Remote", sector="commercial", year=2011)` cents/kWh in 2011 to `r price(region="Rural Remote", sector="commercial", year=2019)` cents/kWh in 2019. Finally, the average price of electricity for Other customers in the Rural Remote region fell `r price_delta(region="Rural Remote", sector="other", pct=TRUE, numeric_out=TRUE)`% from `r price(region="Rural Remote", sector="other", year=2011)` cents/kWh in 2011 to `r price(region="Rural Remote", sector="other", year=2019)` cents/kWh in 2019.
+
+`r space`
 
 ```{r}
 rural_remote_weighted_prices <- 
@@ -749,10 +780,9 @@ rural_remote_plot <-
 ```
 
 
-```{r, eval=knitr::is_html_output()}
-#| label: fig-price-sector-rural
+```{r, eval=knitr::is_html_output(), fig.pos = "H"}
+#| label: fig-price-sector-rural-html
 #| fig-cap: "Sector Price Over Time, Rural Remote Region"
-
 
 rural_remote_html <- 
   rural_remote_plot +
@@ -772,12 +802,13 @@ girafe(code = print(rural_remote_html))
 
 ```
 
-```{r, eval=knitr::is_latex_output()}
+```{r, eval=knitr::is_latex_output(), fig.pos = "H"}
+#| label: fig-price-sector-rural-pdf
+#| fig-cap: "Sector Price Over Time, Rural Remote Region"
 
 rural_remote_pdf <- 
   rural_remote_plot +
-  geom_line(linewidth = 2) +
-  ggtitle("Figure 3: Sector Price Over Time, Rural Remote Region")
+  geom_line(linewidth = 2)
 
 print(rural_remote_pdf)
 
