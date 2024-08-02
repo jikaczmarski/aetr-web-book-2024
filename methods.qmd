@@ -7,7 +7,7 @@ cap-location: top
 echo: false
 ---
 
-```{r}
+```{r, echo=FALSE,warning=FALSE,message=FALSE}
 library(dplyr)
 
 ```
