@@ -6,18 +6,18 @@ book:
 
   chapters:
     - index.qmd
-    - methods.qmd
-    - capacity.qmd
-    - generation.qmd
+    # - methods.qmd
+    # - capacity.qmd
+    # - generation.qmd
     - consumption.qmd
-    - prices.qmd
-    - conclusions.qmd
-    - data.qmd
-  appendices:
-    - about.qmd
-    - historic_reports.qmd
-    - acronyms.qmd
-    - credits.qmd 
+    # - prices.qmd
+    # - conclusions.qmd
+    # - data.qmd
+  # appendices:
+    # - about.qmd
+    # - historic_reports.qmd
+    # - acronyms.qmd
+    # - credits.qmd 
 
 # These change page titles https://quarto.org/docs/books/book-structure.html#parts-appendices 
 # but not in the sidebar navigation or in cross-references
@@ -33,34 +33,34 @@ format:
     papersize: a4
 
     fontsize: 11pt
-    # mainfont: "Arial"
+    # mainfont: "Times New Roman"
     # sansfont: "Arial"
     # monofont: "Courier New"
 
     geometry:
-      - inner=3cm
-      - outer=3cm
-      - top=3cm
-      - bottom=2.5cm
-      - headsep=22pt
-      - headheight=11pt
-      - footskip=33pt
-      - ignorehead
-      - ignorefoot
-      - heightrounded
+      - inner=2cm
+      - outer=2cm
+      - top=2cm
+      - bottom=2cm
+      # - headsep=22pt
+      # - headheight=11pt
+      # - footskip=33pt
+      # - ignorehead
+      # - ignorefoot
+      # - heightrounded
 
-    toc: true
+    toc: true   # table of contents
     toc-depth: 3
     toc-title: "Table of contents"
-    lof: true
-    lot: true
+    lof: true   # list of figures
+    lot: true   # list of tables
     number-sections: true
     number-depth: 2
 
     template-partials:
-      - before-body.tex
-
-    include-in-header: include-in-header.tex
+      - scripts/latex/before-body.tex
+    include-in-header: 
+      - scripts/latex/preamble.tex
 
 date: last-modified
 date-format: "MMM D, YYYY [at] HH:mm z"

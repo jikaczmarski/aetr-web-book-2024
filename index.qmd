@@ -98,14 +98,14 @@ Alaska Center for Energy and Power. (2024). Alaska Energy Trends Report. Retriev
 
 :::
 
-## Executive Summary {.unnumbered}
+<!-- ## Executive Summary {.unnumbered}
 
 {{< include _executive_summary.qmd >}}
 
 
 ## Key Takeaways {.unnumbered}
 
-{{< include _key_takeaways.qmd >}}
+{{< include _key_takeaways.qmd >}} -->
 
 
 
