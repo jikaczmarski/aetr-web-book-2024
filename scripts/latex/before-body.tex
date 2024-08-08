@@ -8,17 +8,20 @@ $if(title)$
 \cleardoublepage
 \thispagestyle{empty}
 {\centering
-\par\noindent\includegraphics[width=\textwidth]{images/banner_acep_uaf.png}
-\vspace{1ex}
+% \par\noindent\includegraphics[width=\textwidth]{images/banner_acep_uaf.png}
+\vspace*{-2cm}
+\makebox[\textwidth]{
+  \includegraphics[width=\textwidth+2cm]{images/banner_acep_uaf.png}}
+\vspace{2ex}
 \par\noindent\includegraphics[width=\textwidth]{images/jnu_aurora.jpeg}
 \\
-\vspace{5ex}
+\vspace{7ex}
 {\huge\bfseries\color{uafblue} $title$ \par}
-\vspace{2ex}
+\vspace{3ex}
 $if(subtitle)$
 {\Large $subtitle$ \par}
 $endif$
-\vspace{10ex}
+\vspace{15ex}
 $for(by-author)$
 {\Large $by-author.name.literal$ \par}
 \vspace{3ex}
