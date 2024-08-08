@@ -4,7 +4,7 @@
 \usepackage[T1]{fontenc}
 \usepackage{fontspec}
 
-\usepackage[margin=2cm]{geometry} 
+\usepackage[margin=2cm, bottom=3cm, top=2cm]{geometry} 
 
 % Set font to Barlow
 \setmainfont{Barlow}
@@ -20,16 +20,27 @@
 % Define custom header and footer
 \newcommand{\headerfooter}{
   \fancyhf{}
-  \fancyhead[L]{{\hspace*{-\marginparsep}\hspace*{-\marginparwidth}\hspace*{-1in}\makebox[\dimexpr\paperwidth+2in\relax]{\color{uafblue}\rule{\dimexpr\paperwidth+2in\relax}{40pt}}} 
-                  {\hspace*{-\marginparsep}\hspace*{-\marginparwidth}\hspace*{-1in}\makebox[\dimexpr\paperwidth+2in\relax]{\color{uafyellow}\rule{\dimexpr\paperwidth+2in\relax}{5pt}}}}
-  \fancyhead[R]{\raisebox{30pt}{\color{white} \textbf{\fontsize{14}{16}\selectfont Alaska Electricity Trends Report, 2024}}}
+  % \fancyhead[C]{{\hspace*{-\marginparsep}\hspace*{-\marginparwidth}\hspace*{-0in}\makebox[\dimexpr\paperwidth+0in\relax]{\color{uafblue}\rule{\dimexpr\paperwidth+0in\relax}{40pt}}} 
+  %                 {\hspace*{-\marginparsep}\hspace*{-\marginparwidth}\hspace*{-0in}\makebox[\dimexpr\paperwidth+0in\relax]{\color{uafyellow}\rule{\dimexpr\paperwidth+0in\relax}{5pt}}}}
+
+  \fancyhead[C]{
+    \makebox[0pt][c]{
+      \hspace*{0cm}
+      \color{uafblue}\rule{\dimexpr\textwidth+2cm\relax}{40pt}
+    }
+    \makebox[0pt][c]{
+      \hspace*{-0.25cm}
+      \color{uafyellow}\rule{\dimexpr\textwidth+2cm\relax}{5pt}
+    }
+  }
+  \fancyhead[R]{\raisebox{17pt}{\color{white} \textbf{\fontsize{14}{16}\selectfont Alaska Electricity Trends Report, 2024}}}
   \fancyfoot[C]{\raisebox{60pt}{\vspace{0pt}\pagemark}}
   \renewcommand{\headrulewidth}{0pt}
   \renewcommand{\footrulewidth}{0pt}
   % Header footer spacing
-  \setlength{\headheight}{70pt}
-  \setlength{\footskip}{20pt}
-  \setlength{\topmargin}{-85pt}
+  \setlength{\headheight}{100pt}
+  \setlength{\footskip}{40pt}
+  \setlength{\topmargin}{-100pt}
 }
 
 % Set header and footer for chapter title pages
@@ -47,7 +58,7 @@
 \makeatletter
 \def\@makechapterhead#1{%
   \thispagestyle{chaptertitle} % Apply custom page style to chapter title pages
-  \vspace*{50pt} % Space before the chapter title
+  \vspace*{-30pt} % Space before the chapter title
   {\parindent \z@ \raggedright \normalfont
     \ifnum \c@secnumdepth >\m@ne
       \huge\bfseries \color{uafblue} \@chapapp\space \thechapter % Chapter number
