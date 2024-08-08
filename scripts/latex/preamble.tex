@@ -1,75 +1,50 @@
-% \usepackage{graphicx}
-% \usepackage{fancyhdr}
-% \usepackage{xcolor}
-% \usepackage{titlesec}
-
-% \pagestyle{fancy}
-
-% % Define colors
-% \definecolor{uafblue}{HTML}{104179} 
-% \definecolor{uafyellow}{HTML}{F8DA08} 
-
-% % Set header with blue and yellow stripes
-% \fancyhead[L]{{\hspace*{-\marginparsep}\hspace*{-\marginparwidth}\hspace*{-1in}\makebox[\dimexpr\paperwidth+2in\relax]{\color{uafblue}\rule{\dimexpr\paperwidth+2in\relax}{40pt}}} 
-%                 {\hspace*{-\marginparsep}\hspace*{-\marginparwidth}\hspace*{-1in}\makebox[\dimexpr\paperwidth+2in\relax]{\color{uafyellow}\rule{\dimexpr\paperwidth+2in\relax}{5pt}}}}
-% \fancyhead[C]{}
-% \fancyhead[R]{\raisebox{30pt}{\color{white} \textbf{\fontsize{14}{16}\selectfont Alaska Electricity Trends Report, 2024}}}
-
-% % Set footer with a blue stripe spanning text width
-% \fancyfoot[L]{}
-% \fancyfoot[C]{\vspace{-10pt}\pagemark} % Adjust the value as needed
-% \fancyfoot[R]{}
-% \fancyfoot[CE,CO]{\makebox[\textwidth]{\color{uafblue}\rule{\textwidth}{1pt}}}
-
-% % Set header and footer font
-% \renewcommand{\headrulewidth}{0pt}
-% \renewcommand{\footrulewidth}{0pt}
-% \setlength{\headheight}{70pt}
-% \setlength{\footskip}{50pt}
-% \setlength{\topmargin}{-85pt}
-
-
+\usepackage{graphicx}
 \usepackage{fancyhdr}
 \usepackage{xcolor}
-% Additional Packages
 \usepackage[T1]{fontenc}
 \usepackage{fontspec}
 
 % Set font to Barlow
 \setmainfont{Barlow}
 
-% Declare User Commands (from Jesse)
+% Styling
 \renewcommand\familydefault{\sfdefault}
-
-
-
 
 % Define colors
 \definecolor{uafblue}{HTML}{104179} 
 \definecolor{uafyellow}{HTML}{F8DA08} 
 
-% Set header and footer
-\pagestyle{fancy}
-\fancyhf{}
-\fancyhead[L]{{\hspace*{-\marginparsep}\hspace*{-\marginparwidth}\hspace*{-1in}\makebox[\dimexpr\paperwidth+2in\relax]{\color{uafblue}\rule{\dimexpr\paperwidth+2in\relax}{40pt}}} 
-                {\hspace*{-\marginparsep}\hspace*{-\marginparwidth}\hspace*{-1in}\makebox[\dimexpr\paperwidth+2in\relax]{\color{uafyellow}\rule{\dimexpr\paperwidth+2in\relax}{5pt}}}}
-\fancyhead[C]{}
-\fancyhead[R]{\raisebox{30pt}{\color{white} \textbf{\fontsize{14}{16}\selectfont Alaska Electricity Trends Report, 2024}}}
 
-\fancyfoot[L]{\raisebox{80pt}{\makebox[\textwidth]{\color{gray}\rule{\textwidth}{1pt}}}}
-\fancyfoot[C]{\raisebox{60pt}{\vspace{0pt}\pagemark}}
-\fancyfoot[R]{}
+% Define custom header and footer
+\newcommand{\headerfooter}{
+  \fancyhf{}
+  \fancyhead[L]{{\hspace*{-\marginparsep}\hspace*{-\marginparwidth}\hspace*{-1in}\makebox[\dimexpr\paperwidth+2in\relax]{\color{uafblue}\rule{\dimexpr\paperwidth+2in\relax}{40pt}}} 
+                  {\hspace*{-\marginparsep}\hspace*{-\marginparwidth}\hspace*{-1in}\makebox[\dimexpr\paperwidth+2in\relax]{\color{uafyellow}\rule{\dimexpr\paperwidth+2in\relax}{5pt}}}}
+  \fancyhead[R]{\raisebox{30pt}{\color{white} \textbf{\fontsize{14}{16}\selectfont Alaska Electricity Trends Report, 2024}}}
+  \fancyfoot[C]{\raisebox{60pt}{\vspace{0pt}\pagemark}}
+  \renewcommand{\headrulewidth}{0pt}
+  \renewcommand{\footrulewidth}{0pt}
+  % Header footer spacing
+  \setlength{\headheight}{70pt}
+  \setlength{\footskip}{20pt}
+  \setlength{\topmargin}{-85pt}
+}
 
-\renewcommand{\headrulewidth}{0pt}
-\renewcommand{\footrulewidth}{0pt}
-\setlength{\headheight}{70pt}
-\setlength{\footskip}{0pt}
-\setlength{\topmargin}{-85pt}
+% Set header and footer for chapter title pages
+\fancypagestyle{chaptertitle}{
+  \headerfooter}
+% Set header and footer for for TOC and LOF pages
+\fancypagestyle{toclof}{
+  \headerfooter}
+% Apply custom page style to TOC and LOF
+\addtocontents{toc}{\protect\thispagestyle{toclof}}
+\addtocontents{lof}{\protect\thispagestyle{toclof}}
+\addtocontents{lot}{\protect\thispagestyle{toclof}}
 
-
-
+% Chapter title formatting
 \makeatletter
 \def\@makechapterhead#1{%
+  \thispagestyle{chaptertitle} % Apply custom page style to chapter title pages
   \vspace*{50pt} % Space before the chapter title
   {\parindent \z@ \raggedright \normalfont
     \ifnum \c@secnumdepth >\m@ne
@@ -79,61 +54,12 @@
     \fi
     \interlinepenalty\@M
     \Huge \bfseries #1\par\nobreak % Chapter title
-    \vskip 0pt % Space after the chapter title
-  }}
-\def\@makeschapterhead#1{%
-  \vspace*{0pt} % Space before the chapter title (unnumbered)
-  {\parindent \z@ \raggedright \normalfont
-    \interlinepenalty\@M
-    \Huge \bfseries #1\par\nobreak % Chapter title (unnumbered)
-    \vskip 0pt % Space after the chapter title (unnumbered)
-  }}
+}}
 \makeatother
 
 
+% Set header and footer for body
+\pagestyle{fancy}
+\headerfooter
 
-
-
-
-
-
-
-% Change font inline
-% \fontfamily{ptm}\selectfont\
-
-
-
-
-
-
-% % Set header for alternating logos, center 
-% \fancyhead[L]{}
-% \fancyhead[C]{\ifthispageodd
-%                 {\includegraphics[height=0.5cm]{images/acep_logo.png}}
-%                 {\includegraphics[height=0.5cm]{images/uaf_logo.png}}}
-% \fancyhead[R]{}
-
-% % Set header for alternating chapter titles and Alaska Electricity Trends Report, 2024
-% \fancyhead[L]{\ifthispageodd
-%                 {}
-%                 {Alaska Electricity Trends Report, 2024}}
-% \fancyhead[C]{}
-% \fancyhead[R]{\ifthispageodd
-%                 {\nouppercase{\leftmark}}
-%                 {}}
-
-
-
-
-
-% % Set header for title and chapters in header, all pages
-% \fancyhead[L]{{\color{uafblue}\nouppercase{\leftmark}}} 
-% \fancyhead[C]{}
-% \fancyhead[R]{{\color{uafblue} Alaska Electricity Trends Report, 2024}}
-
-% % Set footer for alternating page numbers in the footer
-% % Alternating chapter titles and AETR 2024 title in footer
-% \fancyfoot[L]{\ifthispageodd{\nouppercase{\leftmark}}{\pagemark}}
-% \fancyfoot[C]{}
-% \fancyfoot[R]{\ifthispageodd{\pagemark}{Alaska Electricity Trends Report, 2024}}
 
