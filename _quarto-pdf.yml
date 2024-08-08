@@ -19,12 +19,9 @@ book:
     - acronyms.qmd
     - credits.qmd 
 
-# These change page titles https://quarto.org/docs/books/book-structure.html#parts-appendices 
-# but not in the sidebar navigation or in cross-references
 crossref:
   appendix-title: "Appendix"
   appendix-delim: ":"
-
 
 format:
   pdf:
@@ -33,38 +30,30 @@ format:
     papersize: a4
 
     fontsize: 11pt
-    # mainfont: "Arial"
+    # mainfont: "Times New Roman"
     # sansfont: "Arial"
     # monofont: "Courier New"
 
-    geometry:
-      - inner=3cm
-      - outer=3cm
-      - top=3cm
-      - bottom=2.5cm
-      - headsep=22pt
-      - headheight=11pt
-      - footskip=33pt
-      - ignorehead
-      - ignorefoot
-      - heightrounded
+    # geometry:
+      # - ignorehead
+      # - ignorefoot
+      # - heightrounded
 
-    toc: true
+    toc: true   
     toc-depth: 3
     toc-title: "Table of contents"
-    lof: true
-    lot: true
+    lof: true   
+    lot: true   
     number-sections: true
     number-depth: 2
 
     template-partials:
-      - before-body.tex
-
-    include-in-header: include-in-header.tex
+      - scripts/latex/before-body.tex
+    include-in-header: 
+      - scripts/latex/preamble.tex
 
 date: last-modified
 date-format: "MMM D, YYYY [at] HH:mm z"
-
 
 filters:
   - quarto

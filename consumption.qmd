@@ -161,12 +161,11 @@ sales_html <-
     stat = "identity",
     aes(
       tooltip = paste0( 
-        round(sales_delta * 100, 1), 
-        "% ", 
-        "Change in Sales",
+        round(sales_delta * 100, 1), "% ", "Change in Sales",
         "<br>", 
-        class,
-        " Customers"))
+        class, " Customers", 
+        "<br>", 
+        "Years 2011-2019"))
     )
 
 girafe(
@@ -238,12 +237,11 @@ customers_html <-
     stat = "identity",
     aes(
       tooltip = paste0(
-        round(customers_delta * 100, 1), 
-        "% ", 
-        "Change in Accounts",
+        round(customers_delta * 100, 1), "% ", "Change in Accounts",
         "<br>",
-        class,
-        " Customers"
+        class, " Customers", 
+        "<br>", 
+        "Years 2011-2019"
         ))
     )
 
@@ -542,8 +540,9 @@ filtered_data <- regional_consumption_data %>%
   mutate(
     class = factor(class, levels = c("Residential", "Commercial", "Other")),
     tooltip = paste(
-      round((sales / 1000), 0), "GWh",
-      "<br>Year:", year
+      round((sales / 1000), 0), "GWh Delivered",
+      "<br>", class, "Customers",
+      "<br>Year", year
     )
   )
 
@@ -871,7 +870,7 @@ girafe(code = print(rural_remote_customers_html))
 
 ```{r, eval=knitr::is_latex_output(), fig.pos = "H"}
 #| label: fig-accounts-rural-pdf
-#| fig-cap: "Number of Customer Accounts, Railbelt Region"
+#| fig-cap: "Number of Customer Accounts, Rural Remote Region"
 
 rural_remote_customers_pdf <- 
   rural_remote_customers_plot +

@@ -48,6 +48,13 @@ jobs:
       # - name: Fix timestamps
       #   run:  bash .github/scripts/fix-timestamps.sh
 
+      - name: Install Barlow font
+        run: |
+          mkdir -p ~/.local/share/fonts
+          wget -qO- https://github.com/google/fonts/raw/main/ofl/barlow/Barlow-Regular.ttf > ~/.local/share/fonts/Barlow-Regular.ttf
+          wget -qO- https://github.com/google/fonts/raw/main/ofl/barlow/Barlow-Bold.ttf > ~/.local/share/fonts/Barlow-Bold.ttf
+          fc-cache -f -v
+
       - name: Publish to GitHub Pages (and render)
         uses: quarto-dev/quarto-actions/publish@v2
         with:
