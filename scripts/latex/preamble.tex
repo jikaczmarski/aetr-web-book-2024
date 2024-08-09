@@ -20,27 +20,14 @@
 % Define custom header and footer
 \newcommand{\headerfooter}{
   \fancyhf{}
-  % \fancyhead[C]{{\hspace*{-\marginparsep}\hspace*{-\marginparwidth}\hspace*{-0in}\makebox[\dimexpr\paperwidth+0in\relax]{\color{uafblue}\rule{\dimexpr\paperwidth+0in\relax}{40pt}}} 
-  %                 {\hspace*{-\marginparsep}\hspace*{-\marginparwidth}\hspace*{-0in}\makebox[\dimexpr\paperwidth+0in\relax]{\color{uafyellow}\rule{\dimexpr\paperwidth+0in\relax}{5pt}}}}
-
   \fancyhead[C]{
-    \makebox[0pt][c]{
-      \hspace*{0cm}
-      \color{uafblue}\rule{\dimexpr\textwidth+2cm\relax}{40pt}
-    }
-    \makebox[0pt][c]{
-      \hspace*{-0.25cm}
-      \color{uafyellow}\rule{\dimexpr\textwidth+2cm\relax}{5pt}
-    }
+    \makebox[0pt][c]{\hspace*{0cm}\color{uafblue}\rule{\dimexpr\textwidth+2cm\relax}{40pt}}
+    \makebox[0pt][c]{\hspace*{-0.25cm}\color{uafyellow}\rule{\dimexpr\textwidth+2cm\relax}{5pt}}
   }
   \fancyhead[R]{\raisebox{17pt}{\color{white} \textbf{\fontsize{14}{16}\selectfont Alaska Electricity Trends Report, 2024}}}
   \fancyfoot[R]{\raisebox{0pt}{\color{uafblue} \textbf{\thepage}}}
   \renewcommand{\headrulewidth}{0pt}
   \renewcommand{\footrulewidth}{0pt}
-  % Header footer spacing
-  % \setlength{\headheight}{0pt}
-  % \setlength{\footskip}{-40pt}
-  % \setlength{\topmargin}{0pt}
 }
 
 % Set header and footer for chapter title pages
@@ -69,6 +56,10 @@
     \Huge \bfseries #1\par\nobreak % Chapter title
 }}
 \makeatother
+
+
+
+
 
 
 % Set header and footer for body
