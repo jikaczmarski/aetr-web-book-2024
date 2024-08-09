@@ -53,7 +53,7 @@ Generation capacity represents the maximum amount of electricity that can be gen
 
 We begin this section by showcasing the increases in total capacity across the state. In 2011, it is estimated that the total statewide electricity generation capacity was `r capacity(year=2011)` MW. We estimate that this has increased to approximately `r capacity(year=2021)` MW in 2021 based on best available data. This represents an increase of `r formatC(capacity(year=2021, numeric_out = TRUE) - capacity(year=2011, numeric_out = TRUE), format="d", big.mark=",")` MW, or `r round((capacity(year=2021, numeric_out = TRUE) - capacity(year=2011, numeric_out = TRUE))/abs(capacity(year=2011, numeric_out = TRUE)),2)*100` percent increase since 2011. To illustrate this example, we show a stacked area chart in `r if (knitr::is_html_output())"@fig-capacity-state-html" else if (knitr::is_latex_output()) "@fig-capacity-state-pdf"` that showcases growth over time for various technologies.[^1]
 
-`r space`
+`r space()`
 
 [^1]: Prime movers are categorized as follows. Fossil turbines include combined cycle turbines, gas turbines, and steam turbines. Reciprocating engines include internal combustion engines. Hydro includes hydraulic turbines and hydrokinetics. Wind includes wind turbines. Utility solar includes utility-owned photovoltaic (PV), and Rooftop solar includes customer-sited, behind-the-meter PV. Storage refers to batteries and flywheels.
 
@@ -126,13 +126,13 @@ statewide_pdf <-
 print(statewide_pdf)
 ```
 
-`r space`
+`r space()`
 
 ## Coastal
 
 For the coastal region, we observe a `r capacity_delta("Coastal")` MW increase in generation capacity (an increase of approximately `r capacity_delta("Coastal", pct=TRUE)` percent) between 2011 and 2021. `r if (knitr::is_html_output())"@fig-capacity-coastal-html" else if (knitr::is_latex_output()) "@fig-capacity-coastal-pdf"` shows the change in total installed capacity for each prime mover in the coastal region. This region saw additions of `r capacity_delta("Coastal", prime_mover = "Fossil Turbines")` MW of fossil turbines, and `r capacity_delta("Coastal", prime_mover = "Recip Engines")` MW of reciprocating engines. The remaining increases were renewable and storage capacity which we look at in more depth in `r if (knitr::is_html_output())"@fig-capacity-coastal-renewable-html" else if (knitr::is_latex_output()) "@fig-capacity-coastal-renewable-pdf"`. 
 
-`r space`
+`r space()`
 
 ```{r}
 coastal_capacity_names <- c("Fossil Turbines", "Recip Engines", "Hydro", "Wind", "Storage")
@@ -204,13 +204,13 @@ coastal_pdf <-
 print(coastal_pdf)
 ```
 
-`r space`
+`r space()`
 
 #### Coastal Renewables
 
 Across the `r capacity_delta(region = "Coastal", numeric_out = TRUE) - capacity_delta(region = "Coastal", prime_mover = "Fossil Turbines", numeric_out = TRUE) - capacity_delta(region = "Coastal", prime_mover = "Recip Engines", numeric_out = TRUE)` MW of added renewable and storage capacity <!--the remaining capacity expansions-->, hydropower accounted for the bulk of the capacity additions with `r capacity_delta("Coastal", prime_mover = "Hydro")` MW. Storage capacity increased by `r capacity_delta("Coastal", prime_mover = "Storage")` MW and wind generation capacity increased by `r capacity_delta("Coastal", prime_mover = "Wind")` MW. Between 2013 and 2018, significant hydropower additions were made in the Southeast (19.4 MW), Kodiak (11.3 MW), and the Copper-River/Chugach (6.5 MW) AEA energy regions.
 
-`r space`
+`r space()`
 
 ```{r}
 coastal_renewables_names <- c("Hydro", "Wind", "Storage")
@@ -281,13 +281,13 @@ coastal_renewable_pdf <-
 print(coastal_renewable_pdf)
 ```
 
-`r space`
+`r space()`
 
 ## Railbelt
 
 For the Railbelt region, capacity additions were dominated by more-efficient fossil fuel generating units and new battery storage. These additions are visualized in `r if (knitr::is_html_output())"@fig-capacity-railbelt-html" else if (knitr::is_latex_output()) "@fig-capacity-railbelt-pdf"`. There were `r capacity_delta("Railbelt")` MW of capacity additions between 2011 and 2021. The Railbelt region saw `r capacity_delta("Railbelt", prime_mover = "Recip Engines")` MW of reciprocating engine additions and `r capacity_delta("Railbelt", prime_mover = "Fossil Turbines")` MW of fossil fuel turbines. The remaining capacity additions were renewables and storage and are shown in `r if (knitr::is_html_output())"@fig-capacity-railbelt-renewable-html" else if (knitr::is_latex_output()) "@fig-capacity-railbelt-renewable-pdf"`.
 
-`r space`
+`r space()`
 
 ```{r}
 
@@ -357,13 +357,13 @@ railbelt_pdf <-
 print(railbelt_pdf)
 ```
 
-`r space`
+`r space()`
 
 #### Railbelt Renewables
 
 Total renewable and storage capacity in the Railbelt region increased by `r capacity_delta(region = "Railbelt", numeric_out = TRUE) - capacity_delta(region = "Railbelt", prime_mover = "Fossil Turbines", numeric_out = TRUE) - capacity_delta(region = "Railbelt", prime_mover = "Recip Engines", numeric_out = TRUE)` MW. Notable additions included the commercial commissioning of the 18 MW Fire Island Wind site in September 2012 and the 25 MW Eva Creek Wind site in October 2012. Significant investments in storage capacity have also been made. Since 2011, `r capacity_delta("Railbelt", prime_mover = "Storage")` MW of storage, `r capacity_delta("Railbelt", prime_mover = "Wind")` MW of wind, `r capacity_delta("Railbelt", prime_mover = "Hydro")` MW of hydro, `r capacity_delta("Railbelt", prime_mover = "Utility Solar")` MW of utility solar, `r capacity_delta("Railbelt", prime_mover = "Rooftop Solar")` MW of rooftop – also known as “behind-the-meter” – solar, and `r capacity_delta("Railbelt", prime_mover = "Landfill Gas")` MW of landfill gas have been added.  
 
-`r space`
+`r space()`
 
 ```{r}
 
@@ -435,13 +435,13 @@ railbelt_renewable_pdf <-
 print(railbelt_renewable_pdf)
 ```
 
-`r space`
+`r space()`
 
 ## Rural Remote
 
 The rural remote region saw an increase of `r capacity_delta("Rural Remote")` MW in capacity (a `r capacity_delta("Rural Remote", pct = TRUE)`% increase) (`r if (knitr::is_html_output())"@fig-capacity-rural-html" else if (knitr::is_latex_output()) "@fig-capacity-rural-pdf"`). Most of the increases in capacity were fossil fuel turbines (`r capacity_delta("Rural Remote", prime_mover = "Fossil Turbines")` MW added on the North Slope) and reciprocating engines (`r capacity_delta("Rural Remote", prime_mover = "Recip Engines")` MW). Renewable capacity is explored in further detail in the `r if (knitr::is_html_output())"@fig-capacity-rural-renewable-html" else if (knitr::is_latex_output()) "@fig-capacity-rural-renewable-pdf"`.
 
-`r space`
+`r space()`
 
 ```{r}
 
@@ -513,13 +513,13 @@ rural_remote_pdf <-
 print(rural_remote_pdf)
 ```
 
-`r space`
+`r space()`
 
 #### Rural Remote Renewables
 
 This region saw an absolute increase of `r capacity_delta(region = "Rural Remote", numeric_out = TRUE) - capacity_delta(region = "Rural Remote", prime_mover = "Fossil Turbines", numeric_out = TRUE) - capacity_delta(region = "Rural Remote", prime_mover = "Recip Engines", numeric_out = TRUE)` MW of renewable capacity between 2011 to 2021. Over this time period, hydropower generation resources increased by `r capacity_delta("Rural Remote", prime_mover = "Hydro")` MW, wind increased by `r capacity_delta("Rural Remote", prime_mover = "Wind")` MW, utility-scale solar increased by `r capacity_delta("Rural Remote", prime_mover = "Utility Solar")` MW and storage increased by `r capacity_delta("Rural Remote", prime_mover = "Storage")` MW. Between 2018 and 2021, 2 MW of wind was retired in the Bering Straits energy region, 1.2 MW in Kotzebue, and 0.2 MW in the Aleutians, explaining the reduction in wind capacity between the calendar years.
 
-`r space`
+`r space()`
 
 ```{r}
 
@@ -592,4 +592,4 @@ rural_remote_renewable_pdf <-
 print(rural_remote_renewable_pdf)
 ```
 
-`r space`
+`r space()`

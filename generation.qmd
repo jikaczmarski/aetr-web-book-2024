@@ -93,8 +93,6 @@ This section outlines the trends in generation by fuel type for each region. Gen
 
 [^3]: Calculated with the compound average growth rate: $CAGR = \left(\left(\frac{gen_{2021}}{gen_{2011}} \right)^{\frac{1}{2021-2011}} -1\right)$
 
-`r space`
-
 ```{r}
 regional_generation_plot <-
   ggplot(
@@ -158,13 +156,11 @@ regional_generation_pdf <-
 print(regional_generation_pdf)
 ```
 
-`r space`
 
 While generation did not change significantly during the observed time period, the resources from which generation occurred, did. `r if (knitr::is_html_output())"@fig-generation-changes-by-region-html" else if (knitr::is_latex_output()) "@fig-generation-changes-by-region-pdf"` shows how the mix of generation fuels changed between 2011 and 2021.[^4]
 
 [^4]: Oil consists of generators whose primary fuel source is diesel/distillate, naphtha, or jet fuel. Gas consists of natural or landfill gas. Hydro refers to conventional hydroelectric turbines. Wind and solar are both utility-scale (excluding behind-the-meter solar). Storage is not included in these calculations.
 
-`r space`
 
 ```{r}
 #Creating a modified version of the data
@@ -261,21 +257,21 @@ regional_changes_pdf <-
 print(regional_changes_pdf)
 ```
 
-`r space`
 
 We show that for these resources, the Coastal region displaced oil generation with hydro and wind generation. The Railbelt displaced gas and oil generation with coal, hydro, and solar generation. Finally, the Rural Remote region of the state displaced coal and a small amount of hydro with gas, solar, and wind generation.
 
 This figure does not include trends in storage or the other category. Storage net generation is always negative due to the efficiency of current battery systems where more energy is sent to storage than can be recovered. The "other" category was not included in this figure as net generation was zero in 2011 and 2021 (but not throughout the series, which we show in the subsequent sections).
 
-`r space`
+::: {.content-visible when-format="pdf"} 
+\newpage 
+:::
+
 
 ## Coastal
 
 In 2011, the Coastal region generated `r generation_share("Coastal",2011,"Hydro")`% of its electricity from hydro, `r generation_share("Coastal",2011,"Oil")`% from oil, and the remainder from wind.[^5] In 2021, the region generated `r generation_share("Coastal",2021,"Hydro")`% of electricity from hydro, `r generation_share("Coastal",2021,"Oil")`% from oil, and `r generation_share("Coastal",2021,"Wind")`% from wind. In addition, storage played a role in generation, albeit the net result is negative due to efficiencies. `r if (knitr::is_html_output())"@fig-generation-fuel-coastal-html" else if (knitr::is_latex_output()) "@fig-generation-fuel-coastal-pdf"` shows how this generation mix has changed over the years.
 
 [^5]: Net generation from storage facilities are not included in these calculations.
-
-`r space`
 
 ```{r}
 coastal_shares <- join_shares %>% filter(acep_region == "Coastal",
@@ -336,11 +332,7 @@ coastal_shares_pdf <-
 print(coastal_shares_pdf)
 ```
 
-`r space`
-
 Generation grew at an average annual growth rate of `r cagr("Coastal")`% from 2011 to 2021. `r if (knitr::is_html_output())"@fig-generation-coastal-html" else if (knitr::is_latex_output()) "@fig-generation-coastal-pdf"` highlights the yearly trends in generation by fuel source.
-
-`r space`
 
 ```{r}
 coastal_generation_gwh <- gen_data_gwh %>% filter(acep_region == "Coastal",
@@ -404,13 +396,13 @@ coastal_generation_gwh_pdf <-
 print(coastal_generation_gwh_pdf)
 ```
 
-`r space`
+::: {.content-visible when-format="pdf"} 
+\newpage 
+:::
 
 ## Railbelt
 
 Railbelt generation has seen notable changes in how it generates electricity between 2011 and 2021. In 2011, the Railbelt region generated `r generation_share("Railbelt",2011,"Gas")`% of electricity from gas, `r generation_share("Railbelt",2011,"Coal")`% from coal, `r generation_share("Railbelt",2011,"Hydro")`% from hydro, and `r generation_share("Railbelt",2011,"Oil")`% from oil. Additionally, a small amount of wind generation was present. In 2021, the region generated `r generation_share("Railbelt",2021,"Gas")`% of electricity from gas, `r generation_share("Railbelt",2021,"Coal")`% from coal, `r generation_share("Railbelt",2021,"Hydro")`% from hydro, `r generation_share("Railbelt",2021,"Oil")`% from oil, and `r generation_share("Railbelt",2021,"Wind")`% from wind. Additionally, a small amount of solar generation was present. In addition, storage played a role in generation, albeit the net result is negative due to non-perfect efficiencies. `r if (knitr::is_html_output())"@fig-generation-fuel-railbelt-html" else if (knitr::is_latex_output()) "@fig-generation-fuel-railbelt-pdf"` shows how this generation mix has changed over the years.
-
-`r space`
 
 ```{r}
 railbelt_shares <- join_shares %>% filter(acep_region == "Railbelt",
@@ -473,11 +465,7 @@ railbelt_shares_pdf <-
 print(railbelt_shares_pdf)
 ```
 
-`r space`
-
 Generation from 2011 to 2021 saw an average annual growth rate of `r cagr("Railbelt")`%. `r if (knitr::is_html_output())"@fig-generation-railbelt-html" else if (knitr::is_latex_output()) "@fig-generation-railbelt-pdf"` highlights the yearly trends in generation by fuel source.
-
-`r space`
 
 ```{r}
 railbelt_generation_gwh <- gen_data_gwh %>% filter(acep_region == "Railbelt",
@@ -541,13 +529,14 @@ railbelt_generation_gwh_pdf <-
 print(railbelt_generation_gwh_pdf)
 ```
 
-`r space`
+::: {.content-visible when-format="pdf"} 
+\newpage 
+:::
 
 ## Rural Remote
 
 The Rural Remote region has seen notable changes between 2011 and 2021 in how it generates electricity. In 2011, the region generated `r generation_share("Rural Remote",2011,"Oil")`% of electricity from oil, `r generation_share("Rural Remote",2011,"Gas")`% from gas, `r generation_share("Rural Remote",2011,"Hydro")`% from hydro, and `r generation_share("Rural Remote",2011,"Wind")`% from wind. In 2021, the region generated `r generation_share("Rural Remote",2021,"Oil")`% of electricity from oil (mostly diesel), `r generation_share("Rural Remote",2021,"Gas")`% from gas, `r generation_share("Rural Remote",2021,"Hydro")`% from hydro, and `r generation_share("Rural Remote",2021,"Wind")`% from wind. Additionally, a small amount of solar generation was present. `r if (knitr::is_html_output())"@fig-generation-fuel-rural-html" else if (knitr::is_latex_output()) "@fig-generation-fuel-rural-pdf"` shows how this generation mix has changed over the years.
 
-`r space`
 
 ```{r}
 rural_remote_shares <- join %>% filter(acep_region == "Rural Remote",
@@ -611,11 +600,7 @@ rural_remote_shares_pdf <-
 print(rural_remote_shares_pdf)
 ```
 
-`r space`
-
 Generation from 2011 to 2021 saw an average annual growth rate of `r cagr("Rural Remote")`%. `r if (knitr::is_html_output())"@fig-generation-rural-html" else if (knitr::is_latex_output()) "@fig-generation-rural-pdf"` highlights the yearly trends in generation by fuel source. From 2013 to 2014, a large increase in gas generation is observed due to operations on the North Slope - specifically in the Barrow Utilities & Electric Cooperative, Inc. (BUECI), Deadhorse, and Nuiqsut service regions.
-
-`r space`
 
 ```{r}
 gen_data_gwh_rural_remote <- join %>%
