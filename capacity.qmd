@@ -126,6 +126,8 @@ statewide_pdf <-
 print(statewide_pdf)
 ```
 
+`r space()`
+
 ::: {.content-visible when-format="pdf"} 
 \newpage 
 :::
@@ -283,6 +285,8 @@ coastal_renewable_pdf <-
 print(coastal_renewable_pdf)
 ```
 
+`r space()`
+
 ::: {.content-visible when-format="pdf"} 
 \newpage 
 :::
@@ -438,6 +442,8 @@ railbelt_renewable_pdf <-
 
 print(railbelt_renewable_pdf)
 ```
+
+`r space()`
 
 ::: {.content-visible when-format="pdf"} 
 \newpage 
