@@ -1,17 +1,6 @@
 ---
 title: "Price of Electricity"
 subtitle: "Electricity Prices for the Residential, Commercial, and Industrial Customer Classes, 2011-2019"
-date-modified: "2024-04-08T11:48:00-08:00"
-date-format: "MMM D, YYYY [at] HH:mm z"
-output:
-  quarto::quarto_html:
-    pre_processor: quarto::observable
-cap-location: top
-echo: false
-format:
-  pdf:
-    fig-width: 6
-    fig-height: 3.5
 ---
 
 ```{r}
@@ -355,7 +344,7 @@ long_price <- p_prices %>%
          "total_customers")
 ```
 
-```{r warning=FALSE, eval=knitr::is_latex_output(), fig.pos = "H"}
+```{r eval=knitr::is_latex_output(), fig.pos = "H"}
 raincloud <- function(sector_input="residential", start_year=2011, end_year=2019, x_axis_max=65){
   d <- long_price %>%
     filter(sector == sector_input) %>% 
@@ -418,7 +407,7 @@ Below are three raincloud plots to show the distribution of prices across the th
 
 `r space()`
 
-```{r warning=FALSE, eval=knitr::is_latex_output(), fig.pos = "H"}
+```{r eval=knitr::is_latex_output(), fig.pos = "H"}
 #| label: fig-price-regions-residential
 #| fig-cap: "Residential Sector Prices, 2011-2019"
 
@@ -435,7 +424,7 @@ Most notably, the dramatic effects of the PCE subsidy can be seen by comparing t
 
 `r space()`
 
-```{r warning=FALSE, eval=knitr::is_latex_output(), fig.pos = "H"}
+```{r eval=knitr::is_latex_output(), fig.pos = "H"}
 #| label: fig-price-regions-commercial
 #| fig-cap: "Commercial Sector Prices, 2011-2019"
 
@@ -449,7 +438,7 @@ raincloud(
 
 `r space()`
 
-```{r warning=FALSE, eval=knitr::is_latex_output(), fig.pos = "H"}
+```{r eval=knitr::is_latex_output(), fig.pos = "H"}
 #| label: fig-price-regions-other
 #| fig-cap: "Other Sector Prices, 2011-2019"
 

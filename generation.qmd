@@ -1,20 +1,9 @@
 ---
 title: "Net/Gross Generation"
 subtitle: "Generation by Fuel Type in Alaska, 2011-2021"
-date-modified: "2024-04-11T09:11:00-08:00"
-date-format: "MMM D, YYYY [at] HH:mm z"
-output:
-  quarto::quarto_html:
-    pre_processor: quarto::observable
-cap-location: top
-echo: false
-format:
-  pdf:
-    fig-width: 6 
-    fig-height: 3.5
 ---
 
-```{r, echo=FALSE,warning=FALSE,message=FALSE}
+```{r}
 # Import required packages
 library(tidyr)
 library(dplyr)

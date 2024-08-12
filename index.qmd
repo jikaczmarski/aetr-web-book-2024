@@ -2,13 +2,6 @@
 title: "Introduction"
 subtitle: "An Analysis of Electricity in Alaska, Data Years 2011-2021"
 author: "Alaska Center for Energy and Power"
-#date-modified: "2024-03-25T17:22:00-08:00"
-#date-format: "MMM D, YYYY [at] HH:mm z"
-output:
-  quarto::quarto_html:
-    pre_processor: quarto::observable
-cap-location: top
-echo: false
 ---
 
 ## Welcome  {#welcome .unnumbered}

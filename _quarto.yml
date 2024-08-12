@@ -7,6 +7,16 @@ book:
   description: An interactive report that summarizes federal, state, and utility electricity data for Alaska.
   keyword: Alaska, energy, capacity, generation, price, rates
 
+date: last-modified
+date-format: "MMM D, YYYY [at] HH:mm z"
+
+filters:
+  - quarto
+
+echo: false
+warning: false
+cap-location: top
+
 profile:
   group: 
-    - [pdf, html]
+    - [pdf]

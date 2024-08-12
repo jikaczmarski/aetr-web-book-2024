@@ -3,7 +3,6 @@ title: "About this Report"
 subtitle: "Description of the 2024 Alaska Electricity Trends Report Web Book"
 date-modified: "2024-04-02T12:00:00-08:00"
 date-format: "MMM D, YYYY [at] HH:mm z"
-cap-location: top
 ---
 
 ## General Overview

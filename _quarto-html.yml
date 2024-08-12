@@ -58,8 +58,9 @@ format:
       #dark: [cosmo, theme-dark.scss]
     toc: true
 
-date: last-modified
-date-format: "MMM D, YYYY [at] HH:mm z"
-
 filters:
   - quarto
+
+output:
+  quarto::quarto_html:
+    pre_processor: quarto::observable
