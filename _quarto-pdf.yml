@@ -25,7 +25,7 @@ format:
     papersize: a4
 
     fig-width: 6
-    fig-height: 3.5
+    fig-height: 3
 
     fontsize: 11pt
 
