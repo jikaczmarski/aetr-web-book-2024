@@ -41,7 +41,7 @@ regional_capacity <- capacity_data %>%
 source("scripts/inline_functions/capacity_inline_functions.R")
 
 # Function to make space regardless of execution format
-# To use: write `r space` outside of a code block
+# To use: write `r space() outside of a code block
 # Modify globally at ./scripts/inline_functions/space.R
 source("scripts/inline_functions/space.R")
 

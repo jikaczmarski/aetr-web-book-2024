@@ -39,7 +39,7 @@ source("scripts/inline_functions/price_inline_functions.R")
 weighted_prices <- read_csv("./data/final_data/weighted_prices.csv")
 
 # Function to make space regardless of execution format
-# To use: write `r space` outside of a code block
+# To use: write `r space() outside of a code block
 # Modify globally at ./scripts/inline_functions/space.R
 source("scripts/inline_functions/space.R")
 

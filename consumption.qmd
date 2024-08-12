@@ -32,7 +32,7 @@ consumption_data <- read.csv(file = "data/final_data/consumption.csv")
 source("scripts/inline_functions/consumption_inline_functions.R")
 
 # Function to make space regardless of execution format
-# To use: write `r space` outside of a code block
+# To use: write `r space()` outside of a code block
 # Modify globally at ./scripts/inline_functions/space.R
 source("scripts/inline_functions/space.R")
 
@@ -110,7 +110,7 @@ Statewide electricity consumption growth for the residential sector was `r state
 
 <!-- [^1]: For EIA reported data, the Other group includes industrial and transportation customers. For PCE reported data, it includes community and government accounts. No industrial accounts were reported in the PCE data. -->
 
-`r space`
+`r space()`
 
 ```{r}
 # Plot for statewide change in sales (html and pdf code)
@@ -185,11 +185,11 @@ print(sales_pdf)
 
 ```
 
-`r space`
+`r space()`
 
 We also examine the change in the number of customer accounts across the state. The total number of customer accounts in the state increased `r statewide_consumption_delta("Total","customers",pct=TRUE)`% from approximately `r statewide_consumption("Total","customers",2011,decimals=0)` to `r statewide_consumption("Total","customers",2019,decimals=0)`. We plot the percentage increases in customer accounts by category in `r if (knitr::is_html_output())"@fig-change-customer-accounts-html" else if (knitr::is_latex_output()) "@fig-change-customer-accounts-pdf"`. Residential accounts across the state increased `r statewide_consumption_delta("Residential","customers",pct=TRUE)`% from approximately `r statewide_consumption("Residential","customers",2011,decimals=0)` to `r statewide_consumption("Residential","customers",2019,decimals=0)`. The number of commercial accounts across the state increased `r statewide_consumption_delta("Commercial","customers",pct=TRUE)`% from `r statewide_consumption("Commercial","customers",2011,decimals=0)` to `r statewide_consumption("Commercial","customers",2019,decimals=0)`. Finally, the number of other accounts across the state has increased `r statewide_consumption_delta("Other","customers",pct=TRUE)`% from approximately `r statewide_consumption("Other","customers",2011,decimals=0)` to `r statewide_consumption("Other","customers",2019,decimals=0)`.
 
-`r space`
+`r space()`
 
 ```{r}
 # statewide increase in customer accounts
@@ -262,11 +262,11 @@ print(customers_pdf)
 
 ```
 
-`r space`
+`r space()`
 
 `r if (knitr::is_html_output())"@fig-sales_per_capita-html" else if (knitr::is_latex_output()) "@fig-sales_per_capita-pdf"` <!--orig: The following table--> shows the average annual electricity consumption for each of the regions. The Coastal region led the state in consumption per capita, with an average of `r regional_consumption_per_capita("Coastal","Residential")` kWh per customer per year. This was followed by the Railbelt region with `r regional_consumption_per_capita("Railbelt","Residential")` kWh per capita and the Rural Remote region with `r regional_consumption_per_capita("Rural Remote","Residential")` kWh per capita. Overall, each region has seen reductions in consumption per capita, which may reflect improvements in energy efficient technologies and energy efficiency/conservation behaviors.
 
-`r space`
+`r space()`
 
 ```{r}
 # code for both html and pdf
@@ -347,13 +347,13 @@ print(sales_per_capita_pdf)
 
 ```
 
-`r space`
+`r space()`
 
 ## Coastal
 
 To estimate the average yearly growth rate in each customer class, we calculate the cumulative compound average growth rate (CAGR). From 2011 to 2019, the coastal region saw an average yearly growth rate of `r cagr("Coastal", "Residential", "sales")`% for residential sales, `r cagr("Coastal", "Commercial", "sales")`% for commercial sales, and `r cagr("Coastal", "Other", "sales")`% for all other sales. `r if (knitr::is_html_output())"@fig-delivered-by-class-coastal-html" else if (knitr::is_latex_output()) "@fig-delivered-by-class-coastal-pdf"` shows these sales in GWh for each year.
 
-`r space`
+`r space()`
 
 ```{r}
 # Filter data
@@ -439,11 +439,11 @@ print(coastal_consumption_pdf)
 
 ```
 
-`r space`
+`r space()`
 
 While customer sales fell overall, customer accounts in the Coastal region increased for all customer classes. `r if (knitr::is_html_output())"@fig-accounts-coastal-hml" else if (knitr::is_latex_output()) "@fig-accounts-coastal-pdf"` shows the trend in customer accounts by class for the Coastal region. The average yearly growth rate in customer accounts was `r cagr("Coastal", "Residential", "customers")`% for the residential class, `r cagr("Coastal", "Commercial", "customers")`% for the commercial class, and `r cagr("Coastal", "Other", "customers")`% for the other class.
 
-`r space`
+`r space()`
 
 ```{r}
 # Filter data
@@ -525,13 +525,13 @@ print(coastal_customers_pdf)
 
 ```
 
-`r space`
+`r space()`
 
 ## Railbelt
 
 From 2011 to 2019, the Railbelt region saw an average yearly growth rate of `r cagr("Railbelt", "Residential", "sales")`% for residential sales, `r cagr("Railbelt", "Commercial", "sales")`% for commercial sales, and `r cagr("Railbelt", "Other", "sales")`% for all other sales. `r if (knitr::is_html_output())"@fig-delivered-by-class-railbelt-html" else if (knitr::is_latex_output()) "@fig-delivered-by-class-railbelt-pdf"` shows these sales in GWh for each year.
 
-`r space`
+`r space()`
 
 ```{r}
 # Filter data
@@ -616,11 +616,11 @@ print(railbelt_consumption_pdf)
 
 ```
 
-`r space`
+`r space()`
 
 The trends in the number of customer accounts by class are visualized in `r if (knitr::is_html_output())"@fig-accounts-railbelt-html" else if (knitr::is_latex_output()) "@fig-accounts-railbelt-pdf"`. The average yearly growth rate in customer accounts on the Railbelt was `r cagr("Railbelt", "Residential", "customers")`% for the residential class, `r cagr("Railbelt", "Commercial", "customers")`% for the commercial class, and `r cagr("Railbelt", "Other", "customers")`% for the other class.
 
-`r space`
+`r space()`
 
 ```{r}
 # Filter data
@@ -702,13 +702,13 @@ print(railbelt_customers_pdf)
 
 ```
 
-`r space`
+`r space()`
 
 ## Rural Remote
 
 From 2011 to 2019, the Rural Remote region saw an average yearly growth rate of `r cagr("Rural Remote", "Residential", "sales")`% for residential sales, `r cagr("Rural Remote", "Commercial", "sales")`% for commercial sales, and `r cagr("Rural Remote", "Other", "sales")`% for all other sales. Positive growth rates for the commercial and other customer classes are unique to the rural remote energy region as all other regions saw average yearly declines in sales. `r if (knitr::is_html_output())"@fig-delivered-by-class-rural-html" else if (knitr::is_latex_output()) "@fig-delivered-by-class-rural-pdf"` shows these sales in GWh for each year.
 
-`r space`
+`r space()`
 
 ```{r}
 # Filter data
@@ -794,11 +794,11 @@ print(rural_remote_consumption_pdf)
 
 ```
 
-`r space`
+`r space()`
 
 The trends in the number of customer accounts by class are visualized in `r if (knitr::is_html_output())"@fig-accounts-rural-html" else if (knitr::is_latex_output()) "@fig-accounts-rural-pdf"`. The average yearly growth rate in customer accounts in the Rural Remote region was `r cagr("Rural Remote", "Residential", "customers")`% for the residential class, `r cagr("Rural Remote", "Commercial", "customers")`% for the commercial class, and `r cagr("Rural Remote", "Other", "customers")`% for the other class.
 
-`r space`
+`r space()`
 
 ```{r}
 # Filter data
