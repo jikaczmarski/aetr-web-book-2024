@@ -349,6 +349,10 @@ print(sales_per_capita_pdf)
 
 `r space()`
 
+::: {.content-visible when-format="pdf"} 
+\newpage 
+:::
+
 ## Coastal
 
 To estimate the average yearly growth rate in each customer class, we calculate the cumulative compound average growth rate (CAGR). From 2011 to 2019, the coastal region saw an average yearly growth rate of `r cagr("Coastal", "Residential", "sales")`% for residential sales, `r cagr("Coastal", "Commercial", "sales")`% for commercial sales, and `r cagr("Coastal", "Other", "sales")`% for all other sales. `r if (knitr::is_html_output())"@fig-delivered-by-class-coastal-html" else if (knitr::is_latex_output()) "@fig-delivered-by-class-coastal-pdf"` shows these sales in GWh for each year.
@@ -527,6 +531,10 @@ print(coastal_customers_pdf)
 
 `r space()`
 
+::: {.content-visible when-format="pdf"} 
+\newpage 
+:::
+
 ## Railbelt
 
 From 2011 to 2019, the Railbelt region saw an average yearly growth rate of `r cagr("Railbelt", "Residential", "sales")`% for residential sales, `r cagr("Railbelt", "Commercial", "sales")`% for commercial sales, and `r cagr("Railbelt", "Other", "sales")`% for all other sales. `r if (knitr::is_html_output())"@fig-delivered-by-class-railbelt-html" else if (knitr::is_latex_output()) "@fig-delivered-by-class-railbelt-pdf"` shows these sales in GWh for each year.
@@ -703,6 +711,10 @@ print(railbelt_customers_pdf)
 ```
 
 `r space()`
+
+::: {.content-visible when-format="pdf"} 
+\newpage 
+:::
 
 ## Rural Remote
 
