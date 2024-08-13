@@ -22,7 +22,7 @@ source("scripts/inline_functions/consumption_inline_functions.R")
 # Function to make space regardless of execution format
 # To use: write `r space()` outside of a code block
 # Modify globally at ./scripts/inline_functions/space.R
-source("scripts/inline_functions/space.R")
+source("scripts/R/space.R")
 
 ```
 

@@ -30,7 +30,7 @@ weighted_prices <- read_csv("./data/final_data/weighted_prices.csv")
 # Function to make space regardless of execution format
 # To use: write `r space() outside of a code block
 # Modify globally at ./scripts/inline_functions/space.R
-source("scripts/inline_functions/space.R")
+source("scripts/R/space.R")
 
 
 ```
@@ -381,8 +381,9 @@ raincloud <- function(sector_input="residential", start_year=2011, end_year=2019
           # plot.title = element_text(size=16, hjust = 0.5),
           # plot.subtitle = element_text(size=14, hjust = 0.5),
           plot.caption = element_text(size = 8),
-          panel.grid.major.x = element_line(color = "grey80", size = 0.5),
-          plot.margin = unit(c(t=5, r=15, b=5, l=0), "pt")) +
+          panel.grid.major.x = element_line(color = "black", size = 0.1),
+          plot.margin = unit(c(t=5, r=15, b=5, l=0), "pt")
+          ) +
     
     labs(x = "", y = "Cents per kWh") +
     
@@ -499,7 +500,7 @@ regions_plot <-
     expand = c(0, 0.2)) +
 
   scale_color_manual(values = c("#8CBBDA", "#97CD93", "#F28D8C")) +
-  theme_minimal() +
+  theme_classic() +
   theme(legend.position = "none", panel.grid.minor.x = element_blank()) 
 
 
@@ -591,7 +592,7 @@ coastal_plot <-
       expand = c(0, 0.2)) +
 
     scale_color_manual(values = c("#e29617", "#fad900", "#0084c1")) +
-    theme_minimal() +
+    theme_classic() +
     theme(
       legend.position = "none", 
       panel.grid.minor.x = element_blank())
@@ -683,7 +684,7 @@ railbelt_plot <-
       expand = c(0, 0.2)) +
 
     scale_color_manual(values = c("#e29617", "#fad900", "#0084c1")) +
-    theme_minimal() +
+    theme_classic() +
     theme(legend.position = "none", panel.grid.minor.x = element_blank())
 
 ```
@@ -771,7 +772,7 @@ rural_remote_plot <-
       expand = c(0, 0.2)) +
 
     scale_color_manual(values = c("#e29617", "#fad900", "#0084c1")) +
-    theme_minimal() +
+    theme_bw() +
     theme(legend.position = "none", panel.grid.minor.x = element_blank())
 
 
