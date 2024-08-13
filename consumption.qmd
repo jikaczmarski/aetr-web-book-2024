@@ -345,7 +345,7 @@ print(sales_per_capita_pdf)
 
 To estimate the average yearly growth rate in each customer class, we calculate the cumulative compound average growth rate (CAGR). From 2011 to 2019, the coastal region saw an average yearly growth rate of `r cagr("Coastal", "Residential", "sales")`% for residential sales, `r cagr("Coastal", "Commercial", "sales")`% for commercial sales, and `r cagr("Coastal", "Other", "sales")`% for all other sales. `r if (knitr::is_html_output())"@fig-delivered-by-class-coastal-html" else if (knitr::is_latex_output()) "@fig-delivered-by-class-coastal-pdf"` shows these sales in GWh for each year.
 
-`r space()`
+`r space(vspace="0em")`
 
 ```{r}
 # Filter data
@@ -435,7 +435,7 @@ print(coastal_consumption_pdf)
 
 While customer sales fell overall, customer accounts in the Coastal region increased for all customer classes. `r if (knitr::is_html_output())"@fig-accounts-coastal-hml" else if (knitr::is_latex_output()) "@fig-accounts-coastal-pdf"` shows the trend in customer accounts by class for the Coastal region. The average yearly growth rate in customer accounts was `r cagr("Coastal", "Residential", "customers")`% for the residential class, `r cagr("Coastal", "Commercial", "customers")`% for the commercial class, and `r cagr("Coastal", "Other", "customers")`% for the other class.
 
-`r space()`
+`r space(vspace="0em")`
 
 ```{r}
 # Filter data
@@ -517,7 +517,7 @@ print(coastal_customers_pdf)
 
 ```
 
-`r space()`
+`r space(vspace="0em")`
 
 ::: {.content-visible when-format="pdf"} 
 \newpage 
@@ -527,7 +527,7 @@ print(coastal_customers_pdf)
 
 From 2011 to 2019, the Railbelt region saw an average yearly growth rate of `r cagr("Railbelt", "Residential", "sales")`% for residential sales, `r cagr("Railbelt", "Commercial", "sales")`% for commercial sales, and `r cagr("Railbelt", "Other", "sales")`% for all other sales. `r if (knitr::is_html_output())"@fig-delivered-by-class-railbelt-html" else if (knitr::is_latex_output()) "@fig-delivered-by-class-railbelt-pdf"` shows these sales in GWh for each year.
 
-`r space()`
+`r space(vspace="0em")`
 
 ```{r}
 # Filter data
@@ -616,7 +616,7 @@ print(railbelt_consumption_pdf)
 
 The trends in the number of customer accounts by class are visualized in `r if (knitr::is_html_output())"@fig-accounts-railbelt-html" else if (knitr::is_latex_output()) "@fig-accounts-railbelt-pdf"`. The average yearly growth rate in customer accounts on the Railbelt was `r cagr("Railbelt", "Residential", "customers")`% for the residential class, `r cagr("Railbelt", "Commercial", "customers")`% for the commercial class, and `r cagr("Railbelt", "Other", "customers")`% for the other class.
 
-`r space()`
+`r space(vspace="0em")`
 
 ```{r}
 # Filter data
@@ -698,7 +698,7 @@ print(railbelt_customers_pdf)
 
 ```
 
-`r space()`
+`r space(vspace="0em")`
 
 ::: {.content-visible when-format="pdf"} 
 \newpage 
@@ -708,7 +708,7 @@ print(railbelt_customers_pdf)
 
 From 2011 to 2019, the Rural Remote region saw an average yearly growth rate of `r cagr("Rural Remote", "Residential", "sales")`% for residential sales, `r cagr("Rural Remote", "Commercial", "sales")`% for commercial sales, and `r cagr("Rural Remote", "Other", "sales")`% for all other sales. Positive growth rates for the commercial and other customer classes are unique to the rural remote energy region as all other regions saw average yearly declines in sales. `r if (knitr::is_html_output())"@fig-delivered-by-class-rural-html" else if (knitr::is_latex_output()) "@fig-delivered-by-class-rural-pdf"` shows these sales in GWh for each year.
 
-`r space()`
+`r space(vspace="0em")`
 
 ```{r}
 # Filter data
@@ -798,7 +798,7 @@ print(rural_remote_consumption_pdf)
 
 The trends in the number of customer accounts by class are visualized in `r if (knitr::is_html_output())"@fig-accounts-rural-html" else if (knitr::is_latex_output()) "@fig-accounts-rural-pdf"`. The average yearly growth rate in customer accounts in the Rural Remote region was `r cagr("Rural Remote", "Residential", "customers")`% for the residential class, `r cagr("Rural Remote", "Commercial", "customers")`% for the commercial class, and `r cagr("Rural Remote", "Other", "customers")`% for the other class.
 
-`r space()`
+`r space(vspace="0em")`
 
 ```{r}
 # Filter data
