@@ -19,6 +19,8 @@ consumption_data <- read.csv(file = "data/final_data/consumption.csv")
 # Function declarations
 source("scripts/inline_functions/consumption_inline_functions.R")
 
+source("scripts/R/theme_electrified.R")
+
 # Function to make space regardless of execution format
 # To use: write `r space()` outside of a code block
 # Modify globally at ./scripts/inline_functions/space.R
@@ -117,11 +119,11 @@ sales_plot <-
     scale_x_continuous(
       name = "Percent Change", 
       breaks = seq(-12, 1, 2), 
-      expand = c(0, 0.1)) +
+      expand = c(0, 0)) +
     
     scale_y_discrete(
       name = "", 
-      expand = c(0, 0.1)) +
+      expand = c(0, 0)) +
     
     scale_fill_manual(
       values = c(
@@ -129,12 +131,8 @@ sales_plot <-
         "Residential" = "#0084c1", 
         "Commercial" = "#e29617")) +
 
-    theme_minimal() +
-    theme(
-      legend.position = "none",
-      panel.grid.major.y = element_blank(),
-      panel.grid.minor = element_blank()
-      )
+    theme_electrified() +
+    theme(panel.grid.major.y = element_blank())
 
 
 ```
@@ -194,11 +192,11 @@ customers_plot <-
     scale_x_continuous(
       name = "Percent Change", 
       breaks = seq(0, 16, 2),
-      expand = c(0, 0.1)) +
+      expand = c(0, 0)) +
     
     scale_y_discrete(
       name = "",
-      expand = c(0, 0.5)) +
+      expand = c(0, 0)) +
     
     scale_fill_manual(
       values = c(
@@ -206,12 +204,8 @@ customers_plot <-
         "Commercial" = "#e29617", 
         "Other" = "#fad900")) +
 
-    theme_minimal() +
-    theme(
-      legend.position = "none",
-      panel.grid.major.y = element_blank(),
-      panel.grid.minor = element_blank()
-      )
+    theme_electrified() +
+    theme(panel.grid.major.y = element_blank())
   
 ```
 
@@ -282,21 +276,18 @@ sales_per_capita_plot <-
   scale_x_continuous(
     name = "", 
     breaks = seq(2011, 2019, 1), 
-    expand = c(0, 0.1)) + 
+    expand = c(0, 0, 0, 0.1)) + 
 
   scale_y_continuous(
     name = "Kilowatt Hours (kWh)", 
     limits = c(3000, 10000),
     breaks = seq(3000, 10000, 1000),
     labels = scales::comma,
-    expand = c(0, 0.2)) +
+    expand = c(0, 0)) +
 
   scale_color_manual(values = c("#8CBBDA", "#97CD93", "#F28D8C")) +
-  theme_minimal() +
-  theme(
-    legend.position = "none", 
-    panel.grid.minor = element_blank()
-  ) 
+  theme_electrified() +
+  theme(legend.position = "none")
 
 ```
 
@@ -388,12 +379,8 @@ coastal_consumption_plot <-
       name = "Customer Class"
     ) +
     
-    theme_minimal() +
-    theme(
-      legend.position = "top",
-      panel.grid.minor = element_blank(),
-      panel.grid.major.x = element_blank()
-    ) +
+    theme_electrified() +
+    theme(panel.grid.major.x = element_blank()) +
 
     guides(fill = guide_legend(title = NULL)) 
 
@@ -478,12 +465,8 @@ coastal_customers_plot <-
       name = "Customer Class"
     ) +
     
-    theme_minimal() +
-    theme(
-      legend.position = "top",
-      panel.grid.minor = element_blank(),
-      panel.grid.major.x = element_blank()
-    ) +
+    theme_electrified() +
+    theme(panel.grid.major.x = element_blank()) +
 
     guides(fill = guide_legend(title = NULL)) 
 
@@ -570,16 +553,10 @@ railbelt_consumption_plot <-
       name = "Customer Class"
     ) +
     
-    theme_minimal() +
-    theme(
-      legend.position = "top",
-      panel.grid.minor = element_blank(),
-      panel.grid.major.x = element_blank()
-    ) +
+    theme_electrified() +
+    theme(panel.grid.major.x = element_blank()) +
 
     guides(fill = guide_legend(title = NULL)) 
-
-
 
 ```
 
@@ -596,7 +573,6 @@ railbelt_consumption_html <-
   )
 
 girafe(code = print(railbelt_consumption_html))
-
 
 ```
 
@@ -659,12 +635,8 @@ railbelt_customers_plot <-
       name = "Customer Class"
     ) +
     
-    theme_minimal() +
-    theme(
-      legend.position = "top",
-      panel.grid.minor = element_blank(),
-      panel.grid.major.x = element_blank()
-    ) +
+    theme_electrified() +
+    theme(panel.grid.major.x = element_blank()) +
 
     guides(fill = guide_legend(title = NULL)) 
 
@@ -751,12 +723,8 @@ rural_remote_consumption_plot <-
       name = "Customer Class"
     ) +
     
-    theme_minimal() +
-    theme(
-      legend.position = "top",
-      panel.grid.minor = element_blank(),
-      panel.grid.major.x = element_blank()
-    ) +
+    theme_electrified() +
+    theme(panel.grid.major.x = element_blank()) +
 
     guides(fill = guide_legend(title = NULL)) 
 
@@ -841,12 +809,8 @@ rural_remote_customers_plot <-
       name = "Customer Class"
     ) +
     
-    theme_minimal() +
-    theme(
-      legend.position = "top",
-      panel.grid.minor = element_blank(),
-      panel.grid.major.x = element_blank()
-    ) +
+    theme_electrified() +
+    theme(panel.grid.major.x = element_blank()) +
 
     guides(fill = guide_legend(title = NULL)) 
 

@@ -6,8 +6,6 @@ book:
   author: 
     - name: Alaska Center for Energy and Power
       url: http://www.google.com
-    - name: Chilkat Mountain Range
-      url: http://www.chilkats.com
   subtitle: A Summary of Federal, State, and Utility Electricity Data for Alaska
   keyword: Alaska, energy, capacity, generation, price, rates
 
@@ -23,4 +21,4 @@ cap-location: top
 
 profile:
   group: 
-    - [pdf]
+    - [pdf, html]

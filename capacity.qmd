@@ -29,6 +29,8 @@ regional_capacity <- capacity_data %>%
 # Function declaration
 source("scripts/inline_functions/capacity_inline_functions.R")
 
+source("scripts/R/theme_electrified.R")
+
 # Function to make space regardless of execution format
 # To use: write `r space() outside of a code block
 # Modify globally at ./scripts/inline_functions/space.R
@@ -71,17 +73,9 @@ statewide_plot <-
   
     
   scale_fill_manual(values = c("#606571", "#9da7bf", "#00a1b7", "#F79646", "#fad900","#9BBB59","#71346a","#896D09")) +
-  theme_bw() +
-  
-  theme(legend.position = "top",
-        legend.title = element_blank(),
-        legend.text = element_text(size=7),
-        legend.key.size = unit(.4, "cm"),
-        legend.key.spacing.x = unit(.05, "cm"),
-        panel.grid.major.x = element_blank(),
-        panel.grid.minor.x = element_blank(),
-        panel.grid.minor.y = element_blank(),
-        panel.border = element_blank()) +
+  theme_electrified() +
+  theme(panel.grid.major.x = element_blank()) +
+
   guides(fill = guide_legend(nrow = 1))
 
 ```
@@ -155,17 +149,9 @@ coastal_plot <-
     
   scale_fill_manual(values = c("#606571", "#9da7bf", "#00a1b7", "#F79646","#71346a")) +
   
-  theme_bw() +
-  
-  theme(legend.position = "top",
-        legend.title = element_blank(),
-        legend.text = element_text(size=7),
-        legend.key.size = unit(.4, "cm"),
-        legend.key.spacing.x = unit(.05, "cm"),
-        panel.grid.major.x = element_blank(),
-        panel.grid.minor.x = element_blank(),
-        panel.grid.minor.y = element_blank(),
-        panel.border = element_blank()) +
+  theme_electrified() +
+  theme(panel.grid.major.x = element_blank()) +
+
   guides(fill = guide_legend(nrow = 1))
 ```
 
@@ -232,17 +218,9 @@ coastal_renewable_plot <-
   
   scale_fill_manual(values = c("#00a1b7", "#F79646","#71346a")) +
   
-  theme_bw() +
-  
-  theme(legend.position = "top",
-        legend.title = element_blank(),
-        legend.text = element_text(size=7),
-        legend.key.size = unit(.4, "cm"),
-        legend.key.spacing.x = unit(.05, "cm"),
-        panel.grid.major.x = element_blank(),
-        panel.grid.minor.x = element_blank(),
-        panel.grid.minor.y = element_blank(),
-        panel.border = element_blank()) +
+  theme_electrified() +
+  theme(panel.grid.major.x = element_blank()) +
+
   guides(fill = guide_legend(nrow = 1))
 ```
 
@@ -312,17 +290,9 @@ railbelt_plot <-
     
   scale_fill_manual(values = c("#606571", "#9da7bf", "#00a1b7", "#F79646", "#fad900","#9BBB59","#71346a","#896D09")) +
   
-  theme_bw() +
-  
-  theme(legend.position = "top",
-        legend.title = element_blank(),
-        legend.text = element_text(size=7),
-        legend.key.size = unit(.4, "cm"),
-        legend.key.spacing.x = unit(.05, "cm"),
-        panel.grid.major.x = element_blank(),
-        panel.grid.minor.x = element_blank(),
-        panel.grid.minor.y = element_blank(),
-        panel.border = element_blank()) +
+  theme_electrified() +
+  theme(panel.grid.major.x = element_blank()) +
+
   guides(fill = guide_legend(nrow = 1))
 ```
 
@@ -390,17 +360,9 @@ railbelt_renewable_plot <-
     
   scale_fill_manual(values = c("#00a1b7", "#F79646","#fad900","#9BBB59","#71346a","#896D09")) +
   
-  theme_bw() +
-  
-  theme(legend.position = "top",
-        legend.title = element_blank(),
-        legend.text = element_text(size=7),
-        legend.key.size = unit(.4, "cm"),
-        legend.key.spacing.x = unit(.05, "cm"),
-        panel.grid.major.x = element_blank(),
-        panel.grid.minor.x = element_blank(),
-        panel.grid.minor.y = element_blank(),
-        panel.border = element_blank()) +
+  theme_electrified() +
+  theme(panel.grid.major.x = element_blank()) +
+
   guides(fill = guide_legend(nrow = 1))
 ```
 
@@ -472,17 +434,9 @@ rural_remote_plot <-
   
   scale_fill_manual(values = c("#606571", "#9da7bf", "#00a1b7", "#F79646", "#fad900","#71346a")) +
   
-  theme_bw() +
-  
-  theme(legend.position = "top",
-        legend.title = element_blank(),
-        legend.text = element_text(size=7),
-        legend.key.size = unit(.4, "cm"),
-        legend.key.spacing.x = unit(.05, "cm"),
-        panel.grid.major.x = element_blank(),
-        panel.grid.minor.x = element_blank(),
-        panel.grid.minor.y = element_blank(),
-        panel.border = element_blank()) +
+  theme_electrified() +
+  theme(panel.grid.major.x = element_blank()) +
+
   guides(fill = guide_legend(nrow = 1))
 ```
 
@@ -551,17 +505,9 @@ rural_remote_renewable_plot <-
     
   scale_fill_manual(values = c("#00a1b7", "#F79646","#fad900","#71346a")) +
   
-  theme_bw() +
+  theme_electrified() +
+  theme(panel.grid.major.x = element_blank()) +
   
-  theme(legend.position = "top",
-        legend.title = element_blank(),
-        legend.text = element_text(size=7),
-        legend.key.size = unit(.4, "cm"),
-        legend.key.spacing.x = unit(.05, "cm"),
-        panel.grid.major.x = element_blank(),
-        panel.grid.minor.x = element_blank(),
-        panel.grid.minor.y = element_blank(),
-        panel.border = element_blank()) +
   guides(fill = guide_legend(nrow = 1))
 ```
 

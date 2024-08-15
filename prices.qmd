@@ -25,6 +25,8 @@ prices <- read_csv("./data/final_data/prices.csv")
 # Function declaration
 source("scripts/inline_functions/price_inline_functions.R")
 
+source("scripts/R/theme_electrified.R")
+
 weighted_prices <- read_csv("./data/final_data/weighted_prices.csv")
 
 # Function to make space regardless of execution format
@@ -374,15 +376,11 @@ raincloud <- function(sector_input="residential", start_year=2011, end_year=2019
     scale_y_continuous(
       breaks = seq(0, x_axis_max, 20), 
       limits = c(0, x_axis_max),
-      expand = c(0, 0.1)) + 
+      expand = c(0, 0, 0, 0.5)) + 
     
-    theme_classic() +
+    theme_electrified() +
     theme(legend.position = "none",
-          # plot.title = element_text(size=16, hjust = 0.5),
-          # plot.subtitle = element_text(size=14, hjust = 0.5),
-          plot.caption = element_text(size = 8),
-          panel.grid.major.x = element_line(color = "black", size = 0.1),
-          plot.margin = unit(c(t=5, r=15, b=5, l=0), "pt")
+          panel.grid.major.y = element_blank()
           ) +
     
     labs(x = "", y = "Cents per kWh") +
@@ -491,17 +489,17 @@ regions_plot <-
   scale_x_continuous(
     name = "Year", 
     breaks = seq(2011, 2019, 1), 
-    expand = c(0, 0.1)) + 
+    expand = c(0, 0, 0, 0.1)) + 
 
   scale_y_continuous(
     name = "Cents per Kilowatt Hour", 
     limits = c(16, 28), 
     breaks = seq(16, 28, 2),
-    expand = c(0, 0.2)) +
+    expand = c(0, 0)) +
 
   scale_color_manual(values = c("#8CBBDA", "#97CD93", "#F28D8C")) +
-  theme_classic() +
-  theme(legend.position = "none", panel.grid.minor.x = element_blank()) 
+  theme_electrified() +
+  theme(legend.position = "none")
 
 
 ```
@@ -583,19 +581,18 @@ coastal_plot <-
     scale_x_continuous(
       name = "Year", 
       breaks = seq(2011, 2019, 1), 
-      expand = c(0, 0.1)) + 
+      expand = c(0, 0, 0, 0.1)) + 
 
     scale_y_continuous(
       name = "Cents per Kilowatt Hour", 
       limits = c(10, 40.5), 
       breaks = seq(10, 40.5, 10),
-      expand = c(0, 0.2)) +
+      expand = c(0, 0)) +
 
     scale_color_manual(values = c("#e29617", "#fad900", "#0084c1")) +
-    theme_classic() +
+    theme_electrified() +
     theme(
-      legend.position = "none", 
-      panel.grid.minor.x = element_blank())
+      legend.position = "none")
 
 ```
 
@@ -675,17 +672,17 @@ railbelt_plot <-
     scale_x_continuous(
       name = "Year", 
       breaks = seq(2011, 2019, 1), 
-      expand = c(0, 0.1)) + 
+      expand = c(0, 0, 0, 0.1)) + 
 
     scale_y_continuous(
       name = "Cents per Kilowatt Hour", 
       limits = c(10, 40.5), 
       breaks = seq(10, 40.5, 10),
-      expand = c(0, 0.2)) +
+      expand = c(0, 0)) +
 
     scale_color_manual(values = c("#e29617", "#fad900", "#0084c1")) +
-    theme_classic() +
-    theme(legend.position = "none", panel.grid.minor.x = element_blank())
+    theme_electrified() +
+    theme(legend.position = "none")
 
 ```
 
@@ -763,17 +760,19 @@ rural_remote_plot <-
     scale_x_continuous(
       name = "Year", 
       breaks = seq(2011, 2019, 1), 
-      expand = c(0, 0.1)) + 
+      expand = c(0, 0, 0, 0.1)) + 
 
     scale_y_continuous(
       name = "Cents per Kilowatt Hour", 
       limits = c(10, 70), 
       breaks = seq(10, 70, 10),
-      expand = c(0, 0.2)) +
+      expand = c(0, 0)) +
 
     scale_color_manual(values = c("#e29617", "#fad900", "#0084c1")) +
-    theme_bw() +
-    theme(legend.position = "none", panel.grid.minor.x = element_blank())
+    theme_electrified() +
+    theme(legend.position = "none", 
+    panel.grid.major.y = element_line(color = "gray", size = 0.1)
+    )
 
 
 ```
