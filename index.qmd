@@ -1,7 +1,6 @@
 ---
 title: "Introduction"
 subtitle: "An Analysis of Electricity in Alaska, Data Years 2011-2021"
-author: "Alaska Center for Energy and Power"
 ---
 
 ## Welcome  {#welcome .unnumbered}

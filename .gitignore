@@ -5,6 +5,8 @@
 .RData
 .Ruserdata
 
+dev_*
+
 /.quarto/
 *_cache/
 _site/

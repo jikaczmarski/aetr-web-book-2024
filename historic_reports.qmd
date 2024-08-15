@@ -1,8 +1,6 @@
 ---
 title: "Historical Electric Power Statistics Reports"
 subtitle: "Links to Previous Reports, Data Years 1960-2012"
-date-modified: "2024-03-26T12:08:00-08:00"
-date-format: "MMM D, YYYY [at] HH:mm z"
 ---
 
 ## Historical Electric Power Reports {#sec-historic-reports}

@@ -2,82 +2,14 @@ project:
   type: book
   
 book:
-  title: "2024 Alaska Electricity Trends Report"
-  # author: "Alaska Center for Energy and Power"
+  title: 2024 Alaska Electricity Trends Report
+  author: 
+    - name: Alaska Center for Energy and Power
+      url: http://www.google.com
+    - name: Chilkat Mountain Range
+      url: http://www.chilkats.com
   subtitle: A Summary of Federal, State, and Utility Electricity Data for Alaska
   keyword: Alaska, energy, capacity, generation, price, rates
-
-  author:
-  - name: Jesse Kaczmarski
-    role: "data curation, formal analysis, project administration, software, validation, visualization, writing original draft" 
-    affiliations:
-      - ref: acep
-
-  - name: Ian MacDougall 
-    role: "data curation, formal analysis, software, validation, visualization, writing original draft"
-    affiliations: 
-      - ref: acep
-  
-  - name: Steve Colt
-    role: "data curation, formal analysis, investigation, validation, writing review & editing"
-    affiliations: 
-      - ref: acep 
-
-  - name: Neil McMahon 
-    role: "data curation, investigation, validation"
-    affiliations: 
-      - ref: dowl
-    
-  - name: Sara Fisher-Goad 
-    role: "conceptualization, validation, writing review & editing"
-    affiliations: 
-      - ref: vice_chancellor
-    
-  - name: Brittany Smart
-    role: "project administration, writing review & editing"
-    affiliations: 
-      - ref: acep
-
-  - name: Dayne Broderson
-    role: "conceptualization, funding acquisition"
-    affiliations:
-      - ref: acep
-
-  - name: Gwen Holdmann
-    role: "conceptualization, funding acquisition"
-    affiliations: 
-      - ref: acep
-
-  - name: Shivani Mathur 
-    role: "validation, writing review & editing"
-    affiliations: 
-      - ref: acep 
-
-  - name: Erika Boice 
-    role: "writing review & editing"
-    affiliations: 
-      - ref: acep
-
-  - name: Elizabeth (Liz) Dobbins
-    role: "software, project administration, resources, supervision, writing review & editing"
-    affiliations: 
-      - ref: acep 
-    
-affiliations: 
-  - id: acep
-    number: 1
-    name: Alaska Center for Energy and Power
-    url: https://www.uaf.edu/acep/
-
-  - id: dowl
-    number: 2
-    name: DOWL
-    url: https://www.dowl.com/
-
-  - id: vice_chancellor
-    number: 3
-    name: Office of the Vice Chancellor for Research, UAF
-    url: https://www.uaf.edu/research/
 
 date: last-modified
 date-format: "MMM D, YYYY [at] HH:mm z"

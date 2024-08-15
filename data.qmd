@@ -1,12 +1,6 @@
 ---
 title: "Data Portal"
 subtitle: "Download the Data Used in the Report's Figures"
-date-modified: "2024-03-27T15:44:00-08:00"
-date-format: "MMM D, YYYY [at] HH:mm z"
-output:
-  quarto::quarto_html:
-    pre_processor: quarto::observable
-echo: false
 ---
 
 ::: {.content-visible when-format="pdf"}

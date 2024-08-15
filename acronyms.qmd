@@ -1,8 +1,6 @@
 ---
 title: "Acronym Definitions"
 subtitle: "Acronyms Commonly used in the Report"
-date-modified: "2024-03-26T14:36:00-08:00"
-date-format: "MMM D, YYYY [at] HH:mm z"
 ---
 
 ## Acronyms

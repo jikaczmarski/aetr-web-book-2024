@@ -1,8 +1,6 @@
 ---
 title: "Conclusions"
 subtitle: "Description of Results and Conclusions"
-date-modified: "2024-04-05T12:45:00-08:00"
-date-format: "MMM D, YYYY [at] HH:mm z"
 ---
 
 &nbsp;

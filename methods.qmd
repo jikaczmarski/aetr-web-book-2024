@@ -1,10 +1,6 @@
 ---
 title: "Methods"
 subtitle: "Data Sources, Region Definitions, and Description of the PCE Program"
-date-modified: "2024-04-11T09:11:00-08:00"
-date-format: "MMM D, YYYY [at] HH:mm z"
-cap-location: top
-echo: false
 ---
 
 ```{r, echo=FALSE,warning=FALSE,message=FALSE}
