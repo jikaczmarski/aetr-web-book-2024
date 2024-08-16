@@ -78,7 +78,7 @@ statewide_plot <-
   theme_electrified() +
   theme(panel.grid.major.x = element_blank()) +
 
-  guides(fill = guide_legend(nrow = 1))
+  guides(fill = guide_legend(nrow = 2))
 
 ```
 
@@ -295,7 +295,7 @@ railbelt_plot <-
   theme_electrified() +
   theme(panel.grid.major.x = element_blank()) +
 
-  guides(fill = guide_legend(nrow = 1))
+  guides(fill = guide_legend(nrow = 2))
 ```
 
 ```{r, eval=knitr::is_html_output(), fig.pos = "H"}
