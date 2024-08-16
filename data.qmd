@@ -5,7 +5,7 @@ subtitle: "Download the Data Used in the Report's Figures"
 
 ::: {.content-visible when-format="pdf"}
 ## Data Overview
-The data used in this web-book is derived from federal, state, commercial, and local sources, as well as direct communications with utilities and state program managers. More information about data sources can be found on the web book version of this report at:
+The data used in this report is derived from federal, state, commercial, and local sources, as well as direct communications with utilities and state program managers. More information about data sources can be found on the web-book version of this report at:
 
 https://acep-uaf.github.io/aetr-web-book-2024/methods.html
 

@@ -40,7 +40,7 @@ gen_fn <- function(n, id) {
 }
 ```
 
-The Alaska Electrical Trends web book has been produced by the Alaska Center for Energy and Power ([ACEP](https://www.uaf.edu/acep/)) at the University of Alaska Fairbanks ([UAF](https://www.uaf.edu/uaf/index.php)). It is a collaboration between data scientists, researchers, and policy experts. Roles here are described by [Contributor Roles Taxonomy (CRediT)](https://credit.niso.org/).
+The Alaska Electrical Trends report has been produced by the Alaska Center for Energy and Power ([ACEP](https://www.uaf.edu/acep/)) at the University of Alaska Fairbanks ([UAF](https://www.uaf.edu/uaf/index.php)). It is a collaboration between data scientists, researchers, and policy experts. Roles here are described by [Contributor Roles Taxonomy (CRediT)](https://credit.niso.org/).
 
 
 * [Jesse Kaczmarski](https://www.uaf.edu/acep/about/our-team/jesse-kaczmarski.php)`r if (knitr::is_html_output()) gen_fn(1, "fn1") else "^1^"`

@@ -5,7 +5,7 @@ subtitle: "Description of the 2024 Alaska Electricity Trends Report Web Book"
 
 ## General Overview
 
-This Alaska Electrical Trends Report (AETR) Web Book has been produced by the Alaska Center for Energy and Power ([ACEP](https://www.uaf.edu/acep/)) at the University of Alaska Fairbanks ([UAF](https://www.uaf.edu/uaf/index.php)). It is designed to be interactive and dynamically updated when new data becomes available. 
+This Alaska Electrical Trends Report (AETR) has been produced by the Alaska Center for Energy and Power ([ACEP](https://www.uaf.edu/acep/)) at the University of Alaska Fairbanks ([UAF](https://www.uaf.edu/uaf/index.php)).  
 
 Throughout the years, several agencies have prepared and published reports and data compilations on energy use in Alaska. AETR is complementary to those prior reports, but is not presented in a comparable format. 
 
@@ -32,6 +32,7 @@ The @tbl-report-eras provides a summary of this timeline. This report serves to 
 
 For a table of links to these historic reports, please refer to @tbl-historic-reports.
 
+::: {.content-visible when-format="html"}
 ## Technical Details
 
 The book is formatted using [Quarto](https://quarto.org), an open-source scientific and technical publishing system. The template was developed by the Openscapes project, as part of their [Quarto Website Tutorial](https://github.com/Openscapes/quarto-website-tutorial).
@@ -39,3 +40,5 @@ The book is formatted using [Quarto](https://quarto.org), an open-source scienti
 The markdown files that make up the book reside in the [aetr-web-book](https://github.com/acep-uaf/aetr-web-book) GitHub repository. The generation process is publicly accessible. Errors in the document can be flagged using GitHub issues where they can be tracked and addressed by the DCM team.
 
 The book also integrates R code for data processing and figure generation. When data files are updated, manually triggering the Quarto render will update the figures automatically.
+
+:::
