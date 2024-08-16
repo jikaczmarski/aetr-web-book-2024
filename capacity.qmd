@@ -69,7 +69,7 @@ statewide_plot <-
     name = "Capacity (MW)\n",
     limits = c(0,3500),
     breaks = seq(0,3000, by = 500),
-    expand = c(0, 0.2)) +
+    expand = c(0, 0)) +
   
     
   scale_fill_manual(values = c("#606571", "#9da7bf", "#00a1b7", "#F79646", "#fad900","#9BBB59","#71346a","#896D09")) +
@@ -144,7 +144,7 @@ coastal_plot <-
     name = "Capacity (MW)\n",
     limits = c(0,700),
     breaks = seq(0,650, by = 50),
-    expand = c(0, 0.2)) +
+    expand = c(0, 0)) +
   
     
   scale_fill_manual(values = c("#606571", "#9da7bf", "#00a1b7", "#F79646","#71346a")) +
@@ -214,7 +214,7 @@ coastal_renewable_plot <-
     name = "Capacity (MW)\n",
     limits = c(0,350),
     breaks = seq(0,300, by = 50),
-    expand = c(0, 0.2)) +
+    expand = c(0, 0)) +
   
   scale_fill_manual(values = c("#00a1b7", "#F79646","#71346a")) +
   
@@ -286,7 +286,7 @@ railbelt_plot <-
     name = "Capacity (MW)\n",
     limits = c(0,2500),
     breaks = seq(0,2000, by = 250),
-    expand = c(0, 0.2)) +
+    expand = c(0, 0)) +
     
   scale_fill_manual(values = c("#606571", "#9da7bf", "#00a1b7", "#F79646", "#fad900","#9BBB59","#71346a","#896D09")) +
   
@@ -356,7 +356,7 @@ railbelt_renewable_plot <-
     name = "Capacity (MW)\n",
     limits = c(0,400),
     breaks = seq(0,350, by = 50),
-    expand = c(0, 0.2)) +
+    expand = c(0, 0)) +
     
   scale_fill_manual(values = c("#00a1b7", "#F79646","#fad900","#9BBB59","#71346a","#896D09")) +
   
@@ -430,7 +430,7 @@ rural_remote_plot <-
     name = "Capacity (MW)\n",
     limits = c(0,400),
     breaks = seq(0,300, by = 50),
-    expand = c(0, 0.2)) +
+    expand = c(0, 0)) +
   
   scale_fill_manual(values = c("#606571", "#9da7bf", "#00a1b7", "#F79646", "#fad900","#71346a")) +
   
@@ -500,7 +500,7 @@ rural_remote_renewable_plot <-
     name = "Capacity (MW)\n",
     limits = c(0,24),
     breaks = seq(0,22, by = 2),
-    expand = c(0, 0.2)) +
+    expand = c(0, 0)) +
   
     
   scale_fill_manual(values = c("#00a1b7", "#F79646","#fad900","#71346a")) +

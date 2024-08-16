@@ -95,9 +95,9 @@ regional_generation_plot <-
       y = total_gen,
       fill = acep_region)) +
 
-  scale_x_continuous(name = "\nYear",
-                   breaks = seq(2011, 2021, by = 1),
-    expand = c(0, 0)) +
+  scale_x_continuous(
+    name = "\nYear",
+    breaks = seq(2011, 2021, by = 1)) +
   
   scale_y_continuous(
     name = "Generation (GWh)\n",
@@ -277,14 +277,15 @@ coastal_shares_plot <-
            y = generation_share, 
            fill = fuel_type)) +
 
-  scale_x_continuous(name = "\nYear",
-                     breaks = seq(2011, 2021, by = 1),
-                     expand = c(0,0)) +
+  scale_x_continuous(
+    name = "\nYear",
+    breaks = seq(2011, 2021, by = 1)) +
   
-  scale_y_continuous(name = "Share of Electricity Generation (%)\n",
-                   limits = c(0,101),
-                   breaks = seq(0, 100, by = 10),
-                   expand = c(0,0)) +
+  scale_y_continuous(
+    name = "Share of Electricity Generation (%)\n",
+    limits = c(0,101),
+    breaks = seq(0, 100, by = 10),
+    expand = c(0,0)) +
   
   
   scale_fill_manual(values = c("#BFBFBF","#96B3DF","#F79646")) +
@@ -346,14 +347,15 @@ coastal_generation_gwh_plot <-
            y = generation_gwh, 
            fill = fuel_type)) +
 
-  scale_x_continuous(name = "\nYear",
-                     breaks = seq(2011, 2021, by = 1),
-                     expand = c(0,0)) +
+  scale_x_continuous(
+    name = "\nYear",
+    breaks = seq(2011, 2021, by = 1)) +
   
-  scale_y_continuous(name = "Generation (GWh)\n",
-                   limits = c(0,1300),
-                   breaks = seq(0, 1250, by = 250),
-                   expand = c(0,0)) +
+  scale_y_continuous(
+    name = "Generation (GWh)\n",
+    limits = c(0,1300),
+    breaks = seq(0, 1250, by = 250),
+    expand = c(0,0)) +
   
   
   scale_fill_manual(values = c("#BFBFBF","#96B3DF","#F79646")) +
@@ -417,26 +419,23 @@ railbelt_shares_plot <-
            y = generation_share, 
            fill = fuel_type)) +
 
-  scale_x_continuous(name = "\nYear",
-                     breaks = seq(2011, 2021, by = 1),
-                     expand = c(0,0)) +
+  scale_x_continuous(
+    name = "\nYear",
+    breaks = seq(2011, 2021, by = 1)) +
   
-  scale_y_continuous(name = "Share of Electricity Generation (%)\n",
-                   limits = c(0,101),
-                   breaks = seq(0, 100, by = 10),
-                   expand = c(0,0)) +
-  
+  scale_y_continuous(
+    name = "Share of Electricity Generation (%)\n",
+    limits = c(0,101),
+    breaks = seq(0, 100, by = 10),
+    expand = c(0,0)) +
   
   scale_fill_manual(values = c("#7f7f7f","#BFBFBF","#DCD9C5","#96B3DF","#F79646","#F5C243")) +
-  #theme_minimal() +
   labs(caption ="Note: Storage is not included here since net generation is negative.") +
-  theme(legend.position = "top",
-        panel.background = element_blank(), 
-        panel.grid = element_blank(),
-        legend.title = element_blank(),
-        legend.text = element_text(size=6),
-        plot.caption = element_text(hjust = 0.5, colour = "gray65"),
-        plot.caption.position = "plot") +
+  
+  theme_electrified() +
+  theme(
+    plot.caption = element_text(hjust = 0.5, colour = "gray65"),
+    plot.caption.position = "plot") +
 
   guides(fill = guide_legend(nrow = 1))
 
@@ -486,14 +485,12 @@ railbelt_generation_gwh_plot <-
            fill = fuel_type)) +
 
   scale_x_continuous(name = "\nYear",
-                     breaks = seq(2011, 2021, by = 1),
-                     expand = c(0,0)) +
+                     breaks = seq(2011, 2021, by = 1)) +
   
   scale_y_continuous(name = "Generation (GWh)\n",
                    limits = c(0,5500),
                    breaks = seq(0, 5000, by = 1000),
                    expand = c(0,0)) +
-  
   
   scale_fill_manual(values = c("#7f7f7f","#BFBFBF","#DCD9C5","#96B3DF","#F79646","#F5C243")) +
 
@@ -564,8 +561,7 @@ rural_remote_shares_plot <-
            fill = fuel_type)) +
 
   scale_x_continuous(name = "\nYear",
-                     breaks = seq(2011, 2021, by = 1),
-                     expand = c(0,0)) +
+                     breaks = seq(2011, 2021, by = 1)) +
   
   scale_y_continuous(name = "Share of Electricity Generation (%)\n",
                    limits = c(0,101),
@@ -638,8 +634,7 @@ rural_remote_generation_gwh_plot <-
            fill = fuel_type)) +
 
   scale_x_continuous(name = "\nYear",
-                     breaks = seq(2011, 2021, by = 1),
-                     expand = c(0,0)) +
+                     breaks = seq(2011, 2021, by = 1)) +
   
   scale_y_continuous(name = "Generation (GWh)\n",
                    limits = c(0,600),
