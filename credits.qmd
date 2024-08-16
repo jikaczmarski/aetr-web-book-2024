@@ -1,7 +1,6 @@
 ---
 title: "Acknowledgements and Roles"
 subtitle: "About the Team that Created the 2024 Alaska Electricity Trends Report"
-author: Ian Yeager
 ---
 
 ```{r, echo=FALSE,warning=FALSE,message=FALSE}
