@@ -9,33 +9,50 @@ $if(title)$
 \thispagestyle{empty}
 {\centering
 % \par\noindent\includegraphics[width=\textwidth]{images/banner_acep_uaf.png}
-\vspace*{-2cm}
-\makebox[\textwidth]{
-  \includegraphics[width=\textwidth+2cm]{images/banner_acep_uaf.png}}
-\vspace{2ex}
-\par\noindent\includegraphics[width=\textwidth]{images/jnu_aurora.jpeg}
-\\
-\vspace{7ex}
+
+\vspace*{-3cm}
+
+\makebox[\textwidth]{\includegraphics[width=\textwidth+2cm]{images/banner_acep_uaf.png}}
+
+\vspace{5ex}
+
+\par\noindent\hspace*{-1cm}\includegraphics[width=\textwidth+2cm]{images/salmon_creek_dam.jpeg}
+
+\vspace{5ex}
+
+% \begin{flushright} % uncomment if you want all text on one side
+
 {\huge\bfseries\color{uafblue} $title$ \par}
-\vspace{3ex}
-$if(subtitle)$
-{\Large $subtitle$ \par}
-$endif$
-\vspace{15ex}
-$for(by-author)$
-{\Large $by-author.name.literal$ \par}
-\vspace{3ex}
-% {\bfseries\large $date$ \par}
-\vspace{12ex}
-$for(by-author.affiliations)$%
-$if(it.department)$%
-{\bfseries\large $it.department$ \par}
-\vspace{3ex}
-$endif$%
-{\bfseries\large $it.name$ \par}
-$endfor$$endfor$%
+\vspace{2ex}
+{\large\bfseries\color{uafblue} $subtitle$ \par}
+
+\vspace{5ex}
+
+{\normalsize
+  Jesse Kaczmarski \textsuperscript{1}, 
+  Ian Yeager \textsuperscript{1}, 
+  Steve Colt \textsuperscript{1}\\
+  Neil McMahon \textsuperscript{3}, 
+  Sara Fisher-Goad \textsuperscript{2}, 
+  Brittany Smart \textsuperscript{1}, 
+  Dayne Broderson \textsuperscript{1} \\
+  Gwen Holdmann \textsuperscript{1}, 
+  Shivani Mathur \textsuperscript{1}, 
+  Erika Boice \textsuperscript{1},
+  Elizabeth Dobbins \textsuperscript{1}}
+
+\vspace{5ex}
+
+{\large
+  \textsuperscript{1} Alaska Center for Energy and Power \\
+  \textsuperscript{2} Office of the Vice Chancellor for Research, UAF \\
+  \textsuperscript{3} DOWL}
+
+% \end{flushright}  % uncomment if you want all text on one side
+
 }
 $endif$
+
 
 \newpage
 % \thispagestyle{empty}

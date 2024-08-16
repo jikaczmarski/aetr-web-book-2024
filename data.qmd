@@ -1,17 +1,22 @@
 ---
 title: "Data Portal"
 subtitle: "Download the Data Used in the Report's Figures"
-date-modified: "2024-03-27T15:44:00-08:00"
-date-format: "MMM D, YYYY [at] HH:mm z"
-output:
-  quarto::quarto_html:
-    pre_processor: quarto::observable
-echo: false
 ---
+
+```{r, echo=FALSE,warning=FALSE,message=FALSE}
+
+# Function to make space regardless of execution format
+# To use: write `r space() outside of a code block
+# Modify globally at ./scripts/inline_functions/space.R
+source("scripts/R/space.R")
+
+```
+
+`r space(br="", vspace="-3em")`
 
 ::: {.content-visible when-format="pdf"}
 ## Data Overview
-The data used in this web-book is derived from federal, state, commercial, and local sources, as well as direct communications with utilities and state program managers. More information about data sources can be found on the web book version of this report at:
+The data used in this report is derived from federal, state, commercial, and local sources, as well as direct communications with utilities and state program managers. More information about data sources can be found on the web-book version of this report at:
 
 https://acep-uaf.github.io/aetr-web-book-2024/methods.html
 

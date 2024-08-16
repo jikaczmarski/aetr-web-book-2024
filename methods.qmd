@@ -1,16 +1,18 @@
 ---
 title: "Methods"
 subtitle: "Data Sources, Region Definitions, and Description of the PCE Program"
-date-modified: "2024-04-11T09:11:00-08:00"
-date-format: "MMM D, YYYY [at] HH:mm z"
-cap-location: top
-echo: false
 ---
 
 ```{r, echo=FALSE,warning=FALSE,message=FALSE}
-library(dplyr)
+
+# Function to make space regardless of execution format
+# To use: write `r space() outside of a code block
+# Modify globally at ./scripts/inline_functions/space.R
+source("scripts/R/space.R")
 
 ```
+
+`r space(br="", vspace="-3em")`
 
 ## Data Sources {#sec-sources}
 

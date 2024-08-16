@@ -2,10 +2,22 @@ project:
   type: book
   
 book:
-  title: "2024 Alaska Electricity Trends Report"
-  author: "Alaska Center for Energy and Power"
-  description: An interactive report that summarizes federal, state, and utility electricity data for Alaska.
+  title: 2024 Alaska Electricity Trends Report
+  author: 
+    - name: Alaska Center for Energy and Power
+      url: https://www.uaf.edu/acep/
+  subtitle: A Summary of Federal, State, and Utility Electricity Data for Alaska
   keyword: Alaska, energy, capacity, generation, price, rates
+
+date: last-modified
+date-format: "MMM D, YYYY [at] HH:mm z"
+
+filters:
+  - quarto
+
+echo: false
+warning: false
+cap-location: top
 
 profile:
   group: 

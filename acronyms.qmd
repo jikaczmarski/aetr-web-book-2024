@@ -1,9 +1,18 @@
 ---
 title: "Acronym Definitions"
 subtitle: "Acronyms Commonly used in the Report"
-date-modified: "2024-03-26T14:36:00-08:00"
-date-format: "MMM D, YYYY [at] HH:mm z"
 ---
+
+```{r, echo=FALSE,warning=FALSE,message=FALSE}
+
+# Function to make space regardless of execution format
+# To use: write `r space() outside of a code block
+# Modify globally at ./scripts/inline_functions/space.R
+source("scripts/R/space.R")
+
+```
+
+`r space(br="", vspace="-3em")`
 
 ## Acronyms
 

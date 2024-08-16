@@ -1,11 +1,18 @@
 ---
 title: "Conclusions"
 subtitle: "Description of Results and Conclusions"
-date-modified: "2024-04-05T12:45:00-08:00"
-date-format: "MMM D, YYYY [at] HH:mm z"
 ---
 
-&nbsp;
+```{r, echo=FALSE,warning=FALSE,message=FALSE}
+
+# Function to make space regardless of execution format
+# To use: write `r space() outside of a code block
+# Modify globally at ./scripts/inline_functions/space.R
+source("scripts/R/space.R")
+
+```
+
+`r space(br="<br>", vspace="-1em")`
 
 
 From 2011 to 2019/21, there have been significant developments in the electricity generation landscape in Alaska. In this report, we highlight trends across installed capacity, net/gross generation, consumption by customer class, and price per kWh. There are several key takeaways from each of these areas that we reiterate in this conclusion.

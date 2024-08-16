@@ -1,10 +1,19 @@
 ---
 title: "Acknowledgements and Roles"
 subtitle: "About the Team that Created the 2024 Alaska Electricity Trends Report"
-date-modified: "2024-04-19T09:52:00-08:00"
-date-format: "MMM D, YYYY [at] HH:mm z"
-author: "Alaska Center for Energy and Power"
+author: Ian Yeager
 ---
+
+```{r, echo=FALSE,warning=FALSE,message=FALSE}
+
+# Function to make space regardless of execution format
+# To use: write `r space() outside of a code block
+# Modify globally at ./scripts/inline_functions/space.R
+source("scripts/R/space.R")
+
+```
+
+`r space(br="", vspace="-3em")`
 
 ## Acknowledgements
 
@@ -40,29 +49,40 @@ gen_fn <- function(n, id) {
 }
 ```
 
-The Alaska Electrical Trends web book has been produced by the Alaska Center for Energy and Power ([ACEP](https://www.uaf.edu/acep/)) at the University of Alaska Fairbanks ([UAF](https://www.uaf.edu/uaf/index.php)). It is a collaboration between data scientists, researchers, and policy experts. Roles here are described by [Contributor Roles Taxonomy (CRediT)](https://credit.niso.org/).
+The Alaska Electrical Trends report has been produced by the Alaska Center for Energy and Power ([ACEP](https://www.uaf.edu/acep/)) at the University of Alaska Fairbanks ([UAF](https://www.uaf.edu/uaf/index.php)). It is a collaboration between data scientists, researchers, and policy experts. Roles here are described by [Contributor Roles Taxonomy (CRediT)](https://credit.niso.org/).
 
-* [Jesse Kaczmarski](https://www.uaf.edu/acep/about/our-team/jesse-kaczmarski.php)`r gen_fn(1, "fn1")`
+
+* [Jesse Kaczmarski](https://www.uaf.edu/acep/about/our-team/jesse-kaczmarski.php)`r if (knitr::is_html_output()) gen_fn(1, "fn1") else "^1^"`
   * Roles: data curation, formal analysis, project administration, software, validation, visualization, writing – original draft
-* [Ian MacDougall](https://www.uaf.edu/acep/about/our-team/ian-macdougall.php)`r gen_fn(1, "fn1")`
+
+* [Ian MacDougall](https://www.uaf.edu/acep/about/our-team/ian-macdougall.php)`r if (knitr::is_html_output()) gen_fn(1, "fn1") else "^1^"`
   * Roles: data curation, formal analysis, software, validation, visualization, writing – original draft
-* [Steve Colt](https://www.uaf.edu/acep/about/our-team/steve-colt.php)`r gen_fn(2, "fn2")`
+
+* [Steve Colt](https://www.uaf.edu/acep/about/our-team/steve-colt.php)`r if (knitr::is_html_output()) gen_fn(1, "fn1") else "^1^"`
   * Roles: data curation, formal analysis, investigation, validation, writing – review & editing
-* [Elizabeth (Liz) Dobbins](https://www.uaf.edu/acep/about/our-team/elizabeth-dobbins.php)`r gen_fn(1, "fn1")`
+
+* [Elizabeth (Liz) Dobbins](https://www.uaf.edu/acep/about/our-team/elizabeth-dobbins.php)`r if (knitr::is_html_output()) gen_fn(1, "fn1") else "^1^"`
   * Roles: software, project administration, resources, supervision, writing – review & editing
-* Neil McMahon`r gen_fn(3, "fn3")`
+
+* Neil McMahon`r if (knitr::is_html_output()) gen_fn(3, "fn3") else "^3^"`
   * Roles: data curation, investigation, validation
-* [Sara Fisher-Goad](https://www.uaf.edu/research/contact-us/index.php)`r gen_fn(4, "fn4")`
+
+* [Sara Fisher-Goad](https://www.uaf.edu/research/contact-us/index.php)`r if (knitr::is_html_output()) gen_fn(2, "fn2") else "^2^"`
   * Roles: conceptualization, validation, writing – review & editing
-* [Brittany Smart](https://www.uaf.edu/acep/about/our-team/brittany-smart.php)`r gen_fn(2, "fn2")`
+
+* [Brittany Smart](https://www.uaf.edu/acep/about/our-team/brittany-smart.php)`r if (knitr::is_html_output()) gen_fn(1, "fn1") else "^1^"`
   * Roles: project administration, writing – review & editing
-* [Dayne Broderson](https://www.uaf.edu/acep/about/our-team/dayne-broderson.php)`r gen_fn(1, "fn1")`
+
+* [Dayne Broderson](https://www.uaf.edu/acep/about/our-team/dayne-broderson.php)`r if (knitr::is_html_output()) gen_fn(1, "fn1") else "^1^"`
   * Roles: conceptualization, funding acquisition
-* [Gwen Holdmann](https://www.uaf.edu/acep/about/our-team/gwen-holdmann.php)`r gen_fn(2, "fn2")`
+
+* [Gwen Holdmann](https://www.uaf.edu/acep/about/our-team/gwen-holdmann.php)`r if (knitr::is_html_output()) gen_fn(1, "fn1") else "^1^"`
   * Roles: conceptualization, funding acquisition
-* [Shivani Mathur](https://www.uaf.edu/acep/about/our-team/shivani-mathur.php)`r gen_fn(2, "fn2")`
+
+* [Shivani Mathur](https://www.uaf.edu/acep/about/our-team/shivani-mathur.php)`r if (knitr::is_html_output()) gen_fn(1, "fn1") else "^1^"`
   * Roles: validation, writing – review & editing
-* [Erika Boice](https://www.uaf.edu/acep/about/our-team/erika-boice.php)`r gen_fn(2, "fn2")`
+
+* [Erika Boice](https://www.uaf.edu/acep/about/our-team/erika-boice.php)`r if (knitr::is_html_output()) gen_fn(1, "fn1") else "^1^"`
   * Roles: writing – review & editing
 
 ### Affiliations
@@ -70,12 +90,23 @@ The Alaska Electrical Trends web book has been produced by the Alaska Center for
 ```{=html}
 <footer>
   <ol  style="padding-left: 1rem;">
-    <li id="fn1"><p>Data and Cyberinfrastructure Management, ACEP, UAF.</p></li>
-    <li id="fn2"><p>Energy Transition Initiative, ACEP, UAF</p></li>
-    <li id="fn3"><p>Project Manager, <a href="https://www.dowl.com/">DOWL</a></p></li>
+    <li id="fn1"><p>Alaska Center for Energy and Power</p></li>
     <li id="fn3"><p>Office of the Vice Chancellor for Research, UAF</p></li>
+    <li id="fn3"><p>Project Manager, <a href="https://www.dowl.com/">DOWL</a></p></li>
   </ol>
 </footer>
 ```
 
-ACEP's Data and Cyberinfrastructure Management (DCM) Team <!-- (add a link when it becomes available) -->  includes software developers, mathematicians, spatial analysts, economists, open science enthusiasts, and experts in information security and the deployment of computer infrastructure. ACEP's Energy Transition Initiative (ETI) <!-- (add a link when it becomes available) --> is a group of experts that respond quickly to informational requests about Alaska energy. These teams together maintain a reliable pathway for data from collection to distribution.
+::: {.content-visible when-format="pdf"} 
+
+**^1^ [Alaska Center for Energy and Power](https://www.uaf.edu/acep/)</span>**  
+
+\vspace{1em}
+
+**^2^ [Office of the Vice Chancellor for Research, UAF](https://www.uaf.edu/research/)**  
+
+\vspace{1em}
+
+**^3^ [DOWL](https://www.dowl.com)**  
+
+:::
