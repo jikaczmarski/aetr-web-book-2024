@@ -86,6 +86,8 @@ sales_per_capita_data <-
 
 ```
 
+`r space(br="", vspace="-3em")`
+
 ## General Overview {#sec-consumption}
 
 The data presented in this section is from calendar years 2011 to 2019. More recent data has been omitted due to issues with data completeness and validity.

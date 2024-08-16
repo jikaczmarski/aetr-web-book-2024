@@ -4,7 +4,16 @@ subtitle: "About the Team that Created the 2024 Alaska Electricity Trends Report
 author: Ian Yeager
 ---
 
+```{r, echo=FALSE,warning=FALSE,message=FALSE}
 
+# Function to make space regardless of execution format
+# To use: write `r space() outside of a code block
+# Modify globally at ./scripts/inline_functions/space.R
+source("scripts/R/space.R")
+
+```
+
+`r space(br="", vspace="-3em")`
 
 ## Acknowledgements
 

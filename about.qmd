@@ -3,6 +3,17 @@ title: "About this Report"
 subtitle: "Description of the 2024 Alaska Electricity Trends Report Web Book"
 ---
 
+```{r, echo=FALSE,warning=FALSE,message=FALSE}
+
+# Function to make space regardless of execution format
+# To use: write `r space() outside of a code block
+# Modify globally at ./scripts/inline_functions/space.R
+source("scripts/R/space.R")
+
+```
+
+`r space(br="", vspace="-3em")`
+
 ## General Overview
 
 This Alaska Electrical Trends Report (AETR) has been produced by the Alaska Center for Energy and Power ([ACEP](https://www.uaf.edu/acep/)) at the University of Alaska Fairbanks ([UAF](https://www.uaf.edu/uaf/index.php)).  

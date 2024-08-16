@@ -72,6 +72,8 @@ source("scripts/R/space.R")
 
 ```
 
+`r space(br="", vspace="-3em")`
+
 ## General Overview {#sec-generation}
 
 This section outlines the trends in generation by fuel type for each region. Generation in our context has two separate definitions. Data collected through the Energy Information Administration (EIA) records "net" generation, which excludes electricity use for power plant operations.[^1] However, data collected from the Alaska Energy Authority's (AEA) Power Cost Equalization (PCE) program is presented as "gross" generation, which does not make this exclusion.[^2]

@@ -3,6 +3,17 @@ title: "Data Portal"
 subtitle: "Download the Data Used in the Report's Figures"
 ---
 
+```{r, echo=FALSE,warning=FALSE,message=FALSE}
+
+# Function to make space regardless of execution format
+# To use: write `r space() outside of a code block
+# Modify globally at ./scripts/inline_functions/space.R
+source("scripts/R/space.R")
+
+```
+
+`r space(br="", vspace="-3em")`
+
 ::: {.content-visible when-format="pdf"}
 ## Data Overview
 The data used in this report is derived from federal, state, commercial, and local sources, as well as direct communications with utilities and state program managers. More information about data sources can be found on the web-book version of this report at:

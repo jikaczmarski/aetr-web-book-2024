@@ -3,6 +3,17 @@ title: "Historical Electric Power Statistics Reports"
 subtitle: "Links to Previous Reports, Data Years 1960-2012"
 ---
 
+```{r, echo=FALSE,warning=FALSE,message=FALSE}
+
+# Function to make space regardless of execution format
+# To use: write `r space() outside of a code block
+# Modify globally at ./scripts/inline_functions/space.R
+source("scripts/R/space.R")
+
+```
+
+`r space(br="", vspace="-3em")`
+
 ## Historical Electric Power Reports {#sec-historic-reports}
 
 For an overall description of previous reports that have examined electric power trends in Alaska, please see @sec-historic-timeline. Below is an exhaustive list of links to these reports over time. Notably, we omit reports that include projections such as the State of Alaska Energy Reports/Plans.

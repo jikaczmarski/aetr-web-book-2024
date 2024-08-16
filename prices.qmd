@@ -51,6 +51,8 @@ weighted_prices = FileAttachment("data/final_data/weighted_prices.csv").csv({typ
 ```
 :::
 
+`r space(br="", vspace="-3em")`
+
 ## General Overview  {#sec-prices}
 
 Utilities in Alaska serve multiple customers, namely residential, commercial, industrial, government/municipal, and community customer classes. Each customer class experiences a different set of costs such as per kWh charge as well as monthly customer charges. In this section, we aim to highlight trends in electricity prices for the residential, commercial, and other customer classes across the Coastal, Railbelt, and Rural Remote regions. We again restrict the data years in this section to 2011 to 2019 due to concerns with data validity for 2020-21.

@@ -4,9 +4,15 @@ subtitle: "Data Sources, Region Definitions, and Description of the PCE Program"
 ---
 
 ```{r, echo=FALSE,warning=FALSE,message=FALSE}
-library(dplyr)
+
+# Function to make space regardless of execution format
+# To use: write `r space() outside of a code block
+# Modify globally at ./scripts/inline_functions/space.R
+source("scripts/R/space.R")
 
 ```
+
+`r space(br="", vspace="-3em")`
 
 ## Data Sources {#sec-sources}
 
