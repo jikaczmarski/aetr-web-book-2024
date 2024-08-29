@@ -28,6 +28,7 @@ format:
     fig-height: 3.25
 
     fontsize: 11pt
+    mainfont: Barlow
 
     toc: true   
     toc-depth: 3
