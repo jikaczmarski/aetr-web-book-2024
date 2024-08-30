@@ -31,7 +31,7 @@ Note: Any opinions, findings, conclusions, or recommendations expressed in this 
 - Alaska Center for Energy and Power ([ACEP](https://www.uaf.edu/acep/)) at the University of Alaska Fairbanks ([UAF](https://www.uaf.edu/uaf/index.php))
 - Institute of Social and Economic Research ([ISER](https://iseralaska.org)) at the University of Alaska Anchorage ([UAA](https://www.uaa.alaska.edu))
 - Alaska Energy Authority ([AEA](https://www.akenergyauthority.org/))
-- DOWL Engineering ([DOWL](https://www.dowl.com/))
+- [DOWL](https://www.dowl.com/)
 
 Data used in the energy workbooks comes from a variety of sources and partners, but special thanks to the Alaska Energy Authority for partnering with the team to make the base line power cost equalization datasets available. Without this openness, this report would not be possible. We would also like to thank the utilities who responded directly when we had questions. A full list of these organizations has been complied in @sec-sources.
 
@@ -65,7 +65,7 @@ The Alaska Electrical Trends report has been produced by the Alaska Center for E
 ### Acknowledgements
 
 * [Dayne Broderson](https://www.uaf.edu/acep/about/our-team/dayne-broderson.php)`r  "^1^"`
-  * Roles: conceptualization, funding acquisition
+  * Roles: conceptualization, funding acquisition, visualization
 
 * [Gwen Holdmann](https://www.uaf.edu/acep/about/our-team/gwen-holdmann.php)`r  "^1^"`
   * Roles: conceptualization, funding acquisition
@@ -73,7 +73,7 @@ The Alaska Electrical Trends report has been produced by the Alaska Center for E
 * [Emily Richmond](https://www.uaf.edu/acep/about/our-team/emily-richmond.php)`r  "^1^"`
   * Roles: software, visualization
 
-* [Shivani Mathur](https://www.uaf.edu/acep/about/our-team/shivani-mathur.php)`r  "^1^"`
+* [Shivani Bhagat](https://www.uaf.edu/acep/about/our-team/shivani-mathur.php)`r  "^1^"`
   * Roles: validation, writing – review & editing
 
 * [Erika Boice](https://www.uaf.edu/acep/about/our-team/erika-boice.php)`r  "^1^"`
