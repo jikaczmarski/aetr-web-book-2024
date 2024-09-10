@@ -184,25 +184,24 @@ viewof region_input = Inputs.select(new Map([
 ```{ojs}
 // the order of the container calls is important, do first, don't mess with
 map = {
-    let container = DOM.element('div', { style: `width:${width}px;height:${width/1.2}px` });
-    yield container;
+  let container = DOM.element('div', { style: `width:${width}px;height:${width/1.2}px` });
+  yield container;
 
-    // create map object
-    let map = L.map(container).setView([62.945279601222396, -155.5946697727831], 4);
+  // create map object
+  let map = L.map(container).setView([62.945279601222396, -155.5946697727831], 4);
 
-    // add basemap
-    var basemap = L.tileLayer('https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/tile/{z}/{y}/{x}', {
-      maxZoom: 20,
-      attribution: 'Tiles courtesy of the <a href="https://usgs.gov/">U.S. Geological Survey</a>'
-    });
-    basemap.addTo(map);
+  // add basemap
+  var basemap = L.tileLayer(
+    'https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}', 
+    {attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ, TomTom, Intermap, iPC, USGS, FAO, NPS, NRCAN, GeoBase, Kadaster NL, Ordnance Survey, Esri Japan, METI, Esri China (Hong Kong), and the GIS User Community'});
+  basemap.addTo(map);
 
-    // // add dropdown input selection
-    region_input.addTo(map);
+  // // add dropdown input selection
+  region_input.addTo(map);
 
-    // add community points
-    points.addTo(map);
-    
+  // add community points
+  points.addTo(map);
+
 
 }
 
